@@ -1,12 +1,14 @@
 <?php
 echo '<h1>Testing SBDC Ballroom Dance on Heroku</h1>';
     /*Get Heroku ClearDB connection information */
-/*$cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
-echo "<p> url: ".$cleardb_url."</p>"; */
-$cleardb_server   = $cleardb_url[" us-cdbr-east-04.cleardb.com "];
-$cleardb_username = $cleardb_url["bc2ed85efe7af4"];
-$cleardb_password = $cleardb_url["072a2294"];
-$cleardb_db       =  "heroku_05fb9938c429557" // substr($cleardb_url["path"],1);
+$url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
+echo "<p> url: ".$url."</p>"; 
+$server = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+
+$conn = new mysqli($server, $username, $password, $db);
 
 /* $active_group = 'default';
 $query_builder = TRUE;
@@ -36,12 +38,7 @@ $query_builder = TRUE; */
 ); */
 // Create connection
 
-$conn = new mysqli(
-    $cleardb_server, 
-    $cleardb_username, 
-    $cleardb_password, 
-    $cleardb_db
-);
+
 
 // Check connection
 if ($conn->connect_error) {
