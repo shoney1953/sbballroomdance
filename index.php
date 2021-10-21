@@ -33,5 +33,16 @@ $db['default'] = array(
     'failover' => array(),
     'save_queries' => TRUE
 );
+// Create connection
+
+$conn = new mysqli($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+echo "Connected successfully to: ".$cleardb_db."<br>";
+?>
 
 ?>
