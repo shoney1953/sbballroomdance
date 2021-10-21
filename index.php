@@ -45,10 +45,16 @@ if ($conn->connect_error) {
     die("<p>Connection failed: " . $conn->connect_error."</p>");
 } 
 
-echo "<p>Connected successfully to: ".$db."</p><br>";
-?>
-$sql = "SELECT id, classname, registrationemail, instructors, classlimit, room, date FROM danceclasses";
+$sql = "SELECT id, 
+    classname, 
+    registrationemail, 
+    instructors, 
+    classlimit, 
+    room, 
+    date FROM danceclasses;";
+
 $num_classes = 0;
+
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo " <h1>Rows from the Users Table </h1> <br><hr>";
