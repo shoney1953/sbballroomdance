@@ -1,18 +1,19 @@
 <?php
- echo '<h1>Testing SBDC Ballroom Dance on Heroku</h1>';
+echo '<h1>Testing SBDC Ballroom Dance on Heroku</h1>';
     /*Get Heroku ClearDB connection information */
 $cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
+echo "<p> url: ".$cleardb_url."</p>";
 $cleardb_server   = $cleardb_url["host"];
 $cleardb_username = $cleardb_url["user"];
 $cleardb_password = $cleardb_url["pass"];
-$cleardb_db       = substr($cleardb_url["path"],1);
+$cleardb_db       =  "heroku_05fb9938c429557" // substr($cleardb_url["path"],1);
 
-$active_group = 'default';
+/* $active_group = 'default';
 $query_builder = TRUE;
 $active_group = 'default';
-$query_builder = TRUE;
+$query_builder = TRUE; */
 
-$db['default'] = array(
+/*$db['default'] = array(
     'dsn'    => '',
     'hostname' => $cleardb_server,
     'username' => $cleardb_username,
@@ -32,17 +33,22 @@ $db['default'] = array(
     'stricton' => FALSE,
     'failover' => array(),
     'save_queries' => TRUE
-);
+); */
 // Create connection
 
-$conn = new mysqli($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+$conn = new mysqli(
+    $cleardb_server, 
+    $cleardb_username, 
+    $cleardb_password, 
+    $cleardb_db
+);
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("<p>Connection failed: " . $conn->connect_error."</p>");
 } 
 
-echo "Connected successfully to: ".$cleardb_db."<br>";
+echo "<p>Connected successfully to: ".$cleardb_db."</p><br>";
 ?>
 
 ?>
