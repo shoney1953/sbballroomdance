@@ -2,7 +2,7 @@
 echo '<h1>Testing SBDC Ballroom Dance on Heroku</h1>';
     /*Get Heroku ClearDB connection information */
 $url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
-echo "<p> url: ".$url."</p>"; 
+
 $server = $url["host"];
 $username = $url["user"];
 $password = $url["pass"];
@@ -45,7 +45,30 @@ if ($conn->connect_error) {
     die("<p>Connection failed: " . $conn->connect_error."</p>");
 } 
 
-echo "<p>Connected successfully to: ".$cleardb_db."</p><br>";
+echo "<p>Connected successfully to: ".$db."</p><br>";
 ?>
+$sql = "SELECT id, classname, registrationemail, instructors, classlimit, room, date FROM danceclasses";
+$num_classes = 0;
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    echo " <h1>Rows from the Users Table </h1> <br><hr>";
+    while ($row = $result->fetch_assoc()) {
+        echo 
+        "ID: ".$row["id"]
+        ."  Class:  ".$row["classname"]
+        ."  Registration Email:  ".$row["registrationemail"]
+        ."  Instructors:  ".$row["instructors"]
+        ."  Class Limit:  ".$row["classlimit"]
+        ."  Room:  ".$row["room"]
+        ."  Date: ".$row["date"];
+        echo "<br>";
+        $num_classes++;
+    }
+} else {
+    echo 'Dance Class TABLE EMPTY';
 
+    
+}
+echo "<h2> Total Number of Classes: ".$num_classes."</h2><br>";
+$conn->close();
 ?>
