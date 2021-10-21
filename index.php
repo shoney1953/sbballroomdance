@@ -7,11 +7,6 @@ $cleardb_username = $cleardb_url["user"];
 $cleardb_password = $cleardb_url["pass"];
 $cleardb_db       = substr($cleardb_url["path"],1);
 
-echo "$cleardb_url:".$cleardb_url."<br>" ;
-echo "$cleardb_server:".$cleardb_server."<br>" ;
-echo "$cleardb_username:".$cleardb_username."<br>" ;
-echo "$cleardb_password:".$cleardb_password."<br>" ;
-echo "$cleardb_db:".$cleardb_db."<br>" ;
 $active_group = 'default';
 $query_builder = TRUE;
 $active_group = 'default';
