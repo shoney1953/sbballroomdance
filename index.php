@@ -1,11 +1,11 @@
 <?php
 echo '<h1>Testing SBDC Ballroom Dance on Heroku</h1>';
     /*Get Heroku ClearDB connection information */
-$cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
-echo "<p> url: ".$cleardb_url."</p>";
-$cleardb_server   = $cleardb_url["host"];
-$cleardb_username = $cleardb_url["user"];
-$cleardb_password = $cleardb_url["pass"];
+/*$cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
+echo "<p> url: ".$cleardb_url."</p>"; */
+$cleardb_server   = $cleardb_url[" us-cdbr-east-04.cleardb.com "];
+$cleardb_username = $cleardb_url["bc2ed85efe7af4"];
+$cleardb_password = $cleardb_url["072a2294"];
 $cleardb_db       =  "heroku_05fb9938c429557" // substr($cleardb_url["path"],1);
 
 /* $active_group = 'default';
