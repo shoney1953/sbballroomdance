@@ -18,35 +18,6 @@ $db = substr($url["path"], 1);
 
 $conn = new mysqli($server, $username, $password, $db);
 
-/* $active_group = 'default';
-$query_builder = TRUE;
-$active_group = 'default';
-$query_builder = TRUE; */
-
-/*$db['default'] = array(
-    'dsn'    => '',
-    'hostname' => $cleardb_server,
-    'username' => $cleardb_username,
-    'password' => $cleardb_password,
-    'database' => $cleardb_db,
-    'dbdriver' => 'mysqli',
-    'dbprefix' => '',
-    'pconnect' => FALSE,
-    'db_debug' => (ENVIRONMENT !== 'production'),
-    'cache_on' => FALSE,
-    'cachedir' => '',
-    'char_set' => 'utf8',
-    'dbcollat' => 'utf8_general_ci',
-    'swap_pre' => '',
-    'encrypt' => FALSE,
-    'compress' => FALSE,
-    'stricton' => FALSE,
-    'failover' => array(),
-    'save_queries' => TRUE
-); */
-// Create connection
-
-
 
 // Check connection
 if ($conn->connect_error) {
@@ -66,7 +37,7 @@ $classes = [];
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    echo " <h1 style="center">Rows from the Dance Classes Table </h1> <br><hr>";
+    echo " <h1>Rows from the Dance Classes Table </h1> <br><hr>";
     while ($row = $result->fetch_assoc()) {
         $num_classes++;
         $classes[$num_classes] = [
@@ -76,17 +47,7 @@ if ($result->num_rows > 0) {
             'classlimit' => $row["classlimit"],
             'room' => $row["room"],
             'date' => $row["date"]
-        ]
- 
-       /* echo 
-        "ID: ".$row["id"]
-        ."  Class:  ".$row["classname"]
-        ."  Registration Email:  ".$row["registrationemail"]
-        ."  Instructors:  ".$row["instructors"]
-        ."  Class Limit:  ".$row["classlimit"]
-        ."  Room:  ".$row["room"]
-        ."  Date: ".$row["date"];
-        echo "<br><hr>"; */
+        ];
         
     }
     var_dump($classes);
@@ -155,7 +116,6 @@ function sendEmail($toEmail, $toName)
             <ul>
                 <li><a href="#" class="current">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </div>
@@ -163,7 +123,8 @@ function sendEmail($toEmail, $toName)
     <div class="hero">
         <div class="container">
             <h1>Welcome to the Saddlebrooke Ballroom Dance Club Website</h1>
-            <p>We are a primarily social club that provides, lessons, and opportunities to dance and socialize.</p>
+            <p>We are a primarily social club that provides, lessons,
+                 and opportunities to dance and socialize.</p>
         </div>
     </div>
     <section class="container content">
@@ -178,7 +139,7 @@ function sendEmail($toEmail, $toName)
                 <th>Date</th>
             </tr>
             <?php
-              foreach($classes as $class) {
+             /* foreach($classes as $class) {
                   echo "<tr>";
                     echo "<td>".$class['classname']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
@@ -188,8 +149,8 @@ function sendEmail($toEmail, $toName)
                     echo "<td>".$class['date']."</td>";
                   echo "</tr>";
               }
-              
-            ?>
+              */
+            ?> 
         </table>
         
    
