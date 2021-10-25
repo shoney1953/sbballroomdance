@@ -50,7 +50,6 @@ if ($result->num_rows > 0) {
         ];
         
     }
-    var_dump($classes);
 } 
 
 $conn->close();
@@ -139,7 +138,7 @@ function sendEmail($toEmail, $toName)
                 <th>Date</th>
             </tr>
             <?php
-             /* foreach($classes as $class) {
+             foreach($classes as $class) {
                   echo "<tr>";
                     echo "<td>".$class['classname']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
@@ -149,7 +148,7 @@ function sendEmail($toEmail, $toName)
                     echo "<td>".$class['date']."</td>";
                   echo "</tr>";
               }
-              */
+              
             ?> 
         </table>
         
