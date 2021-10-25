@@ -37,7 +37,7 @@ $classes = [];
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    echo " <h1>Rows from the Dance Classes Table </h1> <br><hr>";
+   
     while ($row = $result->fetch_assoc()) {
         $num_classes++;
         $classes[$num_classes] = [
@@ -106,7 +106,7 @@ function sendEmail($toEmail, $toName)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Sticky Navigation</title>
+    <title>SBDC Ballroom Dance Beta</title>
 </head>
 <body>
     <nav class="nav">
@@ -130,15 +130,17 @@ function sendEmail($toEmail, $toName)
         <h2>Classes Available</h2>
         <table>
             <tr>
-                <th>Class</th>
-                <th>Registration Email</th>
-                <th>Instructors</th>
-                <th>Class Limit</th>
-                <th>Room</th>
-                <th>Date</th>
+                <th>Class    </th>
+                <th>Registration Email    </th>
+                <th>Instructors    </th>
+                <th>Class Limit    </th>
+
+                <th>Room    </th>
+                <th>Date    </th>
             </tr>
-            <?php
-             foreach($classes as $class) {
+            <?php 
+            foreach($classes as $class)
+             {
                   echo "<tr>";
                     echo "<td>".$class['classname']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
