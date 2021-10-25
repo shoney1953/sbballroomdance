@@ -7,7 +7,7 @@ require 'includes/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-echo '<h1>Testing SBDC Ballroom Dance on Heroku</h1>';
+
     /*Get Heroku ClearDB connection information */
 $url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
@@ -62,12 +62,23 @@ $sql = "SELECT id,
     date FROM danceclasses;";
 
 $num_classes = 0;
+$classes = [];
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    echo " <h1>Rows from the Dance Classes Table </h1> <br><hr>";
+    echo " <h1 style="center">Rows from the Dance Classes Table </h1> <br><hr>";
     while ($row = $result->fetch_assoc()) {
-        echo 
+        $num_classes++;
+        $classes[$num_classes] = [
+            'classname' => $row["classname"],
+            'registrationemail' => $row["registrationemail"],
+            'instructors' => $row["instructors"],
+            'classlimit' => $row["classlimit"],
+            'room' => $row["room"],
+            'date' => $row["date"]
+        ]
+ 
+       /* echo 
         "ID: ".$row["id"]
         ."  Class:  ".$row["classname"]
         ."  Registration Email:  ".$row["registrationemail"]
@@ -75,15 +86,12 @@ if ($result->num_rows > 0) {
         ."  Class Limit:  ".$row["classlimit"]
         ."  Room:  ".$row["room"]
         ."  Date: ".$row["date"];
-        echo "<br><hr>";
-        $num_classes++;
+        echo "<br><hr>"; */
+        
     }
-} else {
-    echo 'Dance Class TABLE EMPTY';
+    var_dump($classes);
+} 
 
-    
-}
-echo "<h2> Total Number of Classes: ".$num_classes."</h2><br>";
 $conn->close();
 
 function sendEmail($toEmail, $toName)
@@ -92,7 +100,7 @@ function sendEmail($toEmail, $toName)
 
     try {
         //Server settings
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        /* $mail->SMTPDebug = SMTP::DEBUG_SERVER;   */                   //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
@@ -129,5 +137,61 @@ function sendEmail($toEmail, $toName)
     }
     $mail->smtpClose();
 }
-sendEmail('sheila_honey_5@hotmail.com', 'Sheila Honey');
+// sendEmail('sheila_honey_5@hotmail.com', 'Sheila Honey');
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Sticky Navigation</title>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">My Website</a></h1>
+            <ul>
+                <li><a href="#" class="current">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="hero">
+        <div class="container">
+            <h1>Welcome to the Saddlebrooke Ballroom Dance Club Website</h1>
+            <p>We are a primarily social club that provides, lessons, and opportunities to dance and socialize.</p>
+        </div>
+    </div>
+    <section class="container content">
+        <h2>Classes Available</h2>
+        <table>
+            <tr>
+                <th>Class</th>
+                <th>Registration Email</th>
+                <th>Instructors</th>
+                <th>Class Limit</th>
+                <th>Room</th>
+                <th>Date</th>
+            </tr>
+            <?php
+              foreach($classes as $class) {
+                  echo "<tr>";
+                    echo "<td>".$class['classname']."</td>";
+                    echo "<td>".$class['registrationemail']."</td>";
+                    echo "<td>".$class['instructors']."</td>";
+                    echo "<td>".$class['classlimit']."</td>";
+                    echo "<td>".$class['room']."</td>";
+                    echo "<td>".$class['date']."</td>";
+                  echo "</tr>";
+              }
+              
+            ?>
+        </table>
+        
+   
+</body>
+</html>
