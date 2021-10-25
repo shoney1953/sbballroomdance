@@ -1,12 +1,5 @@
 <?php
-require 'includes/PHPMailer.php';
-require 'includes/SMTP.php';
-require 'includes/Exception.php';
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+
 
     /*Get Heroku ClearDB connection information */
 $url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
@@ -54,49 +47,7 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 
-function sendEmail($toEmail, $toName)
-{
-    $mail = new PHPMailer(true);
 
-    try {
-        //Server settings
-        /* $mail->SMTPDebug = SMTP::DEBUG_SERVER;   */                   //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'sbdcemailer@gmail.com';                     //SMTP username
-        $mail->Password   = '2021SendEmail';                               //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-        $mail->Port       = "587";                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-        //Recipients
-        $mail->setFrom('sbdcemailer@gmail.com', 'SBDC Ballroom Dance Club');
-        $mail->addAddress($toEmail, $toName);     //Add a recipient
-        /*$mail->addAddress('ellen@example.com');               //Name is optional */
-        $mail->addReplyTo('sbdcemailer@gmail.com', 'Information');
-        $mail->addCC('sheila_honey_5@hotmail.com');
-        $mail->addBCC('sheila_honey_5@hotmail.com');
-
-        //Attachments
-        $mail->addAttachment('img/Membership Form 2022 Dance Club.pdf');         //Add attachments
-    
-
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Thanks for Contacting us at SBDC Ballroom Dance Club!';
-        $mail->Body    = "We'd love to have <b>you</b> as a new member to our club.<br>
-         Please see attached membership form if you are interested.
-         <br>Thanks!
-         <br>SBDC Ballroom Dance Club";
-        /*$mail->AltBody = 'This is the body in plain text for non-HTML mail  clients'; */
-
-        $mail->send();
-        echo 'Message has been sent';
-    } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    }
-    $mail->smtpClose();
-}
 // sendEmail('sheila_honey_5@hotmail.com', 'Sheila Honey');
 ?>
 <!DOCTYPE html>
@@ -109,16 +60,20 @@ function sendEmail($toEmail, $toName)
     <title>SBDC Ballroom Dance Beta</title>
 </head>
 <body>
-    <nav class="nav">
-        <div class="container">
-            <h1 class="logo"><a href="index.html">My Website</a></h1>
-            <ul>
-                <li><a href="#" class="current">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav class="nav">
+    <div class="container">
+     <h1 class="logo"><a href="index.html">SBDC Ballroom Dance Club</a></h1>
+     <ul>
+        <li><a href="#" class="current">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#classes">Classes</a></li>
+        <li><a 
+href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20">
+         Activities Calendar</a></li>
+        <li><a href="#contact">Contact</a></li>
+        </ul>
+     </div>
+</nav>
     <div class="hero">
         <div class="container">
             <h1>Welcome to the Saddlebrooke Ballroom Dance Club Website</h1>
@@ -126,7 +81,7 @@ function sendEmail($toEmail, $toName)
                  and opportunities to dance and socialize.</p>
         </div>
     </div>
-    <section class="container content">
+    <section id="classes" class="container content">
         <h2>Classes Available</h2>
         <table>
             <tr>
@@ -153,7 +108,28 @@ function sendEmail($toEmail, $toName)
               
             ?> 
         </table>
-        
+    </section>
+    <section id="about" class="container content">
+        <h2>What We are About</h2><br>
+        <p>If you love all kinds of dancing, we're the club for you. </p>
+        <p> We don't just do Ballroom dance - at our dances/practices, we play 
+            music for Ballroom Dance, Western and Western Partner Dance, Line Dance, and Latin Dances.</p>
+        <p>Our members can go to any class we provide free. We also have several times during the week
+            available for practice - some with D.J.s, some time you can bring your favorite music.</p>
+        <p>Our members also receive reduced rates for our dinner dances, but you may attend as a guest
+            if you'd like to put your toe in the water before committing. 
+    </section>
+    <section id="contact" class="container content">
+        <h2>Enter your information below to contact us: </h2>
+            <form method="POST" action="contact.php">
+                <label for="name">First and Last Name</label>
+                <input type="text" name="name" value="Enter Full Name">
+                <label for="email">Email</label>
+                <input type="email" name="email" value="Enter Email">
+                <button name="submit" type="submit">Submit</button>
+                
+            </form>
+    </section>
    
 </body>
 </html>

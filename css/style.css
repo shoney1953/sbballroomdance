@@ -57,7 +57,7 @@ body {
   font-weight: bold;
 }
 .hero {
-  background-image: url("/img/hero.jpg");
+  background-image: url("/img/background1.jpg");
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -103,10 +103,16 @@ table, th, td {
   border: 1px solid black;
 }
 th, td {
-  padding: 15px;
+  padding: 10px;
 }
 table {
-  width: 80%;
+  width: 100%;
   border-spacing: 10px;
-  table-layout: fixed;
+  table-layout: auto;
+}
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
