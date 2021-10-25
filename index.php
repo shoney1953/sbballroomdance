@@ -121,11 +121,11 @@ href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb
     </section>
     <section id="contact" class="container content">
         <h2>Enter your information below to contact us: </h2>
-            <form method="POST" action="contact.php">
+            <form method="POST" action="/contact.php">
                 <label for="name">First and Last Name</label>
-                <input type="text" name="name" value="Enter Full Name">
+                <input type="text" name="name" >
                 <label for="email">Email</label>
-                <input type="email" name="email" value="Enter Email">
+                <input type="text" name="email" >
                 <button name="submit" type="submit">Submit</button>
                 
             </form>

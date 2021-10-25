@@ -9,11 +9,13 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 $name = 'Guest';
-$email = 'default';
+
 if (isset($_POST['submit'])) {
     $name = htmlentities($_POST['name']);
-    $email = filter_var("FILTER_VALIDATE_EMAIL", htmlentities($_POST['email']));
-    if (!empty($email)) {
+    $email = htmlentities($_POST['email']);
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);   
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         sendEmail($email, $name);
     } else {
         echo 'Email is empty or Invalid. Please enter valid email.';
