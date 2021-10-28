@@ -10,6 +10,7 @@ use PHPMailer\PHPMailer\Exception;
 
 $name = 'Guest';
 
+
 if (isset($_POST['submit'])) {
     $name = htmlentities($_POST['name']);
     $email = htmlentities($_POST['email']);
@@ -24,6 +25,8 @@ if (isset($_POST['submit'])) {
 
 function sendEmail($toEmail, $toName)
 {
+    $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
+Click to view Activites Calendar</a><br>";
     $mail = new PHPMailer(true);
 
     try {
@@ -42,7 +45,7 @@ function sendEmail($toEmail, $toName)
         $mail->addAddress($toEmail, $toName);     //Add a recipient
         /*$mail->addAddress('ellen@example.com');               //Name is optional */
         $mail->addReplyTo('sbdcemailer@gmail.com', 'Information');
-        $mail->addCC('sheila_honey_5@hotmail.com');
+        // $mail->addCC('sheila_honey_5@hotmail.com');
         $mail->addBCC('sheila_honey_5@hotmail.com');
 
         //Attachments
@@ -53,8 +56,9 @@ function sendEmail($toEmail, $toName)
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Thanks for Contacting us at SBDC Ballroom Dance Club!';
         $mail->Body    = "We'd love to have <b>you</b> as a new member to our club.<br>
-         Please see attached membership form if you are interested.
-         <br>Thanks!
+         Please see attached membership form if you are interested.<br>".
+         $actLink.
+         "<br>Thanks!
          <br>SBDC Ballroom Dance Club";
         /*$mail->AltBody = 'This is the body in plain text for non-HTML mail  clients'; */
 
