@@ -10,10 +10,14 @@ body {
   color: #222;
   padding-bottom: 50px;
 }
+hr {
+  height: 40px;
+  border-top: 1px solid darkviolet;
+}
 
 .container {
   /*max-width: 1200px; */
-  max-width: 100%;
+  max-width: 90%;
   margin-left: 10%;
   margin-right: 10%;
 }
@@ -23,6 +27,10 @@ body {
   left: 0;
   right: 0;
   transition: all 0.3s ease-in-out;
+  /*background-image: url(../img/sbdc_logo_small.png);
+  background-repeat: no-repeat;
+  background-position: center; */
+
 }
 .nav .container {
   display: flex;
@@ -92,24 +100,25 @@ body {
   letter-spacing: 1px;
 }
 .content {
-  margin: 50px 0;
-  text-align: center;
-  color:darkviolet;
-  align-items: center;
-  justify-content: center;
-}
-.content h1,
-.content h2 ,
-.content h3 {
-  font-size: 150%;
   margin: 50px 50px;
   text-align: center;
   color:darkviolet;
   align-items: center;
   justify-content: center;
+  background-color:rgb(201, 196, 196);
+}
+.content h1,
+.content h2 ,
+.content h3 {
+  font-size: 150%;
+  margin-top: 50px;
+  text-align: center;
+  color:rgb(25, 2, 36);
+
+
 }
 .content p {
-  color: #555;
+  color: rgb(41, 39, 39);
   line-height: 30px;
   letter-spacing: 1.2px;
   text-align: center;
@@ -121,35 +130,50 @@ body {
   justify-content: center;
 }
 .section-back {
-  background-color: rgb(235, 229, 227);
+  background-color: rgb(136, 133, 133);
 }
 table, th, td {
   border: 1px solid black;
 }
 th, td {
-  padding: 10px;
+  padding: 5px;
 }
 table {
   width: 100%;
-  border-spacing: 10px;
+  border-spacing: 5px;
   table-layout: auto;
+  align-items: center;
+  justify-content: center;
+}
+form {
+  align-items: center;
+  justify-content: center;
 }
 input[type=text] {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 2px 2px;
+  margin: 2px 2px;
   box-sizing: border-box;
 }
 input[type=email] {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 2px 2px;
+  margin: 2px 2px;
   box-sizing: border-box;
 }
+input[type=textbox] {
+  width: 100%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  box-sizing: border-box;
+}
+
 button {
   background-color: darkviolet;
-  width: 100%;
+  width: 50%;
   color: white;
+  margin-top: 5px;
+  margin-bottom: 5pxF;
   padding: 12px 20px;
   border-radius: 5px;
 }

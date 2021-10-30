@@ -1,12 +1,6 @@
 <?php
-require 'includes/PHPMailer.php';
-require 'includes/SMTP.php';
-require 'includes/Exception.php';
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+require 'includes/mailheader.php';
+
 
 $name = 'Guest';
 
@@ -21,6 +15,7 @@ if (isset($_POST['submit'])) {
     } else {
         echo 'Email is empty or Invalid. Please enter valid email.';
     }
+
 }
 
 function sendEmail($toEmail, $toName)

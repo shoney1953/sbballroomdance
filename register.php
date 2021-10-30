@@ -1,7 +1,5 @@
 <?php
-session_start();
-$classes = $_SESSION['classes'];
-
+// include("includes/mailheader.php");
 require 'includes/PHPMailer.php';
 require 'includes/SMTP.php';
 require 'includes/Exception.php';
@@ -10,16 +8,25 @@ require 'includes/Exception.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+session_start();
+$classes = $_SESSION['classes'];
 
 $regSelected = [];
 $regAll = '';
 $emailBody = "Thanks for registering for the following classes:<br>";
 $emailSubject = '';
 $numRegClasses = 0;
+$message2Ins = '';
 $id_int = 0;
 if (isset($_POST['submit'])) {
     $regName1 = htmlentities($_POST['regName1']);
     $regEmail1 = htmlentities($_POST['regEmail1']);
+    $danceExperience = $_POST['danceexperience'];
+    $danceFavorite = $_POST['dancefavorite'];
+    if (isset($_POST['message2ins'])) {
+        $message2Ins = $_POST['message2ins'];
+        var_dump($message2Ins);
+    }
     if (isset($_POST['registerAll'])) {
         $regAll = $_POST['registerAll'];
     };
@@ -84,9 +91,14 @@ if (isset($_POST['submit'])) {
         $classString = '';
         foreach ($classes as $class) {
             $emailBody = "The following individuals have signed up for the class you are going to teach: <br>";
-            $emailBody .= "NAME: ".$regName1."  email:  ".$regEmail1."<br>";
+            $emailBody .= "<br>They have indicated that their dance experience is: ".$danceExperience."<br>";
+            $emailBody .= "<br>They have indicated that their favorite dance genre is: ".$danceFavorite."<br><br>";
+            if ($message2Ins) {
+                $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
+            }
+            $emailBody .= "NAME: ".$regName1."<br>  EMAIL:  ".$regEmail1."<br>";
             if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-                $emailBody .= "And <br>  NAME: ".$regName2."  email:  ".$regEmail2."<br>";
+                $emailBody .= "And <br>  NAME: ".$regName2."<br>  EMAIL:  ".$regEmail2."<br>";
             }
             $insEmail = $class['registrationemail'];   
             $insEmail2 = "";
@@ -102,9 +114,14 @@ if (isset($_POST['submit'])) {
           
             foreach ($classes as $class) {
                 $emailBody = "The following individuals have signed up for the class you are going to teach: <br>";
-                $emailBody .= "NAME: ".$regName1."  email:  ".$regEmail1."<br>";
+                $emailBody .= "<br>They have indicated that their dance experience is: ".$danceExperience."<br>";
+                $emailBody .= "<br>They have indicated that their favorite dance genre is: ".$danceFavorite."<br><br>";
+                if ($message2Ins) {
+                    $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
+                }
+                $emailBody .= "NAME: ".$regName1."<br>    EMAIL:  ".$regEmail1."<br>";
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-                    $emailBody .= "And <br>  NAME: ".$regName2."  email:  ".$regEmail2."<br>";
+                    $emailBody .= "And <br>  NAME: ".$regName2."<br>  EMAIL:  ".$regEmail2."<br>";
                 }
                 $classString = '';
                 $classString = "<br>Class: ".$class['classname']."<br>";
