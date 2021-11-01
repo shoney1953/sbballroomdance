@@ -20,6 +20,8 @@ hr {
   max-width: 90%;
   margin-left: 10%;
   margin-right: 10%;
+
+
 }
 .nav {
   position: fixed;
@@ -38,6 +40,8 @@ hr {
   align-items: center;
   padding: 20px 0;
   transition: all 0.3s ease-in-out;
+  background-color: rgba(43, 42, 42, 0.3);
+  border-radius: 5px;
 }
 .nav ul {
   display: flex;
@@ -63,11 +67,11 @@ hr {
 }
 .nav a.current,
 .nav a:hover {
-  color: #c0392b;
+  color: #7c0a10;
   font-weight: bold;
 }
 .hero {
-  background-image: url("../img/background1.jpg");
+  background-image: url("../img/moonrise\ opaque.jpg");
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -100,18 +104,20 @@ hr {
   letter-spacing: 1px;
 }
 .content {
-  margin: 50px 50px;
+  margin: 10px 10px;
   text-align: center;
   color:darkviolet;
   align-items: center;
   justify-content: center;
   background-color:rgb(201, 196, 196);
+  border-radius: 5px;
+
 }
 .content h1,
 .content h2 ,
 .content h3 {
   font-size: 150%;
-  margin-top: 50px;
+  margin-top: 20px;
   text-align: center;
   color:rgb(25, 2, 36);
 
@@ -123,6 +129,9 @@ hr {
   letter-spacing: 1.2px;
   text-align: center;
 }
+.content a {
+  text-decoration: none;
+}
 .section-header {
   text-align: center;
   color:darkviolet;
@@ -131,6 +140,7 @@ hr {
 }
 .section-back {
   background-color: rgb(136, 133, 133);
+ 
 }
 table, th, td {
   border: 1px solid black;
@@ -139,7 +149,7 @@ th, td {
   padding: 5px;
 }
 table {
-  width: 100%;
+  width: 90%;
   border-spacing: 5px;
   table-layout: auto;
   align-items: center;
@@ -150,19 +160,19 @@ form {
   justify-content: center;
 }
 input[type=text] {
-  width: 100%;
+  width: 70%;
   padding: 2px 2px;
   margin: 2px 2px;
   box-sizing: border-box;
 }
 input[type=email] {
-  width: 100%;
+  width: 70%;
   padding: 2px 2px;
   margin: 2px 2px;
   box-sizing: border-box;
 }
 input[type=textbox] {
-  width: 100%;
+  width: 70%;
   padding: 2px 2px;
   margin: 2px 2px;
   box-sizing: border-box;
@@ -173,7 +183,13 @@ button {
   width: 50%;
   color: white;
   margin-top: 5px;
-  margin-bottom: 5pxF;
+
   padding: 12px 20px;
   border-radius: 5px;
+}
+.li-none {
+  list-style: none;
+}
+.li-none a {
+  text-decoration: none;
 }

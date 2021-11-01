@@ -1,11 +1,11 @@
 <?php
-
 session_start();
 $num_classes = 0;
 $num_events = 0;
 $classes = [];
 $events = [];
 
+$_SESSION['homeurl'] = $_SERVER['REQUEST_URI'];
 
 if ($_SERVER['SERVER_NAME'] === 'localhost') {
     /* if in local testing mode */
@@ -120,11 +120,12 @@ $conn->close();
         <li><a href="#about">About</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#classes">Classes</a></li>
-        <li><a 
+        <li><a  target="_blank"
 href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20">
          Activities Calendar</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a 
+        <li><a href="#pictures">Picture Gallery</a></li>
+        <li><a  target="_blank"
 href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?usp=sharing">
 DJ Documents</a>
     </li>
@@ -142,21 +143,19 @@ DJ Documents</a>
     </div>
     
     <div class="section-back">
-  
     <section id="events" class="container content">
-    <hr>
+
       <br>
         <h1 class="section-header">Upcoming Events</h1><br>
         <table>
             <tr>
-                <th>Events ID    </th>
+                <th>Event Date</th>
                 <th>Event Name    </th>
                 <th>Event Type    </th>
-                <th>Event Description</th>
-                <th>Event Date</th>
+                <th>Event Description</th>          
                 <th>Event Room</th>
                 <th>Event Cost</th>
-                <th># Registered></th>
+                <th># Registered </th>
          
                
             </tr>
@@ -165,11 +164,10 @@ DJ Documents</a>
             foreach($events as $event) {
                  $eventNumber++;
                   echo "<tr>";
-                    echo "<td>".$event['id']."</td>";
+                    echo "<td>".$event['eventdate']."</td>";
                     echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";
-                    echo "<td>".$event['eventdesc']."</td>";
-                    echo "<td>".$event['eventdate']."</td>";
+                    echo "<td>".$event['eventdesc']."</td>";           
                     echo "<td>".$event['eventroom']."</td>";
                     echo "<td>".$event['eventcost']."</td>";
                     echo "<td>".$event['eventnumregistered']."</td>";
@@ -183,19 +181,19 @@ DJ Documents</a>
     </div>
    <div class="section-back">
     <section id="classes" class="container content">
-    <hr>
+   
       <br>
         <h1 class="section-header">Upcoming Classes Available</h1><br>
         <table>
             <tr>
-                <th>Class ID    </th>
+                <th>Date    </th>
                 <th>Class    </th>
                 <th>Registration Email    </th>
                 <th>Instructors    </th>
                 <th>Class Limit    </th>
                 <th># Registered </th>
                 <th>Room    </th>
-                <th>Date    </th>
+                
                
             </tr>
             <?php 
@@ -204,15 +202,14 @@ DJ Documents</a>
              {
                  $classNumber++;
                   echo "<tr>";
-                    echo "<td>".$class['id']."</td>";
+                    echo "<td>".$class['date']."</td>";
                     echo "<td>".$class['classname']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
                     echo "<td>".$class['instructors']."</td>";
                     echo "<td>".$class['classlimit']."</td>";
                     echo "<td>".$class['numregistered']."</td>";
                     echo "<td>".$class['room']."</td>";
-                    echo "<td>".$class['date']."</td>";
-               
+
                   echo "</tr>";
               }
               
@@ -224,22 +221,22 @@ DJ Documents</a>
         <h3> Enter Information Below to Register for all or Selected Classes </h3>
         
         <form method="POST" action="register.php">
-                <label for="regName1">First Registrant First and Last Name (Required)</label>
-                <input type="text" name="regName1" >
-                <label for="regEmail1">Frist Registrant Email (Required)</label>
+                <label for="regName1">First Registrant First and Last Name (Required)</label><br>
+                <input type="text" name="regName1" ><br>
+                <label for="regEmail1">First Registrant Email (Required)</label><br>
                 <input type="email" name="regEmail1" ><br>
-                <label for="regName2">Second Registrant First and Last Name(optional)</label>
-                <input type="text" name="regName2" >
-                <label for="regEmail2">Second Registrant Email (optional)</label>
+                <label for="regName2">Second Registrant First and Last Name(optional)</label><br>
+                <input type="text" name="regName2" ><br>
+                <label for="regEmail2">Second Registrant Email (optional)</label><br>
                 <input type="email" name="regEmail2" ><br>
-                <label for="danceexperience">How familiar are you with Dance?</label>
+                <label for="danceexperience">How familiar are you with Dance?</label><br>
                 <select name = "danceexperience">
                     <option value = "Beginner" selected>Beginner or Its been a long time</option>
                     <option value = "Intermediate">Had moderate experience dancing</option>
                     <option value = "Advanced">Been Dancing for a long time</option>
                 </select>
                 <br>
-                <label for="dancefavorite">What is your favorite type of dance?</label>
+                <label for="dancefavorite">What is your favorite type of dance?</label><br>
                 <select name = "dancefavorite">
                     <option value = "Ballroom" selected>Ballroom dances: Foxtrot, Quickstep, Waltz etc.</option>
                     <option value = "Latin">Cha Cha, Rumba, Bolero, American Tango or Argentine Tango, etc.</option>
@@ -249,7 +246,7 @@ DJ Documents</a>
                  </select>
                  <br><br>
                  <p> Message to Instructor(s) (Optional) </p><br>
-                <textarea name="message2ins" cols="200" rows="7"></textarea><br>
+                <textarea name="message2ins" cols="100" rows="3"></textarea><br>
                 <hr>
                 <h4 ><em>To Enroll, Please select either All Classes or One or More of the Classes Listed</em></h4><br>
                 <input type="checkbox" id="registerAll" name="registerAll" value="Register for All Classes">
@@ -264,14 +261,14 @@ DJ Documents</a>
                 }
                  ?>
                  <br>
-                <button name="submit" type="submit">Submit</button>
+                <button name="submit" type="submit">Submit</button><br>
                 
             </form>
     </section>
     </div>
     <div class="section-back">
     <section id="about" class="container content">
-        <hr>
+ 
              
         <h2 class="section-header">What We are About</h2><br>
         <p>If you love all kinds of dancing, we're the club for you. </p>
@@ -287,24 +284,38 @@ DJ Documents</a>
         href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20">
          Click Here to See the Activities Calendar for times and dates.
         </a>
+        <br>
     </section>
     </div>
     <div class="section-back">
     <section id="contact" class="container content">
-        <hr>
+  
         <h2 class="section-header">Enter your information below to contact us: </h2>
             <form method="POST" action="contact.php">
-                <label for="name">First and Last Name</label><br>
-                <input type="text" name="name" ><br>
+                <label for="firstname">First Name</label><br>
+                <input type="text" name="firstname" ><br>
+                <label for="lastname">Last Name</label><br>
+                <input type="text" name="lastname" ><br>
                 <label for="email">Email</label><br>
                 <input type="email" name="email" ><br>
                 <p> Tell Us About Yourself </p><br>
-                <textarea name="message" cols="200" rows="10"></textarea><br>
-                <button name="submit" type="submit">Submit</button>
+                <textarea name="message" cols="100" rows="3"></textarea><br>
+                <button name="submit" type="submit">Submit</button><br>
                 
             </form>
     </section>
-   <hr>
+    </div>
+
+   <div class="section-back">
+   <section id="pictures" class="container content">
+       <h1>Pictures from Past Events</h1>
+ 
+       <ul>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/Sbdc-halloween-party-10-30-2021">Halloween Party 10 30 2021</a></li>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-15-2020-Sweetheart-Dance">Sweetheart Dance 02 15 2020</a></li>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/Masquerade-ball-01-11-2020-SBDC">Masquerade Dance 01 11 2020</a></li>
+       </ul>
+   </section>
    </div>
 </body>
 </html>

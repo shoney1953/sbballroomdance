@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     $danceFavorite = $_POST['dancefavorite'];
     if (isset($_POST['message2ins'])) {
         $message2Ins = $_POST['message2ins'];
-        var_dump($message2Ins);
+
     }
     if (isset($_POST['registerAll'])) {
         $regAll = $_POST['registerAll'];
@@ -137,6 +137,10 @@ if (isset($_POST['submit'])) {
             }
     }
 
+    $redirect = "Location: ".$_SESSION['homeurl'];
+
+   header($redirect);
+ exit;
 }
 
 }

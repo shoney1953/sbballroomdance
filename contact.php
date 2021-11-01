@@ -1,25 +1,68 @@
 <?php
-require 'includes/mailheader.php';
+//require 'includes/mailheader.php';
+require 'includes/PHPMailer.php';
+require 'includes/SMTP.php';
+require 'includes/Exception.php';
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+session_start();
+if ($_SERVER['SERVER_NAME'] === 'localhost') {
+    /* if in local testing mode */
+    $server = "localhost";
+    $username = "root";
+    $password = "2021Idiot";
+    $db = "mywebsite"; 
+}
+if ($_SERVER['SERVER_NAME'] !== 'localhost') {
+      /*Get Heroku ClearDB connection information */
+$url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$server = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+}
+$conn = new mysqli($server, $username, $password, $db);
+
+
+// Check connection
+if ($conn->connect_error) {
+    die("<p>Connection failed: " . $conn->connect_error."</p>");
+} 
+
 
 
 $name = 'Guest';
 
 
 if (isset($_POST['submit'])) {
-    $name = htmlentities($_POST['name']);
+    $firstname = htmlentities($_POST['firstname']);
+    $lastname = htmlentities($_POST['lastname']);
     $email = htmlentities($_POST['email']);
+    $message = htmlentities($_POST['message']);
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);   
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        sendEmail($email, $name);
+        sendEmail($email, $firstname, $lastname);
     } else {
         echo 'Email is empty or Invalid. Please enter valid email.';
     }
-
+    
+  $sql = "INSERT INTO contacts (firstname, lastname, email, message)
+     VALUES ('$firstname', '$lastname', '$email', '$message')";
+   $result = $conn->query($sql);
+   
 }
+$conn->close();
+header('Location: ', $_SESSION['homeurl']);
+exit;
 
-function sendEmail($toEmail, $toName)
+function sendEmail($toEmail, $toFirstName, $toLastName)
 {
+    $toName = $toFirstName.' '.$toLastName;
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
 Click to view Activites Calendar</a><br>";
     $mail = new PHPMailer(true);
@@ -50,7 +93,7 @@ Click to view Activites Calendar</a><br>";
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
         $mail->Subject = 'Thanks for Contacting us at SBDC Ballroom Dance Club!';
-        $mail->Body    = "We'd love to have <b>you</b> as a new member to our club.<br>
+        $mail->Body    = "We'd love to have <b>you, $toName </b>, as a new member to our club.<br>
          Please see attached membership form if you are interested.<br>".
          $actLink.
          "<br>Thanks!
@@ -63,6 +106,7 @@ Click to view Activites Calendar</a><br>";
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
     $mail->smtpClose();
+   
 }
 
 ?>
