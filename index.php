@@ -71,8 +71,10 @@ $sql = "SELECT id,
     registrationemail, 
     instructors, 
     classlimit, 
+    classlevel,
     room, 
     numregistered,
+    time,
     date FROM danceclasses where date >= current_date();";
 
 $result = $conn->query($sql);
@@ -83,12 +85,14 @@ if ($result->num_rows > 0) {
         $classes[$num_classes] = [
             'id' => $row["id"],
             'classname' => $row["classname"],
+            'classlevel' => $row["classlevel"],
             'registrationemail' => $row["registrationemail"],
             'instructors' => $row["instructors"],
             'classlimit' => $row["classlimit"],
             'room' => $row["room"],
             'date' => $row["date"],
-            'numregistered' => $row['numregistered']
+            'numregistered' => $row['numregistered'],
+            'time' => $row["time"],
         ];
         
     }
@@ -134,7 +138,7 @@ DJ Documents</a>
 </nav>
     <div class="hero">
         <div class="container">
-            <h1 >Welcome to the Saddlebrooke Ballroom Dance Club Website</h1><br>
+            <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1><br>
             <p>We are a primarily social club that provides, lessons,
                  and opportunities to dance and socialize.</p>
            <p>We're not "strictly ballroom". Latin, Western, Line Dance 
@@ -187,7 +191,9 @@ DJ Documents</a>
         <table>
             <tr>
                 <th>Date    </th>
+                <th>Time    </th>
                 <th>Class    </th>
+                <th>Level    </th>
                 <th>Registration Email    </th>
                 <th>Instructors    </th>
                 <th>Class Limit    </th>
@@ -202,8 +208,10 @@ DJ Documents</a>
              {
                  $classNumber++;
                   echo "<tr>";
-                    echo "<td>".$class['date']."</td>";
+                    echo "<td>". $class['date']."</td>";
+                    echo "<td>".$class['time']."</td>";
                     echo "<td>".$class['classname']."</td>";
+                    echo "<td>".$class['classlevel']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
                     echo "<td>".$class['instructors']."</td>";
                     echo "<td>".$class['classlimit']."</td>";
@@ -285,6 +293,13 @@ DJ Documents</a>
          Click Here to See the Activities Calendar for times and dates.
         </a>
         <br>
+        <h3>Current Board Members</h3>
+        <ul>
+            <li class="list-none">Brian Hand, President</li>
+            <li class="list-none">Richard Adinolfi, Vice-President</li>
+            <li class="list-none">Dottie Adams, Treasurer</li>
+            <li class="list-none">Wanda Ross, Secretary</li>
+        </ul>
     </section>
     </div>
     <div class="section-back">

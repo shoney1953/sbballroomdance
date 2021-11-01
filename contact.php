@@ -54,11 +54,15 @@ if (isset($_POST['submit'])) {
   $sql = "INSERT INTO contacts (firstname, lastname, email, message)
      VALUES ('$firstname', '$lastname', '$email', '$message')";
    $result = $conn->query($sql);
-   
-}
-$conn->close();
-header('Location: ', $_SESSION['homeurl']);
+   $conn->close();
+
+$redirect = "Location: ".$_SESSION['homeurl'];
+header($redirect);
 exit;
+}
+
+
+
 
 function sendEmail($toEmail, $toFirstName, $toLastName)
 {
