@@ -9,6 +9,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 session_start();
+require 'includes/db.php';
 $classes = $_SESSION['classes'];
 
 $regSelected = [];
@@ -19,10 +20,16 @@ $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
 if (isset($_POST['submit'])) {
-    $regName1 = htmlentities($_POST['regName1']);
+    $regFirstName1 = htmlentities($_POST['regFirstName1']);
+    $regLastName1 = htmlentities($_POST['regLastName1']);
     $regEmail1 = htmlentities($_POST['regEmail1']);
     $danceExperience = $_POST['danceexperience'];
     $danceFavorite = $_POST['dancefavorite'];
+    $regFirstName2 = htmlentities($_POST['regFirstName2']);
+    $regLastName2 = htmlentities($_POST['regLastName2']);
+    $regEmail2 = htmlentities($_POST['regEmail2']);
+    $regEmail2 = filter_var($regEmail2, FILTER_SANITIZE_EMAIL);   
+
     if (isset($_POST['message2ins'])) {
         $message2Ins = $_POST['message2ins'];
 
@@ -48,11 +55,19 @@ if (isset($_POST['submit'])) {
       if ($regAll) {
             $emailSubject = "You have registered for all upcoming Classes!";
             foreach($classes as $class) {
+            $classId = $class['id'];
             $emailBody .= "<br> ".$class['classname']." Instructor(s):   ".
              $class['instructors']." room:    ".$class['room'].
              "    on date:    ".$class['date']."<br>";  
              }
-      
+             $sql = "INSERT INTO classregistration (firstname, lastname, email, classid)
+                     VALUES ('$regFirstName1', '$regLastName1', '$regEmail1', '$classId')";
+             $result = $conn->query($sql);
+             if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
+                $sql = "INSERT INTO classregistration (firstname, lastname, email, classid)
+                VALUES ('$regFirstName2', '$regLastName2', '$regEmail2', '$classId')";
+                   $result = $conn->query($sql); 
+            }
 
       } else {
         $emailSubject = "You have registered for selected Classes";
@@ -63,25 +78,32 @@ if (isset($_POST['submit'])) {
       
         foreach ($classes as $class) {
             if ($class['id'] == $id_int) {
+                $classId = $class['id'];
                 $emailBody .= "<br> ".$class['classname']."    Instructor(s):   ".
                 $class['instructors']."    room:    ".$class['room'].
-                "   on date:    ".$class['date']."<br>";  
+                "   on date:    ".$class['date']."<br>"; 
+                $sql = "INSERT INTO classregistration (firstname, lastname, email, classid)
+                        VALUES ('$regFirstName1', '$regLastName1', '$regEmail1', '$classId')";
+                $result = $conn->query($sql); 
+                if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
+                    $sql = "INSERT INTO classregistration (firstname, lastname, email, classid)
+                    VALUES ('$regFirstName2', '$regLastName2', '$regEmail2', '$classId')";
+                       $result = $conn->query($sql); 
+                }
             }
         }
        
     }
    }
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
-        sendEmail($regEmail1, $regName1, $emailBody, $emailSubject);;
+        sendEmail($regEmail1, $regFirstName1,  $regLastName1, $emailBody, $emailSubject);;
     } else {
         echo 'Registrant 1 Email is empty or Invalid. Please enter valid email.';
     }
-    $regName2 = htmlentities($_POST['regName2']);
-    $regEmail2 = htmlentities($_POST['regEmail2']);
-    $regEmail2 = filter_var($regEmail2, FILTER_SANITIZE_EMAIL);   
+ 
   
     if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-        sendEmail($regEmail2, $regName2, $emailBody, $emailSubject);
+        sendEmail($regEmail2,  $regFirstName2, $regLastName2, $emailBody, $emailSubject);
     } 
 
 
@@ -96,14 +118,15 @@ if (isset($_POST['submit'])) {
             if ($message2Ins) {
                 $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
             }
-            $emailBody .= "NAME: ".$regName1."<br>  EMAIL:  ".$regEmail1."<br>";
+            $emailBody .= "NAME: ".$regFirstName1." ".$regLastName1."<br>  EMAIL:  ".$regLastEmail1."<br>";
             if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-                $emailBody .= "And <br>  NAME: ".$regName2."<br>  EMAIL:  ".$regEmail2."<br>";
+                $emailBody .= "And <br>  NAME: ".$regFirstName2." ".$regLastName2."<br>  EMAIL:  ".$regEmail2."<br>";
             }
             $insEmail = $class['registrationemail'];   
             $insEmail2 = "";
+            $insEmail3 = "";
             $emailBody .= $classString;
-            sendEmail($insEmail, $insEmail2, $emailBody, $emailSubject);
+            sendEmail($insEmail, $insEmail2, $insEmail3, $emailBody, $emailSubject);
             $classString = '';
         }
 
@@ -119,9 +142,9 @@ if (isset($_POST['submit'])) {
                 if ($message2Ins) {
                     $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
                 }
-                $emailBody .= "NAME: ".$regName1."<br>    EMAIL:  ".$regEmail1."<br>";
+                $emailBody .= "NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-                    $emailBody .= "And <br>  NAME: ".$regName2."<br>  EMAIL:  ".$regEmail2."<br>";
+                    $emailBody .= "And <br>  NAME: ".$regFirstName2." ".$regLastName2."<br>  EMAIL:  ".$regEmail2."<br>";
                 }
                 $classString = '';
                 $classString = "<br>Class: ".$class['classname']."<br>";
@@ -129,8 +152,9 @@ if (isset($_POST['submit'])) {
                 if ($class['id'] == $id_int) {
                     $insEmail = $class['registrationemail'];   
                      $insEmail2 = "";
+                     $insEmail3 = "";
                      $emailBody .= $classString;
-                     sendEmail($insEmail, $insEmail2, $emailBody, $emailSubject);
+                     sendEmail($insEmail, $insEmail2, $insEmail3, $emailBody, $emailSubject);
                      $classString = '';
                   
                 }
@@ -139,15 +163,16 @@ if (isset($_POST['submit'])) {
 
     $redirect = "Location: ".$_SESSION['homeurl'];
 
+  $conn->close();
    header($redirect);
  exit;
 }
 
 }
-function sendEmail($toEmail, $toName, $emailBody, $emailSubject)
+function sendEmail($toEmail, $toFirstName, $toLastName, $emailBody, $emailSubject)
 {
     $mail = new PHPMailer(true);
-
+    $toName = $toFirstName."  ".$toLastName;
     try {
         //Server settings
         /* $mail->SMTPDebug = SMTP::DEBUG_SERVER;   */                   //Enable verbose debug output
@@ -161,6 +186,7 @@ function sendEmail($toEmail, $toName, $emailBody, $emailSubject)
 
         //Recipients
         $mail->setFrom('sbdcemailer@gmail.com', 'SBDC Ballroom Dance Club');
+       
         $mail->addAddress($toEmail, $toName);     //Add a recipient
         /*$mail->addAddress('ellen@example.com');               //Name is optional */
         $mail->addReplyTo('sbdcemailer@gmail.com', 'Class Registration');

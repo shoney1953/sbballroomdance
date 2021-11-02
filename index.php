@@ -6,30 +6,9 @@ $classes = [];
 $events = [];
 
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI'];
-
-if ($_SERVER['SERVER_NAME'] === 'localhost') {
-    /* if in local testing mode */
-    $server = "localhost";
-    $username = "root";
-    $password = "2021Idiot";
-    $db = "mywebsite"; 
-}
-if ($_SERVER['SERVER_NAME'] !== 'localhost') {
-      /*Get Heroku ClearDB connection information */
-$url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-$server = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$db = substr($url["path"], 1);
-}
-$conn = new mysqli($server, $username, $password, $db);
+require 'includes/db.php';
 
 
-// Check connection
-if ($conn->connect_error) {
-    die("<p>Connection failed: " . $conn->connect_error."</p>");
-} 
 /* get events */
 $sql = "SELECT id, 
     eventname,
@@ -133,6 +112,7 @@ href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb
 href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?usp=sharing">
 DJ Documents</a>
     </li>
+    <li><a href="admin.php">Admin</a></li>
         </ul>
      </div>
 </nav>
@@ -229,17 +209,23 @@ DJ Documents</a>
         <h3> Enter Information Below to Register for all or Selected Classes </h3>
         
         <form method="POST" action="register.php">
-                <label for="regName1">First Registrant First and Last Name (Required)</label><br>
-                <input type="text" name="regName1" ><br>
+                <label for="regFirstName1">First Registrant First Name (Required)</label><br>
+                <input type="text" name="regFirstName1" ><br>
+                <label for="regLastName1">First Registrant Last Name (Required)</label><br>
+                <input type="text" name="regLastName1" ><br>
                 <label for="regEmail1">First Registrant Email (Required)</label><br>
                 <input type="email" name="regEmail1" ><br>
-                <label for="regName2">Second Registrant First and Last Name(optional)</label><br>
-                <input type="text" name="regName2" ><br>
+              <br>
+                <label for="regFirstName2">Second Registrant First Name(optional)</label><br>
+                <input type="text" name="regFirstName2" ><br>
+                <label for="regLastName2">Second Registrant Last Name(optional)</label><br>
+                <input type="text" name="regLastName2" ><br>
                 <label for="regEmail2">Second Registrant Email (optional)</label><br>
                 <input type="email" name="regEmail2" ><br>
+                <br>
                 <label for="danceexperience">How familiar are you with Dance?</label><br>
                 <select name = "danceexperience">
-                    <option value = "Beginner" selected>Beginner or Its been a long time</option>
+                    <option value = "Beginner" selected>Beginner or It's been a long time</option>
                     <option value = "Intermediate">Had moderate experience dancing</option>
                     <option value = "Advanced">Been Dancing for a long time</option>
                 </select>
@@ -255,7 +241,7 @@ DJ Documents</a>
                  <br><br>
                  <p> Message to Instructor(s) (Optional) </p><br>
                 <textarea name="message2ins" cols="100" rows="3"></textarea><br>
-                <hr>
+             
                 <h4 ><em>To Enroll, Please select either All Classes or One or More of the Classes Listed</em></h4><br>
                 <input type="checkbox" id="registerAll" name="registerAll" value="Register for All Classes">
                 <label for="registerAll"><b> I/We would like to register for all available Classes </b></label><br>
