@@ -11,15 +11,16 @@
     public function __construct() {
    
 
-  /*     if ($_SERVER['SERVER_NAME'] === 'localhost') {
-          /* if in local testing mode */
-          $this->host = "localhost";
-          $this->username = "root";
-          $this->password = "2021Idiot";
-          $this->db_name = "mywebsite"; 
-          }
-      if ($_SERVER['SERVER_NAME'] !== 'localhost') { */
+// /*       if ($_SERVER['SERVER_NAME'] === 'localhost') {
+//           /* if in local testing mode */
+//           $this->host = "localhost";
+//           $this->username = "root";
+//           $this->password = "2021Idiot";
+//           $this->db_name = "mywebsite"; 
+//           } */
+     // if ($_SERVER['SERVER_NAME'] !== 'localhost') {
           /*Get Heroku ClearDB connection information */
+          echo 'inside construct <br>';
           $this->url = parse_url(getenv("CLEARDB_DATABASE_URL"));
       
           $this->host = $this.url["host"];
@@ -36,7 +37,18 @@
     } 
     // DB Connect
     public function connect() {
-
+      $this->url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+      
+      $this->host = $this.url["host"];
+      $this->username = $this.url["user"];
+      $this->password = $this.url["pass"];
+      $this->db_name = substr($this.url["path"], 1);
+      echo 'inside connect <br>';
+      echo $this=>url.<br>;
+      echo $this=>host.<br>;
+      echo $this=>db_name.<br>;
+      echo $this=>username.<br>;
+      echo $this=>password.<br>;
  
 
       $this->conn = null;
