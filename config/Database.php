@@ -11,14 +11,14 @@
     public function __construct() {
    
 
-      if ($_SERVER['SERVER_NAME'] === 'localhost') {
+  /*     if ($_SERVER['SERVER_NAME'] === 'localhost') {
           /* if in local testing mode */
           $this->host = "localhost";
           $this->username = "root";
           $this->password = "2021Idiot";
           $this->db_name = "mywebsite"; 
           }
-      if ($_SERVER['SERVER_NAME'] !== 'localhost') {
+      if ($_SERVER['SERVER_NAME'] !== 'localhost') { */
           /*Get Heroku ClearDB connection information */
           $this->url = parse_url(getenv("CLEARDB_DATABASE_URL"));
       
@@ -32,7 +32,7 @@
           echo $this=>username.<br>;
           echo $this=>password.<br>;
 
-        }
+       // }
     } 
     // DB Connect
     public function connect() {
