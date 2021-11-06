@@ -17,7 +17,7 @@ $_SESSION['homeurl'] = $_SERVER['REQUEST_URI'];
 // require 'includes/db.php';
 $database = new Database();
 $db = $database->connect();
-
+var_dump($db);
 // get events
 $event = new Event($db);
 $result = $event->read();

@@ -9,6 +9,7 @@
     private $url;
 
     public function __construct() {
+      echo '$_SERVER['SERVER_NAME']';
         if ($_SERVER['SERVER_NAME'] === 'localhost') {
           /* if in local testing mode */
           $this->host = "localhost";
