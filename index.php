@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['homeurl'] = $_SERVER['REQUEST_URI'];
 include_once 'config/Database.php';
 include_once 'models/Event.php';
 include_once 'models/DanceClass.php';
@@ -12,8 +13,6 @@ $upcomingEvents = [];
 $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
 
-
-$_SESSION['homeurl'] = $_SERVER['REQUEST_URI'];
 // require 'includes/db.php';
 $database = new Database();
 $db = $database->connect();
