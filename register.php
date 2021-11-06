@@ -9,8 +9,13 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 session_start();
-require 'includes/db.php';
-$classes = $_SESSION['classes'];
+$classes = $_SESSION['upcoming_classes'];
+include_once 'config/Database.php';
+include_once 'models/ClassRegistration.php';
+$database = new Database();
+$db = $database->connect();
+$classReg = new ClassRegistration($db);
+
 
 $regSelected = [];
 $regAll = '';
@@ -32,11 +37,10 @@ if (isset($_POST['submit'])) {
 
     if (isset($_POST['message2ins'])) {
         $message2Ins = $_POST['message2ins'];
-
-    }
+      }
     if (isset($_POST['registerAll'])) {
         $regAll = $_POST['registerAll'];
-    };
+      }
     $regEmail1 = filter_var($regEmail1, FILTER_SANITIZE_EMAIL); 
     if (!$regAll) {
    
@@ -48,31 +52,39 @@ if (isset($_POST['submit'])) {
           if (isset($_POST["$chkboxID"])) {
               $numRegClasses++;
               $regSelected += [$chkboxID => $insEmail]; 
-         }
-        }
-      } 
+         } //end isset
+        } // end foreach
+
+      }  // end not regall
   
       if ($regAll) {
             $emailSubject = "You have registered for all upcoming Classes!";
             foreach($classes as $class) {
-            $classId = $class['id'];
-            $emailBody .= "<br> ".$class['classname']." Instructor(s):   ".
-             $class['instructors']." room:    ".$class['room'].
-             "    on date:    ".$class['date']."<br>";  
-             }
-             $sql = "INSERT INTO classregistration (firstname, lastname, email, classid)
-                     VALUES ('$regFirstName1', '$regLastName1', '$regEmail1', '$classId')";
-             $result = $conn->query($sql);
-             if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-                $sql = "INSERT INTO classregistration (firstname, lastname, email, classid)
-                VALUES ('$regFirstName2', '$regLastName2', '$regEmail2', '$classId')";
-                   $result = $conn->query($sql); 
-            }
+                $classId = $class['id'];
+                $emailBody .= "<br> ".$class['classname']." Instructor(s):   ".
+                $class['instructors']." room:    ".$class['room'].
+                "    on date:    ".$class['date']."<br>";  
+                
+            // do the inserts
+                $classReg->firstname = $regFirstName1;
+                $classReg->lastname = $regLastName1;
+                $classReg->classid = $classId;
+                $classReg->email = $regEmail1;
+                $classReg->create();
+                if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
+                
+                    $classReg->firstname = $regFirstName2;
+                    $classReg->lastname = $regLastName2;
+                    $classReg->classid = $classId;
+                    $classReg->email = $regEmail2;
+                    $classReg->create();
+                    } // end regemail 2
+            } // end foreach
 
       } else {
         $emailSubject = "You have registered for selected Classes";
       
-        foreach ($regSelected as $key => $reg) {
+        foreach($regSelected as $key => $reg) {
       
         $id_int = (int)(substr($key,2));
       
@@ -82,19 +94,26 @@ if (isset($_POST['submit'])) {
                 $emailBody .= "<br> ".$class['classname']."    Instructor(s):   ".
                 $class['instructors']."    room:    ".$class['room'].
                 "   on date:    ".$class['date']."<br>"; 
-                $sql = "INSERT INTO classregistration (firstname, lastname, email, classid)
-                        VALUES ('$regFirstName1', '$regLastName1', '$regEmail1', '$classId')";
-                $result = $conn->query($sql); 
+                // do the insert(s)
+                $classReg->firstname = $regFirstName1;
+                $classReg->lastname = $regLastName1;
+                $classReg->classid = $classId;
+                $classReg->email = $regEmail1;
+                $classReg->create();
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-                    $sql = "INSERT INTO classregistration (firstname, lastname, email, classid)
-                    VALUES ('$regFirstName2', '$regLastName2', '$regEmail2', '$classId')";
-                       $result = $conn->query($sql); 
-                }
-            }
-        }
+                
+                    $classReg->firstname = $regFirstName2;
+                    $classReg->lastname = $regLastName2;
+                    $classReg->classid = $classId;
+                    $classReg->email = $regEmail2;
+                    $classReg->create();
+                     } // end regemail2
+            } // end if classid
+        } // end foreach
+
        
-    }
-   }
+    } // end foreach
+   } // end else
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
         sendEmail($regEmail1, $regFirstName1,  $regLastName1, $emailBody, $emailSubject);;
     } else {
@@ -116,20 +135,20 @@ if (isset($_POST['submit'])) {
             $emailBody .= "<br>They have indicated that their dance experience is: ".$danceExperience."<br>";
             $emailBody .= "<br>They have indicated that their favorite dance genre is: ".$danceFavorite."<br><br>";
             if ($message2Ins) {
-                $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
-            }
+                    $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
+             }
             $emailBody .= "NAME: ".$regFirstName1." ".$regLastName1."<br>  EMAIL:  ".$regLastEmail1."<br>";
             if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
                 $emailBody .= "And <br>  NAME: ".$regFirstName2." ".$regLastName2."<br>  EMAIL:  ".$regEmail2."<br>";
-            }
+        
             $insEmail = $class['registrationemail'];   
             $insEmail2 = "";
             $insEmail3 = "";
             $emailBody .= $classString;
             sendEmail($insEmail, $insEmail2, $insEmail3, $emailBody, $emailSubject);
             $classString = '';
-        }
-
+            } // end regemail2
+        } // end foreach
     } else {
         foreach ($regSelected as $key => $reg) {
     
@@ -163,10 +182,10 @@ if (isset($_POST['submit'])) {
 
     $redirect = "Location: ".$_SESSION['homeurl'];
 
-  $conn->close();
+  // $conn->close();
    header($redirect);
  exit;
-}
+} // end submit
 
 }
 function sendEmail($toEmail, $toFirstName, $toLastName, $emailBody, $emailSubject)

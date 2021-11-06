@@ -37,10 +37,10 @@ hr {
 .nav .container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   padding: 20px 0;
   transition: all 0.3s ease-in-out;
-  background-color: rgba(43, 42, 42, 0.3);
+  background-color: rgba(26, 19, 19, 0.5);
   border-radius: 5px;
 }
 .nav ul {
@@ -109,8 +109,9 @@ hr {
   color:darkviolet;
   align-items: center;
   justify-content: center;
-  background-color:rgb(201, 196, 196);
+  background-color:rgb(224, 220, 220);
   border-radius: 5px;
+  border: 2px solid black;
 
 }
 .content h1,
@@ -118,6 +119,7 @@ hr {
 .content h3 {
   font-size: 150%;
   margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   color:rgb(25, 2, 36);
 
@@ -161,35 +163,64 @@ form {
 }
 input[type=text] {
   width: 70%;
-  padding: 2px 2px;
-  margin: 2px 2px;
+  padding: 4px 4px;
+  margin: 4px 4px;
   box-sizing: border-box;
 }
 input[type=email] {
   width: 70%;
-  padding: 2px 2px;
-  margin: 2px 2px;
+  padding: 4px 4px;
+  margin: 4px 4px;
   box-sizing: border-box;
 }
 input[type=textbox] {
   width: 70%;
-  padding: 2px 2px;
-  margin: 2px 2px;
+  padding: 4px 4px;
+  margin: 4px 4px;
   box-sizing: border-box;
 }
+input[type=checkbox] {
 
+  padding: 4px 4px;
+  margin: 4px 4px;
+  
+}
+.form-grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
 button {
   background-color: darkviolet;
-  width: 50%;
+  width: 25%;
   color: white;
   margin-top: 5px;
-
   padding: 12px 20px;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 .li-none {
   list-style: none;
 }
+.li-large {
+  font-size: 125%;
+  color:darkslateblue;
+  font-style: italic;
+}
 .li-none a {
   text-decoration: none;
+}
+.select {
+  width: 100%;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid darkslateblue;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 150%;
+  cursor: pointer;
+  line-height: 1.5;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
 }

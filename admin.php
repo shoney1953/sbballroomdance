@@ -1,128 +1,80 @@
 <?php
 session_start();
-require 'includes/db.php';
-$classes = $_SESSION['classes'];
+
+include_once 'config/Database.php';
+include_once 'models/Contact.php';
+include_once 'models/ClassRegistration.php';
+include_once 'models/Event.php';
+include_once 'models/DanceClass.php';
+
+$allClasses = $_SESSION['classes'];
+$allEvents = $_SESSION['events'];
 $contacts = [];
 $classRegistrations = [];
 $num_registrations = 0;
-$allEvents = [];
 $num_events = 0;
-$allClasses = [];
 $num_classes = 0;
 
-$sql = "SELECT id, 
-    classid, 
-    firstname, 
-    lastname, 
-    email,
-    dateregistered
-    FROM classregistration ORDER BY classid, lastname, firstname;";
+$database = new Database();
+$db = $database->connect();
+$classReg = new ClassRegistration($db);
+$result = $classReg->read();
 
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $num_registrations++;
-        $classRegistrations[$num_registrations] = [
-            'id' => $row["id"],
-            'classid' => $row["classid"],
-            'firstname' => $row["firstname"],
-            'lastname' => $row["lastname"],
-            'email' => $row["email"],
-            'dateregistered' => $row["dateregistered"]
-          
-        ];
-    }
-}
-$num_contacts = 0;
-$sql = "SELECT id, 
-    firstname, 
-    lastname, 
-    email,
-    message,
-    contactdate
-    FROM contacts ORDER BY contactdate DESC;";
+$rowCount = $result->rowCount();
+$num_registrations = $rowCount;
 
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $num_contacts++;
-        $contacts[$num_contacts] = [
-            'id' => $row["id"],
-            'firstname' => $row["firstname"],
-            'lastname' => $row["lastname"],
-            'email' => $row["email"],
-            'message' => $row["message"],
-            'contactdate' => $row["contactdate"]
-          
-        ];
-    }
-}
-/* get events */
-$sql = "SELECT id, 
-    eventname,
-    eventtype, 
-    eventroom, 
-    eventdesc,
-    eventdate,
-    eventcost,
-    eventnumreg,
-    eventform,
-    eventnumregistered
-         FROM events ORDER BY eventdate ;";
+if($rowCount > 0) {
 
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-   
-    while($row = $result->fetch_assoc()) {
-      
-        $num_events++;
-        $allEvents[$num_events] = [
-            'id' => $row["id"],
-            'eventname' => $row["eventname"],
-            'eventtype' => $row["eventtype"],
-            'eventroom' => $row["eventroom"],
-            'eventdesc' => $row["eventdesc"],
-            'eventdate' => $row["eventdate"],
-            'eventcost' => $row["eventcost"],
-            'eventnumreg' => $row["eventnumreg"],
-            'eventform' => $row["eventform"],
-            'eventnumregistered' => $row["eventnumregistered"]
-        ];    
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $reg_item = array(
+            'id' => $id,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'classid' => $classid,
+            'classname' => $classname,
+            'email' => $email,
+            "dateregistered" => $dateregistered
+        );
+        array_push( $classRegistrations, $reg_item);
+  
     }
-}
-$sql = "SELECT id, 
-    classname, 
-    registrationemail, 
-    instructors, 
-    classlimit, 
-    classlevel,
-    room, 
-    numregistered,
-    time,
-    date FROM danceclasses ORDER BY date;";
+  
 
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-   
-    while ($row = $result->fetch_assoc()) {
-        $num_classes++;
-        $allClasses[$num_classes] = [
-            'id' => $row["id"],
-            'classname' => $row["classname"],
-            'classlevel' => $row["classlevel"],
-            'registrationemail' => $row["registrationemail"],
-            'instructors' => $row["instructors"],
-            'classlimit' => $row["classlimit"],
-            'room' => $row["room"],
-            'date' => $row["date"],
-            'numregistered' => $row['numregistered'],
-            'time' => $row["time"],
-        ];
-        
-    }
+} else {
+   echo 'NO REGISTRATIONS';
+
 }
 
-$conn->close();
+$contact = new Contact($db);
+$result = $contact->read();
+
+$rowCount = $result->rowCount();
+$num_contacts = $rowCount;
+if($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $contact_item = array(
+            'id' => $id,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'message' => $message,
+            'email' => $email,
+            "contactdate" => $contactdate
+        );
+        array_push( $contacts, $contact_item);
+  
+    }
+  
+
+} else {
+   echo 'NO REGISTRATIONS';
+
+}
+
+
+//$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">

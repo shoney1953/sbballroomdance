@@ -9,52 +9,31 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 session_start();
-if ($_SERVER['SERVER_NAME'] === 'localhost') {
-    /* if in local testing mode */
-    $server = "localhost";
-    $username = "root";
-    $password = "2021Idiot";
-    $db = "mywebsite"; 
-}
-if ($_SERVER['SERVER_NAME'] !== 'localhost') {
-      /*Get Heroku ClearDB connection information */
-$url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-$server = $url["host"];
-$username = $url["user"];
-$password = $url["pass"];
-$db = substr($url["path"], 1);
-}
-$conn = new mysqli($server, $username, $password, $db);
-
-
-// Check connection
-if ($conn->connect_error) {
-    die("<p>Connection failed: " . $conn->connect_error."</p>");
-} 
-
-
-
-$name = 'Guest';
+include_once 'config/Database.php';
+include_once 'models/Contact.php';
+$database = new Database();
+$db = $database->connect();
+$contact = new Contact($db);
 
 
 if (isset($_POST['submit'])) {
-    $firstname = htmlentities($_POST['firstname']);
-    $lastname = htmlentities($_POST['lastname']);
-    $email = htmlentities($_POST['email']);
-    $message = htmlentities($_POST['message']);
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);   
+    $contact->firstname = htmlentities($_POST['firstname']);
+    $contact->lastname = htmlentities($_POST['lastname']);
+    $contact->email = htmlentities($_POST['email']);
+    $contact->message = htmlentities($_POST['message']);
+    $contact->email = filter_var($contact->email, FILTER_SANITIZE_EMAIL);   
 
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        sendEmail($email, $firstname, $lastname);
+    if (filter_var($contact->email, FILTER_VALIDATE_EMAIL)) {
+        sendEmail($contact->email, $contact->firstname, $contact->lastname);
     } else {
         echo 'Email is empty or Invalid. Please enter valid email.';
     }
     
-  $sql = "INSERT INTO contacts (firstname, lastname, email, message)
+ /*  $sql = "INSERT INTO contacts (firstname, lastname, email, message)
      VALUES ('$firstname', '$lastname', '$email', '$message')";
    $result = $conn->query($sql);
-   $conn->close();
+   $conn->close(); */
+   $contact->create();
 
 $redirect = "Location: ".$_SESSION['homeurl'];
 header($redirect);

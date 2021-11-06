@@ -1,90 +1,101 @@
 <?php
 session_start();
+include_once 'config/Database.php';
+include_once 'models/Event.php';
+include_once 'models/DanceClass.php';
 $num_classes = 0;
 $num_events = 0;
 $classes = [];
 $events = [];
+$upcomingClasses = [];
+$upcomingEvents = [];
+$currentDate = new DateTime();
+$compareDate = $currentDate->format('Y-m-d');
+
 
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI'];
-require 'includes/db.php';
+// require 'includes/db.php';
+$database = new Database();
+$db = $database->connect();
 
+// get events
+$event = new Event($db);
+$result = $event->read();
 
-/* get events */
-$sql = "SELECT id, 
-    eventname,
-    eventtype, 
-    eventroom, 
-    eventdesc,
-    eventdate,
-    eventcost,
-    eventnumreg,
-    eventform,
-    eventnumregistered
-         FROM events where eventdate >= current_date() ;";
+$rowCount = $result->rowCount();
+$num_events = $rowCount;
 
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-   
-    while($row = $result->fetch_assoc()) {
-      
-        $num_events++;
-        $events[$num_events] = [
-            'id' => $row["id"],
-            'eventname' => $row["eventname"],
-            'eventtype' => $row["eventtype"],
-            'eventroom' => $row["eventroom"],
-            'eventdesc' => $row["eventdesc"],
-            'eventdate' => $row["eventdate"],
-            'eventcost' => $row["eventcost"],
-            'eventnumreg' => $row["eventnumreg"],
-            'eventform' => $row["eventform"],
-            'eventnumregistered' => $row["eventnumregistered"]
-        ];
-        
+if($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $event_item = array(
+            'id' => $id,
+            'eventname' => $eventname,
+            'eventtype' => $eventtype,
+            'eventdate' => $eventdate,
+            'eventcost' => $eventcost,
+            'eventform' => $eventform,
+            "eventdesc" => html_entity_decode($eventdesc),
+            "eventroom" => $eventroom,
+            'eventnumregistered' => $eventnumregistered
+        );
+        array_push( $events, $event_item);
+    
+        if ($compareDate <= $row['eventdate']) {
+            array_push( $upcomingEvents, $event_item);
+        }
     }
+  
+
+} else {
+   echo 'NO EVENTS';
+
 }
+
 $_SESSION['events'] = $events;
 /* get classes */
-$sql = "SELECT id, 
-    classname, 
-    registrationemail, 
-    instructors, 
-    classlimit, 
-    classlevel,
-    room, 
-    numregistered,
-    time,
-    date FROM danceclasses where date >= current_date();";
 
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-   
-    while ($row = $result->fetch_assoc()) {
-        $num_classes++;
-        $classes[$num_classes] = [
-            'id' => $row["id"],
-            'classname' => $row["classname"],
-            'classlevel' => $row["classlevel"],
-            'registrationemail' => $row["registrationemail"],
-            'instructors' => $row["instructors"],
-            'classlimit' => $row["classlimit"],
-            'room' => $row["room"],
-            'date' => $row["date"],
-            'numregistered' => $row['numregistered'],
-            'time' => $row["time"],
-        ];
-        
+$class = new DanceClass($db);
+$result = $class->read();
+
+$rowCount = $result->rowCount();
+$num_classes = $rowCount;
+
+if($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $class_item = array(
+            'id' => $id,
+            'classname' => $classname,
+            'classlevel' => $classlevel,
+            'classlimit' => $classlimit,
+            'date' => $date,
+            'time' => $time,
+            'instructors' => $instructors,
+            "registrationemail" => $registrationemail,
+            "room" => $room,
+            'numregistered' => $numregistered
+        );
+        array_push( $classes, $class_item);
+
+        if ($compareDate <= $row['date']) {
+            array_push( $upcomingClasses, $class_item);
+        }
     }
 
-$_SESSION['classes'] = $classes;
+} else {
+   echo 'NO CLASSES';
 
-
-
-$conn->close();
 }
 
+$_SESSION['classes'] = $classes;
+$_SESSION['upcoming_classes'] = $upcomingClasses;
 
+// $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,7 +156,7 @@ DJ Documents</a>
             </tr>
             <?php 
             $eventNumber = 0;
-            foreach($events as $event) {
+            foreach($upcomingEvents as $event) {
                  $eventNumber++;
                   echo "<tr>";
                     echo "<td>".$event['eventdate']."</td>";
@@ -184,7 +195,7 @@ DJ Documents</a>
             </tr>
             <?php 
             $classNumber = 0;
-            foreach($classes as $class)
+            foreach($upcomingClasses as $class)
              {
                  $classNumber++;
                   echo "<tr>";
@@ -208,7 +219,10 @@ DJ Documents</a>
         
         <h3> Enter Information Below to Register for all or Selected Classes </h3>
         
-        <form method="POST" action="register.php">
+        <form method="POST"  action="register.php">
+            <div class="form-grid2">
+
+            <div>
                 <label for="regFirstName1">First Registrant First Name (Required)</label><br>
                 <input type="text" name="regFirstName1" ><br>
                 <label for="regLastName1">First Registrant Last Name (Required)</label><br>
@@ -216,6 +230,8 @@ DJ Documents</a>
                 <label for="regEmail1">First Registrant Email (Required)</label><br>
                 <input type="email" name="regEmail1" ><br>
               <br>
+              </div>
+              <div>
                 <label for="regFirstName2">Second Registrant First Name(optional)</label><br>
                 <input type="text" name="regFirstName2" ><br>
                 <label for="regLastName2">Second Registrant Last Name(optional)</label><br>
@@ -223,13 +239,17 @@ DJ Documents</a>
                 <label for="regEmail2">Second Registrant Email (optional)</label><br>
                 <input type="email" name="regEmail2" ><br>
                 <br>
+                </div>
+                </div>
                 <label for="danceexperience">How familiar are you with Dance?</label><br>
                 <select name = "danceexperience">
                     <option value = "Beginner" selected>Beginner or It's been a long time</option>
                     <option value = "Intermediate">Had moderate experience dancing</option>
                     <option value = "Advanced">Been Dancing for a long time</option>
                 </select>
+            
                 <br>
+             
                 <label for="dancefavorite">What is your favorite type of dance?</label><br>
                 <select name = "dancefavorite">
                     <option value = "Ballroom" selected>Ballroom dances: Foxtrot, Quickstep, Waltz etc.</option>
@@ -247,7 +267,7 @@ DJ Documents</a>
                 <label for="registerAll"><b> I/We would like to register for all available Classes </b></label><br>
                 <p>OR</p>
                 <?php
-                foreach($classes as $class) {
+                foreach($upcomingClasses as $class) {
                     $chkboxID = "cb".$class['id'];
                     $className = $class['classname'];
                     echo "<input type='checkbox' name='$chkboxID'>";
@@ -281,10 +301,14 @@ DJ Documents</a>
         <br>
         <h3>Current Board Members</h3>
         <ul>
-            <li class="list-none">Brian Hand, President</li>
-            <li class="list-none">Richard Adinolfi, Vice-President</li>
-            <li class="list-none">Dottie Adams, Treasurer</li>
-            <li class="list-none">Wanda Ross, Secretary</li>
+            <li class="li-none li-large">Brian Hand, President</li>
+            <li class="li-none li-large">Richard Adinolfi, Vice-President</li>
+            <li class="li-none li-large">Dottie Adams, Treasurer</li>
+            <li class="li-none li-large">Wanda Ross, Secretary</li>
+        </ul>
+        <br>
+        <ul>
+        <li class="li-none"><a href="img/Membership Form 2022 Dance Club.pdf">Click Here for Membership Form</a></li><br>
         </ul>
     </section>
     </div>
@@ -316,6 +340,7 @@ DJ Documents</a>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-15-2020-Sweetheart-Dance">Sweetheart Dance 02 15 2020</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Masquerade-ball-01-11-2020-SBDC">Masquerade Dance 01 11 2020</a></li>
        </ul>
+       <br>
    </section>
    </div>
 </body>
