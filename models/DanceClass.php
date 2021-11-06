@@ -35,8 +35,8 @@ class DanceClass {
     }
 
     // Get Single Danceclass
-    public function read_single($id) {
-         $this->id = $id;
+    public function read_single() {
+        
           // Create query
           $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
   
@@ -68,7 +68,7 @@ class DanceClass {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET classname = :classname, classlevel = :classlevel, registrationemail = :registrationemail,
-          time = :time, instructors = :instructors, classlimit = :classlimit,
+          time = :time, instructors = :instructors, classlimit = :classlimit, numregistered = :numregistered,
           room = :room, date = :date';
 
           // Prepare statement
@@ -83,6 +83,7 @@ class DanceClass {
           $this->instructors = htmlspecialchars(strip_tags($this->instructors));
           $this->registrationemail = htmlspecialchars(strip_tags($this->registrationemail));
           $this->classlimit = htmlspecialchars(strip_tags($this->classlimit));
+          $this->numregistered = htmlspecialchars(strip_tags($this->numregistered));
 
           // Bind data
           $stmt->bindParam(':classname', $this->classname);
@@ -93,6 +94,7 @@ class DanceClass {
           $stmt->bindParam(':registrationemail', $this->registrationemail);
           $stmt->bindParam(':date', $this->date);
           $stmt->bindParam(':classlimit', $this->classlimit);
+          $stmt->bindParam(':numregistered', $this->numregistered);
 
           // Execute query
           if($stmt->execute()) {
@@ -110,8 +112,8 @@ class DanceClass {
           // Create query
           $query = 'UPDATE ' . $this->table . 
           ' SET classname = :classname, classlevel = :classlevel, registrationemail = :registrationemail,
-          time = :time, instructors = :instructors, classlimit = :classlimit,
-          room = :room, date = :date';
+          time = :time, instructors = :instructors, classlimit = :classlimit, numregistered = :numregistered,
+          room = :room, date = :date WHERE id = :id';
    
 
           // Prepare statement
@@ -126,8 +128,10 @@ class DanceClass {
           $this->instructors = htmlspecialchars(strip_tags($this->instructors));
           $this->registrationemail = htmlspecialchars(strip_tags($this->registrationemail));
           $this->classlimit = htmlspecialchars(strip_tags($this->classlimit));
+          $this->numregistered = htmlspecialchars(strip_tags($this->numregistered));
 
           // Bind data
+          $stmt->bindParam(':id', $this->id);
           $stmt->bindParam(':classname', $this->classname);
           $stmt->bindParam(':classlevel', $this->classlevel);
           $stmt->bindParam(':room', $this->room);
@@ -136,6 +140,7 @@ class DanceClass {
           $stmt->bindParam(':registrationemail', $this->registrationemail);
           $stmt->bindParam(':date', $this->date);
           $stmt->bindParam(':classlimit', $this->classlimit);
+          $stmt->bindParam(':numregistered', $this->numregistered);
 
           // Execute query
           if($stmt->execute()) {

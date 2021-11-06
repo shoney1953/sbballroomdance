@@ -129,10 +129,12 @@ DJ Documents</a>
     <div class="hero">
         <div class="container">
             <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1><br>
+         
             <p>We are a primarily social club that provides, lessons,
-                 and opportunities to dance and socialize.</p>
-           <p>We're not "strictly ballroom". Latin, Western, Line Dance 
-               are also part of our repetoire. </p>
+                 and opportunities to dance and socialize.</p><br>
+            <p>We are comprised of members from HOA 1 and HOA 2.</p><br>
+           <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
+               are also part of our repetoire. </p><br>
         </div>
     </div>
     
@@ -180,7 +182,7 @@ DJ Documents</a>
         <h1 class="section-header">Upcoming Classes Available</h1><br>
         <table>
             <tr>
-                <th>Date    </th>
+                <th>Start Date</th>
                 <th>Time    </th>
                 <th>Class    </th>
                 <th>Level    </th>
@@ -218,7 +220,7 @@ DJ Documents</a>
         
         <h3> Enter Information Below to Register for all or Selected Classes </h3>
         
-        <form method="POST"  action="register.php">
+        <form method="POST"  action="actions/register.php">
             <div class="form-grid2">
 
             <div>
@@ -274,7 +276,8 @@ DJ Documents</a>
                 }
                  ?>
                  <br>
-                <button name="submit" type="submit">Submit</button><br>
+                
+                 <button name="submit" type="submit">Submit</button><br>
                 
             </form>
     </section>
@@ -315,7 +318,7 @@ DJ Documents</a>
     <section id="contact" class="container content">
   
         <h2 class="section-header">Enter your information below to contact us: </h2>
-            <form method="POST" action="contact.php">
+            <form method="POST" action="actions/contact.php">
                 <label for="firstname">First Name</label><br>
                 <input type="text" name="firstname" ><br>
                 <label for="lastname">Last Name</label><br>

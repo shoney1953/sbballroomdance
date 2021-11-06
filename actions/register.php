@@ -1,8 +1,8 @@
 <?php
 // include("includes/mailheader.php");
-require 'includes/PHPMailer.php';
-require 'includes/SMTP.php';
-require 'includes/Exception.php';
+require '../includes/PHPMailer.php';
+require '../includes/SMTP.php';
+require '../includes/Exception.php';
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -10,8 +10,8 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 session_start();
 $classes = $_SESSION['upcoming_classes'];
-include_once 'config/Database.php';
-include_once 'models/ClassRegistration.php';
+include_once '../config/Database.php';
+include_once '../models/ClassRegistration.php';
 $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);

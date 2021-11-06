@@ -162,23 +162,30 @@ form {
   justify-content: center;
 }
 input[type=text] {
-  width: 70%;
+  width: 400px;
   padding: 4px 4px;
   margin: 4px 4px;
   box-sizing: border-box;
 }
 input[type=email] {
-  width: 70%;
+  width: 400px;
   padding: 4px 4px;
   margin: 4px 4px;
   box-sizing: border-box;
 }
 input[type=textbox] {
-  width: 70%;
+  width: 400px;
   padding: 4px 4px;
   margin: 4px 4px;
   box-sizing: border-box;
 }
+input[type=text].text-small {
+  width: 40px;
+  padding: 4px 4px;
+  margin: 4px 4px;
+  box-sizing: border-box;
+}
+
 input[type=checkbox] {
 
   padding: 4px 4px;
@@ -223,4 +230,134 @@ button {
   line-height: 1.5;
   background-color: #fff;
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+@media screen and (max-width: 700px) {
+  .container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .select {
+    width: 100%;
+    min-width: 15ch;
+    max-width: 30ch;
+    border: 1px solid darkslateblue;
+    border-radius: 0.20em;
+    padding: 0.20em 0.25em;
+    font-size: 100%;
+    cursor: pointer;
+    line-height: 1;
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  }
+  .li-large {
+    font-size: 100%;
+    color:darkslateblue;
+    font-style: italic;
+  }
+  .form-grid2 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5px;
+    grid-auto-rows: minmax(100px, auto);
+  }
+  button {
+    background-color: darkviolet;
+    width: 25%;
+    color: white;
+    margin-top: 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  input[type=email] {
+    width: 60%;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    box-sizing: border-box;
+  }
+  input[type=textbox] {
+    width: 60%;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    box-sizing: border-box;
+  }
+  input[type=checkbox] {
+  
+    padding: 2px 2px;
+    margin: 2px 2px;
+    
+  }
+  table {
+    width: 80%;
+    border-spacing: 3px;
+    table-layout: auto;
+    align-items: left;
+    justify-content: left;
+  }
+  table, th, td {
+    border: 1px solid black;
+    font-size: 70%;
+  }
+  th, td {
+    padding: 2px;
+    font-size: 70%;
+  }
+  form {
+    align-items: left;
+    justify-content: left;
+  }
+  .content p {
+    color: rgb(41, 39, 39);
+    line-height: 25px;
+    letter-spacing: 1.1px;
+ 
+  }
+  
+  .section-header {
+    text-align: left;
+    align-items: left;
+    justify-content: left;
+  }
+
+  .nav .container {
+
+    align-items: left;
+    padding: 15px 0;
+
+  }
+  .nav ul {
+  
+    align-items: left;
+    justify-content: left;
+  }
+  .nav a {
+
+
+    padding: 5px 10px;
+  
+  }
+
+  .nav.active .container {
+    padding: 8px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+ 
+  .hero {
+ 
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+
+    margin-bottom: 10px;
+ 
+
+  .hero h1 {
+    font-size: 35px;
+    margin: -20px 0 20px;
+  }
+  .hero p {
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+
 }

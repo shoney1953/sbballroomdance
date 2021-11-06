@@ -142,6 +142,20 @@ if($rowCount > 0) {
             ?> 
         </table>
         <br>
+        <form method='POST' action="actions/maintainClass.php">
+        <label for='classId'>Specify Class ID from Table above for:  </label>
+        <input type='text' class='text-small' name='classId' >
+        <input type='checkbox' name='updateClass'>
+        <label for='updateClass'>Update a Class </label>    
+        <input type='checkbox' name='deleteClass'>
+        <label for='deleteClass'>Delete a Class </label><br> 
+        <p>OR</p><br>
+        <input type='checkbox' name='addClass'>
+        <label for='addClass'>Add a Class </label> <br> 
+       
+        <button type='submit'>Submit</button>      
+        </form>
+       
     </section>
     </div>
     <div class="section-back">

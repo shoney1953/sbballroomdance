@@ -1,16 +1,16 @@
 <?php
 //require 'includes/mailheader.php';
-require 'includes/PHPMailer.php';
-require 'includes/SMTP.php';
-require 'includes/Exception.php';
+require '../includes/PHPMailer.php';
+require '../includes/SMTP.php';
+require '../includes/Exception.php';
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 session_start();
-include_once 'config/Database.php';
-include_once 'models/Contact.php';
+include_once '../config/Database.php';
+include_once '../models/Contact.php';
 $database = new Database();
 $db = $database->connect();
 $contact = new Contact($db);
