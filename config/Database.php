@@ -9,7 +9,7 @@
     private $url;
 
     public function __construct() {
-      echo $_SERVER['SERVER_NAME'];
+   
 
       if ($_SERVER['SERVER_NAME'] === 'localhost') {
           /* if in local testing mode */
@@ -26,10 +26,18 @@
           $this->username = $this.url["user"];
           $this->password = $this.url["pass"];
           $this->db_name = substr($this.url["path"], 1);
+
         }
     } 
     // DB Connect
     public function connect() {
+      echo $this=>url.<br>;
+      echo $this=>host.<br>;
+      echo $this=>db_name.<br>;
+      echo $this=>username.<br>;
+      echo $this=>password.<br>;
+ 
+
       $this->conn = null;
        
         try { 
