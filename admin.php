@@ -66,10 +66,10 @@ if($rowCount > 0) {
         array_push( $contacts, $contact_item);
   
     }
-  
+  $_SESSION['contacts'] = $contacts;
 
 } else {
-   echo 'NO REGISTRATIONS';
+   echo 'NO Contacts';
 
 }
 
@@ -100,6 +100,60 @@ if($rowCount > 0) {
 </nav>
     <br>
     <br>
+    <div class="section-back">
+    <section id="events" class="container content">
+
+      <br>
+        <h1 class="section-header">All Events</h1><br>
+        <table>
+            <tr>
+                <th>Event ID</th>
+                <th>Event Date</th>
+                <th>Event Name    </th>
+                <th>Event Type    </th>
+                <th>Event Description</th> 
+                <th>Event DJ</th>          
+                <th>Event Room</th>
+                <th>Event Cost</th>
+                <th># Registered </th>
+            </tr>
+            <?php 
+            $eventNumber = 0;
+            foreach($allEvents as $event) {
+                 $eventNumber++;
+                  echo "<tr>";
+                    echo "<td>".$event['id']."</td>";
+                    echo "<td>".$event['eventdate']."</td>";
+                    echo "<td>".$event['eventname']."</td>";
+                    echo "<td>".$event['eventtype']."</td>";
+                    echo "<td>".$event['eventdesc']."</td>"; 
+                    echo "<td>".$event['eventdj']."</td>";           
+                    echo "<td>".$event['eventroom']."</td>";
+                    echo "<td>".$event['eventcost']."</td>";
+                    echo "<td>".$event['eventnumregistered']."</td>";
+                  echo "</tr>";
+              }
+         
+            ?> 
+        </table>
+        <br>
+       
+        <form method='POST' action="actions/maintainEvent.php">
+        <label for='eventId'>Specify Event ID from Table above for:  </label>
+        <input type='text' class='text-small' name='eventId' >
+        <input type='checkbox' name='updateEvent'>
+        <label for='updateEvent'>Update an Event </label>    
+        <input type='checkbox' name='deleteEvent'>
+        <label for='deleteEvent'>Delete an Event </label><br> 
+        <p>OR</p><br>
+        <input type='checkbox' name='addEvent'>
+        <label for='addEvent'>Add an Event </label> <br> 
+       
+        <button type='submit' name="submitEvent">Submit</button>      
+        </form>
+    </section>
+    </div>
+    
     <br>
     <div class="section-back">
     <section id="classes" class="container content">
@@ -153,7 +207,7 @@ if($rowCount > 0) {
         <input type='checkbox' name='addClass'>
         <label for='addClass'>Add a Class </label> <br> 
        
-        <button type='submit'>Submit</button>      
+        <button type='submit' name="submitClass">Submit</button>      
         </form>
        
     </section>
@@ -163,7 +217,10 @@ if($rowCount > 0) {
         <h1>Class Registrations</h1>    
         <table>
             <tr>
-                <th>Class</th>
+                <th>Registration Id</th>
+                <th>Class Name</th>
+                <th>Class id</th>
+                <th>Class Date</th>
                 <th>First Name</th>
                 <th>Last Name    </th>
                 <th>Email</th>
@@ -176,11 +233,15 @@ if($rowCount > 0) {
                 foreach($allClasses as $class) {
                     if($classRegistration['classid'] == $class['id']) {
                         $className = $class['classname'];
+                        $classDate = $class['date'];
                     }
                 }
     
                   echo "<tr>";
+                    echo "<td>".$classRegistration['id']."</td>";
                     echo "<td>".$className."</td>";
+                    echo "<td>".$classRegistration['classid']."</td>";
+                    echo "<td>".$classDate."</td>";
                     echo "<td>".$classRegistration['firstname']."</td>";
                     echo "<td>".$classRegistration['lastname']."</td>";
                     echo "<td>".$classRegistration['email']."</td>";           
@@ -192,6 +253,19 @@ if($rowCount > 0) {
             ?> 
         </table>
         <br>
+        <form method='POST' action="actions/maintainReg.php">
+        <label for='regId'>Specify Registration ID from Table above for:  </label>
+        <input type='text' class='text-small' name='regId' >
+        <input type='checkbox' name='updateReg'>
+        <label for='updateReg'>Update a Class Registration </label>    
+        <input type='checkbox' name='deleteReg'>
+        <label for='deleteReg'>Delete a Class Registration </label><br> 
+        <p>OR</p><br>
+        <input type='checkbox' name='addReg'>
+        <label for='addReg'>Add a Class Registration</label> <br> 
+       
+        <button type='submit' name="submitReg">Submit</button>      
+        </form>
             </section>
     </div>
    
@@ -223,44 +297,21 @@ if($rowCount > 0) {
             ?> 
         </table>
         <br>
-    </section>
-    </div>
-    <div class="section-back">
-    <section id="events" class="container content">
-
-      <br>
-        <h1 class="section-header">All Events</h1><br>
-        <table>
-            <tr>
-                <th>Event Date</th>
-                <th>Event Name    </th>
-                <th>Event Type    </th>
-                <th>Event Description</th>          
-                <th>Event Room</th>
-                <th>Event Cost</th>
-                <th># Registered </th>
-            </tr>
-            <?php 
-            $eventNumber = 0;
-            foreach($allEvents as $event) {
-                 $eventNumber++;
-                  echo "<tr>";
-                    echo "<td>".$event['eventdate']."</td>";
-                    echo "<td>".$event['eventname']."</td>";
-                    echo "<td>".$event['eventtype']."</td>";
-                    echo "<td>".$event['eventdesc']."</td>";           
-                    echo "<td>".$event['eventroom']."</td>";
-                    echo "<td>".$event['eventcost']."</td>";
-                    echo "<td>".$event['eventnumregistered']."</td>";
-                  echo "</tr>";
-              }
-         
-            ?> 
-        </table>
+        <form method='POST' action="actions/maintainContact.php">
+        <label for='delContactBefore'>Specify a Date to delete contacts before:</label>
+        <input type='date'  name='delContactBefore' >
+        <input type='checkbox' name='deleteContact'>
+        <label for='deleteContact'>Delete a Range of Contacts</label><br> 
+        <p>OR</p>
+        <input type='checkbox' name='reportContact'>
+        <label for='reportContact'>Report on Contacts </label><br>    
+       
+        <button type='submit' name="submitContact">Submit</button>      
+        </form>
         <br>
     </section>
     </div>
-    
+   
 
     
 </body>

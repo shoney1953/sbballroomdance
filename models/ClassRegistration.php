@@ -40,8 +40,8 @@ class ClassRegistration {
     }
 
     // Get Single Danceclass
-    public function read_single($id) {
-         $this->id = $id;
+    public function read_single() {
+      
           // Create query
           // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
           $query = 'SELECT c.classname as classname, r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered 
@@ -111,9 +111,9 @@ class ClassRegistration {
     // Updateregistered Danceclass
     public function update() {
           // Create query
-          $query = 'UPdateregistered ' . $this->table . 
+          $query = 'UPDATE ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          classid = :classid';
+          classid = :classid  WHERE id = :id';
    
 
           // Prepare statement
@@ -122,10 +122,12 @@ class ClassRegistration {
           // Clean data
           $this->firstname = htmlspecialchars(strip_tags($this->firstname));
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
+          $this->classid = htmlspecialchars(strip_tags($this->classid));
           $this->email = htmlspecialchars(strip_tags($this->email));
 
 
           // Bind data
+          $stmt->bindParam(':id', $this->id);
           $stmt->bindParam(':firstname', $this->firstname);
           $stmt->bindParam(':lastname', $this->lastname);
           $stmt->bindParam(':classid', $this->classid);
@@ -144,8 +146,8 @@ class ClassRegistration {
     }
 
     // Delete Danceclass
-    public function delete($id) {
-          $this->id = $id;
+    public function delete() {
+        
           // Create query
           $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 

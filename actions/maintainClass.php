@@ -101,6 +101,7 @@ if (!isset($_POST['classId'])) {
         echo '<input type="text" name="numregistered" value="'.$class->numregistered.'"><br>';
         echo '<input type="hidden" name="id" value="'.$class->id.'">';
         echo '<button type="submit" name="submitUpdate">Update the Class</button><br>';
+        echo '</form>';S
     
         }
     }
@@ -128,6 +129,7 @@ if (!isset($_POST['classId'])) {
           
         
             echo '<button type="submit" name="submitAdd">Add the Class</button><br>';
+            echo '</form>';
         }     
         if($deleteClass) {
             echo '<p> You have selected to delete class id: '.$class->id.'<br>';
@@ -135,6 +137,7 @@ if (!isset($_POST['classId'])) {
             echo '<form method="POST" action="deleteClass.php">';
             echo '<input type="hidden" name="id" value="'.$class->id.'">';
             echo '<button type="submit" name="submitDelete">Delete the Class</button><br>';
+            echo '</form>';
         }
         ?> 
     </section>

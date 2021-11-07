@@ -95,9 +95,9 @@ class Contact {
     // Upcontactdate Danceclass
     public function upcontactdate() {
           // Create query
-          $query = 'UPcontactdate ' . $this->table . 
+          $query = 'UPDATE ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          message = :message, contactdate = :contactdate';
+          message = :message, contactdate = :contactdate WHERE id = :id';
    
 
           // Prepare statement
@@ -111,6 +111,7 @@ class Contact {
 
 
           // Bind data
+          $stmt->bindParam(':id', $this->id);
           $stmt->bindParam(':firstname', $this->firstname);
           $stmt->bindParam(':lastname', $this->lastname);
           $stmt->bindParam(':message', $this->message);
@@ -129,8 +130,8 @@ class Contact {
     }
 
     // Delete Danceclass
-    public function delete($id) {
-          $this->id = $id;
+    public function delete() {
+        
           // Create query
           $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 
@@ -153,6 +154,29 @@ class Contact {
 
           return false;
     }
+    public function delete_beforeDate($date) {
+            // Clean data
+
+      // Create query
+      $query = 'DELETE FROM ' . $this->table . 
+          ' WHERE CAST(contactdate as date) < :date';
+         
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Bind data
+      $stmt->bindParam(':date', $date);
+
+      // Execute query
+      if($stmt->execute()) {
+        return true;
+      }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+}
     
 }
 ?>

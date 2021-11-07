@@ -9,6 +9,7 @@ class Event {
     public $eventtype;
     public $eventroom;
     public $eventdesc;
+    public $eventdj;
     public $eventdate;
     public $eventcost;
     public $eventform;
@@ -57,6 +58,7 @@ class Event {
           $this->eventdate = $row['eventdate'];
           $this->eventdesc = $row['eventdesc'];
           $this->eventform = $row['eventform'];
+          $this->eventdj = $row['eventdj'];
           $this->eventnumregistered = $row['eventnumregistered'];
     }
 
@@ -66,7 +68,8 @@ class Event {
           $query = 'INSERT INTO ' . $this->table . 
           ' SET eventname = :eventname, eventtype = :eventtype, 
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
-          eventroom = :eventroom, eventdate = :eventdate';
+          eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
+          eventnumregistered = :eventnumregistered';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -79,6 +82,8 @@ class Event {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+          $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
+          $this->eventnumregistered = htmlspecialchars(strip_tags($this->eventnumregistered));
 
           // Bind data
           $stmt->bindParam(':eventname', $this->eventname);
@@ -87,7 +92,10 @@ class Event {
           $stmt->bindParam(':eventdesc', $this->eventdesc);
           $stmt->bindParam(':eventcost', $this->eventcost);
           $stmt->bindParam(':eventdate', $this->eventdate);
-          $stmt->bindParam(':eventfirn', $this->eventform);
+          $stmt->bindParam(':eventform', $this->eventform);
+          $stmt->bindParam(':eventdj', $this->eventdj);
+          $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
+         
 
           // Execute query
           if($stmt->execute()) {
@@ -106,7 +114,8 @@ class Event {
           $query = 'UPDATE ' . $this->table . 
           ' SET eventname = :eventname, eventtype = :eventtype, 
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
-          eventroom = :eventroom, eventdate = :eventdate';
+          eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj
+            WHERE id = :id ';
    
 
           // Prepare statement
@@ -120,15 +129,18 @@ class Event {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+          $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
 
           // Bind data
           $stmt->bindParam(':eventname', $this->eventname);
           $stmt->bindParam(':eventtype', $this->eventtype);
           $stmt->bindParam(':eventroom', $this->eventroom);
           $stmt->bindParam(':eventdesc', $this->eventdesc);
+          $stmt->bindParam(':eventdj', $this->eventdj);
           $stmt->bindParam(':eventcost', $this->eventcost);
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
+          $stmt->bindParam(':id', $this->id);
 
           // Execute query
           if($stmt->execute()) {

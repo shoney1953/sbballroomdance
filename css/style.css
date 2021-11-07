@@ -185,6 +185,12 @@ input[type=text].text-small {
   margin: 4px 4px;
   box-sizing: border-box;
 }
+input[type=text].text-large {
+  width: 400px;
+  padding: 4px 4px;
+  margin: 4px 4px;
+  box-sizing: border-box;
+}
 
 input[type=checkbox] {
 

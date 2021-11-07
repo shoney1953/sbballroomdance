@@ -35,6 +35,7 @@ if($rowCount > 0) {
             'eventdate' => $eventdate,
             'eventcost' => $eventcost,
             'eventform' => $eventform,
+            'eventdj' => $eventdj,
             "eventdesc" => html_entity_decode($eventdesc),
             "eventroom" => $eventroom,
             'eventnumregistered' => $eventnumregistered
@@ -148,7 +149,8 @@ DJ Documents</a>
                 <th>Event Date</th>
                 <th>Event Name    </th>
                 <th>Event Type    </th>
-                <th>Event Description</th>          
+                <th>Event Description</th>  
+                <th>Event DJ</th>            
                 <th>Event Room</th>
                 <th>Event Cost</th>
                 <th># Registered </th>
@@ -163,7 +165,8 @@ DJ Documents</a>
                     echo "<td>".$event['eventdate']."</td>";
                     echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";
-                    echo "<td>".$event['eventdesc']."</td>";           
+                    echo "<td>".$event['eventdesc']."</td>"; 
+                    echo "<td>".$event['eventdj']."</td>";            
                     echo "<td>".$event['eventroom']."</td>";
                     echo "<td>".$event['eventcost']."</td>";
                     echo "<td>".$event['eventnumregistered']."</td>";
