@@ -12,21 +12,22 @@ $updateEvent = false;
 $deleteEvent = false;
 $addEvent = false;
 
+if (isset($_POST['submitEvent'])) {
+    if (isset($_POST['eventId'])) {
+        $eventId = htmlentities($_POST['eventId']);
+        if(isset($_POST['updateEvent'])) {$updateEvent = $_POST['updateEvent'];}
+        if(isset($_POST['deleteEvent'])) {$deleteEvent = $_POST['deleteEvent'];}
+        if(isset($_POST['addEvent'])) {$addEvent = $_POST['addEvent'];}
 
-if (isset($_POST['eventId'])) {
-    $eventId = htmlentities($_POST['eventId']);
-    if(isset($_POST['updateEvent'])) {$updateEvent = $_POST['updateEvent'];}
-    if(isset($_POST['deleteEvent'])) {$deleteEvent = $_POST['deleteEvent'];}
-    if(isset($_POST['addEvent'])) {$addEvent = $_POST['addEvent'];}
+        if ($updateEvent || $deleteEvent) {
+            $event->id = $eventId;
+            $event->read_single();  
+        } 
 
-    if ($updateEvent || $deleteEvent) {
-        $event->id = $eventId;
-        $event->read_single();  
-    } 
-
-}
-if (!isset($_POST['eventId'])) {
-    if(isset($_POST['addEvent'])) {$addevent = $_POST['addEvent'];}
+    }
+    if (!isset($_POST['eventId'])) {
+        if(isset($_POST['addEvent'])) {$addevent = $_POST['addEvent'];}
+    }
 }
 
 ?>
@@ -41,12 +42,11 @@ if (!isset($_POST['eventId'])) {
 </head>
 <body>
 
-    <div class="section-back">
-    <section id="events" class="container content">
+<div class="section-back container content-left">
    
       <br>
       <?php 
-        if ($updateEvent || $deleteEvent) {
+        if ($deleteEvent) {
         echo '<h1 class="section-header">Selected Event</h1><br>';
         echo '<table>';
         echo '<tr>';
@@ -79,62 +79,80 @@ if (!isset($_POST['eventId'])) {
 
           
         echo '</table><br>';
-
+        }
        if($updateEvent) {
-       
-   
+        echo '<div class="form-left content-left">';
+        
         echo '<form method="POST" action="updateEvent.php">';
-        echo '<label for="eventname">Event Name</label>';
+        echo '<h3 class="heading-left" ><em>Update Event</em></h3><br>';
+        echo '<label for="eventname">Event Name</label><br>';
         echo '<input type="text" name="eventname" value="'.$event->eventname.'"><br>';
-        echo '<label for="eventtype">event Level</label>';
-        echo '<input type="text" name="eventtype" value="'.$event->eventtype.'"><br>';
-        echo '<label for="eventdesc">Event Description</label>';
+        echo '<label for="eventtype">Event Type</label><br>';
+    
+        echo '<br><select name = "eventtype" value="'.$event->eventtype.'">'; 
+        echo '<option value = "Dinner Dance">Dinner Dance</option>';
+        echo '<option value = "First Friday">First Friday</option>';
+        echo '<option value = "First Thursday">First Thursday</option>';
+        echo '<option value = "TGIF">TGIF</option>';
+        echo '<option value = "Meeting">Meeting</option>';
+        echo '</select><br>';
+        echo '<label for="eventdesc">Event Description</label><br>';
         echo '<textarea name="eventdesc" cols="100" rows="3" >'.$event->eventdesc.'</textarea><br>';
-        echo '<label for="eventdj">Event DJ</label>';
+        echo '<label for="eventdj">Event DJ</label><br>';
         echo '<input type="text" name="eventdj" value="'.$event->eventdj.'"><br>';
-        echo '<label for="eventroom">Room</label>';
+        echo '<label for="eventroom">Room</label><br>';
         echo '<input type="text" name="eventroom" value="'.$event->eventroom.'"><br>';
-        echo '<label for="eventdate">Date</label>';
+        echo '<label for="eventdate">Date</label><br>';
         echo '<input type="date" name="eventdate" value="'.$event->eventdate.'"><br>';
-        echo '<label for="eventcost">Member Cost</label>';
+        echo '<label for="eventcost">Member Cost</label><br>';
         echo '<input type="text" name="eventcost" value="'.$event->eventcost.'"><br>';
-        echo '<label for="eventnumregistered"># Registered</label>';
-        echo '<input type="text" name="eventnumregistered" value="'.$event->eventnumregistered.'"><br>';
-        echo '<label for="eventform">Link to Form</label>';
+        echo '<label for="eventnumregistered"># Registered</label><br>';
+        echo '<input type="number" name="eventnumregistered" value="'.$event->eventnumregistered.'"><br>';
+        echo '<label for="eventform">Link to Form</label><br>';
         echo '<input type="text" name="eventform" value="'.$event->eventform.'"><br>';
         echo '<input type="hidden" name="id" value="'.$event->id.'">';
         echo '<button type="submit" name="submitUpdate">Update the Event</button><br>';
         echo '</form>';
-    
+        echo '</div>';
         }
-    }
+    
 
         if ($addEvent) {
-        
-
+            echo '<div class="form-left content-left">';
+           
             echo '<form method="POST" action="addEvent.php">';
-            echo '<label for="eventname">Event Name</label>';
-            echo '<input type="text" name="eventname"><br>';
-            echo '<label for="eventtype">event Level</label>';
-            echo '<input type="text" name="eventtype" ><br>';
-            echo '<label for="eventdesc">Event Description</label>';
-            echo '<textarea name="eventdesc" cols="100" rows="3"></textarea><br>';
-            echo '<label for="eventdj">Event DJ</label>';
+            echo '<h3 class="heading-left" ><em>Add Event</em></h3><br>';
+           
+            echo '<label for="eventname">Event Name</label><br>';
+            echo '<input type="text" name="eventname" required><br>';
+            echo '<label for="eventtype">Event Type</label><br> ';
+          
+            echo '<br><select name = "eventtype">';
+            echo '<option value = "Dinner Dance">Dinner Dance </option>';
+            echo '<option value = "First Friday">First Friday</option>';
+            echo '<option value = "First Thursday">First Thursday</option>';
+            echo '<option value = "TGIF">TGIF</option>';
+            echo '<option value = "Meeting">Meeting</option>';
+            echo '</select><br>';
+            echo '<label for="eventdesc">Event Description</label><br>';
+            echo '<textarea name="eventdesc" cols="100" rows="3" required></textarea><br>';
+            echo '<label for="eventdj">Event DJ</label><br>';
             echo '<input type="text" name="eventdj"><br>';
-            echo '<label for="eventroom">Room</label>';
-            echo '<input type="text" name="eventroom" ><br>';
-            echo '<label for="eventdate">Date</label>';
+            echo '<label for="eventroom">Room</label><br>';
+            echo '<input type="text" name="eventroom" required><br>';
+            echo '<label for="eventdate">Date</label><br>';
             echo '<input type="date" name="eventdate" ><br>';
-            echo '<label for="eventcost">Member Cost</label>';
+            echo '<label for="eventcost">Member Cost</label><br>';
             echo '<input type="text" name="eventcost"><br>';
-            echo '<label for="eventnumregistered"># Registered</label>';
-            echo '<input type="text" name="eventnumregistered" ><br>';
-            echo '<label for="eventform">Link to Form</label>';
+            echo '<label for="eventnumregistered"># Registered</label><br>';
+            echo '<input type="number" name="eventnumregistered" ><br>';
+            echo '<label for="eventform">Link to Form</label><br>';
             echo '<input type="text" name="eventform"><br>';
           
         
             echo '<button type="submit" name="submitAdd">Add the Event</button><br>';
             echo '</form>';
+            echo '</div>';
         }     
         if($deleteEvent) {
             echo '<p> You have selected to delete event id: '.$event->id.'<br>';
@@ -145,7 +163,7 @@ if (!isset($_POST['eventId'])) {
             echo '</form>';
         }
         ?> 
-    </section>
+
     </div>
 </body>
 </html>

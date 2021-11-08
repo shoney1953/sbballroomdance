@@ -15,7 +15,7 @@ $classReg = new ClassRegistration($db);
  
     $classReg->create();
     echo ' Registration was created <br>';
-    $redirect = "Location: ".$_SESSION['homeurl'];
+    $redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);
 exit;
 

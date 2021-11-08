@@ -12,7 +12,7 @@ $classReg = new ClassRegistration($db);
    
     $classReg->delete();
     echo ' Registration was deleted <br>';
-    $redirect = "Location: ".$_SESSION['homeurl'];
+    $redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);
 exit;
 

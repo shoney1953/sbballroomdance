@@ -28,8 +28,7 @@ if (isset($_POST['submit'])) {
     $regFirstName1 = htmlentities($_POST['regFirstName1']);
     $regLastName1 = htmlentities($_POST['regLastName1']);
     $regEmail1 = htmlentities($_POST['regEmail1']);
-    $danceExperience = $_POST['danceexperience'];
-    $danceFavorite = $_POST['dancefavorite'];
+
     $regFirstName2 = htmlentities($_POST['regFirstName2']);
     $regLastName2 = htmlentities($_POST['regLastName2']);
     $regEmail2 = htmlentities($_POST['regEmail2']);
@@ -61,9 +60,9 @@ if (isset($_POST['submit'])) {
             $emailSubject = "You have registered for all upcoming Classes!";
             foreach($classes as $class) {
                 $classId = $class['id'];
-                $emailBody .= "<br> ".$class['classname']." Instructor(s):   ".
-                $class['instructors']." room:    ".$class['room'].
-                "    on date:    ".$class['date']."<br>";  
+                $emailBody .= "<br> ".$class['classlevel']."  ".$class['classname']."    Instructor(s):   ".
+                $class['instructors']."    room:    ".$class['room'].
+                "   beginning on date:    ".$class['date']."  time: ".$class['time']."<br>"; 
                 
             // do the inserts
                 $classReg->firstname = $regFirstName1;
@@ -91,9 +90,9 @@ if (isset($_POST['submit'])) {
         foreach ($classes as $class) {
             if ($class['id'] == $id_int) {
                 $classId = $class['id'];
-                $emailBody .= "<br> ".$class['classname']."    Instructor(s):   ".
+                $emailBody .= "<br> ".$class['classlevel']."  ".$class['classname']."    Instructor(s):   ".
                 $class['instructors']."    room:    ".$class['room'].
-                "   on date:    ".$class['date']."<br>"; 
+                "   beginning on date:    ".$class['date']."  time: ".$class['time']."<br>"; 
                 // do the insert(s)
                 $classReg->firstname = $regFirstName1;
                 $classReg->lastname = $regLastName1;
@@ -132,8 +131,7 @@ if (isset($_POST['submit'])) {
         $classString = '';
         foreach ($classes as $class) {
             $emailBody = "The following individuals have signed up for the class you are going to teach: <br>";
-            $emailBody .= "<br>They have indicated that their dance experience is: ".$danceExperience."<br>";
-            $emailBody .= "<br>They have indicated that their favorite dance genre is: ".$danceFavorite."<br><br>";
+        
             if ($message2Ins) {
                     $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
              }
@@ -156,8 +154,7 @@ if (isset($_POST['submit'])) {
           
             foreach ($classes as $class) {
                 $emailBody = "The following individuals have signed up for the class you are going to teach: <br>";
-                $emailBody .= "<br>They have indicated that their dance experience is: ".$danceExperience."<br>";
-                $emailBody .= "<br>They have indicated that their favorite dance genre is: ".$danceFavorite."<br><br>";
+  
                 if ($message2Ins) {
                     $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
                 }

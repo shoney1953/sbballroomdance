@@ -53,7 +53,7 @@ if($rowCount > 0) {
 
 }
 
-$_SESSION['events'] = $events;
+
 /* get classes */
 
 $class = new DanceClass($db);
@@ -123,7 +123,7 @@ href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb
 href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?usp=sharing">
 DJ Documents</a>
     </li>
-    <li><a href="admin.php">Admin</a></li>
+        <li><a href="admin.php">Admin</a></li>
         </ul>
      </div>
 </nav>
@@ -131,9 +131,9 @@ DJ Documents</a>
         <div class="container">
             <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1><br>
          
-            <p>We are a primarily social club that provides, lessons,
+            <p>We are a primarily social club that provides dance lessons,
                  and opportunities to dance and socialize.</p><br>
-            <p>We are comprised of members from HOA 1 and HOA 2.</p><br>
+            <p>We are comprised of members from SaddleBrooke HOA 1 and HOA 2.</p><br>
            <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
                are also part of our repetoire. </p><br>
         </div>
@@ -185,6 +185,7 @@ DJ Documents</a>
         <h1 class="section-header">Upcoming Classes Available</h1><br>
         <table>
             <tr>
+                <
                 <th>Start Date</th>
                 <th>Time    </th>
                 <th>Class    </th>
@@ -203,6 +204,7 @@ DJ Documents</a>
              {
                  $classNumber++;
                   echo "<tr>";
+                    
                     echo "<td>". $class['date']."</td>";
                     echo "<td>".$class['time']."</td>";
                     echo "<td>".$class['classname']."</td>";
@@ -220,13 +222,15 @@ DJ Documents</a>
         </table>
         <br>
         
-        
+     
         <h3> Enter Information Below to Register for all or Selected Classes </h3>
         
         <form method="POST"  action="actions/register.php">
-            <div class="form-grid2">
-
+        <div class="form-grid2">
+      
+       
             <div>
+                <br>
                 <label for="regFirstName1">First Registrant First Name (Required)</label><br>
                 <input type="text" name="regFirstName1" ><br>
                 <label for="regLastName1">First Registrant Last Name (Required)</label><br>
@@ -234,8 +238,9 @@ DJ Documents</a>
                 <label for="regEmail1">First Registrant Email (Required)</label><br>
                 <input type="email" name="regEmail1" ><br>
               <br>
-              </div>
-              <div>
+            </div>
+            <div>
+                <br>
                 <label for="regFirstName2">Second Registrant First Name(optional)</label><br>
                 <input type="text" name="regFirstName2" ><br>
                 <label for="regLastName2">Second Registrant Last Name(optional)</label><br>
@@ -243,45 +248,38 @@ DJ Documents</a>
                 <label for="regEmail2">Second Registrant Email (optional)</label><br>
                 <input type="email" name="regEmail2" ><br>
                 <br>
-                </div>
-                </div>
-                <label for="danceexperience">How familiar are you with Dance?</label><br>
-                <select name = "danceexperience">
-                    <option value = "Beginner" selected>Beginner or It's been a long time</option>
-                    <option value = "Intermediate">Had moderate experience dancing</option>
-                    <option value = "Advanced">Been Dancing for a long time</option>
-                </select>
-            
-                <br>
-             
-                <label for="dancefavorite">What is your favorite type of dance?</label><br>
-                <select name = "dancefavorite">
-                    <option value = "Ballroom" selected>Ballroom dances: Foxtrot, Quickstep, Waltz etc.</option>
-                    <option value = "Latin">Cha Cha, Rumba, Bolero, American Tango or Argentine Tango, etc.</option>
-                    <option value = "Country Western">Western Partner, Two Step, Nightclub, etc.</option>
-                    <option value = "Line Dance">Boot Scootin, Cupid Shuffle, Electric Slide, etc.</option>
-                    <option value = "Other">I like them all, or I prefer some other kind of dance.</option>
-                 </select>
-                 <br><br>
-                 <p> Message to Instructor(s) (Optional) </p><br>
-                <textarea name="message2ins" cols="100" rows="3"></textarea><br>
-             
-                <h4 ><em>To Enroll, Please select either All Classes or One or More of the Classes Listed</em></h4><br>
+            </div>
+            <div>
+              <label for="message2ins">Message to Instructor(Optional)</label><br>
+               <textarea id="message2ins" name="w3review" rows="3" cols="100"></textarea>
+            </div>
+      
+            <div>
+                <ul class=list-box>
+                <h4 style="text-decoration: underline;color: black"><em>To Enroll -- Please select either All Classes   or   One or More of the Classes Listed</em></h4><br>
+                <li class="list-none">
                 <input type="checkbox" id="registerAll" name="registerAll" value="Register for All Classes">
                 <label for="registerAll"><b> I/We would like to register for all available Classes </b></label><br>
+                </li>
+              
                 <p>OR</p>
+              
                 <?php
                 foreach($upcomingClasses as $class) {
+                    echo '<li class="list-none">';
                     $chkboxID = "cb".$class['id'];
-                    $className = $class['classname'];
+                    $classString = " ".$class['classname']." ".$class['classlevel']." ".$class['date']." ";
                     echo "<input type='checkbox' name='$chkboxID'>";
-                    echo "<label for='$chkboxID'> I/We would like to register for: $className </label><br>";
-                }
+                    echo "<label for='$chkboxID'> I/We would like to register for:
+                        <strong>$classString </strong></label><br>";
+                    }
+                    echo '</li>';
                  ?>
-                 <br>
-                
+                </ul>
+                <br><br>
                  <button name="submit" type="submit">Submit</button><br>
-                
+            </div> 
+           
             </form>
     </section>
     </div>
@@ -321,16 +319,43 @@ DJ Documents</a>
     <section id="contact" class="container content">
   
         <h2 class="section-header">Enter your information below to contact us: </h2>
+        
             <form method="POST" action="actions/contact.php">
+            <div class="form-grid2">
+                <div>
                 <label for="firstname">First Name</label><br>
                 <input type="text" name="firstname" ><br>
                 <label for="lastname">Last Name</label><br>
                 <input type="text" name="lastname" ><br>
                 <label for="email">Email</label><br>
                 <input type="email" name="email" ><br>
+                </div>
+           
+                <div>  
+                <label for="danceexperience">How familiar are you with Dance?</label><br>
+                <select name = "danceexperience">
+                    <option value = "Beginner" selected>Beginner or It's been a long time</option>
+                    <option value = "Intermediate">Had moderate experience dancing</option>
+                    <option value = "Advanced">Been Dancing for a long time</option>
+                </select>
+                <br>
+                <label for="dancefavorite">What is your favorite type of dance?</label><br>
+                <select name = "dancefavorite">
+                    <option value = "Ballroom" selected>Ballroom dances: Foxtrot, Quickstep, Waltz etc.</option>
+                    <option value = "Latin">Cha Cha, Rumba, Bolero, American Tango or Argentine Tango, etc.</option>
+                    <option value = "Country Western">Western Partner, Two Step, Nightclub, etc.</option>
+                    <option value = "Line Dance">Boot Scootin, Cupid Shuffle, Electric Slide, etc.</option>
+                    <option value = "Other">I like them all, or I prefer some other kind of dance.</option>
+                 </select>
+                 <br><br>
+              
+                </div>   
+                <div>
                 <p> Tell Us About Yourself </p><br>
-                <textarea name="message" cols="100" rows="3"></textarea><br>
+                <textarea name="message" cols="100" rows="3"></textarea><br><br>
                 <button name="submit" type="submit">Submit</button><br>
+                </div>
+            </div>
                 
             </form>
     </section>

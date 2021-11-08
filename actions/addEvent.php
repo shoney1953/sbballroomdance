@@ -19,7 +19,7 @@ $event = new Event($db);
     $event->eventnumregistered = 0;
     $event->create();
     echo ' Event was created <br>';
-    $redirect = "Location: ".$_SESSION['homeurl'];
+    $redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);
 exit;
 

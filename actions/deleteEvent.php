@@ -8,11 +8,11 @@ $db = $database->connect();
 $event = new Event($db);
 
    
-    $event->id = $_POST['id'];
+$event->id = $_POST['id'];
    
-    $event->delete();
-    echo ' Event was deleted <br>';
-    $redirect = "Location: ".$_SESSION['homeurl'];
+$event->delete();
+echo ' Event was deleted <br>';
+$redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);
 exit;
 

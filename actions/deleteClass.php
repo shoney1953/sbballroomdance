@@ -13,7 +13,7 @@ $class = new DanceClass($db);
    
     $class->delete();
     echo ' Class was deleted <br>';
-    $redirect = "Location: ".$_SESSION['homeurl'];
+    $redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);
 exit;
 

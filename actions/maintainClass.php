@@ -42,12 +42,12 @@ if (!isset($_POST['classId'])) {
 </head>
 <body>
 
-    <div class="section-back">
-    <section id="classes" class="container content">
+    <div class="section-back container content-left">
+  
    
       <br>
       <?php 
-        if ($updateClass || $deleteClass) {
+        if ($deleteClass) {
         echo '<h1 class="section-header">Selected Class</h1><br>';
         echo '<table>';
         echo '<tr>';
@@ -78,69 +78,84 @@ if (!isset($_POST['classId'])) {
 
           
         echo '</table><br>';
-
+        }
        if($updateClass) {
+    
+        echo '<div class="form-left content-left">';
         echo '<form method="POST" action="updateClass.php">';
-        echo '<label for="classname">Class Name</label>';
+        echo '<h3 class="heading-left">Update Class</h3>';
+        echo '<label for="classname">Class Name</label><br>';
         echo '<input type="text" name="classname" value="'.$class->classname.'"><br>';
-        echo '<label for="classlevel">Class Level</label>';
-        echo '<input type="text" name="classlevel" value="'.$class->classlevel.'"><br>';
-        echo '<label for="instructors">Instructors</label>';
+        echo '<label for="classlevel">Class Level</label><br>';
+        echo '<select name = "classlevel value="'.$class->classlevel.'"><br>';
+        echo '<option value = "Beginner">Beginner </option>';
+        echo '<option value = "Intermediate">Intermediate</option>';
+        echo '<option value = "Advanced">Advanced</option>';
+        echo '</select><br>';
+        echo '<label for="instructors">Instructors</label><br>';
         echo '<input type="text" name="instructors" value="'.$class->instructors.'"><br>';
-        echo '<label for="registrationemail">Registration Email</label>';
+        echo '<label for="registrationemail">Registration Email</label><br>';
         echo '<input type="text" name="registrationemail" value="'.$class->registrationemail.'"><br>';
-        echo '<label for="room">Room</label>';
+        echo '<label for="room">Room</label><br>';
         echo '<input type="text" name="room" value="'.$class->room.'"><br>';
-        echo '<label for="date">Start Date</label>';
+        echo '<label for="date">Start Date</label><br>';
         echo '<input type="date" name="date" value="'.$class->date.'"><br>';
-        echo '<label for="time">Time</label>';
+        echo '<label for="time">Time</label><br>';
         echo '<input type="time" name="time" value="'.$class->time.'"><br>';
-        echo '<label for="classlimit">Class Limit</label>';
-        echo '<input type="text" name="classlimit" value="'.$class->classlimit.'"><br>';
-        echo '<label for="numregistered"># Registered</label>';
-        echo '<input type="text" name="numregistered" value="'.$class->numregistered.'"><br>';
+        echo '<label for="classlimit">Class Limit</label><br>';
+        echo '<input type="number" name="classlimit" value="'.$class->classlimit.'"><br>';
+        echo '<label for="numregistered"># Registered</label><br>';
+        echo '<input type="number" name="numregistered" value="'.$class->numregistered.'"><br>';
         echo '<input type="hidden" name="id" value="'.$class->id.'">';
         echo '<button type="submit" name="submitUpdate">Update the Class</button><br>';
-        echo '</form>';S
-    
+        echo '</form>';
+        echo '</div>';
         }
-    }
+    
 
         if ($addClass) {
-        
-            echo '<h1 class="section-header">Add a New Class</h1><br>';
+            
+            echo '<div class="form-left content-left">';
             echo '<form method="POST" action="addClass.php">';
-            echo '<label for="classname">Class Name</label>';
-            echo '<input type="text" name="classname" ><br>';
-            echo '<label for="classlevel">Class Level</label>';
-            echo '<input type="text" name="classlevel" ><br>';
-            echo '<label for="instructors">Instructors</label>';
+            echo '<h1 class="heading-left">Add a New Class</h1><br>';
+            echo '<label for="classname">Class Name</label><br>';
+            echo '<input type="text" name="classname" required ><br>';
+            echo '<label for="classlevel">Class Level</label><br>';
+            echo '<select name = "classlevel"> <br>';
+            echo '<option value = "Beginner">Beginner </option>';
+            echo '<option value = "Intermediate">Intermediate</option>';
+            echo '<option value = "Advanced">Advanced</option>';
+            echo '</select><br>';
+            echo '<label for="instructors" required>Instructors</label><br>';
             echo '<input type="text" name="instructors" ><br>';
-            echo '<label for="registrationemail">Registration Email</label>';
-            echo '<input type="text" name="registrationemail" ><br>';
-            echo '<label for="room">Room</label>';
-            echo '<input type="text" name="room" ><br>';
-            echo '<label for="date">Start Date</label>';
+            echo '<label for="registrationemail">Registration Email</label><br>';
+            echo '<input type="email" name="registrationemail" required><br>';
+            echo '<label for="room">Room</label><br>';
+            echo '<input type="text" name="room" required><br>';
+            echo '<label for="date">Start Date</label><br>';
             echo '<input type="date" name="date" ><br>';
-            echo '<label for="time">Time</label>';
+            echo '<label for="time">Time</label><br>';
             echo '<input type="time" name="time" ><br>';
-            echo '<label for="classlimit">Class Limit</label>';
-            echo '<input type="text" name="classlimit" ><br>';
+            echo '<label for="classlimit">Class Limit</label><br>';
+            echo '<input type="number" name="classlimit" ><br>';
           
         
             echo '<button type="submit" name="submitAdd">Add the Class</button><br>';
             echo '</form>';
+            echo '</div>';
         }     
         if($deleteClass) {
+           
             echo '<p> You have selected to delete class id: '.$class->id.'<br>';
             echo 'Class name:  '.$class->classname. '<br><br><strong><em> Please click the button below to confirm delete.</em></strong></p>';
             echo '<form method="POST" action="deleteClass.php">';
             echo '<input type="hidden" name="id" value="'.$class->id.'">';
             echo '<button type="submit" name="submitDelete">Delete the Class</button><br>';
             echo '</form>';
+          
         }
         ?> 
-    </section>
+   
     </div>
 </body>
 </html>

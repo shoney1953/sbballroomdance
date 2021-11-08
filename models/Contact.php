@@ -10,6 +10,8 @@ class Contact {
     public $message;
     public $email;
     public $contactdate;
+    public $danceFavorite;
+    public $danceExperience;
 
 
     // Constructor with DB
@@ -54,6 +56,8 @@ class Contact {
           $this->message = $row['message'];
           $this->email = $row['email'];
           $this->contactdate = $row['contactdate'];
+          $this->contactdate = $row['danceFavorite'];
+          $this->contactdate = $row['danceExperience'];
 
     }
 
@@ -62,6 +66,7 @@ class Contact {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
+          danceFavorite = :danceFavorite, danceExperience = :danceExperience,
           message = :message';
 
           // Prepare statement
@@ -72,13 +77,16 @@ class Contact {
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
           $this->message = htmlspecialchars(strip_tags($this->message));
           $this->email = htmlspecialchars(strip_tags($this->email));
-
+          $this->danceFavorite = htmlspecialchars(strip_tags($this->danceFavorite));
+          $this->danceExperience = htmlspecialchars(strip_tags($this->danceExperience));
 
           // Bind data
           $stmt->bindParam(':firstname', $this->firstname);
           $stmt->bindParam(':lastname', $this->lastname);
           $stmt->bindParam(':message', $this->message);
           $stmt->bindParam(':email', $this->email);
+          $stmt->bindParam(':danceFavorite', $this->danceFavorite);
+          $stmt->bindParam(':danceExperience', $this->danceExperience);
      
 
           // Execute query
@@ -97,6 +105,7 @@ class Contact {
           // Create query
           $query = 'UPDATE ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
+          danceFavorite = :danceFavorite, danceExperience = :danceExperience,
           message = :message, contactdate = :contactdate WHERE id = :id';
    
 
@@ -108,6 +117,8 @@ class Contact {
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
           $this->contactdate = htmlspecialchars(strip_tags($this->contactdate));
           $this->email = htmlspecialchars(strip_tags($this->email));
+          $this->danceFavorite = htmlspecialchars(strip_tags($this->danceFavorite));
+          $this->danceExperience = htmlspecialchars(strip_tags($this->danceExperience));
 
 
           // Bind data
@@ -117,6 +128,8 @@ class Contact {
           $stmt->bindParam(':message', $this->message);
           $stmt->bindParam(':email', $this->email);
           $stmt->bindParam(':contactdate', $this->contactdate);
+          $stmt->bindParam(':danceFavorite', $this->danceFavorite);
+          $stmt->bindParam(':danceExperience', $this->danceExperience);
 
           // Execute query
           if($stmt->execute()) {

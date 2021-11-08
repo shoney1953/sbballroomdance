@@ -76,9 +76,9 @@ if (!isset($_POST['regId'])) {
         echo '<form method="POST" action="updateReg.php">';
         echo '<label for="classid">Class Id</label>';
         echo '<input type="text" name="classid" value="'.$classReg->classid.'"><br>';
-        echo '<label for="classlevel">First Name</label>';
+        echo '<label for="firstname">First Name</label>';
         echo '<input type="text" name="firstname" value="'.$classReg->firstname.'"><br>';
-        echo '<label for="instructors">Last Name</label>';
+        echo '<label for="lastnames">Last Name</label>';
         echo '<input type="text" name="lastname" value="'.$classReg->lastname.'"><br>';
         echo '<label for="email">Email</label>';
         echo '<input type="text" name="email" value="'.$classReg->email.'"><br>';
@@ -92,15 +92,13 @@ if (!isset($_POST['regId'])) {
         if ($addReg) {
             echo '<form method="POST" action="addReg.php">';
             echo '<label for="classid">Class Id</label>';
-            echo '<input type="text" name="classid" ><br>';
-            echo '<label for="classlevel">First Name</label>';
-            echo '<input type="text" name="firstname" ><br>';
-            echo '<label for="instructors">Last Name</label>';
-            echo '<input type="text" name="lastname" ><br>';
+            echo '<input type="text" name="classid" required><br>';
+            echo '<label for="firstname">First Name</label>';
+            echo '<input type="text" name="firstname" required><br>';
+            echo '<label for="lastname">Last Name</label>';
+            echo '<input type="text" name="lastname" required ><br>';
             echo '<label for="email">Email</label>';
-            echo '<input type="text" name="email"><br>';
-            echo '<input type="hidden" name="id" value="'.$classReg->id.'">';
-
+            echo '<input type="text" name="email" required><br>';
             echo '<button type="submit" name="submitAddReg">Add the Class</button><br>';
             echo '</form>';
         }     

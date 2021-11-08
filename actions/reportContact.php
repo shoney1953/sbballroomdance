@@ -69,4 +69,8 @@ if($rowCount > 0) {
 }
 
 $pdf->Output();
+
+$redirect = "Location: ".$_SESSION['adminurl'];
+header($redirect);
+exit;
 ?>

@@ -16,7 +16,7 @@ if (isset($_POST['submitUpdateReg'])) {
 
     $classReg->update();
     echo ' Registration was updated  <br>';
-    $redirect = "Location: ".$_SESSION['homeurl'];
+    $redirect = "Location: ".$_SESSION['adminurl'];
     header($redirect);
     exit;
 }

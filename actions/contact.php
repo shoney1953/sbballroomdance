@@ -21,6 +21,8 @@ if (isset($_POST['submit'])) {
     $contact->lastname = htmlentities($_POST['lastname']);
     $contact->email = htmlentities($_POST['email']);
     $contact->message = htmlentities($_POST['message']);
+    $contact->danceExperience = $_POST['danceexperience'];
+    $contact->danceFavorite = $_POST['dancefavorite'];
     $contact->email = filter_var($contact->email, FILTER_SANITIZE_EMAIL);   
 
     if (filter_var($contact->email, FILTER_VALIDATE_EMAIL)) {
@@ -28,11 +30,7 @@ if (isset($_POST['submit'])) {
     } else {
         echo 'Email is empty or Invalid. Please enter valid email.';
     }
-    
- /*  $sql = "INSERT INTO contacts (firstname, lastname, email, message)
-     VALUES ('$firstname', '$lastname', '$email', '$message')";
-   $result = $conn->query($sql);
-   $conn->close(); */
+
    $contact->create();
 
 $redirect = "Location: ".$_SESSION['homeurl'];

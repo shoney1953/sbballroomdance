@@ -20,7 +20,7 @@ if (isset($_POST['submitUpdate'])) {
     $event->eventnumregistered = $_POST['eventnumregistered'];
     $event->update();
     echo ' Event was updated  <br>';
-    $redirect = "Location: ".$_SESSION['homeurl'];
+    $redirect = "Location: ".$_SESSION['adminurl'];
     header($redirect);
     exit;
 }

@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 
 include_once 'config/Database.php';
 include_once 'models/Contact.php';
@@ -7,8 +8,8 @@ include_once 'models/ClassRegistration.php';
 include_once 'models/Event.php';
 include_once 'models/DanceClass.php';
 
-$allClasses = $_SESSION['classes'];
-$allEvents = $_SESSION['events'];
+$allClasses = [];
+$allEvents = [];
 $contacts = [];
 $classRegistrations = [];
 $num_registrations = 0;
@@ -17,6 +18,71 @@ $num_classes = 0;
 
 $database = new Database();
 $db = $database->connect();
+// refresh events
+$event = new Event($db);
+$result = $event->read();
+
+$rowCount = $result->rowCount();
+$num_events = $rowCount;
+
+if($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $event_item = array(
+            'id' => $id,
+            'eventname' => $eventname,
+            'eventtype' => $eventtype,
+            'eventdate' => $eventdate,
+            'eventcost' => $eventcost,
+            'eventform' => $eventform,
+            'eventdj' => $eventdj,
+            "eventdesc" => html_entity_decode($eventdesc),
+            "eventroom" => $eventroom,
+            'eventnumregistered' => $eventnumregistered
+        );
+        array_push( $allEvents, $event_item);
+    
+    }
+  
+
+} else {
+   echo 'NO EVENTS';
+
+}
+/* get classes */
+
+$class = new DanceClass($db);
+$result = $class->read();
+
+$rowCount = $result->rowCount();
+$num_classes = $rowCount;
+
+if($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $class_item = array(
+            'id' => $id,
+            'classname' => $classname,
+            'classlevel' => $classlevel,
+            'classlimit' => $classlimit,
+            'date' => $date,
+            'time' => $time,
+            'instructors' => $instructors,
+            "registrationemail" => $registrationemail,
+            "room" => $room,
+            'numregistered' => $numregistered
+        );
+        array_push( $allClasses, $class_item);
+
+    }
+
+} else {
+   echo 'NO CLASSES';
+
+}
+/* get class registrations */
 $classReg = new ClassRegistration($db);
 $result = $classReg->read();
 
@@ -45,7 +111,7 @@ if($rowCount > 0) {
    echo 'NO REGISTRATIONS';
 
 }
-
+/* get contacts */
 $contact = new Contact($db);
 $result = $contact->read();
 
@@ -61,6 +127,8 @@ if($rowCount > 0) {
             'lastname' => $lastname,
             'message' => $message,
             'email' => $email,
+            'danceFavorite' => $danceFavorite,
+            'danceExperience' => $danceExperience,
             "contactdate" => $contactdate
         );
         array_push( $contacts, $contact_item);
@@ -137,7 +205,8 @@ if($rowCount > 0) {
             ?> 
         </table>
         <br>
-       
+        <div class="form-grid1">
+            <h3>Maintain Events</h3>
         <form method='POST' action="actions/maintainEvent.php">
         <label for='eventId'>Specify Event ID from Table above for:  </label>
         <input type='text' class='text-small' name='eventId' >
@@ -151,6 +220,7 @@ if($rowCount > 0) {
        
         <button type='submit' name="submitEvent">Submit</button>      
         </form>
+        </div>
     </section>
     </div>
     
@@ -162,32 +232,37 @@ if($rowCount > 0) {
         <h1 class="section-header">All Classes</h1><br>
         <table>
             <tr>
+           
+                <th>ID   </th>   
                 <th>Date    </th>
                 <th>Time    </th>
+                <th>Room    </th>
                 <th>Class    </th>
                 <th>Level    </th>
                 <th>Registration Email </th>
                 <th>Instructors    </th>
                 <th>Class Limit    </th>
                 <th># Registered </th>
-                <th>Room    </th>
-                <th>ID   </th>    
+               
+             
             </tr>
             <?php 
            
             foreach($allClasses as $class)
              { 
                   echo "<tr>";
+                    echo "<td>".$class['id']."</td>";
                     echo "<td>".$class['date']."</td>";
                     echo "<td>".$class['time']."</td>";
+                    echo "<td>".$class['room']."</td>";
                     echo "<td>".$class['classname']."</td>";
                     echo "<td>".$class['classlevel']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
                     echo "<td>".$class['instructors']."</td>";
                     echo "<td>".$class['classlimit']."</td>";
                     echo "<td>".$class['numregistered']."</td>";
-                    echo "<td>".$class['room']."</td>";
-                    echo "<td>".$class['id']."</td>";
+        
+                   
      
                 echo "</tr>";
                 
@@ -196,6 +271,8 @@ if($rowCount > 0) {
             ?> 
         </table>
         <br>
+        <div class="form-grid1">
+        <h3>Maintain Classes</h3>
         <form method='POST' action="actions/maintainClass.php">
         <label for='classId'>Specify Class ID from Table above for:  </label>
         <input type='text' class='text-small' name='classId' >
@@ -209,7 +286,7 @@ if($rowCount > 0) {
        
         <button type='submit' name="submitClass">Submit</button>      
         </form>
-       
+        </div>
     </section>
     </div>
     <div class="section-back">
@@ -253,6 +330,8 @@ if($rowCount > 0) {
             ?> 
         </table>
         <br>
+        <div class="form-grid1">
+            <h3>Maintain Class Registrations</h3>
         <form method='POST' action="actions/maintainReg.php">
         <label for='regId'>Specify Registration ID from Table above for:  </label>
         <input type='text' class='text-small' name='regId' >
@@ -266,6 +345,7 @@ if($rowCount > 0) {
        
         <button type='submit' name="submitReg">Submit</button>      
         </form>
+        </div>
             </section>
     </div>
    
@@ -278,7 +358,9 @@ if($rowCount > 0) {
                 <th>First Name</th>
                 <th>Last Name    </th>
                 <th>Email</th>
-                <th>Message</th>       
+                <th>Message</th> 
+                <th>Favorite Dance Style</th>
+                <th>Dance Experience</th>        
              
             </tr>
             <?php 
@@ -290,13 +372,17 @@ if($rowCount > 0) {
                     echo "<td>".$contact['firstname']."</td>";               
                     echo "<td>".$contact['lastname']."</td>";
                     echo "<td>".$contact['email']."</td>";
-                    echo "<td>".$contact['message']."</td>";           
+                    echo "<td>".$contact['message']."</td>"; 
+                    echo "<td>".$contact['danceFavorite']."</td>"; 
+                    echo "<td>".$contact['danceExperience']."</td>";             
                   echo "</tr>";
               }
          
             ?> 
         </table>
         <br>
+        <div class="form-grid1">
+        <h3>Maintain Contacts</h3>
         <form method='POST' action="actions/maintainContact.php">
         <label for='delContactBefore'>Specify a Date to delete contacts before:</label>
         <input type='date'  name='delContactBefore' >
@@ -309,6 +395,9 @@ if($rowCount > 0) {
         <button type='submit' name="submitContact">Submit</button>      
         </form>
         <br>
+        
+    
+        </div>
     </section>
     </div>
    
