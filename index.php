@@ -1,9 +1,16 @@
 <?php
 session_start();
-$_SESSION['homeurl'] = $_SERVER['REQUEST_URI'];
+
+
+    $_SESSION['homeurl'] = $_SERVER['REQUEST_URI'];
+    $_SESSION['user'] = null;
+
+
 include_once 'config/Database.php';
 include_once 'models/Event.php';
 include_once 'models/DanceClass.php';
+include_once 'models/User.php';
+
 $num_classes = 0;
 $num_events = 0;
 $classes = [];
@@ -36,8 +43,8 @@ if($rowCount > 0) {
             'eventcost' => $eventcost,
             'eventform' => $eventform,
             'eventdj' => $eventdj,
-            "eventdesc" => html_entity_decode($eventdesc),
-            "eventroom" => $eventroom,
+            'eventdesc' => $eventdesc,
+            'eventroom' => $eventroom,
             'eventnumregistered' => $eventnumregistered
         );
         array_push( $events, $event_item);
@@ -124,7 +131,22 @@ href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb
 href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?usp=sharing">
 DJ Documents</a>
     </li>
-        <li><a href="admin.php">Admin</a></li>
+    <?php
+   
+    if(isset($_SESSION['username'])) {
+       echo ' <li><a href="logout.php">Logout</a></li>';
+       if(isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'ADMIN') {
+            echo '<li><a href="admin.php">Admin</a></li>';
+        }
+       }
+   
+    } else {
+        echo '<li><a href="signup.php">Sign Up</a></li>';
+        echo '<li><a href="login.php">Login</a></li>';
+    }
+        
+    ?>
         </ul>
      </div>
 </nav>
