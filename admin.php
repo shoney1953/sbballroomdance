@@ -156,26 +156,34 @@ if($rowCount > 0) {
 <body>
 <nav class="nav">
     <div class="container">
-     <h1 class="logo"><a href="index.html">SBDC Ballroom Dance Club</a></h1>
+     
+     <h1 class="logo" style="background-color: rgba(161, 121, 133, 0.2); border-radius: 45%; width: 70px;align-items:center">
+        <a href="index.html"><img src="img/logobox.png" alt="" style="width: 50px;align-items:center"></a></h1>
      <ul>
         <li><a href="index.php">Back to Home</a></li>
+        <li><a href="#events">Events</a></li>
         <li><a href="#classes">Classes</a></li>
         <li><a href="#registrations">Class Registrations</a></li>
-        <li><a href="#events">Events</a></li>
+       
         <li><a href="#contacts">Contacts</a></li>
     </ul>
      </div>
 </nav>
+    <div class="container-section" >
     <br>
     <br>
-    <div class="section-back">
-    <section id="events" class="container content">
-
-      <br>
+    <br>
+    <h1 style="text-align: center; margin-top: 40px; color:darkslateblue">Administrative Functions for SaddleBrooke Ballroom Dance Club</h1>
+    </div>
+    
+ 
+    <div class="container-section ">
+    <section id="events" class="content">
+       <br><br>
         <h1 class="section-header">All Events</h1><br>
         <table>
             <tr>
-                <th>Event ID</th>
+                <th>ID</th>
                 <th>Event Date</th>
                 <th>Event Name    </th>
                 <th>Event Type    </th>
@@ -206,29 +214,36 @@ if($rowCount > 0) {
         </table>
         <br>
         <div class="form-grid1">
-            <h3>Maintain Events</h3>
+       
         <form method='POST' action="actions/maintainEvent.php">
-        <label for='eventId'>Specify Event ID from Table above for:  </label>
-        <input type='text' class='text-small' name='eventId' >
+        
+        <div class="form-grid-div">
+        <h4>Maintain Events</h4>
         <input type='checkbox' name='updateEvent'>
         <label for='updateEvent'>Update an Event </label>    
         <input type='checkbox' name='deleteEvent'>
-        <label for='deleteEvent'>Delete an Event </label><br> 
+        <label for='deleteEvent'>Delete an Event </label> 
+        <form method='POST' action="actions/maintainEvent.php">
+        <label for='eventId'><em> ----- Specify Event ID from Table above for Update or Delete: </em> </label>
+        <input type='text' class='text-small' name='eventId' >
+        <br>
         <p>OR</p><br>
         <input type='checkbox' name='addEvent'>
         <label for='addEvent'>Add an Event </label> <br> 
        
-        <button type='submit' name="submitEvent">Submit</button>      
+        <button type='submit' name="submitEvent">Submit</button>   
+        </div>   
         </form>
+      
         </div>
     </section>
     </div>
     
-    <br>
-    <div class="section-back">
-    <section id="classes" class="container content">
    
-      <br>
+    <div class="container-section ">
+    <section id="classes" class="content">
+   
+      <br><br>
         <h1 class="section-header">All Classes</h1><br>
         <table>
             <tr>
@@ -272,31 +287,41 @@ if($rowCount > 0) {
         </table>
         <br>
         <div class="form-grid1">
-        <h3>Maintain Classes</h3>
+        
         <form method='POST' action="actions/maintainClass.php">
-        <label for='classId'>Specify Class ID from Table above for:  </label>
-        <input type='text' class='text-small' name='classId' >
+        
+        <div class="form-grid-div">
+        <h4>Maintain Classes</h4>
+        
         <input type='checkbox' name='updateClass'>
         <label for='updateClass'>Update a Class </label>    
         <input type='checkbox' name='deleteClass'>
-        <label for='deleteClass'>Delete a Class </label><br> 
+        <label for='deleteClass'>Delete a Class </label>
+        <label for='classId'><em> ----- Specify Class ID from Table above for Update or Delete: </em> </label>
+        <input type='text' class='text-small' name='classId' >
+              <br>
         <p>OR</p><br>
         <input type='checkbox' name='addClass'>
         <label for='addClass'>Add a Class </label> <br> 
        
-        <button type='submit' name="submitClass">Submit</button>      
+        <button type='submit' name="submitClass">Submit</button>   
+        </div>   
         </form>
-        </div>
+        
+            </div>
     </section>
     </div>
-    <div class="section-back">
-    <section id="registrations" class="container content">
-        <h1>Class Registrations</h1>    
+   
+    <div class="container-section ">
+    
+    <section id="registrations" class="content">
+    <br><br>
+        <h1 class="section-header">Class Registrations</h1><br>    
         <table>
             <tr>
-                <th>Registration Id</th>
+                <th>ID</th>
                 <th>Class Name</th>
-                <th>Class id</th>
+                <th>Class Id</th>
                 <th>Class Date</th>
                 <th>First Name</th>
                 <th>Last Name    </th>
@@ -331,27 +356,35 @@ if($rowCount > 0) {
         </table>
         <br>
         <div class="form-grid1">
-            <h3>Maintain Class Registrations</h3>
+        
         <form method='POST' action="actions/maintainReg.php">
-        <label for='regId'>Specify Registration ID from Table above for:  </label>
-        <input type='text' class='text-small' name='regId' >
+        
+        <div class="form-grid-div">
+        <h4>Maintain Class Registrations</h4>
         <input type='checkbox' name='updateReg'>
         <label for='updateReg'>Update a Class Registration </label>    
         <input type='checkbox' name='deleteReg'>
-        <label for='deleteReg'>Delete a Class Registration </label><br> 
+        <label for='deleteReg'>Delete a Class Registration </label>
+        <label for='regId'><em> ------ Specify Registration ID from Table above for Update or Delete:  </em></label>
+        <input type='text' class='text-small' name='regId' >
+        <br>
         <p>OR</p><br>
         <input type='checkbox' name='addReg'>
         <label for='addReg'>Add a Class Registration</label> <br> 
        
-        <button type='submit' name="submitReg">Submit</button>      
+        <button type='submit' name="submitReg">Submit</button>   
+        </div>   
         </form>
         </div>
-            </section>
+       
+        </section>
     </div>
    
-    <div class="section-back">
-    <section id="contacts" class="container content">
-        <h1>Contacts</h1>    
+
+    <div class="container-section ">
+    <br><br>
+    <section id="contacts" class="content">
+         <h1 class="section-header">Contacts</h1><br>  
         <table>
             <tr>
                 <th>Date Contacted</th>  
@@ -382,17 +415,22 @@ if($rowCount > 0) {
         </table>
         <br>
         <div class="form-grid1">
-        <h3>Maintain Contacts</h3>
+      
         <form method='POST' action="actions/maintainContact.php">
-        <label for='delContactBefore'>Specify a Date to delete contacts before:</label>
-        <input type='date'  name='delContactBefore' >
+        <div class="form-grid-div">
+        <h4>Maintain Contacts</h4>
         <input type='checkbox' name='deleteContact'>
-        <label for='deleteContact'>Delete a Range of Contacts</label><br> 
+        <label for='deleteContact'>Delete a Range of Contacts</label>
+        <label for='delContactBefore'><em>  -----Specify a Date to delete contacts before: </em></label>
+        <input type='date'  name='delContactBefore' >
+  
+            <br>
         <p>OR</p>
         <input type='checkbox' name='reportContact'>
         <label for='reportContact'>Report on Contacts </label><br>    
        
-        <button type='submit' name="submitContact">Submit</button>      
+        <button type='submit' name="submitContact">Submit</button> 
+        </div>     
         </form>
         <br>
         

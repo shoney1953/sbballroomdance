@@ -108,9 +108,10 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
 <body>
 <nav class="nav">
     <div class="container">
-     <h1 class="logo"><a href="index.html">SBDC Ballroom Dance Club</a></h1>
+     <h1 class="logo" style="background-color: rgba(161, 121, 133, 0.2); border-radius: 45%; width: 70px;align-items:center">
+        <a href="index.html"><img src="img/logobox.png" alt="" style="width: 50px;align-items:center"></a></h1>
      <ul>
-        <li><a href="#" class="current">Home</a></li>
+        <li><a href="#" >Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#classes">Classes</a></li>
@@ -129,21 +130,55 @@ DJ Documents</a>
 </nav>
     <div class="hero">
         <div class="container">
-            <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1><br>
+            <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1>
+
+            <img class="motto-img" src="img/self.png" alt="motto">
+            <img class="motto-img2" src="img/coupleSilloutte.png" alt="couple">
          
             <p>We are a primarily social club that provides dance lessons,
                  and opportunities to dance and socialize.</p><br>
             <p>We are comprised of members from SaddleBrooke HOA 1 and HOA 2.</p><br>
-           <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
+            <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
                are also part of our repetoire. </p><br>
         </div>
     </div>
-    
-    <div class="section-back">
-    <section id="events" class="container content">
+    <div class="container-section ">
+    <section id="about" class="content">  
+        <br>   
+        <h1 class="section-header">What We are About</h1>
+
+        <p>If you love all kinds of dancing, we're the club for you. </p>
+        <p> We don't just do Ballroom dance - at our dances/practices, we play 
+            music for Ballroom Dance, Western and Western Partner Dance, Line Dance, and Latin Dances.</p>
+        <p>Our members can go to any class we provide free. Prospective members may attend one class free to see if they like it. </p>
+        <p>We also have several times during the week
+            available for practice - some with D.J.s, sometimes you can bring your favorite music. These
+            sessions desginated as "Open Dance" are not restricted to members.</p>
+        <p>Our members also receive reduced rates for our dinner dances, but you may attend as a guest
+            if you'd like to put your toe in the water before committing. </p><br>
+        <a style="font-weight: bold"
+        href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20">
+         Click Here to See the Activities Calendar for times and dates.
+        </a>
+        <br>
+        <h3>Current Board Members</h3>
+        <ul>
+            <li class="li-none li-large">Brian Hand, President</li>
+            <li class="li-none li-large">Richard Adinolfi, Vice-President</li>
+            <li class="li-none li-large">Dottie Adams, Treasurer</li>
+            <li class="li-none li-large">Wanda Ross, Secretary</li>
+        </ul>
+        <br>
+        <ul>
+        <li class="li-none"><a href="img/Membership Form 2022 Dance Club.pdf">Click Here for Membership Form</a></li><br>
+        </ul>
+    </section>
+    </div>
+    <div class="container-section ">
+    <section id="events" class="content">
 
       <br>
-        <h1 class="section-header">Upcoming Events</h1><br>
+        <h1 class="section-header">Upcoming Events</h1>
         <table>
             <tr>
                 <th>Event Date</th>
@@ -154,8 +189,7 @@ DJ Documents</a>
                 <th>Event Room</th>
                 <th>Event Cost</th>
                 <th># Registered </th>
-         
-               
+
             </tr>
             <?php 
             $eventNumber = 0;
@@ -178,14 +212,14 @@ DJ Documents</a>
         <br>
     </section>
     </div>
-   <div class="section-back">
-    <section id="classes" class="container content">
+   <div class="container-section ">
+    <section id="classes" class="content">
    
       <br>
-        <h1 class="section-header">Upcoming Classes Available</h1><br>
+        <h1 class="section-header">Upcoming Classes Available</h1>
         <table>
             <tr>
-                <
+                
                 <th>Start Date</th>
                 <th>Time    </th>
                 <th>Class    </th>
@@ -226,20 +260,22 @@ DJ Documents</a>
         <h3> Enter Information Below to Register for all or Selected Classes </h3>
         
         <form method="POST"  action="actions/register.php">
-        <div class="form-grid2">
+        <div class="form-grid3">
       
        
-            <div>
+            <div class="form-grid-div">
                 <br>
                 <label for="regFirstName1">First Registrant First Name (Required)</label><br>
                 <input type="text" name="regFirstName1" ><br>
                 <label for="regLastName1">First Registrant Last Name (Required)</label><br>
                 <input type="text" name="regLastName1" ><br>
                 <label for="regEmail1">First Registrant Email (Required)</label><br>
-                <input type="email" name="regEmail1" ><br>
+                <input type="email" name="regEmail1" ><br><br>
+                <label for="message2ins">Message to Instructor(Optional)</label><br>
+               <textarea id="message2ins" name="w3review" rows="4" cols="50"></textarea>
               <br>
             </div>
-            <div>
+            <div class="form-grid-div">
                 <br>
                 <label for="regFirstName2">Second Registrant First Name(optional)</label><br>
                 <input type="text" name="regFirstName2" ><br>
@@ -249,12 +285,8 @@ DJ Documents</a>
                 <input type="email" name="regEmail2" ><br>
                 <br>
             </div>
-            <div>
-              <label for="message2ins">Message to Instructor(Optional)</label><br>
-               <textarea id="message2ins" name="w3review" rows="3" cols="100"></textarea>
-            </div>
       
-            <div>
+            <div class="form-grid-div">
                 <ul class=list-box>
                 <h4 style="text-decoration: underline;color: black"><em>To Enroll -- Please select either All Classes   or   One or More of the Classes Listed</em></h4><br>
                 <li class="list-none">
@@ -283,46 +315,15 @@ DJ Documents</a>
             </form>
     </section>
     </div>
-    <div class="section-back">
-    <section id="about" class="container content">
- 
-             
-        <h2 class="section-header">What We are About</h2><br>
-        <p>If you love all kinds of dancing, we're the club for you. </p>
-        <p> We don't just do Ballroom dance - at our dances/practices, we play 
-            music for Ballroom Dance, Western and Western Partner Dance, Line Dance, and Latin Dances.</p>
-        <p>Our members can go to any class we provide free. Prospective members may attend one class free to see if they like it. </p>
-        <p>We also have several times during the week
-            available for practice - some with D.J.s, sometimes you can bring your favorite music. These
-            sessions desginated as "Open Dance" are not restricted to members.</p>
-        <p>Our members also receive reduced rates for our dinner dances, but you may attend as a guest
-            if you'd like to put your toe in the water before committing. </p><br>
-        <a style="font-weight: bold"
-        href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20">
-         Click Here to See the Activities Calendar for times and dates.
-        </a>
-        <br>
-        <h3>Current Board Members</h3>
-        <ul>
-            <li class="li-none li-large">Brian Hand, President</li>
-            <li class="li-none li-large">Richard Adinolfi, Vice-President</li>
-            <li class="li-none li-large">Dottie Adams, Treasurer</li>
-            <li class="li-none li-large">Wanda Ross, Secretary</li>
-        </ul>
-        <br>
-        <ul>
-        <li class="li-none"><a href="img/Membership Form 2022 Dance Club.pdf">Click Here for Membership Form</a></li><br>
-        </ul>
-    </section>
-    </div>
-    <div class="section-back">
-    <section id="contact" class="container content">
   
-        <h2 class="section-header">Enter your information below to contact us: </h2>
+    <div class="container-section ">
+    <section id="contact" class="content">
+    <br>  
+        <h1 class="section-header">Enter your information below to contact us: </h1>
         
             <form method="POST" action="actions/contact.php">
-            <div class="form-grid2">
-                <div>
+            <div class="form-grid3">
+                <div class="form-grid-div">
                 <label for="firstname">First Name</label><br>
                 <input type="text" name="firstname" ><br>
                 <label for="lastname">Last Name</label><br>
@@ -331,7 +332,7 @@ DJ Documents</a>
                 <input type="email" name="email" ><br>
                 </div>
            
-                <div>  
+                <div class="form-grid-div">  
                 <label for="danceexperience">How familiar are you with Dance?</label><br>
                 <select name = "danceexperience">
                     <option value = "Beginner" selected>Beginner or It's been a long time</option>
@@ -349,10 +350,10 @@ DJ Documents</a>
                  </select>
                  <br><br>
               
-                </div>   
-                <div>
+                </div class="form-grid-div">   
+                <div class="form-grid-div">
                 <p> Tell Us About Yourself </p><br>
-                <textarea name="message" cols="100" rows="3"></textarea><br><br>
+                <textarea name="message" cols="50" rows="4"></textarea><br><br>
                 <button name="submit" type="submit">Submit</button><br>
                 </div>
             </div>
@@ -361,9 +362,10 @@ DJ Documents</a>
     </section>
     </div>
 
-   <div class="section-back">
-   <section id="pictures" class="container content">
-       <h1>Pictures from Past Events</h1>
+   <div class="container-section ">
+   <section id="pictures" class="content">
+   <br>  
+       <h1 class="section-header">Pictures from Past Events</h1>
  
        <ul>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Sbdc-halloween-party-10-30-2021">Halloween Party 10 30 2021</a></li>
@@ -373,5 +375,14 @@ DJ Documents</a>
        <br>
    </section>
    </div>
+   <footer >
+
+    <div class="footer-section">
+    
+        <p>Copyright &copy; 2021    Sheila Honey  - All Rights Reserved</p>
+        
+    </div> 
+  
+   </footer>
 </body>
 </html>

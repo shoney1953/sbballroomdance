@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans");
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
 * {
   box-sizing: border-box;
@@ -8,20 +9,25 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #222;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 hr {
-  height: 40px;
+  height: 10px;
   border-top: 1px solid darkviolet;
 }
-
+.logo img {
+  border-radius: 50%;
+}
 .container {
   /*max-width: 1200px; */
   max-width: 100%;
-  margin-left: 10%;
-  margin-right: 10%;
-
-
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.container-section {
+  /*max-width: 1200px; */
+  max-width: 100%;
+  background-image: linear-gradient(180deg, rgba(161, 121, 133, 0.2),rgba(163, 96, 116, 0.4), rgba(102, 57, 74, 0.8));
 }
 .nav {
   position: fixed;
@@ -29,9 +35,6 @@ hr {
   left: 0;
   right: 0;
   transition: all 0.3s ease-in-out;
-  /*background-image: url(../img/sbdc_logo_small.png);
-  background-repeat: no-repeat;
-  background-position: center; */
 
 }
 .nav .container {
@@ -82,7 +85,7 @@ hr {
   align-items: center;
   text-align: center;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   z-index: -2;
 }
 .hero::before {
@@ -114,11 +117,27 @@ hr {
   border: 2px solid black;
 
 }
+.motto-font {
+  font-family: 'Dancing Script', cursive;
+  color:rgb(202, 86, 86);
+  margin-bottom: 20px;
+  border-radius: 25%;
+}
+.motto-img {
+  width: 400px;
+  margin-bottom: 20px;
+
+}
+.motto-img2 {
+  width: 100px;
+  margin-bottom: 5px;
+  opacity: 0.3;
+}
 .list-box {
   text-align: left;
   align-items: left;
   justify-content: left;
-  // border: 1px dashed darkviolet;
+
   width: 80%;
   border-radius: 5px;
   list-style: none;
@@ -131,14 +150,17 @@ hr {
   padding: 5px 5px;
 }
 .content {
-  margin: 10px 10px;
+  width: 90%;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 2px;
+  margin-top: 2px;
   text-align: center;
-  color:darkviolet;
+  color:rgb(28, 1, 39);
   align-items: center;
   justify-content: center;
-  background-color:rgb(233, 230, 230);
-  border-radius: 5px;
-  border: 2px solid black;
+  background-color:rgba(233, 230, 230, 0.2);
+
 
 }
 .content h1,
@@ -160,13 +182,15 @@ hr {
 }
 .content a {
   text-decoration: none;
+  color:blanchedalmond;
 }
 
 .section-header {
   text-align: center;
-  color:darkviolet;
+  color:rgb(58, 2, 82);
   align-items: center;
   justify-content: center;
+  padding-top: 70px;
 }
 .section-back {
   /* background-color: rgb(224, 223, 223); */
@@ -236,32 +260,50 @@ input[type=select]{
 .form-grid2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 2px;
   grid-auto-rows: minmax(100px, auto);
-  border: 2px solid darkviolet;
+  /* border: 1px dashed rgb(91, 2, 129); */
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
+  justify-content: left;
+}
+.form-grid-div {
+  text-align: left;
+  align-items: left;
+  justify-content: left;
+  margin-left: 20px;
+}
+.form-grid-div p {
+  text-align: left;
+}
+.form-grid-div h3 {
+  font-size: 75%;
 }
 .form-grid1 {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
-  border: 2px solid darkviolet;
+  
   border-radius: 5px;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 10px;
 }
 .form-grid3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 2px;
   grid-auto-rows: minmax(100px, auto);
-  border: 2px solid darkviolet;
+  /* border: 1px dashed rgb(91, 2, 129); */
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
+  justify-content: left;
+  font-size: 85%;
+}
+.form-head-small  h3{
+  font-size: 75%;
 }
 
 .heading-left {
@@ -311,26 +353,37 @@ button {
   background-color: #fff;
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
 }
-@media screen and (max-width: 700px) {
+.footer-section {
+  /*font-family: 'Dancing Script', cursive; */
+  background-color: rgb(43, 32, 43);
+  text-align: center;
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+@media screen and (max-width: 1000px) {
+  body {
+  font-size: 75%;
+  }
   .container {
     margin-left: 5%;
     margin-right: 5%;
   }
   .select {
-    width: 100%;
+    width: 75%;
     min-width: 15ch;
     max-width: 30ch;
     border: 1px solid darkslateblue;
     border-radius: 0.20em;
     padding: 0.20em 0.25em;
-    font-size: 100%;
+    font-size: 75%;
     cursor: pointer;
     line-height: 1;
     background-color: #fff;
     background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
   }
   .li-large {
-    font-size: 100%;
+    font-size: 75%;
     color:darkslateblue;
     font-style: italic;
   }
@@ -340,6 +393,29 @@ button {
     gap: 5px;
     grid-auto-rows: minmax(100px, auto);
   }
+  .form-grid1 {
+    justify-content: left;
+    align-items: left;
+  }
+  .form-grid3 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left;
+    font-size: 75%;
+  }
+  .form-grid-div {
+    text-align: left;
+    align-items: left;
+    justify-content: left;
+    margin-left: 10px;
+    font-size: 75%;
+  }
+  
   button {
     background-color: darkviolet;
     width: 25%;
@@ -362,13 +438,13 @@ button {
     box-sizing: border-box;
   }
   input[type=checkbox] {
-  
+    
     padding: 2px 2px;
     margin: 2px 2px;
     
   }
   table {
-    width: 80%;
+    width: 70%;
     border-spacing: 3px;
     table-layout: auto;
     align-items: left;
@@ -376,11 +452,11 @@ button {
   }
   table, th, td {
     border: 1px solid black;
-    font-size: 70%;
+    font-size: 60%;
   }
   th, td {
     padding: 2px;
-    font-size: 70%;
+    font-size: 60%;
   }
   form {
     align-items: left;
@@ -397,12 +473,14 @@ button {
     text-align: left;
     align-items: left;
     justify-content: left;
+      color:rgb(58, 2, 82);
+      padding-top: 50px;
   }
 
   .nav .container {
 
     align-items: left;
-    padding: 15px 0;
+    padding: 5px 0;
 
   }
   .nav ul {
@@ -413,13 +491,13 @@ button {
   .nav a {
 
 
-    padding: 5px 10px;
+    padding: 5px 5px;
   
   }
 
   .nav.active .container {
-    padding: 8px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    padding: 4px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
  
   .hero {
@@ -428,16 +506,26 @@ button {
     align-items: left;
     text-align: left;
 
-    margin-bottom: 10px;
+    margin-bottom: 5px;
  
-
-  .hero h1 {
-    font-size: 35px;
-    margin: -20px 0 20px;
   }
+  .hero h1 {
+      font-size: 30px;
+      margin: -20px 0 20px;
+    }
   .hero p {
     font-size: 15px;
     letter-spacing: 1px;
+  }
+  .motto-img {
+    width: 100px;
+    margin-bottom: 5px;
+  
+  }
+  .motto-img2 {
+    width: 100px;
+    margin-bottom: 5px;
+    opacity: 0.3;
   }
 
 }
