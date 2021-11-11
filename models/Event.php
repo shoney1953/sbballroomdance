@@ -152,6 +152,94 @@ class Event {
 
           return false;
     }
+  public function addCount($id) {
+      
+      // Create query
+      $query = 'SELECT eventnumregistered FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Bind ID
+      $stmt->bindParam(1, $id);
+
+      // Execute query
+      $stmt->execute();
+
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+ 
+      $this->eventnumregistered = $row['eventnumregistered'];
+      $this->eventnumregistered++;
+      $this->id = $id;
+          // do the update
+          $query = 'UPDATE ' . $this->table . 
+          ' SET  eventnumregistered = :eventnumregistered WHERE id = :id';
+
+
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+
+          // Bind data
+
+          $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
+          $stmt->bindParam(':id', $this->id);
+
+          // Execute query
+          if($stmt->execute()) {
+            return true;
+          }
+
+          // Print error if something goes wrong
+          printf("Error: %s.\n", $stmt->error);
+
+          return false;
+          }
+
+    public function decrementCount($id) {
+
+          // Create query
+          $query = 'SELECT eventnumregistered FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
+
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+
+          // Bind ID
+          $stmt->bindParam(1, $id);
+
+          // Execute query
+          $stmt->execute();
+
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+          $this->eventnumregistered = $row['eventnumregistered'];
+          $this->eventnumregistered--;
+          $this->id = $id;
+          // do the update
+          $query = 'UPDATE ' . $this->table . 
+          ' SET  eventnumregistered = :eventnumregistered WHERE id = :id';
+
+
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+
+          // Bind data
+
+          $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
+          $stmt->bindParam(':id', $this->id);
+
+          // Execute query
+          if($stmt->execute()) {
+          return true;
+          }
+
+          // Print error if something goes wrong
+          printf("Error: %s.\n", $stmt->error);
+
+          return false;
+          }  
+
 
     // Delete Event
     public function delete() {

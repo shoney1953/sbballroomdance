@@ -12,9 +12,11 @@ session_start();
 $events = $_SESSION['upcoming_events'];
 include_once '../config/Database.php';
 include_once '../models/EventRegistration.php';
+include_once '../models/Event.php';
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
+$eventInst = new Event($db);
 
 
 $regSelected = [];
@@ -51,7 +53,10 @@ if (isset($_POST['submitEventReg'])) {
                 } else {
                     $eventReg->userid = 0;
                 }
-                $eventReg->create();   
+               
+                $eventReg->create();
+               
+                $eventInst->addCount($eventReg->eventid);
             } // end if eventid            
        } //end isset
       } // end foreach

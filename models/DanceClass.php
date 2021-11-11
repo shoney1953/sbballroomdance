@@ -1,6 +1,6 @@
 <?php
 class DanceClass {
-    // DB stuff
+   
     private $conn;
     private $table = 'danceclasses';
 
@@ -107,40 +107,39 @@ class DanceClass {
       return false;
     }
 
-    // Update Danceclass
-    public function update() {
-          // Create query
+ 
+    public function addCount($id) {
+      
+                // Create query
+                $query = 'SELECT numregistered FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
+  
+                // Prepare statement
+                $stmt = $this->conn->prepare($query);
+      
+                // Bind ID
+                $stmt->bindParam(1, $id);
+      
+                // Execute query
+                $stmt->execute();
+      
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      
+           
+                $this->numregistered = $row['numregistered'];
+                $this->numregistered++;
+                $this->id = $id;
+          // do the update
           $query = 'UPDATE ' . $this->table . 
-          ' SET classname = :classname, classlevel = :classlevel, registrationemail = :registrationemail,
-          time = :time, instructors = :instructors, classlimit = :classlimit, numregistered = :numregistered,
-          room = :room, date = :date WHERE id = :id';
+          ' SET  numregistered = :numregistered WHERE id = :id';
    
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
 
-          // Clean data
-          $this->classname = htmlspecialchars(strip_tags($this->classname));
-          $this->classlevel = htmlspecialchars(strip_tags($this->classlevel));
-          $this->date = htmlspecialchars(strip_tags($this->date));
-          $this->room = htmlspecialchars(strip_tags($this->room));
-          $this->time = htmlspecialchars(strip_tags($this->time));
-          $this->instructors = htmlspecialchars(strip_tags($this->instructors));
-          $this->registrationemail = htmlspecialchars(strip_tags($this->registrationemail));
-          $this->classlimit = htmlspecialchars(strip_tags($this->classlimit));
-          $this->numregistered = htmlspecialchars(strip_tags($this->numregistered));
-
           // Bind data
-          $stmt->bindParam(':id', $this->id);
-          $stmt->bindParam(':classname', $this->classname);
-          $stmt->bindParam(':classlevel', $this->classlevel);
-          $stmt->bindParam(':room', $this->room);
-          $stmt->bindParam(':time', $this->time);
-          $stmt->bindParam(':instructors', $this->instructors);
-          $stmt->bindParam(':registrationemail', $this->registrationemail);
-          $stmt->bindParam(':date', $this->date);
-          $stmt->bindParam(':classlimit', $this->classlimit);
+
           $stmt->bindParam(':numregistered', $this->numregistered);
+          $stmt->bindParam(':id', $this->id);
 
           // Execute query
           if($stmt->execute()) {
@@ -152,6 +151,49 @@ class DanceClass {
 
           return false;
     }
+    public function decrementCount($id) {
+      
+      // Create query
+      $query = 'SELECT numregistered FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Bind ID
+      $stmt->bindParam(1, $id);
+
+      // Execute query
+      $stmt->execute();
+
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+ 
+      $this->numregistered = $row['numregistered'];
+      $this->numregistered--;
+      $this->id = $id;
+        // do the update
+        $query = 'UPDATE ' . $this->table . 
+        ' SET  numregistered = :numregistered WHERE id = :id';
+
+
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Bind data
+
+        $stmt->bindParam(':numregistered', $this->numregistered);
+        $stmt->bindParam(':id', $this->id);
+
+        // Execute query
+        if($stmt->execute()) {
+          return true;
+        }
+
+        // Print error if something goes wrong
+        printf("Error: %s.\n", $stmt->error);
+
+        return false;
+        }  
 
     // Delete Danceclass
     public function delete() {

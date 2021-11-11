@@ -12,9 +12,11 @@ session_start();
 $classes = $_SESSION['upcoming_classes'];
 include_once '../config/Database.php';
 include_once '../models/ClassRegistration.php';
+include_once '../models/DanceClass.php';
 $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
+$danceClass = new DanceClass($db);
 
 
 $regSelected = [];
@@ -77,6 +79,7 @@ if (isset($_POST['submit'])) {
                 }
               
                 $classReg->create();
+                $danceClass->addCount($classId);
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
                 
                     $classReg->firstname = $regFirstName2;
@@ -90,6 +93,7 @@ if (isset($_POST['submit'])) {
                     }
                 
                     $classReg->create();
+                    $danceClass->addCount($classId);
                     } // end regemail 2
             } // end foreach
 
@@ -116,8 +120,9 @@ if (isset($_POST['submit'])) {
                 } else {
                     $classReg->userid = 0;
                 }
-                var_dump($classReg);
+            
                 $classReg->create();
+                $danceClass->addCount($classId);
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
                 
                     $classReg->firstname = $regFirstName2;
@@ -125,6 +130,7 @@ if (isset($_POST['submit'])) {
                     $classReg->classid = $classId;
                     $classReg->email = $regEmail2;
                     $classReg->create();
+                    $danceClass->addCount($classId);
                      } // end regemail2
             } // end if classid
         } // end foreach

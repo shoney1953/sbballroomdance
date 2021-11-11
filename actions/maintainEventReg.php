@@ -2,10 +2,10 @@
 
 session_start();
 include_once '../config/Database.php';
-include_once '../models/ClassRegistration.php';
+include_once '../models/EventRegistration.php';
 $database = new Database();
 $db = $database->connect();
-$classReg = new ClassRegistration($db);
+$eventReg = new EventRegistration($db);
 
 
 $updateReg = false;
@@ -21,8 +21,8 @@ if (isset($_POST['regId'])) {
     if(isset($_POST['addReg'])) {$addReg = $_POST['addReg'];}
 
     if ($updateReg || $deleteReg) {
-        $classReg->id = $regId;
-        $classReg->read_single();  
+        $eventReg->id = $regId;
+        $eventReg->read_single();  
     } 
 
 }
@@ -38,7 +38,7 @@ if (!isset($_POST['regId'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <title>SBDC Ballroom Dance Beta - Admin Class Registrations</title>
+    <title>SBDC Ballroom Dance Beta - Admin Event Registrations</title>
 </head>
 <body>
 
@@ -52,37 +52,42 @@ if (!isset($_POST['regId'])) {
         echo '<table>';
         echo '<tr>';
         
-                echo '<th>Class Id    </th>';
-                echo '<th>Class Name</th>';
+                echo '<th>Event Id    </th>';
+                echo '<th>Event Name</th>';
                 echo '<th>First Name </th>';
                 echo '<th>Last Name</th>';
                 echo '<th>Email</th>';
+                echo '<th>Userid</th>';
                 echo '<th>Registration ID   </th>';    
             echo '</tr>';
           
                 echo "<tr>";
-                    echo "<td>".$classReg->classid."</td>";
-                    echo "<td>".$classReg->classname."</td>";
-                    echo "<td>".$classReg->firstname."</td>";
-                    echo "<td>".$classReg->lastname."</td>";
-                    echo "<td>".$classReg->email."</td>";
-                    echo "<td>".$classReg->id."</td>";
+                    echo "<td>".$eventReg->eventid."</td>";
+                    echo "<td>".$eventReg->eventname."</td>";
+                    echo "<td>".$eventReg->firstname."</td>";
+                    echo "<td>".$eventReg->lastname."</td>";
+                    echo "<td>".$eventReg->email."</td>";
+                    echo "<td>".$eventReg->userid."</td>";
+                    echo "<td>".$eventReg->id."</td>";
                 echo "</tr>";
 
           
         echo '</table><br>';
 
        if($updateReg) {
-        echo '<form method="POST" action="updateReg.php">';
-        echo '<label for="classid">Class Id</label>';
-        echo '<input type="text" name="classid" value="'.$classReg->classid.'"><br>';
+        echo '<form method="POST" action="updateEventReg.php">';
+        echo '<label for="eventid">Event Id</label>';
+        echo '<input type="text" name="eventid" value="'.$eventReg->eventid.'"><br>';
         echo '<label for="firstname">First Name</label>';
-        echo '<input type="text" name="firstname" value="'.$classReg->firstname.'"><br>';
+        echo '<input type="text" name="firstname" value="'.$eventReg->firstname.'"><br>';
         echo '<label for="lastnames">Last Name</label>';
-        echo '<input type="text" name="lastname" value="'.$classReg->lastname.'"><br>';
+        echo '<input type="text" name="lastname" value="'.$eventReg->lastname.'"><br>';
         echo '<label for="email">Email</label>';
-        echo '<input type="text" name="email" value="'.$classReg->email.'"><br>';
-        echo '<input type="hidden" name="id" value="'.$classReg->id.'">';
+        echo '<input type="email" name="email" value="'.$eventReg->email.'"><br>';
+        echo '<label for="userid">Userid</label>';
+        echo '<input type="text" name="userid" value="'.$eventReg->userid.'"><br>';
+
+        echo '<input type="hidden" name="id" value="'.$eventReg->id.'">';
         echo '<button type="submit" name="submitUpdateReg">Update the Registration</button><br>';
         echo '</form>';
     
@@ -90,23 +95,24 @@ if (!isset($_POST['regId'])) {
     }
 
         if ($addReg) {
-            echo '<form method="POST" action="addReg.php">';
-            echo '<label for="classid">Class Id</label>';
-            echo '<input type="text" name="classid" required><br>';
+            echo '<form method="POST" action="addEventReg.php">';
+            echo '<label for="eventid">Event Id</label>';
+            echo '<input type="text" name="eventid" required><br>';
             echo '<label for="firstname">First Name</label>';
             echo '<input type="text" name="firstname" required><br>';
             echo '<label for="lastname">Last Name</label>';
             echo '<input type="text" name="lastname" required ><br>';
             echo '<label for="email">Email</label>';
             echo '<input type="text" name="email" required><br>';
-            echo '<button type="submit" name="submitAddReg">Add the Class</button><br>';
+            echo '<button type="submit" name="submitAddReg">Add the Event</button><br>';
             echo '</form>';
         }     
         if($deleteReg) {
-            echo '<p> You have selected to delete class id: '.$classReg->id.'<br>';
-            echo 'First name:  '.$classReg->firstname.' Last Name '.$classReg->lastname. '<br><br><strong><em> Please click the button below to confirm delete.</em></strong></p>';
-            echo '<form method="POST" action="deleteReg.php">';
-            echo '<input type="hidden" name="id" value="'.$classReg->id.'">';
+            echo '<p> You have selected to delete class id: '.$eventReg->id.'<br>';
+            echo 'First name:  '.$eventReg->firstname.' Last Name '.$eventReg->lastname. '<br><br><strong><em> Please click the button below to confirm delete.</em></strong></p>';
+            echo '<form method="POST" action="deleteEventReg.php">';
+            echo '<input type="hidden" name="id" value="'.$eventReg->id.'">';
+            echo '<input type="hidden" name="eventid" value="'.$eventReg->eventid.'">';
             echo '<button type="submit" name="submitDeleteReg">Delete the Registration</button><br>';
             echo '</form>';
         }

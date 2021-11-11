@@ -5,6 +5,7 @@ $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 include_once 'config/Database.php';
 include_once 'models/Contact.php';
 include_once 'models/ClassRegistration.php';
+include_once 'models/EventRegistration.php';
 include_once 'models/Event.php';
 include_once 'models/DanceClass.php';
 
@@ -12,6 +13,7 @@ $allClasses = [];
 $allEvents = [];
 $contacts = [];
 $classRegistrations = [];
+$eventRegistrations = [];
 $num_registrations = 0;
 $num_events = 0;
 $num_classes = 0;
@@ -101,6 +103,7 @@ if($rowCount > 0) {
             'classname' => $classname,
             'classdate' => $classdate,
             'classtime' => $classtime,
+            'userid' => $userid,
             'email' => $email,
             "dateregistered" => $dateregistered
         );
@@ -110,7 +113,38 @@ if($rowCount > 0) {
   
 
 } else {
-   echo 'NO REGISTRATIONS';
+   echo 'NO Class REGISTRATIONS';
+
+}
+/* get class registrations */
+$eventReg = new EventRegistration($db);
+$result = $eventReg->read();
+
+$rowCount = $result->rowCount();
+$num_registrations = $rowCount;
+
+if($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $reg_item = array(
+            'id' => $id,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'eventid' => $eventid,
+            'eventname' => $eventname,
+            'eventdate' => $eventdate,
+            'userid' => $userid,
+            'email' => $email,
+            "dateregistered" => $dateregistered
+        );
+        array_push( $eventRegistrations, $reg_item);
+  
+    }
+  
+
+} else {
+   echo 'NO Event REGISTRATIONS';
 
 }
 /* get contacts */
@@ -165,8 +199,8 @@ if($rowCount > 0) {
         <li><a href="index.php">Back to Home</a></li>
         <li><a href="#events">Events</a></li>
         <li><a href="#classes">Classes</a></li>
-        <li><a href="#registrations">Class Registrations</a></li>
-       
+        <li><a href="#classregistrations">Class Registrations</a></li>
+        <li><a href="#eventregistrations">Event Registrations</a></li>
         <li><a href="#contacts">Contacts</a></li>
     </ul>
      </div>
@@ -175,7 +209,7 @@ if($rowCount > 0) {
     <br>
     <br>
     <br>
-    <h1 style="text-align: center; margin-top: 40px; color:darkslateblue">Administrative Functions for SaddleBrooke Ballroom Dance Club</h1>
+    <h1 style="text-align: center; margin-top: 40px; color:white">Administrative Functions for SaddleBrooke Ballroom Dance Club</h1>
     </div>
     
  
@@ -240,7 +274,67 @@ if($rowCount > 0) {
         </div>
     </section>
     </div>
+    <div class="container-section ">
     
+    <section id="eventregistrations" class="content">
+    <br><br>
+        <h1 class="section-header">Event Registrations</h1><br>    
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Event Name</th>
+                <th>Event Id</th>
+                <th>Event Date</th>
+                <th>First Name</th>
+                <th>Last Name    </th>
+                <th>Email</th>
+                <th>Date Registered</th>          
+            </tr>
+            <?php 
+    
+            foreach($eventRegistrations as $eventRegistration) {
+          
+    
+                  echo "<tr>";
+                    echo "<td>".$eventRegistration['id']."</td>";
+                    echo "<td>".$eventRegistration['eventname']."</td>";
+                    echo "<td>".$eventRegistration['eventid']."</td>";
+                    echo "<td>".$eventRegistration['eventdate']."</td>";
+                    echo "<td>".$eventRegistration['firstname']."</td>";
+                    echo "<td>".$eventRegistration['lastname']."</td>";
+                    echo "<td>".$eventRegistration['email']."</td>";           
+                    echo "<td>".$eventRegistration['dateregistered']."</td>";
+             
+                  echo "</tr>";
+              }
+         
+            ?> 
+        </table>
+        <br>
+        <div class="form-grid1">
+        
+        <form method='POST' action="actions/maintaineventReg.php">
+        
+        <div class="form-grid-div">
+        <h4>Maintain event Registrations</h4>
+        <input type='checkbox' name='updateReg'>
+        <label for='updateReg'>Update a Event Registration </label>    
+        <input type='checkbox' name='deleteReg'>
+        <label for='deleteReg'>Delete a Event Registration </label>
+        <label for='regId'><em> ------ Specify Registration ID from Table above for Update or Delete:  </em></label>
+        <input type='text' class='text-small' name='regId' >
+        <br>
+        <p>OR</p><br>
+        <input type='checkbox' name='addReg'>
+        <label for='addReg'>Add a Event Registration</label> <br> 
+       
+        <button type='submit' name="submitEventReg">Submit</button>   
+        </div>   
+        </form>
+        </div>
+       
+        </section>
+    </div>
    
     <div class="container-section ">
     <section id="classes" class="content">
@@ -278,9 +372,7 @@ if($rowCount > 0) {
                     echo "<td>".$class['instructors']."</td>";
                     echo "<td>".$class['classlimit']."</td>";
                     echo "<td>".$class['numregistered']."</td>";
-        
-                   
-     
+   
                 echo "</tr>";
                 
               }
@@ -316,7 +408,7 @@ if($rowCount > 0) {
    
     <div class="container-section ">
     
-    <section id="registrations" class="content">
+    <section id="classregistrations" class="content">
     <br><br>
         <h1 class="section-header">Class Registrations</h1><br>    
         <table>
@@ -329,7 +421,7 @@ if($rowCount > 0) {
                 <th>First Name</th>
                 <th>Last Name    </th>
                 <th>Email</th>
-                <th>Date</th>          
+                <th>Date Registered</th>          
             </tr>
             <?php 
     
@@ -355,7 +447,7 @@ if($rowCount > 0) {
         <br>
         <div class="form-grid1">
         
-        <form method='POST' action="actions/maintainReg.php">
+        <form method='POST' action="actions/maintainClassReg.php">
         
         <div class="form-grid-div">
         <h4>Maintain Class Registrations</h4>
@@ -377,7 +469,7 @@ if($rowCount > 0) {
        
         </section>
     </div>
-   
+  
 
     <div class="container-section ">
     <br><br>

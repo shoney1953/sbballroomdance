@@ -23,7 +23,7 @@ class EventRegistration {
     // Get Danceevents
     public function read() {
     
-      $query = 'SELECT c.eventname as eventname, c.date as eventdate,
+      $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
       r.userid
       FROM ' . $this->table . ' r
@@ -46,7 +46,7 @@ class EventRegistration {
     public function read_single() {
       
 
-          $query = 'SELECT c.eventname as eventname, c.date as eventdate,
+          $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
           r.userid
           FROM ' . $this->table . ' r
