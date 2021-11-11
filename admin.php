@@ -331,19 +331,13 @@ if($rowCount > 0) {
             <?php 
     
             foreach($classRegistrations as $classRegistration) {
-                $className = 'NONE';
-                foreach($allClasses as $class) {
-                    if($classRegistration['classid'] == $class['id']) {
-                        $className = $class['classname'];
-                        $classDate = $class['date'];
-                    }
-                }
+          
     
                   echo "<tr>";
                     echo "<td>".$classRegistration['id']."</td>";
-                    echo "<td>".$className."</td>";
+                    echo "<td>".$classRegistration['classname']"</td>";
                     echo "<td>".$classRegistration['classid']."</td>";
-                    echo "<td>".$classDate."</td>";
+                    echo "<td>".$$classRegistration['classdate']"</td>";
                     echo "<td>".$classRegistration['firstname']."</td>";
                     echo "<td>".$classRegistration['lastname']."</td>";
                     echo "<td>".$classRegistration['email']."</td>";           

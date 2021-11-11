@@ -24,6 +24,7 @@ $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
+
 if (isset($_POST['submit'])) {
     $regFirstName1 = htmlentities($_POST['regFirstName1']);
     $regLastName1 = htmlentities($_POST['regLastName1']);
@@ -69,6 +70,12 @@ if (isset($_POST['submit'])) {
                 $classReg->lastname = $regLastName1;
                 $classReg->classid = $classId;
                 $classReg->email = $regEmail1;
+                if(isset($_SESSION['userid'])) {
+                    $classReg->userid = $_SESSION['userid'];
+                } else {
+                    $classReg->userid = 0;
+                }
+              
                 $classReg->create();
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
                 
@@ -76,6 +83,12 @@ if (isset($_POST['submit'])) {
                     $classReg->lastname = $regLastName2;
                     $classReg->classid = $classId;
                     $classReg->email = $regEmail2;
+                    if(isset($_SESSION['userid'])) {
+                        $classReg->userid = $_SESSION['userid'];
+                    } else {
+                        $classReg->userid = 0;
+                    }
+                
                     $classReg->create();
                     } // end regemail 2
             } // end foreach
@@ -98,6 +111,12 @@ if (isset($_POST['submit'])) {
                 $classReg->lastname = $regLastName1;
                 $classReg->classid = $classId;
                 $classReg->email = $regEmail1;
+                if(isset($_SESSION['userid'])) {
+                    $classReg->userid = $_SESSION['userid'];
+                } else {
+                    $classReg->userid = 0;
+                }
+                var_dump($classReg);
                 $classReg->create();
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
                 

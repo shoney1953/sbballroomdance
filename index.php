@@ -59,6 +59,8 @@ if($rowCount > 0) {
    echo 'NO EVENTS';
 
 }
+$_SESSION['events'] = $events;
+$_SESSION['upcoming_events'] = $upcomingEvents;
 
 
 /* get classes */
@@ -135,6 +137,7 @@ DJ Documents</a>
    
     if(isset($_SESSION['username'])) {
        echo ' <li><a href="logout.php">Logout</a></li>';
+       echo ' <li><a href="profile.php">Profile</a></li>';
        if(isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'ADMIN') {
             echo '<li><a href="admin.php">Admin</a></li>';
@@ -196,6 +199,7 @@ DJ Documents</a>
         </ul>
     </section>
     </div>
+
     <div class="container-section ">
     <section id="events" class="content">
 
@@ -211,6 +215,7 @@ DJ Documents</a>
                 <th>Event Room</th>
                 <th>Event Cost</th>
                 <th># Registered </th>
+                <th>Form</th>
 
             </tr>
             <?php 
@@ -226,12 +231,55 @@ DJ Documents</a>
                     echo "<td>".$event['eventroom']."</td>";
                     echo "<td>".$event['eventcost']."</td>";
                     echo "<td>".$event['eventnumregistered']."</td>";
+                    if($event['eventform']) {
+                        echo '<td><a href="'.$event['eventform'].'">CLICK</a></td>';
+                    } else {
+                        echo "<td> </td>"; 
+                    }
                   echo "</tr>";
               }
          
             ?> 
         </table>
         <br>
+        <h3> Enter Information Below to Register for Event(s) </h3>
+        
+        <form method="POST"  action="actions/registerevent.php">
+        <div class="form-grid3">
+      
+            <div class="form-grid-div">
+                <br>
+                <label for="regFirstName">First Name (Required)</label><br>
+                <input type="text" name="regFirstName" ><br>
+                <label for="regLastName">Last Name (Required)</label><br>
+                <input type="text" name="regLastName" ><br>
+                <label for="regEmail">Email (Required)</label><br>
+                <input type="email" name="regEmail" ><br><br>
+       
+              <br>
+            </div>
+   
+            <div class="form-grid-div">
+                <ul class=list-box>
+                <h4 style="text-decoration: underline;color: black"><em>To Register -- One or More of the Events Listed</em></h4><br>
+              
+                <?php
+                foreach($upcomingEvents as $event) {
+                    echo '<li class="list-none">';
+                    $chkboxID = "ev".$event['id'];
+                    $eventString = " ".$event['eventname']." ".$event['eventdate']." ";
+                    echo "<input type='checkbox' name='$chkboxID'>";
+                    echo "<label for='$chkboxID'> I would like to register for:
+                        <strong>$eventString </strong></label><br>";
+                    }
+                    echo '</li>';
+                 ?>
+                </ul>
+                <br><br>
+                 <button name="submitEventReg" type="submit">Submit</button><br>
+            </div> 
+           
+            </form>
     </section>
     </div>
    <div class="container-section ">
@@ -281,7 +329,7 @@ DJ Documents</a>
      
         <h3> Enter Information Below to Register for all or Selected Classes </h3>
         
-        <form method="POST"  action="actions/register.php">
+        <form method="POST"  action="actions/registerclass.php">
         <div class="form-grid3">
       
        
@@ -294,7 +342,7 @@ DJ Documents</a>
                 <label for="regEmail1">First Registrant Email (Required)</label><br>
                 <input type="email" name="regEmail1" ><br><br>
                 <label for="message2ins">Message to Instructor(Optional)</label><br>
-               <textarea id="message2ins" name="w3review" rows="4" cols="50"></textarea>
+               <textarea id="message2ins" name="message2ins" rows="4" cols="50"></textarea>
               <br>
             </div>
             <div class="form-grid-div">

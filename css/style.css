@@ -133,6 +133,11 @@ hr {
   margin-bottom: 5px;
   opacity: 0.3;
 }
+.profile {
+  height: 100vh;
+  /*max-width: 100%; */
+  background-image: linear-gradient(180deg, rgba(161, 121, 133, 0.2),rgba(163, 96, 116, 0.4), rgba(102, 57, 74, 0.8));
+}
 .list-box {
   text-align: left;
   align-items: left;
