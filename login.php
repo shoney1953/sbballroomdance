@@ -45,7 +45,7 @@ else {
   
                     <label for="username">User Name for the Website</label><br>
                     <input type="text" name="username" required><br>
-                    <label for="password">Enter Password minimum 8</label><br>
+                    <label for="password">Enter Password</label><br>
                     <input type="password" name="password" required minlength="8"><br>
 
                     <br>

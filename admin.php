@@ -99,6 +99,8 @@ if($rowCount > 0) {
             'lastname' => $lastname,
             'classid' => $classid,
             'classname' => $classname,
+            'classdate' => $classdate,
+            'classtime' => $classtime,
             'email' => $email,
             "dateregistered" => $dateregistered
         );
@@ -180,7 +182,7 @@ if($rowCount > 0) {
     <div class="container-section ">
     <section id="events" class="content">
        <br><br>
-        <h1 class="section-header">All Events</h1><br>
+        <h1 class="section-header">Events</h1><br>
         <table>
             <tr>
                 <th>ID</th>
@@ -244,7 +246,7 @@ if($rowCount > 0) {
     <section id="classes" class="content">
    
       <br><br>
-        <h1 class="section-header">All Classes</h1><br>
+        <h1 class="section-header">Classes</h1><br>
         <table>
             <tr>
            
@@ -323,6 +325,7 @@ if($rowCount > 0) {
                 <th>Class Name</th>
                 <th>Class Id</th>
                 <th>Class Date</th>
+                <th>Class Time</th>
                 <th>First Name</th>
                 <th>Last Name    </th>
                 <th>Email</th>
@@ -335,9 +338,10 @@ if($rowCount > 0) {
     
                   echo "<tr>";
                     echo "<td>".$classRegistration['id']."</td>";
-                    echo "<td>".$classRegistration['classname']"</td>";
+                    echo "<td>".$classRegistration['classname']."</td>";
                     echo "<td>".$classRegistration['classid']."</td>";
-                    echo "<td>".$$classRegistration['classdate']"</td>";
+                    echo "<td>".$classRegistration['classdate']."</td>";
+                    echo "<td>".$classRegistration['classtime']."</td>";
                     echo "<td>".$classRegistration['firstname']."</td>";
                     echo "<td>".$classRegistration['lastname']."</td>";
                     echo "<td>".$classRegistration['email']."</td>";           

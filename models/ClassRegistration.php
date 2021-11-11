@@ -76,6 +76,7 @@ class ClassRegistration {
           $this->classid = $row['classid'];
           $this->userid = $row['userid'];
           $this->classname = $row['classname'];
+          $this->classname = $row['classdate'];
           $this->email = $row['email'];
           $this->dateregistered = $row['dateregistered'];
 
