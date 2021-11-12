@@ -43,6 +43,17 @@ if (isset($_POST['submitEventReg'])) {
                 $emailBody .= "<br> ".$event['eventname'].
                 "    room:    ".$event['eventroom'].
                 "on date:    ".$event['eventdate']."<br>"; 
+                if ($event['eventcost'] > 0) {
+                    $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
+                    $coststr =  "<br> Member Event Cost is: "
+                          .$fmt->formatCurrency($event['eventcost'], 'USD')."<br>";
+                    $emailBody .= $coststr;
+                }
+              
+                if ($event['eventform']) {
+                   $emailBody .= '<br>There is a form to submit registration details and payment.<br>';
+                   $emailBody .= '<br>Please click the form on the website under events.<br>';
+                }
                 // do the insert(s)
                 $eventReg->firstname = $regFirstName;
                 $eventReg->lastname = $regLastName;

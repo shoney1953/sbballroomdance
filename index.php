@@ -137,7 +137,7 @@ DJ Documents</a>
    
     if(isset($_SESSION['username'])) {
        echo ' <li><a href="logout.php">Logout</a></li>';
-       echo ' <li><a href="profile.php">Profile</a></li>';
+       echo ' <li><a href="profile.php">'.$_SESSION['username'].'<br>Profile</a></li>';
        if(isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'ADMIN') {
             echo '<li><a href="admin.php">Admin</a></li>';
@@ -148,7 +148,7 @@ DJ Documents</a>
         echo '<li><a href="signup.php">Sign Up</a></li>';
         echo '<li><a href="login.php">Login</a></li>';
     }
-        
+    
     ?>
         </ul>
      </div>

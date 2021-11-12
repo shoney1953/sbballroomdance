@@ -57,9 +57,13 @@ $isValid = false;
        $user->email = filter_var($user->email, FILTER_SANITIZE_EMAIL);   
      
        $user->create();
+       $_SESSION['username'] = $user->username;
+       $_SESSION['role'] = $user->role;
+       $_SESSION['userid'] = $user->id;
 
-       $redirect = "Location: ".$_SESSION['signurl'].'?success=UserAdded';
+       $redirect = "Location: ".$_SESSION['homeurl'];
        header($redirect);
+
        exit;  
  
 
