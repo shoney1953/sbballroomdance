@@ -13,6 +13,7 @@ class User {
     public $created;
     public $memberid;
     public $role;
+    public $passwordChanged;
     
 
 
@@ -62,6 +63,8 @@ class User {
           $this->created = $row['created'];
           $this->memberid = $row['memberid'];
           $this->memberid = $row['role'];
+          $this->passwordChanged = $row['passwordChanged'];
+
 
     }
     public function getUserName($user) {
@@ -91,6 +94,7 @@ class User {
       $this->created = $row['created'];
       $this->memberid = $row['memberid'];
       $this->role = $row['role'];
+      $this->passwordChanged = $row['passwordChanged'];
   
         return true;
       }
@@ -133,7 +137,7 @@ class User {
    $stmt->execute();
 
    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-   $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
    if($row) {
      return true;
    }
@@ -222,22 +226,22 @@ class User {
 
           return false;
     }
-    public function updatePassword($username) {
+    public function updatePassword() {
+     
       // Create query
-      $query = 'UPDATE ' . $this->table . ' SET password = :password WHERE username = :username';
-
+      $query = 'UPDATE ' . $this->table .
+       ' SET password = :password, passwordChanged = NOW() WHERE id = :id';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
 
-      // Clean data
       $this->password = $this->password;
-     
-
 
       // Bind data
  
-      $stmt->bindParam(':username', $username);
+      $stmt->bindParam(':password', $this->password);
+     
+      $stmt->bindParam(':id', $this->id);
  
 
       // Execute query
@@ -250,6 +254,7 @@ class User {
 
       return false;
 }
+
 
 
     // Delete Danceclass

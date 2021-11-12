@@ -1,6 +1,16 @@
 <?php
 session_start();
-$_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
+
+if(isset($_GET['error'])) {
+    echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4><br>';
+    unset($_GET['error']);
+} elseif(isset($_GET['success'])) {
+    echo '<br><h4 style="text-align: center"> Success:  '.$_GET['success'].'</h4><br>';
+    unset($_GET['success']);
+} 
+else {
+    $_SESSION['profileurl'] = $_SERVER['REQUEST_URI']; 
+}
 
 include_once 'config/Database.php';
 include_once 'models/ClassRegistration.php';
@@ -102,28 +112,47 @@ if($rowCount > 0) {
 
     </ul>
      </div>
-</nav>
-    
+</nav>  
     <br>
-   <br><br><br>
-   
-   
-    
- 
+   <br><br><br> 
     <div class="content">
-    
-    
+    <p><em>User Profile</em></p>
+    <div class="form-grid3">
+    <div class="form-grid-div">
        <div class="list-box">
-       <p><em>User Profile</em></p>
        <ul>
            <?php
-          
            echo '<li class=li-none> Name:    <strong> '.$user->firstname.' '.$user->lastname.'</strong></li>';
            echo '<li class=li-none> Username:  <strong>'.$user->username.' </strong></li>';
            echo '<li class=li-none> Email:    <strong> '.$user->email.' </strong></li>';
            echo '<li class=li-none> Created:   <strong>'.$user->created.' </strong></li>';
+           echo '<li class=li-none> Password Last Changed: <strong>'.$user->passwordChanged.' </strong></li>';
            ?>
        </ul>
+    </div>
+    </div>
+       <br>
+       <div class="form-grid-div">
+                    <form method="POST" action="actions/updateUserPass.php">
+              
+                    <h4>Change Password</h4>
+                    <label for="oldpassword">Enter Old Password</label><br>
+                    <input type="password" name="oldpassword" required minlength="8"><br>
+                    <br>
+                    <label for="newpassword">Enter New Password minimum 8</label><br>
+                    <input type="password" name="newpassword" required minlength="8"><br>
+                    <label for="pass2">Reenter New Password</label><br>
+                    <input type="password" name="newpass2" required minlength="8"><br>
+                  <?php
+                     echo '<input type="hidden" name="currentpass" value="'.$user->password.'"><br>';
+                     echo '<input type="hidden" name="id" value="'.$user->id.'"><br>';
+                  ?>
+                    <br>
+                    <button type="submit" name="SubmitPassChange">Submit</button><br>
+               
+        </form>
+        </div>
+      
        </div>
    
     <div class="form-grid3">
@@ -188,6 +217,14 @@ if($rowCount > 0) {
     </div>
     </div>
     </div>
+    <footer >
 
+<div class="footer-section">
+
+    <p>Copyright &copy; 2021    Sheila Honey  - All Rights Reserved</p>
+    
+</div> 
+
+</footer>
 </body>
 </html>

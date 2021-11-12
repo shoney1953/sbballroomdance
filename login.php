@@ -41,20 +41,30 @@ else {
         <h1 class="section-header">Please Login</h1>
             <form method="POST" action="actions/logIn.php">
                 <div class="form-grid-div">
-                
-  
-                    <label for="username">User Name for the Website</label><br>
-                    <input type="text" name="username" required><br>
-                    <label for="password">Enter Password</label><br>
-                    <input type="password" name="password" required minlength="8"><br>
+            
 
-                    <br>
-                    <button type="submit" name="SubmitLogIN">Submit</button><br>
+                <label for="username">User Name for the Website</label><br>
+                <input type="text" name="username" required><br>
+                <label for="password">Enter Password</label><br>
+                <input type="password" name="password" required minlength="8"><br>
+
+                <br>
+                <button type="submit" name="SubmitLogIN">Submit</button><br>
                 </div>
         </form>
         </div>
     </section>
     </div>
+
     </div>
+    <footer >
+
+<div class="footer-section">
+
+    <p>Copyright &copy; 2021    Sheila Honey  - All Rights Reserved</p>
+    
+</div> 
+
+</footer>
 </body>
 </html>
