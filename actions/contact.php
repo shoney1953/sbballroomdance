@@ -15,7 +15,7 @@ $database = new Database();
 $db = $database->connect();
 $contact = new Contact($db);
 
-
+var_dump($_POST);
 if (isset($_POST['submit'])) {
     $contact->firstname = htmlentities($_POST['firstname']);
     $contact->lastname = htmlentities($_POST['lastname']);
@@ -68,7 +68,7 @@ Click to view Activites Calendar</a><br>";
         $mail->addBCC('sheila_honey_5@hotmail.com');
 
         //Attachments
-        $mail->addAttachment('img/Membership Form 2022 Dance Club.pdf');         //Add attachments
+        $mail->addAttachment('../img/Membership Form 2022 Dance Club.pdf');         //Add attachments
     
 
         //Content

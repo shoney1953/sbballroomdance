@@ -127,11 +127,10 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <li><a  target="_blank"
 href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20">
          Activities Calendar</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Contact Us</a></li>
         <li><a href="#pictures">Picture Gallery</a></li>
-        <li><a  target="_blank"
-href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?usp=sharing">
-DJ Documents</a>
+        <li><a href="#djinfo">DJ Info</a></li>
+        <li><a href="#instructorinfo">Instructor Info</a></li>
     </li>
     <?php
    
@@ -232,7 +231,7 @@ DJ Documents</a>
                     echo "<td>".$event['eventcost']."</td>";
                     echo "<td>".$event['eventnumregistered']."</td>";
                     if($event['eventform']) {
-                        echo '<td><a href="'.$event['eventform'].'">CLICK</a></td>';
+                        echo '<td><a href="'.$event['eventform'].'">VIEW</a></td>';
                     } else {
                         echo "<td> </td>"; 
                     }
@@ -443,6 +442,39 @@ DJ Documents</a>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Masquerade-ball-01-11-2020-SBDC">Masquerade Dance 01 11 2020</a></li>
        </ul>
        <br>
+   </section>
+   </div>
+   <div class="container-section ">
+   <section id="djinfo" class="content">
+   <br>  
+       <h1 class="section-header">Become a DJ</h1>
+       <p> All our DJs are volunteers. We have two speakers available, and quite a large 
+           body of club music available. We even have some pre-made song lists to facilitate
+           DJ duties. See below for all the documents we've put together. </p><br>
+       <a  target="_blank"
+href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?usp=sharing">
+DJ Documents</a><br>
+        <a  href="#">Placeholder for Equipment Checkout</a><br><br>
+     
+   </section>
+   </div>
+   <div class="container-section ">
+   <section id="instructorinfo" class="content">
+   <br>  
+       <h1 class="section-header">Become an Instructor</h1>
+       <br>
+       <p> All our Instructors are volunteers.</p>
+        <p>Some folks have been dancing a long time;
+           Some not so much. It doesn't matter.</p> 
+        <p>Some have had formal training;Some not so much. </p>
+        <p>It doesn't matter to us.</p> 
+        <p> It is in the spirit of our club to share what we know. All of our members are very 
+               appreciative of anything you can share with them. </p>
+        <p>If you'd like to become an instructor.. even for an hour class, please contact one of the 
+           board members.
+       </p><br><br>
+
+     
    </section>
    </div>
    <footer >

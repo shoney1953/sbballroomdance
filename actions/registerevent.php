@@ -42,18 +42,22 @@ if (isset($_POST['submitEventReg'])) {
                 $eventId = $event['id'];
                 $emailBody .= "<br> ".$event['eventname'].
                 "    room:    ".$event['eventroom'].
-                "on date:    ".$event['eventdate']."<br>"; 
+                "  on date:    ".$event['eventdate']."<br>"; 
                 if ($event['eventcost'] > 0) {
                     $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
                     $coststr =  "<br> Member Event Cost is: "
                           .$fmt->formatCurrency($event['eventcost'], 'USD')."<br>";
                     $emailBody .= $coststr;
                 }
-              
+                 
                 if ($event['eventform']) {
                    $emailBody .= '<br>There is a form to submit registration details and payment.<br>';
-                   $emailBody .= '<br>Please click the form on the website under events.<br>';
+                   $emailBody .= '<br>Please VIEW the form on the website under events.<br>';
+                  // $formLink = "<br><a href='".$event['eventform']."'>Event Form</a><br>";
+                  // $emailBody .= $formLink;
+
                 }
+                var_dump($emailBody);
                 // do the insert(s)
                 $eventReg->firstname = $regFirstName;
                 $eventReg->lastname = $regLastName;
@@ -82,8 +86,8 @@ if (isset($_POST['submitEventReg'])) {
    header($redirect); 
  exit;
 }  else { 
-    $redirect = "Location: ".$_SESSION['homeurl'];
-     header($redirect); 
+   $redirect = "Location: ".$_SESSION['homeurl'];
+  header($redirect); 
 
 }// end submit
 
