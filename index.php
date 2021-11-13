@@ -381,7 +381,8 @@ href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb
                  <button name="submit" type="submit">Submit</button><br>
             </div> 
            
-            </form>
+        </form>
+        </div>
     </section>
     </div>
   
