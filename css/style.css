@@ -19,15 +19,17 @@ hr {
   border-radius: 50%;
 }
 .container {
-  /*max-width: 1200px; */
+
   max-width: 100%;
   margin-left: 5%;
   margin-right: 5%;
+  max-width: 100%; 
 }
 .container-section {
-  /*max-width: 1200px; */
-  max-width: 100%;
+
+ max-width: 100%; 
   background-image: linear-gradient(180deg, rgba(161, 121, 133, 0.2),rgba(163, 96, 116, 0.4), rgba(102, 57, 74, 0.8));
+ 
 }
 .nav {
   position: fixed;
@@ -366,58 +368,7 @@ button {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-@media screen and (max-width: 1300px) {
-  body {
-    font-size: 85%;
-    }
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 300px;
-      transition: all 0.3s ease-in-out;
-    
-    }
-    .nav .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: left;
-      padding: 5px 0;
-      transition: all 0.3s ease-in-out;
-      background-color: rgba(26, 19, 19, 0.5);
-      border-radius: 3px;
-    }
-    .nav ul {
-      display: flex;
-      list-style-type: none;
-      align-items: left;
-      justify-content: left;
-    }
-    .nav a {
-      text-decoration: none;
-      color: #fff;
-      padding: 5px 10px;
-      transition: all 0.3s ease-in-out;
-    }
-  
-    .nav.active .container {
-      padding: 5px 0;
-      box-shadow: 0 1px 7px rgba(0, 0, 0, 0.3);
-    }
-    .nav a.current,
-    .nav a:hover {
-      color: #7c0a10;
-      font-weight: bold;
-    }
-  .container {
-      margin-left: 10px;
-      margin-right: 10px;
-  }
-  .hero h1 {
-    font-size: 35px;
-    margin: -20px 0 0 20px;
-  }
-}
+
 @media screen and (max-width: 1921px) {
   body {
   font-size: 100%;
@@ -434,19 +385,11 @@ button {
     margin-left: 10px;
     margin-right: 10px;
   }
- /*  .select {
-    width: 75%;
-    min-width: 15ch;
-    max-width: 30ch;
-    border: 1px solid darkslateblue;
-    border-radius: 0.20em;
-    padding: 0.20em 0.25em;
-    font-size: 100%;
-    cursor: pointer;
-    line-height: 1;
-    background-color: #fff;
-    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-  } */
+  .container-section {
+
+    max-width: 100%; 
+     background-image: linear-gradient(180deg, rgba(161, 121, 133, 0.2),rgba(163, 96, 116, 0.4), rgba(102, 57, 74, 0.8));
+   }
   .li-large {
     font-size: 100%;
     color:darkslateblue;
@@ -594,15 +537,196 @@ button {
   }
 
 }
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 1280px) {
   body {
-  font-size: 50%;
+  font-size: 100%;
+
   }
   .nav {
     position: fixed;
     top: 0;
     left: 0;
-    right: 50px;
+    right: 300;
+    transition: all 0.3s ease-in-out;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+  
+  }
+  .container {
+    margin-left: 2px;
+    margin-right: 2px;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+    max-width: 1200px;
+  }
+  .container-section {
+
+    max-width: 1200px;
+     background-image: linear-gradient(180deg, rgba(161, 121, 133, 0.2),rgba(163, 96, 116, 0.4), rgba(102, 57, 74, 0.8));
+   }
+ 
+  .li-large {
+    font-size: 100%;
+    color:darkslateblue;
+    font-style: italic;
+  }
+  .form-grid1 {
+    justify-content: left;
+    align-items: left;
+  }
+
+  .form-grid2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    grid-auto-rows: minmax(100px, auto);
+  }
+
+  .form-grid3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left;
+    font-size: 75%;
+  }
+  .form-grid-div {
+    text-align: left;
+    align-items: left;
+    justify-content: left;
+    margin-left: 10px;
+    font-size: 100%;
+  }
+
+  
+  button {
+    background-color: darkviolet;
+    width: 25%;
+    color: white;
+    margin-top: 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+
+  }
+  input[type=email] {
+    width: 70%;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    box-sizing: border-box;
+  }
+  input[type=textbox] {
+    width: 70%;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    box-sizing: border-box;
+  }
+  input[type=checkbox] {
+    
+    padding: 2px 2px;
+    margin: 2px 2px;
+    
+  }
+  table {
+    width: 100%;
+    border-spacing: 3px;
+    table-layout: auto;
+    align-items: left;
+    justify-content: left;
+  }
+  table, th, td {
+    border: 1px solid black;
+    font-size: 100%;
+  }
+  th, td {
+    padding: 2px;
+    font-size: 100%;
+  }
+  form {
+    align-items: left;
+    justify-content: left;
+  }
+  .content p {
+    color: rgb(41, 39, 39);
+    line-height: 35px;
+    letter-spacing: 1.1px;
+ 
+  }
+  
+  .section-header {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+      color:rgb(58, 2, 82);
+      padding-top: 50px;
+  }
+
+  .nav .container {
+    align-items: left;
+    padding: 5px 0;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+  }
+  .nav ul { 
+    align-items: space-between;
+    justify-content: space-between;
+  }
+  .nav a {
+    padding: 5px 5px;
+  }
+
+  .nav.active .container {
+    padding: 4px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+ 
+  .hero {
+ 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    margin-bottom: 5px;
+ 
+  }
+  .hero h1 {
+      font-size: 35px;
+      margin: -20 0 0 20px;
+    }
+  .hero p {
+    font-size: 25px;
+    letter-spacing: 1px;
+    margin: 0 0 0 20px;
+  }
+  .motto-img {
+    width: 300px;
+    margin-bottom: 5px;
+    margin-left: 100px;
+  
+  }
+  .motto-img2 {
+    width: 200px;
+    margin-bottom: 5px;
+    margin-left: 100px;
+    opacity: 0.3;
+  }
+
+}
+@media screen and (max-width: 895px) {
+  body {
+  font-size: 85%;
+  }
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     transition: all 0.3s ease-in-out;
   
   }
@@ -610,21 +734,9 @@ button {
     margin-left: 1%;
     margin-right: 1%;
   }
-  .select {
-    width: 65%;
-    min-width: 15ch;
-    max-width: 30ch;
-    border: 1px solid darkslateblue;
-    border-radius: 0.20em;
-    padding: 0.20em 0.25em;
-    font-size: 65%;
-    cursor: pointer;
-    line-height: 1;
-    background-color: #fff;
-    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-  }
+
   .li-large {
-    font-size: 65%;
+    font-size: 90%;
     color:darkslateblue;
     font-style: italic;
   }
@@ -647,57 +759,64 @@ button {
     margin-top: 10px;
     margin-bottom: 10px;
     justify-content: left;
-    font-size: 75%;
+    font-size: 100%;
   }
   .form-grid-div {
     text-align: left;
     align-items: left;
     justify-content: left;
     margin-left: 10px;
-    font-size: 75%;
+    font-size: 95%;
   }
   
   button {
     background-color: darkviolet;
-    width: 15%;
+    width: 35%;
     color: white;
     margin-top: 5px;
     padding: 8px 15px;
     border-radius: 5px;
     margin-bottom: 5px;
+    cursor: pointer;
   }
   input[type=email] {
-    width: 60%;
+    width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
+    cursor: pointer;
   }
   input[type=textbox] {
-    width: 60%;
+    width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
+    cursor: pointer;
   }
   input[type=checkbox] {
-    
+    width: 25px;
+    height: 25px;
     padding: 2px 2px;
     margin: 2px 2px;
+    font-size: 100%;
+    cursor: pointer;
     
   }
+
   table {
-    width: 70%;
-    border-spacing: 3px;
+    width: 90%;
+    border-spacing: 2px;
     table-layout: auto;
     align-items: left;
     justify-content: left;
   }
   table, th, td {
     border: 1px solid black;
-    font-size: 60%;
+    font-size: 95%;
   }
   th, td {
     padding: 2px;
-    font-size: 60%;
+    font-size: 95%;
   }
   form {
     align-items: left;
@@ -705,7 +824,7 @@ button {
   }
   .content p {
     color: rgb(41, 39, 39);
-    line-height: 25px;
+    line-height: 20px;
     letter-spacing: 1.1px;
  
   }
@@ -751,16 +870,16 @@ button {
  
   }
   .hero h1 {
-      font-size: 30px;
+      font-size: 25px;
       margin: -20px 0 0 20px;
     }
   .hero p {
-    font-size: 15px;
+    font-size: 18px;
     letter-spacing: 1px;
     margin: 0 0 0 20px;
   }
   .motto-img {
-    width: 100px;
+    width: 200px;
     margin-bottom: 5px;
     margin-left: 40px;
   
@@ -772,5 +891,15 @@ button {
     opacity: 0.3;
   }
 
+}
+@media screen and (max-width: 700px) {
+  body {
+  font-size: 75%;
+  }
+}
+@media screen and (max-width: 640px) {
+  body {
+  font-size: 70%;
+  }
 }
 
