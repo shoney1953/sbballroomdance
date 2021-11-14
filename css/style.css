@@ -420,35 +420,35 @@ button {
 }
 @media screen and (max-width: 1921px) {
   body {
-  font-size: 70%;
+  font-size: 100%;
   }
   .nav {
     position: fixed;
     top: 0;
     left: 0;
-    right: 100px;
+    right: 0;
     transition: all 0.3s ease-in-out;
   
   }
   .container {
-    margin-left: 1%;
-    margin-right: 1%;
+    margin-left: 10px;
+    margin-right: 10px;
   }
-  .select {
+ /*  .select {
     width: 75%;
     min-width: 15ch;
     max-width: 30ch;
     border: 1px solid darkslateblue;
     border-radius: 0.20em;
     padding: 0.20em 0.25em;
-    font-size: 75%;
+    font-size: 100%;
     cursor: pointer;
     line-height: 1;
     background-color: #fff;
     background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-  }
+  } */
   .li-large {
-    font-size: 75%;
+    font-size: 100%;
     color:darkslateblue;
     font-style: italic;
   }.form-grid1 {
@@ -458,14 +458,14 @@ button {
 
   .form-grid2 {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 5px;
     grid-auto-rows: minmax(100px, auto);
   }
 
   .form-grid3 {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
@@ -479,7 +479,7 @@ button {
     align-items: left;
     justify-content: left;
     margin-left: 10px;
-    font-size: 75%;
+    font-size: 100%;
   }
 
   
@@ -494,13 +494,13 @@ button {
 
   }
   input[type=email] {
-    width: 60%;
+    width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
   }
   input[type=textbox] {
-    width: 60%;
+    width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
@@ -512,7 +512,7 @@ button {
     
   }
   table {
-    width: 70%;
+    width: 100%;
     border-spacing: 3px;
     table-layout: auto;
     align-items: left;
@@ -520,11 +520,11 @@ button {
   }
   table, th, td {
     border: 1px solid black;
-    font-size: 60%;
+    font-size: 100%;
   }
   th, td {
     padding: 2px;
-    font-size: 60%;
+    font-size: 100%;
   }
   form {
     align-items: left;
@@ -532,35 +532,29 @@ button {
   }
   .content p {
     color: rgb(41, 39, 39);
-    line-height: 25px;
+    line-height: 35px;
     letter-spacing: 1.1px;
  
   }
   
   .section-header {
-    text-align: left;
-    align-items: left;
-    justify-content: left;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
       color:rgb(58, 2, 82);
       padding-top: 50px;
   }
 
   .nav .container {
-
     align-items: left;
     padding: 5px 0;
-
   }
-  .nav ul {
-  
-    align-items: left;
-    justify-content: left;
+  .nav ul { 
+    align-items: space-between;
+    justify-content: space-between;
   }
   .nav a {
-
-
     padding: 5px 5px;
-  
   }
 
   .nav.active .container {
@@ -570,32 +564,32 @@ button {
  
   .hero {
  
-    justify-content: left;
-    align-items: left;
-    text-align: left;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
     margin-bottom: 5px;
  
   }
   .hero h1 {
-      font-size: 30px;
+      font-size: 35px;
       margin: -20 0 0 20px;
     }
   .hero p {
-    font-size: 15px;
+    font-size: 25px;
     letter-spacing: 1px;
     margin: 0 0 0 20px;
   }
   .motto-img {
-    width: 100px;
+    width: 300px;
     margin-bottom: 5px;
-    margin-left: 40px;
+    margin-left: 100px;
   
   }
   .motto-img2 {
-    width: 100px;
+    width: 200px;
     margin-bottom: 5px;
-    margin-left: 40px;
+    margin-left: 100px;
     opacity: 0.3;
   }
 
