@@ -60,6 +60,9 @@ $isValid = false;
        $_SESSION['username'] = $user->username;
        $_SESSION['role'] = $user->role;
        $_SESSION['userid'] = $user->id;
+       $_SESSION['userfirstname'] = $user->firstname;
+       $_SESSION['userlastname'] = $user->lastname;
+       $_SESSION['useremail'] = $user->email;
 
        $redirect = "Location: ".$_SESSION['homeurl'];
        header($redirect);

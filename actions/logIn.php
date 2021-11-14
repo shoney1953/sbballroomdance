@@ -23,6 +23,9 @@ $isValid = false;
             $_SESSION['username'] = $user->username;
             $_SESSION['role'] = $user->role;
             $_SESSION['userid'] = $user->id;
+            $_SESSION['userfirstname'] = $user->firstname;
+            $_SESSION['userlastname'] = $user->lastname;
+            $_SESSION['useremail'] = $user->email;
 
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect);
@@ -39,6 +42,15 @@ $isValid = false;
             if(isset($_SESSION['userid'])) {
                 unset($_SESSION['userid']);
             }
+            if(isset($_SESSION['userfirstname'])) {
+                unset($_SESSION['userfirstname']);
+            }
+            if(isset($_SESSION['userlastname'])) {
+                unset($_SESSION['userlastname']);
+            }
+            if(isset($_SESSION['useremail'])) {
+                unset($_SESSION['useremail']);
+            }
             $redirect = "Location: ".$_SESSION['loginurl'].'?error=InvalidPassword';
             header($redirect);
             exit;  
@@ -52,6 +64,15 @@ $isValid = false;
         }
         if(isset($_SESSION['userid'])) {
             unset($_SESSION['userid']);
+        }
+        if(isset($_SESSION['userfirstname'])) {
+            unset($_SESSION['userfirstname']);
+        }
+        if(isset($_SESSION['userlastname'])) {
+            unset($_SESSION['userlastname']);
+        }
+        if(isset($_SESSION['useremail'])) {
+            unset($_SESSION['useremail']);
         }
       
       $redirect = "Location: ".$_SESSION['signurl'].'?error=NoUser';

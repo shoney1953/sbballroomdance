@@ -248,12 +248,30 @@ href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb
       
             <div class="form-grid-div">
                 <br>
-                <label for="regFirstName">First Name (Required)</label><br>
-                <input type="text" name="regFirstName" ><br>
-                <label for="regLastName">Last Name (Required)</label><br>
-                <input type="text" name="regLastName" ><br>
-                <label for="regEmail">Email (Required)</label><br>
-                <input type="email" name="regEmail" ><br><br>
+                <?php
+                if (isset($_SESSION['userfirstname'])){
+                   echo '<label for="regFirstName">First Name (Required)</label><br>';
+                   echo '<input type="text" name="regFirstName" value="'.$_SESSION['userfirstname'].'"><br>';
+                } else {
+                    echo '<label for="regFirstName">First Name (Required)</label><br>';
+                    echo '<input type="text" name="regFirstName" ><br>';
+                }
+                if (isset($_SESSION['userlastname'])){
+                    echo '<label for="regLastName">Last Name (Required)</label><br>';
+                    echo '<input type="text" name="regLastName" value="'.$_SESSION['userlastname'].'"><br>';
+                 } else {
+                     echo '<label for="regLasttName">Last Name (Required)</label><br>';
+                     echo '<input type="text" name="regLastName" ><br>';
+                 }
+                 if (isset($_SESSION['useremail'])){
+                    echo '<label for="regEmail">Email (Required)</label><br>';
+                    echo '<input type="email" name="regEmail" value="'.$_SESSION['useremail']. '"><br><br>';
+                 } else {
+                    echo '<label for="regEmail">Email (Required)</label><br>';
+                    echo '<input type="email" name="regEmail" ><br><br>';  
+                 }
+            
+                ?>
        
               <br>
             </div>
@@ -334,14 +352,32 @@ href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb
        
             <div class="form-grid-div">
                 <br>
-                <label for="regFirstName1">First Registrant First Name (Required)</label><br>
-                <input type="text" name="regFirstName1" ><br>
-                <label for="regLastName1">First Registrant Last Name (Required)</label><br>
-                <input type="text" name="regLastName1" ><br>
-                <label for="regEmail1">First Registrant Email (Required)</label><br>
-                <input type="email" name="regEmail1" ><br><br>
+                <?php
+                if (isset($_SESSION['userfirstname'])) {
+                    echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                    echo '<input type="text" name="regFirstName1" value="'.$_SESSION['userfirstname'].'"><br>';
+                } else {
+                    echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                    echo '<input type="text" name="regFirstName1" ><br>';
+                }
+                if (isset($_SESSION['userlastname'])) {
+                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                    echo '<input type="text" name="regLastName1" value="'.$_SESSION['userlastname'].'"><br>';
+                } else {
+                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                    echo '<input type="text" name="regLastName1" ><br>';
+                }
+                if (isset($_SESSION['useremail'])) {
+                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                    echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
+                } else {
+                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                    echo '<input type="email" name="regEmail1" ><br><br>';
+                }
+                ?>
                 <label for="message2ins">Message to Instructor(Optional)</label><br>
                <textarea id="message2ins" name="message2ins" rows="4" cols="50"></textarea>
+            
               <br>
             </div>
             <div class="form-grid-div">
