@@ -122,15 +122,25 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
      <ul>
         <li><a href="#" >Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#events">Events</a></li>
-        <li><a href="#classes">Classes</a></li>
-        <li><a  target="_blank"
-href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20">
-         Activities Calendar</a></li>
+        <li><a href="#">Activities &dtrif;</a>
+        <ul class="dropdown">
+            <li><a href="#events">Events</a></li>
+            <li><a href="#classes">Classes</a></li>
+            <li><a  target="_blank"
+    href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20">
+            Activities Calendar</a></li>
+        </ul>
+        </li>
+
         <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#">Volunteer &dtrif;</a>
+        <ul class="dropdown">
+            <li><a href="#djinfo">DJ Info</a></li>
+            <li><a href="#instructorinfo">Instructor Info</a></li>
+        </ul>
+        </li>
         <li><a href="#pictures">Picture Gallery</a></li>
-        <li><a href="#djinfo">DJ Info</a></li>
-        <li><a href="#instructorinfo">Instructor Info</a></li>
+   
     </li>
     <?php
    
@@ -213,7 +223,7 @@ href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb
                 <th>Event DJ</th>            
                 <th>Event Room</th>
                 <th>Event Cost</th>
-                <th># Registered </th>
+                <th># Reg </th>
                 <th>Form</th>
 
             </tr>
@@ -314,7 +324,7 @@ href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb
                 <th>Registration Email    </th>
                 <th>Instructors    </th>
                 <th>Class Limit    </th>
-                <th># Registered </th>
+                <th># Reg </th>
                 <th>Room    </th>
                 
                
