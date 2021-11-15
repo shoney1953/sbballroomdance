@@ -63,7 +63,7 @@ hr {
 
   display: inline-block;
   position: relative;
-  color: blue;
+
 
 }
 .nav .container ul li ul {
@@ -73,6 +73,7 @@ hr {
   padding-left: 0;
   left: 0;
   display: none;
+  border-radius: 5px;
   background: rgb(102, 100, 100);
   color:black;
 }
@@ -82,7 +83,7 @@ hr {
   visibility: visible;
   opacity: 1;
   display: block;
-  min-width: 250px;
+  min-width: 200px;
   text-align: left;
   padding-top: 20px;
   color:black;

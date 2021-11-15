@@ -227,7 +227,7 @@ if($rowCount > 0) {
                 <th>Event DJ</th>          
                 <th>Event Room</th>
                 <th>Event Cost</th>
-                <th># Registered </th>
+                <th># Reg </th>
             </tr>
             <?php 
             $eventNumber = 0;
@@ -288,7 +288,7 @@ if($rowCount > 0) {
                 <th>First Name</th>
                 <th>Last Name    </th>
                 <th>Email</th>
-                <th>Date Registered</th>          
+                <th>Date Reg</th>          
             </tr>
             <?php 
     
@@ -353,7 +353,7 @@ if($rowCount > 0) {
                 <th>Registration Email </th>
                 <th>Instructors    </th>
                 <th>Class Limit    </th>
-                <th># Registered </th>
+                <th># Reg </th>
                
              
             </tr>
@@ -421,7 +421,7 @@ if($rowCount > 0) {
                 <th>First Name</th>
                 <th>Last Name    </th>
                 <th>Email</th>
-                <th>Date Registered</th>          
+                <th>Date Reg</th>          
             </tr>
             <?php 
     
