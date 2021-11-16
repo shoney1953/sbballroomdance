@@ -26,8 +26,22 @@ $result = $event->read();
 
 $rowCount = $result->rowCount();
 $num_events = $rowCount;
-
-if($rowCount > 0) {
+if (!isset($_SESSION['username']))
+{
+    $redirect = "Location: ".$_SESSION['homeurl'];
+    header($redirect);
+} else {
+    if (isset($_SESSION['role'])) {
+        if (($_SESSION['role'] != 'ADMIN') && ($_SESSION['role'] != 'SUPERADMIN')) {
+            $redirect = "Location: ".$_SESSION['homeurl'];
+            header($redirect); 
+        }
+       } else {
+        $redirect = "Location: ".$_SESSION['homeurl'];
+        header($redirect);
+       }
+}
+if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);

@@ -3,6 +3,11 @@ session_start();
 
 include_once '../config/Database.php';
 include_once '../models/User.php';
+if (!isset($_SESSION['username']))
+{
+    $redirect = "Location: ".$_SESSION['homeurl'];
+    header($redirect);
+}
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);

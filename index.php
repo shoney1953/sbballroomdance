@@ -137,6 +137,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <ul class="dropdown">
             <li><a href="#djinfo">DJ Info</a></li>
             <li><a href="#instructorinfo">Instructor Info</a></li>
+            <li><a href="#othervolunteer">Other Opportunities</a></li>
         </ul>
         </li>
         <li><a href="#pictures">Picture Gallery</a></li>
@@ -524,6 +525,28 @@ DJ Documents</a><br>
         <p> It is in the spirit of our club to share what we know. All of our members are very 
                appreciative of anything you can share with them. </p>
         <p>If you'd like to become an instructor.. even for an hour class, please contact one of the 
+           board members.
+       </p><br><br>
+
+     
+   </section>
+   </div>
+   <div class="container-section ">
+   <section id="othervolunteer" class="content">
+   <br>  
+       <h1 class="section-header">Other Ways to Participate</h1>
+       <br>
+       <p><em>We can always use your help on the following projects: </em></p>
+         <ul>
+             <li class="li-none">Decorating for Dance Parties</li>
+             <li class="li-none">Checking People in at Dance Parties</li>
+             <li class="li-none">Helping prepare material for the Annual Activites Fair </li>
+             <li class="li-none">Helping with Meet and Greet at the Annual Activites Fair </li>
+             <li class="li-none">Suggesting new Activities </li>
+             <li class="li-none">Suggesting new Music </li>
+             <li class="li-none">Encouraging your friends and neighbors to join the club. </li>
+         </ul><br>
+        <p>If you think <strong>any </strong> of these sound interesting, please contact one of the 
            board members.
        </p><br><br>
 
