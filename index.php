@@ -126,9 +126,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <ul class="dropdown">
             <li><a href="#events">Events</a></li>
             <li><a href="#classes">Classes</a></li>
-            <li><a  target="_blank" 
-    href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix">
-            Activities Calendar</a></li>
+            <li><a href="#calendar">Activities Calendar</a></li>
         </ul>
         </li>
 
@@ -404,14 +402,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
       
             <div class="form-grid-div">
                 <ul class=list-box>
-                <h4 style="text-decoration: underline;color: black"><em>To Enroll -- Please select either All Classes   or   One or More of the Classes Listed</em></h4><br>
-                <li class="list-none">
-                <input type="checkbox" id="registerAll" name="registerAll" value="Register for All Classes">
-                <label for="registerAll"><b> I/We would like to register for all available Classes </b></label><br>
-                </li>
-              
-                <p>OR</p>
-              
+                <h4 style="text-decoration: underline;color: black"><em>To Enroll -- Please select One or More of the Classes Listed</em></h4><br>
+ 
                 <?php
                 foreach($upcomingClasses as $class) {
                     echo '<li class="list-none">';
@@ -425,7 +417,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                  ?>
                 </ul>
                 <br><br>
-                 <button name="submit" type="submit">Submit</button><br>
+                 <button name="submitRegClass" type="submit">Submit</button><br>
             </div> 
            
         </form>
@@ -509,6 +501,7 @@ href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?u
 DJ Documents</a><br>
         <a  target="_blank" href="https://sbdcautodj.netlify.app/">Automated DJ APP</a><br>
         <a  href="#">Placeholder for Equipment Checkout</a><br><br>
+       
      
    </section>
    </div>
@@ -549,6 +542,25 @@ DJ Documents</a><br>
         <p>If you think <strong>any </strong> of these sound interesting, please contact one of the 
            board members.
        </p><br><br>
+
+     
+   </section>
+   </div>
+   <div class="container-section ">
+   <section id="calendar" class="content">
+   <br>  
+       <h1 class="section-header">Activites Calendar</h1>
+       <br>
+       
+       <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23A79B8E&ctz=America%2FPhoenix&src=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20&src=djhndW9hbWgwN2lodjM1MWlyMXM4anMwMGtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%234285F4&color=%23EF6C00" 
+        style='scrolling="no"'></iframe>
+       <br>
+       <p><strong>If that isn't showing correctly, try the link below: </strong>
+            <a  target="_blank" 
+    href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix">
+            Activities Calendar</a>
+   .
+       <br><br>
 
      
    </section>
