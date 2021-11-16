@@ -126,8 +126,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <ul class="dropdown">
             <li><a href="#events">Events</a></li>
             <li><a href="#classes">Classes</a></li>
-            <li><a  target="_blank"
-    href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20">
+            <li><a  target="_blank" 
+    href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix">
             Activities Calendar</a></li>
         </ul>
         </li>
