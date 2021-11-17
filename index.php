@@ -81,7 +81,7 @@ if($rowCount > 0) {
             'classlevel' => $classlevel,
             'classlimit' => $classlimit,
             'date' => $date,
-            'time' => $time,
+            'time' => date('h:i:s A', strtotime($time)),
             'instructors' => $instructors,
             "registrationemail" => $registrationemail,
             "room" => $room,
@@ -147,7 +147,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
        echo ' <li><a href="logout.php">Logout</a></li>';
        echo ' <li><a href="profile.php">'.$_SESSION['username'].'<br>Profile</a></li>';
        if(isset($_SESSION['role'])) {
-        if ($_SESSION['role'] == 'ADMIN') {
+        if (($_SESSION['role'] == 'ADMIN') || ($_SESSION['role'] == 'SUPERADMIN')) {
             echo '<li><a href="admin.php">Admin</a></li>';
         }
        }
@@ -559,7 +559,7 @@ DJ Documents</a><br>
             <a  target="_blank" 
     href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix">
             Activities Calendar</a>
-   .
+   
        <br><br>
 
      

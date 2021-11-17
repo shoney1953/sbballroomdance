@@ -68,7 +68,7 @@ if($rowCount > 0) {
 
 }
 
-$pdf->Output();
+$pdf->Output("I", "ContactReport");
 
 $redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);

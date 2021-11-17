@@ -84,7 +84,7 @@ if($rowCount > 0) {
             'classlevel' => $classlevel,
             'classlimit' => $classlimit,
             'date' => $date,
-            'time' => $time,
+            'time' => date('h:i:s A', strtotime($time)),
             'instructors' => $instructors,
             "registrationemail" => $registrationemail,
             "room" => $room,
