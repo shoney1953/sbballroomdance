@@ -8,10 +8,12 @@ include_once 'models/ClassRegistration.php';
 include_once 'models/EventRegistration.php';
 include_once 'models/Event.php';
 include_once 'models/DanceClass.php';
+include_once 'models/User.php';
 
 $allClasses = [];
 $allEvents = [];
 $contacts = [];
+$users = [];
 $classRegistrations = [];
 $eventRegistrations = [];
 $num_registrations = 0;
@@ -21,11 +23,7 @@ $num_classes = 0;
 $database = new Database();
 $db = $database->connect();
 // refresh events
-$event = new Event($db);
-$result = $event->read();
 
-$rowCount = $result->rowCount();
-$num_events = $rowCount;
 if (!isset($_SESSION['username']))
 {
     $redirect = "Location: ".$_SESSION['homeurl'];
@@ -41,6 +39,11 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
+$event = new Event($db);
+$result = $event->read();
+
+$rowCount = $result->rowCount();
+$num_events = $rowCount;
 if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -190,6 +193,38 @@ if($rowCount > 0) {
    echo 'NO Contacts';
 
 }
+$num_users = 0;
+if ($_SESSION['role'] === 'SUPERADMIN') {
+    $user = new User($db);
+    $result = $user->read();
+    
+    $rowCount = $result->rowCount();
+    $num_users = $rowCount;
+    if($rowCount > 0) {
+    
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+            $user_item = array(
+                'id' => $id,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'username' => $username,
+                'role' => $role,
+                'email' => $email,
+                'password' => $password,
+                'passwordChanged' => $passwordChanged,
+                "memberid" => $memberid
+            );
+            array_push( $users, $user_item);
+      
+        }
+   
+    
+    } else {
+       echo 'NO Users';
+    
+    }   
+}
 
 
 //$conn->close();
@@ -216,6 +251,11 @@ if($rowCount > 0) {
         <li><a href="#classregistrations">Class Registrations</a></li>
         <li><a href="#eventregistrations">Event Registrations</a></li>
         <li><a href="#contacts">Contacts</a></li>
+        <?php
+        if ($_SESSION['role'] === 'SUPERADMIN') {
+            echo '<li><a href="#users">Users</a></li>';
+        }
+        ?>
     </ul>
      </div>
 </nav>
@@ -274,7 +314,7 @@ if($rowCount > 0) {
         <input type='checkbox' name='deleteEvent'>
         <label for='deleteEvent'>Delete an Event </label> 
         <form method='POST' action="actions/maintainEvent.php">
-        <label for='eventId'><em> ----- Specify Event ID from Table above for Update or Delete: </em> </label>
+        <label for='eventId'><em> &rarr; Specify Event ID from Table above for Update or Delete: </em> </label>
         <input type='text' class='text-small' name='eventId' >
         <br>
         <p>OR</p><br>
@@ -335,7 +375,7 @@ if($rowCount > 0) {
         <label for='updateReg'>Update a Event Registration </label>    
         <input type='checkbox' name='deleteReg'>
         <label for='deleteReg'>Delete a Event Registration </label>
-        <label for='regId'><em> ------ Specify Registration ID from Table above for Update or Delete:  </em></label>
+        <label for='regId'><em> &rarr; Specify Registration ID from Table above for Update or Delete:  </em></label>
         <input type='text' class='text-small' name='regId' >
         <br>
         <p>OR</p><br>
@@ -405,7 +445,7 @@ if($rowCount > 0) {
         <label for='updateClass'>Update a Class </label>    
         <input type='checkbox' name='deleteClass'>
         <label for='deleteClass'>Delete a Class </label>
-        <label for='classId'><em> ----- Specify Class ID from Table above for Update or Delete: </em> </label>
+        <label for='classId'><em> &rarr; Specify Class ID from Table above for Update or Delete: </em> </label>
         <input type='text' class='text-small' name='classId' >
               <br>
         <p>OR</p><br>
@@ -469,7 +509,7 @@ if($rowCount > 0) {
         <label for='updateReg'>Update a Class Registration </label>    
         <input type='checkbox' name='deleteReg'>
         <label for='deleteReg'>Delete a Class Registration </label>
-        <label for='regId'><em> ------ Specify Registration ID from Table above for Update or Delete:  </em></label>
+        <label for='regId'><em> &rarr; Specify Registration ID from Table above for Update or Delete:  </em></label>
         <input type='text' class='text-small' name='regId' >
         <br>
         <p>OR</p><br>
@@ -525,7 +565,7 @@ if($rowCount > 0) {
         <h4>Maintain Contacts</h4>
         <input type='checkbox' name='deleteContact'>
         <label for='deleteContact'>Delete a Range of Contacts</label>
-        <label for='delContactBefore'><em>  -----Specify a Date to delete contacts before: </em></label>
+        <label for='delContactBefore'><em> &rarr; Specify a Date to delete contacts before: </em></label>
         <input type='date'  name='delContactBefore' >
   
             <br>
@@ -542,6 +582,65 @@ if($rowCount > 0) {
         </div>
     </section>
     </div>
+    <?php
+    if ($_SESSION['role'] === 'SUPERADMIN') {
+        echo '<div class="container-section ">  <br><br>';
+       
+        echo '<section id="users" class="content">';
+        echo ' <h1 class="section-header">Users</h1><br> ';
+        echo '<table>';
+        echo '<tr>';
+                echo '<th>ID</th>';  
+                echo '<th>First Name</th>';  
+                echo '<th>Last Name</th>';
+                echo '<th>User Name    </th>';
+                echo '<th>Role</th>'; 
+                echo '<th>Email</th>';
+                echo '<th>Password Changed</th>';     
+                echo '</tr>';
+                
+        
+                foreach($users as $user) {
+             
+                      echo "<tr>";
+                        echo "<td>".$user['id']."</td>"; 
+                        echo "<td>".$user['firstname']."</td>";               
+                        echo "<td>".$user['lastname']."</td>";
+                        echo "<td>".$user['username']."</td>";
+                        echo "<td>".$user['role']."</td>"; 
+                        echo "<td>".$user['email']."</td>";
+                        echo "<td>".$user['passwordChanged']."</td>"; 
+                        
+                      echo "</tr>";
+                  }
+             
+                
+            echo '</table><br>';           
+            echo '<div class="form-grid1">';
+          
+            echo '<form method="POST" action="actions/maintainUser.php">';
+            echo '<div class="form-grid-div">';
+            echo '<h4>Maintain Users</h4>';
+            echo '<input type="checkbox" name="updateUser">';
+            echo '<label for="updateUser">Update a User</label>';   
+            echo '<input type="checkbox" name="deleteUser">';
+            echo '<label for="deleteUser">Delete a User </label>';
+            echo '<label for="userId"><em> &rarr; Specify User ID from Table above for Update or Delete:  </em></label>';
+            echo '<input type="text" class="text-small" name="userId" ><br>';
+            echo '<p>OR</p><br>';
+            echo '<input type="checkbox" name="addUser">';
+            echo '<label for="addUser">Add a User</label> <br>';
+               
+            echo '<button type="submit" name="submitUser">Submit</button>';  
+            echo '</form> <br>';
+            echo '</div>';
+        echo '</section>';
+        echo '</div>';
+      
+
+    }
+    ?>
+
     <footer >
 
     <div class="footer-section">

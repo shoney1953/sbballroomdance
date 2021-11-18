@@ -190,9 +190,10 @@ class User {
 
     public function update() {
           // Create query
+      
           $query = 'UPDATE ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          username = :username,
+          username = :username, 
           memberid = :memberid WHERE id = :id';
    
 
@@ -213,7 +214,7 @@ class User {
           $stmt->bindParam(':lastname', $this->lastname);
           $stmt->bindParam(':email', $this->email);
           $stmt->bindParam(':username', $this->username);
-          $stmt->bindParam(':password', $this->password);
+        
           $stmt->bindParam(':memberid', $this->memberid);
 
           // Execute query

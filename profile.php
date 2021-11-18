@@ -55,10 +55,7 @@ if($rowCount > 0) {
     }
   
 
-} else {
-   echo 'NO CLASS REGISTRATIONS';
-
-}
+} 
 $eventReg = new EventRegistration($db);
 $result = $eventReg->read_ByUserid($_SESSION['userid']);
 
@@ -84,11 +81,7 @@ if($rowCount > 0) {
     }
   
 
-} else {
-   echo 'NO EVENT REGISTRATIONS';
-
-}
-
+} 
 
 ?>
 <!DOCTYPE html>
@@ -116,6 +109,7 @@ if($rowCount > 0) {
     <br>
    <br><br><br> 
     <div class="content">
+    <br><br>
     <p><em>User Profile</em></p>
     <div class="form-grid3">
     <div class="form-grid-div">

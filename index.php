@@ -287,7 +287,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
    
             <div class="form-grid-div">
                 <ul class=list-box>
-                <h4 style="text-decoration: underline;color: black"><em>To Register -- One or More of the Events Listed</em></h4><br>
+                <h4 style="text-decoration: underline;color: black"><em>To Register, Choose One or More of the Events Listed</em></h4><br>
               
                 <?php
                 foreach($upcomingEvents as $event) {
