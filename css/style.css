@@ -412,12 +412,15 @@ button {
  
 }
 .footer-section {
-  /*font-family: 'Dancing Script', cursive; */
+
   background-color: rgb(43, 32, 43);
   text-align: center;
   color: white;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+.footer-section p {
+  color: white;
 }
 iframe {
   border: solid 1px #777;
