@@ -396,9 +396,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                 echo '<input type="text" name="regLastName2" ><br>';
                 echo '<label for="regEmail2">Second Registrant Email (optional)</label><br>';
                 echo '<input type="email" name="regEmail2" ><br> <br>';
-               
-            echo '</div>';
-      
+            echo '</div>';     
             echo '<div class="form-grid-div">';
                 echo '<ul class="list-box">';
                 echo '<h4 style="text-decoration: underline;color: black"><em>
