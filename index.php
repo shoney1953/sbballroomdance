@@ -304,6 +304,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             echo '</div>';     
             echo '</form>';
   
+    } else {
+        echo '<h3 style="color: red"> <strong><em>Sign Up or Login to Register</em></strong> </h3><br><br>';
     }
     ?>
     </section>
@@ -419,6 +421,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         echo '</form>';
         echo '</div>';
 
+    } else {
+        echo '<h3 style="color: red"> <strong><em>Sign Up or Login to Register</em></strong> </h3><br><br>';
     }
     ?>
     </section>
@@ -476,11 +480,13 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
        <h1 class="section-header">Pictures from Past Events</h1>
  
        <ul>
+            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-TGIF-10-19-2021">TGIF 11 19 2021</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Sbdc-halloween-party-10-30-2021">Halloween Party 10 30 2021</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/03-08-2020-March-Brunch-Dance">March Brunch Dance 03 08 2020</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-15-2020-Sweetheart-Dance">Sweetheart Dance 02 15 2020</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Masquerade-ball-01-11-2020-SBDC">Masquerade Dance 01 11 2020</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Class-Videos">Class Videos</a></li>
+           
        </ul>
        <br>
    </section>
