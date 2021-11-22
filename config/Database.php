@@ -17,6 +17,13 @@
            $this->db_name = "mywebsite"; 
            } 
       if ($_SERVER['SERVER_NAME'] !== 'localhost') {
+        if ($_SERVER['SERVER_NAME'] === "www.sbballroomdance.com") {
+          $this->host = "www.sbballroomdance.com";
+          $this->username = "sbball_Root";
+          $this->password = "$2021Idiot";
+          $this->db_name = "sbballro_tAdnRpvOXZgHQi";
+
+        } else {
           /*Get Heroku ClearDB connection information */
           // $db = parse_url(getenv("DATABASE_URL"));
           $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
