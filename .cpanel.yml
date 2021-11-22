@@ -2,5 +2,16 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/sbbalro/public_html/sbballroomdance.com
-    - /bin/cp -R * $DEPLOYPATH
+    -  /bin/cp -R img $DEPLOYPATH
+    -  /bin/cp -R includes $DEPLOYPATH
+    -  /bin/cp -R actions $DEPLOYPATH
+    -  /bin/cp -R config $DEPLOYPATH
+    -  /bin/cp -R css $DEPLOYPATH
+    -  /bin/cp -R js $DEPLOYPATH
+    -  /bin/cp -R models $DEPLOYPATH
+    -  /bin/cp index.php $DEPLOYPATH
+    -  /bin/cp login.php $DEPLOYPATH
+    -  /bin/cp logout.php $DEPLOYPATH
+    -  /bin/cp profile.php $DEPLOYPATH
+    -  /bin/cp signup.php $DEPLOYPATH
     
