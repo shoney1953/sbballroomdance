@@ -34,6 +34,7 @@
           $this->db_name = substr($url["path"], 1);
         }
     } 
+  }
     // DB Connect
     public function connect() {
       
