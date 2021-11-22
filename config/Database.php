@@ -17,7 +17,10 @@
            $this->db_name = "mywebsite"; 
            } 
       if ($_SERVER['SERVER_NAME'] !== 'localhost') {
+        echo 'NOT LOCAL HOST <br>';
+        var_dump($_SERVER['SERVER_NAME']);
         if ($_SERVER['SERVER_NAME'] === "www.sbballroomdance.com") {
+         
           $this->host = "www.sbballroomdance.com";
           $this->username = "sbball_Root";
           $this->password = "$2021Idiot";
@@ -34,7 +37,7 @@
           $this->db_name = substr($url["path"], 1);
         }
     } 
-  }
+  
     // DB Connect
     public function connect() {
       
