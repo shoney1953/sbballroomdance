@@ -9,7 +9,7 @@
     private $url;
 
     public function __construct() {
-      var_dump($_SERVER);
+     
        if ($_SERVER['SERVER_NAME'] === 'localhost') {         
            $this->host = "localhost";
            $this->username = "root";
@@ -37,6 +37,7 @@
           $this->db_name = substr($url["path"], 1);
         }
     } 
+  }
   
     // DB Connect
     public function connect() {
