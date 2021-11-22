@@ -9,7 +9,7 @@
     private $url;
 
     public function __construct() {
-     
+      var_dump($_SERVER['SERVER_NAME']);
        if ($_SERVER['SERVER_NAME'] === 'localhost') {         
            $this->host = "localhost";
            $this->username = "root";
@@ -17,11 +17,12 @@
            $this->db_name = "mywebsite"; 
            } 
       if ($_SERVER['SERVER_NAME'] !== 'localhost') {
+     
         echo 'NOT LOCAL HOST <br>';
-        var_dump($_SERVER['SERVER_NAME']);
         if ($_SERVER['SERVER_NAME'] === "www.sbballroomdance.com") {
          
-          $this->host = "www.sbballroomdance.com";
+          // $this->host = "www.sbballroomdance.com";
+          $this->host = "localhost";
           $this->username = "sbball_Root";
           $this->password = "$2021Idiot";
           $this->db_name = "sbballro_tAdnRpvOXZgHQi";
