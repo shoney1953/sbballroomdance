@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/sbbalro/public_html/sbballroomdance
+    - export DEPLOYPATH=/home/sbballro/public_html/sbballroomdance
     -  /bin/cp -R img $DEPLOYPATH
     -  /bin/cp -R includes $DEPLOYPATH
     -  /bin/cp -R actions $DEPLOYPATH
