@@ -1,13 +1,6 @@
 <?php
-// include("includes/mailheader.php");
-require '../includes/PHPMailer.php';
-require '../includes/SMTP.php';
-require '../includes/Exception.php';
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+include_once '../includes/sendEmail.php';
+
 session_start();
 $classes = $_SESSION['upcoming_classes'];
 include_once '../config/Database.php';
@@ -26,6 +19,11 @@ $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
+$fromCC = 'sheila_honey_5@hotmail.com';
+$replyEmail = 'sheilahoney53@gmail.com';
+$fromEmailName = 'SBDC Ballroom Dance Club';
+$mailAttachment = "";
+$replyTopic = "Class Registration";
 
 if (isset($_POST['submitRegClass'])) {
     $regFirstName1 = htmlentities($_POST['regFirstName1']);
@@ -98,14 +96,39 @@ if (isset($_POST['submitRegClass'])) {
     } // end foreach
 
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
-        sendEmail($regEmail1, $regFirstName1,  $regLastName1, $emailBody, $emailSubject);;
+        $regName1 = $regFirstName1.' '.$regLastName1;
+   
+        sendEmail(
+            $regEmail1, 
+            $regName1, 
+            $fromCC,
+            $fromEmailName,
+            $emailBody,
+            $emailSubject,
+            $replyEmail,
+            $replyTopic,
+            $mailAttachment
+        );
     } else {
         echo 'Registrant 1 Email is empty or Invalid. Please enter valid email.';
     }
  
   
     if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-        sendEmail($regEmail2,  $regFirstName2, $regLastName2, $emailBody, $emailSubject);
+      
+        $regName2 = $regFirstName2.' '.$regLastName2;
+   
+        sendEmail(
+            $regEmail2, 
+            $regName2, 
+            $fromCC,
+            $fromEmailName,
+            $emailBody,
+            $emailSubject,
+            $replyEmail,
+            $replyTopic,
+            $mailAttachment
+        );
     } 
 
 
@@ -134,7 +157,20 @@ if (isset($_POST['submitRegClass'])) {
                      $insEmail2 = "";
                      $insEmail3 = "";
                      $emailBody .= $classString;
-                     sendEmail($insEmail, $insEmail2, $insEmail3, $emailBody, $emailSubject);
+                
+                     $regname = " ";
+   
+                     sendEmail(
+                         $regEmail2, 
+                         $regname, 
+                         $fromCC,
+                         $fromEmailName,
+                         $emailBody,
+                         $emailSubject,
+                         $replyEmail,
+                         $replyTopic,
+                         $mailAttachment
+                     );
                      $classString = '';
                   
                 }
@@ -147,52 +183,6 @@ if (isset($_POST['submitRegClass'])) {
 } // end submit
 
 
-function sendEmail($toEmail, $toFirstName, $toLastName, $emailBody, $emailSubject)
-{
-    $mail = new PHPMailer(true);
-    $toName = $toFirstName."  ".$toLastName;
-    try {
-        //Server settings
-        /* $mail->SMTPDebug = SMTP::DEBUG_SERVER;   */                   //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'sbdcemailer@gmail.com';                     //SMTP username
-        $mail->Password   = '2021SendEmail';                               //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-        $mail->Port       = "587";                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-        //Recipients
-        $mail->setFrom('sbdcemailer@gmail.com', 'SBDC Ballroom Dance Club');
-       
-        $mail->addAddress($toEmail, $toName);     //Add a recipient
-        /*$mail->addAddress('ellen@example.com');               //Name is optional */
-        $mail->addReplyTo('sbdcemailer@gmail.com', 'Class Registration');
-        // $mail->addCC('sheila_honey_5@hotmail.com');
-        // $mail->addBCC('sheila_honey_5@hotmail.com');
-
-        //Attachments
-        // $mail->addAttachment('img/Membership Form 2022 Dance Club.pdf');         //Add attachments
-    
-
-        //Content
-          //Set email format to HTML
-         
-
-        $mail->isHTML(true);   
-        
-        $mail->Subject = $emailSubject; 
-                      
-        
-        $mail->Body    = $emailBody;
-        /*$mail->AltBody = 'This is the body in plain text for non-HTML mail  clients'; */
-
-        $mail->send();
-        echo '<br>Message has been sent<br>';
-    } catch (Exception $e) {
-        echo "<br>Message could not be sent. Mailer Error: {$mail->ErrorInfo}<br>";
-    }
-    $mail->smtpClose();
-}
 
 ?>

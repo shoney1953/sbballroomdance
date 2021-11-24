@@ -122,8 +122,9 @@ if($rowCount > 0) {
             'classtime' => $classtime,
             'userid' => $userid,
             'email' => $email,
-            "dateregistered" => $dateregistered
+            'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
+      
         array_push( $classRegistrations, $reg_item);
   
     }
@@ -153,7 +154,8 @@ if($rowCount > 0) {
             'eventdate' => $eventdate,
             'userid' => $userid,
             'email' => $email,
-            "dateregistered" => $dateregistered
+            'dateregistered' => date('m d Y h:i:s A', 
+                strtotime($dateregistered))
         );
         array_push( $eventRegistrations, $reg_item);
   
@@ -182,7 +184,9 @@ if($rowCount > 0) {
             'email' => $email,
             'danceFavorite' => $danceFavorite,
             'danceExperience' => $danceExperience,
-            "contactdate" => $contactdate
+            "contactdate" => date('m d Y h:i:s A', 
+                   strtotime($contactdate))
+           
         );
         array_push( $contacts, $contact_item);
   
