@@ -32,7 +32,7 @@ $danceClass = new DanceClass($db);
     $danceClass->decrementCount($classid);
 
     echo ' Registration was deleted <br>';
-    $redirect = "Location: ".$_SESSION['adminurl'];
+    $redirect = "Location: ".$_SESSION['returnurl'];
 header($redirect);
 exit;
 

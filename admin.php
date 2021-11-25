@@ -1,6 +1,7 @@
 <?php
 session_start();
 $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
+$_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 
 include_once 'config/Database.php';
 include_once 'models/Contact.php';

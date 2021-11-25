@@ -10,6 +10,7 @@ if(isset($_GET['error'])) {
 } 
 else {
     $_SESSION['profileurl'] = $_SERVER['REQUEST_URI']; 
+    $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 }
 
 include_once 'config/Database.php';
@@ -110,7 +111,7 @@ if($rowCount > 0) {
    <br><br><br> 
     <div class="content">
     <br><br>
-    <p><em>User Profile</em></p>
+    <h1>User Profile</h1>
     <div class="form-grid3">
     <div class="form-grid-div">
        <div class="list-box">
@@ -156,6 +157,7 @@ if($rowCount > 0) {
         <h4 class="section-header">Class Registrations</h4><br>    
         <table>
             <tr>
+                <th>ID</th>
                 <th>Class Name</th>
                 <th>Class Date</th>
                 <th>Class Time</th>
@@ -167,6 +169,7 @@ if($rowCount > 0) {
         
     
                   echo "<tr>";
+                    echo "<td>".$classRegistration['id']."</td>";
                     echo "<td>".$classRegistration['classname']."</td>";
                     echo "<td>".$classRegistration['classdate']."</td>";  
                     echo "<td>".$classRegistration['classtime']."</td>";         
@@ -177,15 +180,29 @@ if($rowCount > 0) {
          
             ?> 
         </table>
-    
     <br><br>
+    <form method='POST' action="actions/maintainClassReg.php">
+        
+      
+        <h4>Manage Your Class Registration(s)</h4>
+         
+        <input type='checkbox' name='deleteReg'>
+        <label for='deleteReg'>Delete</label>
+        <label for='regId'><em> &rarr; Specify Registration ID from Table to Delete Your Registration:  </em></label>
+        <input type='text' class='text-small' name='regId' >
+        <br>
+       
+        <button type='submit' name="submitReg">Submit</button>    
+        </form>
+        
     </div>
+
     <div class="form-grid-div">
-   
+    <br><br>
     <h4 class="section-header">Event Registrations</h4><br>    
         <table>
             <tr>
-                
+                <th>ID</th>
                 <th>Event Name</th>
                 <th>Event Date</th>
                 <th>Date Registered</th>          
@@ -196,7 +213,7 @@ if($rowCount > 0) {
                 $eventName = 'NONE';
             
                   echo "<tr>";
-                    
+                    echo "<td>".$eventRegistration['id']."</td>";
                     echo "<td>".$eventRegistration['eventname']."</td>";
                     echo "<td>".$eventRegistration['eventdate']."</td>";           
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
@@ -208,6 +225,20 @@ if($rowCount > 0) {
         </table>
  
     <br><br>
+    <form method='POST' action="actions/maintaineventReg.php">
+        
+        <div class="form-grid-div">
+        <h4>Manage Your Event Registration(s)</h4>
+    
+        <input type='checkbox' name='deleteReg'>
+        <label for='deleteReg'>Delete</label>
+        <label for='regId'><em> &rarr; Specify Registration ID from Table above to Delete Your Registration:  </em></label>
+        <input type='text' class='text-small' name='regId' >
+        <br>
+       
+        <button type='submit' name="submitEventReg">Submit</button>   
+        </div>   
+        </form>
     </div>
     </div>
     </div>

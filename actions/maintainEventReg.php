@@ -123,7 +123,7 @@ if (!isset($_POST['regId'])) {
             echo '</form>';
         }     
         if($deleteReg) {
-            echo '<p> You have selected to delete class id: '.$eventReg->id.'<br>';
+            echo '<p> You have selected to delete class registration id: '.$eventReg->id.'<br>';
             echo 'First name:  '.$eventReg->firstname.' Last Name '.$eventReg->lastname. '<br><br><strong><em> Please click the button below to confirm delete.</em></strong></p>';
             echo '<form method="POST" action="deleteEventReg.php">';
             echo '<input type="hidden" name="id" value="'.$eventReg->id.'">';

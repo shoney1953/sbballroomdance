@@ -31,7 +31,7 @@ $event = new Event($db);
     $eventReg->delete();
     $event->decrementCount($eventid);
     echo ' Registration was deleted <br>';
-    $redirect = "Location: ".$_SESSION['adminurl'];
+    $redirect = "Location: ".$_SESSION['returnurl'];
 header($redirect);
 exit;
 
