@@ -148,6 +148,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         </ul>
         </li>
         <li><a href="#pictures">Picture Gallery</a></li>
+        <li><a href="resources.php">Resources</a></li>
    
     </li>
     <?php
@@ -577,14 +578,8 @@ DJ Documents</a><br>
      
    </section>
    </div>
-   <footer >
-
-    <div class="footer-section">
-    
-        <p>Copyright &copy; 2021    Sheila Honey  - All Rights Reserved</p>
-        
-    </div> 
-  
-   </footer>
+<?php
+  include 'includes/footer.php';
+?>
 </body>
 </html>

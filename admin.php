@@ -647,15 +647,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     ?>
 
     <footer >
-
-    <div class="footer-section">
-    
-        <p>Copyright &copy; 2021    Sheila Honey  - All Rights Reserved</p>
-        
-    </div> 
-  
-   </footer>
-
-    
+    <?php
+    include 'includes/footer.php';
+   ?>
+   
 </body>
 </html>
