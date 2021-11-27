@@ -67,7 +67,7 @@ if (isset($_POST['submitEventReg'])) {
                 } else {
                     $eventReg->userid = 0;
                 }
-               
+                $eventReg->paid = 0;
                 $eventReg->create();
                
                 $eventInst->addCount($eventReg->eventid);

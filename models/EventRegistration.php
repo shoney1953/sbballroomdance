@@ -140,7 +140,7 @@ public function read_ByEmail($email) {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          userid = :userid,
+          userid = :userid, paid = :paid,
           eventid = :eventid';
 
           // Prepare statement
@@ -160,6 +160,7 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':eventid', $this->eventid);
           $stmt->bindParam(':userid', $this->userid);
           $stmt->bindParam(':email', $this->email);
+          $stmt->bindParam(':paid', $this->paid);
      
 
           // Execute query
