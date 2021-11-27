@@ -36,7 +36,7 @@
           <li class="li-none"><a href="https://www.youtube.com/c/CountryDanceX">YouTube - Country DanceX</a></li>
           <li class="li-none"><a href="https://www.youtube.com/c/DanceVisionOfficial">YouTube - Dance Vision Official</a></li>
        </ul>
-    </div>
+       </div>
     </div>
     <div class="form-grid-div">
        <div class="list-box">
@@ -50,9 +50,7 @@
        <br>
 
     </div>
-
- 
-
+    </div>
 <?php
   include 'includes/footer.php';
 ?>

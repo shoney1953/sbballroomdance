@@ -126,8 +126,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
 <body>
 <nav class="nav">
     <div class="container">
-     <h1 class="logo" style="background-color: rgba(161, 121, 133, 0.2); border-radius: 45%; width: 70px;align-items:center">
-        <a href="index.html"><img src="img/logobox.png" alt="" style="width: 50px;align-items:center"></a></h1>
+ 
      <ul>
         <li><a href="#" >Home</a></li>
         <li><a href="#about">About</a></li>
@@ -151,9 +150,14 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <li><a href="resources.php">Resources</a></li>
    
     </li>
+     </ul>
+</div>
+     <div class="container">
+     <ul>
     <?php
    
     if(isset($_SESSION['username'])) {
+
        echo ' <li><a href="logout.php">Logout</a></li>';
        echo ' <li><a href="profile.php">'.$_SESSION['username'].'<br>Profile</a></li>';
        if(isset($_SESSION['role'])) {
@@ -169,7 +173,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     
     ?>
         </ul>
-     </div>
+  
+</div>
 </nav>
     <div class="hero">
         <div class="container">
