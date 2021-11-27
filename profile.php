@@ -244,12 +244,8 @@ if($rowCount > 0) {
     </div>
     <footer >
 
-<div class="footer-section">
-
-    <p>Copyright &copy; 2021    Sheila Honey  - All Rights Reserved</p>
-    
-</div> 
-
-</footer>
+<?php
+  include 'includes/footer.php';
+?>
 </body>
 </html>

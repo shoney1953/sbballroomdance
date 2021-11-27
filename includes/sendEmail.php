@@ -62,12 +62,12 @@ function sendEmail($toEmail,
 
         $mail->send();
 
-        echo '<script>alert("Message has been sent")</script>';
+        echo "Message has been sent<br>";
      
      
     } catch (Exception $e) {
         $errMsg = "Message could not be sent: Mailer Error".$mail->ErrorInfo."<br>";
-        echo '<script>alert($errMsg)</script>';
+        echo "$errMsg";
         
     }
     $mail->smtpClose();
