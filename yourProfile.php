@@ -1,25 +1,23 @@
-<?php 
-session_start();
+<?php
+$sess = session_start();
+var_dump($sess, $_SESSION);
 require_once 'config/Database.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/EventRegistration.php';
 require_once 'models/User.php';
 
-
-
-if(isset($_GET['error'])) {
-    echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4><br>';
+if (isset($_GET['error'])) {
+    echo '<br><h4 style="text-align: center"> ERROR:  '
+    .$_GET['error'].'. Please Reenter Data</h4><br>';
     unset($_GET['error']);
-} elseif(isset($_GET['success'])) {
-    echo '<br><h4 style="text-align: center"> Success:  '.$_GET['success'].'</h4><br>';
+} elseif (isset($_GET['success'])) {
+    echo '<br><h4 style="text-align: center"> Success:  '
+    .$_GET['success'].'</h4><br>';
     unset($_GET['success']);
-} 
-else {
+} else {
     $_SESSION['profileurl'] = $_SERVER['REQUEST_URI']; 
     $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 }
-
-
 
 $classRegs = [];
 $eventRegs = [];
@@ -39,7 +37,7 @@ $result = $classReg->read_ByUserid($_SESSION['userid']);
 $rowCount = $result->rowCount();
 $numClasses = $rowCount;
 
-if($rowCount > 0) {
+if ($rowCount > 0) {
   
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
@@ -54,11 +52,9 @@ if($rowCount > 0) {
             'email' => $email,
             "dateregistered" => $dateregistered
         );
-        array_push( $classRegs, $reg_item);
+        array_push($classRegs, $reg_item);
     
     }
-  
-
 } 
 $eventReg = new EventRegistration($db);
 $result = $eventReg->read_ByUserid($_SESSION['userid']);
@@ -66,7 +62,7 @@ $result = $eventReg->read_ByUserid($_SESSION['userid']);
 $rowCount = $result->rowCount();
 $numClasses = $rowCount;
 
-if($rowCount > 0) {
+if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
@@ -80,13 +76,10 @@ if($rowCount > 0) {
             'email' => $email,
             "dateregistered" => $dateregistered
         );
-        array_push( $eventRegs, $reg_item);
-  
+        array_push($eventRegs, $reg_item);
+
     }
-  
-
 } 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,17 +111,18 @@ if($rowCount > 0) {
        <div class="list-box">
        <ul>
            <?php
-           echo '<li class=li-none> Name:    <strong> '.$user->firstname.' '
-           .$user->lastname.'</strong></li>';
-           echo '<li class=li-none> Username:  <strong>'.$user->username.' 
-           </strong></li>';
-           echo '<li class=li-none> Email:    <strong> '.$user->email.' 
-           </strong></li>';
-           echo '<li class=li-none> Created:   <strong>'.$user->created.' 
-           </strong></li>';
-           echo '<li class=li-none> Password Last Changed: <strong>'.$user->passwordChanged.' 
-           </strong></li>';
-           ?>
+            echo '<li class=li-none> Name:    <strong> '.$user->firstname.' '
+            .$user->lastname.'</strong></li>';
+            echo '<li class=li-none> Username:  <strong>'.$user->username.' 
+            </strong></li>';
+            echo '<li class=li-none> Email:    <strong> '.$user->email.' 
+            </strong></li>';
+            echo '<li class=li-none> Created:   <strong>'.$user->created.' 
+            </strong></li>';
+            echo '<li class=li-none> Password Last Changed: 
+            <strong>'.$user->passwordChanged.' 
+            </strong></li>';
+            ?>
        </ul>
     </div>
     </div>
@@ -183,7 +177,7 @@ if($rowCount > 0) {
                     echo "<td>".$classRegistration['dateregistered']."</td>";
              
                   echo "</tr>";
-              }
+            }
          
             ?> 
         </table>
@@ -228,7 +222,7 @@ if($rowCount > 0) {
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
              
                   echo "</tr>";
-              }
+            }
          
             ?> 
         </table>

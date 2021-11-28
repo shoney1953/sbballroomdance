@@ -157,13 +157,11 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     <?php
    
     if (isset($_SESSION['username'])) {
-
-        echo ' <li><a href="logout.php">Logout</a></li>';
-        echo ' <li><a href="userProfile.php">Your Profile</a></li>';
-          
+        echo ' <li><a href="yourProfile.php">Your Profile</a></li>';
+        echo ' <li><a href="logout.php">Logout</a></li>'; 
         if (isset($_SESSION['role'])) {
             if (($_SESSION['role'] == 'ADMIN') || ($_SESSION['role'] == 'SUPERADMIN')) {
-                echo '<li><a href="admin.php">Administration</a></li>';
+                echo '<li><a href="administration.php">Administration</a></li>';
             }
         }
    
