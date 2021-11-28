@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
         exit; 
         }
     } else {
-        echo '<script>alert("Email is missing or Invalid .. Please enter Valid email")</script>';
+        echo "Email is missing or Invalid .. Please enter Valid email";
     }
 
   

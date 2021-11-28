@@ -12,8 +12,6 @@
 <nav class="nav">
     <div class="container">
      
-     <h1 class="logo" style="background-color: rgba(161, 121, 133, 0.2); border-radius: 45%; width: 70px;align-items:center">
-        <a href="index.html"><img src="img/logobox.png" alt="" style="width: 50px;align-items:center"></a></h1>
      <ul>
         <li><a href="index.php">Back to Home</a></li>
 
@@ -52,7 +50,7 @@
     </div>
     </div>
 <?php
-  include 'includes/footer.php';
+  include 'footer.php';
 ?>
 </body>
 </html>

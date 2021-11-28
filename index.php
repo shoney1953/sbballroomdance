@@ -584,7 +584,7 @@ DJ Documents</a><br>
    </section>
    </div>
 <?php
-  include 'includes/footer.php';
+  include 'footer.php';
 ?>
 </body>
 </html>
