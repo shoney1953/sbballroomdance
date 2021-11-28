@@ -159,7 +159,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     if(isset($_SESSION['username'])) {
 
        echo ' <li><a href="logout.php">Logout</a></li>';
-       echo ' <li><a href="profile.php">'.$_SESSION['username'].'<br>Profile</a></li>';
+       echo ' <li><a href="userProfile.php">'.
+          $_SESSION['username'].'<br>Profile</a></li>';
        if(isset($_SESSION['role'])) {
         if (($_SESSION['role'] == 'ADMIN') || ($_SESSION['role'] == 'SUPERADMIN')) {
             echo '<li><a href="admin.php">Admin</a></li>';
@@ -269,7 +270,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
          if(isset($_SESSION['username'])) {
         echo '<h3> Enter Information Below to Register for Event(s) </h3>';
         
-        echo '<form method="POST"  action="actions/registerevent.php">';
+        echo '<form method="POST"  action="actions/registerEvent.php">';
         echo '<div class="form-grid3">';
       
             echo '<div class="form-grid-div">  <br>';

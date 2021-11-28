@@ -1,10 +1,10 @@
 <?php
-
+session_start();
 include_once '../includes/sendEmail.php';
 include_once '../config/Database.php';
 include_once '../models/EventRegistration.php';
 include_once '../models/Event.php';
-session_start();
+
 $events = $_SESSION['upcoming_events'];
 
 $fromCC = 'sheila_honey_5@hotmail.com';
