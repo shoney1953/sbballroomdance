@@ -1,8 +1,8 @@
 <?php
 session_start();
-include_once '../includes/sendEmail.php';
-include_once '../config/Database.php';
-include_once '../models/Contact.php';
+require_once '../includes/sendEmail.php';
+require_once '../config/Database.php';
+require_once '../models/Contact.php';
 
 
 $database = new Database();

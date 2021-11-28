@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include_once '../config/Database.php';
-include_once '../models/User.php';
+require_once '../config/Database.php';
+require_once '../models/User.php';
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);

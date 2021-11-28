@@ -1,8 +1,8 @@
 <?php
-include_once '../includes/sendEmail.php';
-include_once '../config/Database.php';
-include_once '../models/ClassRegistration.php';
-include_once '../models/DanceClass.php';
+require_once '../includes/sendEmail.php';
+require_once '../config/Database.php';
+require_once '../models/ClassRegistration.php';
+require_once '../models/DanceClass.php';
 session_start();
 $classes = $_SESSION['upcoming_classes'];
 

@@ -1,14 +1,13 @@
 <?php
 session_start();
 
-if(isset($_GET['error'])) {
+if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4><br>';
     unset($_GET['error']);
 } elseif(isset($_GET['success'])) {
     echo '<br><h4 style="text-align: center"> Success:  '.$_GET['success'].'</h4><br>';
     unset($_GET['success']);
-} 
-else {
+} else {
     $_SESSION['loginurl'] = $_SERVER['REQUEST_URI']; 
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once '../config/Database.php';
-include_once '../models/User.php';
+require_once '../config/Database.php';
+require_once '../models/User.php';
 
 if (!isset($_SESSION['username']))
 {

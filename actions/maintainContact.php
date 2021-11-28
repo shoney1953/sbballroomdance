@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once '../config/Database.php';
-include_once '../models/Contact.php';
+require_once '../config/Database.php';
+require_once '../models/Contact.php';
 if (!isset($_SESSION['username']))
 {
     $redirect = "Location: ".$_SESSION['homeurl'];

@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 require_once 'config/Database.php';
 require_once 'models/ClassRegistration.php';
@@ -118,34 +118,40 @@ if($rowCount > 0) {
        <div class="list-box">
        <ul>
            <?php
-           echo '<li class=li-none> Name:    <strong> '.$user->firstname.' '.$user->lastname.'</strong></li>';
-           echo '<li class=li-none> Username:  <strong>'.$user->username.' </strong></li>';
-           echo '<li class=li-none> Email:    <strong> '.$user->email.' </strong></li>';
-           echo '<li class=li-none> Created:   <strong>'.$user->created.' </strong></li>';
-           echo '<li class=li-none> Password Last Changed: <strong>'.$user->passwordChanged.' </strong></li>';
+           echo '<li class=li-none> Name:    <strong> '.$user->firstname.' '
+           .$user->lastname.'</strong></li>';
+           echo '<li class=li-none> Username:  <strong>'.$user->username.' 
+           </strong></li>';
+           echo '<li class=li-none> Email:    <strong> '.$user->email.' 
+           </strong></li>';
+           echo '<li class=li-none> Created:   <strong>'.$user->created.' 
+           </strong></li>';
+           echo '<li class=li-none> Password Last Changed: <strong>'.$user->passwordChanged.' 
+           </strong></li>';
            ?>
        </ul>
     </div>
     </div>
        <br>
        <div class="form-grid-div">
-                    <form method="POST" action="actions/updateUserPass.php">
-              
-                    <h4>Change Password</h4>
-                    <label for="oldpassword">Enter Old Password</label><br>
-                    <input type="password" name="oldpassword" required minlength="8"><br>
-                    <br>
-                    <label for="newpassword">Enter New Password minimum 8</label><br>
-                    <input type="password" name="newpassword" required minlength="8"><br>
-                    <label for="pass2">Reenter New Password</label><br>
-                    <input type="password" name="newpass2" required minlength="8"><br>
-                  <?php
-                     echo '<input type="hidden" name="currentpass" value="'.$user->password.'"><br>';
-                     echo '<input type="hidden" name="id" value="'.$user->id.'"><br>';
-                  ?>
-                    <br>
-                    <button type="submit" name="SubmitPassChange">Submit</button><br>
-               
+        <form method="POST" action="actions/updateUserPass.php">
+    
+        <h4>Change Password</h4>
+        <label for="oldpassword">Enter Old Password</label><br>
+        <input type="password" name="oldpassword" required minlength="8"><br>
+        <br>
+        <label for="newpassword">Enter New Password minimum 8</label><br>
+        <input type="password" name="newpassword" required minlength="8"><br>
+        <label for="pass2">Reenter New Password</label><br>
+        <input type="password" name="newpass2" required minlength="8"><br>
+        <?php
+            echo '<input type="hidden" name="currentpass" 
+            value="'.$user->password.'"><br>';
+            echo '<input type="hidden" name="id" value="'.$user->id.'"><br>';
+        ?>
+        <br>
+        <button type="submit" name="SubmitPassChange">Submit</button><br>
+    
         </form>
         </div>
       
@@ -166,7 +172,7 @@ if($rowCount > 0) {
             </tr>
             <?php 
     
-            foreach($classRegs as $classRegistration) {
+            foreach ($classRegs as $classRegistration) {
         
     
                   echo "<tr>";
@@ -189,7 +195,9 @@ if($rowCount > 0) {
          
         <input type='checkbox' name='deleteReg'>
         <label for='deleteReg'>Delete</label>
-        <label for='regId'><em> &rarr; Specify Registration ID from Table to Delete Your Registration:  </em></label>
+        <label for='regId'>
+        <em> &rarr; Specify Registration ID from Table to Delete Your Registration:  
+        </em></label>
         <input type='text' class='text-small' name='regId' >
         <br>
        
@@ -210,7 +218,7 @@ if($rowCount > 0) {
             </tr>
             <?php 
     
-            foreach($eventRegs as $eventRegistration) {
+            foreach ($eventRegs as $eventRegistration) {
                 $eventName = 'NONE';
             
                   echo "<tr>";
@@ -233,7 +241,9 @@ if($rowCount > 0) {
     
         <input type='checkbox' name='deleteReg'>
         <label for='deleteReg'>Delete</label>
-        <label for='regId'><em> &rarr; Specify Registration ID from Table above to Delete Your Registration:  </em></label>
+        <label for='regId'><em> &rarr; 
+        Specify Registration ID from Table above to Delete Your Registration:  
+        </em></label>
         <input type='text' class='text-small' name='regId' >
         <br>
        
@@ -246,7 +256,7 @@ if($rowCount > 0) {
     <footer >
 
 <?php
-  include 'footer.php';
+  require 'footer.php';
 ?>
 </body>
 </html>

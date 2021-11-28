@@ -644,7 +644,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
 
     <footer >
     <?php
-    include 'footer.php';
+    require 'footer.php';
    ?>
    
 </body>

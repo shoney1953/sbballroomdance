@@ -1,9 +1,9 @@
 <?php
 session_start();
-include_once '../includes/sendEmail.php';
-include_once '../config/Database.php';
-include_once '../models/EventRegistration.php';
-include_once '../models/Event.php';
+require_once '../includes/sendEmail.php';
+require_once '../config/Database.php';
+require_once '../models/EventRegistration.php';
+require_once '../models/Event.php';
 
 $events = $_SESSION['upcoming_events'];
 
@@ -33,7 +33,7 @@ if (isset($_POST['submitEventReg'])) {
     $regEmail = filter_var($regEmail, FILTER_SANITIZE_EMAIL); 
     
     $emailSubject = "You have registered for SBDC event(s)";
-    foreach($events as $event) {
+    foreach ($events as $event) {
         $chkboxID = "ev".$event['id'];
        if (isset($_POST["$chkboxID"])) {
         $eventNum = (int)substr($chkboxID,2);
@@ -62,7 +62,7 @@ if (isset($_POST['submitEventReg'])) {
                 $eventReg->lastname = $regLastName;
                 $eventReg->eventid = $eventId;
                 $eventReg->email = $regEmail;
-                if(isset($_SESSION['userid'])) {
+                if (isset($_SESSION['userid'])) {
                     $eventReg->userid = $_SESSION['userid'];
                 } else {
                     $eventReg->userid = 0;
@@ -77,19 +77,19 @@ if (isset($_POST['submitEventReg'])) {
         
     if (filter_var($regEmail, FILTER_VALIDATE_EMAIL)) {
       
-       $regName = $regFirstName.' '.$regLastName;
+        $regName = $regFirstName.' '.$regLastName;
    
-       sendEmail(
-           $regEmail, 
-           $regName, 
-           $fromCC,
-           $fromEmailName,
-           $emailBody,
-           $emailSubject,
-           $replyEmail,
-           $replyTopic,
-           $mailAttachment
-       );
+        sendEmail(
+            $regEmail, 
+            $regName, 
+            $fromCC,
+            $fromEmailName,
+            $emailBody,
+            $emailSubject,
+            $replyEmail,
+            $replyTopic,
+            $mailAttachment
+        );
     } else {
         echo 'Registrant Email is empty or Invalid. Please enter valid email.';
     }
@@ -98,7 +98,7 @@ if (isset($_POST['submitEventReg'])) {
    header($redirect); 
  exit;
 }  else { 
-   $redirect = "Location: ".$_SESSION['homeurl'];
-  header($redirect); 
+      $redirect = "Location: ".$_SESSION['homeurl'];
+      header($redirect); 
 
 }// end submit

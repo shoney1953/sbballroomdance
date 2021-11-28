@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-include_once '../config/Database.php';
-include_once '../models/Event.php';
+require_once '../config/Database.php';
+require_once '../models/Event.php';
 if (!isset($_SESSION['username']))
 {
     $redirect = "Location: ".$_SESSION['homeurl'];
