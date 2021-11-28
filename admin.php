@@ -1,12 +1,12 @@
 <?php
 session_start();
-include_once 'config/Database.php';
-include_once 'models/Contact.php';
-include_once 'models/ClassRegistration.php';
-include_once 'models/EventRegistration.php';
-include_once 'models/Event.php';
-include_once 'models/DanceClass.php';
-include_once 'models/User.php';
+require_once 'config/Database.php';
+require_once 'models/Contact.php';
+require_once 'models/ClassRegistration.php';
+require_once 'models/EventRegistration.php';
+require_once 'models/Event.php';
+require_once 'models/DanceClass.php';
+require_once 'models/User.php';
 $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 
@@ -24,8 +24,7 @@ $database = new Database();
 $db = $database->connect();
 // refresh events
 
-if (!isset($_SESSION['username']))
-{
+if (!isset($_SESSION['username'])) {
     $redirect = "Location: ".$_SESSION['homeurl'];
     header($redirect);
 } else {
@@ -108,7 +107,7 @@ $result = $classReg->read();
 $rowCount = $result->rowCount();
 $num_registrations = $rowCount;
 
-if($rowCount > 0) {
+if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
@@ -141,7 +140,7 @@ $result = $eventReg->read();
 $rowCount = $result->rowCount();
 $num_registrations = $rowCount;
 
-if($rowCount > 0) {
+if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);

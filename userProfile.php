@@ -1,9 +1,9 @@
 <?php
 session_start();
-include_once 'config/Database.php';
-include_once 'models/ClassRegistration.php';
-include_once 'models/EventRegistration.php';
-include_once 'models/User.php';
+require_once 'config/Database.php';
+require_once 'models/ClassRegistration.php';
+require_once 'models/EventRegistration.php';
+require_once 'models/User.php';
 
 
 
