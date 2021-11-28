@@ -1,11 +1,11 @@
 <?php
 include_once '../includes/sendEmail.php';
-
-session_start();
-$classes = $_SESSION['upcoming_classes'];
 include_once '../config/Database.php';
 include_once '../models/ClassRegistration.php';
 include_once '../models/DanceClass.php';
+session_start();
+$classes = $_SESSION['upcoming_classes'];
+
 $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);

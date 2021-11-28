@@ -1,8 +1,6 @@
 <?php
-include_once '../includes/sendEmail.php';
-
 session_start();
-
+include_once '../includes/sendEmail.php';
 include_once '../config/Database.php';
 include_once '../models/Contact.php';
 

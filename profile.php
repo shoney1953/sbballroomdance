@@ -1,5 +1,11 @@
 <?php
 session_start();
+include_once 'config/Database.php';
+include_once 'models/ClassRegistration.php';
+include_once 'models/EventRegistration.php';
+include_once 'models/User.php';
+
+
 
 if(isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4><br>';
@@ -13,10 +19,7 @@ else {
     $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 }
 
-include_once 'config/Database.php';
-include_once 'models/ClassRegistration.php';
-include_once 'models/EventRegistration.php';
-include_once 'models/User.php';
+
 
 $classRegs = [];
 $eventRegs = [];

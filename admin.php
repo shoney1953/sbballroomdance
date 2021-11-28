@@ -1,8 +1,5 @@
 <?php
 session_start();
-$_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
-$_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
-
 include_once 'config/Database.php';
 include_once 'models/Contact.php';
 include_once 'models/ClassRegistration.php';
@@ -10,6 +7,8 @@ include_once 'models/EventRegistration.php';
 include_once 'models/Event.php';
 include_once 'models/DanceClass.php';
 include_once 'models/User.php';
+$_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
+$_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 
 $allClasses = [];
 $allEvents = [];

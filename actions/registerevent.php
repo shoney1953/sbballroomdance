@@ -1,12 +1,12 @@
 <?php
-// include("includes/mailheader.php");
-include_once '../includes/sendEmail.php';
 
-session_start();
-$events = $_SESSION['upcoming_events'];
+include_once '../includes/sendEmail.php';
 include_once '../config/Database.php';
 include_once '../models/EventRegistration.php';
 include_once '../models/Event.php';
+session_start();
+$events = $_SESSION['upcoming_events'];
+
 $fromCC = 'sheila_honey_5@hotmail.com';
 $replyEmail = 'sheilahoney53@gmail.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
