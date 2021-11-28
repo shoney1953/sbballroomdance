@@ -1,6 +1,6 @@
 <?php
 $sess = session_start();
-var_dump($sess, $_SESSION);
+
 require_once 'config/Database.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/EventRegistration.php';
