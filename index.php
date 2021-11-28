@@ -270,7 +270,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
          if(isset($_SESSION['username'])) {
         echo '<h3> Enter Information Below to Register for Event(s) </h3>';
         
-        echo '<form method="POST"  action="actions/registerEvent.php">';
+        echo '<form method="POST"  action="actions/regEvent.php">';
         echo '<div class="form-grid3">';
       
             echo '<div class="form-grid-div">  <br>';
@@ -374,7 +374,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
          if(isset($_SESSION['username'])) {
         echo '<h3> Enter Information Below to Register for all or Selected Classes </h3>';
         
-        echo '<form method="POST"  action="actions/registerclass.php">';
+        echo '<form method="POST"  action="actions/regClass.php">';
         echo '<div class="form-grid3">';
 
             echo '<div class="form-grid-div"> <br>';
