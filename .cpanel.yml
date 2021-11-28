@@ -13,8 +13,8 @@ deployment:
     -  /bin/cp index.php $DEPLOYPATH
     -  /bin/cp login.php $DEPLOYPATH
     -  /bin/cp logout.php $DEPLOYPATH
-    -  /bin/cp userProfile.php $DEPLOYPATH
+    -  /bin/cp yourProfile.php $DEPLOYPATH
     -  /bin/cp resources.php $DEPLOYPATH
     -  /bin/cp signup.php $DEPLOYPATH
-    -  /bin/cp admin.php $DEPLOYPATH
+    -  /bin/cp admininstration.php $DEPLOYPATH
     
