@@ -153,6 +153,7 @@ if ($rowCount > 0) {
             'eventdate' => $eventdate,
             'userid' => $userid,
             'email' => $email,
+            'paid' => $paid,
             'dateregistered' => date('m d Y h:i:s A', 
                 strtotime($dateregistered))
         );
@@ -184,7 +185,7 @@ if($rowCount > 0) {
             'danceFavorite' => $danceFavorite,
             'danceExperience' => $danceExperience,
             "contactdate" => date('m d Y h:i:s A', 
-                   strtotime($contactdate))
+            strtotime($contactdate))
            
         );
         array_push( $contacts, $contact_item);
@@ -315,7 +316,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <input type='checkbox' name='deleteEvent'>
         <label for='deleteEvent'>Delete an Event </label> 
         <form method='POST' action="actions/maintainEvent.php">
-        <label for='eventId'><em> &rarr; Specify Event ID from Table above for Update or Delete: </em> </label>
+        <label for='eventId'><em> &rarr; 
+            Specify Event ID from Table above for Update or Delete: 
+            </em> </label>
         <input type='text' class='text-small' name='eventId' >
         <br>
         <p>OR</p><br>
@@ -355,6 +358,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 <th>First Name</th>
                 <th>Last Name    </th>
                 <th>Email</th>
+                <th>Paid</th>
                 <th>Date Reg</th>          
             </tr>
             <?php 
@@ -369,7 +373,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     echo "<td>".$eventRegistration['eventdate']."</td>";
                     echo "<td>".$eventRegistration['firstname']."</td>";
                     echo "<td>".$eventRegistration['lastname']."</td>";
-                    echo "<td>".$eventRegistration['email']."</td>";           
+                    echo "<td>".$eventRegistration['email']."</td>"; 
+                    echo "<td>".$eventRegistration['paid']."</td>";            
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
              
                   echo "</tr>";
@@ -388,7 +393,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <label for='updateReg'>Update a Event Registration </label>    
         <input type='checkbox' name='deleteReg'>
         <label for='deleteReg'>Delete a Event Registration </label>
-        <label for='regId'><em> &rarr; Specify Registration ID from Table above for Update or Delete:  </em></label>
+        <label for='regId'><em> &rarr; 
+            Specify Registration ID from Table above for Update or Delete:  
+            </em></label>
         <input type='text' class='text-small' name='regId' >
         <br>
         <p>OR</p><br>

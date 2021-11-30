@@ -71,6 +71,7 @@ if (!isset($_POST['regId'])) {
                 echo '<th>First Name </th>';
                 echo '<th>Last Name</th>';
                 echo '<th>Email</th>';
+                echo '<th>Paid</th>';
                 echo '<th>Userid</th>';
                 echo '<th>Registration ID   </th>';    
             echo '</tr>';
@@ -81,6 +82,7 @@ if (!isset($_POST['regId'])) {
                     echo "<td>".$eventReg->firstname."</td>";
                     echo "<td>".$eventReg->lastname."</td>";
                     echo "<td>".$eventReg->email."</td>";
+                    echo "<td>".$eventReg->paid."</td>";
                     echo "<td>".$eventReg->userid."</td>";
                     echo "<td>".$eventReg->id."</td>";
                 echo "</tr>";
@@ -98,9 +100,10 @@ if (!isset($_POST['regId'])) {
         echo '<input type="text" name="lastname" value="'.$eventReg->lastname.'"><br>';
         echo '<label for="email">Email</label>';
         echo '<input type="email" name="email" value="'.$eventReg->email.'"><br>';
+        echo '<label for="paid">Paid</label>';
+        echo '<input type="number" name="paid" min="0" max="1" value="'.$eventReg->paid.'"><br>';
         echo '<label for="userid">Userid</label>';
         echo '<input type="text" name="userid" value="'.$eventReg->userid.'"><br>';
-
         echo '<input type="hidden" name="id" value="'.$eventReg->id.'">';
         echo '<button type="submit" name="submitUpdateReg">Update the Registration</button><br>';
         echo '</form>';
@@ -118,7 +121,10 @@ if (!isset($_POST['regId'])) {
             echo '<input type="text" name="lastname" required ><br>';
             echo '<label for="email">Email</label>';
             echo '<input type="text" name="email" required><br>';
-            echo '<button type="submit" name="submitAddReg">Add the Event</button><br>';
+            echo '<label for="paid">Paid</label>';
+            echo '<input type="number" name="paid" min="0" max="1"><br>';
+            echo '<button type="submit" name="submitAddReg">
+               Add the Event Registration</button><br>';
             echo '</form>';
         }     
         if($deleteReg) {

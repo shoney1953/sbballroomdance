@@ -47,10 +47,10 @@ if ($rowCount > 0) {
             'lastname' => $lastname,
             'classid' => $classid,
             'classname' => $classname,
-            'classtime' => $classtime,
+            'classtime' => date('h:i:s A', strtotime($classtime)),
             'classdate' => $classdate,
             'email' => $email,
-            "dateregistered" => $dateregistered
+            "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($classRegs, $reg_item);
     
@@ -74,7 +74,8 @@ if ($rowCount > 0) {
             'eventname' => $eventname,
             'eventdate' => $eventdate,
             'email' => $email,
-            "dateregistered" => $dateregistered
+            'paid' => $paid,
+            "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegs, $reg_item);
 
@@ -208,6 +209,7 @@ if ($rowCount > 0) {
                 <th>ID</th>
                 <th>Event Name</th>
                 <th>Event Date</th>
+                <th>Paid</th>
                 <th>Date Registered</th>          
             </tr>
             <?php 
@@ -218,7 +220,12 @@ if ($rowCount > 0) {
                   echo "<tr>";
                     echo "<td>".$eventRegistration['id']."</td>";
                     echo "<td>".$eventRegistration['eventname']."</td>";
-                    echo "<td>".$eventRegistration['eventdate']."</td>";           
+                    echo "<td>".$eventRegistration['eventdate']."</td>";  
+                    if ($eventRegistration['paid'] == true ) {
+                      echo "<td>&#10004;</td>"; 
+                    } else {
+                        echo "<td>&times;</td>"; 
+                    }
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
              
                   echo "</tr>";

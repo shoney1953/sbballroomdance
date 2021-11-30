@@ -20,8 +20,11 @@ class PDF extends FPDF
         // Move to the right
         $this->Cell(80);
         // Title
-        $this->Cell(10,10,
-            'SBDC Event Registration Report', 0, 0, 'C');
+        $this->Cell(
+            10,
+            10,
+            'SBDC Event Registration Report', 0, 0, 'C'
+        );
         // Line break
         $this->Ln(20);
     }
@@ -31,9 +34,9 @@ class PDF extends FPDF
         // Position at 1.5 cm from bottom
         $this->SetY(-15);
         // Arial italic 8
-        $this->SetFont('Arial','I',8);
+        $this->SetFont('Arial', 'I', 8);
         // Page number
-        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+        $this->Cell(0, 10, 'Page '.$this->PageNo().'/{nb}', 0, 0,' C');
     }
 }
 
@@ -71,12 +74,13 @@ if (isset($_POST['submitEventRep'])) {
 
     $pdf = new PDF();
     $pdf->AliasNbPages();
-    $pdf->SetTextColor(122, 2, 73);
+    $pdf->SetTextColor(26, 22, 22);
     $pdf->AddPage();
     $pdf->SetFont('Arial', '', 10);
 
 if ($rowCount > 0) {
     $regCount = 0;
+    $paidNum = 0;
     $prevEvent = '';
     $init = 1;
     foreach ($regArr as $reg) {
@@ -85,43 +89,50 @@ if ($rowCount > 0) {
         if ($init == 1) {
             $prevEvent = $reg['eventid'];
             $init = 0;
-            $event_string = ' -------- '.$reg['eventname'].'  '
-                     .$reg['eventdate'].' -------- ';
-            $pdf->SetFont('Arial','B',12);
+            $event_string = ' '.$reg['eventname'].'  '
+                     .$reg['eventdate'].' ';
+            $pdf->SetFont('Arial', 'BU', 10);
             $pdf->Cell(0, 10, $event_string, 0, 1);
             $pdf->SetFont('Arial', '', 10);
         }
         if ($reg['eventid'] !== $prevEvent) {
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(0, 10, "   Total Registrations for this Event:  ".$regCount, 0, 1); 
+            $pdf->SetFont('Arial', 'B', 10);
+            $pdf->Ln(2);
+            $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1); 
+            $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
             $regCount = 1;
+            $paidNum = 0;
+         
             $prevEvent = $reg['eventid'];
-            $event_string = ' -------- '.$reg['eventname'].'  '
-            .$reg['eventdate'].' -------- ';
-            $pdf->Ln(5);
-
+            $event_string = ' '.$reg['eventname'].'  '
+            .$reg['eventdate'].' ';
+            $pdf->Ln(3);
+            $pdf->SetFont('Arial', 'BU', 10);
             $pdf->Cell(0, 10, $event_string, 0, 1);
             $pdf->SetFont('Arial', '', 10);
          }
-
+         $paid = 'Not Paid';
+        if ($reg['paid'] == true) {
+            $paidNum++;
+          $paid = 'Paid';
+        }
+        $nameStr = str_pad($reg['firstname'].' '.$reg['lastname'], 35);
+        $emailStr = str_pad($reg['email'], 30);
+        $paidStr = str_pad($paid, 9);
         $reg_string1 = 
-          "  ".$reg['firstname'].
-          " ".$reg['lastname'].
-          "   ".$reg['email'].
-          "   ".$reg['paid'].
-          "  ".$reg['dateregistered'].
-          " ";
+          " ".$nameStr." ".$emailStr." ".$paidStr." ".$reg['dateregistered'];
 
-     
-          $pdf->Cell(0, 10, $reg_string1, 0, 1);
-       
+          $pdf->Cell(0, 5, $reg_string1, 0, 1);
+
 
     }
-    $pdf->SetFont('Arial','B',12);
-    $pdf->Cell(0, 10, "   Total Registrations for this Event:  ".$regCount, 0, 1); 
+    $pdf->SetFont('Arial','B', 10);
+    $pdf->Ln(2);
+    $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1);
+    $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
     $pdf->SetFont('Arial', '', 10);
 } else {
-    $pdf->SetFont('Arial','B',12);
+    $pdf->SetFont('Arial','B', 12);
     $pdf->Cell(0, 10, "   NO REGISTRATIONS FOUND ", 0, 1); 
     $pdf->SetFont('Arial', '', 10);
 }

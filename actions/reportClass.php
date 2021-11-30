@@ -71,7 +71,7 @@ if (isset($_POST['submitClassRep'])) {
 
     $pdf = new PDF();
     $pdf->AliasNbPages();
-    $pdf->SetTextColor(122, 2, 73);
+    $pdf->SetTextColor(26, 22, 22);
     $pdf->AddPage();
     $pdf->SetFont('Arial', '', 10);
 
@@ -85,23 +85,27 @@ if ($rowCount > 0) {
         if ($init == 1) {
             $prevClass = $reg['classid'];
             $init = 0;
-            $class_string = ' ------ '.$reg['classname'].'  '
+            $class_string = ' '.$reg['classname'].'  '
                      .$reg['classdate'].' '
-                     .$reg['classtime'].' ------ ';
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(0, 10, $class_string, 0, 1);
+                     .$reg['classtime'].' ';
+
+            $pdf->SetFont('Arial','BU',10);
+            $pdf->Cell(0, 5, $class_string, 0, 1);
             $pdf->SetFont('Arial', '', 10);
+            $pdf->Ln(3);
         }
         if ($reg['classid'] !== $prevClass) {
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(0, 10, "   Total Registrations for this Class:  ".$regCount, 0, 1); 
+            $pdf->SetFont('Arial','B',10);
+            $pdf->Ln(2);
+            $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
             $regCount = 1;
             $prevClass = $reg['classid'];
-            $class_string = ' ------ '.$reg['classname'].'  '
+            $class_string = ' '.$reg['classname'].'  '
             .$reg['classdate'].' '
-            .$reg['classtime'].' ------ ';
-            $pdf->Ln(5);
-            $pdf->Cell(0, 10, $class_string, 0, 1);
+            .$reg['classtime'].' ';
+            $pdf->SetFont('Arial','BU',10);
+            $pdf->Ln(3);
+            $pdf->Cell(0, 15, $class_string, 0, 1);
             $pdf->SetFont('Arial', '', 10);
          }
 
@@ -113,12 +117,13 @@ if ($rowCount > 0) {
           " ";
 
      
-          $pdf->Cell(0, 10, $reg_string1, 0, 1);
+          $pdf->Cell(0, 5, $reg_string1, 0, 1);
        
 
     }
-    $pdf->SetFont('Arial','B',12);
-    $pdf->Cell(0, 10, "   Total Registrations for this Class:  ".$regCount, 0, 1); 
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Ln(2);
+    $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
     $pdf->SetFont('Arial', '', 10);
 } else {
     $pdf->SetFont('Arial','B',12);

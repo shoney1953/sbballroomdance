@@ -29,6 +29,7 @@ if (isset($_POST['submitUpdateReg'])) {
     $eventReg->eventid = $_POST['eventid'];
     $eventReg->email = $_POST['email'];
     $eventReg->userid = $_POST['userid'];
+    $eventReg->paid = $_POST['paid'];
 
     $eventReg->update();
     echo ' Registration was updated  <br>';
