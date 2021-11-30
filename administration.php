@@ -304,7 +304,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             ?> 
         </table>
         <br>
-        <div class="form-grid1">
+        <div class="form-grid3">
        
         <form method='POST' action="actions/maintainEvent.php">
         
@@ -323,6 +323,18 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <label for='addEvent'>Add an Event </label> <br> 
        
         <button type='submit' name="submitEvent">Submit</button>   
+        </div>   
+        </form>
+        <form method='POST' action="actions/reportEvent.php"> 
+        <div class="form-grid-div">
+        <h4>Report Events</h4>
+        <input type='checkbox' name='reportEvent'>
+        <label for='reportEvent'>Report on all or one Event </label>    
+        <label for='eventId'><em> &rarr; 
+            Specify Event ID from Table above for Report on One Event: </em> </label>
+        <input type='text' class='text-small' name='eventId' >
+        <br>
+        <button type='submit' name="submitEventRep">Report</button>   
         </div>   
         </form>
       
@@ -435,7 +447,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             ?> 
         </table>
         <br>
-        <div class="form-grid1">
+        <div class="form-grid3">
         
         <form method='POST' action="actions/maintainClass.php">
         
@@ -446,7 +458,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <label for='updateClass'>Update a Class </label>    
         <input type='checkbox' name='deleteClass'>
         <label for='deleteClass'>Delete a Class </label>
-        <label for='classId'><em> &rarr; Specify Class ID from Table above for Update or Delete: </em> </label>
+        <label for='classId'> <em> &rarr; 
+         Specify Class ID from Table above for Update or Delete: </em> </label>
         <input type='text' class='text-small' name='classId' >
               <br>
         <p>OR</p><br>
@@ -454,6 +467,18 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <label for='addClass'>Add a Class </label> <br> 
        
         <button type='submit' name="submitClass">Submit</button>   
+        </div>   
+        </form>
+        <form method='POST' action="actions/reportClass.php"> 
+        <div class="form-grid-div">
+        <h4>Report Events</h4>
+        <input type='checkbox' name='reportClass'>
+        <label for='reportClass'>Report on all or one Class </label>    
+        <label for='classId'><em> &rarr; 
+            Specify Class ID from Table above for Report on One Class: </em> </label>
+        <input type='text' class='text-small' name='classId' >
+        <br>
+        <button type='submit' name="submitClassRep">Report</button>   
         </div>   
         </form>
         

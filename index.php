@@ -120,6 +120,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" 
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>SBDC Ballroom Dance Beta</title>
 </head>
@@ -157,7 +159,9 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     <?php
    
     if (isset($_SESSION['username'])) {
-        echo ' <li><a href="yourProfile.php">Your Profile</a></li>';
+     
+        echo ' <li><a href="yourProfile.php">
+         Your Profile</a></li>';
         echo ' <li><a href="logout.php">Logout</a></li>'; 
         if (isset($_SESSION['role'])) {
             if (($_SESSION['role'] == 'ADMIN') || ($_SESSION['role'] == 'SUPERADMIN')) {

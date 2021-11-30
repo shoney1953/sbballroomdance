@@ -74,7 +74,7 @@ class EventRegistration {
           $this->eventid = $row['eventid'];
           $this->userid = $row['userid'];
           $this->eventname = $row['eventname'];
-          $this->eventname = $row['eventdate'];
+          $this->eventdate = $row['eventdate'];
           $this->email = $row['email'];
           $this->dateregistered = $row['dateregistered'];
           $this->paid = $row['paid'];
@@ -134,6 +134,32 @@ public function read_ByEmail($email) {
   
     return $stmt;
   }
+  public function read_ByEventId($eventid) {
+      
+    // Create query
+    // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.userid, r.paid
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    WHERE
+      r.eventid = :eventid ';
+ 
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
   
     // Create Danceevent
     public function create() {

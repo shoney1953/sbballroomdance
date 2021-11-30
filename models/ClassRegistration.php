@@ -136,7 +136,32 @@ public function read_ByEmail($email) {
   return $stmt;
 
 }
+public function read_ByClassid($classid) {
 
+
+  $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
+  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+  r.userid
+  FROM ' . $this->table . ' r
+  LEFT JOIN
+    danceclasses c ON r.classid = c.id
+  WHERE
+    r.classid = :classid ';
+  
+
+  // Prepare statement
+  $stmt = $this->conn->prepare($query);
+
+  // Bind ID
+  $stmt->bindParam('classid', $classid);
+
+  // Execute query
+  $stmt->execute();
+
+  return $stmt;
+
+
+}
     // Create Danceclass
     public function create() {
           // Create query
