@@ -20,7 +20,7 @@ function Header()
 	// Move to the right
 	$this->Cell(80);
 	// Title
-	$this->Cell(50,10,'SBDC Contacts',1,0,'C');
+	$this->Cell(50,10,'SBDC Contacts',0,0,'C');
 	// Line break
 	$this->Ln(20);
 }
@@ -40,9 +40,9 @@ function Footer()
 // Instanciation of inherited class
 $pdf = new PDF();
 $pdf->AliasNbPages();
-$pdf->SetTextColor(122, 2, 73);
+$pdf->SetTextColor(26, 22, 22);
 $pdf->AddPage();
-$pdf->SetFont('Arial','',12);
+$pdf->SetFont('Arial','',10);
 // go get contacts
 $result = $contact->read();
 
@@ -53,13 +53,14 @@ if($rowCount > 0) {
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
         $contact_string = 
+		" ".$contactdate.
           "   ".$firstname.
           " ".$lastname.
           "     ".$email.
            " ";
-		$pdf->Cell(0,10,$contactdate,1,1);
-        $pdf->Cell(0,10,$contact_string,1,1);
-		$pdf->Cell(0,10,"    ".$message,1,1);
+	
+        $pdf->Cell(0,5,$contact_string,0,1);
+		$pdf->Cell(0,5,"    ".$message,0,1);
     }
 
 

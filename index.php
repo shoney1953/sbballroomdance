@@ -208,9 +208,21 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <p>Our members also receive reduced rates for our dinner dances, but you may attend as a guest
             if you'd like to put your toe in the water before committing. </p><br>
         <a style="font-weight: bold"
-        href="https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20">
+        href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix">
          Click Here to See the Activities Calendar for times and dates.
         </a>
+        <br><br>
+        <p>Our classes are normally at the Mariposa Room at the DesertView Clubhouse
+            <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map.</a>
+        </p>
+        <p>Our Sunday Open Dances, and our Dinner Dances are normally in the MountainView
+            clubhouse in the Ballroom.
+            <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map</a>
+        </p>
+        <p>Our Wednesday Open Dances, and a few Dinner Dances are in the HOA 1 
+            clubhouse in the Vermillion Room and or Vistas Dining Room.
+            <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
+        </p>
         <br>
         <h3>Current Board Members</h3>
         <ul>
