@@ -168,12 +168,10 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                 echo '<li><a href="administration.php">Administration</a></li>';
             }
         }
-   
     } else {
         echo '<li><a href="signup.php">Sign Up</a></li>';
         echo '<li><a href="login.php">Login</a></li>';
     }
-    
     ?>
         </ul>
   
