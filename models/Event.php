@@ -23,6 +23,7 @@ class Event {
     // Get Events
     public function read() {
       // Create query
+
       $query = 'SELECT * FROM ' . $this->table . ' ORDER BY eventdate';
 
       // Prepare statement
