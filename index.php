@@ -16,9 +16,7 @@ else {
     $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
 }
 
-
-    $_SESSION['user'] = null;
-
+$_SESSION['user'] = null;
 
 $num_classes = 0;
 $num_events = 0;
@@ -173,8 +171,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         echo '<li><a href="login.php">Login</a></li>';
     }
     ?>
-        </ul>
-  
+        </ul> 
 </div>
 </nav>
     <div class="hero">

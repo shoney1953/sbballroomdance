@@ -9,12 +9,13 @@ deployment:
     -  /bin/cp -R includes $DEPLOYPATH
     -  /bin/cp -R js $DEPLOYPATH
     -  /bin/cp -R models $DEPLOYPATH 
-    -  /bin/cp -R footer.php $DEPLOYPATH
-    -  /bin/cp -R index.php $DEPLOYPATH
-    -  /bin/cp -R login.php $DEPLOYPATH
-    -  /bin/cp -R logout.php $DEPLOYPATH
-    -  /bin/cp -R yourProfile.php $DEPLOYPATH
-    -  /bin/cp -R resources.php $DEPLOYPATH
-    -  /bin/cp -R signup.php $DEPLOYPATH
+    -  /bin/cp administration.php $DEPLOYPATH
+    -  /bin/cp footer.php $DEPLOYPATH
+    -  /bin/cp index.php $DEPLOYPATH
+    -  /bin/cp login.php $DEPLOYPATH
+    -  /bin/cp logout.php $DEPLOYPATH
+    -  /bin/cp resources.php $DEPLOYPATH
+    -  /bin/cp signup.php $DEPLOYPATH
+    -  /bin/cp yourProfile.php $DEPLOYPATH
    
     
