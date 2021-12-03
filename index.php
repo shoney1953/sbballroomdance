@@ -6,13 +6,13 @@ require_once 'models/DanceClass.php';
 require_once 'models/User.php';
 
 if (isset($_GET['error'])) {
-    echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Validate Input</h4><br>';
+    echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
+    Please Validate Input</h4><br>';
     unset($_GET['error']);
 } elseif (isset($_GET['success'])) {
     echo '<br><h4 style="text-align: center"> '.$_GET['success'].'</h4><br>';
     unset($_GET['success']);
-} 
-else {
+} else {
     $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
 }
 
@@ -264,11 +264,11 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                     echo "<td>".$event['eventroom']."</td>";
                     echo "<td>".$event['eventcost']."</td>";
                     echo "<td>".$event['eventnumregistered']."</td>";
-                    if ($event['eventform']) {
-                        echo '<td><a href="'.$event['eventform'].'">VIEW</a></td>';
-                    } else {
+                if ($event['eventform']) {
+                    echo '<td><a href="'.$event['eventform'].'">VIEW</a></td>';
+                } else {
                         echo "<td> </td>"; 
-                    }
+                }
                   echo "</tr>";
             }
          
@@ -276,7 +276,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         </table>
         <br>
         <?php
-         if (isset($_SESSION['username'])) {
+        if (isset($_SESSION['username'])) {
             echo '<h3> Enter Information Below to Register for Event(s) </h3>';
         
             echo '<form method="POST"  action="actions/regEvent.php">';
@@ -288,21 +288,21 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             if (isset($_SESSION['userfirstname'])) {
                    echo '<label for="regFirstName">First Name (Required)</label><br>';
                    echo '<input type="text" name="regFirstName" value="'.$_SESSION['userfirstname'].'"><br>';
-                } else {
+            } else {
                     echo '<label for="regFirstName">First Name (Required)</label><br>';
                     echo '<input type="text" name="regFirstName" ><br>';
-                }
+            }
             if (isset($_SESSION['userlastname'])) {
                     echo '<label for="regLastName">Last Name (Required)</label><br>';
                     echo '<input type="text" name="regLastName" value="'.$_SESSION['userlastname'].'"><br>';
-                 } else {
+            } else {
                      echo '<label for="regLasttName">Last Name (Required)</label><br>';
                      echo '<input type="text" name="regLastName" ><br>';
-                 }
+            }
             if (isset($_SESSION['useremail'])) {
                     echo '<label for="regEmail">Email (Required)</label><br>';
                     echo '<input type="email" name="regEmail" value="'.$_SESSION['useremail']. '"><br><br>';
-                } else {
+            } else {
                     echo '<label for="regEmail">Email (Required)</label><br>';
                     echo '<input type="email" name="regEmail" ><br><br> <br>';  
             }
@@ -313,7 +313,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                 echo '<ul class="list-box">';
                 echo '<h4 style="text-decoration: underline;color: black"><em>To Register, Choose One or More of the Events Listed</em></h4><br>';
               
-                foreach ($upcomingEvents as $event) {
+            foreach ($upcomingEvents as $event) {
                     echo '<li class="list-none">';
                     $chkboxID = "ev".$event['id'];
                     $eventString = " ".$event['eventname']." ".$event['eventdate']." ";
@@ -321,7 +321,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                     echo "<label for='$chkboxID'> I would like to register for:
                         <strong>$eventString </strong></label><br>";
                     echo '</li>';   
-                    }
+            }
                   
                 echo '</ul>  <br><br>';
 
@@ -329,10 +329,10 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             echo '</div>';     
             echo '</form>';
   
-    } else {
-        echo '<h3 style="color: red"> <strong><em>Sign Up or Login to Register</em></strong> </h3><br><br>';
-    }
-    ?>
+        } else {
+            echo '<h3 style="color: red"> <strong><em>Sign Up or Login to Register</em></strong> </h3><br><br>';
+        }
+        ?>
     </section>
     </div>
    <div class="container-section ">
@@ -357,8 +357,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             </tr>
             <?php 
             $classNumber = 0;
-            foreach ($upcomingClasses as $class)
-             {
+            foreach ($upcomingClasses as $class) {
                  $classNumber++;
                   echo "<tr>";
                     
@@ -373,42 +372,42 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                     echo "<td>".$class['room']."</td>";
 
                   echo "</tr>";
-              }
+            }
               
             ?> 
         </table>
         <br>
         
        <?php
-         if (isset($_SESSION['username'])) {
-        echo '<h3> Enter Information Below to Register for all or Selected Classes </h3>';
+        if (isset($_SESSION['username'])) {
+            echo '<h3> Enter Information Below to Register for all or Selected Classes </h3>';
         
-        echo '<form method="POST"  action="actions/regClass.php">';
-        echo '<div class="form-grid3">';
+            echo '<form method="POST"  action="actions/regClass.php">';
+            echo '<div class="form-grid3">';
 
             echo '<div class="form-grid-div"> <br>';
                
-                if (isset($_SESSION['userfirstname'])) {
+            if (isset($_SESSION['userfirstname'])) {
                     echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
                     echo '<input type="text" name="regFirstName1" value="'.$_SESSION['userfirstname'].'"><br>';
-                } else {
+            } else {
                     echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
                     echo '<input type="text" name="regFirstName1" ><br>';
-                }
-                if (isset($_SESSION['userlastname'])) {
+            }
+            if (isset($_SESSION['userlastname'])) {
                     echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
                     echo '<input type="text" name="regLastName1" value="'.$_SESSION['userlastname'].'"><br>';
-                } else {
+            } else {
                     echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
                     echo '<input type="text" name="regLastName1" ><br>';
-                }
-                if (isset($_SESSION['useremail'])) {
+            }
+            if (isset($_SESSION['useremail'])) {
                     echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
                     echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
-                } else {
+            } else {
                     echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
                     echo '<input type="email" name="regEmail1" ><br><br>';
-                }
+            }
            
                 echo '<label for="message2ins">Message to Instructor(Optional)</label><br>';
                echo '<textarea id="message2ins" name="message2ins" rows="4" cols="50"></textarea><br>';
@@ -426,14 +425,14 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                 echo '<ul class="list-box">';
                 echo '<h4 style="text-decoration: underline;color: black"><em>
                   To Enroll -- Please select One or More of the Classes Listed</em></h4><br>';
-                foreach ($upcomingClasses as $class) {
+            foreach ($upcomingClasses as $class) {
                     echo '<li class="list-none">';
                     $chkboxID = "cb".$class['id'];
                     $classString = " ".$class['classname']." ".$class['classlevel']." ".$class['date']." ";
                     echo "<input type='checkbox' name='$chkboxID'>";
                     echo "<label for='$chkboxID'> I/We would like to register for:
                         <strong>$classString </strong></label><br>";
-                    }
+            }
                     echo '</li>';
                 
                 echo '</ul> <br><br>';
@@ -441,13 +440,13 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                  echo '<button name="submitRegClass" type="submit">Submit</button><br>';
             echo '</div>'; 
            
-        echo '</form>';
-        echo '</div>';
+            echo '</form>';
+            echo '</div>';
 
-    } else {
-        echo '<h3 style="color: red"> <strong><em>Sign Up or Login to Register</em></strong> </h3><br><br>';
-    }
-    ?>
+        } else {
+            echo '<h3 style="color: red"> <strong><em>Sign Up or Login to Register</em></strong> </h3><br><br>';
+        }
+        ?>
     </section>
     </div>
   
