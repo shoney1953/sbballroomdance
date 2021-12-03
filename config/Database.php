@@ -9,7 +9,7 @@
     private $url;
 
     public function __construct() {
-   
+   var_dump($_SERVER['SERVER_NAME']);
        if ($_SERVER['SERVER_NAME'] === 'localhost') {         
            $this->host = "localhost";
            $this->username = "root";
@@ -19,7 +19,8 @@
       if ($_SERVER['SERVER_NAME'] !== 'localhost') {
      
   
-        if ($_SERVER['SERVER_NAME'] === "www.sbballroomdance.com") {
+        if (($_SERVER['SERVER_NAME'] === "www.sbballroomdance.com")
+          || ($_SERVER['SERVER_NAME'] === "sbballroomdance.com") ) {
          
           $this->host = "localhost";
           $this->username = "sbballro_appuser";
