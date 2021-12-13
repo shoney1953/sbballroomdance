@@ -385,7 +385,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <br>
         <div class="form-grid1">
         
-        <form method='POST' action="actions/maintaineventReg.php">
+        <form method='POST' action="actions/maintainEventReg.php">
         
         <div class="form-grid-div">
         <h4>Maintain event Registrations</h4>
