@@ -20,7 +20,7 @@
      
   
         if (($_SERVER['SERVER_NAME'] === "www.sbballroomdance.com")
-          || ($_SERVER['SERVER_NAME'] === "sbballroomdance.com") ) {
+            || ($_SERVER['SERVER_NAME'] === "sbballroomdance.com") ) {
          
           $this->host = "localhost";
           $this->username = "sbballro_appuser";

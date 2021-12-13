@@ -305,7 +305,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             ?> 
         </table>
         <br>
-        <div class="form-grid3">
+        <div class="form-grid2">
        
         <form method='POST' action="actions/maintainEvent.php">
         
@@ -454,7 +454,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             ?> 
         </table>
         <br>
-        <div class="form-grid3">
+        <div class="form-grid2">
         
         <form method='POST' action="actions/maintainClass.php">
         
@@ -478,7 +478,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         </form>
         <form method='POST' action="actions/reportClass.php"> 
         <div class="form-grid-div">
-        <h4>Report Events</h4>
+        <h4>Report Classes</h4>
         <input type='checkbox' name='reportClass'>
         <label for='reportClass'>Report on all or one Class </label>    
         <label for='classId'><em> &rarr; 
