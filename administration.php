@@ -374,7 +374,12 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     echo "<td>".$eventRegistration['firstname']."</td>";
                     echo "<td>".$eventRegistration['lastname']."</td>";
                     echo "<td>".$eventRegistration['email']."</td>"; 
-                    echo "<td>".$eventRegistration['paid']."</td>";            
+         
+                    if ($eventRegistration['paid'] == true ) {
+                        echo "<td>&#10004;</td>"; 
+                      } else {
+                          echo "<td>&times;</td>"; 
+                      }          
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
              
                   echo "</tr>";

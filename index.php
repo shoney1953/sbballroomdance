@@ -221,10 +221,10 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <br>
         <h3>Current Board Members</h3>
         <ul>
-            <li class="li-none li-large">Brian Hand, President</li>
-            <li class="li-none li-large">Richard Adinolfi, Vice-President</li>
-            <li class="li-none li-large">Dottie Adams, Treasurer</li>
-            <li class="li-none li-large">Wanda Ross, Secretary</li>
+            <li class="li-none li-large">Brian Hand, President    -&rarr;          president@sbballroomdance.com</li>
+            <li class="li-none li-large">Richard Adinolfi, Vice-President -&rarr;  vicepresident@sbballroomdance.com</li>
+            <li class="li-none li-large">Dottie Adams, Treasurer   -&rarr;         treasurer@sbballroomdance.com</li>
+            <li class="li-none li-large">Wanda Ross, Secretary    -&rarr;          secretary@sbballroomdance.com</li>
         </ul>
         <br>
         <ul>

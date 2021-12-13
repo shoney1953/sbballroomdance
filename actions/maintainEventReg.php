@@ -100,7 +100,7 @@ if (!isset($_POST['regId'])) {
         echo '<input type="text" name="lastname" value="'.$eventReg->lastname.'"><br>';
         echo '<label for="email">Email</label>';
         echo '<input type="email" name="email" value="'.$eventReg->email.'"><br>';
-        echo '<label for="paid">Paid</label>';
+        echo '<label for="paid">Paid (1 = YES; 0 = NO)</label>';
         echo '<input type="number" name="paid" min="0" max="1" value="'.$eventReg->paid.'"><br>';
         echo '<label for="userid">Userid</label>';
         echo '<input type="text" name="userid" value="'.$eventReg->userid.'"><br>';
