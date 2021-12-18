@@ -3,6 +3,7 @@ require_once '../includes/sendEmail.php';
 require_once '../config/Database.php';
 require_once '../models/ClassRegistration.php';
 require_once '../models/DanceClass.php';
+require_once '../models/User.php';
 session_start();
 $classes = $_SESSION['upcoming_classes'];
 
@@ -10,6 +11,7 @@ $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
 $danceClass = new DanceClass($db);
+$user = new User($db);
 
 
 $regSelected = [];
@@ -24,16 +26,26 @@ $replyEmail = 'sheilahoney53@gmail.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";
 $replyTopic = "Class Registration";
+$regId1 = 0;
+$regId2 = 0;
 
 if (isset($_POST['submitRegClass'])) {
     $regFirstName1 = htmlentities($_POST['regFirstName1']);
     $regLastName1 = htmlentities($_POST['regLastName1']);
     $regEmail1 = htmlentities($_POST['regEmail1']);
+    if ($user->getUserName($regEmail1)) {    
+
+             $regId1 = $user->id;
+        }
 
     $regFirstName2 = htmlentities($_POST['regFirstName2']);
     $regLastName2 = htmlentities($_POST['regLastName2']);
     $regEmail2 = htmlentities($_POST['regEmail2']);
-    $regEmail2 = filter_var($regEmail2, FILTER_SANITIZE_EMAIL);   
+    $regEmail2 = filter_var($regEmail2, FILTER_SANITIZE_EMAIL); 
+    if ($user->getUserName($regEmail2)) {    
+
+        $regId2 = $user->id;
+   }  
 
     if (isset($_POST['message2ins'])) {
         $message2Ins = $_POST['message2ins'];
@@ -75,8 +87,10 @@ if (isset($_POST['submitRegClass'])) {
                 if(isset($_SESSION['userid'])) {
                     $classReg->userid = $_SESSION['userid'];
                 } else {
-                    $classReg->userid = 0;
+                    $classReg->userid = $regId1;
                 }
+               
+               
             
                 $classReg->create();
                 $danceClass->addCount($classId);
@@ -86,6 +100,11 @@ if (isset($_POST['submitRegClass'])) {
                     $classReg->lastname = $regLastName2;
                     $classReg->classid = $classId;
                     $classReg->email = $regEmail2;
+                    $classReg->userid = $regId2;
+                    if ($regId1 === 0) {
+                        $emailBody .=
+                     "<br> We didn't find your email. So please sign up, or you may attend only 1 class free before joining the club.<br>";
+                    }
                     $classReg->create();
                     $danceClass->addCount($classId);
                      } // end regemail2
@@ -146,9 +165,16 @@ if (isset($_POST['submitRegClass'])) {
                     $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
                 }
                 $emailBody .= "NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
+                if ($regId1 === 0) {
+                    $emailBody .= "<br> We didn't find this email. So the person may not have joined yet.<br>";
+                }
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
                     $emailBody .= "And <br>  NAME: ".$regFirstName2." ".$regLastName2."<br>  EMAIL:  ".$regEmail2."<br>";
                 }
+                if ($regId2 === 0) {
+                    $emailBody .= "<br> We didn't find this email.  So the person may not have joined yet.<br>";
+                }
+           
                 $classString = '';
                 $classString = "<br>Class: ".$class['classname']."<br>";
 

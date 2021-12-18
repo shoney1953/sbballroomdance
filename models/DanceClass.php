@@ -106,6 +106,50 @@ class DanceClass {
 
       return false;
     }
+       // Create Danceclass
+       public function update() {
+        // Create query
+        $query = 'UPDATE ' . $this->table . 
+        ' SET classname = :classname, classlevel = :classlevel, registrationemail = :registrationemail,
+        time = :time, instructors = :instructors, classlimit = :classlimit, numregistered = :numregistered,
+        room = :room, date = :date  where id = :id';
+
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Clean data
+        $this->classname = htmlspecialchars(strip_tags($this->classname));
+        $this->classlevel = htmlspecialchars(strip_tags($this->classlevel));
+        $this->date = htmlspecialchars(strip_tags($this->date));
+        $this->room = htmlspecialchars(strip_tags($this->room));
+        $this->time = htmlspecialchars(strip_tags($this->time));
+        $this->instructors = htmlspecialchars(strip_tags($this->instructors));
+        $this->registrationemail = htmlspecialchars(strip_tags($this->registrationemail));
+        $this->classlimit = htmlspecialchars(strip_tags($this->classlimit));
+        $this->numregistered = htmlspecialchars(strip_tags($this->numregistered));
+
+        // Bind data
+        $stmt->bindParam(':classname', $this->classname);
+        $stmt->bindParam(':classlevel', $this->classlevel);
+        $stmt->bindParam(':room', $this->room);
+        $stmt->bindParam(':time', $this->time);
+        $stmt->bindParam(':instructors', $this->instructors);
+        $stmt->bindParam(':registrationemail', $this->registrationemail);
+        $stmt->bindParam(':date', $this->date);
+        $stmt->bindParam(':classlimit', $this->classlimit);
+        $stmt->bindParam(':numregistered', $this->numregistered);
+        $stmt->bindParam(':id', $this->id);
+
+        // Execute query
+        if($stmt->execute()) {
+          return true;
+    }
+
+    // Print error if something goes wrong
+    printf("Error: %s.\n", $stmt->error);
+
+    return false;
+  }
 
  
     public function addCount($id) {

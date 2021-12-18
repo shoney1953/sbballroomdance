@@ -102,7 +102,7 @@ if (!isset($_POST['classId'])) {
         echo '<label for="classname">Class Name</label><br>';
         echo '<input type="text" name="classname" value="'.$class->classname.'"><br>';
         echo '<label for="classlevel">Class Level</label><br>';
-        echo '<select name = "classlevel value="'.$class->classlevel.'"><br>';
+        echo '<select name = "classlevel" value="'.$class->classlevel.'"><br>';
         echo '<option value = "Beginner">Beginner </option>';
         echo '<option value = "Intermediate">Intermediate</option>';
         echo '<option value = "Advanced">Advanced</option>';
