@@ -283,47 +283,53 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             echo '<div class="form-grid3">';
       
             echo '<div class="form-grid-div">  <br>';
-              
+        if (isset($_SESSION['userfirstname'])) {
+                echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                echo '<input type="text" name="regFirstName1" value="'.$_SESSION['userfirstname'].'"><br>';
+        } else {
+                echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                echo '<input type="text" name="regFirstName1" ><br>';
+        }
+        if (isset($_SESSION['userlastname'])) {
+                echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                echo '<input type="text" name="regLastName1" value="'.$_SESSION['userlastname'].'"><br>';
+        } else {
+                echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                echo '<input type="text" name="regLastName1" ><br>';
+        }
+        if (isset($_SESSION['useremail'])) {
+                echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
+        } else {
+                echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                echo '<input type="email" name="regEmail1" ><br><br>';
+        }
+       
+         echo' </div>';
+        echo '<div class="form-grid-div"> <br>';
+           
+            echo '<label for="regFirstName2">Second Registrant First Name(optional)</label><br>';
+            echo '<input type="text" name="regFirstName2" ><br>';
+            echo '<label for="regLastName2">Second Registrant Last Name(optional)</label><br>';
+            echo '<input type="text" name="regLastName2" ><br>';
+            echo '<label for="regEmail2">Second Registrant Email (optional)</label><br>';
+            echo '<input type="email" name="regEmail2" ><br> <br>';
+        echo '</div>';     
+        echo '<div class="form-grid-div">';
+            echo '<ul class="list-box">';
+            echo '<h4 style="text-decoration: underline;color: black"><em>
+              To Register -- Please select One or More of the Events Listed</em></h4><br>';
+        foreach ($upcomingEvents as $event) {
+                echo '<li class="list-none">';
+                $chkboxID = "ev".$event['id'];
+                $eventString = " ".$event['eventname']." ".$event['eventdate']." ";
+                echo "<input type='checkbox' name='$chkboxID'>";
+                echo "<label for='$chkboxID'> I/We would like to register for:
+                    <strong>$eventString </strong></label><br>";
+        }
+                echo '</li>';
             
-            if (isset($_SESSION['userfirstname'])) {
-                   echo '<label for="regFirstName">First Name (Required)</label><br>';
-                   echo '<input type="text" name="regFirstName" value="'.$_SESSION['userfirstname'].'"><br>';
-            } else {
-                    echo '<label for="regFirstName">First Name (Required)</label><br>';
-                    echo '<input type="text" name="regFirstName" ><br>';
-            }
-            if (isset($_SESSION['userlastname'])) {
-                    echo '<label for="regLastName">Last Name (Required)</label><br>';
-                    echo '<input type="text" name="regLastName" value="'.$_SESSION['userlastname'].'"><br>';
-            } else {
-                     echo '<label for="regLasttName">Last Name (Required)</label><br>';
-                     echo '<input type="text" name="regLastName" ><br>';
-            }
-            if (isset($_SESSION['useremail'])) {
-                    echo '<label for="regEmail">Email (Required)</label><br>';
-                    echo '<input type="email" name="regEmail" value="'.$_SESSION['useremail']. '"><br><br>';
-            } else {
-                    echo '<label for="regEmail">Email (Required)</label><br>';
-                    echo '<input type="email" name="regEmail" ><br><br> <br>';  
-            }
-            
-            echo '</div>';
-   
-            echo '<div class="form-grid-div">';
-                echo '<ul class="list-box">';
-                echo '<h4 style="text-decoration: underline;color: black"><em>To Register, Choose One or More of the Events Listed</em></h4><br>';
-              
-            foreach ($upcomingEvents as $event) {
-                    echo '<li class="list-none">';
-                    $chkboxID = "ev".$event['id'];
-                    $eventString = " ".$event['eventname']." ".$event['eventdate']." ";
-                    echo "<input type='checkbox' name='$chkboxID'>";
-                    echo "<label for='$chkboxID'> I would like to register for:
-                        <strong>$eventString </strong></label><br>";
-                    echo '</li>';   
-            }
-                  
-                echo '</ul>  <br><br>';
+            echo '</ul> <br><br>';
 
                  echo '<button name="submitEventReg" type="submit">Submit</button><br>';
             echo '</div>';     
