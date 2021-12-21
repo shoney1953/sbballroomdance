@@ -16,7 +16,7 @@ if (isset($_GET['error'])) {
     unset($_GET['success']);
 } else {
     $_SESSION['profileurl'] = $_SERVER['REQUEST_URI']; 
-    $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
+   
 }
 
 $classRegs = [];
@@ -27,8 +27,13 @@ $database = new Database();
 $db = $database->connect();
 $userid = $_SESSION['userid'];
 $user = new User($db);
+$partner = new User($db);
 $user->id = $_SESSION['userid'];
 $user->read_single();
+if ($user->partnerId !== 0) {
+    $partner->id = $user->partnerId;
+    $partner->read_single();
+}
 
 /* get class registrations */
 $classReg = new ClassRegistration($db);
@@ -105,7 +110,7 @@ if ($rowCount > 0) {
     <br>
    <br><br><br> 
     <div class="content">
-    <br><br>
+    <br>
     <h1>User Profile</h1>
     <div class="form-grid3">
     <div class="form-grid-div">
@@ -123,11 +128,98 @@ if ($rowCount > 0) {
             echo '<li class=li-none> Password Last Changed: 
             <strong>'.$user->passwordChanged.' 
             </strong></li>';
-            ?>
-       </ul>
-    </div>
-    </div>
-       <br>
+            echo '<li class=li-none> Partner Id: 
+            <strong>'.$user->partnerId.' 
+            </strong></li>';
+            if ($user->partnerId !== 0) {
+                echo '<li class=li-none> Partner Name: 
+                <strong>'.$partner->firstname.' '.$partner->lastname.' 
+                </strong></li>';
+            }
+            echo '<li class=li-none> Primary Phone: 
+            <strong>'.$user->phone1.' 
+            </strong></li>';
+            echo '<li class=li-none> Secondary Phone: 
+            <strong>'.$user->phone2.' 
+            </strong></li>';
+            echo '<li class=li-none> HOA: 
+            <strong>'.$user->hoa.' 
+            </strong></li>';
+            echo '<li class=li-none> Street Address: 
+            <strong>'.$user->streetAddress.' 
+            </strong></li>';
+            echo '<li class=li-none> City: 
+            <strong>'.$user->city.' 
+            </strong></li>';
+            echo '<li class=li-none> State: 
+            <strong>'.$user->state.' 
+            </strong></li>';
+            echo '<li class=li-none> Zip: 
+            <strong>'.$user->zip.' 
+            </strong></li>';
+            echo '<li class=li-none> Notes: 
+            <strong>'.$user->notes.' 
+            </strong></li>';
+            
+        echo '</ul>';
+    echo '</div>';
+    echo '</div>';
+    echo '<div class="form-grid-div">';
+
+        echo '<form method="POST" action="actions/updateUserInfo.php">';
+        echo '<label for="firstname">First Name</label><br>';
+        echo '<input type="text" name="firstname" value="'.$user->firstname.'"><br>';
+        echo '<label for="lastname">Last Name</label><br>';
+        echo '<input type="text" name="lastname" value="'.$user->lastname.'"><br>';
+        echo '<label for="partnerid">Partner Id</label><br>';
+        echo '<input type="text" name="partnerid" value="'.$user->partnerId.'"><br>';
+        echo '<label for="newemail">New Email -- Must Not Be a Duplicate</label><br>';
+        echo '<input type="email" name="newemail" value="'.$user->email.'" ><br>';
+        echo '<label for="newuser">Username -- Must not be a Duplicate</label><br>';
+        echo '<input type="text" name="newuser" value="'.$user->username.'"><br>';
+        echo '<input type="hidden" name="id" value="'.$user->id.'">';
+        echo '<input type="hidden" name="username" value="'.$user->username.'">';
+        echo '<input type="hidden" name="email" value="'.$user->email.'">';
+        echo '<input type="hidden" name="password" value="'.$user->password.'">';
+        echo '<input type="hidden" name="role" value="'.$user->role.'">';
+        echo '<label for="hoa">HOA</label><br>';
+        echo '<select name = "hoa" value="'.$user->hoa.'">';
+        echo '<option value = "1">HOA 1</option>';
+        echo '<option value = "2">HOA 2</option>';
+        echo '</select><br>';
+        echo '<label for="phone1" >Enter primary phone number: </label><br>';
+        echo '<input type="tel"  name="phone1"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            required value="'.$user->phone1.'">';
+        echo '<small>Format: 123-456-7890</small><br>';
+        echo '<label for="phone2">Enter secondary phone number (Optional): </label><br>';
+        echo '<input type="tel"  name="phone2"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            value="'.$user->phone2.'">' ;
+        echo '<small>Format: 123-456-7890</small><br>';
+        echo '<label for="streetaddress">Street Address</label><br>';
+        echo '<input type="text" name="streetaddress" 
+            value="'.$user->streetAddress.'"><br>';
+        echo '<label for="city">City</label><br>';
+        echo '<input type="text" name="city" value="'.$user->city.'">  ';
+        echo '<label for="state">State</label><br>';
+        echo '<input type="text" name="state" maxsize="2" 
+            value="'.$user->state.'">  ';
+        echo '<label for="zip">Zip</label><br>';
+        echo '<input type="text" name="zip" maxsize="10" 
+            value="'.$user->zip.'"><br>';
+
+        echo '<p> Notes</p><br>';
+        echo '<textarea name="notes" cols="50" rows="5" 
+            >'.$user->notes.'</textarea><br><br>';
+        echo '<button type="submit" name="submitUpdateUser">
+             Update Your Information</button><br>';
+  
+        echo '</form>';
+        echo '</div>';
+  
+     ?>
+    
        <div class="form-grid-div">
         <form method="POST" action="actions/updateUserPass.php">
     

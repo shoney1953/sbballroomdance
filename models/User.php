@@ -11,11 +11,17 @@ class User {
     public $email;
     public $password;
     public $created;
-    public $memberid;
     public $role;
     public $passwordChanged;
-    
-
+    public $partnerId;
+    public $streetAddress;
+    public $city;
+    public $state;
+    public $zip;
+    public $hoa;
+    public $phone1;
+    public $phone2;
+    public $notes;
 
     // Constructor with DB
     public function __construct($db) {
@@ -59,11 +65,20 @@ class User {
           $this->lastname = $row['lastname'];
           $this->username = $row['username'];
           $this->email = $row['email'];
+          $this->role = $row['role'];
           $this->password = $row['password'];
           $this->created = $row['created'];
-          $this->memberid = $row['memberid'];
-          $this->memberid = $row['role'];
+          $this->role = $row['role'];
           $this->passwordChanged = $row['passwordChanged'];
+          $this->partnerId = $row['partnerid'];
+          $this->streetAddress = $row['streetaddress'];
+          $this->city = $row['city'];
+          $this->state = $row['state'];
+          $this->zip = $row['zip'];
+          $this->hoa = $row['hoa'];
+          $this->phone1 = $row['phone1'];
+          $this->phone2 = $row['phone2'];
+          $this->notes = $row['notes'];
 
 
     }
@@ -92,9 +107,17 @@ class User {
       $this->email = $row['email'];
       $this->password = $row['password'];
       $this->created = $row['created'];
-      $this->memberid = $row['memberid'];
       $this->role = $row['role'];
       $this->passwordChanged = $row['passwordChanged'];
+      $this->partnerId = $row['partnerid'];
+      $this->streetAddress = $row['streetaddress'];
+      $this->city = $row['city'];
+      $this->state = $row['state'];
+      $this->zip = $row['zip'];
+      $this->hoa = $row['hoa'];
+      $this->phone1 = $row['phone1'];
+      $this->phone2 = $row['phone2'];
+      $this->notes = $row['notes'];
   
         return true;
       }
@@ -148,12 +171,15 @@ class User {
 
 
 
-    // Create Danceclass
+    // Create User
     public function create() {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          username = :username, password = :password ' ;
+          username = :username, password = :password ,
+          partnerid = :partnerid, streetaddress = :streetaddress,
+          city = :city, state = :state, zip = :zip, hoa = :hoa,
+          phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -164,8 +190,16 @@ class User {
           $this->username = htmlspecialchars(strip_tags($this->username));
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->password = $this->password;
-          
-      
+          $this->hoa = $this->hoa;
+          $this->partnerId = 0;
+          $this->streetAddress = htmlspecialchars(strip_tags($this->streetAddress));
+          $this->city = htmlspecialchars(strip_tags($this->city));
+          $this->state = htmlspecialchars(strip_tags($this->state));
+          $this->notes = htmlspecialchars(strip_tags($this->notes));
+          $this->phone1 = htmlspecialchars(strip_tags($this->phone1));
+          $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
+          $this->zip = htmlspecialchars(strip_tags($this->zip));
+
 
           // Bind data
           $stmt->bindParam(':firstname', $this->firstname);
@@ -173,8 +207,15 @@ class User {
           $stmt->bindParam(':username', $this->username);
           $stmt->bindParam(':email', $this->email);
           $stmt->bindParam(':password', $this->password);
-      
-     
+          $stmt->bindParam(':partnerid', $this->partnerId);
+          $stmt->bindParam(':streetaddress', $this->streetAddress);
+          $stmt->bindParam(':city', $this->city);
+          $stmt->bindParam(':state', $this->state);
+          $stmt->bindParam(':hoa', $this->hoa);
+          $stmt->bindParam(':zip', $this->zip);
+          $stmt->bindParam(':phone1', $this->phone1);
+          $stmt->bindParam(':phone2', $this->phone2);
+          $stmt->bindParam(':notes', $this->notes);
 
           // Execute query
           if($stmt->execute()) {
@@ -193,8 +234,11 @@ class User {
       
           $query = 'UPDATE ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          username = :username, 
-          memberid = :memberid WHERE id = :id';
+          username = :username, partnerid = :partnerid, 
+          streetaddress = :streetaddress,
+          city = :city, state = :state, zip = :zip, hoa = :hoa,
+          phone1 = :phone1, phone2 = :phone2, notes = :notes
+          WHERE id = :id';
    
 
           // Prepare statement
@@ -204,9 +248,17 @@ class User {
           $this->firstname = htmlspecialchars(strip_tags($this->firstname));
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
           $this->email = htmlspecialchars(strip_tags($this->email));
-          $this->memberid = htmlspecialchars(strip_tags($this->memberid));
           $this->username = htmlspecialchars(strip_tags($this->username));
-
+          $this->hoa = $this->hoa;
+          $this->partnerId = $this->partnerId;
+          $this->streetAddress = htmlspecialchars(strip_tags($this->streetAddress));
+          $this->city = htmlspecialchars(strip_tags($this->city));
+          $this->state = htmlspecialchars(strip_tags($this->state));
+          $this->notes = htmlspecialchars(strip_tags($this->notes));
+          $this->phone1 = htmlspecialchars(strip_tags($this->phone1));
+          $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
+          $this->zip = htmlspecialchars(strip_tags($this->zip));
+      
 
           // Bind data
           $stmt->bindParam(':id', $this->id);
@@ -214,8 +266,15 @@ class User {
           $stmt->bindParam(':lastname', $this->lastname);
           $stmt->bindParam(':email', $this->email);
           $stmt->bindParam(':username', $this->username);
-        
-          $stmt->bindParam(':memberid', $this->memberid);
+          $stmt->bindParam(':partnerid', $this->partnerId);
+          $stmt->bindParam(':streetaddress', $this->streetAddress);
+          $stmt->bindParam(':city', $this->city);
+          $stmt->bindParam(':state', $this->state);
+          $stmt->bindParam(':hoa', $this->hoa);
+          $stmt->bindParam(':zip', $this->zip);
+          $stmt->bindParam(':phone1', $this->phone1);
+          $stmt->bindParam(':phone2', $this->phone2);
+          $stmt->bindParam(':notes', $this->notes);
 
           // Execute query
           if($stmt->execute()) {

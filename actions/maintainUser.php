@@ -28,6 +28,7 @@ if(isset($_GET['error'])) {
 } 
 else {
     $_SESSION['userurl'] = $_SERVER['REQUEST_URI']; 
+    $_SESSION['returnurl'] = $_SERVER['REQUEST_URI']; 
 }
 
 $database = new Database();
@@ -90,9 +91,7 @@ if (!isset($_POST['userId'])) {
                 echo '<th>First Name </th>';
                 echo '<th>Last Name</th>';
                 echo '<th>Email</th>';
-                echo '<th>Member Id    </th>';
    
-       
             echo '</tr>';
           
                 echo "<tr>";
@@ -102,7 +101,6 @@ if (!isset($_POST['userId'])) {
                     echo "<td>".$user->firstname."</td>";
                     echo "<td>".$user->lastname."</td>";
                     echo "<td>".$user->email."</td>";
-                    echo "<td>".$user->memberid."</td>";
 
                 echo "</tr>";
 
@@ -114,31 +112,76 @@ if (!isset($_POST['userId'])) {
         echo '<div class="form-grid1">';
         echo '<form method="POST" action="updateUser.php">';
         echo '<div class="form-grid-div">';
-        echo '<label for="memberid">Memberid Id</label>';
-        echo '<input type="text" name="memberid" value="'.$user->memberid.'"><br>';
-        echo '<label for="firstname">First Name</label>';
+        echo '<label for="firstname">First Name</label><br>';
         echo '<input type="text" name="firstname" value="'.$user->firstname.'"><br>';
-        echo '<label for="lastnames">Last Name</label>';
+        echo '<label for="lastname">Last Name</label><br>';
         echo '<input type="text" name="lastname" value="'.$user->lastname.'"><br>';
-        echo '<label for="newemail">New Email -- Must Not Be a Duplicate</label>';
+        echo '<label for="partnerid">Partner Id</label><br>';
+        echo '<input type="text" name="partnerid" value="'.$user->partnerId.'"><br>';
+        echo '<label for="newemail">New Email -- Must Not Be a Duplicate</label><br>';
         echo '<input type="email" name="newemail" value="'.$user->email.'" ><br>';
-        echo '<label for="newuser">Username -- Must not be a Duplicate</label>';
+        echo '<label for="newuser">Username -- Must not be a Duplicate</label><br>';
         echo '<input type="text" name="newuser" value="'.$user->username.'"><br>';
-        echo '<label for="role">Role</label>';
-        echo '<select name = "role" value="'.$user->role.'">';
-        echo '<option value = "MEMBER">Normal Member Functions</option>';
-        echo '<option value = "ADMIN">Can Update all but Users</option>';
-        echo '<option value = "SUPERADMIN">Can Update All Tables</option>';
-        echo '</select>';
-        echo '<label for="resetPass">Reset Password</label>';
+        echo '<label for="role">Role</label><br>';
+        echo '<select name="role"  >';
+        if ($user->role === "MEMBER") {
+            echo '<option value = "MEMBER" selected>Normal Member Functions</option>';
+        } else {
+            echo '<option value = "MEMBER">Normal Member Functions</option>';
+        }
+        if ($user->role === "ADMIN") {
+            echo '<option value = "ADMIN" selected>Can Update all but Users</option>';
+        } else {
+            echo '<option value = "ADMIN">Can Update all but Users</option>';
+        }
+        if ($user->role === "SUPERADMIN") {
+            echo '<option value = "SUPERADMIN" selected>Can Update All Tables</option>';
+        } else {
+            echo '<option value = "SUPERADMIN">Can Update All Tables</option>';
+        }
+
+        
+        echo '</select><br>';
+        echo '<label for="resetPass">Reset Password</label><br>';
         echo '<input type="password" name="resetPass" minlength="8"><br>';
-        echo '<label for="resetPass2">Retype Reset Password</label>';
+        echo '<label for="resetPass2">Retype Reset Password</label><br>';
         echo '<input type="password" name="resetPass2" minlength="8"><br>';
         echo '<input type="hidden" name="id" value="'.$user->id.'">';
         echo '<input type="hidden" name="username" value="'.$user->username.'">';
         echo '<input type="hidden" name="email" value="'.$user->email.'">';
         echo '<input type="hidden" name="password" value="'.$user->password.'">';
-        echo '<button type="submit" name="submitUpdateUser">Update the User</button><br>';
+        echo '<label for="hoa">HOA</label><br>';
+        echo '<select name = "hoa" value="'.$user->hoa.'">';
+        echo '<option value = "1">HOA 1</option>';
+        echo '<option value = "2">HOA 2</option>';
+        echo '</select><br>';
+        echo '<label for="phone1" >Enter primary phone number: </label><br>';
+        echo '<input type="tel"  name="phone1"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            required value="'.$user->phone1.'">';
+        echo '<small>Format: 123-456-7890</small><br>';
+        echo '<label for="phone2">Enter secondary phone number (Optional): </label><br>';
+        echo '<input type="tel"  name="phone2"
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+            value="'.$user->phone2.'">' ;
+        echo '<small>Format: 123-456-7890</small><br>';
+        echo '<label for="streetaddress">Street Address</label><br>';
+        echo '<input type="text" name="streetaddress" 
+            value="'.$user->streetAddress.'"><br>';
+        echo '<label for="city">City</label><br>';
+        echo '<input type="text" name="city" value="'.$user->city.'">  ';
+        echo '<label for="state">State</label><br>';
+        echo '<input type="text" name="state" maxsize="2" 
+            value="'.$user->state.'">  ';
+        echo '<label for="zip">Zip</label><br>';
+        echo '<input type="text" name="zip" maxsize="10" 
+            value="'.$user->zip.'"><br>';
+
+        echo '<p> Notes</p><br>';
+        echo '<textarea name="notes" cols="50" rows="5" 
+            >'.$user->notes.'</textarea><br><br>';
+        echo '<button type="submit" name="submitUpdateUser">
+             Update the User</button><br>';
         echo '</div>';
         echo '</form>';
         echo '</div>';
@@ -152,26 +195,53 @@ if (!isset($_POST['userId'])) {
             echo '<div class="form-grid1">';
             echo '<form method="POST" action="addUser.php">';
             echo '<div class="form-grid-div">';
-            echo '<label for="firstname">First Name</label>';
+            echo '<label for="firstname">First Name</label><br>';
             echo '<input type="text" name="firstname"><br>';
-            echo '<label for="lastname">Last Name</label>';
+            echo '<label for="lastname">Last Name</label><br>';
             echo '<input type="text" name="lastname" ><br>';
-            echo '<label for="email">Email -- Must not be a Duplicate</label>';
+            echo '<label for="email">Email -- Must not be a Duplicate</label><br>';
             echo '<input type="email" name="email" ><br>';
-            echo '<label for="username">Username -- Must not be a duplicate</label>';
+            echo '<label for="username">Username -- Must not be a duplicate</label><br>';
             echo '<input type="text" name="username" ><br>';
-            echo '<label for="role">Role</label>';
+            echo '<label for="role">Role</label><br>';
             echo '<select name = "role">';
             echo '<option value = "MEMBER">Normal Member Functions</option>';
             echo '<option value = "ADMIN">Can Update all but Users</option>';
             echo '<option value = "SUPERADMIN">Can Update All Tables</option>';
             echo '</select><br>';
-            echo '<label for="initPass">Initial Password</label>';
+            echo '<label for="initPass">Initial Password</label><br>';
             echo '<input type="password" name="initPass" minlength="8"><br>';
-            echo '<label for="initPass2">Retype Initial Password</label>';
+            echo '<label for="initPass2">Retype Initial Password</label><br>';
             echo '<input type="password" name="initPass2" minlength="8"><br>';
+        
+            echo '<label for="hoa">HOA</label><br>';
+            echo '<select name = "hoa">';
+            echo '<option value = "1">HOA 1</option>';
+            echo '<option value = "2">HOA 2</option>';
+            echo '</select><br>';
+            echo '<label for="phone1">Enter primary phone number:</label><br>';
+            echo '<input type="tel" id="phone1" name="phone"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                required>';
+            echo '<small>Format: 123-456-7890</small><br>';
+            echo '<label for="phone2">Enter secondary phone number (Optional):</label><br>';
+            echo '<input type="tel" id="phone2" name="phone"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                >';
+            echo '<small>Format: 123-456-7890</small><br>';
+            echo '<label for="streetaddress">Street Address</label><br>';
+            echo '<input type="text" name="streetaddress" ><br>';
+            echo '<label for="city">City</label><br>';
+            echo '<input type="text" name="city" ><br>';
+            echo '<label for="state">State</label><br>';
+            echo '<input type="text" name="state" maxsize="2"><br>';
+            echo '<label for="zip">State</label><br>';
+            echo '<input type="text" name="zip" maxsize="10"><br>';
+            echo '<p> Notes</p><br>';
+            echo '<textarea name="notes" cols="50" rows="5"></textarea><br><br>';
             echo '<br>';
-            echo '<button type="submit" name="submitAddUser">Add the User</button><br>';
+            echo '<button type="submit" name="submitAddUser">
+                Add the User</button><br>';
             echo '</div>';
             echo '</form>';
             echo '</div>';

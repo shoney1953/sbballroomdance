@@ -28,11 +28,18 @@ if (isset($_POST['submitAddUser'])) {
     $user->firstname = $_POST['firstname'];
     $user->lastname = $_POST['lastname'];
     $user->username = $_POST['username'];
-    $user->memberid = $_POST['memberid'];
     $user->password = $_POST['initPass'];
     $pass2 = $_POST['initPass2'];
     $user->email = $_POST['email'];
     $user->role = $_POST['role'];
+    $user->streetAddress = $_POST['streetaddress'];
+    $user->city = $_POST['city'];
+    $user->state = $_POST['state'];
+    $user->zip = $_POST['zip'];
+    $user->phone1 = $_POST['phone1'];
+    $user->phone2 = $_POST['phone2'];
+    $user->hoa = $_POST['hoa'];
+    $user->notes = $_POST['notes'];
 
     if (filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
     } else {
@@ -70,7 +77,10 @@ if (isset($_POST['submitAddUser'])) {
        $user->lastname = htmlentities($_POST['lastname']);
        $user->email = htmlentities($_POST['email']);
        $user->username = htmlentities($_POST['username']);
-       $user->email = filter_var($user->email, FILTER_SANITIZE_EMAIL);  
+       $user->email = filter_var($user->email, FILTER_SANITIZE_EMAIL); 
+       $user->streetAddress = htmlentities($_POST['streetaddress']); 
+       $user->city = htmlentities($_POST['city']); 
+       $user->notes = htmlentities($_POST['notes']); 
 
     $user->create();
  

@@ -6,17 +6,7 @@ if (!isset($_SESSION['username']))
 {
     $redirect = "Location: ".$_SESSION['homeurl'];
     header($redirect);
-} else {
-    if (isset($_SESSION['role'])) {
-        if ($_SESSION['role'] != 'SUPERADMIN') {
-            $redirect = "Location: ".$_SESSION['homeurl'];
-            header($redirect); 
-        }
-       } else {
-        $redirect = "Location: ".$_SESSION['homeurl'];
-        header($redirect);
-       }
-}
+} 
 var_dump($_POST);
 $database = new Database();
 $db = $database->connect();
@@ -110,7 +100,7 @@ if (isset($_POST['submitUpdateUser'])) {
       
     $user->update();
 
-    $redirect = "Location: ".$_SESSION['adminurl'];
+    $redirect = "Location: ".$_SESSION['profileurl'];
     header($redirect);
     exit;
 }
