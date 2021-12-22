@@ -253,6 +253,7 @@ hr {
 }
 table, th, td {
   border: 1px solid black;
+  text-align: left;
 }
 th, td {
   padding: 2px;
@@ -261,9 +262,12 @@ table {
   width: 90%;
   border-spacing: 5px;
   table-layout: auto;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
+  justify-content: left;
   word-wrap: break-word;
+}
+td {
+  text-align: left;
 }
 
 form {
@@ -566,6 +570,7 @@ iframe {
   table, th, td {
     border: 1px solid black;
     font-size: 100%;
+    text-align: left;
   }
   th, td {
     padding: 2px;
@@ -749,6 +754,7 @@ iframe {
   table, th, td {
     border: 1px solid black;
     font-size: 100%;
+    text-align: left;
   }
   th, td {
     padding: 2px;
@@ -964,6 +970,7 @@ iframe {
   table, th, td {
     border: 1px solid black;
     font-size: 95%;
+    text-align: left;
   }
   th, td {
     padding: 2px;
@@ -1115,6 +1122,7 @@ iframe {
   table, th, td {
     border: 1px solid black;
     font-size: 80%;
+    text-align: left;
   }
   th, td {
     padding: 2px;

@@ -24,7 +24,6 @@ $user = new User($db);
 
 if (isset($_POST['submitAddUser'])) {
 
-    $user->id = $_POST['id'];
     $user->firstname = $_POST['firstname'];
     $user->lastname = $_POST['lastname'];
     $user->username = $_POST['username'];

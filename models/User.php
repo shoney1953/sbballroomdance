@@ -31,7 +31,7 @@ class User {
     // Get Danceclasss
     public function read() {
       // Create query
-      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY email DESC';
+      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY lastname, firstname ';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);

@@ -93,6 +93,10 @@ if ($rowCount > 0) {
             $pdf->Cell(0, 5, $class_string, 0, 1);
             $pdf->SetFont('Arial', '', 10);
             $pdf->Ln(3);
+            $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
+            $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
+            $pdf->Cell(60,5,"EMAIL",1,0,"L");   
+            $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
         }
         if ($reg['classid'] !== $prevClass) {
             $pdf->SetFont('Arial','B',10);
@@ -107,17 +111,17 @@ if ($rowCount > 0) {
             $pdf->Ln(3);
             $pdf->Cell(0, 15, $class_string, 0, 1);
             $pdf->SetFont('Arial', '', 10);
+            $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
+            $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
+            $pdf->Cell(60,5,"EMAIL",1,0,"L");   
+            $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
          }
 
-        $reg_string1 = 
-          "  ".$reg['firstname'].
-          " ".$reg['lastname'].
-          "   ".$reg['email'].
-          "  ".$reg['dateregistered'].
-          " ";
-
-     
-          $pdf->Cell(0, 5, $reg_string1, 0, 1);
+ 
+        $pdf->Cell(35,5,$reg['firstname'],1,0,"L"); 
+        $pdf->Cell(35,5,$reg['lastname'],1,0,"L");  
+        $pdf->Cell(60,5,$reg['email'],1,0,"L");   
+        $pdf->Cell(60,5,$reg['dateregistered'],1,1,"L");
        
 
     }

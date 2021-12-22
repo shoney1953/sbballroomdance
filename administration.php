@@ -215,9 +215,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'username' => $username,
                 'role' => $role,
                 'email' => $email,
+                'phone1' => $phone1,
                 'password' => $password,
-                'passwordChanged' => $passwordChanged,
-                "memberid" => $memberid
+                'passwordChanged' => $passwordChanged
             );
             array_push( $users, $user_item);
       
@@ -634,6 +634,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>User Name    </th>';
                 echo '<th>Role</th>'; 
                 echo '<th>Email</th>';
+                echo '<th>Phone</th>';
                 echo '<th>Password Changed</th>';     
                 echo '</tr>';
                 
@@ -647,6 +648,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         echo "<td>".$user['username']."</td>";
                         echo "<td>".$user['role']."</td>"; 
                         echo "<td>".$user['email']."</td>";
+                        echo "<td>".$user['phone1']."</td>";
                         echo "<td>".$user['passwordChanged']."</td>"; 
                         
                       echo "</tr>";
@@ -654,7 +656,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
              
                 
             echo '</table><br>';           
-            echo '<div class="form-grid1">';
+            echo '<div class="form-grid3">';
           
             echo '<form method="POST" action="actions/maintainUser.php">';
             echo '<div class="form-grid-div">';
@@ -672,6 +674,15 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<button type="submit" name="submitUser">Submit</button>';  
             echo '</form> <br>';
             echo '</div>';
+            echo '<form method="POST" action="actions/reportUser.php">'; 
+            echo '<div class="form-grid-div">';
+            echo '<h4>Report Users</h4>';
+            echo '<input type="checkbox" name="reportUsers">';
+            echo '<label for="reportUsers">Report Users</label>';    
+          
+            echo '<button type="submit" name="submitUserRep">Report</button>';   
+            echo '</div> ';  
+            echo '</form>';
         echo '</section>';
         echo '</div>';
       

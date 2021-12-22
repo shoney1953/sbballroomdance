@@ -94,6 +94,11 @@ if ($rowCount > 0) {
             $pdf->SetFont('Arial', 'BU', 10);
             $pdf->Cell(0, 10, $event_string, 0, 1);
             $pdf->SetFont('Arial', '', 10);
+            $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
+            $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
+            $pdf->Cell(60,5,"EMAIL",1,0,"L");   
+            $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
+    
         }
         if ($reg['eventid'] !== $prevEvent) {
             $pdf->SetFont('Arial', 'B', 10);
@@ -110,19 +115,23 @@ if ($rowCount > 0) {
             $pdf->SetFont('Arial', 'BU', 10);
             $pdf->Cell(0, 10, $event_string, 0, 1);
             $pdf->SetFont('Arial', '', 10);
+            $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
+            $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
+            $pdf->Cell(60,5,"EMAIL",1,0,"L");   
+            $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
          }
          $paid = 'Not Paid';
         if ($reg['paid'] == true) {
             $paidNum++;
           $paid = 'Paid';
         }
-        $nameStr = str_pad($reg['firstname'].' '.$reg['lastname'], 35);
-        $emailStr = str_pad($reg['email'], 30);
-        $paidStr = str_pad($paid, 9);
-        $reg_string1 = 
-          " ".$nameStr." ".$emailStr." ".$paidStr." ".$reg['dateregistered'];
+        
 
-          $pdf->Cell(0, 5, $reg_string1, 0, 1);
+       
+          $pdf->Cell(35,5,$reg['firstname'],1,0,"L"); 
+          $pdf->Cell(35,5,$reg['lastname'],1,0,"L");  
+          $pdf->Cell(60,5,$reg['email'],1,0,"L");   
+          $pdf->Cell(60,5,$reg['dateregistered'],1,1,"L");
 
 
     }

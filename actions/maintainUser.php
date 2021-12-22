@@ -28,7 +28,7 @@ if(isset($_GET['error'])) {
 } 
 else {
     $_SESSION['userurl'] = $_SERVER['REQUEST_URI']; 
-    $_SESSION['returnurl'] = $_SERVER['REQUEST_URI']; 
+
 }
 
 $database = new Database();
