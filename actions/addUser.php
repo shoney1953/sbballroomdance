@@ -79,7 +79,12 @@ if (isset($_POST['submitAddUser'])) {
        $user->email = filter_var($user->email, FILTER_SANITIZE_EMAIL); 
        $user->streetAddress = htmlentities($_POST['streetaddress']); 
        $user->city = htmlentities($_POST['city']); 
+       $user->state = htmlentities($_POST['state']); 
+       $user->zip = htmlentities($_POST['zip']); 
        $user->notes = htmlentities($_POST['notes']); 
+       $user->phone1 = htmlentities($_POST['phone1']);
+       $user->phone2 = htmlentities($_POST['phone2']);
+  
 
     $user->create();
  

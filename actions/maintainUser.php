@@ -220,12 +220,12 @@ if (!isset($_POST['userId'])) {
             echo '<option value = "2">HOA 2</option>';
             echo '</select><br>';
             echo '<label for="phone1">Enter primary phone number:</label><br>';
-            echo '<input type="tel" id="phone1" name="phone"
+            echo '<input type="tel"  name="phone1"
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 required>';
             echo '<small>Format: 123-456-7890</small><br>';
             echo '<label for="phone2">Enter secondary phone number (Optional):</label><br>';
-            echo '<input type="tel" id="phone2" name="phone"
+            echo '<input type="tel"  name="phone2"
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 >';
             echo '<small>Format: 123-456-7890</small><br>';
