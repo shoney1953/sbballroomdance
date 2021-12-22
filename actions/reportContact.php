@@ -38,7 +38,7 @@ function Footer()
 }
 
 // Instanciation of inherited class
-$pdf = new PDF();
+$pdf = new PDF("L");
 $pdf->AliasNbPages();
 $pdf->SetTextColor(26, 22, 22);
 $pdf->AddPage();
@@ -49,18 +49,19 @@ $result = $contact->read();
 $rowCount = $result->rowCount();
 $num_contacts = $rowCount;
 if($rowCount > 0) {
-
+	$pdf->Cell(35,5,"CONTACT DATE",1,0,"L");
+	$pdf->Cell(60,5,"EMAIL",1,0,"L");
+	$pdf->Cell(40,5,"FIRST NAME",1,0,"L");
+	$pdf->Cell(40,5,"LAST NAME",1,0,"L");
+	$pdf->Cell(80,5,"MESSAGE",1,1,"L");
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
-        $contact_string = 
-		" ".$contactdate.
-          "   ".$firstname.
-          " ".$lastname.
-          "     ".$email.
-           " ";
-	
-        $pdf->Cell(0,5,$contact_string,0,1);
-		$pdf->Cell(0,5,"    ".$message,0,1);
+
+		$pdf->Cell(35,5,$contactdate,1,0,"L");
+		$pdf->Cell(60,5,$email,1,0,"L");
+		$pdf->Cell(40,5,$firstname,1,0,"L");
+		$pdf->Cell(40,5,$lastname,1,0,"L");
+		$pdf->Cell(80,5,$message,1,1,"L");
     }
 
 

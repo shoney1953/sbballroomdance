@@ -83,12 +83,6 @@ if ($userCount > 0) {
     $pdf->SetFont('Arial', '', 10);
     foreach ($userArr as $usr) {
 
-        $nameStr = str_pad($usr['firstname'].' '.$usr['lastname'], 35);
-        $emailStr = str_pad($usr['email'], 30);
-   
-        $user_string1 = 
-          " ".$nameStr." ".$emailStr." ".$usr['partnerid']." ".$usr['phone1'].
-          " ".$usr['streetaddress']." ".$usr['hoa'];
 
          // $pdf->Cell(0, 5, $user_string1, 0, 1);
          $pdf->Cell(30,5,$usr['firstname'],1,0,"L");

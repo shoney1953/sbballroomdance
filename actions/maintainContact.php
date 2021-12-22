@@ -28,7 +28,7 @@ $deleteContact = false;
 $contacts = $_SESSION['contacts'];;
 if (isset($_POST['submitContact'])) {
 
-    if(isset($_POST['reportContact'])) {$reportContact = $_POST['reportContact'];}
+ 
     if(isset($_POST['deleteContact'])) {$deleteContact = $_POST['deleteContact'];}
     
 
@@ -84,15 +84,6 @@ if (isset($_POST['submitContact'])) {
           
         echo '</table><br>';
 
-        if($reportContact) {
-            
-            echo '<form method="POST" action="reportContact.php" target="_blank">';
-            echo '<p> You have opted to create a report on Contacts.<br>';
-            echo '<br><br><strong><em> Please click the button below to confirm report.</em></strong></p>';
-            echo '<input type="hidden" name="id" value="'.$reportContact.'">';
-            echo '<button type="submit" name="submitReport">Report the Contacts</button><br>';
-            echo '</form>';
-        }
         if($deleteContact) {
             echo '<p> You have selected to delete contact with dates prior to: '.$delContactDate.'<br>';
             echo '<br><br><strong><em> Please click the button below to confirm delete.</em></strong></p>';

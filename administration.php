@@ -311,17 +311,17 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         
         <div class="form-grid-div">
         <h4>Maintain Events</h4>
-        <input type='checkbox' name='updateEvent'>
-        <label for='updateEvent'>Update an Event </label>    
-        <input type='checkbox' name='deleteEvent'>
-        <label for='deleteEvent'>Delete an Event </label> 
         <form method='POST' action="actions/maintainEvent.php">
-        <label for='eventId'><em> &rarr; 
+        <input type='checkbox' name='updateEvent'>
+        <label for='updateEvent'>Update an Event </label><br>   
+        <input type='checkbox' name='deleteEvent'>
+        <label for='deleteEvent'>Delete an Event </label><br> 
+        <input type='text' class='text-small' name='eventId' >
+        <label for='eventId'><em> &larr; 
             Specify Event ID from Table above for Update or Delete: 
             </em> </label>
-        <input type='text' class='text-small' name='eventId' >
-        <br>
-        <p>OR</p><br>
+
+        <p>OR</p>
         <input type='checkbox' name='addEvent'>
         <label for='addEvent'>Add an Event </label> <br> 
        
@@ -332,10 +332,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <div class="form-grid-div">
         <h4>Report Events</h4>
         <input type='checkbox' name='reportEvent'>
-        <label for='reportEvent'>Report on all or one Event </label>    
-        <label for='eventId'><em> &rarr; 
+        <label for='reportEvent'>Report on all or one Event </label><br>
+        <input type='text' class='text-small' name='eventId' >    
+        <label for='eventId'><em> &larr; 
             Specify Event ID from Table above for Report on One Event: </em> </label>
-        <input type='text' class='text-small' name='eventId' >
+      
         <br>
         <button type='submit' name="submitEventRep">Report</button>   
         </div>   
@@ -395,15 +396,14 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <div class="form-grid-div">
         <h4>Maintain event Registrations</h4>
         <input type='checkbox' name='updateReg'>
-        <label for='updateReg'>Update a Event Registration </label>    
+        <label for='updateReg'>Update a Event Registration </label><br>   
         <input type='checkbox' name='deleteReg'>
-        <label for='deleteReg'>Delete a Event Registration </label>
-        <label for='regId'><em> &rarr; 
+        <label for='deleteReg'>Delete a Event Registration </label><br>
+        <input type='text' class='text-small' name='regId' >
+        <label for='regId'><em> &larr; 
             Specify Registration ID from Table above for Update or Delete:  
             </em></label>
-        <input type='text' class='text-small' name='regId' >
-        <br>
-        <p>OR</p><br>
+        <p>OR</p>
         <input type='checkbox' name='addReg'>
         <label for='addReg'>Add a Event Registration</label> <br> 
        
@@ -467,14 +467,13 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <h4>Maintain Classes</h4>
         
         <input type='checkbox' name='updateClass'>
-        <label for='updateClass'>Update a Class </label>    
+        <label for='updateClass'>Update a Class </label><br>   
         <input type='checkbox' name='deleteClass'>
-        <label for='deleteClass'>Delete a Class </label>
-        <label for='classId'> <em> &rarr; 
-         Specify Class ID from Table above for Update or Delete: </em> </label>
+        <label for='deleteClass'>Delete a Class </label><br>
         <input type='text' class='text-small' name='classId' >
-              <br>
-        <p>OR</p><br>
+        <label for='classId'> <em> &larr; 
+         Specify Class ID from Table above for Update or Delete: </em> </label>     
+        <p>OR</p>
         <input type='checkbox' name='addClass'>
         <label for='addClass'>Add a Class </label> <br> 
        
@@ -544,13 +543,14 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <div class="form-grid-div">
         <h4>Maintain Class Registrations</h4>
         <input type='checkbox' name='updateReg'>
-        <label for='updateReg'>Update a Class Registration </label>    
+        <label for='updateReg'>Update a Class Registration </label><br>    
         <input type='checkbox' name='deleteReg'>
-        <label for='deleteReg'>Delete a Class Registration </label>
-        <label for='regId'><em> &rarr; Specify Registration ID from Table above for Update or Delete:  </em></label>
+        <label for='deleteReg'>Delete a Class Registration </label><br>
         <input type='text' class='text-small' name='regId' >
-        <br>
-        <p>OR</p><br>
+        <label for='regId'><em> &larr; Specify Registration ID from
+             Table above for Update or Delete: </em></label>
+
+        <p>OR</p>
         <input type='checkbox' name='addReg'>
         <label for='addReg'>Add a Class Registration</label> <br> 
        
@@ -596,22 +596,26 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             ?> 
         </table>
         <br>
-        <div class="form-grid1">
+        <div class="form-grid3">
       
         <form method='POST' action="actions/maintainContact.php">
         <div class="form-grid-div">
         <h4>Maintain Contacts</h4>
         <input type='checkbox' name='deleteContact'>
-        <label for='deleteContact'>Delete a Range of Contacts</label>
-        <label for='delContactBefore'><em> &rarr; Specify a Date to delete contacts before: </em></label>
+        <label for='deleteContact'>Delete a Range of Contacts</label><br>
         <input type='date'  name='delContactBefore' >
-  
-            <br>
-        <p>OR</p>
+        <label for='delContactBefore'><em> &larr; Specify a Date 
+            to delete contacts before: </em></label><br>
+        <button type='submit' name="submitContact">Submit</button> 
+        </div>
+        </form>
+        <div class="form-grid-div">
+        <h4>Report Contacts</h4>
+        <form method='POST' action="actions/reportContact.php">
         <input type='checkbox' name='reportContact'>
         <label for='reportContact'>Report on Contacts </label><br>    
-       
-        <button type='submit' name="submitContact">Submit</button> 
+        <button type='submit' name="reportContact">Report</button> 
+      
         </div>     
         </form>
         <br>
@@ -662,12 +666,13 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<div class="form-grid-div">';
             echo '<h4>Maintain Users</h4>';
             echo '<input type="checkbox" name="updateUser">';
-            echo '<label for="updateUser">Update a User</label>';   
+            echo '<label for="updateUser">Update a User</label><br>';   
             echo '<input type="checkbox" name="deleteUser">';
-            echo '<label for="deleteUser">Delete a User </label>';
-            echo '<label for="userId"><em> &rarr; Specify User ID from Table above for Update or Delete:  </em></label>';
-            echo '<input type="text" class="text-small" name="userId" ><br>';
-            echo '<p>OR</p><br>';
+            echo '<label for="deleteUser">Delete a User </label><br>';
+            echo '<input type="text" class="text-small" name="userId" >';
+            echo '<label for="userId"><em> &larr; Specify User ID from Table above for Update or Delete:  </em></label>';
+            
+            echo '<p>OR</p>';
             echo '<input type="checkbox" name="addUser">';
             echo '<label for="addUser">Add a User</label> <br>';
                
@@ -678,7 +683,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<div class="form-grid-div">';
             echo '<h4>Report Users</h4>';
             echo '<input type="checkbox" name="reportUsers">';
-            echo '<label for="reportUsers">Report Users</label>';    
+            echo '<label for="reportUsers">Report Users</label><br>';    
           
             echo '<button type="submit" name="submitUserRep">Report</button>';   
             echo '</div> ';  
