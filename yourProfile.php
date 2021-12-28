@@ -5,6 +5,7 @@ require_once 'config/Database.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/EventRegistration.php';
 require_once 'models/User.php';
+require_once 'models/MemberPaid.php';
 
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '
@@ -86,6 +87,26 @@ if ($rowCount > 0) {
 
     }
 } 
+$eventReg = new MemberPaid($db);
+$yearsPaid = [];
+$result = $eventReg->read_byUserid($_SESSION['userid']);
+
+$rowCount = $result->rowCount();
+
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $paid_item = array(
+            'id' => $id,
+            'paid' => $paid,
+            'year' => $year
+
+        );
+        array_push($yearsPaid, $paid_item);
+
+    }
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -161,7 +182,25 @@ if ($rowCount > 0) {
             <strong>'.$user->notes.' 
             </strong></li>';
             
-        echo '</ul>';
+        echo '</ul><br>';
+    echo '<h4>Membership Status</h4>';
+    echo '<table>';
+    echo "<tr>";
+    echo "<td>YEAR</td>";
+    echo "<td>PAID?</td>";
+    echo "</tr>";
+    foreach ($yearsPaid as $year) {
+        echo "<tr>";
+        echo "<td>".$year['year']."</td>";
+        
+        if ($year['paid'] == true ) {
+            echo "<td>&#10004;</td>"; 
+          } else {
+              echo "<td>&times;</td>"; 
+          }  
+        echo "</tr>";
+    }
+    echo '</table>';
     echo '</div>';
     echo '</div>';
     echo '<div class="form-grid-div">';
@@ -247,7 +286,7 @@ if ($rowCount > 0) {
     <div class="form-grid3">
     <div class="form-grid-div">
    
-    <br><br>
+    <br>
         <h4 class="section-header">Class Registrations</h4><br>    
         <table>
             <tr>

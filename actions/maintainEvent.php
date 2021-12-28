@@ -157,9 +157,9 @@ if (isset($_POST['submitEvent'])) {
             echo '<label for="eventdate">Date</label><br>';
             echo '<input type="date" name="eventdate" ><br>';
             echo '<label for="eventcost">Member Cost</label><br>';
-            echo '<input type="text" name="eventcost"><br>';
+            echo '<input type="text" name="eventcost" value="0"><br>';
             echo '<label for="eventnumregistered"># Registered</label><br>';
-            echo '<input type="number" name="eventnumregistered" ><br>';
+            echo '<input type="number" name="eventnumregistered" value="0"><br>';
             echo '<label for="eventform">Link to Form</label><br>';
             echo '<input type="text" name="eventform"><br>';
           

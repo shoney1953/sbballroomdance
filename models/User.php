@@ -1,4 +1,5 @@
 <?php
+
 class User {
     // DB stuff
     private $conn;
@@ -161,7 +162,7 @@ class User {
 
    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-   if($row) {
+   if ($row) {
      return true;
    }
   return false;
@@ -218,7 +219,8 @@ class User {
           $stmt->bindParam(':notes', $this->notes);
 
           // Execute query
-          if($stmt->execute()) {
+          if ($stmt->execute()) {
+
             return true;
       }
 

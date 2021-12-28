@@ -7,6 +7,7 @@ require_once 'models/EventRegistration.php';
 require_once 'models/Event.php';
 require_once 'models/DanceClass.php';
 require_once 'models/User.php';
+require_once 'models/MemberPaid.php';
 $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 
@@ -19,6 +20,10 @@ $eventRegistrations = [];
 $num_registrations = 0;
 $num_events = 0;
 $num_classes = 0;
+$memberStatus1 = [];
+$memberStatus2 = [];
+$nextYear = date('Y', strtotime('+1 year'));
+$thisYear = date("Y"); 
 
 $database = new Database();
 $db = $database->connect();
@@ -227,7 +232,59 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     } else {
        echo 'NO Users';
     
-    }   
+    } 
+    $memPaid = new MemberPaid($db);
+    $result = $memPaid->read_byYear($nextYear);
+    
+    $rowCount = $result->rowCount();
+    $num_memPaid = $rowCount;
+    if ($rowCount > 0) {
+    
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+            $member_item = array(
+                'id' => $id,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'userid' => $userid,
+                'year' => $year,
+                'paid' => $paid
+
+            );
+            array_push( $memberStatus2, $member_item);
+      
+        }
+     $_SESSION['memberStatus2'] = $memberStatus2;
+    
+    } else {
+       echo 'NO Member Paid Records';
+    
+    } 
+    $result = $memPaid->read_byYear($thisYear);
+    
+    $rowCount = $result->rowCount();
+    $num_memPaid = $rowCount;
+    if ($rowCount > 0) {
+    
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+            $member_item = array(
+                'id' => $id,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'userid' => $userid,
+                'year' => $year,
+                'paid' => $paid
+
+            );
+            array_push( $memberStatus1, $member_item);
+      
+        }
+     $_SESSION['memberStatus1'] = $memberStatus1;
+    
+    } else {
+       echo 'NO Member Paid Records';
+        
 }
 
 
@@ -256,6 +313,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <?php
         if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<li><a href="#users">Users</a></li>';
+            echo '<li><a href="#membership">Membership</a></li>';
         }
         ?>
     </ul>
@@ -630,8 +688,10 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
        
         echo '<section id="users" class="content">';
         echo ' <h1 class="section-header">Users</h1><br> ';
+        echo '<form method="POST" action="actions/upDirectUser.php">';
         echo '<table>';
         echo '<tr>';
+                echo '<th>Update?</th>';  
                 echo '<th>ID</th>';  
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
@@ -646,6 +706,10 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 foreach($users as $user) {
              
                       echo "<tr>";
+                      $ckboxId = "up".$user['id'];
+                      echo "<td>";
+                        echo '<input type="checkbox" name="'.$ckboxId.'">';
+                      echo "</td>";
                         echo "<td>".$user['id']."</td>"; 
                         echo "<td>".$user['firstname']."</td>";               
                         echo "<td>".$user['lastname']."</td>";
@@ -659,7 +723,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                   }
              
                 
-            echo '</table><br>';           
+            echo '</table><br>'; 
+            echo '<button type="submit" name="submitDirUser">Update User(s)</button>'; 
+            echo '</form>'  ;        
             echo '<div class="form-grid3">';
           
             echo '<form method="POST" action="actions/maintainUser.php">';
@@ -688,11 +754,116 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<button type="submit" name="submitUserRep">Report</button>';   
             echo '</div> ';  
             echo '</form>';
-        echo '</section>';
-        echo '</div>';
+            echo '</section>';
       
 
+        echo '<section id="membership" class="content">';
+        echo ' <h1 class="section-header">Membership Maintenance</h1><br> ';
+        echo '<div class="form-grid3">';
+        echo '<div class="form-grid-div">';  
+        echo '<form method="POST" action="actions/updateMemberPaid.php">';
+        echo '<table>';
+        echo '<tr>';
+    
+                echo '<th>Year</th>'; 
+                echo '<th>ID</th>'; 
+                echo '<th>Userid</th>'; 
+                echo '<th>Paid UP?</th>';
+                echo '<th>Mark Paid</th>';
+                echo '<th>First Name</th>';  
+                echo '<th>Last Name</th>';
+                echo '</tr>';
+                    
+                foreach ($memberStatus1 as $memStat) {
+             
+                      echo "<tr>";
+                   
+                        echo "<td>".$memStat['year']."</td>";
+                        echo "<td>".$memStat['id']."</td>"; 
+                        echo "<td>".$memStat['userid']."</td>"; 
+                        if ($memStat['paid'] == true ) {
+                            echo "<td><em>&#10004;</em></td>"; 
+                          } else {
+                              echo "<em><td><em>&times;</em></td>"; 
+                          }   
+                        $ckboxId = "pd".$memStat['id'];
+                        echo "<td>";
+                          echo '<input type="checkbox" name="'.$ckboxId.'">';
+                        echo "</td>";
+                        echo "<td>".$memStat['firstname']."</td>";               
+                        echo "<td>".$memStat['lastname']."</td>";  
+
+                 
+                      echo "</tr>";
+                  }
+
+            echo '</table><br>'; 
+            echo '<input type=hidden name="thisyear" value="1">';
+            echo '<button type="submit" name="updateMemPaid">UPDATE</button>'; 
+            echo '</form>';
+        echo '</div>';
+        echo '<form method="POST" action="actions/updateMemberPaid.php">';
+        echo '<table>';
+        echo '<tr>';
+    
+                echo '<th>Year</th>'; 
+                echo '<th>ID</th>'; 
+                echo '<th>Userid</th>'; 
+                echo '<th>Paid UP?</th>';
+                echo '<th>Mark Paid</th>';
+                echo '<th>First Name</th>';  
+                echo '<th>Last Name</th>';
+                echo '</tr>';
+                    
+                foreach ($memberStatus2 as $memStat) {
+             
+                      echo "<tr>";
+                   
+                        echo "<td>".$memStat['year']."</td>";
+                        echo "<td>".$memStat['id']."</td>"; 
+                        echo "<td>".$memStat['userid']."</td>"; 
+                        if ($memStat['paid'] == true ) {
+                            echo "<td><em>&#10004;</em></td>"; 
+                          } else {
+                              echo "<em><td><em>&times;</em></td>"; 
+                          }   
+                        $ckboxId = "pd".$memStat['id'];
+                        echo "<td>";
+                          echo '<input type="checkbox" name="'.$ckboxId.'">';
+                        echo "</td>";
+                        echo "<td>".$memStat['firstname']."</td>";               
+                        echo "<td>".$memStat['lastname']."</td>";  
+
+                 
+                      echo "</tr>";
+                  }
+
+            echo '</table><br>'; 
+            echo '<input type=hidden name="nextyear" value="1">';
+            echo '<button type="submit" name="updateMemPaid">UPDATE</button>'; 
+            echo '</form>';
+        echo '<div class="form-grid-div">';  
+        echo '</div>';
+      /*  echo '<div class="form-grid-div">';          
+        echo '<form method="POST" action="actions/createMemYear.php">';
+       
+        echo '<h4>Maintain Membership Data - populate year</h4>';
+        echo '<input type="checkbox" name="populateYear">';
+        echo '<label for="populateYear">Create Membership Paid records for a year based on user data
+             (should only be done once for a year)</label><br>';
+     
+        echo '<input type="number"  name="populateYear" min="2021"  required />';
+        echo '<label for="year"><em> &larr; Specify 4 digit year</em></label><br>';
+        echo '<button type="submit" name="createMemYear">
+             Populate MemberPaid data</button>';
+        echo '</div> ';  
+        echo '</form>'; 
+        echo '</div>';  */
+        echo '</section>';
+        echo '</div>';
+
     }
+}
     ?>
 
     <footer >

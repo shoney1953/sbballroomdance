@@ -2,6 +2,8 @@
 session_start();
 require_once '../config/Database.php';
 require_once '../models/User.php';
+require_once '../models/MemberPaid.php';
+
 if (!isset($_SESSION['username']))
 {
     $redirect = "Location: ".$_SESSION['homeurl'];
@@ -17,10 +19,11 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
-var_dump($_POST);
+
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
+
 
 if (isset($_POST['submitAddUser'])) {
 
@@ -87,6 +90,16 @@ if (isset($_POST['submitAddUser'])) {
   
 
     $user->create();
+    // create a membership record for current year
+    $memberPaid = new MemberPaid($db);
+    $memberPaid->userid = $db->lastInsertId();
+    $memberPaid->paid = 0;
+    $memberPaid->year = date("Y");
+    $memberPaid->create();
+    // create a membership record for next year
+    $memberPaid->year = date('Y', strtotime('+1 year'));
+    $memberPaid->create();
+    
  
     $redirect = "Location: ".$_SESSION['adminurl'];
     header($redirect);
