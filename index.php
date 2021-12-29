@@ -506,18 +506,35 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
    <section id="pictures" class="content">
    <br>  
        <h1 class="section-header">Pictures from Past Events</h1>
- 
+       <div class="form-grid3">
+       <div class="form-grid-div">
+           <h4>2020</h4>
+           <ul>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/03-08-2020-March-Brunch-Dance">March Brunch Dance 03 08 2020</a></li>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-15-2020-Sweetheart-Dance">Sweetheart Dance 02 15 2020</a></li>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/Masquerade-ball-01-11-2020-SBDC">Masquerade Dance 01 11 2020</a></li>
+           </ul>
+       </div>
+    
+    
+       <div class="form-grid-div">
+       <h4>2021</h4>
        <ul>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Holiday-Party-12-14-2021">Holiday Party 12 14 2021</a></li> 
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-TGIF-10-19-2021">TGIF 11 19 2021</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Sbdc-halloween-party-10-30-2021">Halloween Party 10 30 2021</a></li>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/03-08-2020-March-Brunch-Dance">March Brunch Dance 03 08 2020</a></li>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-15-2020-Sweetheart-Dance">Sweetheart Dance 02 15 2020</a></li>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/Masquerade-ball-01-11-2020-SBDC">Masquerade Dance 01 11 2020</a></li>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Class-Videos">Class Videos</a></li>
-           
+        </ul>
+        </div>
+    
+     
+       <div class="form-grid-div">
+       <h4>CLASS VIDEOS</h4>
+       <ul>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Class-Videos">Class Videos</a></li>    
        </ul>
        <br>
+      </div>
+    </div>
    </section>
    </div>
    <div class="container-section ">
