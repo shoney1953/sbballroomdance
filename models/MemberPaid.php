@@ -106,9 +106,7 @@ class MemberPaid {
             // Execute query
             $stmt->execute();
             return $stmt;
-  
       }
-  
 
     // Create record
 
