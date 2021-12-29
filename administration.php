@@ -69,10 +69,7 @@ if ($rowCount > 0) {
     }
   
 
-} else {
-   echo 'NO EVENTS';
-
-}
+} 
 /* get classes */
 
 $class = new DanceClass($db);
@@ -101,10 +98,7 @@ if($rowCount > 0) {
 
     }
 
-} else {
-   echo 'NO CLASSES';
-
-}
+} 
 /* get class registrations */
 $classReg = new ClassRegistration($db);
 $result = $classReg->read();
@@ -134,10 +128,7 @@ if ($rowCount > 0) {
     }
   
 
-} else {
-   echo 'NO Class REGISTRATIONS';
-
-}
+} 
 /* get class registrations */
 $eventReg = new EventRegistration($db);
 $result = $eventReg->read();
@@ -159,18 +150,14 @@ if ($rowCount > 0) {
             'userid' => $userid,
             'email' => $email,
             'paid' => $paid,
-            'dateregistered' => date('m d Y h:i:s A', 
-                strtotime($dateregistered))
+            'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push( $eventRegistrations, $reg_item);
   
     }
   
 
-} else {
-   echo 'NO Event REGISTRATIONS';
-
-}
+} 
 /* get contacts */
 $contact = new Contact($db);
 $result = $contact->read();
@@ -198,10 +185,7 @@ if($rowCount > 0) {
     }
   $_SESSION['contacts'] = $contacts;
 
-} else {
-   echo 'NO Contacts';
-
-}
+} 
 $num_users = 0;
 if ($_SESSION['role'] === 'SUPERADMIN') {
     $user = new User($db);
@@ -229,9 +213,6 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         }
    
     
-    } else {
-       echo 'NO Users';
-    
     } 
     $memPaid = new MemberPaid($db);
     $result = $memPaid->read_byYear($nextYear);
@@ -256,9 +237,6 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         }
      $_SESSION['memberStatus2'] = $memberStatus2;
     
-    } else {
-       echo 'NO Member Paid Records';
-    
     } 
     $result = $memPaid->read_byYear($thisYear);
     
@@ -282,13 +260,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         }
      $_SESSION['memberStatus1'] = $memberStatus1;
     
-    } else {
-       echo 'NO Member Paid Records';
-        
-}
+    } 
 
 
-//$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -688,10 +662,10 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
        
         echo '<section id="users" class="content">';
         echo ' <h1 class="section-header">Users</h1><br> ';
-        echo '<form method="POST" action="actions/upDirectUser.php">';
+     
         echo '<table>';
         echo '<tr>';
-                echo '<th>Update?</th>';  
+             
                 echo '<th>ID</th>';  
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
@@ -705,11 +679,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         
                 foreach($users as $user) {
              
-                      echo "<tr>";
-                      $ckboxId = "up".$user['id'];
-                      echo "<td>";
-                        echo '<input type="checkbox" name="'.$ckboxId.'">';
-                      echo "</td>";
+             
                         echo "<td>".$user['id']."</td>"; 
                         echo "<td>".$user['firstname']."</td>";               
                         echo "<td>".$user['lastname']."</td>";
@@ -723,9 +693,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                   }
              
                 
-            echo '</table><br>'; 
-            echo '<button type="submit" name="submitDirUser">Update User(s)</button>'; 
-            echo '</form>'  ;        
+            echo '</table><br>';       
             echo '<div class="form-grid3">';
           
             echo '<form method="POST" action="actions/maintainUser.php">';

@@ -43,8 +43,8 @@ if (isset($_POST['updateMemPaid'])) {
        
     }
 
- // $redirect = "Location: ".$_SESSION['adminurl'];
- //header($redirect);
- //exit;
+ $redirect = "Location: ".$_SESSION['adminurl'];
+ header($redirect);
+ exit;
 }
 ?>
