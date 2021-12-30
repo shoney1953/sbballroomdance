@@ -519,10 +519,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <div class="form-grid-div">
         <h4>Report Classes</h4>
         <input type='checkbox' name='reportClass'>
-        <label for='reportClass'>Report on all or one Class </label>    
-        <label for='classId'><em> &rarr; 
+        <label for='reportClass'>Report on all or one Class </label><br>  
+        <input type='text' class='text-small' name='classId' > 
+        <label for='classId'><em> &larr; 
             Specify Class ID from Table above for Report on One Class: </em> </label>
-        <input type='text' class='text-small' name='classId' >
+       
         <br>
         <button type='submit' name="submitClassRep">Report</button>   
         </div>   
