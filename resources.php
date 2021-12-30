@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>SBDC Ballroom Dance Beta - Resources</title>
+    <title>SBDC Ballroom Dance - Resources</title>
 </head>
 <body>
 <div class="profile">
@@ -40,9 +40,20 @@
        <div class="list-box">
         <p>Web Sites for Dance Shoes Etc.</p>
        <ul>
-          <li class="li-none"><a href="https://www.eveninstarboot.com/">Evenin Star Dance Boots</a></li>
+          <li class="li-none"><a 
+          href="https://www.eveninstarboot.com/">Evenin Star Dance Boots</a></li>
+          <li class="li-none"><a 
+          href="https://www.discountdance.com//dancewear/shoes/page1?rfilter=Category%23Shoes%3AAge%23Womens&SID=1618256856">
+          Discount Dance - Especially for Dance Sneakers</a>
+          <li class="li-none"><a 
+          href="https://swaydshoes.com/">
+          Swaydshoes - Especially for Dance Boots or Sandals</a></li>
+          <li class="li-none"><a 
+          href="https://www.lightinthebox.com/">Lightinthebox - Sparkly Practice Shoes</a></li>
 
        </ul>
+       <p>Also check on Amazon for the brand "FINE DANCE SHOES"</p>
+       <p>Be sure to check for coupons!</p>
     </div>
     </div>
        <br>

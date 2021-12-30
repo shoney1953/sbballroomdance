@@ -8,8 +8,8 @@ require_once '../models/User.php';
 
 $events = $_SESSION['upcoming_events'];
 
-$fromCC = 'sheila_honey_5@hotmail.com';
-$replyEmail = 'sheilahoney53@gmail.com';
+$fromCC = 'sbbdcschedule@gmail.com';
+$replyEmail = 'sbbdcschedule@gmail.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";
 $replyTopic = "Event Registration";

@@ -115,7 +115,7 @@ if ($rowCount > 0) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>SBDC Ballroom Dance Beta - Profile</title>
+    <title>SBDC Ballroom Dance - Profile</title>
 </head>
 <body>
 <div class="profile">
@@ -276,7 +276,7 @@ if ($rowCount > 0) {
             echo '<input type="hidden" name="id" value="'.$user->id.'"><br>';
         ?>
         <br>
-        <button type="submit" name="SubmitPassChange">Submit</button><br>
+        <button type="submit" name="SubmitPassChange">Change Your Password</button><br>
     
         </form>
         </div>
