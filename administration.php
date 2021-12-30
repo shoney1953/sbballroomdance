@@ -304,8 +304,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
  
     <div class="container-section ">
     <section id="events" class="content">
-       <br><br>
-        <h1 class="section-header">Events</h1><br>
+       
+        <h3 class="section-header">Events</h3><br>
         <table>
             <tr>
                 <th>ID</th>
@@ -382,7 +382,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     
     <section id="eventregistrations" class="content">
     <br><br>
-        <h1 class="section-header">Event Registrations</h1><br>    
+        <h3 class="section-header">Event Registrations</h3><br>    
         <table>
             <tr>
                 <th>ID</th>
@@ -454,7 +454,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     <section id="classes" class="content">
    
       <br><br>
-        <h1 class="section-header">Classes</h1><br>
+        <h3 class="section-header">Classes</h3><br>
         <table>
             <tr>
            
@@ -536,7 +536,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     
     <section id="classregistrations" class="content">
     <br><br>
-        <h1 class="section-header">Class Registrations</h1><br>    
+        <h3 class="section-header">Class Registrations</h3><br>    
         <table>
             <tr>
                 <th>ID</th>
@@ -601,7 +601,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     <div class="container-section ">
     <br><br>
     <section id="contacts" class="content">
-         <h1 class="section-header">Contacts</h1><br>  
+         <h3 class="section-header">Contacts</h3><br>  
         <table>
             <tr>
                 <th>Date Contacted</th>  
@@ -664,7 +664,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<div class="container-section ">  <br><br>';
        
         echo '<section id="users" class="content">';
-        echo ' <h1 class="section-header">Users</h1><br> ';
+        echo ' <h3 class="section-header">Users</h3><br> ';
      
         echo '<table>';
         echo '<tr>';
@@ -729,7 +729,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
       
 
         echo '<section id="membership" class="content">';
-        echo ' <h1 class="section-header">Membership Maintenance</h1><br> ';
+        echo ' <h3 class="section-header">Membership Maintenance</h3><br> ';
         echo '<div class="form-grid3">';
         echo '<div class="form-grid-div">';  
         echo '<form method="POST" action="actions/updateMemberPaid.php">';
