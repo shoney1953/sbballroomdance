@@ -29,6 +29,7 @@ $event = new Event($db);
     $eventReg->lastname = $_POST['lastname'];
     $eventReg->email = $_POST['email'];
     $eventReg->paid = $_POST['paid'];
+    $eventReg->message = $_POST['message'];
     $eventReg->userid = 0;
  
     $eventReg->create();

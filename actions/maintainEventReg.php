@@ -72,6 +72,7 @@ if (!isset($_POST['regId'])) {
                 echo '<th>Last Name</th>';
                 echo '<th>Email</th>';
                 echo '<th>Paid</th>';
+                echo '<th>Message</th>';
                 echo '<th>Userid</th>';
                 echo '<th>Registration ID   </th>';    
             echo '</tr>';
@@ -83,6 +84,7 @@ if (!isset($_POST['regId'])) {
                     echo "<td>".$eventReg->lastname."</td>";
                     echo "<td>".$eventReg->email."</td>";
                     echo "<td>".$eventReg->paid."</td>";
+                    echo "<td>".$eventReg->message."</td>";
                     echo "<td>".$eventReg->userid."</td>";
                     echo "<td>".$eventReg->id."</td>";
                 echo "</tr>";
@@ -92,6 +94,7 @@ if (!isset($_POST['regId'])) {
 
        if($updateReg) {
         echo '<form method="POST" action="updateEventReg.php">';
+  
         echo '<label for="eventid">Event Id</label>';
         echo '<input type="text" name="eventid" value="'.$eventReg->eventid.'"><br>';
         echo '<label for="firstname">First Name</label>';
@@ -102,6 +105,10 @@ if (!isset($_POST['regId'])) {
         echo '<input type="email" name="email" value="'.$eventReg->email.'"><br>';
         echo '<label for="paid">Paid (1 = YES; 0 = NO)</label>';
         echo '<input type="number" name="paid" min="0" max="1" value="'.$eventReg->paid.'"><br>';
+        echo '<input type="number" name="message" value="'.$eventReg->paid.'"><br>';
+        echo '<label for="message">Message 
+             (For First Fridays or Dine and Dance please indicate if you want to have dinner)</label><br>';
+        echo '<textarea  name="message" rows="4" cols="50">'.$eventReg->message.'</textarea><br>';
         echo '<label for="userid">Userid</label>';
         echo '<input type="text" name="userid" value="'.$eventReg->userid.'"><br>';
         echo '<input type="hidden" name="id" value="'.$eventReg->id.'">';
@@ -113,6 +120,7 @@ if (!isset($_POST['regId'])) {
 
         if ($addReg) {
             echo '<form method="POST" action="addEventReg.php">';
+            echo '<h1 class="section-header">Add Event Registration</h1><br>';
             echo '<label for="eventid">Event Id</label>';
             echo '<input type="text" name="eventid" required><br>';
             echo '<label for="firstname">First Name</label>';
@@ -121,6 +129,9 @@ if (!isset($_POST['regId'])) {
             echo '<input type="text" name="lastname" required ><br>';
             echo '<label for="email">Email</label>';
             echo '<input type="text" name="email" required><br>';
+            echo '<label for="message">Message 
+                (For First Fridays or Dine and Dance please indicate if you want to have dinner)</label><br>';
+            echo '<textarea  name="message" rows="4" cols="50"></textarea><br>';
             echo '<label for="paid">Paid</label>';
             echo '<input type="number" name="paid" min="0" max="1"><br>';
             echo '<button type="submit" name="submitAddReg">

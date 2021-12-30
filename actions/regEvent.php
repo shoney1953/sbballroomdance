@@ -18,7 +18,7 @@ $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $eventInst = new Event($db);
 $user = new User($db);
-
+$message = '';
 
 $regSelected = [];
 $regAll = '';
@@ -39,6 +39,9 @@ if (isset($_POST['submitEventReg'])) {
     if ($user->getUserName($regEmail1)) {    
         $regUserid1 = $user->id;
    }
+   if (isset($_POST['message'])) {
+       $message = htmlentities($_POST['message']); 
+   }
    if (isset($_POST['regEmail2'])) {
     $regFirstName2 = htmlentities($_POST['regFirstName2']);
     $regLastName2 = htmlentities($_POST['regLastName2']);
@@ -46,7 +49,10 @@ if (isset($_POST['submitEventReg'])) {
     $regEmail2 = filter_var($regEmail2, FILTER_SANITIZE_EMAIL); 
     if ($user->getUserName($regEmail2)) {    
         $regUserid2 = $user->id;
+      } else {
+          $regUserid2 = 0;
       }
+      
     }
 
     
@@ -72,6 +78,10 @@ if (isset($_POST['submitEventReg'])) {
                    $emailBody .= '<br>Please VIEW the form on the website under events.<br>';
 
                   }
+                if ($message) {
+                    $emailBody .= '<br> MESSAGE: <br>';
+                    $emailBody .= $message;
+                }
           
                 // do the insert(s)
                 $eventReg->firstname = $regFirstName1;
@@ -79,6 +89,7 @@ if (isset($_POST['submitEventReg'])) {
                 $eventReg->eventid = $eventId;
                 $eventReg->email = $regEmail1;
                 $eventReg->userid = $regUserid1;
+                $eventReg->message = $message;
                 $eventReg->paid = 0;
                 $eventReg->create();
                 $eventInst->addCount($eventReg->eventid);
@@ -89,6 +100,7 @@ if (isset($_POST['submitEventReg'])) {
                     $eventReg->eventid = $eventId;
                     $eventReg->email = $regEmail2;
                     $eventReg->userid = $regUserid2;
+                    $eventReg->message = $message;
                     $eventReg->paid = 0;
                     $eventReg->create();
                     $eventInst->addCount($eventReg->eventid);

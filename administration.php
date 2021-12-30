@@ -147,6 +147,7 @@ if ($rowCount > 0) {
             'eventid' => $eventid,
             'eventname' => $eventname,
             'eventdate' => $eventdate,
+            'message' => $message,
             'userid' => $userid,
             'email' => $email,
             'paid' => $paid,
@@ -392,6 +393,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 <th>Last Name    </th>
                 <th>Email</th>
                 <th>Paid</th>
+                <th>Message</th>
                 <th>Date Reg</th>          
             </tr>
             <?php 
@@ -412,7 +414,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         echo "<td>&#10004;</td>"; 
                       } else {
                           echo "<td>&times;</td>"; 
-                      }          
+                      } 
+                    echo "<td>".$eventRegistration['message']."</td>";         
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
              
                   echo "</tr>";

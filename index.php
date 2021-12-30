@@ -62,10 +62,7 @@ if ($rowCount > 0) {
     }
   
 
-} else {
-    echo 'NO EVENTS';
-
-}
+} 
 $_SESSION['events'] = $events;
 $_SESSION['upcoming_events'] = $upcomingEvents;
 
@@ -101,10 +98,7 @@ if ($rowCount > 0) {
         }
     }
 
-} else {
-    echo 'NO CLASSES';
-
-}
+} 
 
 $_SESSION['classes'] = $classes;
 $_SESSION['upcoming_classes'] = $upcomingClasses;
@@ -304,7 +298,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                 echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
                 echo '<input type="email" name="regEmail1" ><br><br>';
         }
-       
+        echo '<label for="message">Message (For First Fridays or Dine and Dance please indicate if you want to have dinner)</label>';
+        echo '<textarea  name="message" rows="4" cols="50"></textarea><br>';
          echo' </div>';
         echo '<div class="form-grid-div"> <br>';
            
