@@ -23,11 +23,11 @@ if (isset($_POST['submit'])) {
     $toName = $contact->firstname.' '.$contact->lastname; 
     $mailSubject = 'Thanks for Contacting us at SBDC Ballroom Dance Club!';
     $replyTopic = "Information";
-    $replyEmail = 'sheilahoney53@gmail.com';
+    $replyEmail = 'sbbdcschedule@gmail.com';
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
     Click to view Activites Calendar</a><br>";
     $mailAttachment = '../img/Membership Form 2022 Dance Club.pdf'; 
-    $fromCC = 'sheila_honey_5@hotmail.com';
+    $fromCC = 'sbbdcschedule@gmail.com';
     $emailBody = "<br>We would love to have <b>you, $toName </b>, as a new member to our club.<br>
     Please see attached membership form if you are interested.<br>".
     $actLink.
