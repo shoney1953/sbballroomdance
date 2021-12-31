@@ -40,7 +40,8 @@ if (isset($_POST['submitAddUser'])) {
     $user->zip = $_POST['zip'];
     $user->phone1 = $_POST['phone1'];
     $user->phone2 = $_POST['phone2'];
-    $user->hoa = $_POST['hoa'];
+
+    
     $user->notes = $_POST['notes'];
 
     if (filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
@@ -87,6 +88,13 @@ if (isset($_POST['submitAddUser'])) {
        $user->notes = htmlentities($_POST['notes']); 
        $user->phone1 = htmlentities($_POST['phone1']);
        $user->phone2 = htmlentities($_POST['phone2']);
+       
+       if ($_POST['hoa'] === "1") {
+          $user->hoa = 1;
+       } else {
+           $user->hoa = 2;
+       }
+       var_dump($user->hoa);
   
 
     $user->create();

@@ -80,7 +80,7 @@ class User {
           $this->phone1 = $row['phone1'];
           $this->phone2 = $row['phone2'];
           $this->notes = $row['notes'];
-
+        
 
     }
     public function getUserName($user) {
@@ -251,7 +251,7 @@ class User {
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->username = htmlspecialchars(strip_tags($this->username));
-          $this->hoa = $this->hoa;
+        
           $this->partnerId = $this->partnerId;
           $this->streetAddress = htmlspecialchars(strip_tags($this->streetAddress));
           $this->city = htmlspecialchars(strip_tags($this->city));

@@ -151,9 +151,19 @@ if (!isset($_POST['userId'])) {
         echo '<input type="hidden" name="email" value="'.$user->email.'">';
         echo '<input type="hidden" name="password" value="'.$user->password.'">';
         echo '<label for="hoa">HOA</label><br>';
-        echo '<select name = "hoa" value="'.$user->hoa.'">';
-        echo '<option value = "1">HOA 1</option>';
-        echo '<option value = "2">HOA 2</option>';
+        
+        echo '<select name = "hoa" >';
+        if ($user->hoa == "1") {
+            echo '<option value = "1" selected>HOA 1</option>';
+        } else {
+            echo '<option value = "1" >HOA 1</option>';
+        }
+        if ($user->hoa == "2") {
+            echo '<option value = "2" selected>HOA 2</option>';
+        } else {
+            echo '<option value = "2" >HOA 2</option>';
+        }
+
         echo '</select><br>';
         echo '<label for="phone1" >Enter primary phone number: </label><br>';
         echo '<input type="tel"  name="phone1"

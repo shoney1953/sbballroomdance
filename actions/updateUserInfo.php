@@ -7,10 +7,11 @@ if (!isset($_SESSION['username']))
     $redirect = "Location: ".$_SESSION['homeurl'];
     header($redirect);
 } 
-var_dump($_POST);
+
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
+
 
 if (isset($_POST['submitUpdateUser'])) {
 
@@ -96,12 +97,19 @@ if (isset($_POST['submitUpdateUser'])) {
        $user->lastname = htmlentities($_POST['lastname']);
        $user->streetAddress = htmlentities($_POST['streetaddress']); 
        $user->city = htmlentities($_POST['city']); 
-       $user->notes = htmlentities($_POST['notes']); 
+       $user->notes = htmlentities($_POST['notes']);
+       
+       if ($_POST['hoa'] === '1') {
+           $user->hoa = 1;
+       } else {
+        $user->hoa = 2;
+       }
+    
       
     $user->update();
 
-    $redirect = "Location: ".$_SESSION['profileurl'];
-    header($redirect);
-    exit;
+$redirect = "Location: ".$_SESSION['profileurl'];
+header($redirect);
+exit;
 }
 ?>
