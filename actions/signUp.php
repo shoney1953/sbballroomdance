@@ -7,6 +7,7 @@ $db = $database->connect();
 $user = new User($db);
 $pass2 = '';
 $isValid = false;
+date_default_timezone_set("America/Phoenix");
 
    if(isset($_POST['SubmitSignUP'])) {
     $user->firstname = htmlentities($_POST['firstname']);

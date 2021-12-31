@@ -17,7 +17,7 @@ if (isset($_GET['error'])) {
 }
 
 $_SESSION['user'] = null;
-
+date_default_timezone_set("America/Phoenix");
 $num_classes = 0;
 $num_events = 0;
 $classes = [];

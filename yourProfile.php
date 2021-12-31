@@ -6,6 +6,7 @@ require_once 'models/ClassRegistration.php';
 require_once 'models/EventRegistration.php';
 require_once 'models/User.php';
 require_once 'models/MemberPaid.php';
+date_default_timezone_set("America/Phoenix");
 
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '

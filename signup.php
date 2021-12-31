@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+date_default_timezone_set("America/Phoenix");
 if(isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4><br>';
     unset($_GET['error']);

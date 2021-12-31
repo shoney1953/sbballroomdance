@@ -6,7 +6,7 @@ require_once '../models/DanceClass.php';
 require_once '../models/User.php';
 session_start();
 $classes = $_SESSION['upcoming_classes'];
-
+date_default_timezone_set("America/Phoenix");
 $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);

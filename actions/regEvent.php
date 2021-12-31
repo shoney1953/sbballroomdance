@@ -5,6 +5,7 @@ require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
 require_once '../models/User.php';
+date_default_timezone_set("America/Phoenix");
 
 $events = $_SESSION['upcoming_events'];
 

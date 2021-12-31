@@ -10,6 +10,7 @@ if (isset($_GET['error'])) {
 } else {
     $_SESSION['loginurl'] = $_SERVER['REQUEST_URI']; 
 }
+date_default_timezone_set("America/Phoenix");
 ?>
 <!DOCTYPE html>
 <html lang="en">
