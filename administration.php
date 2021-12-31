@@ -817,7 +817,19 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<input type=hidden name="nextyear" value="1">';
             echo '<button type="submit" name="updateMemPaid">UPDATE</button>'; 
             echo '</form>';
+            echo '</div> ';  
         echo '<div class="form-grid-div">';  
+        echo '<form method="POST" action="actions/reportPaid.php">'; 
+        echo '<h4>Report Membership</h4>';
+        echo '<input type="checkbox" name="reportPaid">';
+        echo '<label for="reportUsers">Report Membership</label><br>';    
+        echo '<label for="year" >Reporting Year</label><br>';
+        echo '<input type="number" min=2021 maxlength=4 name="year" 
+             value="'.$thisYear.'"><br>';
+        echo '<button type="submit" name="submitPaidRep">Report</button>';   
+        echo '</div> ';  
+        echo '</form>';
+        echo '</section>';
         echo '</div>';
       /*  echo '<div class="form-grid-div">';          
         echo '<form method="POST" action="actions/createMemYear.php">';
