@@ -207,7 +207,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'email' => $email,
                 'phone1' => $phone1,
                 'password' => $password,
-                'passwordChanged' => $passwordChanged
+                'passwordChanged' => $passwordChanged,
+                'lastLogin' => $lastLogin
             );
             array_push( $users, $user_item);
       
@@ -677,6 +678,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Role</th>'; 
                 echo '<th>Email</th>';
                 echo '<th>Phone</th>';
+                echo '<th>Last Login</th>';
                 echo '<th>Password Changed</th>';     
                 echo '</tr>';
                 
@@ -691,6 +693,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         echo "<td>".$user['role']."</td>"; 
                         echo "<td>".$user['email']."</td>";
                         echo "<td>".$user['phone1']."</td>";
+                        echo "<td>".$user['lastLogin']."</td>"; 
                         echo "<td>".$user['passwordChanged']."</td>"; 
                         
                       echo "</tr>";

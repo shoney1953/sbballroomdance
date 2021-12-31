@@ -23,6 +23,7 @@ class User {
     public $phone1;
     public $phone2;
     public $notes;
+    public $lastLogin;
 
     // Constructor with DB
     public function __construct($db) {
@@ -80,6 +81,7 @@ class User {
           $this->phone1 = $row['phone1'];
           $this->phone2 = $row['phone2'];
           $this->notes = $row['notes'];
+          $this->lastLogin = $row['lastLogin'];
         
 
     }
@@ -119,6 +121,7 @@ class User {
       $this->phone1 = $row['phone1'];
       $this->phone2 = $row['phone2'];
       $this->notes = $row['notes'];
+      $this->lastLogin = $row['lastLogin'];
   
         return true;
       }
@@ -315,6 +318,31 @@ class User {
       printf("Error: %s.\n", $stmt->error);
 
       return false;
+}
+public function updateLogin() {
+     
+  // Create query
+  $query = 'UPDATE ' . $this->table .
+   ' SET lastLogin =  NOW() WHERE id = :id';
+
+  // Prepare statement
+  $stmt = $this->conn->prepare($query);
+
+  // Bind data
+
+ 
+  $stmt->bindParam(':id', $this->id);
+
+
+  // Execute query
+  if($stmt->execute()) {
+    return true;
+  }
+
+  // Print error if something goes wrong
+  printf("Error: %s.\n", $stmt->error);
+
+  return false;
 }
 
 

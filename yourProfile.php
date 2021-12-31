@@ -146,6 +146,8 @@ if ($rowCount > 0) {
             </strong></li>';
             echo '<li class=li-none> Created:   <strong>'.$user->created.' 
             </strong></li>';
+            echo '<li class=li-none> Last Login:  <strong>'.$user->lastLogin.' 
+            </strong></li>';
             echo '<li class=li-none> Password Last Changed: 
             <strong>'.$user->passwordChanged.' 
             </strong></li>';
