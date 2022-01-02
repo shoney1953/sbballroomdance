@@ -460,7 +460,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             <tr>
            
                 <th>ID   </th>   
-                <th>Date    </th>
+                <th>Start Date</th>
                 <th>Time    </th>
                 <th>Room    </th>
                 <th>Class    </th>
