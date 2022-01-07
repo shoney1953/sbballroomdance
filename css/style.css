@@ -237,7 +237,7 @@ hr {
 }
 .content a {
   text-decoration: none;
-  color:rgb(248, 59, 84);
+  color:blue;
 }
 
 .section-header {
@@ -393,6 +393,7 @@ button {
 }
 .li-none {
   list-style: none;
+
 }
 .li-large {
   font-size: 15px;
@@ -401,6 +402,7 @@ button {
 }
 .li-none a {
   text-decoration: none;
+  color:blue;
 }
 .select {
   width: 100%;

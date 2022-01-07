@@ -215,10 +215,19 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <br>
         <h3>Current Board Members</h3>
         <ul>
-            <li class="li-none li-large">Brian Hand, President    -&rarr;          president@sbballroomdance.com</li>
-            <li class="li-none li-large">Richard Adinolfi, Vice-President -&rarr;  vicepresident@sbballroomdance.com</li>
-            <li class="li-none li-large">Dottie Adams, Treasurer   -&rarr;         treasurer@sbballroomdance.com</li>
-            <li class="li-none li-large">Wanda Ross, Secretary    -&rarr;          secretary@sbballroomdance.com</li>
+            <li class="li-none li-large">Brian Hand, President 
+                   -&rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
+                       president@sbballroomdance.com</a></li>
+            <li class="li-none li-large">Richard Adinolfi, Vice-President 
+                -&rarr;  <a href="mailto:vicepresident@sbballroomdance.com?subject=SBDC Info">
+                    vicepresident@sbballroomdance.com</a></li>
+            <li class="li-none li-large">Dottie Adams, Treasurer 
+                  -&rarr; <a href="mailto:treasurer@sbballroomdance.com?subject=SBDC Info">
+                  treasurer@sbballroomdance.com</a></li>
+            <li class="li-none li-large">Wanda Ross, Secretary    
+                -&rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
+                secretary@sbballroomdance.com</a></li>
+  
         </ul>
         <br>
         <ul>
@@ -523,7 +532,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     
      
        <div class="form-grid-div">
-       <h4>CLASS VIDEOS</h4>
+       <h4>SBDC CLASS VIDEOS</h4>
        <ul>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Class-Videos">Class Videos</a></li>    
        </ul>
