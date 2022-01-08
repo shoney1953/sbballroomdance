@@ -190,12 +190,23 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <p>If you love all kinds of dancing, we're the club for you. </p>
         <p> We don't just do Ballroom dance - at our dances/practices, we play 
             music for Ballroom Dance, Western and Western Partner Dance, Line Dance, and Latin Dances.</p>
+
         <p>Our members can go to any class we provide free. Prospective members may attend one class free to see if they like it. </p>
-        <p>We also have several times during the week
-            available for practice - some with D.J.s, sometimes you can bring your favorite music. These
-            sessions desginated as "Open Dance" are not restricted to members.</p>
         <p>Our members also receive reduced rates for our dinner dances, but you may attend as a guest
             if you'd like to put your toe in the water before committing. </p><br>
+        <p>We also have several times during the week
+            available for practice - some with D.J.s, sometimes you can bring your favorite music. These
+            sessions desginated as "Open Dance" are not restricted to members. </p>
+            <p><em>Always check the Activites Calendar because we do have 
+            cancellations.. and also for DJ information.</em> </p>
+        <p>For 2022, we now have 3 different time slots for Open Dance:</p>
+        <ul>
+            <li class="li-none">Tuesday 4 to 5:30PM - Vermillion Room</li>
+            <li class="li-none">Friday 3 to 5PM - Vermillion Room</li>
+            <li class="li-none">Sunday 3 to 5PM - MountainView Ballroom</li>
+        </ul><br>
+ 
+
         <a style="font-weight: bold"
         href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix">
          Click Here to See the Activities Calendar for times and dates.
