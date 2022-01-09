@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     $replyTopic = "Information";
     $replyEmail = 'sbbdcschedule@gmail.com';
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
-    Click to view Activites Calendar</a><br>";
+    Click to view Activities Calendar</a><br>";
     $mailAttachment = '../img/Membership Form 2022 Dance Club.pdf'; 
     $fromCC = 'sbbdcschedule@gmail.com';
     $emailBody = "<br>We would love to have <b>you, $toName </b>, as a new member to our club.<br>
