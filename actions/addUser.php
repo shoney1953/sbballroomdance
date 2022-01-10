@@ -174,7 +174,7 @@ On occasional months, the date of this event may change or there may not be a Di
     $memberPaid->create();
     
  
- $redirect = "Location: ".$_SESSION['adminurl'];
+ $redirect = "Location: ".$_SESSION['adminurl']."#users";
     header($redirect);
     exit;
     

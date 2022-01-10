@@ -27,7 +27,8 @@ $event->id = $_POST['id'];
    
 $event->delete();
 echo ' Event was deleted <br>';
-$redirect = "Location: ".$_SESSION['adminurl'];
+
+$redirect = "Location: ".$_SESSION['adminurl']."#events";
 header($redirect);
 exit;
 

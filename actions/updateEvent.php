@@ -35,7 +35,8 @@ if (isset($_POST['submitUpdate'])) {
     $event->eventnumregistered = $_POST['eventnumregistered'];
     $event->update();
     echo ' Event was updated  <br>';
-    $redirect = "Location: ".$_SESSION['adminurl'];
+    
+    $redirect = "Location: ".$_SESSION['adminurl']."#events";
     header($redirect);
     exit;
 }

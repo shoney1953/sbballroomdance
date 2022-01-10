@@ -35,7 +35,8 @@ if (isset($_POST['submitUpdateReg'])) {
 
     $eventReg->update();
     echo ' Registration was updated  <br>';
-    $redirect = "Location: ".$_SESSION['adminurl'];
+ 
+    $redirect = "Location: ".$_SESSION['adminurl']."#eventregistrations";
     header($redirect);
     exit;
 }

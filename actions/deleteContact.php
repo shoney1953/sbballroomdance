@@ -29,7 +29,8 @@ $contact = new Contact($db);
         echo ' Contacts were deleted <br>';
        }
 
-$redirect = "Location: ".$_SESSION['adminurl'];
+
+$redirect = "Location: ".$_SESSION['adminurl']."#contacts";
 header($redirect);
 exit;
 

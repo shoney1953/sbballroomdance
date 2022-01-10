@@ -36,7 +36,8 @@ if (isset($_POST['submitUpdate'])) {
     $class->time = $_POST['time'];
     $class->update();
     echo ' Class was updated  <br>';
-    $redirect = "Location: ".$_SESSION['adminurl'];
+  
+    $redirect = "Location: ".$_SESSION['adminurl']."#classes";
     header($redirect);
     exit;
 }

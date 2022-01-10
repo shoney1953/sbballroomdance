@@ -34,7 +34,8 @@ $event = new Event($db);
     $event->eventnumregistered = 0;
     $event->create();
     echo ' Event was created <br>';
-    $redirect = "Location: ".$_SESSION['adminurl'];
+
+    $redirect = "Location: ".$_SESSION['adminurl']."#events";
 header($redirect);
 exit;
 

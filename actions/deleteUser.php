@@ -90,7 +90,8 @@ $user = new User($db);
     $eventReg->deleteUserid($user->id);
     $classReg->deleteUserid($user->id);
     $user->delete();
-    $redirect = "Location: ".$_SESSION['adminurl'];
+    
+    $redirect = "Location: ".$_SESSION['adminurl']."#users";
 header($redirect);
 exit;
 

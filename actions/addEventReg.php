@@ -36,7 +36,8 @@ $event = new Event($db);
     $eventReg->create();
     $event->addCount($eventReg->eventid);
     echo ' Registration was created <br>';
-    $redirect = "Location: ".$_SESSION['adminurl'];
+
+    $redirect = "Location: ".$_SESSION['adminurl']."#eventregistrations";
 header($redirect);
 exit;
 

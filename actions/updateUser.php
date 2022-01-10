@@ -18,7 +18,7 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
-var_dump($_POST);
+
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
@@ -111,7 +111,8 @@ if (isset($_POST['submitUpdateUser'])) {
       
     $user->update();
 
-    $redirect = "Location: ".$_SESSION['adminurl'];
+   
+    $redirect = "Location: ".$_SESSION['adminurl']."#users";
     header($redirect);
     exit;
 }

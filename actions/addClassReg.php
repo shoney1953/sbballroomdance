@@ -36,7 +36,8 @@ $danceClass = new DanceClass($db);
     $classReg->create();
     $danceClass->addCount($classReg->classid);
     echo ' Registration was created <br>';
-    $redirect = "Location: ".$_SESSION['adminurl'];
+
+    $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
 header($redirect);
 exit;
 
