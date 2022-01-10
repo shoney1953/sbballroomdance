@@ -102,7 +102,8 @@ if (isset($_POST['submitAddUser'])) {
        $mailSubject = 'Thanks for Joining us at SBDC Ballroom Dance Club!';
        $replyTopic = "Welcome";
        $replyEmail = 'sbbdcschedule@gmail.com';
-       $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
+       $actLink
+           = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
        Click to view Activities Calendar</a><br>";
        $mailAttachment = "../img/Intro.pdf"; 
        $fromCC = "sbbdcschedule@gmail.com";
@@ -120,11 +121,12 @@ then we dance around 6pm in the MountainView Ballroom. You may come just for the
 On occasional months, the date of this event may change or there may not be a Dine and Dance.</li> <br>";
 
     $emailBody .= "<li>Dinner Dance Parties that include a plated dinner and dancing are scheduled for many upcoming months.
-     An email announcing each of these events is sent to the members along with details on how to register for the event. 
+     An email announcing each of these events is sent to the members along with details on how to register for the event.<br>
      You may also register on the website. There will be a form available to download with the description of the event.</li><br>";
 
      $emailBody .= "<li>Free dance lessons are offered to SBDC members on Mondays at 6pm in the Mariposa Room at the DesertView Clubhouse in HOA2. 
-     Usually, lesson reviews (and possibly additional steps) are held on Thursdays at 6pm in the same location. Lessons may be offered at other dates, times and locations.
+     Usually, lesson reviews (and possibly additional steps) are held on Thursdays at 6pm in the same location.<br> 
+     Lessons may be offered at other dates, times and locations.
      You may register for classes on the website.</li><br>"; 
 
      $emailBody .= "<li>Open Dance sessions are available on Tuesday from 4-5:30pm and Fridays from 3-5pm in the Vermillion Room at HOA1 
@@ -134,7 +136,8 @@ On occasional months, the date of this event may change or there may not be a Di
      $actLink.</li><br>";
 
      $emailBody .= "</ul>You have been added to our email distribution list so periodically you will receive emails from SBDC. 
-     Another way to know about upcoming dances and lessons is to go to our website: www.sbballroomdance.com. You may register for events or classes from there.<br><br>";
+     Another way to know about upcoming dances and lessons is to go to our website: www.sbballroomdance.com. <br>
+     You may register for events or classes from there.<br><br>";
 
      $emailBody .= "Be happy! Dance happy!<br>";
      $emailBody .= "--<br>";
