@@ -130,7 +130,8 @@ On occasional months, the date of this event may change or there may not be a Di
      $emailBody .= "<li>Open Dance sessions are available on Tuesday from 4-5:30pm and Fridays from 3-5pm in the Vermillion Room at HOA1 
      and Sundays from 3-5pm in the MountainView Ballroom at HOA2. These open dance sessions are open to everyone.<br>
       Most of the time we have a DJ, but if you do not see one on the activities calendar, feel free to bring your own music.<br>
-     Always check the website activities calendar to be sure. We try to keep it up to date because we do have cancellations.</li><br>";
+     Always check the website activities calendar to be sure. We try to keep it up to date because we sometimes do have cancellations.<br>
+     $actLink.</li><br>";
 
      $emailBody .= "</ul>You have been added to our email distribution list so periodically you will receive emails from SBDC. 
      Another way to know about upcoming dances and lessons is to go to our website: www.sbballroomdance.com. You may register for events or classes from there.<br><br>";
@@ -145,9 +146,6 @@ On occasional months, the date of this event may change or there may not be a Di
      $emailBody .= "Roger Shamburg, Chair, Dance Instructors<br>";
      $emailBody .= "Rick Baumgartner, Chair, DJs<br>";
 
-       
-     $emailBody .= "$actLink.<br>";
- 
 
         sendEmail(
             $user->email, 
