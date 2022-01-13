@@ -556,8 +556,10 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
    <section id="djinfo" class="content">
    <br>  
        <h1 class="section-header">Become a DJ</h1>
-       <p> All our DJs are volunteers. We have two speakers available, and quite a large 
-           body of club music available. We even have some pre-made song lists to facilitate
+       <p> All our DJs are volunteers. We have two speakers available, 
+           and quite a large 
+           body of club music available. 
+           We even have some pre-made song lists to facilitate
            DJ duties. See below for all the documents we've put together. </p><br>
         <p>
             Check out the Automated DJ APP that can be used where WIFI is available
@@ -565,8 +567,9 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
        <a  target="_blank"
 href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?usp=sharing">
 DJ Documents</a><br>
-        <a  target="_blank" href="https://sbdcrobodj.com/">Robo DJ APP</a><br>
-        <a  target="_blank" href="https://zedar.com?x=82351 ">DJ Equipment Checkout App</a><br><br>
+        <a  target="_blank" href="http://sbdcrobodj.com/">Robo DJ App</a><br>
+        <a  target="_blank" href="https://zedar.com?x=82351 "
+        >DJ Equipment Checkout App</a><br><br>
        
      
    </section>
@@ -581,9 +584,11 @@ DJ Documents</a><br>
            Some not so much.</p> 
         <p>Some have had formal training; Some not so much. </p>
         <p>It doesn't matter to us.</p> 
-        <p> It is in the spirit of our club to share what we know. All of our members are very 
+        <p> It is in the spirit of our club to share what we know. 
+            All of our members are very 
                appreciative of anything you can share with them. </p>
-        <p>If you'd like to become an instructor.. even for an hour class, please contact one of the 
+        <p>If you'd like to become an instructor.. even for an hour class,
+             please contact one of the 
            board members.
        </p><br><br>
 
