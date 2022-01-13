@@ -565,7 +565,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
        <a  target="_blank"
 href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?usp=sharing">
 DJ Documents</a><br>
-        <a  target="_blank" href="https://sbdcautodj.netlify.app/">Automated DJ APP</a><br>
+        <a  target="_blank" href="https://sbdcrobodj.com/">Robo DJ APP</a><br>
         <a  target="_blank" href="https://zedar.com?x=82351 ">DJ Equipment Checkout App</a><br><br>
        
      
