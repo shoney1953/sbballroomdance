@@ -18,6 +18,7 @@ if (isset($_GET['error'])) {
     unset($_GET['success']);
 } else {
     $_SESSION['profileurl'] = $_SERVER['REQUEST_URI']; 
+    $_SESSION['returnurl'] = $_SERVER['REQUEST_URI']; 
    
 }
 
