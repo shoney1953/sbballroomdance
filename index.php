@@ -161,8 +161,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             }
         }
     } else {
-        echo '<li><a href="signup.php">Sign Up</a></li>';
-        echo '<li><a href="login.php">Login</a></li>';
+      
+        echo '<li><a style="color: red;font-weight: bold;font-size: large" href="login.php">Login</a></li>';
     }
     ?>
         </ul> 
@@ -351,7 +351,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             echo '</form>';
   
         } else {
-            echo '<h3 style="color: red"> <strong><em>Sign Up or Login to Register</em></strong> </h3><br><br>';
+            echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
         }
         ?>
     </section>
@@ -465,7 +465,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             echo '</div>';
 
         } else {
-            echo '<h3 style="color: red"> <strong><em>Sign Up or Login to Register</em></strong> </h3><br><br>';
+            echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
         }
         ?>
     </section>
