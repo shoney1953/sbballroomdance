@@ -124,10 +124,7 @@ hr {
   color: #7c0a10;
   font-weight: bold;
 }
-.login {
-  color: red;
-  font-size: large;
-}
+
 .hero {
   background-image: url("../img/moonrise\ opaque.jpg");
   height: 100vh;

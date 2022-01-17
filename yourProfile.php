@@ -380,7 +380,7 @@ if ($rowCount > 0) {
         </table>
  
     <br><br>
-    <form method='POST' action="actions/maintaineventReg.php">
+    <form method='POST' action="actions/maintainEventReg.php">
         
         <div class="form-grid-div">
         <h4>Manage Your Event Registration(s)</h4>
