@@ -246,7 +246,7 @@ if (!isset($_POST['userId'])) {
             echo '<input type="text" name="city" ><br>';
             echo '<label for="state">State</label><br>';
             echo '<input type="text" name="state" maxsize="2"><br>';
-            echo '<label for="zip">State</label><br>';
+            echo '<label for="zip">Zip</label><br>';
             echo '<input type="text" name="zip" maxsize="10"><br>';
             echo '<p> Notes</p><br>';
             echo '<textarea name="notes" cols="50" rows="5"></textarea><br><br>';
