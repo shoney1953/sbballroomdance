@@ -180,10 +180,10 @@ if (!isset($_POST['userId'])) {
         echo '<input type="text" name="streetaddress" 
             value="'.$user->streetAddress.'"><br>';
         echo '<label for="city">City</label><br>';
-        echo '<input type="text" name="city" value="'.$user->city.'">  ';
+        echo '<input type="text" name="city" value="'.$user->city.'"> <br> ';
         echo '<label for="state">State</label><br>';
         echo '<input type="text" name="state" maxsize="2" 
-            value="'.$user->state.'">  ';
+            value="'.$user->state.'"> <br> ';
         echo '<label for="zip">Zip</label><br>';
         echo '<input type="text" name="zip" maxsize="10" 
             value="'.$user->zip.'"><br>';
@@ -242,10 +242,13 @@ if (!isset($_POST['userId'])) {
             echo '<small>Format: 123-456-7890</small><br>';
             echo '<label for="streetaddress">Street Address</label><br>';
             echo '<input type="text" name="streetaddress" ><br>';
-            echo '<label for="city">City</label><br>';
+            echo '<label for="city">City Name</label><br>';
+        
             echo '<input type="text" name="city" ><br>';
+          
             echo '<label for="state">State</label><br>';
             echo '<input type="text" name="state" maxsize="2"><br>';
+            echo '<br>';
             echo '<label for="zip">Zip</label><br>';
             echo '<input type="text" name="zip" maxsize="10"><br>';
             echo '<p> Notes</p><br>';
