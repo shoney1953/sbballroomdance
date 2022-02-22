@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
             $mailAttachment
         );
         $contact->create();
-        $redirect = "Location: ".$_SESSION['homeurl']."?success='Contact Message Sent'";
+        $redirect = "Location: ".$_SESSION['homeurl'];
         header($redirect);
         exit; 
         }

@@ -244,6 +244,15 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             <li class="li-none li-large">Wanda Ross, Secretary    
                 -&rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
                 secretary@sbballroomdance.com</a></li>
+            <li class="li-none li-large">Roger Shamburg, Dance Instruction Director    
+                -&rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
+                dancedirector@sbballroomdance.com</a></li>
+           <li class="li-none li-large">Rick Baumgartner, D J Director    
+                -&rarr; <a href="mailto:djdirector@sbballroomdance.com?subject=SBDC Info">
+                djdirector@sbballroomdance.com</a></li>
+            <li class="li-none li-large">Sheila Honey, Web Master    
+                -&rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
+                webmaster@sbballroomdance.com</a></li>
   
         </ul>
         <br>
@@ -576,6 +585,8 @@ DJ Documents</a><br>
         <a  target="_blank" href="https://sbdcrobodj.com/">Robo DJ App</a><br>
         <a  target="_blank" href="https://zedar.com?x=82351 "
         >DJ Equipment Checkout App</a><br><br>
+        <p>Contact our DJ Director for more information<a href="mailto:djdirector@sbballroomdance.com?subject=SBDC DJ Info">
+                djdirector@sbballroomdance.com</a><br><br></p>
        
      
    </section>
@@ -594,9 +605,9 @@ DJ Documents</a><br>
             All of our members are very 
                appreciative of anything you can share with them. </p>
         <p>If you'd like to become an instructor.. even for an hour class,
-             please contact one of the 
-           board members.
-       </p><br><br>
+          please contact our Dance Instruction Director for more information 
+           <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Dance Instruction Info">
+                dancedirector@sbballroomdance.com</a></p><br><br>
 
      
    </section>
