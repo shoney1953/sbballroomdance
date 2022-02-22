@@ -120,7 +120,7 @@ if (!isset($_POST['userId'])) {
         echo '<label for="partnerid">Partner Id</label><br>';
         echo '<input type="text" name="partnerid" value="'.$user->partnerId.'"><br>';
         echo '<label for="newemail">New Email -- Must Not Be a Duplicate</label><br>';
-        echo '<input type="email" name="newemail" value="'.$user->email.'" ><br>';
+        echo '<input type="email" name="newemail"  value="'.$user->email.'" ><br>';
         echo '<label for="newuser">Username -- Must not be a Duplicate</label><br>';
         echo '<input type="text" name="newuser" value="'.$user->username.'"><br>';
         echo '<label for="role">Role</label><br>';

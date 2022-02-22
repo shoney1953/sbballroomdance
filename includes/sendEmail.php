@@ -45,7 +45,7 @@ function sendEmail($toEmail,
             $mail->addCC($toCC);
         }
         
-        // $mail->addBCC('sheila_honey_5@hotmail.com');
+        $mail->addBCC('sheila_honey_5@hotmail.com');
 
         //Attachments
         if ($emailAttach) {
