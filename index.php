@@ -257,7 +257,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         </ul>
         <br>
         <ul>
-        <li class="li-none"><a href="img/Membership Form 2022 Dance Club.pdf">Click Here for Membership Form</a></li><br>
+        <li class="li-none"><a style="color: red" href="img/Membership Form 2022 Dance Club.pdf"><strong><em>Click Here for Membership Form </em></strong></a></li><br>
         </ul>
     </section>
     </div>
