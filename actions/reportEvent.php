@@ -14,6 +14,7 @@ class PDF extends FPDF
 {
     function Header() {
         // Logo
+        $today = date("m-d-Y");
         $this->Image('../img/sbdc_logo_small.png',10,6,30);
         // Arial bold 15
         $this->SetFont('Arial','B',15);
@@ -23,7 +24,7 @@ class PDF extends FPDF
         $this->Cell(
             10,
             10,
-            'SBDC Event Registration Report', 0, 0, 'C'
+            'SBDC Event Registration Report - '.$today, 0, 0, 'C'
         );
         // Line break
         $this->Ln(20);
@@ -145,8 +146,8 @@ if ($rowCount > 0) {
     $pdf->Cell(0, 10, "   NO REGISTRATIONS FOUND ", 0, 1); 
     $pdf->SetFont('Arial', '', 10);
 }
-
-$pdf->Output("I", "EventRegistrationReport");
+$today = date("m-d-Y");
+$pdf->Output("I", "EventRegistrationReport.".$today);
 }
 
 $redirect = "Location: ".$_SESSION['adminurl'];

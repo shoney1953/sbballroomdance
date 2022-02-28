@@ -14,13 +14,14 @@ class PDF extends FPDF
 function Header()
 {
 	// Logo
+	$today = date("m-d-Y");
 	$this->Image('../img/sbdc_logo_small.png',10,6,30);
 	// Arial bold 15
 	$this->SetFont('Arial','B',15);
 	// Move to the right
 	$this->Cell(80);
 	// Title
-	$this->Cell(50,10,'SBDC Contacts',0,0,'C');
+	$this->Cell(50,10,'SBDC Contacts - '.$today,0,0,'C');
 	// Line break
 	$this->Ln(20);
 }
@@ -69,8 +70,8 @@ if($rowCount > 0) {
    echo 'NO Contacts';
 
 }
-
-$pdf->Output("I", "ContactReport");
+$today = date("m-d-Y");
+$pdf->Output("I", "ContactReport.".$today);
 
 $redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);

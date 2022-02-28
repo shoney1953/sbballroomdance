@@ -16,6 +16,7 @@ class PDF extends FPDF
 {
     function Header() {
         // Logo
+        $today = date("m-d-Y");
         $this->Image('../img/sbdc_logo_small.png',10,6,30);
         // Arial bold 15
         $this->SetFont('Arial','B',15);
@@ -25,7 +26,7 @@ class PDF extends FPDF
         $this->Cell(
             10,
             10,
-            'SBDC Membership', 0, 0, 'C'
+            'SBDC Membership Status - '.$today, 0, 0, 'C'
         );
         // Line break
         $this->Ln(20);
@@ -107,8 +108,8 @@ if ($memCount > 0) {
     $pdf->Cell(0, 10, "   NO Member Paid Records FOUND ", 0, 1); 
     $pdf->SetFont('Arial', '', 10);
 }
-
-$pdf->Output("I", "MembershipReport");
+$today = date("m-d-Y");
+$pdf->Output("I", "MembershipReport.".$today);
 }
 
 $redirect = "Location: ".$_SESSION['adminurl'];

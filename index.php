@@ -8,13 +8,16 @@ require_once 'models/User.php';
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
     Please Validate Input</h4><br>';
+    echo $_GET['error'];
     unset($_GET['error']);
 } elseif (isset($_GET['success'])) {
     echo '<br><h4 style="text-align: center"> '.$_GET['success'].'</h4><br>';
+    echo $_GET['success'];
     unset($_GET['success']);
 } else {
     $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
 }
+
 
 $_SESSION['user'] = null;
 date_default_timezone_set("America/Phoenix");
