@@ -3,6 +3,7 @@ session_start();
 require_once '../includes/sendEmail.php';
 require_once '../config/Database.php';
 require_once '../models/User.php';
+require_once '../models/UserArchive.php';
 require_once '../models/MemberPaid.php';
 date_default_timezone_set("America/Phoenix");
 
@@ -25,6 +26,7 @@ if (!isset($_SESSION['username']))
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
+$userArchive = new UserArchive($db);
 
 
 if (isset($_POST['submitAddUser'])) {
@@ -90,6 +92,12 @@ if (isset($_POST['submitAddUser'])) {
        $user->notes = htmlentities($_POST['notes']); 
        $user->phone1 = htmlentities($_POST['phone1']);
        $user->phone2 = htmlentities($_POST['phone2']);
+       $formerUser = "no";
+       if ($userArchive->getUserName($user->username, $user->email))
+        {
+          $formerUser = "yes";
+          $userArchive->deleteUser($user->username, $user->email);
+       }
        
        if ($_POST['hoa'] === "1") {
           $user->hoa = 1;
@@ -99,49 +107,63 @@ if (isset($_POST['submitAddUser'])) {
 
        $fromEmailName = 'SBDC Ballroom Dance Club';
        $toName = $user->firstname.' '.$user->lastname; 
-       $mailSubject = 'Thanks for Joining us at SBDC Ballroom Dance Club!';
+       if ($formerUser === 'yes') {
+        $mailSubject = 'Thanks for Returning to   us at SBDC Ballroom Dance Club!';
+       } else {
+        $mailSubject = 'Thanks for Joining us at SBDC Ballroom Dance Club!';
+       }
+      
        $replyTopic = "Welcome";
        $replyEmail = 'sbbdcschedule@gmail.com';
        $actLink
            = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
        Click to view Activities Calendar</a><br>";
+       $webLink
+           = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
        $mailAttachment = "../img/Intro.pdf"; 
        $fromCC = "sbbdcschedule@gmail.com";
-       $emailBody = "<br>We would like to welcome you<b> $toName </b> as a new member to our club.<br><br>";
-       $emailBody .= "
-       You've joined at a wonderful time as SaddleBrooke is opening up more all the time 
-       now that most of the community has been vaccinated for Covid 19. 
-       We have many opportunities to dance 
-       plus we offer lessons to learn new dances and to improve on the dances we already do. <br>";
+       if ($formerUser === 'yes') {
+        $emailBody = "<br>Welcome back<b> $toName </b> as a returning member 
+        to the SaddleBrooke Ballroom Dance Club.<br><br>";
+       } else {
+        $emailBody = "<br>Welcome<b> $toName </b>to the SaddleBrooke Ballroom Dance Club.<br><br>";
+       }
+ 
+       $emailBody .= "We hope you will participate in and enjoy the following club activities: <br><ul>";
+       $emailBody .= "<li><strong>Dance Classes</strong> - Classes are normally held at the Mariposa Room
+       at DesertView on Mondays and Thursdays at 6 - 8pm. Emails will go out regarding the content, 
+       format, instructors and dates; registration is also available on the website.</li>";
+       $emailBody .= "<li><strong>Dinner Dances</strong> - These are provided most months during the snowbird
+       season. They include a plated dinner with several entree choices followed by dancing to music provided
+       by one of our DJs in the MountainView Ballroom. You will receive an email with a sign-up form
+       stating the date, price and where to send the form and the check. The information will also
+       be available on the website.</li>";
+       $emailBody .= "<li><strong>Dine and Dance or TGIFs</strong> - These are dances with the option of having
+       dinner with the group in the MountainView Bistro.  Dine and Dances has the dinner at approximately 4:30pm
+       followed by dancing in the MountainView Ballroom. TGIFs are dancing first from 3 - 5pm followed by dinner. 
+       You will also receive emails about these actvities. You can register for these on the website.</li>";
+       $emailBody .= "<li><strong>Open Dance</strong> - These are slots open for practice dancing. They are not 
+       exclusively for members, so you can bring friends. Often a DJ provides requested music. If no DJ is
+       specified, you may bring your own music. Currently we have 3 different slots:<ul>
+       <li>Tuesday 4 - 5:30pm in the HOA1 Vermillion Room</li>
+       <li>Friday 3 - 5pm in the HOA1 Vermillion Room</li>
+       <li>Sunday 3 - 5pm in the MountainView Ballroom</li>
+       </ul></li>";
 
-       $emailBody .= "We dance year round, so join us for these dance events.<br><ul>"; 
-       $emailBody .= "<li>A Dine and Dance is often held on the first Friday of the month, usually starting at 4:30pm. 
-Dinner may be purchased at the MountainView Bar & Grill at HOA2, 
-then we dance around 6pm in the MountainView Ballroom. You may come just for the dancing.<br>
-On occasional months, the date of this event may change or there may not be a Dine and Dance.</li> <br>";
+     $emailBody .= "</ul>
+     <strong>At Times we have have room changes or cancellations, so it is important to check the Activities
+     Calendar on the website to verify the schedule.<br>$actLink<br></strong>";
 
-    $emailBody .= "<li>Dinner Dance Parties that include a plated dinner and dancing are scheduled for many upcoming months.
-     An email announcing each of these events is sent to the members along with details on how to register for the event.<br>
-     You may also register on the website. There will be a form available to download with the description of the event.</li><br>";
+     $emailBody .= "
+   We have attached a PDF that is an introduction to the website.
+    The website shows Classes, Dances, and other events. 
+   Once you logon, you can register for many actvities from there.$webLink<br>";
 
-     $emailBody .= "<li>Free dance lessons are offered to SBDC members on Mondays at 6pm in the Mariposa Room at the DesertView Clubhouse in HOA2. 
-     Usually, lesson reviews (and possibly additional steps) are held on Thursdays at 6pm in the same location.<br> 
-     Lessons may be offered at other dates, times and locations.
-     You may register for classes on the website.</li><br>"; 
+   $emailBody .= "We hope to see you soon!<br>";
 
-     $emailBody .= "<li>Open Dance sessions are available on Tuesday from 4-5:30pm and Fridays from 3-5pm in the Vermillion Room at HOA1 
-     and Sundays from 3-5pm in the MountainView Ballroom at HOA2. These open dance sessions are open to everyone.<br>
-      Most of the time we have a DJ, but if you do not see one on the activities calendar, feel free to bring your own music.<br>
-     Always check the website activities calendar to be sure. We try to keep it up to date because we sometimes do have cancellations.<br>
-     $actLink.</li><br>";
 
-     $emailBody .= "</ul>You have been added to our email distribution list so periodically you will receive emails from SBDC. 
-     Another way to know about upcoming dances and lessons is to go to our website: www.sbballroomdance.com. <br>
-     You may register for events or classes from there.<br><br>";
-
-     $emailBody .= "Be happy! Dance happy!<br>";
-     $emailBody .= "--<br>";
-     $emailBody .= "SaddleBrooke Ballroom Dance Club Board Members<br>";
+     $emailBody .= "----------------------------<br>";
+     $emailBody .= "<em>SaddleBrooke Ballroom Dance Club Board Members</em><br>";
      $emailBody .= "Brian Hand, President<br>";
      $emailBody .= "Rich Adinolfi, Vice President<br>"; 
      $emailBody .= "Dottie Adams, Treasurer<br>";

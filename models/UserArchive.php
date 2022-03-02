@@ -99,16 +99,17 @@ class UserArchive {
         
 
     }
-    public function getUserName($user) {
+    public function getUserName($user, $email) {
         
       // Create query
-      $query = 'SELECT * FROM ' . $this->table . ' WHERE username = :user OR email = :user LIMIT 0,1'; 
+      $query = 'SELECT * FROM ' . $this->table . ' WHERE username = :user OR email = :email LIMIT 0,1'; 
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
 
       // Bind ID
       $stmt->bindParam('user', $user);
+      $stmt->bindParam('email', $email);
 
       // Execute query
       $stmt->execute();
@@ -288,6 +289,31 @@ class UserArchive {
 
           return false;
     }
+    public function deleteUser($user, $email) {
+        
+      // Create query
+      $query = 'DELETE FROM ' . $this->table . ' WHERE username = :user or email = :email';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Clean data
+      $this->id = htmlspecialchars(strip_tags($this->id));
+
+      // Bind data
+      $stmt->bindParam(':user', $user);
+      $stmt->bindParam(':email', $email);
+
+      // Execute query
+      if($stmt->execute()) {
+        return true;
+      }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+}
    
     
 }

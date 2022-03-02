@@ -4,7 +4,7 @@ require_once 'config/Database.php';
 require_once 'models/Event.php';
 require_once 'models/DanceClass.php';
 require_once 'models/User.php';
-
+$_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
     Please Validate Input</h4><br>';
@@ -145,6 +145,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         </ul>
         </li>
         <li><a href="#pictures">Picture Gallery</a></li>
+        <li><a href="#help">Help</a></li>
         <li><a href="resources.php">Resources</a></li>
    
     </li>
@@ -247,10 +248,10 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             <li class="li-none li-large">Wanda Ross, Secretary    
                 -&rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
                 secretary@sbballroomdance.com</a></li>
-            <li class="li-none li-large">Roger Shamburg, Dance Instruction Director    
+            <li class="li-none li-large">Roger Shamburg, Chair Instruction Director    
                 -&rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
                 dancedirector@sbballroomdance.com</a></li>
-           <li class="li-none li-large">Rick Baumgartner, D J Director    
+           <li class="li-none li-large">Rick Baumgartner, Chair D J and Music  
                 -&rarr; <a href="mailto:djdirector@sbballroomdance.com?subject=SBDC Info">
                 djdirector@sbballroomdance.com</a></li>
             <li class="li-none li-large">Sheila Honey, Web Master    
@@ -570,6 +571,19 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     </div>
    </section>
    </div>
+   <div class="container-section ">
+    <section id="help" class="content">
+    <br><br> 
+        <h1 class="section-header">For Website Help</h1><br>
+        <p>Contact one of the board members or webmaster listed in the about section or
+            read the introduction to the website PDF below.
+            <a href="https://drive.google.com/file/d/1UsEnVCytYHFuoEIlworrTg049jIzV2H6/view?usp=sharing">
+                Click for the Introduction PDF
+            </a>
+        </p><br><br>
+    </section>
+   </div>
+        
    <div class="container-section ">
    <section id="djinfo" class="content">
    <br>  
