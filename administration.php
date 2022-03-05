@@ -231,6 +231,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'lastname' => $lastname,
                 'userid' => $userid,
                 'year' => $year,
+                'email' => $email,
                 'paid' => $paid
 
             );
@@ -253,6 +254,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'firstname' => $firstname,
                 'lastname' => $lastname,
                 'userid' => $userid,
+                'email' => $email,
                 'year' => $year,
                 'paid' => $paid
 
@@ -756,6 +758,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Mark Paid</th>';
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
+                echo '<th>Email</th>';
                 echo '</tr>';
                     
                 foreach ($memberStatus1 as $memStat) {
@@ -775,7 +778,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                           echo '<input type="checkbox" name="'.$ckboxId.'">';
                         echo "</td>";
                         echo "<td>".$memStat['firstname']."</td>";               
-                        echo "<td>".$memStat['lastname']."</td>";  
+                        echo "<td>".$memStat['lastname']."</td>";
+                        echo "<td>".$memStat['email']."</td>";  
 
                  
                       echo "</tr>";
@@ -797,6 +801,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Mark Paid</th>';
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
+                echo '<th>Email</th>';
                 echo '</tr>';
                     
                 foreach ($memberStatus2 as $memStat) {
@@ -816,7 +821,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                           echo '<input type="checkbox" name="'.$ckboxId.'">';
                         echo "</td>";
                         echo "<td>".$memStat['firstname']."</td>";               
-                        echo "<td>".$memStat['lastname']."</td>";  
+                        echo "<td>".$memStat['lastname']."</td>"; 
+                        echo "<td>".$memStat['email']."</td>";  
 
                  
                       echo "</tr>";
@@ -835,6 +841,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<label for="year" >Reporting Year</label><br>';
         echo '<input type="number" min=2021 maxlength=4 name="year" 
              value="'.$thisYear.'"><br>';
+        echo '<input type="hidden" name="email" value="'.$memStat['email'].'"><br>';
+        echo '<input type="hidden" name="firstname" value="'.$memStat['firstname'].'"><br>';
+        echo '<input type="hidden" name="lastname" value="'.$memStat['lastname'].'"><br>';
         echo '<button type="submit" name="submitPaidRep">Report</button>';   
         echo '</div> ';  
         echo '</form>';

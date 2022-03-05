@@ -20,6 +20,7 @@ if (isset($_POST['submit'])) {
     $contact->email = filter_var($contact->email, FILTER_SANITIZE_EMAIL);  
 
     $fromEmailName = 'SBDC Ballroom Dance Club';
+    $toCC2 = 'president@sbballroomdance.com';
     $toName = $contact->firstname.' '.$contact->lastname; 
     $mailSubject = 'Thanks for Contacting us at SBDC Ballroom Dance Club!';
     $replyTopic = "Information";
@@ -29,7 +30,7 @@ if (isset($_POST['submit'])) {
     $mailAttachment = '../img/Membership Form 2022 Dance Club.pdf'; 
     $fromCC = 'sbbdcschedule@gmail.com';
     $emailBody = "<br>We would love to have <b>you, $toName </b>, as a new member to our club.<br>
-    Please see attached membership form if you are interested.<br>".
+    Please see attached membership form if you are interested in joining.<br>".
     $actLink.
     "<br><br>Thanks!
     <br>SBDC Ballroom Dance Club";
@@ -44,7 +45,8 @@ if (isset($_POST['submit'])) {
             $mailSubject,
             $replyEmail,
             $replyTopic,
-            $mailAttachment
+            $mailAttachment,
+            $toCC2
         );
         $contact->create();
         $redirect = "Location: ".$_SESSION['homeurl'];

@@ -16,9 +16,11 @@ function sendEmail($toEmail,
     $emailSubject,
     $replyEmail,
     $replyTopic,
-    $emailAttach
+    $emailAttach,
+    $toCC2
 )
 {
+  
     $mailHost       = 'chi120.greengeeks.net' ;                  //Set the SMTP server to send through
     $mailUsername   = 'sbdcmailer@sbballroomdance.com';                     //SMTP username
     $mailPassword   = '$2021Test';
@@ -43,6 +45,9 @@ function sendEmail($toEmail,
         $mail->addReplyTo($replyEmail, $replyTopic);
         if ($toCC) {
             $mail->addCC($toCC);
+        }
+        if ($toCC2) {
+            $mail->addCC($toCC2);
         }
         
         $mail->addBCC('webmaster@sbballroomdance.com');

@@ -112,7 +112,7 @@ if (isset($_POST['submitAddUser'])) {
        } else {
         $mailSubject = 'Thanks for Joining us at SBDC Ballroom Dance Club!';
        }
-      
+      $toCC2 = 'president@sbballroomdance.com';
        $replyTopic = "Welcome";
        $replyEmail = 'sbbdcschedule@gmail.com';
        $actLink
@@ -181,7 +181,8 @@ if (isset($_POST['submitAddUser'])) {
             $mailSubject,
             $replyEmail,
             $replyTopic,
-            $mailAttachment
+            $mailAttachment,
+            $toCC2
         );
     
     $user->create();

@@ -7,6 +7,7 @@ class MemberPaid {
     public $userid;
     public $year;
     public $paid;
+  
 
     // Constructor with DB
     public function __construct($db) {
@@ -19,7 +20,7 @@ class MemberPaid {
 
       // $query = 'SELECT * FROM ' . $this->table . ' ORDER BY userid';
       $query = 'SELECT r.id, r.userid, r.year, r.paid,
-      u.firstname, u.lastname, u.id
+      u.firstname, u.lastname, u.id, u.email
       FROM ' . $this->table . ' r
       LEFT JOIN
         users u ON r.userid = u.id
@@ -39,7 +40,7 @@ class MemberPaid {
 
       // $query = 'SELECT * FROM ' . $this->table . ' ORDER BY userid';
       $query = 'SELECT r.id, r.userid, r.year, r.paid,
-      u.firstname, u.lastname
+      u.firstname, u.lastname, u.email
       FROM ' . $this->table . ' r
       LEFT JOIN
         users u ON r.userid = u.id
@@ -62,7 +63,7 @@ class MemberPaid {
     public function read_single() {
           // Create query
      $query = 'SELECT r.id, r.userid, r.year, r.paid
-           u.firstname, u.lastname, u.id
+           u.firstname, u.lastname, u.id, u.email
           FROM ' . $this->table . ' r
           LEFT JOIN
            users u ON r.userid = u.id
@@ -87,6 +88,7 @@ class MemberPaid {
           $this->year = $row['year'];
           $this->paid = $row['paid'];
           $this->id = $row['id'];
+         
 
     }
         // Get Single Event

@@ -24,6 +24,7 @@ $id_int = 0;
 $fromCC = 'sbbdcschedule@gmail.com';
 $replyEmail = 'sbbdcschedule@gmail.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
+$toCC2 = 'sbbdcschedule@gmail.com';
 $mailAttachment = "";
 $replyTopic = "Class Registration";
 $regId1 = 0;
@@ -78,7 +79,7 @@ if (isset($_POST['submitRegClass'])) {
                 $classId = $class['id'];
                 $emailBody .= "<br> ".$class['classlevel']."  ".$class['classname']."    Instructor(s):   ".
                 $class['instructors']."    room:    ".$class['room'].
-                "   beginning on date:    ".$class['date']."  time: ".$class['time']."<br>"; 
+                "   beginning on date:    ".date('M d Y',strtotime($class['date']))."  time: ".$class['time']."<br>"; 
                 // do the insert(s)
                 $classReg->firstname = $regFirstName1;
                 $classReg->lastname = $regLastName1;
@@ -116,7 +117,6 @@ if (isset($_POST['submitRegClass'])) {
 
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
         $regName1 = $regFirstName1.' '.$regLastName1;
-   
         sendEmail(
             $regEmail1, 
             $regName1, 
@@ -126,7 +126,8 @@ if (isset($_POST['submitRegClass'])) {
             $emailSubject,
             $replyEmail,
             $replyTopic,
-            $mailAttachment
+            $mailAttachment,
+            $toCC2
         );
     } else {
         echo 'Registrant 1 Email is empty or Invalid. Please enter valid email.';
@@ -136,7 +137,7 @@ if (isset($_POST['submitRegClass'])) {
     if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
       
         $regName2 = $regFirstName2.' '.$regLastName2;
-   
+  
         sendEmail(
             $regEmail2, 
             $regName2, 
@@ -146,7 +147,9 @@ if (isset($_POST['submitRegClass'])) {
             $emailSubject,
             $replyEmail,
             $replyTopic,
-            $mailAttachment
+            $mailAttachment,
+            $toCC2
+
         );
     } 
 
@@ -165,15 +168,7 @@ if (isset($_POST['submitRegClass'])) {
                     $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
                 }
                 $emailBody .= "NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
-                if ($regId1 === 0) {
-                    $emailBody .= "<br> We didn't find this email. So the person may not have joined yet.<br>";
-                }
-                if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-                    $emailBody .= "And <br>  NAME: ".$regFirstName2." ".$regLastName2."<br>  EMAIL:  ".$regEmail2."<br>";
-                }
-                if ($regId2 === 0) {
-                    $emailBody .= "<br> We didn't find this email.  So the person may not have joined yet.<br>";
-                }
+             
            
                 $classString = '';
                 $classString = "<br>Class: ".$class['classname']."<br>";
@@ -185,9 +180,9 @@ if (isset($_POST['submitRegClass'])) {
                      $emailBody .= $classString;
                 
                      $regname = " ";
-   
+  
                      sendEmail(
-                         $regEmail2, 
+                         $insEmail, 
                          $regname, 
                          $fromCC,
                          $fromEmailName,
@@ -195,7 +190,8 @@ if (isset($_POST['submitRegClass'])) {
                          $emailSubject,
                          $replyEmail,
                          $replyTopic,
-                         $mailAttachment
+                         $mailAttachment,
+                         $toCC2
                      );
                      $classString = '';
                   
@@ -203,8 +199,8 @@ if (isset($_POST['submitRegClass'])) {
             } // end foreach class
         } //end foreach regselected
 
-    $redirect = "Location: ".$_SESSION['homeurl'];
-    header($redirect);
+   $redirect = "Location: ".$_SESSION['homeurl'];
+     header($redirect);
  exit;
 } // end submit
 

@@ -28,6 +28,7 @@ $emailSubject = '';
 $eventNum = 0;
 $regUserid1 = 0;
 $regUserid2 = 0;
+$toCC2 = '';
 
 $id_int = 0;
 
@@ -66,21 +67,26 @@ if (isset($_POST['submitEventReg'])) {
                 $eventId = $event['id'];
                 $emailBody .= "<br> ".$event['eventname'].
                 "    room:    ".$event['eventroom'].
-                "  on date:    ".$event['eventdate']."<br>"; 
+                "  on date:    ".date('M d Y',strtotime($event['eventdate']))."<br>"; 
+               
+                if ($event['eventform']) {
+                    $actLink= "<a href='".$event['eventform']."'>
+       Click to view event Form</a><br>";
+                   $emailBody .= '<strong>There is a form to submit registration details and payment.<br>';
+                   $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
+                    on the website to open the form. Or</strong><br>$actLink";
+                   $toCC2 = 'treasurer@sbballroomdance.com';
+                }
                 if ($event['eventcost'] > 0) {
                     $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-                    $coststr =  "<br> Member Event Cost is: "
-                          .$fmt->formatCurrency($event['eventcost'], 'USD')."<br>";
+                    $coststr =  "<strong> Member Event Cost is approximately: "
+                          .$fmt->formatCurrency($event['eventcost'], 'USD')."<br>
+                          Check the form for specific costs.</strong><br>";
                     $emailBody .= $coststr;
-                  }
-                 
-                if ($event['eventform']) {
-                   $emailBody .= '<br>There is a form to submit registration details and payment.<br>';
-                   $emailBody .= '<br>Please VIEW the form on the website under events.<br>';
-
-                  }
+                    $toCC2 = 'treasurer@sbballroomdance.com';
+                 }
                 if ($message) {
-                    $emailBody .= '<br> MESSAGE: <br>';
+                    $emailBody .= '<br> MESSAGE from Registrant: <br>';
                     $emailBody .= $message;
                 }
           
@@ -125,7 +131,8 @@ if (isset($_POST['submitEventReg'])) {
             $emailSubject,
             $replyEmail,
             $replyTopic,
-            $mailAttachment
+            $mailAttachment,
+            $toCC2
         );
     } else {
         echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
@@ -144,7 +151,8 @@ if (isset($_POST['submitEventReg'])) {
             $emailSubject,
             $replyEmail,
             $replyTopic,
-            $mailAttachment
+            $mailAttachment,
+            $toCC2
         );
              
     }
