@@ -235,6 +235,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         </p>
         <br>
         <h3>Current Board Members</h3>
+        <h4>Click on the Email to correspond with one of our Board Members</h4><br>
         <ul>
             <li class="li-none li-large">Brian Hand, President 
                    -&rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
@@ -492,47 +493,79 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
   
     <div class="container-section ">
     <section id="contact" class="content">
-    <br>  
-        <h1 class="section-header">Enter your information below to contact us: </h1>
+    <br>
+    <?php
+    if (isset($_SESSION['username'])) { 
+        echo '<h1 class="section-header">Please contact one of us below (Just click on the email to email us): </h1>';
+        echo '<ul>';
+            echo '<li class="li-none li-large">President
+                   -&rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
+                       president@sbballroomdance.com</a></li>';
+            echo '<li class="li-none li-large">Vice President  
+                -&rarr;  <a href="mailto:vicepresident@sbballroomdance.com?subject=SBDC Info">
+                    vicepresident@sbballroomdance.com</a></li>';
+            echo '<li class="li-none li-large">Questions about costs of events or membership 
+                  -&rarr; <a href="mailto:treasurer@sbballroomdance.com?subject=SBDC Info">
+                  treasurer@sbballroomdance.com</a></li>';
+            echo '<li class="li-none li-large">General Membership Questions    
+                -&rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
+                secretary@sbballroomdance.com</a></li>';
+            echo '<li class="li-none li-large">Questions about Classes   
+                -&rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
+                dancedirector@sbballroomdance.com</a></li>';
+           echo '<li class="li-none li-large">Questions about Music or DJing 
+                -&rarr; <a href="mailto:djdirector@sbballroomdance.com?subject=SBDC Info">
+                djdirector@sbballroomdance.com</a></li>';
+            echo '<li class="li-none li-large">Questions about the Website   
+                -&rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
+                webmaster@sbballroomdance.com</a></li>';
+  
+        echo '</ul>';
+    }
+    if (!isset($_SESSION['username'])) { 
+        echo '<h1 class="section-header">Enter your information below to contact us about New membership: </h1>';
+        echo '<em><h4> Once you press SUBMIT, 
+        There will be a time delay while the email is generated an sent, so please be patient.</em><br><br>';
         
-            <form method="POST" action="actions/contact.php">
-            <div class="form-grid3">
-                <div class="form-grid-div">
-                <label for="firstname">First Name</label><br>
-                <input type="text" name="firstname" ><br>
-                <label for="lastname">Last Name</label><br>
-                <input type="text" name="lastname" ><br>
-                <label for="email">Email</label><br>
-                <input type="email" name="email" ><br>
-                </div>
+            echo '<form method="POST" action="actions/contact.php">';
+            echo '<div class="form-grid3">';
+                echo '<div class="form-grid-div">';
+                echo '<label for="firstname">First Name</label><br>';
+                echo '<input type="text" name="firstname" ><br>';
+                echo '<label for="lastname">Last Name</label><br>';
+                echo '<input type="text" name="lastname" ><br>';
+                echo '<label for="email">Email</label><br>';
+                echo '<input type="email" name="email" ><br>';
+                echo '</div>';
            
-                <div class="form-grid-div">  
-                <label for="danceexperience">How familiar are you with Dance?</label><br>
-                <select name = "danceexperience">
-                    <option value = "Beginner" selected>Beginner or It's been a long time</option>
-                    <option value = "Intermediate">Had moderate experience dancing</option>
-                    <option value = "Advanced">Been Dancing for a long time</option>
-                </select>
-                <br>
-                <label for="dancefavorite">What is your favorite type of dance?</label><br>
-                <select name = "dancefavorite">
-                    <option value = "Ballroom" selected>Ballroom dances: Foxtrot, Quickstep, Waltz etc.</option>
-                    <option value = "Latin">Cha Cha, Rumba, Bolero, American Tango or Argentine Tango, etc.</option>
-                    <option value = "Country Western">Western Partner, Two Step, Nightclub, etc.</option>
-                    <option value = "Line Dance">Boot Scootin, Cupid Shuffle, Electric Slide, etc.</option>
-                    <option value = "Other">I like them all, or I prefer some other kind of dance.</option>
-                 </select>
-                 <br><br>
-              
-                </div class="form-grid-div">   
-                <div class="form-grid-div">
-                <p> Tell Us About Yourself </p><br>
-                <textarea name="message" cols="50" rows="4"></textarea><br><br>
-                <button name="submit" type="submit">Submit</button><br>
-                </div>
-            </div>
+                echo '<div class="form-grid-div">'; 
+                echo '<label for="danceexperience">How familiar are you with Dance?</label><br>';
+                echo '<select name = "danceexperience">';
+                    echo '<option value = "Beginner" selected>Beginner or It has been a long time</option>';
+                    echo '<option value = "Intermediate">Had moderate experience dancing</option>';
+                    echo '<option value = "Advanced">Been Dancing for a long time</option>';
+                echo '</select> <br>';
+               
+                echo '<label for="dancefavorite">What is your favorite type of dance?</label><br>';
+                echo '<select name = "dancefavorite">';
+                    echo '<option value = "Ballroom" selected>Ballroom dances: Foxtrot, Quickstep, Waltz etc.</option>';
+                    echo '<option value = "Latin">Cha Cha, Rumba, Bolero, American Tango or Argentine Tango, etc.</option>';
+                    echo '<option value = "Country Western">Western Partner, Two Step, Nightclub, etc.</option>';
+                    echo '<option value = "Line Dance">Boot Scootin, Cupid Shuffle, Electric Slide, etc.</option>';
+                    echo '<option value = "Other">I like them all, or I prefer some other kind of dance.</option>';
+                 echo '</select><br><br>';
+
+                echo '</div class="form-grid-div">';  
+                echo '<div class="form-grid-div">';
+                echo '<p> Tell Us About Yourself or Provide a Message to the Club</p><br>';
+                echo '<textarea name="message" cols="50" rows="4"></textarea><br><br>';
+                echo '<button name="submit" type="submit">Submit</button><br>';
+                echo '</div>';
+            echo '</div>';
                 
-            </form>
+            echo '</form>';
+    }
+    ?>
     </section>
     </div>
 
