@@ -7,8 +7,8 @@ require_once '../models/UserArchive.php';
 require_once '../models/MemberPaid.php';
 date_default_timezone_set("America/Phoenix");
 
-if (!isset($_SESSION['username']))
-{
+if (!isset($_SESSION['username'])) {
+
     $redirect = "Location: ".$_SESSION['homeurl'];
     header($redirect);
 } else {
@@ -17,10 +17,10 @@ if (!isset($_SESSION['username']))
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect); 
         }
-       } else {
+    } else {
         $redirect = "Location: ".$_SESSION['homeurl'];
         header($redirect);
-       }
+    }
 }
 
 $database = new Database();
@@ -71,12 +71,12 @@ if (isset($_POST['submitAddUser'])) {
        
     
 
-      if ($user->validate_email($user->email)) {
+    if ($user->validate_email($user->email)) {
           
          $redirect = "Location: ".$_SESSION['userurl'].'?error=EmailExists';
         header($redirect);
         exit;  
-      }
+    }
 
        $passHash = password_hash($user->password, PASSWORD_DEFAULT);
        $user->password = $passHash;
@@ -93,8 +93,7 @@ if (isset($_POST['submitAddUser'])) {
        $user->phone1 = htmlentities($_POST['phone1']);
        $user->phone2 = htmlentities($_POST['phone2']);
        $formerUser = "no";
-       if ($userArchive->getUserName($user->username, $user->email))
-        {
+       if ($userArchive->getUserName($user->username, $user->email)) {
           $formerUser = "yes";
           $userArchive->deleteUser($user->username, $user->email);
        }

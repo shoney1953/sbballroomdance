@@ -575,8 +575,10 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     <section id="help" class="content">
     <br><br> 
         <h1 class="section-header">For Website Help</h1><br>
-        <p>Contact one of the board members or webmaster listed in the about section or
-            read the introduction to the website PDF below.
+        <p>Contact one of the board members or webmaster
+        <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Website Help">
+                webmaster@sbballroomdance.com</a> listed in the about section or
+            read the introduction to the website PDF below.<br>
             <a href="https://drive.google.com/file/d/1UsEnVCytYHFuoEIlworrTg049jIzV2H6/view?usp=sharing">
                 Click for the Introduction PDF
             </a>
