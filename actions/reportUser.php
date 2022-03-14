@@ -9,7 +9,8 @@ $db = $database->connect();
 $user = new User($db);
 $partner = new User($db);
 $userArr = [];
-
+$numHOA1 = 0;
+$numHOA2 = 0;
 
 
 class PDF extends FPDF
@@ -17,7 +18,7 @@ class PDF extends FPDF
     function Header() {
         // Logo
         $today = date("m-d-Y");
-        $title = "SBDC USERS - ".$today;
+        $title = "SaddleBrooke Ballroom Dance Club Members - ".$today;
         $this->Image('../img/sbdc_logo_small.png',10,6,30);
         // Arial bold 15
         $this->SetFont('Arial','B',15);
@@ -65,6 +66,12 @@ if (isset($_POST['submitUserRep'])) {
                 'streetaddress' => $streetaddress
 
             );
+            if ($usr_item['hoa'] === '1') {
+                $numHOA1++;
+            }
+            if ($usr_item['hoa'] === '2') {
+               $numHOA2++;
+           }
             array_push($userArr, $usr_item);
         }
     }
@@ -76,6 +83,7 @@ if (isset($_POST['submitUserRep'])) {
     $pdf->SetFont('Arial', '', 10);
 
 if ($userCount > 0) {
+  
     $pdf->SetFont('Arial','B',10);
     $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
     $pdf->Cell(30,5,"LAST NAME",1,0,"L");
@@ -92,6 +100,7 @@ if ($userCount > 0) {
          $pdf->Cell(30,5,$usr['lastname'],1,0,"L");
          $pdf->Cell(60,5,$usr['email'],1,0,"L");
          $pdf->Cell(5,5,$usr['hoa'],1,0,"L");
+    
          $pdf->Cell(25,5,$usr['phone1'],1,0,"L");
          $pdf->Cell(60,5,$usr['streetaddress'],1,1,"L");
 
@@ -99,7 +108,9 @@ if ($userCount > 0) {
     }
     $pdf->SetFont('Arial','B', 10);
     $pdf->Ln(2);
-    $pdf->Cell(0, 5, "Total Users:  ".$userCount, 0, 1);
+    $pdf->Cell(0, 5, "Total Members HOA1:  ".$numHOA1, 0, 1);
+    $pdf->Cell(0, 5, "Total Members HOA2:  ".$numHOA2, 0, 1);
+    $pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
   
     $pdf->SetFont('Arial', '', 10);
 } else {
@@ -108,7 +119,7 @@ if ($userCount > 0) {
     $pdf->SetFont('Arial', '', 10);
 }
 $today = date("m-d-Y");
-$pdf->Output("I", "UserReport".$today);
+$pdf->Output("I", "MemberReport".$today);
 }
 
 $redirect = "Location: ".$_SESSION['adminurl'];

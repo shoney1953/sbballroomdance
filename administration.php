@@ -207,7 +207,10 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'email' => $email,
                 'phone1' => $phone1,
                 'password' => $password,
+                'partnerId' => $partnerid,
+                'hoa' => $hoa,
                 'passwordChanged' => $passwordChanged,
+                'streetAddress' => $streetaddress,
                 'lastLogin' => $lastLogin
             );
             array_push( $users, $user_item);
@@ -668,7 +671,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<div class="container-section ">  <br><br>';
        
         echo '<section id="users" class="content">';
-        echo ' <h3 class="section-header">Users</h3> ';
+        echo ' <h3 class="section-header">Member List</h3> ';
+        echo '<form method="POST" action="actions/searchUser.php">';
+        echo '<input type="text"  name="search" >';
+        echo '<button type="submit" name="searchUser">Search</button>'; 
+        echo '</form>';
      
         echo '<table>';
         echo '<tr>';
@@ -678,10 +685,12 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Last Name</th>';
                 echo '<th>User Name    </th>';
                 echo '<th>Role</th>'; 
-                echo '<th>Email</th>';
+                echo '<th>Part ID</th>';
+                echo '<th>Email</th>';  
                 echo '<th>Phone</th>';
+                echo '<th>HOA</th>';
+                echo '<th>Address</th>';
                 echo '<th>Last Login</th>';
-                echo '<th>Password Changed</th>';     
                 echo '</tr>';
                 
         
@@ -693,10 +702,13 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         echo "<td>".$user['lastname']."</td>";
                         echo "<td>".$user['username']."</td>";
                         echo "<td>".$user['role']."</td>"; 
+                        echo "<td>".$user['partnerId']."</td>"; 
                         echo "<td>".$user['email']."</td>";
                         echo "<td>".$user['phone1']."</td>";
+                        echo "<td>".$user['hoa']."</td>";
+                        echo "<td>".$user['streetAddress']."</td>"; 
                         echo "<td>".$user['lastLogin']."</td>"; 
-                        echo "<td>".$user['passwordChanged']."</td>"; 
+                       
                         
                       echo "</tr>";
                   }

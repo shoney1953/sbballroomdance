@@ -55,6 +55,24 @@ class User {
 
       return $stmt;
     }
+    public function readLike($search) {
+      // Create query
+      $query = 'SELECT * FROM ' . $this->table . ' WHERE lastname LIKE :search1
+      OR firstname LIKE :search2 OR username LIKE :search3
+      ORDER BY lastname, firstname ';
+
+      // Prepare statement
+     
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam('search1', $search);
+      $stmt->bindParam('search2', $search);
+      $stmt->bindParam('search3', $search);
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
     // Get Single Danceclass
     public function read_single() {
         
