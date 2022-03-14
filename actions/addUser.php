@@ -155,8 +155,10 @@ if (isset($_POST['submitAddUser'])) {
 
      $emailBody .= "
    We have attached a PDF that is an introduction to the website.
-    The website shows Classes, Dances, and other events. 
-   Once you logon, you can register for many actvities from there.$webLink<br>";
+    The website shows Classes, Dances, and other events. Your login credentials will be either your <b>email
+    or your firstname and last initial with the first letter of your first name capitalized and your last initial capitalized</b>.
+    The initial password is test1234. You should change your password when you first logon from your profile.
+   Once you logon to the website, you can register for many activities from there.$webLink<br>";
 
    $emailBody .= "We hope to see you soon!<br>";
 
