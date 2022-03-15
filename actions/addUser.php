@@ -190,11 +190,12 @@ if (isset($_POST['submitAddUser'])) {
     // create a membership record for current year
     $memberPaid = new MemberPaid($db);
     $memberPaid->userid = $db->lastInsertId();
-    $memberPaid->paid = 0;
+    $memberPaid->paid = 1; // mark paid
     $memberPaid->year = date("Y");
     $memberPaid->create();
     // create a membership record for next year
     $memberPaid->year = date('Y', strtotime('+1 year'));
+    $memberPaid->paid = 0; // mark not paid
     $memberPaid->create();
     
  
