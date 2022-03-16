@@ -111,16 +111,16 @@ if (isset($_POST['submitAddUser'])) {
        } else {
         $mailSubject = 'Thanks for Joining us at SBDC Ballroom Dance Club!';
        }
-      $toCC2 = 'president@sbballroomdance.com';
+       $toCC2 = '';
        $replyTopic = "Welcome";
-       $replyEmail = 'sbbdcschedule@gmail.com';
+       $replyEmail = 'sbdcmailer@sbballroomdance.com';
        $actLink
            = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
        Click to view Activities Calendar</a><br>";
        $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
        $mailAttachment = "../img/Intro.pdf"; 
-       $fromCC = "sbbdcschedule@gmail.com";
+       $fromCC = "webmaster@sbballroomdance.com";
        if ($formerUser === 'yes') {
         $emailBody = "<br>Welcome back<b> $toName </b> as a returning member 
         to the SaddleBrooke Ballroom Dance Club.<br><br>";

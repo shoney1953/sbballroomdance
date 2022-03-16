@@ -50,7 +50,7 @@ function sendEmail($toEmail,
             $mail->addCC($toCC2);
         }
         
-        $mail->addBCC('webmaster@sbballroomdance.com');
+       // $mail->addBCC('webmaster@sbballroomdance.com');
 
         //Attachments
         if ($emailAttach) {

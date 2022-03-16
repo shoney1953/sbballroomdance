@@ -30,6 +30,7 @@ $class = new DanceClass($db);
     $class->classlimit = $_POST['classlimit'];
     $class->instructors = $_POST['instructors'];
     $class->registrationemail = $_POST['registrationemail'];
+    $class->classnotes = $_POST['classnotes'];
     $class->room = $_POST['room'];
     $class->date = $_POST['date'];
     $class->time = $_POST['time'];

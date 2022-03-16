@@ -9,7 +9,7 @@ date_default_timezone_set("America/Phoenix");
 
 $events = $_SESSION['upcoming_events'];
 
-$fromCC = 'sbbdcschedule@gmail.com';
+$fromCC = 'webmaster@sbballroomdance.com';
 $replyEmail = 'sbbdcschedule@gmail.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";

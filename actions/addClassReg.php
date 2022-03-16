@@ -31,7 +31,7 @@ $danceClass = new DanceClass($db);
     $classReg->firstname = $_POST['firstname'];
     $classReg->lastname = $_POST['lastname'];
     $classReg->email = $_POST['email'];
-    $classReg->userid = 0;
+    $classReg->userid = $_POST['userid'];
  
     $classReg->create();
     $danceClass->addCount($classReg->classid);

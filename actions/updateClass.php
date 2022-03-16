@@ -30,6 +30,7 @@ if (isset($_POST['submitUpdate'])) {
     $class->classlimit = $_POST['classlimit'];
     $class->instructors = $_POST['instructors'];
     $class->registrationemail = $_POST['registrationemail'];
+    $class->classnotes = $_POST['classnotes'];
     $class->numregistered = $_POST['numregistered'];
     $class->room = $_POST['room'];
     $class->date = $_POST['date'];

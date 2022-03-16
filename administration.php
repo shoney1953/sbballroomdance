@@ -90,6 +90,7 @@ if($rowCount > 0) {
             'date' => $date,
             'time' => date('h:i:s A', strtotime($time)),
             'instructors' => $instructors,
+            'classnotes' => $classnotes,
             "registrationemail" => $registrationemail,
             "room" => $room,
             'numregistered' => $numregistered
@@ -471,6 +472,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 <th>Class    </th>
                 <th>Level    </th>
                 <th>Registration Email </th>
+                <th>Notes</th>
                 <th>Instructors    </th>
                 <th>Class Limit    </th>
                 <th># Reg </th>
@@ -489,6 +491,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     echo "<td>".$class['classname']."</td>";
                     echo "<td>".$class['classlevel']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
+                    echo "<td>".$class['classnotes']."</td>";
                     echo "<td>".$class['instructors']."</td>";
                     echo "<td>".$class['classlimit']."</td>";
                     echo "<td>".$class['numregistered']."</td>";

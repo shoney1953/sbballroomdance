@@ -72,6 +72,7 @@ if (!isset($_POST['regId'])) {
                 echo '<th>First Name </th>';
                 echo '<th>Last Name</th>';
                 echo '<th>Email</th>';
+                echo '<th>Userid</th>';
                 echo '<th>Registration ID   </th>';    
             echo '</tr>';
           
@@ -81,6 +82,7 @@ if (!isset($_POST['regId'])) {
                     echo "<td>".$classReg->firstname."</td>";
                     echo "<td>".$classReg->lastname."</td>";
                     echo "<td>".$classReg->email."</td>";
+                    echo "<td>".$classReg->userid."</td>";
                     echo "<td>".$classReg->id."</td>";
                 echo "</tr>";
 
@@ -97,6 +99,8 @@ if (!isset($_POST['regId'])) {
         echo '<input type="text" name="lastname" value="'.$classReg->lastname.'"><br>';
         echo '<label for="email">Email</label>';
         echo '<input type="text" name="email" value="'.$classReg->email.'"><br>';
+        echo '<label for="userid">Userid</label>';
+        echo '<input type="text" name="userid" value="'.$classReg->userid.'"><br>';
         echo '<input type="hidden" name="id" value="'.$classReg->id.'">';
         echo '<button type="submit" name="submitUpdateReg">Update the Registration</button><br>';
         echo '</form>';
@@ -114,8 +118,11 @@ if (!isset($_POST['regId'])) {
             echo '<input type="text" name="lastname" required ><br>';
             echo '<label for="email">Email</label>';
             echo '<input type="text" name="email" required><br>';
+            echo '<label for="userid">Userid</label>';
+            echo '<input type="text" name="userid" ><br>';
+           
         
-            echo '<button type="submit" name="submitAddReg">Add the Class</button><br>';
+            echo '<button type="submit" name="submitAddReg">Add the Registration</button><br>';
             echo '</form>';
         }     
         if($deleteReg) {

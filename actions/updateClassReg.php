@@ -29,6 +29,7 @@ if (isset($_POST['submitUpdateReg'])) {
     $classReg->lastname = $_POST['lastname'];
     $classReg->classid = $_POST['classid'];
     $classReg->email = $_POST['email'];
+    $classReg->userid = $_POST['userid'];
   
 
     $classReg->update();

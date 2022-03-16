@@ -69,7 +69,7 @@ function sendThanks($memStat) {
        $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
        $mailAttachment = "../img/Intro.pdf"; 
-       $fromCC = "sbbdcschedule@gmail.com";
+       $fromCC = "webmaster@sbballroomdance.com";
        $emailBody = "<br>Welcome renewing member <b>$toName </b>
        to the SaddleBrooke Ballroom Dance Club.<br><br>";
        $emailBody .= "Thanks for renewing your membership. We hope you'll 

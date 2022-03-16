@@ -92,6 +92,7 @@ if ($rowCount > 0) {
             'instructors' => $instructors,
             "registrationemail" => $registrationemail,
             "room" => $room,
+            "classnotes" => $classnotes,
             'numregistered' => $numregistered
         );
         array_push($classes, $class_item);
@@ -312,6 +313,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <?php
         if (isset($_SESSION['username'])) {
             echo '<h3> Enter Information Below to Register for Event(s) </h3>';
+            echo '<h4> This process generates an email, so it takes a while. Please be patient.
+            You will be sent back to the home page when it is complete.</h4>';
         
             echo '<form method="POST"  action="actions/regEvent.php">';
             echo '<div class="form-grid3">';
@@ -390,6 +393,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                 <th>Level    </th>
                 <th>Registration Email    </th>
                 <th>Instructors    </th>
+                <th>Notes</th>
                 <th>Class Limit    </th>
                 <th># Reg </th>
                 <th>Room    </th>
@@ -408,6 +412,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                     echo "<td>".$class['classlevel']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
                     echo "<td>".$class['instructors']."</td>";
+                    echo "<td>".$class['classnotes']."</td>";
                     echo "<td>".$class['classlimit']."</td>";
                     echo "<td>".$class['numregistered']."</td>";
                     echo "<td>".$class['room']."</td>";
@@ -422,6 +427,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
        <?php
         if (isset($_SESSION['username'])) {
             echo '<h3> Enter Information Below to Register for all or Selected Classes </h3>';
+            echo '<h4> This process generates an email, so it takes a while. Please be patient.
+            You will be sent back to the home page when it is complete.</h4>';
         
             echo '<form method="POST"  action="actions/regClass.php">';
             echo '<div class="form-grid3">';
@@ -525,7 +532,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     if (!isset($_SESSION['username'])) { 
         echo '<h1 class="section-header">Enter your information below to contact us about New membership: </h1>';
         echo '<em><h4> Once you press SUBMIT, 
-        There will be a time delay while the email is generated an sent, so please be patient.</em><br><br>';
+        There will be a time delay while the email is generated and sent, so please be patient.</em><br><br>';
         
             echo '<form method="POST" action="actions/contact.php">';
             echo '<div class="form-grid3">';

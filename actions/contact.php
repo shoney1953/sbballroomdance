@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
     $contact->email = filter_var($contact->email, FILTER_SANITIZE_EMAIL);  
 
     $fromEmailName = 'SBDC Ballroom Dance Club';
-    $toCC2 = 'president@sbballroomdance.com';
+    $toCC2 = '';
     $toName = $contact->firstname.' '.$contact->lastname; 
     $replyEmail = 'sbbdcschedule@gmail.com';
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
         $replyTopic = "Message from Member"; 
     }
 
-    $replyEmail = 'sbbdcschedule@gmail.com';
+    $replyEmail = 'sbdcmailer@sbballroomdance.com';
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
     Click to view Activities Calendar</a><br>";
 
@@ -53,13 +53,15 @@ if (isset($_POST['submit'])) {
         $mailAttachment = "../img/Intro.pdf"; 
         $emailBody = "<br>$toName </b>, thanks for being a member of our club<br>
         We'll try to get back to you to answer your concern as soon as possible.<br>
-        If you need website help please refer to help section of the website or email the webmaster@sbballroomdance.com<br>
+        If you need website help please refer to help section 
+        of the website or email the webmaster@sbballroomdance.com<br>
         The PDF with an introduction to the website is also attached.<br>
-        The link to the activites calendar is provided below for your convenience.<br>";
+        The link to the activites calendar is provided below for your 
+        convenience.<br>";
     }
     $emailBody .= "<br> <b> Message:</b><br>$contact->message<br>";
     $emailBody .= "<br>$actLink";
-    $fromCC = 'sbbdcschedule@gmail.com';
+    $fromCC = 'webmaster@sbballroomdance.com';
   
     "<br><br>Thanks!
     <br>SBDC Ballroom Dance Club";
