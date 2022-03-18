@@ -4,6 +4,7 @@ session_start();
 require_once '../config/Database.php';
 require_once '../models/ClassRegistration.php';
 require_once '../models/DanceClass.php';
+
 date_default_timezone_set("America/Phoenix");
 
 if (!isset($_SESSION['username']))
@@ -25,6 +26,7 @@ $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
 $danceClass = new DanceClass($db);
+
 
    
     $classReg->classid = $_POST['classid'];

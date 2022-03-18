@@ -675,7 +675,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
        
         echo '<section id="users" class="content">';
         echo ' <h3 class="section-header">Member List</h3> ';
-        echo '<form method="POST" action="actions/searchUser.php" >';
+        echo '<form target="_blank" method="POST" action="actions/searchUser.php" >';
         echo '<input type="text"  name="search" >';
         echo '<button type="submit" name="searchUser">Search Users</button>'; 
         echo '</form>';
