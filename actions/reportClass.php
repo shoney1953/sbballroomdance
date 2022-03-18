@@ -82,7 +82,7 @@ if ($rowCount > 0) {
     $init = 1;
     foreach ($regArr as $reg) {
 
-        $regCount++;
+    
         if ($init == 1) {
             $prevClass = $reg['classid'];
             $init = 0;
@@ -97,13 +97,14 @@ if ($rowCount > 0) {
             $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(60,5,"EMAIL",1,0,"L");   
-            $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
+            $pdf->Cell(60,5,"DATES ATTENDED",1,1,"L");
+          
         }
         if ($reg['classid'] !== $prevClass) {
             $pdf->SetFont('Arial','B',10);
             $pdf->Ln(2);
             $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
-            $regCount = 1;
+            $regCount = 0;
             $prevClass = $reg['classid'];
             $class_string = ' '.$reg['classname'].'  '
             .$reg['classdate'].' '
@@ -115,14 +116,16 @@ if ($rowCount > 0) {
             $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(60,5,"EMAIL",1,0,"L");   
-            $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
+            $pdf->Cell(60,5,"DATES ATTENDED",1,1,"L");
+            
          }
 
- 
+        $regCount++;
         $pdf->Cell(35,5,$reg['firstname'],1,0,"L"); 
         $pdf->Cell(35,5,$reg['lastname'],1,0,"L");  
         $pdf->Cell(60,5,$reg['email'],1,0,"L");   
-        $pdf->Cell(60,5,$reg['dateregistered'],1,1,"L");
+        $pdf->Cell(60,5," ",1,1,"L");
+      
        
 
     }
@@ -130,6 +133,7 @@ if ($rowCount > 0) {
     $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
     $pdf->SetFont('Arial', '', 10);
+    $regCount == 0;
 } else {
     $pdf->SetFont('Arial','B',12);
     $pdf->Cell(0, 10, "   NO REGISTRATIONS FOUND ", 0, 1); 
