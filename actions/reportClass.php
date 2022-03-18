@@ -15,13 +15,13 @@ class PDF extends FPDF
     function Header() {
         // Logo
         $today = date("m-d-Y");
-        $this->Image('../img/sbdc_logo_small.png',10,6,30);
+        $this->Image('../img/sbdc_logo_small.png',8,6,30);
         // Arial bold 15
         $this->SetFont('Arial','B',15);
         // Move to the right
         $this->Cell(80);
         // Title
-        $this->Cell(10,10,
+        $this->Cell(10,8,
             'SBDC Class Registration Report  - '.$today, 0, 0, 'C');
         // Line break
         $this->Ln(15);
@@ -34,7 +34,7 @@ class PDF extends FPDF
         // Arial italic 8
         $this->SetFont('Arial','I',8);
         // Page number
-        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+        $this->Cell(0,8,'Page '.$this->PageNo().'/{nb}',0,0,'C');
     }
 }
 
@@ -94,10 +94,10 @@ if ($rowCount > 0) {
             $pdf->Cell(0, 5, $class_string, 0, 1);
             $pdf->SetFont('Arial', '', 10);
             $pdf->Ln(3);
-            $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
-            $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
-            $pdf->Cell(60,5,"EMAIL",1,0,"L");   
-            $pdf->Cell(60,5,"DATES ATTENDED",1,1,"L");
+            $pdf->Cell(35,8,"FIRST NAME",1,0,"L"); 
+            $pdf->Cell(35,8,"LAST NAME",1,0,"L");  
+            $pdf->Cell(60,8,"EMAIL",1,0,"L");   
+            $pdf->Cell(60,8,"DATES ATTENDED",1,1,"L");
           
         }
         if ($reg['classid'] !== $prevClass) {
@@ -113,18 +113,18 @@ if ($rowCount > 0) {
             $pdf->Ln(3);
             $pdf->Cell(0, 15, $class_string, 0, 1);
             $pdf->SetFont('Arial', '', 10);
-            $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
-            $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
-            $pdf->Cell(60,5,"EMAIL",1,0,"L");   
-            $pdf->Cell(60,5,"DATES ATTENDED",1,1,"L");
+            $pdf->Cell(35,8,"FIRST NAME",1,0,"L"); 
+            $pdf->Cell(35,8,"LAST NAME",1,0,"L");  
+            $pdf->Cell(60,8,"EMAIL",1,0,"L");   
+            $pdf->Cell(60,8,"DATES ATTENDED",1,1,"L");
             
          }
 
         $regCount++;
-        $pdf->Cell(35,5,$reg['firstname'],1,0,"L"); 
-        $pdf->Cell(35,5,$reg['lastname'],1,0,"L");  
-        $pdf->Cell(60,5,$reg['email'],1,0,"L");   
-        $pdf->Cell(60,5," ",1,1,"L");
+        $pdf->Cell(35,8,$reg['firstname'],1,0,"L"); 
+        $pdf->Cell(35,8,$reg['lastname'],1,0,"L");  
+        $pdf->Cell(60,8,$reg['email'],1,0,"L");   
+        $pdf->Cell(60,8," ",1,1,"L");
       
        
 
