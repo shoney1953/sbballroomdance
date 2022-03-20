@@ -2,6 +2,8 @@
 session_start();
 require_once '../config/Database.php';
 require_once '../models/ClassRegistration.php';
+require_once '../models/DanceClass.php';
+require_once '../models/User.php';
 date_default_timezone_set("America/Phoenix");
 if (!isset($_SESSION['username']))
 {
@@ -18,11 +20,39 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
+$upcomingClasses = [];
+$upcomingClasses = $_SESSION['upcoming_classes'] ;
 $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
+$user = new User($db);
+$users = [];
+$_SESSION['regUsers'] = [];
+$num_users = 0;
 
-
+        $result = $user->read();
+        
+        $rowCount = $result->rowCount();
+        $num_users = $rowCount;
+        if($rowCount > 0) {
+        
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+                $user_item = array(
+                    'id' => $id,
+                    'firstname' => $firstname,
+                    'lastname' => $lastname,
+                    'email' => $email,
+                    'partnerId' => $partnerid
+                    
+                );
+                array_push( $users, $user_item);
+        
+            }
+            
+        }
+    
+$_SESSION['regUsers'] = $users;
 $updateReg = false;
 $deleteReg = false;
 $addReg = false;
@@ -109,20 +139,37 @@ if (!isset($_POST['regId'])) {
     }
 
         if ($addReg) {
-            echo '<form method="POST" action="addClassReg.php">';
-            echo '<label for="classid">Class Id</label>';
-            echo '<input type="text" name="classid" required><br>';
-            echo '<label for="firstname">First Name</label>';
-            echo '<input type="text" name="firstname" required><br>';
-            echo '<label for="lastname">Last Name</label>';
-            echo '<input type="text" name="lastname" required ><br>';
-            echo '<label for="email">Email</label>';
-            echo '<input type="text" name="email" required><br>';
-            echo '<label for="userid">Userid</label>';
-            echo '<input type="text" name="userid" ><br>';
+            echo '<div class="form-grid-div">';
+            echo '<form target="_blank" method="POST" action="addClassReg.php">';
+            echo '<ul class="list-box">';
+            echo '<h4 style="text-decoration: underline;color: black"><em>
+              To Enroll -- Please select One or More of the Classes Listed</em></h4><br>';
+        foreach ($upcomingClasses as $class) {
+                echo '<li class="list-none">';
+                $chkboxID = "cb".$class['id'];
+                $classString = " ".$class['classname']." ".$class['classlevel']." ".$class['date']." ";
+                echo "<input type='checkbox' name='$chkboxID'>";
+                echo "<label for='$chkboxID'> Select Class:
+                    <strong>$classString </strong></label><br>";
+                echo '</li>';
+        }
            
-        
-            echo '<button type="submit" name="submitAddReg">Add the Registration</button><br>';
+            
+            echo '</ul> <br><br>';
+            echo '<ul class="list-box">';
+            echo '<h4 style="text-decoration: underline;color: black"><em>
+             Select one or more of the members Listed</em></h4><br>';
+             foreach ($users as $usr) {
+                echo '<li lass="list-none">';
+                $usrID = "us".$usr['id'];
+                $userString = " ".$usr['firstname']." ".$usr['lastname']." ".$usr['email']." ";
+                echo "<input type='checkbox' name='$usrID'>";
+                echo "<label for='$usrID'>$userString </label><br>";
+             echo '</li>';
+             }
+             echo '</ul>';
+   
+            echo '<button type="submit" name="submitAddReg">Add the Registration(s)</button><br>';
             echo '</form>';
         }     
         if($deleteReg) {
