@@ -124,7 +124,10 @@ hr {
   color: #7c0a10;
   font-weight: bold;
 }
-
+.whiteI {
+  color: white;
+  background-color: antiquewhite;
+}
 .hero {
   /*background-image: url("../img/moonrise\ opaque.jpg"); */
   /*background-image: url("../img/morning1.jpg");  */
