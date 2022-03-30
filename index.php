@@ -311,6 +311,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         </table>
         <br>
         <?php
+        $partner = new User($db);
         if (isset($_SESSION['username'])) {
             echo '<h3> Enter Information Below to Register for Event(s) </h3>';
             echo '<h4> This process generates an email, so it takes a while. Please be patient.
@@ -343,17 +344,34 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                 echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
                 echo '<input type="email" name="regEmail1" ><br><br>';
         }
+        if (isset($_SESSION['partnerid'])) {
+            $partner->id = $_SESSION['partnerid'];
+            $partner->read_single();
+           
+        }
         echo '<label for="message">Message (For First Fridays or Dine and Dance please indicate if you want to have dinner)</label>';
         echo '<textarea  name="message" rows="4" cols="50"></textarea><br>';
          echo' </div>';
         echo '<div class="form-grid-div"> <br>';
-           
+     
+        if (isset($_SESSION['partnerid'])) {
+    
+            echo '<label for="regFirstName2">Second Registrant First Name(optional)</label><br>';
+            echo '<input type="text" name="regFirstName2" value="'.$partner->firstname.'" ><br>';
+            echo '<label for="regLastName2">Second Registrant Last Name(optional)</label><br>';
+            echo '<input type="text" name="regLastName2" value="'.$partner->lastname.'"><br>';
+            echo '<label for="regEmail2">Second Registrant Email (optional)</label><br>';
+            echo '<input type="email" name="regEmail2" value="'.$partner->email.'"><br> <br>';
+
+           } else {
             echo '<label for="regFirstName2">Second Registrant First Name(optional)</label><br>';
             echo '<input type="text" name="regFirstName2" ><br>';
             echo '<label for="regLastName2">Second Registrant Last Name(optional)</label><br>';
             echo '<input type="text" name="regLastName2" ><br>';
             echo '<label for="regEmail2">Second Registrant Email (optional)</label><br>';
             echo '<input type="email" name="regEmail2" ><br> <br>';
+           }
+
         echo '</div>';     
         echo '<div class="form-grid-div">';
             echo '<ul class="list-box">';
@@ -428,6 +446,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         
        <?php
         if (isset($_SESSION['username'])) {
+            $partner = new User($db);
             echo '<h3> Enter Information Below to Register for all or Selected Classes </h3>';
             echo '<h4> This process generates an email, so it takes a while. Please be patient.
             You will be sent back to the home page when it is complete.<br>
@@ -460,18 +479,33 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                     echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
                     echo '<input type="email" name="regEmail1" ><br><br>';
             }
+            if (isset($_SESSION['partnerid'])) {
+                $partner->id = $_SESSION['partnerid'];
+                $partner->read_single();
+               
+            }
            
                 echo '<label for="message2ins">Message to Instructor(Optional)</label><br>';
                echo '<textarea id="message2ins" name="message2ins" rows="4" cols="50"></textarea><br>';
              echo' </div>';
             echo '<div class="form-grid-div"> <br>';
-               
+            if (isset($_SESSION['partnerid'])) {
+    
+                echo '<label for="regFirstName2">Second Registrant First Name(optional)</label><br>';
+                echo '<input type="text" name="regFirstName2" value="'.$partner->firstname.'" ><br>';
+                echo '<label for="regLastName2">Second Registrant Last Name(optional)</label><br>';
+                echo '<input type="text" name="regLastName2" value="'.$partner->lastname.'"><br>';
+                echo '<label for="regEmail2">Second Registrant Email (optional)</label><br>';
+                echo '<input type="email" name="regEmail2" value="'.$partner->email.'"><br> <br>';
+    
+               } else {
                 echo '<label for="regFirstName2">Second Registrant First Name(optional)</label><br>';
                 echo '<input type="text" name="regFirstName2" ><br>';
                 echo '<label for="regLastName2">Second Registrant Last Name(optional)</label><br>';
                 echo '<input type="text" name="regLastName2" ><br>';
                 echo '<label for="regEmail2">Second Registrant Email (optional)</label><br>';
                 echo '<input type="email" name="regEmail2" ><br> <br>';
+               }
             echo '</div>';     
             echo '<div class="form-grid-div">';
                 echo '<ul class="list-box">';

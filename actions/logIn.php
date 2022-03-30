@@ -27,6 +27,8 @@ echo $_SESSION['homeurl'];
             $_SESSION['userfirstname'] = $user->firstname;
             $_SESSION['userlastname'] = $user->lastname;
             $_SESSION['useremail'] = $user->email;
+            $_SESSION['partnerid'] = $user->partnerId;
+    
             $user->updateLogin();
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect);
@@ -52,6 +54,9 @@ echo $_SESSION['homeurl'];
             if(isset($_SESSION['useremail'])) {
                 unset($_SESSION['useremail']);
             }
+            if(isset($_SESSION['partnerid'])) {
+                unset($_SESSION['partnerid']);
+            }
             $redirect = "Location: ".$_SESSION['loginurl'].'?error=InvalidPassword';
             header($redirect);
             exit;  
@@ -75,10 +80,13 @@ echo $_SESSION['homeurl'];
         if(isset($_SESSION['useremail'])) {
             unset($_SESSION['useremail']);
         }
+        if(isset($_SESSION['partnerid'])) {
+            unset($_SESSION['partnerid']);
+        }
       
-      $redirect = "Location: ".$_SESSION['signurl'].'?error=NoUser';
-        header($redirect);
-        exit;  
+     $redirect = "Location: ".$_SESSION['signurl'].'?error=NoUser';
+     header($redirect);
+     exit;  
     } 
 }
     
