@@ -314,7 +314,9 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         if (isset($_SESSION['username'])) {
             echo '<h3> Enter Information Below to Register for Event(s) </h3>';
             echo '<h4> This process generates an email, so it takes a while. Please be patient.
-            You will be sent back to the home page when it is complete.</h4>';
+            You will be sent back to the home page when it is complete.<br>
+            You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
+            spam/junk folder.</h4>';
         
             echo '<form method="POST"  action="actions/regEvent.php">';
             echo '<div class="form-grid3">';
@@ -428,7 +430,9 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         if (isset($_SESSION['username'])) {
             echo '<h3> Enter Information Below to Register for all or Selected Classes </h3>';
             echo '<h4> This process generates an email, so it takes a while. Please be patient.
-            You will be sent back to the home page when it is complete.</h4>';
+            You will be sent back to the home page when it is complete.<br>
+            You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
+            spam/junk folder.</h4>';
         
             echo '<form method="POST"  action="actions/regClass.php">';
             echo '<div class="form-grid3">';
@@ -504,6 +508,10 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     <?php
     if (isset($_SESSION['username'])) { 
         echo '<h1 class="section-header">Please contact one of us below (Just click on the email to email us): </h1>';
+        echo '<em><h4> Once you press SUBMIT, 
+        There will be a time delay while the email is generated and sent, so please be patient.</em><br>
+        You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
+            spam/junk folder.<br><br>';
         echo '<ul>';
             echo '<li class="li-none li-large">President
                    -&rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
@@ -532,7 +540,9 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     if (!isset($_SESSION['username'])) { 
         echo '<h1 class="section-header">Enter your information below to contact us about New membership: </h1>';
         echo '<em><h4> Once you press SUBMIT, 
-        There will be a time delay while the email is generated and sent, so please be patient.</em><br><br>';
+        There will be a time delay while the email is generated and sent, so please be patient.</em>
+        You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
+            spam/junk folder.<br><br>';
         
             echo '<form method="POST" action="actions/contact.php">';
             echo '<div class="form-grid3">';
