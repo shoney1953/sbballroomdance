@@ -65,9 +65,9 @@ if (isset($_POST['submitEventReg'])) {
         $eventNum = (int)substr($chkboxID,2);
             if ($event['id'] == $eventNum) {
                 $eventId = $event['id'];
-                $emailBody .= "<br> ".$event['eventname'].
+                $emailBody .= "<br> <br> <strong>".$event['eventname'].
                 "    room:    ".$event['eventroom'].
-                "  on date:    ".date('M d Y',strtotime($event['eventdate']))."<br>"; 
+                "  on date:    ".date('M d Y',strtotime($event['eventdate']))."</strong><br>"; 
                
                 if ($event['eventform']) {
                     $actLink= "<a href='".$event['eventform']."'>
@@ -88,6 +88,7 @@ if (isset($_POST['submitEventReg'])) {
                 if ($message) {
                     $emailBody .= '<br> MESSAGE from Registrant: <br>';
                     $emailBody .= $message;
+                    $emailBody .= '<br> <br>';
                 }
           
                 // do the insert(s)
