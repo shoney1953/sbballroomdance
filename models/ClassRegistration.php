@@ -146,7 +146,9 @@ public function read_ByClassid($classid) {
   LEFT JOIN
     danceclasses c ON r.classid = c.id
   WHERE
-    r.classid = :classid ';
+    r.classid = :classid 
+  ORDER BY 
+    r.classid, r.lastname, r.firstname';
   
 
   // Prepare statement
