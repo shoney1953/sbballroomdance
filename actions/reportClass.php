@@ -110,13 +110,14 @@ if ($rowCount > 0) {
             .$reg['classtime'].' ';
             $pdf->SetFont('Arial','BU',12);
             $pdf->Ln(3);
+            $pdf->AddPage();
             $pdf->Cell(0, 15, $class_string, 0, 1);
             $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(35,8,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,8,"LAST NAME",1,0,"L");  
             $pdf->Cell(60,8,"EMAIL",1,0,"L");   
             $pdf->Cell(60,8,"DATES ATTENDED",1,1,"L");
-            
+        
          }
 
         $regCount++;
