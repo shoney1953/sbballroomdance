@@ -653,7 +653,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
        <div class="form-grid-div">
        <h4>SBDC CLASS VIDEOS</h4>
        <ul>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Class-Videos">Class Videos</a></li>    
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SaddleBrooke-Ballroom-Dance-Club-Videos">Class Videos</a></li>    
        </ul>
        <br>
       </div>
