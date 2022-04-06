@@ -308,6 +308,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         </table>
         <br>
         <?php
+        if ($eventNumber > 0) {
         $partner = new User($db);
         if (isset($_SESSION['username'])) {
             echo '<h3> Enter Information Below to Register for Event(s) </h3>';
@@ -389,10 +390,13 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                  echo '<button name="submitEventReg" type="submit">Submit</button><br>';
             echo '</div>';     
             echo '</form>';
-  
+    
         } else {
             echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
         }
+    } else {
+        echo '<h3> No Upcoming Events right now -- Check back soon</h3><br><br>';
+    }
         ?>
     </section>
     </div>
@@ -442,6 +446,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         <br>
         
        <?php
+        if ($classNumber > 0) {
         if (isset($_SESSION['username'])) {
             $partner = new User($db);
             echo '<h3> Enter Information Below to Register for all or Selected Classes </h3>';
@@ -515,20 +520,24 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                     echo "<input type='checkbox' name='$chkboxID'>";
                     echo "<label for='$chkboxID'> I/We would like to register for:
                         <strong>$classString </strong></label><br>";
-            }
+         
                     echo '</li>';
                 
                 echo '</ul> <br><br>';
                
                  echo '<button name="submitRegClass" type="submit">Submit</button><br>';
+        }
             echo '</div>'; 
            
             echo '</form>';
             echo '</div>';
-
+    
         } else {
             echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
         }
+    } else {
+        echo '<h3> No Upcoming Classes right now -- Check back soon</h3><br><br>';
+    }
         ?>
     </section>
     </div>
