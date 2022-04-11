@@ -247,7 +247,10 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             <li class="li-none li-large">Dottie Adams, Treasurer 
                   -&rarr; <a href="mailto:treasurer@sbballroomdance.com?subject=SBDC Info">
                   treasurer@sbballroomdance.com</a></li>
-            <li class="li-none li-large">Roger Shamburg, Chair Instruction Director    
+            <li class="li-none li-large">Sheila Honey, Secretary 
+                  -&rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
+                  treasurer@sbballroomdance.com</a></li>
+            <li class="li-none li-large">Dale & Ann Pizzitola, Chairs Instruction Director    
                 -&rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
                 dancedirector@sbballroomdance.com</a></li>
            <li class="li-none li-large">Rick Baumgartner, Chair D J and Music  
