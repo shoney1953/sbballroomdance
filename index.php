@@ -249,7 +249,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                   treasurer@sbballroomdance.com</a></li>
             <li class="li-none li-large">Sheila Honey, Secretary 
                   -&rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
-                  treasurer@sbballroomdance.com</a></li>
+                  secretary@sbballroomdance.com</a></li>
             <li class="li-none li-large">Dale & Ann Pizzitola, Chairs Instruction Director    
                 -&rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
                 dancedirector@sbballroomdance.com</a></li>
