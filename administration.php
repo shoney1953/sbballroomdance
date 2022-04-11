@@ -32,17 +32,8 @@ $db = $database->connect();
 if (!isset($_SESSION['username'])) {
     $redirect = "Location: ".$_SESSION['homeurl'];
     header($redirect);
-} else {
-    if (isset($_SESSION['role'])) {
-        if (($_SESSION['role'] != 'ADMIN') && ($_SESSION['role'] != 'SUPERADMIN')) {
-            $redirect = "Location: ".$_SESSION['homeurl'];
-            header($redirect); 
-        }
-       } else {
-        $redirect = "Location: ".$_SESSION['homeurl'];
-        header($redirect);
-       }
 }
+ 
 $event = new Event($db);
 $result = $event->read();
 
@@ -64,7 +55,7 @@ if ($rowCount > 0) {
             "eventroom" => $eventroom,
             'eventnumregistered' => $eventnumregistered
         );
-        array_push( $allEvents, $event_item);
+        array_push($allEvents, $event_item);
     
     }
   
@@ -78,7 +69,7 @@ $result = $class->read();
 $rowCount = $result->rowCount();
 $num_classes = $rowCount;
 
-if($rowCount > 0) {
+if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
@@ -95,7 +86,7 @@ if($rowCount > 0) {
             "room" => $room,
             'numregistered' => $numregistered
         );
-        array_push( $allClasses, $class_item);
+        array_push($allClasses, $class_item);
 
     }
 
@@ -124,7 +115,7 @@ if ($rowCount > 0) {
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
       
-        array_push( $classRegistrations, $reg_item);
+        array_push($classRegistrations, $reg_item);
   
     }
   
@@ -154,7 +145,7 @@ if ($rowCount > 0) {
             'paid' => $paid,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
-        array_push( $eventRegistrations, $reg_item);
+        array_push($eventRegistrations, $reg_item);
   
     }
   
@@ -182,13 +173,15 @@ if($rowCount > 0) {
             strtotime($contactdate))
            
         );
-        array_push( $contacts, $contact_item);
+        array_push($contacts, $contact_item);
   
     }
   $_SESSION['contacts'] = $contacts;
 
 } 
 $num_users = 0;
+
+
 if ($_SESSION['role'] === 'SUPERADMIN') {
     $user = new User($db);
     $result = $user->read();
@@ -214,7 +207,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'streetAddress' => $streetaddress,
                 'lastLogin' => $lastLogin
             );
-            array_push( $users, $user_item);
+            array_push($users, $user_item);
       
         }
    
@@ -239,7 +232,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'paid' => $paid
 
             );
-            array_push( $memberStatus2, $member_item);
+            array_push($memberStatus2, $member_item);
       
         }
      $_SESSION['memberStatus2'] = $memberStatus2;
@@ -263,15 +256,16 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'paid' => $paid
 
             );
-            array_push( $memberStatus1, $member_item);
+            array_push($memberStatus1, $member_item);
       
         }
      $_SESSION['memberStatus1'] = $memberStatus1;
     
     } 
+} // end of superadmin check
 
 
-?>
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -864,26 +858,12 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '</form>';
         echo '</section>';
         echo '</div>';
-      /*  echo '<div class="form-grid-div">';          
-        echo '<form method="POST" action="actions/createMemYear.php">';
-       
-        echo '<h4>Maintain Membership Data - populate year</h4>';
-        echo '<input type="checkbox" name="populateYear">';
-        echo '<label for="populateYear">Create Membership Paid records for a year based on user data
-             (should only be done once for a year)</label><br>';
-     
-        echo '<input type="number"  name="populateYear" min="2021"  required />';
-        echo '<label for="year"><em> &larr; Specify 4 digit year</em></label><br>';
-        echo '<button type="submit" name="createMemYear">
-             Populate MemberPaid data</button>';
-        echo '</div> ';  
-        echo '</form>'; 
-        echo '</div>';  */
+   
         echo '</section>';
         echo '</div>';
 
     }
-}
+
     ?>
 
     <footer >
