@@ -29,7 +29,41 @@ $user = new User($db);
 $users = [];
 $_SESSION['regUsers'] = [];
 $num_users = 0;
+if (isset($_POST['search'])) {
+    $search = $_POST['search'];
+    $search .= '%';
 
+    $result = $user->readLike($search);
+    
+    $rowCount = $result->rowCount();
+    $num_users = $rowCount;
+
+    if($rowCount > 0) {
+    
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+            $user_item = array(
+                'id' => $id,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'username' => $username,
+                'role' => $role,
+                'email' => $email,
+                'phone1' => $phone1,
+                'password' => $password,
+                'partnerId' => $partnerid,
+                'hoa' => $hoa,
+                'passwordChanged' => $passwordChanged,
+                'streetAddress' => $streetaddress,
+                'lastLogin' => $lastLogin
+            );
+            array_push( $users, $user_item);
+      
+        }
+    }
+
+
+} else {
         $result = $user->read();
         
         $rowCount = $result->rowCount();
@@ -51,11 +85,12 @@ $num_users = 0;
             }
             
         }
-    
+    }  
 $_SESSION['regUsers'] = $users;
 $updateReg = false;
 $deleteReg = false;
 $addReg = false;
+
 
 
 

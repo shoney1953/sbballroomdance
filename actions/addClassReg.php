@@ -31,7 +31,10 @@ $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
 $danceClass = new DanceClass($db);
+$search = '%';
 if (isset($_POST['submitAddReg'])) {
+   
+    
     foreach($upcomingClasses as $class) {
        
         $chkboxID = "cb".$class['id'];

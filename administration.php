@@ -592,7 +592,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <p>OR</p>
         <input type='checkbox' name='addReg'>
         <label for='addReg'>Add a Class Registration</label> <br> 
-       
+    
+        <input type="text"  name="search" >
+        <label for='search'>Optionally Search for Members by Name or Email</label><br>
         <button type='submit' name="submitReg">Submit</button>   
         </div>   
         </form>
