@@ -77,6 +77,7 @@ $result = $class->read();
 
 $rowCount = $result->rowCount();
 $num_classes = $rowCount;
+$current_month = date('m');
 
 if ($rowCount > 0) {
 
@@ -96,8 +97,9 @@ if ($rowCount > 0) {
             'numregistered' => $numregistered
         );
         array_push($classes, $class_item);
-
-        if ($compareDate <= $row['date']) {
+        $class_month = substr($row['date'], 5, 2);
+     
+        if ($current_month <= $class_month) {
             array_push($upcomingClasses, $class_item);
         }
     }
