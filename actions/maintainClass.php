@@ -27,8 +27,10 @@ $class = new DanceClass($db);
 $updateClass = false;
 $deleteClass = false;
 $addClass = false;
-
-
+$archiveClass = false;
+$archMonth = 0;
+$classesArch = [];
+$num_archClasses = 0;
 
 if (isset($_POST['classId'])) {
     $classId = htmlentities($_POST['classId']);
@@ -36,15 +38,58 @@ if (isset($_POST['classId'])) {
     if(isset($_POST['deleteClass'])) {$deleteClass = $_POST['deleteClass'];}
     if(isset($_POST['addClass'])) {$addClass = $_POST['addClass'];}
 
+
     if ($updateClass || $deleteClass) {
         $class->id = $classId;
         $class->read_single();  
     } 
-
+    
 }
 if (!isset($_POST['classId'])) {
     if(isset($_POST['addClass'])) {$addClass = $_POST['addClass'];}
+    /* selected to archive classes */
 }
+if(isset($_POST['archiveClass'])) {
+
+    $archiveClass = $_POST['archiveClass'];
+     if (isset($_POST['archMonth'])) {
+       $archMonth = $_POST['archMonth'];
+       if ($archMonth < 10) {
+           $archMonth = '0'.$archMonth;
+       }
+       $archDate = date("Y")."-".$archMonth."-01";
+
+       $result = $class->read_ByArchDate($archDate);
+       $rowCount = $result->rowCount();
+
+       $num_archClasses = $rowCount;
+
+           if ($rowCount > 0) {
+
+               while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                   extract($row);
+                   $class_item = array(
+                       'id' => $id,
+                       'classname' => $classname,
+                       'classlevel' => $classlevel,
+                       'classlimit' => $classlimit,
+                       'date' => $date,
+                       'time' => $time,
+                       'instructors' => $instructors,
+                       "registrationemail" => $registrationemail,
+                       "room" => $room,
+                       "classnotes" => $classnotes,
+                       'numregistered' => $numregistered
+                   );
+                   array_push($classesArch, $class_item);
+
+               }
+
+           $_SESSION['classesArch'] = $classesArch;
+           } 
+
+     }
+ }
 
 ?>
 <!DOCTYPE html>
@@ -185,6 +230,41 @@ if (!isset($_POST['classId'])) {
             echo '<button type="submit" name="submitDelete">Delete the Class</button><br>';
             echo '</form>';
           
+        }
+        if($archiveClass) {
+            echo '<h3> You have selected to archive the following classes and their registrations: </h3><br>';
+            echo '<table>';
+            echo '<tr>';
+                    echo '<th>Date    </th>';
+                    echo '<th>Time    </th>';
+                    echo '<th>Class    </th>';
+                    echo '<th>Level    </th>';
+                    echo '<th>Registration Email </th>';
+                    echo '<th>Instructors    </th>';
+                    echo '<th>Class Limit    </th>';
+                    echo '<th># Registered </th>';
+                    echo '<th>Room    </th>';
+                    echo '<th>ID   </th>';    
+                echo '</tr>';
+
+            foreach($classesArch as $class) {
+                echo "<tr>";
+                echo "<td>".$class['date']."</td>";
+                echo "<td>".$class['time']."</td>";
+                echo "<td>".$class['classname']."</td>";
+                echo "<td>".$class['classlevel']."</td>";
+                echo "<td>".$class['registrationemail']."</td>";
+                echo "<td>".$class['instructors']."</td>";
+                echo "<td>".$class['classlimit']."</td>";
+                echo "<td>".$class['numregistered']."</td>";
+                echo "<td>".$class['room']."</td>";
+                echo "<td>".$class['id']."</td>";
+            echo "</tr>";
+            }
+            echo '</table><br>';
+            echo '<form method="POST" action="archiveClass.php">';
+            echo '<button type="submit" name="submitArchive">Archive these Class(es) and their registrations</button><br>';
+            echo '</form>';
         }
         ?> 
    

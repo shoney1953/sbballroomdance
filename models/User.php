@@ -100,7 +100,6 @@ class User {
           $this->role = $row['role'];
           $this->password = $row['password'];
           $this->created = $row['created'];
-          $this->role = $row['role'];
           $this->passwordChanged = $row['passwordChanged'];
           $this->partnerId = $row['partnerid'];
           $this->streetAddress = $row['streetaddress'];
@@ -270,7 +269,7 @@ class User {
           $query = 'UPDATE ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           username = :username, partnerid = :partnerid, 
-          streetaddress = :streetaddress,
+          streetaddress = :streetaddress, role = :role,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
           phone1 = :phone1, phone2 = :phone2, notes = :notes
           WHERE id = :id';
@@ -310,6 +309,7 @@ class User {
           $stmt->bindParam(':phone1', $this->phone1);
           $stmt->bindParam(':phone2', $this->phone2);
           $stmt->bindParam(':notes', $this->notes);
+          $stmt->bindParam(':role', $this->role);
 
           // Execute query
           if($stmt->execute()) {

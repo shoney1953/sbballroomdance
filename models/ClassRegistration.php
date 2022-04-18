@@ -267,6 +267,28 @@ public function read_ByClassid($classid) {
 
           return false;
     }
+    public function deleteClassid($classid) {
+        
+      // Create query
+      $query = 'DELETE FROM ' . $this->table . ' WHERE classid = :classid';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+
+      // Bind data
+      $stmt->bindParam(':classid', $classid);
+
+      // Execute query
+      if($stmt->execute()) {
+        return true;
+      }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+}
     public function delete() {
         
       // Create query
@@ -284,6 +306,7 @@ public function read_ByClassid($classid) {
       // Execute query
       if($stmt->execute()) {
         return true;
+          
       }
 
       // Print error if something goes wrong

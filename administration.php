@@ -121,7 +121,7 @@ if ($rowCount > 0) {
   
 
 } 
-/* get class registrations */
+/* get event registrations */
 $eventReg = new EventRegistration($db);
 $result = $eventReg->read();
 
@@ -514,6 +514,15 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <p>OR</p>
         <input type='checkbox' name='addClass'>
         <label for='addClass'>Add a Class </label> <br> 
+        <?php
+    if ($_SESSION['role'] === 'SUPERADMIN') { 
+        echo '<p>OR</p>';
+        echo '<input type="checkbox" name="archiveClass">';
+        echo '<label for="archiveClass">Archive Classes and Registrations </label><br>'; 
+        echo '<label for="archMonth">Enter earliest month for which to keep data</label><br>';
+        echo '<input type="number" name="archMonth" min="1" max="12"><br>';
+    }
+    ?>
        
         <button type='submit' name="submitClass">Submit</button>   
         </div>   

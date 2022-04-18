@@ -1,10 +1,11 @@
 <?php
-class DanceClass {
+class DanceClassArch {
    
     private $conn;
-    private $table = 'danceclasses';
+    private $table = 'danceclassesarch';
 
     public $id;
+    public $previd;
     public $classname;
     public $classlevel;
     public $room;
@@ -34,6 +35,7 @@ class DanceClass {
 
       return $stmt;
     }
+   
 
     // Get Single Danceclass
     public function read_single() {
@@ -63,26 +65,7 @@ class DanceClass {
           $this->classlimit = $row['classlimit'];
           $this->numregistered = $row['numregistered'];
           $this->classnotes = $row['classnotes'];
-    }
-    public function read_ByArchDate($archdate) {
-      // Create query
-
-      $query = 'SELECT * FROM ' . $this->table . ' WHERE date < :archdate 
-       ORDER BY date';
-   
-      // Prepare statement
-      $stmt = $this->conn->prepare($query);
-      $stmt->bindParam(':archdate', $archdate);
-      // Execute query
-      if($stmt->execute()) {
-        return $stmt;
-       }
-
-      // Print error if something goes wrong
-      printf("Error: %s.\n", $stmt->error);
-
-      return false;
-          
+          $this->previd = $row['previd'];
     }
 
     // Create Danceclass
@@ -91,23 +74,12 @@ class DanceClass {
           $query = 'INSERT INTO ' . $this->table . 
           ' SET classname = :classname, classlevel = :classlevel, registrationemail = :registrationemail,
           time = :time, instructors = :instructors, classlimit = :classlimit, numregistered = :numregistered,
-          classnotes = :classnotes,
+          classnotes = :classnotes, previd = :previd,
           room = :room, date = :date';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
 
-          // Clean data
-          $this->classname = htmlspecialchars(strip_tags($this->classname));
-          $this->classlevel = htmlspecialchars(strip_tags($this->classlevel));
-          $this->date = htmlspecialchars(strip_tags($this->date));
-          $this->room = htmlspecialchars(strip_tags($this->room));
-          $this->time = htmlspecialchars(strip_tags($this->time));
-          $this->instructors = htmlspecialchars(strip_tags($this->instructors));
-          $this->registrationemail = htmlspecialchars(strip_tags($this->registrationemail));
-          $this->classlimit = htmlspecialchars(strip_tags($this->classlimit));
-          $this->numregistered = htmlspecialchars(strip_tags($this->numregistered));
-          $this->classnotes = htmlspecialchars(strip_tags($this->classnotes));
 
           // Bind data
           $stmt->bindParam(':classname', $this->classname);
@@ -120,7 +92,8 @@ class DanceClass {
           $stmt->bindParam(':classlimit', $this->classlimit);
           $stmt->bindParam(':numregistered', $this->numregistered);
           $stmt->bindParam(':classnotes', $this->classnotes);
-
+          $stmt->bindParam(':previd', $this->previd);
+       
           // Execute query
           if($stmt->execute()) {
             return true;
@@ -137,7 +110,7 @@ class DanceClass {
         $query = 'UPDATE ' . $this->table . 
         ' SET classname = :classname, classlevel = :classlevel, registrationemail = :registrationemail,
         time = :time, instructors = :instructors, classlimit = :classlimit, numregistered = :numregistered,
-        classnotes = :classnotes,
+        classnotes = :classnotes, previd = :previd,
         room = :room, date = :date  where id = :id';
 
         // Prepare statement
@@ -152,6 +125,7 @@ class DanceClass {
         $this->instructors = htmlspecialchars(strip_tags($this->instructors));
         $this->registrationemail = htmlspecialchars(strip_tags($this->registrationemail));
         $this->classlimit = htmlspecialchars(strip_tags($this->classlimit));
+        $this->previd = htmlspecialchars(strip_tags($this->previd));
         $this->numregistered = htmlspecialchars(strip_tags($this->numregistered));
         $this->classnotes = htmlspecialchars(strip_tags($this->classnotes));
 
@@ -168,6 +142,7 @@ class DanceClass {
         $stmt->bindParam(':numregistered', $this->numregistered);
         $stmt->bindParam(':classnotes', $this->classnotes);
         $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':previd', $this->previd);
 
         // Execute query
         if($stmt->execute()) {
@@ -180,95 +155,9 @@ class DanceClass {
     return false;
   }
 
- 
-    public function addCount($id) {
-      
-                // Create query
-                $query = 'SELECT numregistered FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
-  
-                // Prepare statement
-                $stmt = $this->conn->prepare($query);
-      
-                // Bind ID
-                $stmt->bindParam(1, $id);
-      
-                // Execute query
-                $stmt->execute();
-      
-                $row = $stmt->fetch(PDO::FETCH_ASSOC);
-      
-           
-                $this->numregistered = $row['numregistered'];
-                $this->numregistered++;
-                $this->id = $id;
-          // do the update
-          $query = 'UPDATE ' . $this->table . 
-          ' SET  numregistered = :numregistered WHERE id = :id';
-   
-
-          // Prepare statement
-          $stmt = $this->conn->prepare($query);
-
-          // Bind data
-
-          $stmt->bindParam(':numregistered', $this->numregistered);
-          $stmt->bindParam(':id', $this->id);
-
-          // Execute query
-          if($stmt->execute()) {
-            return true;
-          }
-
-          // Print error if something goes wrong
-          printf("Error: %s.\n", $stmt->error);
-
-          return false;
-    }
-    public function decrementCount($id) {
-      
-      // Create query
-      $query = 'SELECT numregistered FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
-
-      // Prepare statement
-      $stmt = $this->conn->prepare($query);
-
-      // Bind ID
-      $stmt->bindParam(1, $id);
-
-      // Execute query
-      $stmt->execute();
-
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
- 
-      $this->numregistered = $row['numregistered'];
-      $this->numregistered--;
-      $this->id = $id;
-        // do the update
-        $query = 'UPDATE ' . $this->table . 
-        ' SET  numregistered = :numregistered WHERE id = :id';
 
 
-        // Prepare statement
-        $stmt = $this->conn->prepare($query);
-
-        // Bind data
-
-        $stmt->bindParam(':numregistered', $this->numregistered);
-        $stmt->bindParam(':id', $this->id);
-
-        // Execute query
-        if($stmt->execute()) {
-          return true;
-        }
-
-        // Print error if something goes wrong
-        printf("Error: %s.\n", $stmt->error);
-
-        return false;
-        }  
-
-    // Delete Danceclass
+    // Delete DanceclassArch
     public function delete() {
           // Create query
           $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';

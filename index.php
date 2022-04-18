@@ -409,7 +409,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     <section id="classes" class="content">
    
       <br>
-        <h1 class="section-header">Upcoming Classes Available</h1>
+        <h1 class="section-header">Ongoing and Upcoming Classes</h1>
         <table>
             <tr>
                 
