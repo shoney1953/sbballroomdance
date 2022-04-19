@@ -21,12 +21,12 @@ if (isset($_POST['submit'])) {
     if ($user->validate_email($user->email)) { 
         $existingUser = "YES";
     }
-    var_dump($existingUser) ;
+
     $contact->message = htmlentities($_POST['message']);
     $contact->danceExperience = $_POST['danceexperience'];
     $contact->danceFavorite = $_POST['dancefavorite'];
     $contact->email = filter_var($contact->email, FILTER_SANITIZE_EMAIL);  
-
+    $contact->create();
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toCC2 = '';
     $toName = $contact->firstname.' '.$contact->lastname; 
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
             $mailAttachment,
             $toCC2
         );
-       $contact->create();
+    
        $redirect = "Location: ".$_SESSION['homeurl'];
        header($redirect);
        exit; 
