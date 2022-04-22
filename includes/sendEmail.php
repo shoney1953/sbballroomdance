@@ -2,10 +2,11 @@
 require 'PHPMailer.php';
 require 'SMTP.php';
 require 'Exception.php';
-
+require_once '../config/env.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+
 
 
 function sendEmail($toEmail, 
@@ -23,7 +24,7 @@ function sendEmail($toEmail,
   
     $mailHost       = 'chi120.greengeeks.net' ;                  //Set the SMTP server to send through
     $mailUsername   = 'sbdcmailer@sbballroomdance.com';                     //SMTP username
-    $mailPassword   = '$2021Test';
+    $mailPassword   = $_SESSION['mailpwd'];
     $mailPort       = "587"; 
     $mail = new PHPMailer(true);
     try {
@@ -33,7 +34,7 @@ function sendEmail($toEmail,
         $mail->Host       = $mailHost;                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
         $mail->Username   = $mailUsername;                     //SMTP username
-        $mail->Password   = $mailPassword;                               //SMTP password
+        $mail->Password   = $mailPassword   ;                           //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
         $mail->Port       = $mailPort;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 

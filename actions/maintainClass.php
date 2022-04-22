@@ -212,8 +212,8 @@ if(isset($_POST['archiveClass'])) {
             echo '<input type="date" name="date" ><br>';
             echo '<label for="time">Time</label><br>';
             echo '<input type="time" name="time" ><br>';
-            echo '<label for="classlimit">Class Limit</label><br>';
-            echo '<input type="number" name="classlimit" ><br>';
+            echo '<label for="classlimit" >Class Limit</label><br>';
+            echo '<input type="number" name="classlimit" value="30"><br>';
             echo '<p> Notes</p><br>';
             echo '<textarea name="classnotes" cols="50" rows="5"></textarea><br><br>';
 

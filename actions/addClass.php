@@ -24,7 +24,7 @@ $database = new Database();
 $db = $database->connect();
 $class = new DanceClass($db);
 
-   
+   var_dump($_POST);
     $class->classname = $_POST['classname'];
     $class->classlevel = $_POST['classlevel'];
     $class->classlimit = $_POST['classlimit'];
