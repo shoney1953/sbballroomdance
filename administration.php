@@ -358,8 +358,19 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <p>OR</p>
         <input type='checkbox' name='addEvent'>
         <label for='addEvent'>Add an Event </label> <br> 
-       
-        <button type='submit' name="submitEvent">Submit</button>   
+        <?php
+        if ($_SESSION['role'] === 'SUPERADMIN') { 
+        echo '<p>OR</p>';
+        echo '<input type="checkbox" name="archiveEvent">';
+        echo '<label for="archiveEvent">Archive Events and Registrations </label><br>'; 
+        echo '<label for="archMonth">Enter earliest month for which to keep data</label><br>';
+        echo '<input type="number" name="archMonth" min="1" max="12"><br>';
+    } 
+    ?>
+        <button type='submit' name="submitEvent">Submit</button>  
+    
+
+  
         </div>   
         </form>
         <form method='POST' action="actions/reportEvent.php"> 
@@ -374,6 +385,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <br>
         <button type='submit' name="submitEventRep">Report</button>   
         </div>   
+
         </form>
       
         </div>

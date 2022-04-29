@@ -1,10 +1,11 @@
 <?php
-class Event {
+class EventArch {
     // DB stuff
     private $conn;
-    private $table = 'events';
+    private $table = 'eventsarch';
 
     public $id;
+    public $previd;
     public $eventname;
     public $eventtype;
     public $eventroom;
@@ -28,21 +29,6 @@ class Event {
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
-
-      // Execute query
-      $stmt->execute();
-
-      return $stmt;
-    }
-    public function read_ByArchDate($archdate) {
-      // Create query
-
-      $query = 'SELECT * FROM ' . $this->table . ' WHERE eventdate < :archdate 
-      ORDER BY eventdate';
-
-      // Prepare statement
-      $stmt = $this->conn->prepare($query);
-      $stmt->bindParam(':archdate', $archdate);
 
       // Execute query
       $stmt->execute();
@@ -85,6 +71,7 @@ class Event {
           ' SET eventname = :eventname, eventtype = :eventtype, 
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
+          previd = :previd,
           eventnumregistered = :eventnumregistered';
 
           // Prepare statement
@@ -110,6 +97,7 @@ class Event {
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
           $stmt->bindParam(':eventdj', $this->eventdj);
+          $stmt->bindParam(':previd', $this->previd);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
          
 
@@ -131,6 +119,7 @@ class Event {
           ' SET eventname = :eventname, eventtype = :eventtype, 
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
+          previd = :previd,
           eventnumregistered = :eventnumregistered
             WHERE id = :id ';
    
@@ -158,6 +147,7 @@ class Event {
           $stmt->bindParam(':eventcost', $this->eventcost);
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
+          $stmt->bindParam(':previd', $this->previd);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
           $stmt->bindParam(':id', $this->id);
 
@@ -171,95 +161,7 @@ class Event {
 
           return false;
     }
-  public function addCount($id) {
-      
-      // Create query
-      $query = 'SELECT eventnumregistered FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
-
-      // Prepare statement
-      $stmt = $this->conn->prepare($query);
-
-      // Bind ID
-      $stmt->bindParam(1, $id);
-
-      // Execute query
-      $stmt->execute();
-
-      $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
  
-      $this->eventnumregistered = $row['eventnumregistered'];
-      $this->eventnumregistered++;
-      $this->id = $id;
-          // do the update
-          $query = 'UPDATE ' . $this->table . 
-          ' SET  eventnumregistered = :eventnumregistered WHERE id = :id';
-
-
-          // Prepare statement
-          $stmt = $this->conn->prepare($query);
-
-          // Bind data
-
-          $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
-          $stmt->bindParam(':id', $this->id);
-
-          // Execute query
-          if($stmt->execute()) {
-            return true;
-          }
-
-          // Print error if something goes wrong
-          printf("Error: %s.\n", $stmt->error);
-
-          return false;
-          }
-
-    public function decrementCount($id) {
-
-          // Create query
-          $query = 'SELECT eventnumregistered FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
-
-          // Prepare statement
-          $stmt = $this->conn->prepare($query);
-
-          // Bind ID
-          $stmt->bindParam(1, $id);
-
-          // Execute query
-          $stmt->execute();
-
-          $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-          $this->eventnumregistered = $row['eventnumregistered'];
-          $this->eventnumregistered--;
-          $this->id = $id;
-          // do the update
-          $query = 'UPDATE ' . $this->table . 
-          ' SET  eventnumregistered = :eventnumregistered WHERE id = :id';
-
-
-          // Prepare statement
-          $stmt = $this->conn->prepare($query);
-
-          // Bind data
-
-          $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
-          $stmt->bindParam(':id', $this->id);
-
-          // Execute query
-          if($stmt->execute()) {
-          return true;
-          }
-
-          // Print error if something goes wrong
-          printf("Error: %s.\n", $stmt->error);
-
-          return false;
-          }  
-
-
     // Delete Event
     public function delete() {
           // Create query

@@ -21,7 +21,7 @@ if (!isset($_SESSION['username']))
 $database = new Database();
 $db = $database->connect();
 $event = new Event($db);
-
+$eventsArch = [];
 
 $updateEvent = false;
 $deleteEvent = false;
@@ -44,6 +44,46 @@ if (isset($_POST['submitEvent'])) {
         if(isset($_POST['addEvent'])) {$addevent = $_POST['addEvent'];}
     }
 }
+if(isset($_POST['archiveEvent'])) {
+
+    $archiveEvent = $_POST['archiveEvent'];
+     if (isset($_POST['archMonth'])) {
+       $archMonth = $_POST['archMonth'];
+       if ($archMonth < 10) {
+           $archMonth = '0'.$archMonth;
+       }
+       $archDate = date("Y")."-".$archMonth."-01";
+
+       $result = $event->read_ByArchDate($archDate);
+       $rowCount = $result->rowCount();
+
+       $num_archClasses = $rowCount;
+
+           if ($rowCount > 0) {
+
+               while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                   extract($row);
+                   $event_item = array(
+                    'id' => $id,
+                    'eventname' => $eventname,
+                    'eventtype' => $eventtype,
+                    'eventdate' => $eventdate,
+                    'eventcost' => $eventcost,
+                    'eventform' => $eventform,
+                    'eventdj' => $eventdj,
+                    'eventdesc' => $eventdesc,
+                    'eventroom' => $eventroom,
+                    'eventnumregistered' => $eventnumregistered
+                );
+                   array_push($eventsArch, $event_item);
+
+               }
+
+           $_SESSION['eventsArch'] = $eventsArch;
+           } 
+
+     }
+ }
 
 ?>
 <!DOCTYPE html>
@@ -177,6 +217,41 @@ if (isset($_POST['submitEvent'])) {
             echo '<button type="submit" name="submitDelete">Delete the Event</button><br>';
             echo '</form>';
         }
+        if($archiveEvent) {
+            echo '<h3> You have selected to archive the following events and their registrations: </h3><br>';
+            echo '<table>';
+            echo '<tr>';
+                    echo '<th>Date    </th>';
+                    echo '<th>Event    </th>';
+                    echo '<th>Type    </th>';
+                    echo '<th>DJ    </th>';
+                    echo '<th># Registered </th>';
+                    echo '<th>Room    </th>';
+                    echo '<th>Cost    </th>';
+                    echo '<th>Form    </th>';
+                    echo '<th>ID   </th>';    
+                echo '</tr>';
+
+            foreach($eventsArch as $event) {
+                echo "<tr>";
+                echo "<td>".$event['eventdate']."</td>";
+          
+                echo "<td>".$event['eventname']."</td>";
+                echo "<td>".$event['eventtype']."</td>";
+                echo "<td>".$event['eventdj']."</td>";
+                echo "<td>".$event['eventnumregistered']."</td>";
+                echo "<td>".$event['eventroom']."</td>";
+                echo "<td>".$event['eventcost']."</td>";
+                echo "<td>".$event['eventform']."</td>";
+                echo "<td>".$event['id']."</td>";
+            echo "</tr>";
+            }
+            echo '</table><br>';
+            echo '<form method="POST" action="archiveEvent.php">';
+            echo '<button type="submit" name="submitArchive">Archive these Event(s) and their registrations</button><br>';
+            echo '</form>';
+        }
+    
         ?> 
 
     </div>

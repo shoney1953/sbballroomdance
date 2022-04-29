@@ -1,13 +1,14 @@
 <?php
-class EventRegistration {
+class EventRegistrationArch {
     // DB stuff
     private $conn;
-    private $table = 'eventregistration';
+    private $table = 'eventregistrationarch';
 
     public $id;
     public $firstname;
     public $lastname;
     public $eventid;
+    public $preveventid;
     public $email;
     public $dateregistered;
     public $eventname;
@@ -27,10 +28,10 @@ class EventRegistration {
     
       $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-      r.userid, r.paid, r.message
+      r.userid, r.paid, r.message, r.preveventid
       FROM ' . $this->table . ' r
       LEFT JOIN
-        events c ON r.eventid = c.id
+        eventsarch c ON r.eventid = c.id
       ORDER BY
         r.eventid, r.lastname, r.firstname, r.dateregistered';
 
@@ -50,10 +51,10 @@ class EventRegistration {
 
           $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-          r.userid, r.paid, r.message
+          r.userid, r.paid, r.message, r.preveventid
           FROM ' . $this->table . ' r
           LEFT JOIN
-            events c ON r.eventid = c.id
+            eventsarch c ON r.eventid = c.id
           WHERE
             r.id = ?
           LIMIT 0,1';
@@ -79,6 +80,7 @@ class EventRegistration {
           $this->email = $row['email'];
           $this->dateregistered = $row['dateregistered'];
           $this->paid = $row['paid'];
+          $this->preveventid = $row['preveventid'];
           $this->message = $row['message'];
 
     }
@@ -89,10 +91,10 @@ public function read_ByUserid($userid) {
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.userid, r.paid, r.message
+    r.userid, r.paid, r.message, r.preveventid
     FROM ' . $this->table . ' r
     LEFT JOIN
-      events c ON r.eventid = c.id
+      eventsarch c ON r.eventid = c.id
     WHERE
       r.userid = :userid ';
  
@@ -115,10 +117,10 @@ public function read_ByEmail($email) {
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.userid, r.paid, r.message
+    r.userid, r.paid, r.message, r.preveventid
     FROM ' . $this->table . ' r
     LEFT JOIN
-      events c ON r.eventid = c.id
+      eventsarch c ON r.eventid = c.id
     WHERE
       r.email = :email ';
   
@@ -141,7 +143,7 @@ public function read_ByEmail($email) {
 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.userid, r.paid, r.message
+    r.userid, r.paid, r.message, r.preveventid
     FROM ' . $this->table . ' r
     LEFT JOIN
       events c ON r.eventid = c.id
@@ -167,7 +169,7 @@ public function read_ByEmail($email) {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          userid = :userid, paid = :paid, message = :message,
+          userid = :userid, paid = :paid, message = :message, preveventid = :preveventid,
           eventid = :eventid';
 
           // Prepare statement
@@ -186,6 +188,7 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':firstname', $this->firstname);
           $stmt->bindParam(':lastname', $this->lastname);
           $stmt->bindParam(':eventid', $this->eventid);
+          $stmt->bindParam(':preveventid', $this->preveventid);
           $stmt->bindParam(':userid', $this->userid);
           $stmt->bindParam(':email', $this->email);
           $stmt->bindParam(':paid', $this->paid);
@@ -245,10 +248,10 @@ public function read_ByEmail($email) {
 
           return false;
     }
-    public function deleteUserid($userid) {
+    public function deleteEventid($eventid) {
         
       // Create query
-      $query = 'DELETE FROM ' . $this->table . ' WHERE userid = :userid';
+      $query = 'DELETE FROM ' . $this->table . ' WHERE eventid = :eventid';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -257,7 +260,7 @@ public function read_ByEmail($email) {
       $this->id = htmlspecialchars(strip_tags($this->id));
 
       // Bind data
-      $stmt->bindParam(':userid', $userid);
+      $stmt->bindParam(':eventid', $eventid);
 
       // Execute query
       if($stmt->execute()) {
@@ -269,10 +272,10 @@ public function read_ByEmail($email) {
 
       return false;
 }
-public function deleteEventid($userid) {
+public function deleteUserid($userid) {
         
   // Create query
-  $query = 'DELETE FROM ' . $this->table . ' WHERE eventid = :eventid';
+  $query = 'DELETE FROM ' . $this->table . ' WHERE userid = :userid';
 
   // Prepare statement
   $stmt = $this->conn->prepare($query);
@@ -281,7 +284,7 @@ public function deleteEventid($userid) {
   $this->id = htmlspecialchars(strip_tags($this->id));
 
   // Bind data
-  $stmt->bindParam(':eventid', $eventid);
+  $stmt->bindParam(':userid', $userid);
 
   // Execute query
   if($stmt->execute()) {
