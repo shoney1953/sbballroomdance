@@ -168,8 +168,8 @@ if (isset($_POST['submitAddUser'])) {
      $emailBody .= "Brian Hand, President<br>";
      $emailBody .= "Rich Adinolfi, Vice President<br>"; 
      $emailBody .= "Dottie Adams, Treasurer<br>";
-     $emailBody .= "Wanda Ross, Secretary<br>";
-     $emailBody .= "Roger Shamburg, Chair, Dance Instructors<br>";
+     $emailBody .= "Sheila Honey, Secretary<br>";
+     $emailBody .= "Ann Pizzitola, Dance Instructors<br>";
      $emailBody .= "Rick Baumgartner, Chair, DJs<br>";
 
 
