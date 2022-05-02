@@ -871,7 +871,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<input type="checkbox" name="reportPaid">';
         echo '<label for="reportUsers">Report Membership</label><br>';    
         echo '<label for="year" >Reporting Year</label><br>';
-        echo '<input type="number" min=2021 maxlength=4 name="year" 
+        echo '<input type="number" min=2022 maxlength=4 name="year" 
              value="'.$thisYear.'"><br>';
         echo '<input type="hidden" name="email" value="'.$memStat['email'].'"><br>';
         echo '<input type="hidden" name="firstname" value="'.$memStat['firstname'].'"><br>';

@@ -5,14 +5,18 @@ require_once 'models/Event.php';
 require_once 'models/DanceClass.php';
 require_once 'models/User.php';
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
+extract($_GET, EXTR_PREFIX_ALL, "g");
+var_dump($g_error);
+var_dump($g_success);
+var_dump($_GET);
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
     Please Validate Input</h4><br>';
-    echo $_GET['error'];
+    var_dump($_GET);
     unset($_GET['error']);
 } elseif (isset($_GET['success'])) {
     echo '<br><h4 style="text-align: center"> '.$_GET['success'].'</h4><br>';
-    echo $_GET['success'];
+    var_dump($_GET);
     unset($_GET['success']);
 } else {
     $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
@@ -645,11 +649,11 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         </div>
         
         <div class="form-grid-div">
-       <h4>2021</h4>
+       <h4>2022</h4>
        <ul>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Holiday-Party-12-14-2021">Holiday Party 12 14 2021</a></li> 
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-TGIF-10-19-2021">TGIF 11 19 2021</a></li>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/Sbdc-halloween-party-10-30-2021">Halloween Party 10 30 2021</a></li>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Holiday-Party-12-14-2022">Holiday Party 12 14 2022</a></li> 
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-TGIF-10-19-2022">TGIF 11 19 2022</a></li>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/Sbdc-halloween-party-10-30-2022">Halloween Party 10 30 2022</a></li>
         </ul>
         </div>
         <div class="form-grid-div">

@@ -1,15 +1,11 @@
 <?php
-session_start();
+  session_start();
 
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4><br>';
     unset($_GET['error']);
-} elseif(isset($_GET['success'])) {
-    echo '<br><h4 style="text-align: center"> Success:  '.$_GET['success'].'</h4><br>';
-    unset($_GET['success']);
-} else {
-    $_SESSION['loginurl'] = $_SERVER['REQUEST_URI']; 
-}
+} 
+$_SESSION['loginurl'] = $_SERVER['REQUEST_URI']; 
 date_default_timezone_set("America/Phoenix");
 ?>
 <!DOCTYPE html>
@@ -37,7 +33,7 @@ date_default_timezone_set("America/Phoenix");
         <div class="form-grid1">
    
         <h1 class="section-header">Please Login</h1>
-            <form method="POST" action="actions/logIn.php">
+            <form method="POST" action="actions/logInact.php">
                 <div class="form-grid-div">
             
 
@@ -59,7 +55,7 @@ date_default_timezone_set("America/Phoenix");
 
 <div class="footer-section">
 
-    <p>Copyright &copy; 2021    Sheila Honey  - All Rights Reserved</p>
+    <p>Copyright &copy; 2022    Sheila Honey  - All Rights Reserved</p>
     
 </div> 
 

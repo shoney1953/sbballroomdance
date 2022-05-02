@@ -8,7 +8,7 @@ $db = $database->connect();
 $user = new User($db);
 $pass2 = '';
 $isValid = false;
-echo $_SESSION['homeurl'];
+
 
    if(isset($_POST['SubmitLogIN'])) {
 
@@ -84,7 +84,7 @@ echo $_SESSION['homeurl'];
             unset($_SESSION['partnerid']);
         }
       
-     $redirect = "Location: ".$_SESSION['signurl'].'?error=NoUser';
+     $redirect = "Location: ".$_SESSION['loginurl'].'?error=NoUser';
      header($redirect);
      exit;  
     } 
