@@ -1,7 +1,6 @@
 <?php 
 session_start();
 require_once 'config/Database.php';
-require_once 'config/Env.php';
 require_once 'models/Event.php';
 require_once 'models/DanceClass.php';
 require_once 'models/User.php';
