@@ -5,10 +5,7 @@ require_once 'models/Event.php';
 require_once 'models/DanceClass.php';
 require_once 'models/User.php';
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
-extract($_GET, EXTR_PREFIX_ALL, "g");
-var_dump($g_error);
-var_dump($g_success);
-var_dump($_GET);
+
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
     Please Validate Input</h4><br>';
