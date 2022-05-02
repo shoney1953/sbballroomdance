@@ -13,7 +13,7 @@
        if ($_SERVER['SERVER_NAME'] === 'localhost') {         
            $this->host = "localhost";
            $this->username = "root";
-           $this->password = "2022Idiot";
+           $this->password = "2021Idiot";
            $this->db_name = "mywebsite"; 
            } 
       if ($_SERVER['SERVER_NAME'] !== 'localhost') {
@@ -24,7 +24,7 @@
          
           $this->host = "localhost";
           $this->username = "sbballro_appuser";
-          $this->password = "$2022Idiot";
+          $this->password = "$2021Idiot";
           $this->db_name = "sbballro_tAdnRpvOXZgHQi";
 
         } else {
