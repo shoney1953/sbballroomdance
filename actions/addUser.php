@@ -144,7 +144,7 @@ if (isset($_POST['submitAddUser'])) {
        $emailBody .= "<li><strong>Open Dance</strong> - These are slots open for practice dancing. They are not 
        exclusively for members, so you can bring friends. Often a DJ provides requested music. If no DJ is
        specified, you may bring your own music. Currently we have 3 different slots:<ul>
-       <li>Tuesday 4 - 5:30pm in the HOA1 Vermillion Room</li>
+
        <li>Friday 3 - 5pm in the HOA1 Vermillion Room</li>
        <li>Sunday 3 - 5pm in the MountainView Ballroom</li>
        </ul></li>";

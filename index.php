@@ -210,9 +210,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             cancellations.. and also for DJ information.</em> </p>
         <p>For 2022, we now have 3 different time slots for Open Dance:</p>
         <ul>
-            <li class="li-none">Tuesday 4 to 5:30PM - Vermillion Room
-            <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
-            </li>
+
             <li class="li-none">Friday 3 to 5PM - Vermillion Room
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a></li>
             <li class="li-none">Sunday 3 to 5PM - MountainView Ballroom
@@ -233,7 +231,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             clubhouse in the Ballroom.
             <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map</a>
         </p>
-        <p>Our Tuesday and Friday Open Dances, and a few Dinner Dances are in the HOA 1 
+        <p>Our Friday Open Dances, and a few Dinner Dances are in the HOA 1 
             clubhouse in the Vermillion Room and or Vistas Dining Room.
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
         </p>
