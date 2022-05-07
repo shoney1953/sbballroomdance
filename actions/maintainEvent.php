@@ -26,7 +26,7 @@ $eventsArch = [];
 $updateEvent = false;
 $deleteEvent = false;
 $addEvent = false;
-
+$archiveEvent = false;
 if (isset($_POST['submitEvent'])) {
     if (isset($_POST['eventId'])) {
         $eventId = htmlentities($_POST['eventId']);
@@ -44,7 +44,7 @@ if (isset($_POST['submitEvent'])) {
         if(isset($_POST['addEvent'])) {$addevent = $_POST['addEvent'];}
     }
 }
-if(isset($_POST['archiveEvent'])) {
+if (isset($_POST['archiveEvent'])) {
 
     $archiveEvent = $_POST['archiveEvent'];
      if (isset($_POST['archMonth'])) {
@@ -148,6 +148,7 @@ if(isset($_POST['archiveEvent'])) {
         echo '<option value = "Dinner Dance">Dinner Dance</option>';
         echo '<option value = "First Friday">First Friday</option>';
         echo '<option value = "First Thursday">First Thursday</option>';
+        echo '<option value = "Beginner Practice Dance">Beginner Practice Dance</option>';
         echo '<option value = "TGIF">TGIF</option>';
         echo '<option value = "Meeting">Meeting</option>';
         echo '</select><br>';
@@ -186,7 +187,9 @@ if(isset($_POST['archiveEvent'])) {
             echo '<option value = "Dinner Dance">Dinner Dance </option>';
             echo '<option value = "First Friday">First Friday</option>';
             echo '<option value = "First Thursday">First Thursday</option>';
+            echo '<option value = "Beginner Practice Dance">Beginner Practice Dance</option>';
             echo '<option value = "TGIF">TGIF</option>';
+            
             echo '<option value = "Meeting">Meeting</option>';
             echo '</select><br>';
             echo '<label for="eventdesc">Event Description</label><br>';
@@ -209,7 +212,7 @@ if(isset($_POST['archiveEvent'])) {
             echo '</form>';
             echo '</div>';
         }     
-        if($deleteEvent) {
+        if ($deleteEvent) {
             echo '<p> You have selected to delete event id: '.$event->id.'<br>';
             echo 'event name:  '.$event->eventname. '<br><br><strong><em> Please click the button below to confirm delete.</em></strong></p>';
             echo '<form method="POST" action="deleteEvent.php">';
@@ -217,7 +220,7 @@ if(isset($_POST['archiveEvent'])) {
             echo '<button type="submit" name="submitDelete">Delete the Event</button><br>';
             echo '</form>';
         }
-        if($archiveEvent) {
+        if ($archiveEvent) {
             echo '<h3> You have selected to archive the following events and their registrations: </h3><br>';
             echo '<table>';
             echo '<tr>';

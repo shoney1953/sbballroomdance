@@ -141,7 +141,7 @@ if (isset($_POST['submitAddUser'])) {
        dinner with the group in the MountainView Bistro.  Dine and Dances has the dinner at approximately 4:30pm
        followed by dancing in the MountainView Ballroom. TGIFs are dancing first from 3 - 5pm followed by dinner. 
        You will also receive emails about these actvities. You can register for these on the website.</li>";
-       $emailBody .= "<li><strong>Open Dance</strong> - These are slots open for practice dancing. They are not 
+       $emailBody .= "<li><strong>Open Dance Practice</strong> - These are slots open for practice dancing. They are not 
        exclusively for members, so you can bring friends. Often a DJ provides requested music. If no DJ is
        specified, you may bring your own music. Currently we have 3 different slots:
         <ul>
