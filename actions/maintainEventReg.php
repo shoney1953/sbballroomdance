@@ -2,6 +2,7 @@
 session_start();
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
+require_once '../models/User.php';
 date_default_timezone_set("America/Phoenix");
 if (!isset($_SESSION['username']))
 {
@@ -21,7 +22,70 @@ if (!isset($_SESSION['username']))
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
+$upcomingEvents = [];
+$upcomingEvents = $_SESSION['upcoming_events'] ;
+$user = new User($db);
+$users = [];
+$_SESSION['regUsers'] = [];
+$num_users = 0;
+if (isset($_POST['search'])) {
+    $search = $_POST['search'];
+    $search .= '%';
 
+    $result = $user->readLike($search);
+    
+    $rowCount = $result->rowCount();
+    $num_users = $rowCount;
+
+    if($rowCount > 0) {
+    
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+            $user_item = array(
+                'id' => $id,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'username' => $username,
+                'role' => $role,
+                'email' => $email,
+                'phone1' => $phone1,
+                'password' => $password,
+                'partnerId' => $partnerid,
+                'hoa' => $hoa,
+                'passwordChanged' => $passwordChanged,
+                'streetAddress' => $streetaddress,
+                'lastLogin' => $lastLogin
+            );
+            array_push( $users, $user_item);
+      
+        }
+    }
+
+
+} else {
+        $result = $user->read();
+        
+        $rowCount = $result->rowCount();
+        $num_users = $rowCount;
+        if($rowCount > 0) {
+        
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+                $user_item = array(
+                    'id' => $id,
+                    'firstname' => $firstname,
+                    'lastname' => $lastname,
+                    'email' => $email,
+                    'partnerId' => $partnerid
+                    
+                );
+                array_push( $users, $user_item);
+        
+            }
+            
+        }
+    }  
+$_SESSION['regUsers'] = $users;
 
 $updateReg = false;
 $deleteReg = false;
@@ -120,9 +184,35 @@ if (!isset($_POST['regId'])) {
     }
 
         if ($addReg) {
+            echo '<div class="form-grid-div">';
             echo '<form method="POST" action="addEventReg.php">';
-            echo '<h1 class="section-header">Add Event Registration</h1><br>';
-            echo '<label for="eventid">Event Id</label>';
+            echo '<ul class="list-box">';
+            echo '<h4 style="text-decoration: underline;color: black"><em>
+              To Register -- Please select One or More of the Events Listed</em></h4><br>';
+        foreach ($upcomingEvents as $ev) {
+                echo '<li class="list-none">';
+                $chkboxID = "ev".$ev['id'];
+                $evString = " ".$ev['eventname']." ".$ev['eventtype']." ".$ev['eventdate']." ";
+                echo "<input type='checkbox' name='$chkboxID'>";
+                echo "<label for='$chkboxID'> Select Event:
+                    <strong>$evString </strong></label><br>";
+                echo '</li>';
+        }
+        echo '</ul> <br><br>';
+        echo '<ul class="list-box">';
+        echo '<h4 style="text-decoration: underline;color: black"><em>
+         Select one or more of the members Listed</em></h4><br>';
+         foreach ($users as $usr) {
+            echo '<li lass="list-none">';
+            $usrID = "us".$usr['id'];
+            $userString = " ".$usr['firstname']." ".$usr['lastname']." ".$usr['email']." ";
+            echo "<input type='checkbox' name='$usrID'>";
+            echo "<label for='$usrID'>$userString </label><br>";
+         echo '</li>';
+         }
+         echo '</ul>';
+           
+/*             echo '<label for="eventid">Event Id</label>';
             echo '<input type="text" name="eventid" required><br>';
             echo '<label for="firstname">First Name</label>';
             echo '<input type="text" name="firstname" required><br>';
@@ -134,7 +224,7 @@ if (!isset($_POST['regId'])) {
                 (For First Fridays or Dine and Dance please indicate if you want to have dinner)</label><br>';
             echo '<textarea  name="message" rows="4" cols="50"></textarea><br>';
             echo '<label for="paid">Paid</label>';
-            echo '<input type="number" name="paid" min="0" max="1"><br>';
+            echo '<input type="number" name="paid" min="0" max="1"><br>'; */
             echo '<button type="submit" name="submitAddReg">
                Add the Event Registration</button><br>';
             echo '</form>';
