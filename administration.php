@@ -712,6 +712,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>HOA</th>';
                 echo '<th>Address</th>';
                 echo '<th>Last Login</th>';
+                echo '<th>PWD Changed</th>';
                 echo '</tr>';
                 
         
@@ -729,6 +730,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         echo "<td>".$user['hoa']."</td>";
                         echo "<td>".$user['streetAddress']."</td>"; 
                         echo "<td>".$user['lastLogin']."</td>"; 
+                        echo "<td>".$user['passwordChanged']."</td>"; 
                        
                         
                       echo "</tr>";
