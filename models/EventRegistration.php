@@ -94,7 +94,9 @@ public function read_ByUserid($userid) {
     LEFT JOIN
       events c ON r.eventid = c.id
     WHERE
-      r.userid = :userid ';
+      r.userid = :userid 
+    ORDER BY 
+      r.eventid, r.lastname, r.firstname';
  
 
     // Prepare statement
@@ -120,7 +122,10 @@ public function read_ByEmail($email) {
     LEFT JOIN
       events c ON r.eventid = c.id
     WHERE
-      r.email = :email ';
+      r.email = :email 
+    ORDER BY 
+      r.eventid, r.lastname, r.firstname';
+ 
   
   
     // Prepare statement
@@ -146,7 +151,10 @@ public function read_ByEmail($email) {
     LEFT JOIN
       events c ON r.eventid = c.id
     WHERE
-      r.eventid = :eventid ';
+      r.eventid = :eventid 
+    ORDER BY 
+      r.eventid, r.lastname, r.firstname';
+ 
  
 
     // Prepare statement
