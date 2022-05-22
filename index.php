@@ -410,6 +410,9 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
    
       <br>
         <h1 class="section-header">Ongoing and Upcoming Classes</h1>
+        <a href="https://drive.google.com/file/d/1Px2_ROXxQDctxKviOmp4uxYqjReWNuQu/view?usp=sharing">
+            Click for flyer for upcoming Dances.
+        </a><br><br>
         <table>
             <tr>
                 
