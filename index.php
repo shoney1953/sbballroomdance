@@ -160,9 +160,12 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
     <?php
    
     if (isset($_SESSION['username'])) {
-     
-        echo ' <li><a href="yourProfile.php">
-         Your Profile</a></li>';
+        if (isset($_SESSION['role'])) {
+            if ($_SESSION['role'] != 'visitor') {
+              echo ' <li><a href="yourProfile.php">
+              Your Profile</a></li>';
+            }
+        }
         echo ' <li><a href="logout.php">Logout</a></li>'; 
         if (isset($_SESSION['role'])) {
             if (($_SESSION['role'] == 'ADMIN') || ($_SESSION['role'] == 'SUPERADMIN')) {
@@ -171,7 +174,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         }
     } else {
       
-        echo '<li><a style="color: red;font-weight: bold;font-size: large" href="login.php">Login</a></li>';
+        echo '<li><a style="color: red;font-weight: bold;font-size: large" href="login.php">Member or Visitor Login</a></li>';
     }
     ?>
         </ul> 
@@ -397,7 +400,9 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             echo '</form>';
     
         } else {
-            echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
+           // echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
+            echo '<h3><a style="color: red;font-weight: bold;font-size: large"
+             href="login.php"> <strong><em>Please Login to Register</em></a></h3><br><br>';
         }
     } else {
         echo '<h3> No Upcoming Events right now -- Check back soon</h3><br><br>';
@@ -541,7 +546,9 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             echo '</div>';
     
         } else {
-            echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
+           // echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
+            echo '<h3><a style="color: red;font-weight: bold;font-size: large"
+            href="login.php"> <strong><em>Please Login to Register</em></a></h3><br><br>';
         }
     } else {
         echo '<h3> No Upcoming Classes right now -- Check back soon</h3><br><br>';

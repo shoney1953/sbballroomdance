@@ -28,13 +28,13 @@ date_default_timezone_set("America/Phoenix");
     </nav>
     <div class="container-section ">
     <section id="login" class="content">
-   
+   <br><br><br><h1>If you are a member, please use the SBDC member log in. If not, please log in as a visitor.</h1>
         
-        <div class="form-grid1">
-   
-        <h1 class="section-header">Please Login</h1>
+        <div class="form-grid3">
+        <div class="form-grid-div">
+        <h1 class="section-header">SBDC MEMBERS Please Login here</h1>
             <form method="POST" action="actions/logInact.php">
-                <div class="form-grid-div">
+               
             
 
                 <label for="username">User Name for the Website</label><br>
@@ -44,6 +44,27 @@ date_default_timezone_set("America/Phoenix");
 
                 <br>
                 <button type="submit" name="SubmitLogIN">Submit</button><br>
+                
+        </form>
+    
+        </div>
+        <div class="form-grid-div">
+        </div>
+        <div class="form-grid-div">
+        <h1 class="section-header">Visitors Please Log in here.</h1>
+            <form method="POST" action="actions/visitorAct.php">
+           
+            
+                <label for="firstname">Visitor First Name</label><br>
+                <input type="text" name="firstname" required><br>
+                <label for="lastname">Visitor Last Name</label><br>
+                <input type="text" name="lastname" required><br>
+
+                <label for="email">Vistor Email</label><br>
+                <input type="email" name="email" required><br>
+               
+                <br>
+                <button type="submit" name="SubmitVisitorLogIN">Submit</button><br>
                 </div>
         </form>
         </div>
