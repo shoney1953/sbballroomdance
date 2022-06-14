@@ -2,6 +2,7 @@
 session_start();
 require_once 'config/Database.php';
 require_once 'models/Contact.php';
+require_once 'models/Visitor.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/EventRegistration.php';
 require_once 'models/Event.php';
@@ -12,6 +13,7 @@ $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 
 $allClasses = [];
+$visitors = [];
 $allEvents = [];
 $contacts = [];
 $users = [];
@@ -20,6 +22,7 @@ $eventRegistrations = [];
 $num_registrations = 0;
 $num_events = 0;
 $num_classes = 0;
+$num_visitors = 0;
 $memberStatus1 = [];
 $memberStatus2 = [];
 $nextYear = date('Y', strtotime('+1 year'));
@@ -179,6 +182,32 @@ if($rowCount > 0) {
   $_SESSION['contacts'] = $contacts;
 
 } 
+$visitor = new Visitor($db);
+$result = $visitor->read();
+
+$rowCount = $result->rowCount();
+$num_visitors = $rowCount;
+if($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $visitor_item = array(
+            'id' => $id,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'message' => $message,
+            'email' => $email,
+            "logindate" => date('m d Y h:i:s A', 
+            strtotime($logindate))
+           
+        );
+        array_push($visitors, $visitor_item);
+  
+    }
+  $_SESSION['visitors'] = $visitors;
+
+}
+//*********************** superadmin  */
 $num_users = 0;
 
 
@@ -286,6 +315,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <li><a href="#classregistrations">Class Registrations</a></li>
         <li><a href="#eventregistrations">Event Registrations</a></li>
         <li><a href="#contacts">Contacts</a></li>
+        <li><a href="#visitors">Visitors</a></li>
+        
         <?php
         if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<li><a href="#users">Users</a></li>';
@@ -678,6 +709,50 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <input type='checkbox' name='reportContact'>
         <label for='reportContact'>Report on Contacts </label><br>    
         <button type='submit' name="reportContact">Report</button> 
+      
+        </div>     
+        </form>
+        <br>
+        
+    
+        </div>
+    </section>
+    </div>
+    <div class="container-section ">
+    <br><br>
+    <section id="visitors" class="content">
+         <h3 class="section-header">Visitors</h3>  
+        <table>
+            <tr>
+                <th>Login Date</th>  
+                <th>First Name</th>
+                <th>Last Name    </th>
+                <th>Email</th>
+              
+            </tr>
+            <?php 
+    
+            foreach($visitors as $visitor) {
+         
+                  echo "<tr>";
+                    echo "<td>".$visitor['logindate']."</td>";
+                    echo "<td>".$visitor['firstname']."</td>";               
+                    echo "<td>".$visitor['lastname']."</td>";
+                    echo "<td>".$visitor['email']."</td>";           
+                  echo "</tr>";
+              }
+         
+            ?> 
+        </table>
+        <br>
+        <div class="form-grid3">
+      
+        <div class="form-grid-div">
+        <h4>Report Visitors</h4>
+        <form method='POST' action="actions/reportVisitors.php">
+        <input type='checkbox' name='reportVisitor'>
+        <label for='reportContact'>Report on Visitors </label><br>    
+        <button type='submit' name="reportVisitors">Report</button> 
       
         </div>     
         </form>

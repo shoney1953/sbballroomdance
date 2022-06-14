@@ -2,11 +2,11 @@
 session_start();
 require('../includes/fpdf.php');
 include_once '../config/Database.php';
-include_once '../models/Contact.php';
+include_once '../models/Visitor.php';
 
 $database = new Database();
 $db = $database->connect();
-$contact = new Contact($db);
+$visitor = new Visitor($db);
 
 class PDF extends FPDF
 {
@@ -21,7 +21,7 @@ function Header()
 	// Move to the right
 	$this->Cell(80);
 	// Title
-	$this->Cell(50,10,'SBDC Contacts - '.$today,0,0,'C');
+	$this->Cell(50,10,'SBDC Visitors - '.$today,0,0,'C');
 	// Line break
 	$this->Ln(20);
 }
@@ -45,35 +45,33 @@ $pdf->SetTextColor(26, 22, 22);
 $pdf->AddPage();
 $pdf->SetFont('Arial','',10);
 // go get contacts
-$result = $contact->read();
+$result = $visitor->read();
 
 $rowCount = $result->rowCount();
-$num_contacts = $rowCount;
+$num_visitors = $rowCount;
 if($rowCount > 0) {
-	$pdf->Cell(35,5,"CONTACT DATE",1,0,"L");
+	$pdf->Cell(35,5,"LOGIN DATE",1,0,"L");
 	$pdf->Cell(60,5,"EMAIL",1,0,"L");
 	$pdf->Cell(40,5,"FIRST NAME",1,0,"L");
-	$pdf->Cell(40,5,"LAST NAME",1,0,"L");
-	$pdf->Cell(40,5,"MESSAGE",1,1,"L");
-
+	$pdf->Cell(40,5,"LAST NAME",1,1,"L");
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
 
-		$pdf->Cell(35,5,$contactdate,1,0,"L");
+		$pdf->Cell(35,5,$logindate,1,0,"L");
 		$pdf->Cell(60,5,$email,1,0,"L");
 		$pdf->Cell(40,5,$firstname,1,0,"L");
-		$pdf->Cell(40,5,$lastname,1,0,"L");
-		$pdf->Cell(40,5,$message,1,1,"L");
+		$pdf->Cell(40,5,$lastname,1,1,"L");
+
     }
 
 
 } else {
-   echo 'NO Contacts';
+   echo 'NO Visitors';
 
 }
 $today = date("m-d-Y");
-$pdf->Output("I", "ContactReport.".$today);
+$pdf->Output("I", "VisitorReport.".$today);
 
 $redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);
