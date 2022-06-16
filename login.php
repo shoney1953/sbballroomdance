@@ -32,7 +32,7 @@ date_default_timezone_set("America/Phoenix");
         
         <div class="form-grid3">
         <div class="form-grid-div">
-        <h1 class="section-header">SBDC MEMBERS Please Login here</h1>
+        <h1 class="section-header">SBDC MEMBERS Please Log in here</h1>
             <form method="POST" action="actions/logInact.php">
                
             

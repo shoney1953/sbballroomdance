@@ -174,7 +174,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         }
     } else {
       
-        echo '<li><a style="color: red;font-weight: bold;font-size: large" href="login.php">Member or Visitor Login</a></li>';
+        echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Member or Visitor Login</a></li>';
     }
     ?>
         </ul> 
@@ -613,6 +613,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                 echo '<div class="form-grid-div">'; 
                 echo '<label for="danceexperience">How familiar are you with Dance?</label><br>';
                 echo '<select name = "danceexperience">';
+                    echo '<option value = "Novice" selected>Never Danced Before</option>';
                     echo '<option value = "Beginner" selected>Beginner or It has been a long time</option>';
                     echo '<option value = "Intermediate">Had moderate experience dancing</option>';
                     echo '<option value = "Advanced">Been Dancing for a long time</option>';

@@ -468,12 +468,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             ?> 
         </table>
         <br>
-        <div class="form-grid1">
-        
-        <form method='POST' action="actions/maintainEventReg.php">
+        <div class="form-grid3">
         
         <div class="form-grid-div">
         <h4>Maintain event Registrations</h4>
+        <form method='POST' action="actions/maintainEventReg.php">
         <input type='checkbox' name='updateReg'>
         <label for='updateReg'>Update a Event Registration </label><br>   
         <input type='checkbox' name='deleteReg'>
@@ -487,9 +486,27 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <label for='addReg'>Add a Event Registration</label> <br> 
         <input type="text"  name="search" >
         <label for='search'>Optionally Search for Members by Name or Email</label><br>       
-        <button type='submit' name="submitEventReg">Submit</button>   
-        </div>   
-        </form>
+        <button type='submit' name="submitEventReg">Submit</button> 
+        </form>  
+        </div> 
+        <div class="form-grid-div">
+        <h4>Add Visitor Registrations</h4>
+        <form method='POST' action="actions/addVisitorEventReg.php">
+        <input type='checkbox' name='addVisitorReg'>
+        <label for='addVisitorReg'>Add a Visitor to Event Registration</label> <br>
+        <input type='text' class='text-small' name='eventid' >
+        <label for='eventid'><em> &larr; 
+            Specify Event ID from Table above:  
+            </em></label><br>
+        <label for="firstname">First Name</label><br>
+        <input type="text" name="firstname"><br>
+        <label for="lastname">Last Name</label><br>
+        <input type="text" name="lastname"><br>
+        <label for="email">Email</label><br>
+        <input type="email" name="email"> <br>
+        <button type='submit' name="submitAddVisitorReg">Add Visitor Registration</button> 
+        </form>  
+        </div>    
         </div>
        
         </section>
