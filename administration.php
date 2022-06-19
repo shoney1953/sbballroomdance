@@ -645,12 +645,13 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             ?> 
         </table>
         <br>
-        <div class="form-grid1">
-        
+        <h4>Maintain Class Registrations</h4>
+        <div class="form-grid3">
+         <div>
         <form method='POST' action="actions/maintainClassReg.php">
         
         <div class="form-grid-div">
-        <h4>Maintain Class Registrations</h4>
+        <h4>Member Class Registrations</h4>
         <input type='checkbox' name='updateReg'>
         <label for='updateReg'>Update a Class Registration </label><br>    
         <input type='checkbox' name='deleteReg'>
@@ -668,6 +669,24 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <button type='submit' name="submitReg">Submit</button>   
         </div>   
         </form>
+        </div> 
+        <div class="form-grid-div">
+        <h4>Add Visitor Registrations</h4>
+        <form method='POST' action="actions/addVisitorClassReg.php">
+        <input type='checkbox' name='addVisitorReg'>
+        <label for='addVisitorReg'>Add a Visitor to Class Registration</label> <br>
+        <input type='text' class='text-small' name='classid' >
+        <label for='classid'><em> &larr; 
+            Specify Class ID from Table above:  
+            </em></label><br>
+        <label for="firstname">First Name</label><br>
+        <input type="text" name="firstname"><br>
+        <label for="lastname">Last Name</label><br>
+        <input type="text" name="lastname"><br>
+        <label for="email">Email</label><br>
+        <input type="email" name="email"> <br>
+        <button type='submit' name="submitAddVisitorReg">Add Visitor Registration</button> 
+        </form>  
         </div>
        
         </section>
