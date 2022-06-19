@@ -532,17 +532,17 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
                     $classString = " ".$class['classname']." ".$class['classlevel']." ".$class['date']." ";
                     echo "<input type='checkbox' name='$chkboxID'>";
                     echo "<label for='$chkboxID'> I/We would like to register for:
-                        <strong>$classString </strong></label><br>";
-         
-                    echo '</li>';
+                        <strong>$classString </strong></label><br>";         
+                    echo '</li>';   
+                    }            
+                echo '</ul> <br><br>';      
                 
-                echo '</ul> <br><br>';
-               
-                 echo '<button name="submitRegClass" type="submit">Submit</button><br>';
-        }
-            echo '</div>'; 
+        
+        echo '<button name="submitRegClass" type="submit">Submit</button><br>';
+        
            
             echo '</form>';
+            echo '</div>'; 
             echo '</div>';
     
         } else {
