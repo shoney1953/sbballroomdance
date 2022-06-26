@@ -319,7 +319,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         
         <?php
         if ($_SESSION['role'] === 'SUPERADMIN') {
-            echo '<li><a href="#users">Users</a></li>';
+            echo '<li><a href="#users">Members</a></li>';
             echo '<li><a href="#membership">Membership</a></li>';
         }
         ?>
@@ -806,7 +806,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo ' <h3 class="section-header">Member List</h3> ';
         echo '<form target="_blank" method="POST" action="actions/searchUser.php" >';
         echo '<input type="text"  name="search" >';
-        echo '<button type="submit" name="searchUser">Search Users</button>'; 
+        echo '<button type="submit" name="searchUser">Search Members</button>'; 
         echo '</form>';
      
         echo '<table>';
@@ -853,7 +853,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
           
             echo '<form method="POST" action="actions/maintainUser.php">';
             echo '<div class="form-grid-div">';
-            echo '<h4>Maintain Users</h4>';
+            echo '<h4>Maintain Members</h4>';
             echo '<input type="checkbox" name="updateUser">';
             echo '<label for="updateUser">Update a User</label><br>';   
             echo '<input type="checkbox" name="deleteUser">';
@@ -870,18 +870,18 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '</div>';
             echo '<form method="POST" action="actions/reportUser.php">'; 
             echo '<div class="form-grid-div">';
-            echo '<h4>Report Users</h4>';
+            echo '<h4>Report Members</h4>';
             echo '<input type="checkbox" name="reportUsers">';
-            echo '<label for="reportUsers">Report Users</label><br>';    
+            echo '<label for="reportUsers">Report Members</label><br>';    
           
-            echo '<button type="submit" name="submitUserRep">Report Users</button>';   
+            echo '<button type="submit" name="submitUserRep">Report Members</button>';   
             echo '</div> ';  
             echo '</form>';
             echo '<form method="POST" action="actions/reportUsage.php">'; 
             echo '<div class="form-grid-div">';
             echo '<h4>Report Usage</h4>';
             echo '<input type="checkbox" name="reportUsers">';
-            echo '<label for="reportUsers">Report Users</label><br>';    
+            echo '<label for="reportUsers">Report Members</label><br>';    
           
             echo '<button type="submit" name="submitUsageRep">Report Usage</button>';   
             echo '</div> ';  

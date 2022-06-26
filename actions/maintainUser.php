@@ -131,9 +131,9 @@ if (!isset($_POST['userId'])) {
             echo '<option value = "MEMBER">Normal Member Functions</option>';
         }
         if ($user->role === "ADMIN") {
-            echo '<option value = "ADMIN" selected>Can Update all but Users</option>';
+            echo '<option value = "ADMIN" selected>Can Update all but Members</option>';
         } else {
-            echo '<option value = "ADMIN">Can Update all but Users</option>';
+            echo '<option value = "ADMIN">Can Update all but Members</option>';
         }
         if ($user->role === "SUPERADMIN") {
             echo '<option value = "SUPERADMIN" selected>Can Update All Tables</option>';
@@ -217,7 +217,7 @@ if (!isset($_POST['userId'])) {
             echo '<label for="role">Role</label><br>';
             echo '<select name = "role">';
             echo '<option value = "MEMBER">Normal Member Functions</option>';
-            echo '<option value = "ADMIN">Can Update all but Users</option>';
+            echo '<option value = "ADMIN">Can Update all but Members</option>';
             echo '<option value = "SUPERADMIN">Can Update All Tables</option>';
             echo '</select><br>';
             echo '<label for="initPass">Initial Password</label><br>';

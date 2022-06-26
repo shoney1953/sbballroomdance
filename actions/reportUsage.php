@@ -89,12 +89,12 @@ if ($userCount > 0) {
     }
     $pdf->SetFont('Arial','B', 10);
     $pdf->Ln(2);
-    $pdf->Cell(0, 5, "Total Users:  ".$userCount, 0, 1);
+    $pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
   
     $pdf->SetFont('Arial', '', 10);
 } else {
     $pdf->SetFont('Arial','B', 12);
-    $pdf->Cell(0, 10, "   NO Users FOUND ", 0, 1); 
+    $pdf->Cell(0, 10, "   NO Members FOUND ", 0, 1); 
     $pdf->SetFont('Arial', '', 10);
 }
 $today = date("m-d-Y");
