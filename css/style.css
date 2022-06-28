@@ -131,7 +131,8 @@ hr {
 .hero {
   /*background-image: url("../img/moonrise\ opaque.jpg"); */
   /*background-image: url("../img/morning1.jpg");  */
-  background-image: url("../img/halfmoonCrop.jpg"); 
+  /*background-image: url("../img/halfmoonCrop.jpg"); */
+  background-image: url("../img/monsoon.jpg"); 
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
