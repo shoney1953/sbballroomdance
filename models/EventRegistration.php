@@ -277,7 +277,7 @@ public function read_ByEmail($email) {
 
       return false;
 }
-public function deleteEventid($userid) {
+public function deleteEventid($eventid) {
         
   // Create query
   $query = 'DELETE FROM ' . $this->table . ' WHERE eventid = :eventid';

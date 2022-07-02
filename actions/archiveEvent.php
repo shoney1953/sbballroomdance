@@ -35,6 +35,7 @@ $eventRegArch = new EventRegistrationArch($db);
 $event = new Event($db);
 $eventArch = new EventArch($db);
 
+
 if (isset($_POST['submitArchive'])) {
   foreach($eventsArch as $ea) {
  
@@ -50,7 +51,6 @@ if (isset($_POST['submitArchive'])) {
       $eventArch->eventform = $ea['eventform'];
       $eventArch->create();
       $eventRegArch->eventid = $db->lastInsertId();
-    
       $eventReg->eventid = $ea['id'];
       $result = $eventReg->read_ByEventid($ea['id']);
       $rowCount = $result->rowCount();
@@ -83,10 +83,11 @@ if (isset($_POST['submitArchive'])) {
             $eventRegArch->eventdate = $reg_item['eventdate'];
             $eventRegArch->paid = $reg_item['paid'];
             $eventRegArch->message = $reg_item['message'];
-       
+
             $eventRegArch->create();
       
         }
+  
         $eventReg->deleteEventid($ea['id']);
        
        

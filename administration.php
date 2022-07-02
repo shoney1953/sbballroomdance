@@ -855,15 +855,15 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<div class="form-grid-div">';
             echo '<h4>Maintain Members</h4>';
             echo '<input type="checkbox" name="updateUser">';
-            echo '<label for="updateUser">Update a User</label><br>';   
+            echo '<label for="updateUser">Update a Member</label><br>';   
             echo '<input type="checkbox" name="deleteUser">';
-            echo '<label for="deleteUser">Delete a User </label><br>';
+            echo '<label for="deleteUser">Delete a Member </label><br>';
             echo '<input type="text" class="text-small" name="userId" >';
-            echo '<label for="userId"><em> &larr; Specify User ID from Table above for Update or Delete:  </em></label>';
+            echo '<label for="userId"><em> &larr; Specify Member ID from Table above for Update or Delete:  </em></label>';
             
             echo '<p>OR</p>';
             echo '<input type="checkbox" name="addUser">';
-            echo '<label for="addUser">Add a User</label> <br>';
+            echo '<label for="addUser">Add a Member</label> <br>';
                
             echo '<button type="submit" name="submitUser">Submit</button>';  
             echo '</form> <br>';
