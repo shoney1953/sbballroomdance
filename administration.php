@@ -503,7 +503,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <label for="lastname">Last Name</label><br>
         <input type="text" name="lastname"><br>
         <label for="email">Email</label><br>
-        <input type="email" name="email"> <br>
+        <input type="email" name="email" required><br>
         <button type='submit' name="submitAddVisitorReg">Add Visitor Registration</button> 
         </form>  
         </div>    
@@ -684,7 +684,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <label for="lastname">Last Name</label><br>
         <input type="text" name="lastname"><br>
         <label for="email">Email</label><br>
-        <input type="email" name="email"> <br>
+        <input type="email" name="email" required><br>
         <button type='submit' name="submitAddVisitorReg">Add Visitor Registration</button> 
         </form>  
         </div>
