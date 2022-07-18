@@ -394,8 +394,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<p>OR</p>';
         echo '<input type="checkbox" name="archiveEvent">';
         echo '<label for="archiveEvent">Archive Events and Registrations </label><br>'; 
-        echo '<label for="archMonth">Enter earliest month for which to keep data</label><br>';
-        echo '<input type="number" name="archMonth" min="1" max="12"><br>';
+        echo '<label for="archDate">Enter earliest month and day (format mm-dd) for which to keep data</label><br>';
+        echo '<input type="text" name="archDate" ><br>';
     } 
     ?>
         <button type='submit' name="submitEvent">Submit</button>  
@@ -580,8 +580,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<p>OR</p>';
         echo '<input type="checkbox" name="archiveClass">';
         echo '<label for="archiveClass">Archive Classes and Registrations </label><br>'; 
-        echo '<label for="archMonth">Enter earliest month for which to keep data</label><br>';
-        echo '<input type="number" name="archMonth" min="1" max="12"><br>';
+        echo '<label for="archDate">Enter earliest month and day (format mm-dd) for which to keep data</label><br>';
+        echo '<input type="text" name="archDate"><br>';
     }
     ?>
        

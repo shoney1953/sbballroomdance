@@ -47,12 +47,10 @@ if (isset($_POST['submitEvent'])) {
 if (isset($_POST['archiveEvent'])) {
 
     $archiveEvent = $_POST['archiveEvent'];
-     if (isset($_POST['archMonth'])) {
-       $archMonth = $_POST['archMonth'];
-       if ($archMonth < 10) {
-           $archMonth = '0'.$archMonth;
-       }
-       $archDate = date("Y")."-".$archMonth."-01";
+     if (isset($_POST['archDate'])) {
+       $archDate = $_POST['archDate'];
+
+       $archDate = date("Y")."-".$archDate;
 
        $result = $event->read_ByArchDate($archDate);
        $rowCount = $result->rowCount();

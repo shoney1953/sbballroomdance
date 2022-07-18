@@ -28,7 +28,7 @@ $updateClass = false;
 $deleteClass = false;
 $addClass = false;
 $archiveClass = false;
-$archMonth = 0;
+$archDate = "00-01";
 $classesArch = [];
 $num_archClasses = 0;
 
@@ -52,12 +52,10 @@ if (!isset($_POST['classId'])) {
 if(isset($_POST['archiveClass'])) {
 
     $archiveClass = $_POST['archiveClass'];
-     if (isset($_POST['archMonth'])) {
-       $archMonth = $_POST['archMonth'];
-       if ($archMonth < 10) {
-           $archMonth = '0'.$archMonth;
-       }
-       $archDate = date("Y")."-".$archMonth."-01";
+     if (isset($_POST['archDate'])) {
+       $archDate = $_POST['archDate'];
+
+       $archDate = date("Y")."-".$archDate;
 
        $result = $class->read_ByArchDate($archDate);
        $rowCount = $result->rowCount();
