@@ -22,7 +22,7 @@ if (!isset($_SESSION['username']))
 $database = new Database();
 $db = $database->connect();
 $class = new DanceClass($db);
-
+$archId = null;
 
 $updateClass = false;
 $deleteClass = false;
@@ -31,6 +31,7 @@ $archiveClass = false;
 $archDate = "00-01";
 $classesArch = [];
 $num_archClasses = 0;
+
 
 if (isset($_POST['classId'])) {
     $classId = htmlentities($_POST['classId']);
@@ -52,6 +53,26 @@ if (!isset($_POST['classId'])) {
 if(isset($_POST['archiveClass'])) {
 
     $archiveClass = $_POST['archiveClass'];
+
+     if (isset($_POST['archId'])) {
+        $class->id = $_POST['archId'];;
+        $class->read_single(); 
+        $class_item = array(
+            'id' => $class->id,
+            'classname' => $class->classname,
+            'classlevel' => $class->classlevel,
+            'classlimit' => $class->classlimit,
+            'date' => $class->date,
+            'time' => $class->time,
+            'instructors' => $class->instructors,
+            "registrationemail" => $class->registrationemail,
+            "room" => $class->room,
+            "classnotes" => $class->classnotes,
+            'numregistered' => $class->numregistered
+        );
+        array_push($classesArch, $class_item);
+        $_SESSION['classesArch'] = $classesArch;
+     }
      if (isset($_POST['archDate'])) {
        $archDate = $_POST['archDate'];
 
@@ -236,6 +257,7 @@ if(isset($_POST['archiveClass'])) {
           
         }
         if($archiveClass) {
+
             echo '<h3> You have selected to archive the following classes and their registrations: </h3><br>';
             echo '<table>';
             echo '<tr>';
@@ -264,12 +286,12 @@ if(isset($_POST['archiveClass'])) {
                 echo "<td>".$class['room']."</td>";
                 echo "<td>".$class['id']."</td>";
             echo "</tr>";
-            }
+            } }
             echo '</table><br>';
             echo '<form method="POST" action="archiveClass.php">';
             echo '<button type="submit" name="submitArchive">Archive these Class(es) and their registrations</button><br>';
             echo '</form>';
-        }
+        
         ?> 
    
     </div>

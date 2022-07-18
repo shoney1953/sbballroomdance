@@ -578,10 +578,16 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <?php
     if ($_SESSION['role'] === 'SUPERADMIN') { 
         echo '<p>OR</p>';
+    
+
         echo '<input type="checkbox" name="archiveClass">';
         echo '<label for="archiveClass">Archive Classes and Registrations </label><br>'; 
+        echo '<p><em>Enter either a class id or a date for Archive Criteria</em> <br>';
         echo '<label for="archDate">Enter earliest month and day (format mm-dd) for which to keep data</label><br>';
-        echo '<input type="text" name="archDate"><br>';
+        echo '<input type="text" name="archDate"><br><br>';
+        echo '<input type="text" class="text-small" name="archId" >';
+        echo '<label for="archId"> <em> &larr; 
+        Specify Class ID from Table above for Archive: </em> </label><br> ';   
     }
     ?>
        
