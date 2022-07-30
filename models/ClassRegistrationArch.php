@@ -45,7 +45,34 @@ class ClassRegistrationArch {
       return $stmt;
     }
 
+    public function read_ByClassid($classid) {
+
+
+      $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
+      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+      r.userid
+      FROM ' . $this->table . ' r
+      LEFT JOIN
+        danceclassesarch c ON r.classid = c.id
+      WHERE
+        r.classid = :classid 
+      ORDER BY 
+        r.classid, r.lastname, r.firstname';
+      
     
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+    
+      // Bind ID
+      $stmt->bindParam('classid', $classid);
+    
+      // Execute query
+      $stmt->execute();
+    
+      return $stmt;
+    
+    
+    } 
 
 
     // Create registration archive

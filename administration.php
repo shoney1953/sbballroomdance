@@ -321,6 +321,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<li><a href="#users">Members</a></li>';
             echo '<li><a href="#membership">Membership</a></li>';
+            echo '<li><a href="archives.php">Archives</a></li>';
         }
         ?>
     </ul>

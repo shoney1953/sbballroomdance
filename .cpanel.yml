@@ -4,6 +4,7 @@ deployment:
     - export DEPLOYPATH=/home/sbballro/public_html
     -  /bin/cp _.sbballroomdance.com.pem.txt $DEPLOYPATH
     -  /bin/cp administration.php $DEPLOYPATH
+    -  /bin/cp archives.php $DEPLOYPATH
     -  /bin/cp footer.php $DEPLOYPATH
     -  /bin/cp favicon.ico $DEPLOYPATH
     -  /bin/cp index.php $DEPLOYPATH
