@@ -75,6 +75,7 @@ if (isset($_POST['submitArchive'])) {
           
             $classRegArch->archclassid = $reg_item['classid'];
             $classRegArch->firstname = $reg_item['firstname'];
+            $classRegArch->lastname = $reg_item['lastname'];
             $classRegArch->email = $reg_item['email'];
             $classRegArch->userid = $reg_item['userid'];
             $classRegArch->dateregistered = $reg_item['dateregistered'];
