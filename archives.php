@@ -208,7 +208,10 @@ if ($rowCount > 0) {
        
         echo '<section id="usersarchived" class="content">';
         echo ' <h3 class="section-header">Archived Member List</h3> ';
-
+        echo '<form target="_blank" method="POST" action="actions/searchUserArchive.php" >';
+        echo '<input type="text"  name="search" >';
+        echo '<button type="submit" name="searchUser">Search Archived Members</button>'; 
+        echo '</form>';
         echo '<table>';
         echo '<tr>';
              
@@ -248,7 +251,16 @@ if ($rowCount > 0) {
                   }
              
                 
-            echo '</table><br>';       
+            echo '</table><br>';  
+            echo '<form method="POST" action="actions/reportUserArchive.php">'; 
+            echo '<div class="form-grid-div">';
+            echo '<h4>Report Archived Members</h4>';
+            echo '<input type="checkbox" name="reportUsers">';
+            echo '<label for="reportUsers">Report Archived Members</label><br>';    
+          
+            echo '<button type="submit" name="submitUserRep">Report Members</button>';   
+            echo '</div> ';  
+            echo '</form>';     
             echo '</section>';
             echo '</div>';
     }
