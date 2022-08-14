@@ -28,7 +28,7 @@
        <div class="list-box">
         <p>Web Sites for Dance Instruction</p>
        <ul>
-          <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Class-Videos">SBDC Class Videos</a></li>
+          <li class="li-none"><a href="https://sheilahoney.smugmug.com/SaddleBrooke-Ballroom-Dance-Club-Videos">SBDC Class Videos</a></li>
           <li class="li-none"><a href="https://www.youtube.com/c/WestCoastSwingOnline">YouTube - West Coast Swing Online</a></li>
           <li class="li-none"><a href="https://www.youtube.com/c/SocialDanceOnline">YouTube - Social Dance Online</a></li>
           <li class="li-none"><a href="https://www.youtube.com/c/CountryDanceX">YouTube - Country DanceX</a></li>
