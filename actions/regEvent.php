@@ -65,23 +65,25 @@ if (isset($_POST['submitEventReg'])) {
         $eventNum = (int)substr($chkboxID,2);
             if ($event['id'] == $eventNum) {
                 $eventId = $event['id'];
-                $emailBody .= "<br> <br> <strong>".$event['eventname'].
-                "    room:    ".$event['eventroom'].
-                "  on date:    ".date('M d Y',strtotime($event['eventdate']))."</strong><br>"; 
+                $emailBody .= "<br><strong> Event: ".$event['eventname'].
+                "<br>Type:    ".$event['eventtype'].
+                "<br>DJ  :    ".$event['eventdj'].
+                "<br>Room:    ".$event['eventroom'].
+                "<br>Date:    ".date('M d Y',strtotime($event['eventdate']))."</strong><br>"; 
                
                 if ($event['eventform']) {
                     $actLink= "<a href='".$event['eventform']."'>
        Click to view event Form</a><br>";
-                   $emailBody .= '<strong>There is a form to submit registration details and payment.<br>';
+                   $emailBody .= 'There is a form to submit registration details and payment.<br>';
                    $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
-                    on the website to open the form. Or</strong><br>$actLink";
+                    on the website to open the form. Or<br>$actLink";
                    $toCC2 = 'treasurer@sbballroomdance.com';
                 }
                 if ($event['eventcost'] > 0) {
                     $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-                    $coststr =  "<strong> Member Event Cost is approximately: "
+                    $coststr =  "Member Event Cost is approximately: "
                           .$fmt->formatCurrency($event['eventcost'], 'USD')."<br>
-                          Check the form for specific costs.</strong><br>";
+                          Check the form for specific costs.<br>";
                     $emailBody .= $coststr;
                     $toCC2 = 'treasurer@sbballroomdance.com';
                  }

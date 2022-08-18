@@ -4,13 +4,16 @@ session_start();
 
 require_once '../config/Database.php';
 require_once '../models/DanceClass.php';
+require_once '../models/ClassRegistration.php';
 if (!isset($_SESSION['username']))
 {
     $redirect = "Location: ".$_SESSION['homeurl'];
     header($redirect);
 } else {
     if (isset($_SESSION['role'])) {
-        if (($_SESSION['role'] != 'ADMIN') && ($_SESSION['role'] != 'SUPERADMIN')) {
+        if (($_SESSION['role'] != 'ADMIN') && 
+         ($_SESSION['role'] != 'SUPERADMIN') &&
+         ($_SESSION['role'] != 'INSTRUCTOR')) {
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect); 
         }
@@ -22,13 +25,13 @@ if (!isset($_SESSION['username']))
 $database = new Database();
 $db = $database->connect();
 $class = new DanceClass($db);
+$classReg = new ClassRegistration($db);
 
-   
+
     $class->id = $_POST['id'];
-   
     $class->delete();
-    echo ' Class was deleted <br>';
-
+    $classReg->deleteClassid($class->id);
+  
     $redirect = "Location: ".$_SESSION['adminurl']."#classes";
 header($redirect);
 exit;

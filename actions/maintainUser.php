@@ -140,6 +140,11 @@ if (!isset($_POST['userId'])) {
         } else {
             echo '<option value = "SUPERADMIN">Can Update All Tables</option>';
         }
+        if ($user->role === "INSTRUCTOR") {
+            echo '<option value = "INSTRUCTOR" selected>Can Maintain Classes</option>';
+        } else {
+            echo '<option value = "INSTRUCTOR">Can Maintain Classes</option>';
+        }
 
         
         echo '</select><br>';
@@ -219,6 +224,7 @@ if (!isset($_POST['userId'])) {
             echo '<option value = "MEMBER">Normal Member Functions</option>';
             echo '<option value = "ADMIN">Can Update all but Members</option>';
             echo '<option value = "SUPERADMIN">Can Update All Tables</option>';
+            echo '<option value = "INSTRUCTOR">Can Maintain Classes</option>';
             echo '</select><br>';
             echo '<label for="initPass">Initial Password</label><br>';
             echo '<input type="password" name="initPass" minlength="8"><br>';

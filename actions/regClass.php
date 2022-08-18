@@ -77,9 +77,14 @@ if (isset($_POST['submitRegClass'])) {
         foreach ($classes as $class) {
             if ($class['id'] == $id_int) {
                 $classId = $class['id'];
-                $emailBody .= "<br> ".$class['classlevel']."  ".$class['classname']."    Instructor(s):   ".
-                $class['instructors']."    room:    ".$class['room'].
-                "   beginning on date:    ".date('M d Y',strtotime($class['date']))."  time: ".$class['time']."<br>"; 
+                $emailBody .= '**************************************';
+                $emailBody .= 
+                "<br>Class Level: ".$class['classlevel'].
+                "<br>Class Name:  ".$class['classname'].
+                "<br>Instructor(s):   ".$class['instructors'].
+                "<br>Room:    ".$class['room'].
+                "<br>Start Date:    ".date('M d Y',strtotime($class['date'])).
+                "<br>Start Time: ".date('h:i:s A', strtotime($class['time']))."<br>"; 
                 // do the insert(s)
                 $classReg->firstname = $regFirstName1;
                 $classReg->lastname = $regLastName1;
