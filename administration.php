@@ -283,7 +283,6 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'email' => $email,
                 'year' => $year,
                 'paid' => $paid
-
             );
             array_push($memberStatus1, $member_item);
       
@@ -382,7 +381,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         
         echo '</table>';
         echo '<br>';
-        echo '<div class="form-grid2">';
+        echo '<div class="form-grid3">';
        
         echo '<form method="POST" action="actions/maintainEvent.php">';
         
@@ -427,6 +426,25 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
       
         echo '<br>';
         echo '<button type="submit" name="submitEventRep">Report</button> ';  
+        echo '</div> ';  
+
+        echo '</form>';
+        echo '<form method="POST" action="actions/emailEvent.php"> ';
+        echo '<div class="form-grid-div">';
+        echo '<h4>Email Event Registrants</h4>';
+        echo '<input type="checkbox" name="emailEvent">';
+        echo '<label for="emailEvent">Send email to all registered for Event </label><br>';
+        echo '<input type="text" class="text-small" name="eventId" > '  ; 
+        echo '<label for="eventId"><em> &larr; 
+        Specify Event ID from Table Above:</em> </label><br>';
+        echo '<label for="replyEmail">Email to reply to: </label>> <br>';
+        echo '<input type="email" name="replyEmail"><br>';
+
+        echo '<label for="emailBody">Short Email Text</label><br>';
+        echo '<textarea  name="emailBody" rows="10" cols="50"></textarea><br>';
+      
+        echo '<br>';
+        echo '<button type="submit" name="submitEventEmail">Send Email</button> ';  
         echo '</div> ';  
 
         echo '</form>';
@@ -573,7 +591,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             ?> 
         </table>
         <br>
-        <div class="form-grid2">
+        <div class="form-grid3">
         
         <form method='POST' action="actions/maintainClass.php">
         
@@ -622,7 +640,25 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <button type='submit' name="submitClassRep">Report</button>   
         </div>   
         </form>
-        
+        <form method="POST" action="actions/emailClass.php"> 
+        <div class="form-grid-div">
+        <h4>Email Class Registrants</h4>
+        <input type="checkbox" name="emailClass">
+        <label for="emailClass">Send email to all registered for Class </label><br>
+        <input type="text" class="text-small" name="classId" > 
+        <label for="classId"><em> &larr; 
+        Specify Class ID from Table Above:</em> </label><br>
+        <label for="replyEmail">Email to reply to: </label>> <br>
+        <input type="email" name="replyEmail"><br>
+
+        <label for="emailBody">Short Email Text</label><br>
+        <textarea  name="emailBody" rows="10" cols="50"></textarea><br>
+      
+        <br>
+        <button type="submit" name="submitClassEmail">Send Email</button>   
+        </div>   
+
+        </form>
             </div>
     </section>
     </div>
