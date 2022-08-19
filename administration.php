@@ -438,7 +438,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<label for="eventId"><em> &larr; 
         Specify Event ID from Table Above:</em> </label><br>';
         echo '<label for="replyEmail">Email to reply to: </label>> <br>';
-        echo '<input type="email" name="replyEmail"><br>';
+        echo '<input type="email" name="replyEmail" value="'.$_SESSION['useremail'].'"><br>';  
+       
+     
 
         echo '<label for="emailBody">Short Email Text</label><br>';
         echo '<textarea  name="emailBody" rows="10" cols="50"></textarea><br>';
@@ -649,8 +651,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <label for="classId"><em> &larr; 
         Specify Class ID from Table Above:</em> </label><br>
         <label for="replyEmail">Email to reply to: </label>> <br>
-        <input type="email" name="replyEmail"><br>
-
+        <?php
+        echo '<input type="email" name="replyEmail" value="'.$_SESSION['useremail'].'"><br>'; 
+        ?>
         <label for="emailBody">Short Email Text</label><br>
         <textarea  name="emailBody" rows="10" cols="50"></textarea><br>
       
