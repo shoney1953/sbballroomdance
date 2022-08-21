@@ -3,11 +3,15 @@ session_start();
 require('../includes/fpdf.php');
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
+require_once '../models/User.php';
 
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
+$user = new User($db);
 $regArr = [];
+$memReg = 0;
+$nonMemReg = 0;
 
 
 class PDF extends FPDF
@@ -97,8 +101,9 @@ if ($rowCount > 0) {
             $pdf->SetFont('Arial', '', 10);
             $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
-            $pdf->Cell(60,5,"EMAIL",1,0,"L");   
-            $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
+            $pdf->Cell(60,5,"EMAIL",1,0,"L"); 
+            $pdf->Cell(18,5,"MEMBER",1,1,"L");   
+          
     
         }
         if ($reg['eventid'] !== $prevEvent) {
@@ -106,9 +111,12 @@ if ($rowCount > 0) {
             $pdf->Ln(2);
             $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1); 
             $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
+            $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
+            $pdf->Cell(0, 5, "Total Non Member Registrations:  ".$nonMemReg, 0, 1);
             $regCount = 1;
             $paidNum = 0;
-         
+            $memReg = 0;
+            $nonMemReg = 0;
             $prevEvent = $reg['eventid'];
             $event_string = ' '.$reg['eventname'].'  '
             .$reg['eventdate'].' ';
@@ -118,8 +126,9 @@ if ($rowCount > 0) {
             $pdf->SetFont('Arial', '', 10);
             $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
-            $pdf->Cell(60,5,"EMAIL",1,0,"L");   
-            $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
+            $pdf->Cell(60,5,"EMAIL",1,0,"L");
+            $pdf->Cell(18,5,"MEMBER",1,1,"L");    
+    
          }
          $paid = 'Not Paid';
         if ($reg['paid'] == true) {
@@ -131,8 +140,15 @@ if ($rowCount > 0) {
        
           $pdf->Cell(35,5,$reg['firstname'],1,0,"L"); 
           $pdf->Cell(35,5,$reg['lastname'],1,0,"L");  
-          $pdf->Cell(60,5,$reg['email'],1,0,"L");   
-          $pdf->Cell(60,5,$reg['dateregistered'],1,1,"L");
+          $pdf->Cell(60,5,$reg['email'],1,0,"L");  
+          if ($user->getUserName($reg['email'])) {
+            $pdf->Cell(18,5,"YES",1,1,"L"); 
+            $memReg++;
+        } else {
+            $pdf->Cell(18,5,"NO",1,1,"L");
+            $nonMemReg++; 
+        } 
+     
 
 
     }
@@ -140,6 +156,8 @@ if ($rowCount > 0) {
     $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1);
     $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
+    $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
+    $pdf->Cell(0, 5, "Total Non Member Registrations:  ".$nonMemReg, 0, 1);
     $pdf->SetFont('Arial', '', 10);
 } else {
     $pdf->SetFont('Arial','B', 12);
