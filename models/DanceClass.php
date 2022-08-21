@@ -53,6 +53,7 @@ class DanceClass {
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
           // Set properties
+          if ($row) {
           $this->classname = $row['classname'];
           $this->classlevel = $row['classlevel'];
           $this->room = $row['room'];
@@ -63,6 +64,9 @@ class DanceClass {
           $this->classlimit = $row['classlimit'];
           $this->numregistered = $row['numregistered'];
           $this->classnotes = $row['classnotes'];
+          return true;
+          }
+          return false;
     }
     public function read_ByArchDate($archdate) {
       // Create query

@@ -70,6 +70,7 @@ class EventRegistration {
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
           // Set properties
+          if ($row) {
           $this->firstname = $row['firstname'];
           $this->lastname = $row['lastname'];
           $this->eventid = $row['eventid'];
@@ -80,6 +81,9 @@ class EventRegistration {
           $this->dateregistered = $row['dateregistered'];
           $this->paid = $row['paid'];
           $this->message = $row['message'];
+          return true;
+          }
+          return false;
 
     }
 // Get reg by userid

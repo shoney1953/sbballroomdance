@@ -33,7 +33,7 @@ if (isset($_POST['submitUpdateReg'])) {
   
 
     $classReg->update();
-    echo ' Registration was updated  <br>';
+   
   
     $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
     header($redirect);

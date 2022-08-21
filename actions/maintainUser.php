@@ -51,7 +51,12 @@ if (isset($_POST['userId'])) {
 
     if ($updateUser || $deleteUser) {
         $user->id = $userId;
-        $user->read_single();  
+        if ($user->read_single()) {
+
+        }  else {
+            echo 'No user was found with user id '.$user->id.'<br>';
+            echo 'Please return and enter a valid user id<br>';
+        }
     } 
 
 }

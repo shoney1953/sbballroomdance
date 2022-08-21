@@ -92,6 +92,7 @@ class User {
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
           // Set properties
+          if ($row) {
           $this->id = $row['id'];
           $this->firstname = $row['firstname'];
           $this->lastname = $row['lastname'];
@@ -111,8 +112,10 @@ class User {
           $this->phone2 = $row['phone2'];
           $this->notes = $row['notes'];
           $this->lastLogin = $row['lastLogin'];
+          return true;
+          }
         
-
+       return false;
     }
     public function getUserName($user) {
         

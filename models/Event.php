@@ -67,6 +67,7 @@ class Event {
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
           // Set properties
+          if ($row) {
           $this->eventname = $row['eventname'];
           $this->eventtype = $row['eventtype'];
           $this->eventroom = $row['eventroom'];
@@ -76,6 +77,9 @@ class Event {
           $this->eventform = $row['eventform'];
           $this->eventdj = $row['eventdj'];
           $this->eventnumregistered = $row['eventnumregistered'];
+          return true;
+          }
+          return false;
     }
 
     // Create Event

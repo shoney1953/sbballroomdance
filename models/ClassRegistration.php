@@ -71,6 +71,7 @@ class ClassRegistration {
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
           // Set properties
+          if ($row) {
           $this->firstname = $row['firstname'];
           $this->lastname = $row['lastname'];
           $this->classid = $row['classid'];
@@ -79,6 +80,9 @@ class ClassRegistration {
           $this->classname = $row['classdate'];
           $this->email = $row['email'];
           $this->dateregistered = $row['dateregistered'];
+          return true;
+          }
+          return false;
 
     }
     // Get reg by userid

@@ -44,7 +44,12 @@ if (isset($_POST['classId'])) {
 
     if ($updateClass || $deleteClass) {
         $class->id = $classId;
-        $class->read_single();  
+        if ($class->read_single()) {
+
+        } else {
+            echo 'No Class ID '.$class->id.' was found<br>';
+            echo 'Please return and enter a valid Class ID<br>';
+        }
     } 
     
 }

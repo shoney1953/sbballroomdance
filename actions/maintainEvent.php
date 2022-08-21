@@ -36,7 +36,12 @@ if (isset($_POST['submitEvent'])) {
 
         if ($updateEvent || $deleteEvent) {
             $event->id = $eventId;
-            $event->read_single();  
+            if ($event->read_single()) {
+
+            }  else {
+                echo 'No Event was found with id '.$event->id.' <br>';
+                echo 'Please return and enter a valid Event id. <br>';
+            }
         } 
 
     }

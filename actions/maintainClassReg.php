@@ -105,7 +105,12 @@ if (isset($_POST['regId'])) {
 
     if ($updateReg || $deleteReg) {
         $classReg->id = $regId;
-        $classReg->read_single();  
+        if ($classReg->read_single()) {
+
+        } else {
+            echo 'No Class Registration with id '.$classReg->id.' was found<br>';
+            echo 'Please return and enter a valid Class Registration id<br>';
+        }
     } 
 
 }

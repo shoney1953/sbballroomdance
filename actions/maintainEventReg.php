@@ -101,7 +101,13 @@ if (isset($_POST['regId'])) {
 
     if ($updateReg || $deleteReg) {
         $eventReg->id = $regId;
-        $eventReg->read_single();  
+        if  ($eventReg->read_single()) {
+
+        } else {
+            echo 'No event registration with id '. $eventReg->id." found<br>";
+            echo 'Please return and enter a valid event registration id.<br>';
+        }
+         
     } 
 
 }
@@ -212,19 +218,7 @@ if (!isset($_POST['regId'])) {
          }
          echo '</ul>';
            
-/*             echo '<label for="eventid">Event Id</label>';
-            echo '<input type="text" name="eventid" required><br>';
-            echo '<label for="firstname">First Name</label>';
-            echo '<input type="text" name="firstname" required><br>';
-            echo '<label for="lastname">Last Name</label>';
-            echo '<input type="text" name="lastname" required ><br>';
-            echo '<label for="email">Email</label>';
-            echo '<input type="text" name="email" required><br>';
-            echo '<label for="message">Message 
-                (For First Fridays or Dine and Dance please indicate if you want to have dinner)</label><br>';
-            echo '<textarea  name="message" rows="4" cols="50"></textarea><br>';
-            echo '<label for="paid">Paid</label>';
-            echo '<input type="number" name="paid" min="0" max="1"><br>'; */
+
             echo '<button type="submit" name="submitAddReg">
                Add the Event Registration</button><br>';
             echo '</form>';
