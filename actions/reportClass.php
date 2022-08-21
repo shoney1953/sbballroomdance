@@ -3,12 +3,15 @@ session_start();
 require('../includes/fpdf.php');
 require_once '../config/Database.php';
 require_once '../models/ClassRegistration.php';
+require_once '../models/User.php';
 
 $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
+$user = new User($db);
 $regArr = [];
-
+$memReg = 0;
+$nonMemReg = 0;
 
 class PDF extends FPDF
 {
@@ -96,7 +99,8 @@ if ($rowCount > 0) {
             $pdf->SetFont('Arial','',12);
             $pdf->Cell(30,8,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,8,"LAST NAME",1,0,"L");  
-            $pdf->Cell(64,8,"EMAIL",1,0,"L");   
+            $pdf->Cell(62,8,"EMAIL",1,0,"L"); 
+            $pdf->Cell(12,8,"MEM",1,0,"L"); 
             $pdf->Cell(60,8,"DATES       ATTENDED",1,1,"L");
           
         }
@@ -104,7 +108,11 @@ if ($rowCount > 0) {
             $pdf->SetFont('Arial','B',12);
             $pdf->Ln(2);
             $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
+            $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
+            $pdf->Cell(0, 5, "Total Non Member Registrations:  ".$nonMemReg, 0, 1);
             $regCount = 0;
+            $memReg = 0;
+            $nonMemReg = 0;
             $prevClass = $reg['classid'];
             $class_string = ' '.$reg['classname'].'  '
             .$reg['classdate'].' '
@@ -116,8 +124,10 @@ if ($rowCount > 0) {
             $pdf->SetFont('Arial', '', 12);
             $pdf->Cell(30,8,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,8,"LAST NAME",1,0,"L");  
-            $pdf->Cell(64,8,"EMAIL",1,0,"L");   
+            $pdf->Cell(62,8,"EMAIL",1,0,"L"); 
+            $pdf->Cell(12,8,"MEM",1,0,"L");   
             $pdf->Cell(60,8,"DATES       ATTENDED",1,1,"L");
+
         
          }
 
@@ -126,7 +136,15 @@ if ($rowCount > 0) {
         $pdf->Cell(30,8,$reg['firstname'],1,0,"L"); 
         $pdf->Cell(35,8,$reg['lastname'],1,0,"L"); 
         $pdf->SetFont('Arial','',10); 
-        $pdf->Cell(64,8,$reg['email'],1,0,"L");  
+        $pdf->Cell(64,8,$reg['email'],1,0,"L"); 
+        if ($user->getUserName($reg['email'])) {
+            $pdf->Cell(10,8,"YES",1,0,"L"); 
+            $memReg++;
+        } else {
+            $pdf->Cell(10,8,"NO",1,0,"L");
+            $nonMemReg++; 
+        }
+
         $pdf->SetFont('Arial','',12); 
         $pdf->Cell(60,8," ",1,1,"L");
       
@@ -136,8 +154,12 @@ if ($rowCount > 0) {
     $pdf->SetFont('Arial','B',12);
     $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
+    $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
+    $pdf->Cell(0, 5, "Total Non Member Registrations:  ".$nonMemReg, 0, 1);
     $pdf->SetFont('Arial', '', 12);
     $regCount == 0;
+    $memReg == 0;
+    $nonMemReg == 0;
 } else {
     $pdf->SetFont('Arial','B',12);
     $pdf->Cell(0, 10, "   NO REGISTRATIONS FOUND ", 0, 1); 
