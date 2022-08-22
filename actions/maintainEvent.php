@@ -39,8 +39,8 @@ if (isset($_POST['submitEvent'])) {
             if ($event->read_single()) {
 
             }  else {
-                echo 'No Event was found with id '.$event->id.' <br>';
-                echo 'Please return and enter a valid Event id. <br>';
+                echo "<h3 style='color: red;font-weight: bold;font-size: large'>No Event was found with id ".$event->id."</h3> <br>";
+                echo "<h3 style='color: red;font-weight: bold;font-size: large'>Please return and enter a valid Event id. </h3> <br>";
             }
         } 
 

@@ -47,8 +47,8 @@ if (isset($_POST['classId'])) {
         if ($class->read_single()) {
 
         } else {
-            echo 'No Class ID '.$class->id.' was found<br>';
-            echo 'Please return and enter a valid Class ID<br>';
+            echo "<h3 style='color: red;font-weight: bold;font-size: large'>No Class ID ".$class->id." was found</h3><br>";
+            echo "<h3 style='color: red;font-weight: bold;font-size: large'>Please return and enter a valid Class ID</h3><br>";
         }
     } 
     

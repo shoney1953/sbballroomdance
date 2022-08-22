@@ -54,8 +54,8 @@ if (isset($_POST['userId'])) {
         if ($user->read_single()) {
 
         }  else {
-            echo 'No user was found with user id '.$user->id.'<br>';
-            echo 'Please return and enter a valid user id<br>';
+            echo '<h3 style="color: red;font-weight: bold;font-size: large>No user was found with user id '.$user->id.'</h3><br>';
+            echo '<h3 style="color: red;font-weight: bold;font-size: large>Please return and enter a valid user id.</h3><br>';
         }
     } 
 

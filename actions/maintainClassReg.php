@@ -108,8 +108,8 @@ if (isset($_POST['regId'])) {
         if ($classReg->read_single()) {
 
         } else {
-            echo 'No Class Registration with id '.$classReg->id.' was found<br>';
-            echo 'Please return and enter a valid Class Registration id<br>';
+            echo "<h3 style='color: red;font-weight: bold;font-size: large'>No Class Registration with id ".$classReg->id." was found</h3><br>";
+            echo "<h3 style='color: red;font-weight: bold;font-size: large'>Please return and enter a valid Class Registration id</h3><br>";
         }
     } 
 

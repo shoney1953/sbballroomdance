@@ -104,8 +104,10 @@ if (isset($_POST['regId'])) {
         if  ($eventReg->read_single()) {
 
         } else {
-            echo 'No event registration with id '. $eventReg->id." found<br>";
-            echo 'Please return and enter a valid event registration id.<br>';
+            echo "<br><h3 style='color: red;font-weight: bold;font-size: large'>
+            No event registration with id ". $eventReg->id." found</h3><br>";
+           echo "<h3 style='color: red;font-weight: bold;font-size: large'>
+            Please return and enter a valid event registration id.</h3><br>"; 
         }
          
     } 
