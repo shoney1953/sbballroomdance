@@ -271,8 +271,12 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         </ul>
         <br>
         <ul>
+
         <li class="li-none"><a style="color: red" href="img/Membership Form 2022 Dance Club.pdf"><strong><em>Click Here for Membership Form </em></strong></a></li><br>
         </ul>
+        <a href="https://drive.google.com/file/d/1AxOsZTmqIujc3ytk4KR-EJ__4UQXDdUd/view?usp=sharing">
+         Click Here Read the Club By Laws.
+        </a><br><br>
     </section>
     </div>
 
