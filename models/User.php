@@ -59,6 +59,7 @@ class User {
       // Create query
       $query = 'SELECT * FROM ' . $this->table . ' WHERE lastname LIKE :search1
       OR firstname LIKE :search2 OR username LIKE :search3 OR email like :search4
+      OR role LIKE :search5
       ORDER BY lastname, firstname ';
 
       // Prepare statement
@@ -68,6 +69,7 @@ class User {
       $stmt->bindParam('search2', $search);
       $stmt->bindParam('search3', $search);
       $stmt->bindParam('search4', $search);
+      $stmt->bindParam('search5', $search);
 
       // Execute query
       $stmt->execute();
@@ -160,6 +162,7 @@ class User {
      return false;
 
 }
+
     public function validate_user($user) {
     
        // Create query
