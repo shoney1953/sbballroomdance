@@ -47,6 +47,7 @@ $mailAttachment = '';
 $replyEmail = 'dancedirector@sbballroomdance.com';
 $replyTopic = "Class Registration";
 $emailSubject = "Your instructor has registered you for selected Classes";
+$usersSelected = 0;
 
 if (isset($_POST['submitAddReg'])) {
    
@@ -67,10 +68,12 @@ if (isset($_POST['submitAddReg'])) {
                     $classReg->lastname = $usr['lastname'];
                     $classReg->email = $usr['email'];
                     $classReg->userid = $usr['id'];
+                    
                     $classReg->create();
                     $danceClass->addCount($classReg->classid);
                     $danceClass->id = $classReg->classid;
                     $danceClass->read_single();
+                    
                     $emailBody .= "<br> ".$danceClass->classlevel."  ".$danceClass->classname.
                     "<br>   Instructor(s):   ".$danceClass->instructors.
                     "<br>   Registration Email:   ".$danceClass->registrationemail.
@@ -80,7 +83,6 @@ if (isset($_POST['submitAddReg'])) {
                     $regFirstName1 = $usr['firstname'];
                     $regLastName1 = $usr['lastname'];
                     $regEmail1 = $usr['email'];
-        
                        
                 }
              

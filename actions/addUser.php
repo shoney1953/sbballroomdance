@@ -130,7 +130,7 @@ if (isset($_POST['submitAddUser'])) {
  
        $emailBody .= "We hope you will participate in and enjoy the following club activities: <br><ul>";
        $emailBody .= "<li><strong>Dance Classes</strong> - Classes are normally held at the Mariposa Room
-       at DesertView on Mondays and Thursdays at 6 - 8pm. Emails will go out regarding the content, 
+       at DesertView on Mondays and at 6 - 8pm and Wednesdays 4 - 6pm. Emails will go out regarding the content, 
        format, instructors and dates; registration is also available on the website.</li>";
        $emailBody .= "<li><strong>Dinner Dances</strong> - These are provided most months during the snowbird
        season. They include a plated dinner with several entree choices followed by dancing to music provided
@@ -149,6 +149,10 @@ if (isset($_POST['submitAddUser'])) {
        <li>Friday 3 - 5pm in the HOA1 Vermillion Room</li>
        <li>Sunday 3 - 5pm in the MountainView Ballroom</li>
        </ul></li>";
+       $emailBody .= "<li><strong>Novice Events</strong> - For anyone that has little dance experience, we have a new 
+       program of Novice events: Novice classes twice a month, and then a Novice practice party. These are designed to
+       help you learn a few steps of the most common dances, and help practice with other Novices. 
+       You will also receive emails about these actvities. You can register for these on the website.</li>";
 
      $emailBody .= "</ul>
      <strong>At Times we have have room changes or cancellations, so it is important to check the Activities
