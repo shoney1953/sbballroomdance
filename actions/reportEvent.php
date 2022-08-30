@@ -71,6 +71,7 @@ if (isset($_POST['submitEventRep'])) {
                 'userid' => $userid,
                 'email' => $email,
                 'paid' => $paid,
+                'message' => $message,
                 'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
             );
             array_push($regArr, $reg_item);
@@ -102,7 +103,8 @@ if ($rowCount > 0) {
             $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(60,5,"EMAIL",1,0,"L"); 
-            $pdf->Cell(18,5,"MEMBER",1,1,"L");   
+            $pdf->Cell(18,5,"MEMBER",1,0,"L"); 
+            $pdf->Cell(35,5,"MESSAGE",1,1,"L");    
           
     
         }
@@ -142,13 +144,13 @@ if ($rowCount > 0) {
           $pdf->Cell(35,5,$reg['lastname'],1,0,"L");  
           $pdf->Cell(60,5,$reg['email'],1,0,"L");  
           if ($user->getUserName($reg['email'])) {
-            $pdf->Cell(18,5,"YES",1,1,"L"); 
+            $pdf->Cell(18,5,"YES",1,0,"L"); 
             $memReg++;
         } else {
-            $pdf->Cell(18,5,"NO",1,1,"L");
+            $pdf->Cell(18,5,"NO",1,0,"L");
             $nonMemReg++; 
         } 
-     
+        $pdf->Cell(35,5,$reg['message'],1,1,"L"); 
 
 
     }
