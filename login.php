@@ -35,9 +35,10 @@ date_default_timezone_set("America/Phoenix");
         <div class="form-grid3">
         <div class="form-grid-div">
         <h1 class="section-header">SBDC MEMBERS Please Log in here</h1>
+        <h4>HINT: <br>Your User Name will be <em>either</em> your email <em>or</em> your first name and last initial 
+            with the first letter of your first name and first letter of your last name capitalized.</h4><br>
             <form method="POST" action="actions/logInact.php">
                
-            
 
                 <label for="username">User Name for the Website</label><br>
                 <input type="text" name="username" required><br>
