@@ -46,8 +46,7 @@ date_default_timezone_set("America/Phoenix");
                 <input type="password" name="password" required minlength="8"><br>
 
                 <br>
-                <button type="submit" name="SubmitLogIN">Submit</button><br>
-                
+                <button type="submit" name="SubmitLogIN">Submit</button><br>              
         </form>
     
         </div>
@@ -56,8 +55,7 @@ date_default_timezone_set("America/Phoenix");
         <div class="form-grid-div">
         <h1 class="section-header">Visitors Please Log in here.</h1>
             <form method="POST" action="actions/visitorAct.php">
-           
-            
+                     
                 <label for="firstname">Visitor First Name</label><br>
                 <input type="text" name="firstname" required><br>
                 <label for="lastname">Visitor Last Name</label><br>

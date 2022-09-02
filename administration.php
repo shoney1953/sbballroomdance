@@ -317,26 +317,40 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<li><a href="#classes">Classes</a></li>';
         echo '<li><a href="#classregistrations">Class Registrations</a></li>';
         echo '<li><a href="#eventregistrations">Event Registrations</a></li>';
+        echo '</ul>';
+        echo '</div>';
+        echo '<div class="container">';
+  
+        echo '<ul>';
         echo '<li><a href="#contacts">Contacts</a></li>';
         echo '<li><a href="#visitors">Visitors</a></li>';
+        echo '<li><a href="https://drive.google.com/drive/folders/1PQSs3_gNDuSfQ2L24Gw0Fnsoe9_vQlQ-?usp=sharing">
+             Booking Reports</a></li>';
+
      }
      if ($_SESSION['role'] === 'INSTRUCTOR') {
         echo '<li><a href="index.php">Back to Home</a></li>';
         echo '<li><a href="#classes">Classes</a></li>';
         echo '<li><a href="#classregistrations">Class Registrations</a></li>';
- 
+        echo '</ul>';
+        echo '</div>';
      }
         
         if ($_SESSION['role'] === 'SUPERADMIN') {
+
             echo '<li><a href="#users">Members</a></li>';
             echo '<li><a href="#membership">Membership</a></li>';
             echo '<li><a href="archives.php">Archives</a></li>';
+            echo '</ul>';
+            echo '</div>';
         }
         ?>
     </ul>
      </div>
 </nav>
     <div class="container-section" >
+    <br>
+    <br>
     <br>
     <br>
     <br>
