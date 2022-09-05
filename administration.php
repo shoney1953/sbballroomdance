@@ -864,13 +864,22 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<h4>Report Visitors</h4>';
         echo '<form method="POST" action="actions/reportVisitors.php">';
         echo '<input type="checkbox" name="reportVisitor">';
-        echo '<label for="reportContact">Report on Visitors </label><br> ';   
+        echo '<label for="reportVisitor">Report on Visitors </label><br> ';   
         echo '<button type="submit" name="reportVisitors">Report</button> ';
       
         echo '</div>';     
         echo '</form>';
         echo '<br>';
-        
+        echo '<div class="form-grid-div">';
+        echo '<h4>Archive Visitors</h4>';
+        echo '<form method="POST" action="actions/archiveVisitors.php">';
+        echo '<input type="checkbox" name="archiveVisitor">';
+        echo '<label for="archiveVisitor">Archive Visitors </label><br> ';   
+        echo '<button type="submit" name="submitArchive">Archive</button> ';
+      
+        echo '</div>';     
+        echo '</form>';
+        echo '<br>';
     
         echo '</div>';
     echo '</section>';

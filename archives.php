@@ -7,6 +7,7 @@ require_once 'models/EventRegistrationArch.php';
 require_once 'models/EventArch.php';
 require_once 'models/DanceClassArch.php';
 require_once 'models/UserArchive.php';
+require_once 'models/VisitorsArch.php';
 
 $_SESSION['archiveurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
@@ -15,6 +16,7 @@ $db = $database->connect();
 $users = [];
 $allClasses = [];
 $visitors = [];
+$num_visitors = 0;
 $allEvents = [];
 $classRegistrations = [];
 $eventRegistrations = [];
@@ -166,6 +168,31 @@ if ($rowCount > 0) {
   
     }
 }
+
+  
+/* get archived visitors */
+$visitorArch = new VisitorArch($db);
+$result = $visitorArch->read();
+
+$rowCount = $result->rowCount();
+$num_visitors = $rowCount;
+
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $reg_item = array(
+            'id' => $id,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'email' => $email,
+            'logindate' => date('m d Y h:i:s A', strtotime($logindate))
+        );
+        array_push($visitors, $reg_item);
+  
+    }
+}
+
   
 } // end of superadmin check
 
@@ -191,6 +218,7 @@ if ($rowCount > 0) {
         <li><a href="#eventregistrationsarchived">Archived Event Registrations</a></li>
         <li><a href="#classesarchived">Archived Classes</a></li>
         <li><a href="#classregistrationsarchived">Archived Class Registrations</a></li>
+        <li><a href="#visitorsarchived">Visitors</a></li>
 
 
     </ul>
@@ -459,6 +487,50 @@ if ($rowCount > 0) {
             ?> 
         </table>
         <br>
+        <?php
+            echo '<div class="container-section ">';
+            echo '<br><br>';
+            echo '<section id="visitorsarchived" class="content">';
+                echo '<h3 class="section-header">Visitors Archived</h3> '; 
+                echo '<table>';
+                    echo '<tr>';
+                        echo '<th>Login Date</th> '; 
+                        echo '<th>First Name</th>';
+                        echo '<th>Last Name    </th>';
+                        echo '<th>Email</th>';
+                      
+                   echo '</tr>';
+                    
+            
+                    foreach($visitors as $visitor) {
+                 
+                          echo "<tr>";
+                            echo "<td>".$visitor['logindate']."</td>";
+                            echo "<td>".$visitor['firstname']."</td>";               
+                            echo "<td>".$visitor['lastname']."</td>";
+                            echo "<td>".$visitor['email']."</td>";           
+                          echo "</tr>";
+                      }
+                 
+                echo '</table>';   
+                echo '<br>';
+                echo '<div class="form-grid3">';
+              
+                echo '<div class="form-grid-div">';
+                echo '<h4>Report Visitors Archived</h4>';
+                echo '<form method="POST" action="actions/reportVisitorsArchived.php">';
+                echo '<input type="checkbox" name="reportVisitor">';
+                echo '<button type="submit" name="submitVisitorRep">Report</button>'; 
+                echo '</div>';     
+                echo '</form>';
+                echo '<br>';
+                
+            
+                echo '</div>';
+            echo '</section>';
+            echo '</div>';
+         
+        ?>
 <?php
   include 'footer.php';
 ?>
