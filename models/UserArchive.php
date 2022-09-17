@@ -25,6 +25,7 @@ class UserArchive {
     public $notes;
     public $lastLogin;
     public $dateArchived;
+    public $numlogins;
 
     // Constructor with DB
     public function __construct($db) {
@@ -115,7 +116,7 @@ class UserArchive {
           $this->notes = $row['notes'];
           $this->lastLogin = $row['lastLogin'];
           $this->dateArchived = $row['dateArchived'];
-        
+         $this->numlogins = $row['numlogins'];
 
     }
     public function getUserName($user, $email) {
@@ -157,6 +158,7 @@ class UserArchive {
       $this->notes = $row['notes'];
       $this->lastLogin = $row['lastLogin'];
       $this->dateArchived = $row['dateArchived'];
+      $this->numlogins = $row['numlogins'];
   
         return true;
       }
@@ -170,7 +172,7 @@ class UserArchive {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          username = :username, password = :password ,
+          username = :username, password = :password , numlogins = :numlogins,
           partnerid = :partnerid, streetaddress = :streetaddress,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
           phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
@@ -193,6 +195,7 @@ class UserArchive {
           $this->phone1 = htmlspecialchars(strip_tags($this->phone1));
           $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
           $this->zip = htmlspecialchars(strip_tags($this->zip));
+     
 
 
           // Bind data
@@ -210,6 +213,7 @@ class UserArchive {
           $stmt->bindParam(':phone1', $this->phone1);
           $stmt->bindParam(':phone2', $this->phone2);
           $stmt->bindParam(':notes', $this->notes);
+          $stmt->bindParam(':numlogins', $this->numlogins);
 
           // Execute query
           if ($stmt->execute()) {

@@ -28,6 +28,7 @@ $isValid = false;
             $_SESSION['userlastname'] = $user->lastname;
             $_SESSION['useremail'] = $user->email;
             $_SESSION['partnerid'] = $user->partnerId;
+            $user->numlogins++;
     
             $user->updateLogin();
             $redirect = "Location: ".$_SESSION['homeurl'];

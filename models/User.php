@@ -24,6 +24,7 @@ class User {
     public $phone2;
     public $notes;
     public $lastLogin;
+    public $numlogins;
 
     // Constructor with DB
     public function __construct($db) {
@@ -114,6 +115,7 @@ class User {
           $this->phone2 = $row['phone2'];
           $this->notes = $row['notes'];
           $this->lastLogin = $row['lastLogin'];
+          $this->numlogins = $row['numlogins'];
           return true;
           }
         
@@ -156,6 +158,7 @@ class User {
       $this->phone2 = $row['phone2'];
       $this->notes = $row['notes'];
       $this->lastLogin = $row['lastLogin'];
+      $this->numlogins = $row['numlogins'];
   
         return true;
       }
@@ -359,12 +362,13 @@ public function updateLogin() {
      
   // Create query
   $query = 'UPDATE ' . $this->table .
-   ' SET lastLogin =  NOW() WHERE id = :id';
+   ' SET lastLogin =  NOW(), numlogins = :numlogins WHERE id = :id';
 
   // Prepare statement
   $stmt = $this->conn->prepare($query);
 
   // Bind data
+  $stmt->bindParam(':numlogins', $this->numlogins);
 
  
   $stmt->bindParam(':id', $this->id);

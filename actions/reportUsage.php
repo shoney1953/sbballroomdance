@@ -57,7 +57,8 @@ if (isset($_POST['submitUsageRep'])) {
                 'lastLogin' => $lastLogin,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
-                'email' => $email
+                'email' => $email,
+                'numlogins' => $numlogins
 
 
             );
@@ -73,6 +74,7 @@ if (isset($_POST['submitUsageRep'])) {
 
 if ($userCount > 0) {
     $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(20,5,"LOGINS",1,0,"L");
     $pdf->Cell(45,5,"LAST LOGIN",1,0,"L");
     $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
     $pdf->Cell(30,5,"LAST NAME",1,1,"L");
@@ -82,6 +84,7 @@ if ($userCount > 0) {
 
 
          // $pdf->Cell(0, 5, $user_string1, 0, 1);
+         $pdf->Cell(20,5,$usr['numlogins'],1,0,"L");
          $pdf->Cell(45,5,$usr['lastLogin'],1,0,"L");
          $pdf->Cell(30,5,$usr['firstname'],1,0,"L");
          $pdf->Cell(30,5,$usr['lastname'],1,1,"L");

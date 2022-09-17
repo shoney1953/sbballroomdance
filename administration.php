@@ -112,7 +112,7 @@ if ($rowCount > 0) {
             'classid' => $classid,
             'classname' => $classname,
             'classdate' => $classdate,
-            'classtime' => $classtime,
+            'classtime' => date('h:i:s A', strtotime($classtime)),
             'userid' => $userid,
             'email' => $email,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))

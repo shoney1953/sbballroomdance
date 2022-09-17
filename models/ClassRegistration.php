@@ -32,7 +32,7 @@ class ClassRegistration {
       LEFT JOIN
         danceclasses c ON r.classid = c.id
       ORDER BY
-        r.classid, r.lastname, r.firstname, r.dateregistered';
+        classdate, classtime, r.classid, r.lastname, r.firstname, r.dateregistered';
 
 
       // Prepare statement

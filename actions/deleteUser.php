@@ -59,6 +59,7 @@ $userArc = new UserArchive($db);
                 'classdate' => $classdate,
                 'email' => $email,
                 "dateregistered" => $dateregistered
+
             );
            $class->decrementCount($classid);
         
@@ -84,7 +85,8 @@ $userArc = new UserArchive($db);
                 'eventname' => $eventname,
                 'eventdate' => $eventdate,
                 'email' => $email,
-                "dateregistered" => $dateregistered
+                'dateregistered' => $dateregistered,
+                'numlogins' => $numlogins
             );
            
             $event->decrementCount($eventid);
@@ -111,6 +113,7 @@ $userArc = new UserArchive($db);
     $userArc->phone2 = $user->phone2;
     $userArc->notes = $user->notes;
     $userArc->lastLogin = $user->lastLogin;
+    $userArc->numlogins = $user->numlogins;
     $userArc->create();
 
     $eventReg->deleteUserid($user->id);
