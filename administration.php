@@ -42,6 +42,7 @@ $result = $event->read();
 
 $rowCount = $result->rowCount();
 $num_events = $rowCount;
+$_SESSION['allEvents'] = [];
 if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -62,7 +63,7 @@ if ($rowCount > 0) {
     
     }
   
-
+    $_SESSION['allEvents'] = $allEvents;
 } 
 /* get classes */
 
@@ -71,7 +72,7 @@ $result = $class->read();
 
 $rowCount = $result->rowCount();
 $num_classes = $rowCount;
-
+$_SESSION['allClasses'] = [];
 if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -92,7 +93,7 @@ if ($rowCount > 0) {
         array_push($allClasses, $class_item);
 
     }
-
+    $_SESSION['allClasses'] = $allClasses;
 } 
 /* get class registrations */
 $classReg = new ClassRegistration($db);
@@ -100,7 +101,7 @@ $result = $classReg->read();
 
 $rowCount = $result->rowCount();
 $num_registrations = $rowCount;
-
+$_SESSION['ClassRegistrations'] = [];
 if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -122,7 +123,7 @@ if ($rowCount > 0) {
   
     }
   
-
+    $_SESSION['classRegistrations'] = $classRegistrations;
 } 
 /* get event registrations */
 $eventReg = new EventRegistration($db);
@@ -130,7 +131,7 @@ $result = $eventReg->read();
 
 $rowCount = $result->rowCount();
 $num_registrations = $rowCount;
-
+$_SESSION['eventRegistrations'] = [];
 if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -152,7 +153,7 @@ if ($rowCount > 0) {
   
     }
   
-
+    $_SESSION['eventRegistrations'] = $eventRegistrations;
 } 
 /* get contacts */
 $contact = new Contact($db);
@@ -217,6 +218,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     
     $rowCount = $result->rowCount();
     $num_users = $rowCount;
+    $_SESSION['members'] = [];
     if($rowCount > 0) {
     
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -234,13 +236,14 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'hoa' => $hoa,
                 'passwordChanged' => $passwordChanged,
                 'streetAddress' => $streetaddress,
-                'lastLogin' => $lastLogin
+                'lastLogin' => date('m d Y h:i:s A', strtotime($lastLogin)),
+                'numlogins' => $numlogins
             );
             array_push($users, $user_item);
       
         }
    
-    
+        $_SESSION['members'] = $users;
     } 
     $memPaid = new MemberPaid($db);
     $result = $memPaid->read_byYear($nextYear);
@@ -310,8 +313,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
      <ul> 
         <?php
     if (($_SESSION['role'] === 'ADMIN') ||
-        ($_SESSION['role'] === 'SUPERADMIN')
-       ) {
+        ($_SESSION['role'] === 'SUPERADMIN')) 
+       {
         echo '<li><a href="index.php">Back to Home</a></li>';
         echo '<li><a href="#events">Events</a></li>';
         echo '<li><a href="#classes">Classes</a></li>';
@@ -380,7 +383,10 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             foreach($allEvents as $event) {
                  $eventNumber++;
                   echo "<tr>";
-                    echo "<td>".$event['id']."</td>";
+                    $hr = 'event.php?id=';
+                    $hr .= $event["id"];
+               
+                    echo '<td> <a href="'.$hr.'">'.$event["id"].'</a></td>';
                     echo "<td>".$event['eventdate']."</td>";
                     echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";
@@ -388,7 +394,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     echo "<td>".$event['eventdj']."</td>";           
                     echo "<td>".$event['eventroom']."</td>";
                     echo "<td>".$event['eventcost']."</td>";
-                    echo "<td>".$event['eventnumregistered']."</td>";
+                    echo '<td><a href="'.$hr.'">'.$event["eventnumregistered"].'</a></td>';
                   echo "</tr>";
               }
          
@@ -429,7 +435,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
   
         echo '</div>';  
         echo '</form>';
-        echo '<form method="POST" action="actions/reportEvent.php"> ';
+        echo '<form target="_blank" method="POST" action="actions/reportEvent.php"> ';
         echo '<div class="form-grid-div">';
         echo '<h4>Report Events</h4>';
         echo '<input type="checkbox" name="reportEvent">';
@@ -588,7 +594,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             foreach($allClasses as $class)
              { 
                   echo "<tr>";
-                    echo "<td>".$class['id']."</td>";
+                  $hr = 'class.php?id=';
+                  $hr .= $class["id"];
+             
+                  echo '<td> <a href="'.$hr.'">'.$class["id"].'</a></td>';
+   
                     echo "<td>".$class['date']."</td>";
                     echo "<td>".$class['time']."</td>";
                     echo "<td>".$class['room']."</td>";
@@ -598,7 +608,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     echo "<td>".$class['classnotes']."</td>";
                     echo "<td>".$class['instructors']."</td>";
                     echo "<td>".$class['classlimit']."</td>";
-                    echo "<td>".$class['numregistered']."</td>";
+                    echo '<td><a href="'.$hr.'">'.$class["numregistered"].'</a></td>';
    
                 echo "</tr>";
                 
@@ -643,7 +653,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <button type='submit' name="submitClass">Submit</button>   
         </div>   
         </form>
-        <form method='POST' action="actions/reportClass.php"> 
+        <form target="_blank" method='POST' action="actions/reportClass.php"> 
         <div class="form-grid-div">
         <h4>Report Classes</h4>
         <input type='checkbox' name='reportClass'>
@@ -819,7 +829,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '</form>';
         echo '<div class="form-grid-div">';
         echo '<h4>Report Contacts</h4>';
-        echo '<form method="POST" action="actions/reportContact.php">';
+        echo '<form target="_blank" method="POST" action="actions/reportContact.php">';
         echo '<input type="checkbox" name="reportContact">';
         echo '<label for="reportContact">Report on Contacts </label><br> ';   
         echo '<button type="submit" name="reportContact">Report</button> ';
@@ -862,7 +872,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
       
         echo '<div class="form-grid-div">';
         echo '<h4>Report Visitors</h4>';
-        echo '<form method="POST" action="actions/reportVisitors.php">';
+        echo '<form target="_blank" method="POST" action="actions/reportVisitors.php">';
         echo '<input type="checkbox" name="reportVisitor">';
         echo '<label for="reportVisitor">Report on Visitors </label><br> ';   
         echo '<button type="submit" name="reportVisitors">Report</button> ';
@@ -916,8 +926,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         
                 foreach($users as $user) {
              
-             
-                        echo "<td>".$user['id']."</td>"; 
+                    $hr = 'member.php?id=';
+                    $hr .= $user["id"];
+               
+                    echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
+     
                         echo "<td>".$user['firstname']."</td>";               
                         echo "<td>".$user['lastname']."</td>";
                         echo "<td>".$user['username']."</td>";
@@ -955,7 +968,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<button type="submit" name="submitUser">Submit</button>';  
             echo '</form> <br>';
             echo '</div>';
-            echo '<form method="POST" action="actions/reportUser.php">'; 
+            echo '<form target="_blank" method="POST" action="actions/reportUser.php">'; 
             echo '<div class="form-grid-div">';
             echo '<h4>Report Members</h4>';
             echo '<input type="checkbox" name="reportUsers">';
@@ -964,7 +977,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<button type="submit" name="submitUserRep">Report Members</button>';   
             echo '</div> ';  
             echo '</form>';
-            echo '<form method="POST" action="actions/reportUsage.php">'; 
+            echo '<form target="_blank" method="POST" action="actions/reportUsage.php">'; 
             echo '<div class="form-grid-div">';
             echo '<h4>Report Usage</h4>';
             echo '<input type="checkbox" name="reportUsers">';
@@ -1067,7 +1080,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '</form>';
             echo '</div> ';  
         echo '<div class="form-grid-div">';  
-        echo '<form method="POST" action="actions/reportPaid.php">'; 
+        echo '<form target="_blank" method="POST" action="actions/reportPaid.php">'; 
         echo '<h4>Report Membership</h4>';
         echo '<input type="checkbox" name="reportPaid">';
         echo '<label for="reportUsers">Report Membership</label><br>';    

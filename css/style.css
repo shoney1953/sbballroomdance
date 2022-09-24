@@ -254,10 +254,7 @@ hr {
   justify-content: center;
   padding-top: 70px;
 }
-.section-back {
-  /* background-color: rgb(224, 223, 223); */
- 
-}
+
 table, th, td {
   border: 1px solid black;
   text-align: left;
@@ -470,7 +467,8 @@ iframe {
    .hero {
     /*background-image: url("../img/moonrise\ opaque.jpg"); */
     /*background-image: url("../img/morning1.jpg"); */ 
-    background-image: url("../img/halfmoonCrop.jpg");  
+    /*background-image: url("../img/halfmoonCrop.jpg"); */ 
+    background-image: url("../img/monsoon.jpg"); 
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;

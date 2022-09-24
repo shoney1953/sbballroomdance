@@ -188,7 +188,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1>
 
             <img class="motto-img" src="img/self.png" alt="motto">
-            <img class="motto-img2" src="img/coupleSilloutteWhite.png" alt="couple">
+            <!-- <img class="motto-img2" src="img/coupleSilloutteWhite.png" alt="couple"> -->
+            <img class="motto-img2" src="img/dancing couple grey transparent.png" alt="couple"> 
          
             <p>We are a primarily social club that provides dance lessons,
                  and opportunities to dance and socialize.</p><br>

@@ -100,9 +100,12 @@ if (isset($_POST['searchUser'])) {
                 
         
                 foreach($users as $user) {
+                    $hr = '../member.php?id=';
+                    $hr .= $user["id"];
+               
+                    echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
              
-             
-                        echo "<td>".$user['id']."</td>"; 
+              
                         echo "<td>".$user['firstname']."</td>";               
                         echo "<td>".$user['lastname']."</td>";
                         echo "<td>".$user['username']."</td>";
