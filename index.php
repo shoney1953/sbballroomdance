@@ -338,7 +338,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
             spam/junk folder.</h4>';
         
-            echo '<form method="POST"  action="actions/regEvent.php">';
+            echo '<form method="POST"  action="actions/regEvent.php" target="_blank">';
             echo '<div class="form-grid3">';
       
             echo '<div class="form-grid-div">  <br>';
@@ -481,7 +481,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
             spam/junk folder.</h4>';
         
-            echo '<form method="POST"  action="actions/regClass.php">';
+            echo '<form method="POST"  action="actions/regClass.php" target="_blank">';
             echo '<div class="form-grid3">';
 
             echo '<div class="form-grid-div"> <br>';
@@ -612,7 +612,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
         You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
             spam/junk folder.<br><br>';
         
-            echo '<form method="POST" action="actions/contact.php">';
+            echo '<form method="POST" action="actions/contact.php" target="_blank">';
             echo '<div class="form-grid3">';
                 echo '<div class="form-grid-div">';
                 echo '<label for="firstname">First Name</label><br>';
