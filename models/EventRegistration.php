@@ -32,7 +32,7 @@ class EventRegistration {
       LEFT JOIN
         events c ON r.eventid = c.id
       ORDER BY
-        r.eventid, r.lastname, r.firstname, r.dateregistered';
+        c.eventdate, r.eventid, r.lastname, r.firstname, r.dateregistered';
 
 
       // Prepare statement
@@ -100,7 +100,7 @@ public function read_ByUserid($userid) {
     WHERE
       r.userid = :userid 
     ORDER BY 
-      r.eventid, r.lastname, r.firstname';
+      c.eventdate, r.eventid, r.lastname, r.firstname';
  
 
     // Prepare statement
@@ -128,7 +128,7 @@ public function read_ByEmail($email) {
     WHERE
       r.email = :email 
     ORDER BY 
-      r.eventid, r.lastname, r.firstname';
+      c.eventdate, r.eventid, r.lastname, r.firstname';
  
   
   

@@ -61,7 +61,7 @@ date_default_timezone_set("America/Phoenix");
                 <label for="lastname">Visitor Last Name</label><br>
                 <input type="text" name="lastname" required><br>
 
-                <label for="email">Vistor Email</label><br>
+                <label for="email">Visitor Email</label><br>
                 <input type="email" name="email" required><br>
                
                 <br>

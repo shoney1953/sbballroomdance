@@ -31,6 +31,7 @@ $regId1 = 0;
 $regId2 = 0;
 
 if (isset($_POST['submitRegClass'])) {
+    echo '<h1> We are processing your request - Please wait</h1>';
     $regFirstName1 = htmlentities($_POST['regFirstName1']);
     $regLastName1 = htmlentities($_POST['regLastName1']);
     $regEmail1 = htmlentities($_POST['regEmail1']);
