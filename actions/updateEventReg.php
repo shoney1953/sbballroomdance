@@ -31,6 +31,7 @@ if (isset($_POST['submitUpdateReg'])) {
     $eventReg->email = $_POST['email'];
     $eventReg->userid = $_POST['userid'];
     $eventReg->paid = $_POST['paid'];
+
     $eventReg->message = $_POST['message'];
 
     $eventReg->update();

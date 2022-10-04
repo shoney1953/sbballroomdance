@@ -178,7 +178,7 @@ if (!isset($_POST['regId'])) {
         echo '<input type="email" name="email" value="'.$eventReg->email.'"><br>';
         echo '<label for="paid">Paid (1 = YES; 0 = NO)</label>';
         echo '<input type="number" name="paid" min="0" max="1" value="'.$eventReg->paid.'"><br>';
-        echo '<input type="number" name="message" value="'.$eventReg->paid.'"><br>';
+
         echo '<label for="message">Message 
              (For First Fridays or Dine and Dance please indicate if you want to have dinner)</label><br>';
         echo '<textarea  name="message" rows="4" cols="50">'.$eventReg->message.'</textarea><br>';
