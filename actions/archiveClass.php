@@ -49,7 +49,8 @@ if (isset($_POST['submitArchive'])) {
       $classArch->classlimit = $ca['classlimit'];
       $classArch->numregistered = $ca['numregistered'];
       $classArch->classnotes = $ca['classnotes'];
-      $classArch->create();
+
+     // $classArch->create();
       $classRegArch->classid = $db->lastInsertId();
     
       $classReg->classid = $ca['id'];
@@ -82,10 +83,11 @@ if (isset($_POST['submitArchive'])) {
             $classRegArch->classname = $reg_item['classname'];
             $classRegArch->classdate = $reg_item['classdate'];
             $classRegArch->classtime = $reg_item['classtime'];
-            $classRegArch->create();
+
+            //$classRegArch->create();
       
         }
-        $classReg->deleteClassid($ca['id']);
+       // $classReg->deleteClassid($ca['id']);
        
        
   }

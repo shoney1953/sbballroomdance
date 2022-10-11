@@ -61,7 +61,8 @@ if($rowCount > 0) {
 		$pdf->Cell(35,5,$logindate,1,0,"L");
 		$pdf->Cell(60,5,$email,1,0,"L");
 		$pdf->Cell(40,5,$firstname,1,0,"L");
-		$pdf->Cell(40,5,$lastname,1,1,"L");
+		$pdf->Cell(40,5,$lastname,1,0,"L");
+		$pdf->Cell(60,5,$notes,1,1,"L");
 
     }
 

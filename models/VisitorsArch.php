@@ -9,6 +9,7 @@ class VisitorArch {
     public $lastname;
     public $email;
     public $logindate;
+    public $notes;
 
 
     // Constructor with DB
@@ -53,6 +54,7 @@ class VisitorArch {
           $this->lastname = $row['lastname'];
           $this->email = $row['email'];
           $this->logindate = $row['logindate'];
+          $this->notes = $row['notes'];
 
 
     }
@@ -70,12 +72,14 @@ class VisitorArch {
           $this->firstname = htmlspecialchars(strip_tags($this->firstname));
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
           $this->email = htmlspecialchars(strip_tags($this->email));
+          $this->notes = htmlspecialchars(strip_tags($this->notes));
 
 
           // Bind data
           $stmt->bindParam(':firstname', $this->firstname);
           $stmt->bindParam(':lastname', $this->lastname);
           $stmt->bindParam(':email', $this->email);
+          $stmt->bindParam(':notes', $this->notes);
 
      
 

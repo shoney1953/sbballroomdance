@@ -63,6 +63,9 @@ date_default_timezone_set("America/Phoenix");
 
                 <label for="email">Visitor Email</label><br>
                 <input type="email" name="email" required><br>
+                <label for="notes">Visitor Notes</label><br>
+                <input type="text" name="notes" ><br>
+                
                
                 <br>
                 <button type="submit" name="SubmitVisitorLogIN">Submit</button><br>

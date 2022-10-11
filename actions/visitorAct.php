@@ -20,10 +20,12 @@ $visitorLast = '';
     $visitorEmail = htmlentities($_POST['email']);
     $visitorFirst = htmlentities($_POST['firstname']);
     $visitorLast = htmlentities($_POST['lastname']); 
+    $visitorNotes = htmlentities($_POST['notes']); 
     $user->email = filter_var($visitorEmail, FILTER_SANITIZE_EMAIL); 
     $visitor->email = filter_var($visitorEmail, FILTER_SANITIZE_EMAIL); 
     $visitor->firstname = $visitorFirst;
     $visitor->lastname = $visitorLast; 
+    $visitor->notes = $visitorNotes;
 
     if ($user->validate_email($user->email)) { 
         $existingUser = "YES";

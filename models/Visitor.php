@@ -9,6 +9,7 @@ class Visitor {
     public $lastname;
     public $email;
     public $logindate;
+    public $notes;
  
 
 
@@ -55,6 +56,7 @@ class Visitor {
           $this->lastname = $row['lastname'];
           $this->email = $row['email'];
           $this->logindate = $row['logindate'];
+          $this->notes = $row['notes'];
 
 
     }
@@ -63,7 +65,8 @@ class Visitor {
     public function create() {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
-          ' SET firstname = :firstname, lastname = :lastname, email = :email ';
+          ' SET firstname = :firstname, lastname = :lastname, email = :email,
+          notes = :notes ';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -72,12 +75,14 @@ class Visitor {
           $this->firstname = htmlspecialchars(strip_tags($this->firstname));
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
           $this->email = htmlspecialchars(strip_tags($this->email));
+          $this->notes = htmlspecialchars(strip_tags($this->notes));
 
 
           // Bind data
           $stmt->bindParam(':firstname', $this->firstname);
           $stmt->bindParam(':lastname', $this->lastname);
           $stmt->bindParam(':email', $this->email);
+          $stmt->bindParam(':notes', $this->notes);
 
      
 

@@ -75,6 +75,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $visitor->email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL); 
     $visitor->firstname = $_POST['firstname'];
     $visitor->lastname = $_POST['lastname'];
+    $visitor->notes = $_POST['notes'];
     $visitor->create();
     /* send email */
     $regFirstName1 = htmlentities($_POST['firstname']);

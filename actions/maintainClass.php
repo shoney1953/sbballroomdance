@@ -79,6 +79,7 @@ if(isset($_POST['archiveClass'])) {
         );
         array_push($classesArch, $class_item);
         $_SESSION['classesArch'] = $classesArch;
+
      }
      if (isset($_POST['archDate'])) {
        $archDate = $_POST['archDate'];
@@ -112,6 +113,7 @@ if(isset($_POST['archiveClass'])) {
                }
 
            $_SESSION['classesArch'] = $classesArch;
+
            } 
 
      }

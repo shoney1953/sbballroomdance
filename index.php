@@ -9,11 +9,11 @@ $_SESSION['homeurl'] = $_SERVER['REQUEST_URI'];
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
     Please Validate Input</h4><br>';
-    var_dump($_GET);
+
     unset($_GET['error']);
 } elseif (isset($_GET['success'])) {
     echo '<br><h4 style="text-align: center"> '.$_GET['success'].'</h4><br>';
-    var_dump($_GET);
+
     unset($_GET['success']);
 } else {
     $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 

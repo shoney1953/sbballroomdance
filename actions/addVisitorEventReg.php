@@ -58,6 +58,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $visitor->firstname = $_POST['firstname'];
     $regFirstName1 = $visitor->firstname;
     $visitor->lastname = $_POST['lastname'];
+    $visitor->notes = $_POST['notes'];
     $regLastName1 =  $visitor->lastname;
     $visitor->create();
     $event->id = $eventReg->eventid;
