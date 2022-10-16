@@ -201,7 +201,9 @@ if($rowCount > 0) {
             'email' => $email,
             "logindate" => date('m d Y h:i:s A', 
             strtotime($logindate)),
-            'notes' => $notes
+            "datelogin" => $logindate,
+            'notes' => $notes,
+            'numlogins' => $numlogins
            
         );
         array_push($visitors, $visitor_item);
@@ -863,6 +865,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<table>';
             echo '<tr>';
                 echo '<th>Login Date</th> '; 
+                echo '<th>Login #</th> '; 
                 echo '<th>First Name</th>';
                 echo '<th>Last Name    </th>';
                 echo '<th>Email</th>';
@@ -875,6 +878,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
          
                   echo "<tr>";
                     echo "<td>".$visitor['logindate']."</td>";
+                    echo "<td>".$visitor['numlogins']."</td>";
                     echo "<td>".$visitor['firstname']."</td>";               
                     echo "<td>".$visitor['lastname']."</td>";
                     echo "<td>".$visitor['email']."</td>";  

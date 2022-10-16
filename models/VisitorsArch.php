@@ -3,13 +3,13 @@ class VisitorArch {
     // DB stuff
     private $conn;
     private $table = 'visitorsarch';
-
     public $id;
     public $firstname;
     public $lastname;
     public $email;
     public $logindate;
     public $notes;
+    public $numlogins;
 
 
     // Constructor with DB
@@ -55,6 +55,7 @@ class VisitorArch {
           $this->email = $row['email'];
           $this->logindate = $row['logindate'];
           $this->notes = $row['notes'];
+          $this->numlogins = $row['numlogins'];
 
 
     }
@@ -63,7 +64,8 @@ class VisitorArch {
     public function create() {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
-          ' SET firstname = :firstname, lastname = :lastname, email = :email ';
+          ' SET firstname = :firstname, lastname = :lastname, email = :email,
+          notes = :notes, numlogins = :numlogins, logindate = :logindate';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -73,6 +75,8 @@ class VisitorArch {
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->notes = htmlspecialchars(strip_tags($this->notes));
+          $this->numlogins = $this->numlogins;
+          $this->logindate = $this->logindate;
 
 
           // Bind data
@@ -80,6 +84,8 @@ class VisitorArch {
           $stmt->bindParam(':lastname', $this->lastname);
           $stmt->bindParam(':email', $this->email);
           $stmt->bindParam(':notes', $this->notes);
+          $stmt->bindParam(':numlogins', $this->numlogins);
+          $stmt->bindParam(':logindate', $this->logindate);
 
      
 

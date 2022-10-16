@@ -50,6 +50,7 @@ $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
 
 if (isset($_POST['submitAddVisitorReg'])) {
+ 
     $classReg->classid = $_POST['classid'];
     $classReg->firstname = $_POST['firstname'];
     $classReg->lastname = $_POST['lastname'];
@@ -76,7 +77,20 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $visitor->firstname = $_POST['firstname'];
     $visitor->lastname = $_POST['lastname'];
     $visitor->notes = $_POST['notes'];
-    $visitor->create();
+    if ($visitor->read_ByEmail($visitor->email)) {
+        $visitor->firstname = $_POST['firstname'];
+        $visitor->lastname = $_POST['lastname'];
+        $visitor->notes = $_POST['notes'];
+        $visitor->update($visitor->email);
+    } else {
+        echo 'visitor not found',$visitor->email,"<br>>";
+        $visitor->email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL); 
+        $visitor->firstname = $_POST['firstname'];
+        $visitor->lastname = $_POST['lastname'];
+        $visitor->notes = $_POST['notes'];
+        $visitor->create();
+    }
+ 
     /* send email */
     $regFirstName1 = htmlentities($_POST['firstname']);
     $regLastName1 = htmlentities($_POST['lastname']);

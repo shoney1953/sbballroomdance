@@ -38,8 +38,9 @@ if (isset($_POST['submitArchive'])) {
       $visitorArch->firstname = $vi['firstname'];
       $visitorArch->lastname = $vi['lastname'];
       $visitorArch->email = $vi['email'];
-      $visitorArch->logindate = $vi['logindate'];
+      $visitorArch->logindate = $vi['datelogin']; /* unformatted date */
       $visitorArch->notes = $vi['notes'];
+      $visitorArch->numlogins = $vi['numlogins'];
       $visitor->id = $vi['id'];
       $visitorArch->create();
       $visitor->delete();

@@ -10,7 +10,7 @@ class Visitor {
     public $email;
     public $logindate;
     public $notes;
- 
+    public $numlogins;
 
 
 
@@ -57,16 +57,47 @@ class Visitor {
           $this->email = $row['email'];
           $this->logindate = $row['logindate'];
           $this->notes = $row['notes'];
+          $this->numlogins = $row['numlogins'];
 
 
     }
+    public function read_ByEmail($email) {
+  
+       // Create query
+       $query = 'SELECT * FROM ' . $this->table . ' WHERE email = :email LIMIT 0,1'; 
+
+       // Prepare statement
+       $stmt = $this->conn->prepare($query);
+
+       // Bind ID
+       $stmt->bindParam(':email', $email);
+
+       // Execute query
+      $stmt->execute();
+
+       $row = $stmt->fetch(PDO::FETCH_ASSOC);
+       if ($row) {
+       // Set properties
+       $this->firstname = $row['firstname'];
+       $this->lastname = $row['lastname'];
+       $this->email = $row['email'];
+       $this->logindate = $row['logindate'];
+       $this->notes = $row['notes'];
+       $this->numlogins = $row['numlogins'];
+       return true;
+       }
+       else {
+        return false;
+       }
+
+ }
 
     // Create Visitor
     public function create() {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          notes = :notes ';
+          notes = :notes, numlogins = 1';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -76,6 +107,7 @@ class Visitor {
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->notes = htmlspecialchars(strip_tags($this->notes));
+       
 
 
           // Bind data
@@ -83,6 +115,7 @@ class Visitor {
           $stmt->bindParam(':lastname', $this->lastname);
           $stmt->bindParam(':email', $this->email);
           $stmt->bindParam(':notes', $this->notes);
+
 
      
 
@@ -96,8 +129,46 @@ class Visitor {
 
       return false;
     }
+       // Create Visitor
+       public function update() {
+        // Create query
+        $query = 'UPDATE ' . $this->table . 
+        ' SET firstname = :firstname, lastname = :lastname, 
+         logindate = NOW(), numlogins = :numlogins
+        WHERE email = :email' ;
 
-    // Uplogindate Visitor
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+
+        // Clean data
+        $this->firstname = htmlspecialchars(strip_tags($this->firstname));
+        $this->lastname = htmlspecialchars(strip_tags($this->lastname));
+        $this->email = htmlspecialchars(strip_tags($this->email));
+       
+        $this->numlogins++;
+
+
+        // Bind data
+        $stmt->bindParam(':firstname', $this->firstname);
+        $stmt->bindParam(':lastname', $this->lastname);
+        $stmt->bindParam(':email', $this->email);
+    
+        $stmt->bindParam(':numlogins', $this->numlogins);
+
+   
+
+        // Execute query
+        if($stmt->execute()) {
+          return true;
+    }
+
+    // Print error if something goes wrong
+    printf("Error: %s.\n", $stmt->error);
+
+    return false;
+  }
+
+
   
     // Delete Visitor
     public function delete() {

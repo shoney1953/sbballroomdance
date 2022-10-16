@@ -41,6 +41,7 @@ $replyTopic = "Event Registration";
 $emailSubject = "The SBDC administrator has registered you as a Visitor for an Event";
 
 if (isset($_POST['submitAddVisitorReg'])) {
+
      $eventReg->eventid = $_POST['eventid'];
     $eventReg->firstname = $_POST['firstname'];
     $regFirstName1 = $eventReg->firstname;
@@ -60,7 +61,16 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $visitor->lastname = $_POST['lastname'];
     $visitor->notes = $_POST['notes'];
     $regLastName1 =  $visitor->lastname;
-    $visitor->create();
+    if ($visitor->read_ByEmail($visitor->email)) {
+        $visitor->firstname = $_POST['firstname'];
+        $visitor->lastname = $_POST['lastname'];
+        $visitor->notes = $_POST['notes'];
+        $visitor->update($visitor->email);
+    } else {
+    
+        $visitor->create();
+    }
+
     $event->id = $eventReg->eventid;
     $event->read_single();
     $emailBody .= '<br>************************************';

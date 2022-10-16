@@ -186,7 +186,9 @@ if ($rowCount > 0) {
             'firstname' => $firstname,
             'lastname' => $lastname,
             'email' => $email,
-            'logindate' => date('m d Y h:i:s A', strtotime($logindate))
+            'logindate' => date('m d Y h:i:s A', strtotime($logindate)),
+            'notes' => $notes,
+            'numlogins' => $numlogins
         );
         array_push($visitors, $reg_item);
   
@@ -482,10 +484,14 @@ if ($rowCount > 0) {
                     echo "<td>".$classRegistration['dateregistered']."</td>";
              
                   echo "</tr>";
+
               }
          
             ?> 
         </table>
+        </div>
+        </section>
+        </div>
         <br>
         <?php
             echo '<div class="container-section ">';
@@ -495,9 +501,11 @@ if ($rowCount > 0) {
                 echo '<table>';
                     echo '<tr>';
                         echo '<th>Login Date</th> '; 
+                        echo '<th>Logins #</th> '; 
                         echo '<th>First Name</th>';
                         echo '<th>Last Name    </th>';
                         echo '<th>Email</th>';
+                        echo '<th>Notes</th>';
                       
                    echo '</tr>';
                     
@@ -506,9 +514,11 @@ if ($rowCount > 0) {
                  
                           echo "<tr>";
                             echo "<td>".$visitor['logindate']."</td>";
+                            echo "<td>".$visitor['numlogins']."</td>";
                             echo "<td>".$visitor['firstname']."</td>";               
                             echo "<td>".$visitor['lastname']."</td>";
-                            echo "<td>".$visitor['email']."</td>";           
+                            echo "<td>".$visitor['email']."</td>"; 
+                            echo "<td>".$visitor['notes']."</td>";           
                           echo "</tr>";
                       }
                  

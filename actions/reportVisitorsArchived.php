@@ -53,7 +53,9 @@ if($rowCount > 0) {
 	$pdf->Cell(35,5,"LOGIN DATE",1,0,"L");
 	$pdf->Cell(60,5,"EMAIL",1,0,"L");
 	$pdf->Cell(40,5,"FIRST NAME",1,0,"L");
-	$pdf->Cell(40,5,"LAST NAME",1,1,"L");
+	$pdf->Cell(40,5,"LAST NAME",1,0,"L");
+	$pdf->Cell(10,5,"LOG",1,0,"L");
+	$pdf->Cell(100,5,"NOTES",1,1,"L");
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
@@ -62,7 +64,8 @@ if($rowCount > 0) {
 		$pdf->Cell(60,5,$email,1,0,"L");
 		$pdf->Cell(40,5,$firstname,1,0,"L");
 		$pdf->Cell(40,5,$lastname,1,0,"L");
-		$pdf->Cell(60,5,$notes,1,1,"L");
+		$pdf->Cell(10,5,$numlogins,1,0,"L");
+		$pdf->Cell(100,5,$notes,1,1,"L");
 
     }
 

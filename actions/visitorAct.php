@@ -29,12 +29,9 @@ $visitorLast = '';
 
     if ($user->validate_email($user->email)) { 
         $existingUser = "YES";
-   
-        echo '<script>alert("You are already a member; Please use Member Login.")</script>';    
-
+       echo '<script>alert("You are already a member; Please use Member Login.")</script>';    
     }
     if ($existingUser === 'NO') {
-        $visitor->create();
         unset($_SESSION['username']);
         unset($_SESSION['role']);
         unset($_SESSION['userid']);
@@ -45,6 +42,12 @@ $visitorLast = '';
         $_SESSION['visitorlastname'] = $visitor->lastname;
         $_SESSION['username'] = $visitor->email;
         $_SESSION['role'] = "visitor";
+        if ($visitor->read_ByEmail($visitorEmail)) {
+          $visitor->update($visitorEmail);
+        } else {
+           $visitor->create();
+            unset($_SESSION['username']);
+        }
         $redirect = "Location: ".$_SESSION['homeurl'];
         header($redirect);
          exit;   
