@@ -65,6 +65,7 @@ if ($rowCount > 0) {
         extract($row);
         $event_item = array(
             'id' => $id,
+            'previd' => $previd,
             'eventname' => $eventname,
             'eventtype' => $eventtype,
             'eventdate' => $eventdate,
@@ -96,6 +97,7 @@ if ($rowCount > 0) {
         extract($row);
         $class_item = array(
             'id' => $id,
+            'previd' => $previd,
             'classname' => $classname,
             'classlevel' => $classlevel,
             'classlimit' => $classlimit,
@@ -125,6 +127,8 @@ if ($rowCount > 0) {
         extract($row);
         $reg_item = array(
             'id' => $id,
+            'archclassid' => $archclassid,
+            'preveventid' => $preveventid,
             'firstname' => $firstname,
             'lastname' => $lastname,
             'classid' => $classid,
@@ -153,6 +157,7 @@ if ($rowCount > 0) {
         extract($row);
         $reg_item = array(
             'id' => $id,
+            'preveventid' => $preveventid,
             'firstname' => $firstname,
             'lastname' => $lastname,
             'eventid' => $eventid,
@@ -230,7 +235,6 @@ if ($rowCount > 0) {
    <br><br><br> 
     <div class="content">
     <br><br>
-    <h1>Archived Members</h1>
   
     <?php
     if ($_SESSION['role'] === 'SUPERADMIN') {
@@ -238,10 +242,23 @@ if ($rowCount > 0) {
        
         echo '<section id="usersarchived" class="content">';
         echo ' <h3 class="section-header">Archived Member List</h3> ';
+        echo '<form method="POST" action="actions/reportUserArchive.php">'; 
+        echo  '<div class="form-grid2">';
+        echo '<div class="form-grid-div">';
+     
+        echo '<input type="checkbox" name="reportUsers">';
+        echo '<label for="reportUsers">Report Archived Members</label><br>';    
+      
+        echo '<button type="submit" name="submitUserRep">  Report Members</button>';   
+    
+        echo '</form>';   
+        echo '</div> ';    
         echo '<form target="_blank" method="POST" action="actions/searchUserArchive.php" >';
-        echo '<input type="text"  name="search" >';
+        echo '<input type="text"  name="search" ><br>';
         echo '<button type="submit" name="searchUser">Search Archived Members</button>'; 
         echo '</form>';
+        
+        echo '</div> ';    
         echo '<table>';
         echo '<tr>';
              
@@ -282,26 +299,34 @@ if ($rowCount > 0) {
              
                 
             echo '</table><br>';  
-            echo '<form method="POST" action="actions/reportUserArchive.php">'; 
-            echo '<div class="form-grid-div">';
-            echo '<h4>Report Archived Members</h4>';
-            echo '<input type="checkbox" name="reportUsers">';
-            echo '<label for="reportUsers">Report Archived Members</label><br>';    
           
-            echo '<button type="submit" name="submitUserRep">Report Members</button>';   
-            echo '</div> ';  
-            echo '</form>';     
             echo '</section>';
             echo '</div>';
+    
     }
   ?>  
     <div class="container-section ">
     <section id="eventsarchived" class="content">
        
         <h3 class="section-header">Archived Events</h3>
+        <form method='POST' action="actions/reportEventArchived.php"> 
+        <div class="form-grid-div">
+        <input type='checkbox' name='reportEvent'>
+        <label for='reportEvent'>Report on all or one Archived Event </label><br>
+        <input type='text' class='text-small' name='eventId' >    
+        <label for='eventId'><em> &larr; 
+            Specify Event ID from Table below for Report on One Event: </em> </label>
+      
+        <br>
+        <button type='submit' name="submitEventRep">Report</button>   
+        </div>   
+
+        </form>
+        <br>
         <table>
             <tr>
                 <th>ID</th>
+                <th>Prev ID</th>
                 <th>Event Date</th>
                 <th>Event Name    </th>
                 <th>Event Type    </th>
@@ -317,6 +342,7 @@ if ($rowCount > 0) {
                  $eventNumber++;
                   echo "<tr>";
                     echo "<td>".$event['id']."</td>";
+                    echo "<td>".$event['previd']."</td>";
                     echo "<td>".$event['eventdate']."</td>";
                     echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";
@@ -330,23 +356,11 @@ if ($rowCount > 0) {
          
             ?> 
         </table>
-        <form method='POST' action="actions/reportEventArchive.php"> 
-        <div class="form-grid-div">
-        <h4>Report Events</h4>
-        <input type='checkbox' name='reportEvent'>
-        <label for='reportEvent'>Report on all or one Event </label><br>
-        <input type='text' class='text-small' name='eventId' >    
-        <label for='eventId'><em> &larr; 
-            Specify Event ID from Table above for Report on One Event: </em> </label>
-      
-        <br>
-        <button type='submit' name="submitEventRep">Report</button>   
-        </div>   
-
-        </form>
-        <br>
+     
+        </div>
+            </section>
         <div class="container-section ">
-    
+  
     <section id="eventregistrationsarchived" class="content">
     <br><br>
         <h3 class="section-header">Archived Event Registrations</h3>   
@@ -355,6 +369,7 @@ if ($rowCount > 0) {
                 <th>ID</th>
                 <th>Event Name</th>
                 <th>Event Id</th>
+                <th>Prev Event Id</th>
                 <th>Event Date</th>
                 <th>First Name</th>
                 <th>Last Name    </th>
@@ -372,6 +387,7 @@ if ($rowCount > 0) {
                     echo "<td>".$eventRegistration['id']."</td>";
                     echo "<td>".$eventRegistration['eventname']."</td>";
                     echo "<td>".$eventRegistration['eventid']."</td>";
+                    echo "<td>".$eventRegistration['preveventid']."</td>";
                     echo "<td>".$eventRegistration['eventdate']."</td>";
                     echo "<td>".$eventRegistration['firstname']."</td>";
                     echo "<td>".$eventRegistration['lastname']."</td>";
@@ -392,10 +408,23 @@ if ($rowCount > 0) {
         </table>
         <br>
         <div class="container-section ">
+        </div>
+    </section>
     <section id="classesarchived" class="content">
-   
       <br><br>
         <h3 class="section-header">Archived Classes</h3>
+        <form method='POST' action="actions/reportClassArchive.php"> 
+        <div class="form-grid-div">
+        <input type='checkbox' name='reportClass'>
+        <label for='reportClass'>Report on all or one Archived Class </label><br>  
+        <input type='text' class='text-small' name='classId' > 
+        <label for='classId'><em> &larr; 
+            Specify Class ID from Table above for Report on One Class: </em> </label>
+       
+        <br>
+        <button type='submit' name="submitClassRep">Report</button>   
+        </div>   
+        </form>
         <table>
             <tr>
            
@@ -437,19 +466,8 @@ if ($rowCount > 0) {
             ?> 
         </table>
         <br>
-        <form method='POST' action="actions/reportClassArchive.php"> 
-        <div class="form-grid-div">
-        <h4>Report Classes</h4>
-        <input type='checkbox' name='reportClass'>
-        <label for='reportClass'>Report on all or one Class </label><br>  
-        <input type='text' class='text-small' name='classId' > 
-        <label for='classId'><em> &larr; 
-            Specify Class ID from Table above for Report on One Class: </em> </label>
-       
-        <br>
-        <button type='submit' name="submitClassRep">Report</button>   
-        </div>   
-        </form>
+    </section>
+    </section>
         <div class="container-section ">
     
     <section id="classregistrationsarchived" class="content">
@@ -491,13 +509,24 @@ if ($rowCount > 0) {
         </table>
         </div>
         </section>
-        </div>
+
         <br>
         <?php
             echo '<div class="container-section ">';
             echo '<br><br>';
             echo '<section id="visitorsarchived" class="content">';
                 echo '<h3 class="section-header">Visitors Archived</h3> '; 
+              
+                echo '<div class="form-grid-div">';
+                echo '<form method="POST" action="actions/reportVisitorsArchived.php">';
+                echo '<label for="reportVisitor">Report on Archived Visitors </label><br>';  
+                echo '<input type="checkbox" name="reportVisitor"><br>';
+                echo '<button type="submit" name="submitVisitorRep">Report</button>';    
+                echo '</form>';
+                echo '</div>';   
+                echo '<br>';
+                
+            
                 echo '<table>';
                     echo '<tr>';
                         echo '<th>Login Date</th> '; 
@@ -524,21 +553,10 @@ if ($rowCount > 0) {
                  
                 echo '</table>';   
                 echo '<br>';
-                echo '<div class="form-grid3">';
-              
-                echo '<div class="form-grid-div">';
-                echo '<h4>Report Visitors Archived</h4>';
-                echo '<form method="POST" action="actions/reportVisitorsArchived.php">';
-                echo '<input type="checkbox" name="reportVisitor">';
-                echo '<button type="submit" name="submitVisitorRep">Report</button>'; 
-                echo '</div>';     
-                echo '</form>';
-                echo '<br>';
-                
-            
-                echo '</div>';
+ 
             echo '</section>';
-            echo '</div>';
+            echo '</div>'; 
+
          
         ?>
 <?php

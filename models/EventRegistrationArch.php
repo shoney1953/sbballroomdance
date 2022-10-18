@@ -31,9 +31,9 @@ class EventRegistrationArch {
       r.userid, r.paid, r.message, r.preveventid
       FROM ' . $this->table . ' r
       LEFT JOIN
-        eventsarch c ON r.eventid = c.id
+        eventsarch c ON r.preveventid = c.previd
       ORDER BY
-        r.eventid, r.lastname, r.firstname, r.dateregistered';
+        r.preveventid, r.lastname, r.firstname, r.dateregistered';
 
 
       // Prepare statement
@@ -54,9 +54,9 @@ class EventRegistrationArch {
           r.userid, r.paid, r.message, r.preveventid
           FROM ' . $this->table . ' r
           LEFT JOIN
-            eventsarch c ON r.eventid = c.id
+            eventsarch c ON r.preveventid = c.previd
           WHERE
-            r.id = ?
+            r.preveventid = ?
           LIMIT 0,1';
   
           // Prepare statement
@@ -73,7 +73,7 @@ class EventRegistrationArch {
           // Set properties
           $this->firstname = $row['firstname'];
           $this->lastname = $row['lastname'];
-          $this->eventid = $row['eventid'];
+          $this->eventid = $row['previd'];
           $this->userid = $row['userid'];
           $this->eventname = $row['eventname'];
           $this->eventdate = $row['eventdate'];
@@ -94,7 +94,7 @@ public function read_ByUserid($userid) {
     r.userid, r.paid, r.message, r.preveventid
     FROM ' . $this->table . ' r
     LEFT JOIN
-      eventsarch c ON r.eventid = c.id
+      eventsarch c ON r.preveventid = c.previd
     WHERE
       r.userid = :userid ';
  
@@ -120,7 +120,7 @@ public function read_ByEmail($email) {
     r.userid, r.paid, r.message, r.preveventid
     FROM ' . $this->table . ' r
     LEFT JOIN
-      eventsarch c ON r.eventid = c.id
+      eventsarch c ON r.preveventid = c.previd
     WHERE
       r.email = :email ';
   
@@ -146,9 +146,9 @@ public function read_ByEmail($email) {
     r.userid, r.paid, r.message, r.preveventid
     FROM ' . $this->table . ' r
     LEFT JOIN
-      events c ON r.eventid = c.id
+      eventsarch c ON r.preveventid = c.previd
     WHERE
-      r.eventid = :eventid ';
+      r.preveventid = :eventid ';
  
 
     // Prepare statement

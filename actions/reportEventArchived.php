@@ -62,6 +62,7 @@ if (isset($_POST['submitEventRep'])) {
                 'firstname' => $firstname,
                 'lastname' => $lastname,
                 'eventid' => $eventid,
+                'preveventid' => $preveventid,
                 'eventname' => $eventname,
                 'eventdate' => $eventdate,
                 'userid' => $userid,
@@ -88,7 +89,7 @@ if ($rowCount > 0) {
 
         $regCount++;
         if ($init == 1) {
-            $prevEvent = $reg['eventid'];
+            $prevEvent = $reg['preveventid'];
             $init = 0;
             $event_string = ' '.$reg['eventname'].'  '
                      .$reg['eventdate'].' ';
@@ -101,7 +102,7 @@ if ($rowCount > 0) {
             $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
     
         }
-        if ($reg['eventid'] !== $prevEvent) {
+        if ($reg['preveventid'] !== $prevEvent) {
             $pdf->SetFont('Arial', 'B', 10);
             $pdf->Ln(2);
             $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1); 
@@ -109,7 +110,7 @@ if ($rowCount > 0) {
             $regCount = 1;
             $paidNum = 0;
          
-            $prevEvent = $reg['eventid'];
+            $prevEvent = $reg['preveventid'];
             $event_string = ' '.$reg['eventname'].'  '
             .$reg['eventdate'].' ';
             $pdf->Ln(3);

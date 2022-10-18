@@ -104,6 +104,7 @@ if ($rowCount > 0) {
             $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(60,5,"EMAIL",1,0,"L"); 
             $pdf->Cell(18,5,"MEMBER",1,0,"L"); 
+            $pdf->Cell(10,5,"PAID",1,0,"L");
             $pdf->Cell(35,5,"MESSAGE",1,1,"L");    
           
     
@@ -129,7 +130,9 @@ if ($rowCount > 0) {
             $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(60,5,"EMAIL",1,0,"L");
-            $pdf->Cell(18,5,"MEMBER",1,1,"L");    
+            $pdf->Cell(18,5,"MEMBER",1,0,"L");
+            $pdf->Cell(10,5,"PAID",1,0,"L");
+            $pdf->Cell(35,5,"MESSAGE",1,1,"L");      
     
          }
          $paid = 'Not Paid';
@@ -138,8 +141,6 @@ if ($rowCount > 0) {
           $paid = 'Paid';
         }
         
-
-       
           $pdf->Cell(35,5,$reg['firstname'],1,0,"L"); 
           $pdf->Cell(35,5,$reg['lastname'],1,0,"L");  
           $pdf->Cell(60,5,$reg['email'],1,0,"L");  
@@ -150,6 +151,13 @@ if ($rowCount > 0) {
             $pdf->Cell(18,5,"NO",1,0,"L");
             $nonMemReg++; 
         } 
+  
+        if ($reg['paid'] === '1') {
+            $pdf->Cell(10,5,"YES",1,0,"L");
+        } else {
+            $pdf->Cell(10,5,"NO ",1,0,"L");
+        } 
+        
         $pdf->Cell(35,5,$reg['message'],1,1,"L"); 
 
 
