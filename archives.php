@@ -128,7 +128,7 @@ if ($rowCount > 0) {
         $reg_item = array(
             'id' => $id,
             'archclassid' => $archclassid,
-            'preveventid' => $preveventid,
+            'archclassid' => $archclassid,
             'firstname' => $firstname,
             'lastname' => $lastname,
             'classid' => $classid,
