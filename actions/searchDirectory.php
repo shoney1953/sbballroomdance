@@ -8,17 +8,15 @@ if (!isset($_SESSION['username'])) {
 
     $redirect = "Location: ".$_SESSION['homeurl'];
     header($redirect);
-} else {
-    if (isset($_SESSION['role'])) {
-        if ($_SESSION['role'] != 'SUPERADMIN') {
-            $redirect = "Location: ".$_SESSION['homeurl'];
-            header($redirect); 
-        }
-    } else {
+} 
+
+
+if (isset($_SESSION['role'])) {
+    if ($_SESSION['role'] === 'visitor') {
         $redirect = "Location: ".$_SESSION['homeurl'];
-        header($redirect);
-    }
-}
+         header($redirect);
+
+}}
 
 $database = new Database();
 $db = $database->connect();
@@ -55,7 +53,9 @@ if (isset($_POST['searchUser'])) {
                     'lastLogin' => $lastLogin,
                     'directorylist' => $directorylist
                 );
-                array_push( $users, $user_item);
+                if ($user_item['directorylist']) {
+                    array_push( $users, $user_item);  
+                }
           
             }
         }
@@ -85,46 +85,25 @@ if (isset($_POST['searchUser'])) {
       echo '<table>';
         echo '<tr>';
              
-                echo '<th>ID</th>';  
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
                 echo '<th>User Name    </th>';
-                echo '<th>Role</th>'; 
-                echo '<th>Part ID</th>';
                 echo '<th>Email</th>';  
                 echo '<th>Phone</th>';
-                echo '<th>HOA</th>';
                 echo '<th>Address</th>';
-                echo '<th>Directory</th>';
-                echo '<th>Last Login</th>';
-                echo '<th>PWD Changed</th>';
                 echo '</tr>';
                 
         
                 foreach($users as $user) {
-                    $hr = '../member.php?id=';
-                    $hr .= $user["id"];
-               
-                    echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
-             
-              
+    
+        
                         echo "<td>".$user['firstname']."</td>";               
                         echo "<td>".$user['lastname']."</td>";
-                        echo "<td>".$user['username']."</td>";
-                        echo "<td>".$user['role']."</td>"; 
-                        echo "<td>".$user['partnerId']."</td>"; 
+                        echo "<td>".$user['username']."</td>"; 
                         echo "<td>".$user['email']."</td>";
                         echo "<td>".$user['phone1']."</td>";
-                        echo "<td>".$user['hoa']."</td>";
                         echo "<td>".$user['streetAddress']."</td>"; 
-                        if ($user['directorylist']) {
-                            echo "<td>Yes</td>"; 
-                        } else {
-                            echo "<td>No</td>"; 
-                        }
-                        echo "<td>".$user['lastLogin']."</td>"; 
-                        echo "<td>".$user['passwordChanged']."</td>"; 
-                       
+        
                         
                       echo "</tr>";
                   }

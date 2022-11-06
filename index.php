@@ -28,6 +28,7 @@ $classes = [];
 $events = [];
 $upcomingClasses = [];
 $upcomingEvents = [];
+$directory = [];
 $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
 
@@ -110,6 +111,50 @@ if ($rowCount > 0) {
 $_SESSION['classes'] = $classes;
 $_SESSION['upcoming_classes'] = $upcomingClasses;
 
+if (isset($_SESSION['username'])) {
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] != 'visitor') {
+    $user = new User($db);
+    $result = $user->read();
+    
+    $rowCount = $result->rowCount();
+    $num_users = $rowCount;
+    $_SESSION['directory'] = [];
+    if($rowCount > 0) {
+    
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+            $user_item = array(
+                'id' => $id,
+                'firstname' => $firstname,
+                'lastname' => $lastname,
+                'username' => $username,
+                'role' => $role,
+                'email' => $email,
+                'phone1' => $phone1,
+                'password' => $password,
+                'partnerId' => $partnerid,
+                'hoa' => $hoa,
+                'passwordChanged' => $passwordChanged,
+                'streetAddress' => $streetaddress,
+                'lastLogin' => date('m d Y h:i:s A', strtotime($lastLogin)),
+                'numlogins' => $numlogins,
+                'directorylist' => $directorylist
+            );
+            if ($user_item['directorylist']) {
+                array_push($directory, $user_item);
+            }
+         
+      
+        }
+   
+        $_SESSION['directory'] = $directory;
+    } 
+}
+}
+}
+
+
 // $conn->close();
 ?>
 
@@ -164,6 +209,8 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
             if ($_SESSION['role'] != 'visitor') {
               echo ' <li><a href="yourProfile.php">
               Your Profile</a></li>';
+              echo ' <li><a href="#directory">
+              Member Directory</a></li>';
             }
         }
         echo ' <li><a href="logout.php">Logout</a></li>'; 
@@ -668,6 +715,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/2022-09-02-Dine-and-Dance/">First Friday 09 02 2022</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Nov-3-2022-SBDC-dinner-dance-with-Chuck-Moses">November Dinner Dance 11 03 2022</a></li>
         </ul>
+       
         </div>
         
         <div class="form-grid-div">
@@ -691,6 +739,7 @@ $_SESSION['upcoming_classes'] = $upcomingClasses;
 
      
        <div class="form-grid-div">
+        <br>
        <h4>SBDC CLASS VIDEOS</h4>
        <ul>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SaddleBrooke-Ballroom-Dance-Club-Videos">Class Videos</a></li>    
@@ -801,6 +850,76 @@ DJ Documents</a><br>
 
      
    </section>
+   </div>
+   <div class="container-section ">
+    <section id="directory" class="content">
+    <br><br> 
+        <h1 class="section-header">Membership Directory</h1><br>
+    <?php
+
+     if (isset($_SESSION['username'])) {
+            if (isset($_SESSION['role'])) {
+                if ($_SESSION['role'] != 'visitor') {
+
+        echo '<div class="form-grid3">';
+          
+        echo '<form target="_blank" method="POST" action="actions/reportDirectory.php">'; 
+        echo '<div class="form-grid-div">';
+  
+        echo '<h4>Report Membership Directory</h4>';
+        echo '<input type="checkbox" name="reportDirectory">';
+        echo '<label for="reportDirectory">Report Directory</label><br>';    
+      
+        echo '<button type="submit" name="submitUserRep">Report</button>';   
+        echo '</div> ';  
+        echo '</form>';
+            
+        echo '</div> '; 
+        echo '<h4>List of Members</h4>';
+        echo '<form target="_blank" method="POST" action="actions/searchDirectory.php" >';
+        echo '<input type="text"  name="search" >';
+        echo '<button type="submit" name="searchUser">Search Directory</button>';  
+        echo '</form>';
+     
+        echo '<table>';
+        echo '<tr>';
+              
+                echo '<th>First Name</th>';  
+                echo '<th>Last Name</th>';
+                echo '<th>User Name    </th>';
+                echo '<th>Email</th>';  
+                echo '<th>Phone</th>';          
+                echo '<th>Address</th>';
+   
+                echo '</tr>';
+                       
+                foreach($directory as $user) {
+                
+                        echo "<td>".$user['firstname']."</td>";               
+                        echo "<td>".$user['lastname']."</td>";
+                        echo "<td>".$user['username']."</td>";
+                        echo "<td>".$user['email']."</td>";
+                        echo "<td>".$user['phone1']."</td>";
+                        echo "<td>".$user['streetAddress']."</td>"; 
+ 
+                      echo "</tr>";
+                  }
+             
+        
+            echo '</table><br>';       
+ 
+            echo '</section>';
+                }
+            }
+        }
+        else {
+            echo '<h3><a style="color: red;font-weight: bold;font-size: large"
+            href="login.php"> <strong><em>Please Login to View Directory</em></a></h3><br><br>'; 
+        }
+    
+
+?>
+    </section>
    </div>
 <?php
   require 'footer.php';

@@ -29,6 +29,7 @@ if (isset($_POST['submitUpdateUser'])) {
     $user->hoa = $_POST['hoa'];
     $user->notes = $_POST['notes'];
     $user->partnerId = $_POST['partnerid'];
+    $user->directorylist = $_POST['directorylist'];
     
     $user->password = $_POST['password'];
 

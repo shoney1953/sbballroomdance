@@ -241,7 +241,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'passwordChanged' => $passwordChanged,
                 'streetAddress' => $streetaddress,
                 'lastLogin' => date('m d Y h:i:s A', strtotime($lastLogin)),
-                'numlogins' => $numlogins
+                'numlogins' => $numlogins,
+                'directorylist' => $directorylist
             );
             array_push($users, $user_item);
       
@@ -979,6 +980,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Phone</th>';
                 echo '<th>HOA</th>';
                 echo '<th>Address</th>';
+                echo '<th>Directory</th>';
                 echo '<th>Last Login</th>';
                 echo '<th>PWD Changed</th>';
                 echo '</tr>';
@@ -1000,6 +1002,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         echo "<td>".$user['phone1']."</td>";
                         echo "<td>".$user['hoa']."</td>";
                         echo "<td>".$user['streetAddress']."</td>"; 
+                        if ($user['directorylist']) {
+                            echo "<td>Yes</td>"; 
+                        } else {
+                            echo "<td>No</td>"; 
+                        }
                         echo "<td>".$user['lastLogin']."</td>"; 
                         echo "<td>".$user['passwordChanged']."</td>"; 
                        

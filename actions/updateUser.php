@@ -42,6 +42,7 @@ if (isset($_POST['submitUpdateUser'])) {
     $user->password = $_POST['password'];
 
     $user->email = $_POST['email'];
+    $user->directorylist = $_POST['directorylist'];
   
     $user->role = $_POST['role'];
     

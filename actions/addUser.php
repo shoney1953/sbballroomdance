@@ -153,6 +153,10 @@ if (isset($_POST['submitAddUser'])) {
        program of Novice events: Novice classes twice a month, and then a Novice practice party. These are designed to
        help you learn a few steps of the most common dances, and help practice with other Novices. 
        You will also receive emails about these actvities. You can register for these on the website.</li>";
+       $emailBody .= "<li>Your name, email, phone and address will be listed in our directory by default unless
+       you indicated otherwise on your membership form. But if you
+       wish not to list your information in the directory, you can go to your profile on the website
+       and set the option off or contact us and we will set it off.</li>"
 
      $emailBody .= "</ul>
      <strong>At Times we have have room changes or cancellations, so it is important to check the Activities

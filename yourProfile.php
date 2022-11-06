@@ -182,6 +182,14 @@ if ($rowCount > 0) {
             echo '<li class=li-none> Zip: 
             <strong>'.$user->zip.' 
             </strong></li>';
+            if ($user->directorylist) {
+                echo '<li class=li-none> List in Directory: 
+                <strong>Yes </strong></li>';
+            } else {
+                echo '<li class=li-none> List in Directory: 
+                <strong>No </strong></li>';
+            }
+      
             echo '<li class=li-none> Notes: 
             <strong>'.$user->notes.' 
             </strong></li>';
@@ -220,9 +228,12 @@ if ($rowCount > 0) {
         echo '<input type="email" name="newemail" value="'.$user->email.'" ><br>';
         echo '<label for="newuser">Username -- Must not be a Duplicate</label><br>';
         echo '<input type="text" name="newuser" value="'.$user->username.'"><br>';
+        echo '<label for="directorylist">List in Directory (1 = YES; 0 = NO)</label>';
+        echo '<input type="number" name="directorylist" min="0" max="1" value="'.$user->directorylist.'"><br>';
         echo '<input type="hidden" name="id" value="'.$user->id.'">';
         echo '<input type="hidden" name="username" value="'.$user->username.'">';
         echo '<input type="hidden" name="email" value="'.$user->email.'">';
+
         echo '<input type="hidden" name="password" value="'.$user->password.'">';
         echo '<input type="hidden" name="role" value="'.$user->role.'">';
         echo '<label for="hoa">HOA</label><br>';
