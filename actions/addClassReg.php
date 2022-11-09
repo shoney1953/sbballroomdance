@@ -105,7 +105,9 @@ if (isset($_POST['submitAddReg'])) {
                     $replyTopic,
                     $mailAttachment,
                     $toCC2
+                    
                 );
+
             } else {
                 echo 'Member Email is empty or Invalid. Please enter valid email.';
             }
@@ -114,8 +116,8 @@ if (isset($_POST['submitAddReg'])) {
      } // end foreach user
        
 }
-   $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
+ /*   $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
    header($redirect);
 exit;
-
+ */
 ?>
