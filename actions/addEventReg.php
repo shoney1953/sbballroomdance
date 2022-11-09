@@ -55,7 +55,7 @@ if (isset($_POST['submitAddReg'])) {
                 $chkboxID = "ev".$ev['id'];   
                         
                 if (isset($_POST["$chkboxID"])) {
-
+           
                     $eventReg->eventid = $ev['id'];
                     $eventReg->firstname = $usr['firstname'];
                     $regFirstName1 = $eventReg->firstname;
@@ -64,7 +64,14 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->email = $usr['email'];
                     $regEmail1 = $eventReg->email;
                     $eventReg->userid = $usr['id'];
-                    $eventReg->paid = 0;
+                    if ($ev['eventtype'] === 'Dinner Dance') {
+            
+                        $eventReg->paid = 1;
+                    } else {
+          
+                        $eventReg->paid = 0;
+                    }
+    
                     $eventReg->create();
                     $event->addCount($eventReg->eventid);
                     $event->id = $eventReg->eventid;
