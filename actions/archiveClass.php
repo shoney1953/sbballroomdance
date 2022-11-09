@@ -50,7 +50,7 @@ if (isset($_POST['submitArchive'])) {
       $classArch->numregistered = $ca['numregistered'];
       $classArch->classnotes = $ca['classnotes'];
 
-     // $classArch->create();
+      $classArch->create();
       $classRegArch->classid = $db->lastInsertId();
     
       $classReg->classid = $ca['id'];
@@ -84,10 +84,10 @@ if (isset($_POST['submitArchive'])) {
             $classRegArch->classdate = $reg_item['classdate'];
             $classRegArch->classtime = $reg_item['classtime'];
 
-            //$classRegArch->create();
+            $classRegArch->create();
       
         }
-       // $classReg->deleteClassid($ca['id']);
+       $classReg->deleteClassid($ca['id']);
        
        
   }
@@ -101,6 +101,6 @@ if (isset($_POST['submitArchive'])) {
     
 $redirect = "Location: ".$_SESSION['adminurl']."#classes";
 header($redirect);
-exit;
-
+exit; 
+ 
 ?>

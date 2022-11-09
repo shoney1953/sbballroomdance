@@ -62,12 +62,14 @@ if (isset($_POST['submitAddReg'])) {
                      
                         
                      if (isset($_POST["$chkboxID"])) {
-                            $classReg->classid = $class['id'];
-                            
+                    $classReg->classid = $class['id'];       
                     $classReg->firstname = $usr['firstname'];
                     $classReg->lastname = $usr['lastname'];
                     $classReg->email = $usr['email'];
                     $classReg->userid = $usr['id'];
+                    $classReg->classname = $class['classname'];
+                    $classReg->classtime = $class['time'];
+                    $classReg->classdate = $class['date'];
                     
                     $classReg->create();
                     $danceClass->addCount($classReg->classid);
