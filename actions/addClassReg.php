@@ -116,8 +116,8 @@ if (isset($_POST['submitAddReg'])) {
      } // end foreach user
        
 }
- /*   $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
+   $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
    header($redirect);
 exit;
- */
+
 ?>
