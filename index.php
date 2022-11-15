@@ -64,6 +64,9 @@ if ($rowCount > 0) {
         if ($compareDate <= $row['eventdate']) {
             array_push($upcomingEvents, $event_item);
         }
+        
+     
+
     }
   
 
@@ -80,6 +83,8 @@ $result = $class->read();
 $rowCount = $result->rowCount();
 $num_classes = $rowCount;
 $current_month = date('m');
+$current_year = date('Y');
+
 
 if ($rowCount > 0) {
 
@@ -100,10 +105,19 @@ if ($rowCount > 0) {
         );
         array_push($classes, $class_item);
         $class_month = substr($row['date'], 5, 2);
+        $class_year = substr($row['date'], 0, 4);
+
      
         if ($current_month <= $class_month) {
             array_push($upcomingClasses, $class_item);
         }
+        if ($current_year < $class_year) {
+            array_push($upcomingClasses, $class_item);
+        }
+
+
+       
+     
     }
 
 } 
