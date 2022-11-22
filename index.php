@@ -334,7 +334,7 @@ if (isset($_SESSION['username'])) {
         <br>
         <ul>
 
-        <li class="li-none"><a style="color: red" href="img/Membership Form 2022 Dance Club.pdf"><strong><em>Click Here for Membership Form </em></strong></a></li><br>
+        <li class="li-none"><a style="color: red" href="img/Membership Form 2023 Dance Club.pdf"><strong><em>Click Here for Membership Form </em></strong></a></li><br>
         </ul>
         <a href="https://drive.google.com/file/d/1AxOsZTmqIujc3ytk4KR-EJ__4UQXDdUd/view?usp=sharing">
          Click Here Read the Club By Laws.
