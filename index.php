@@ -273,10 +273,10 @@ if (isset($_SESSION['username'])) {
             if you'd like to put your toe in the water before committing. </p><br>
         <p>We also have several times during the week
             available for practice - some with D.J.s, sometimes you can bring your favorite music. These
-            sessions desginated as "Open Dance Practice" are not restricted to members. </p>
+            sessions desginated as "Open Practice" are not restricted to members. </p>
             <p><em>Always check the Activites Calendar because we do have 
             cancellations.. and also for DJ information.</em> </p>
-        <p>For 2022, we now have 3 different time slots for Open Dance Practice:</p>
+        <p>For 2022, we now have 3 different time slots for Open Practice:</p>
         <ul>
             <li class="li-none">Tuesday 4 to 5:30pm - Vermillion Room
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a></li>
@@ -296,11 +296,11 @@ if (isset($_SESSION['username'])) {
         <p>Our classes are normally at the Mariposa Room at the DesertView Clubhouse
             <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map.</a>
         </p>
-        <p>Our Sunday Open Dance Practices, and our Dinner Dances are normally in the MountainView
+        <p>Our Sunday Open Practices, and our Dinner Dances are normally in the MountainView
             clubhouse in the Ballroom.
             <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map</a>
         </p>
-        <p>Our Tuesday and Friday Open Dance Practices, and a few Dinner Dances are in the HOA 1 
+        <p>Our Tuesday and Friday Open Practices, and a few Dinner Dances are in the HOA 1 
             clubhouse in the Vermillion Room and or Vistas Dining Room.
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
         </p>
