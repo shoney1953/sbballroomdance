@@ -267,16 +267,22 @@ if (isset($_SESSION['username'])) {
         <p>If you love all kinds of dancing, we're the club for you. </p>
         <p> We don't just do Ballroom dance - at our dances/practices, we play 
             music for Ballroom Dance, Western and Western Partner Dance, Line Dance, and Latin Dances.</p>
+       <br><strong> <p> We will help you get started if you've never stepped foot on the dance floor. We now are featuring Novice classes twice 
+            a month, with a Novice Practice party once a month to help you feel more comfortable about joining dinner dances and other events.
+            The classes are normally on Tuesdays in the Vermillion room, and the Novice Parties are on Fridays in the Vermillion room in the 
+            same time slots as our open practice. Check the Activities calendar or send a note to <a href="mailto:countmein@sbballroomdance.com?subject=Novice Dancing Info">
+                       countmein@sbballroomdance.com</a> for
+            more information.</p></strong>
 
-        <p>Our members can go to any class we provide free. Prospective members may attend one class free to see if they like it. </p>
+        <br><p>Our members can go to any class we provide free. Prospective members may attend one class free to see if they like it. </p>
         <p>Our members also receive reduced rates for our dinner dances, but you may attend as a guest
             if you'd like to put your toe in the water before committing. </p><br>
         <p>We also have several times during the week
             available for practice - some with D.J.s, sometimes you can bring your favorite music. These
-            sessions desginated as "Open Practice" are not restricted to members. </p>
+            sessions designated as "Open Practice" are not restricted to members. </p>
             <p><em>Always check the Activites Calendar because we do have 
             cancellations.. and also for DJ information.</em> </p>
-        <p>For 2022, we now have 3 different time slots for Open Practice:</p>
+        <br><p>For 2023, we now have 3 different time slots for Open Practice - Sometimes these are used for Novice Classes or Parties as well:</p>
         <ul>
             <li class="li-none">Tuesday 4 to 5:30pm - Vermillion Room
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a></li>
@@ -429,7 +435,7 @@ if (isset($_SESSION['username'])) {
             $partner->read_single();
            
         }
-        echo '<label for="message">Message (For First Fridays or Dine and Dance please indicate if you want to have dinner)</label>';
+        echo '<label for="message">Message (For Dine and Dance events please indicate if you want to have dinner)</label>';
         echo '<textarea  name="message" rows="4" cols="50"></textarea><br>';
          echo' </div>';
         echo '<div class="form-grid-div"> <br>';
@@ -726,7 +732,7 @@ if (isset($_SESSION['username'])) {
        <ul>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/03-22-2022-March-Dinner-Dance">March Dinner Dance 03 22 2022</a></li> 
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/04-29-2022-SBDC-dinner-dance">April Dinner Dance 04 29 2022</a></li>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/2022-09-02-Dine-and-Dance/">First Friday 09 02 2022</a></li>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/2022-09-02-Dine-and-Dance/">Dine and Dance 09 02 2022</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Nov-3-2022-SBDC-dinner-dance-with-Chuck-Moses">November Dinner Dance 11 03 2022</a></li>
         </ul>
        

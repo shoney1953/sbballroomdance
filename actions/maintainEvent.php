@@ -149,9 +149,8 @@ if (isset($_POST['archiveEvent'])) {
     
         echo '<br><select name = "eventtype" value="'.$event->eventtype.'">'; 
         echo '<option value = "Dinner Dance">Dinner Dance</option>';
-        echo '<option value = "First Friday">First Friday</option>';
-        echo '<option value = "First Thursday">First Thursday</option>';
         echo '<option value = "Novice Practice Dance">Novice Practice Dance</option>';
+        echo '<option value = "Dine and Dance">Dine and Dance</option>';
         echo '<option value = "TGIF">TGIF</option>';
         echo '<option value = "Meeting">Meeting</option>';
         echo '</select><br>';
@@ -188,9 +187,9 @@ if (isset($_POST['archiveEvent'])) {
           
             echo '<br><select name = "eventtype">';
             echo '<option value = "Dinner Dance">Dinner Dance </option>';
-            echo '<option value = "First Friday">First Friday</option>';
-            echo '<option value = "First Thursday">First Thursday</option>';
             echo '<option value = "Novice Practice Dance">Novice Practice Dance</option>';
+            echo '<option value = "Dine and Dance">Dine and Dance</option>';
+           
             echo '<option value = "TGIF">TGIF</option>';  
             echo '<option value = "Meeting">Meeting</option>';
             echo '</select><br>';

@@ -147,6 +147,8 @@ if ($rowCount > 0) {
             'userid' => $userid,
             'email' => $email,
             'paid' => $paid,
+            'ddattenddance' => $ddattenddance,
+            'ddattenddinner' => $ddattenddinner,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);
@@ -540,6 +542,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Last Name    </th>';
                 echo '<th>Email</th>';
                 echo '<th>Paid</th>';
+                echo '<th>Attend Dinner</th>';
+                echo '<th>Attend Dance</th>';
                 echo '<th>Message</th>';
                 echo '<th>Date Reg</th> ';         
             echo '</tr>';
@@ -558,6 +562,16 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     echo "<td>".$eventRegistration['email']."</td>"; 
          
                     if ($eventRegistration['paid'] == true ) {
+                        echo "<td>&#10004;</td>"; 
+                      } else {
+                          echo "<td>&times;</td>"; 
+                      } 
+                     if ($eventRegistration['ddattenddinner'] == true ) {
+                        echo "<td>&#10004;</td>"; 
+                      } else {
+                          echo "<td>&times;</td>"; 
+                      } 
+                      if ($eventRegistration['ddattenddance'] == true ) {
                         echo "<td>&#10004;</td>"; 
                       } else {
                           echo "<td>&times;</td>"; 

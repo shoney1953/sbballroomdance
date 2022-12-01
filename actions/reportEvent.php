@@ -12,6 +12,8 @@ $user = new User($db);
 $regArr = [];
 $memReg = 0;
 $nonMemReg = 0;
+$attDance = 0;
+$attDinner = 0;
 
 
 class PDF extends FPDF
@@ -71,6 +73,8 @@ if (isset($_POST['submitEventRep'])) {
                 'userid' => $userid,
                 'email' => $email,
                 'paid' => $paid,
+                'ddattenddinner' => $ddattenddinner,
+                'ddattenddance' => $ddattenddance,
                 'message' => $message,
                 'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
             );
@@ -79,9 +83,11 @@ if (isset($_POST['submitEventRep'])) {
     }
 
     $pdf = new PDF();
+
     $pdf->AliasNbPages();
     $pdf->SetTextColor(26, 22, 22);
-    $pdf->AddPage();
+
+    $pdf->addPage('L');
     $pdf->SetFont('Arial', '', 10);
 
 if ($rowCount > 0) {
@@ -105,7 +111,9 @@ if ($rowCount > 0) {
             $pdf->Cell(60,5,"EMAIL",1,0,"L"); 
             $pdf->Cell(18,5,"MEMBER",1,0,"L"); 
             $pdf->Cell(10,5,"PAID",1,0,"L");
-            $pdf->Cell(35,5,"MESSAGE",1,1,"L");    
+            $pdf->Cell(20,5,"DINNER?",1,0,"L");
+            $pdf->Cell(20,5,"DANCE?",1,0,"L");
+            $pdf->Cell(45,5,"MESSAGE",1,1,"L");    
           
     
         }
@@ -114,12 +122,16 @@ if ($rowCount > 0) {
             $pdf->Ln(2);
             $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1); 
             $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
-            $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
-            $pdf->Cell(0, 5, "Total Non Member Registrations:  ".$nonMemReg, 0, 1);
+            $pdf->Cell(0, 5, "Total Member Registrations:          ".$memReg, 0, 1);
+            $pdf->Cell(0, 5, "Total Non Member Registrations:      ".$nonMemReg, 0, 1);
+            $pdf->Cell(0, 5, "Total Attending Dinner (if Dine and Dance):  ".$attDinner, 0, 1);
+            $pdf->Cell(0, 5, "Total Attending Dance  (if Dine and Dance):  ".$attDance, 0, 1);
             $regCount = 1;
             $paidNum = 0;
             $memReg = 0;
             $nonMemReg = 0;
+            $attDance = 0;
+            $attDinner = 0;
             $prevEvent = $reg['eventid'];
             $event_string = ' '.$reg['eventname'].'  '
             .$reg['eventdate'].' ';
@@ -132,13 +144,24 @@ if ($rowCount > 0) {
             $pdf->Cell(60,5,"EMAIL",1,0,"L");
             $pdf->Cell(18,5,"MEMBER",1,0,"L");
             $pdf->Cell(10,5,"PAID",1,0,"L");
-            $pdf->Cell(35,5,"MESSAGE",1,1,"L");      
+            $pdf->Cell(20,5,"DINNER?",1,0,"L");
+            $pdf->Cell(20,5,"DANCE?",1,0,"L");
+            $pdf->Cell(45,5,"MESSAGE",1,1,"L");      
     
          }
          $paid = 'Not Paid';
+
         if ($reg['paid'] == true) {
             $paidNum++;
           $paid = 'Paid';
+        }
+        if ($reg['ddattenddinner'] == true) {
+            $attDinner++;
+      
+        }
+        if ($reg['ddattenddance'] == true) {
+            $attDance++;
+ 
         }
         
           $pdf->Cell(35,5,$reg['firstname'],1,0,"L"); 
@@ -157,8 +180,18 @@ if ($rowCount > 0) {
         } else {
             $pdf->Cell(10,5,"NO ",1,0,"L");
         } 
+        if ($reg['ddattenddinner'] === '1') {
+            $pdf->Cell(20,5,"YES",1,0,"L");
+        } else {
+            $pdf->Cell(20,5,"NO ",1,0,"L");
+        } 
+        if ($reg['ddattenddance'] === '1') {
+            $pdf->Cell(20,5,"YES",1,0,"L");
+        } else {
+            $pdf->Cell(20,5,"NO ",1,0,"L");
+        } 
         
-        $pdf->Cell(35,5,$reg['message'],1,1,"L"); 
+        $pdf->Cell(45,5,$reg['message'],1,1,"L"); 
 
 
     }
@@ -166,8 +199,10 @@ if ($rowCount > 0) {
     $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1);
     $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
-    $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
-    $pdf->Cell(0, 5, "Total Non Member Registrations:  ".$nonMemReg, 0, 1);
+    $pdf->Cell(0, 5, "Total Member Registrations:          ".$memReg, 0, 1);
+    $pdf->Cell(0, 5, "Total Non Member Registrations:      ".$nonMemReg, 0, 1);
+    $pdf->Cell(0, 5, "Total Attending Dinner (if Dine and Dance):  ".$attDinner, 0, 1);
+    $pdf->Cell(0, 5, "Total Attending Dance (if Dine and Dance):  ".$attDance, 0, 1);
     $pdf->SetFont('Arial', '', 10);
 } else {
     $pdf->SetFont('Arial','B', 12);
@@ -175,7 +210,7 @@ if ($rowCount > 0) {
     $pdf->SetFont('Arial', '', 10);
 }
 $today = date("m-d-Y");
-$pdf->Output("I", "EventRegistrationReport.".$today);
+$pdf->Output("I", "EventRegistrationReport.".$today.".PDF");
 }
 
 $redirect = "Location: ".$_SESSION['adminurl'];

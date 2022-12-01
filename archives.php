@@ -167,6 +167,8 @@ if ($rowCount > 0) {
             'userid' => $userid,
             'email' => $email,
             'paid' => $paid,
+            'ddattenddinner' => $ddattenddinner,
+            'ddattenddance' => $ddattenddance,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);
@@ -219,7 +221,7 @@ if ($rowCount > 0) {
     <div class="container">
      
      <ul>
-        <li><a href="index.php">Back to Home</a></li>
+        <li><a href="administration.php">Back to Administration</a></li>
         <li><a href="#usersarchived">Archived Members</a></li>
         <li><a href="#eventsarchived">Archived Events</a></li>
         <li><a href="#eventregistrationsarchived">Archived Event Registrations</a></li>
@@ -375,6 +377,8 @@ if ($rowCount > 0) {
                 <th>Last Name    </th>
                 <th>Email</th>
                 <th>Paid</th>
+                <th>Attend Dinner</th>
+                <th>Attend Dance</th>
                 <th>Message</th>
                 <th>Date Reg</th>          
             </tr>
@@ -398,6 +402,16 @@ if ($rowCount > 0) {
                       } else {
                           echo "<td>&times;</td>"; 
                       } 
+                      if ($eventRegistration['ddattenddinner'] == true ) {
+                        echo "<td>&#10004;</td>"; 
+                      } else {
+                          echo "<td>&times;</td>"; 
+                      } 
+                      if ($eventRegistration['ddattenddance'] == true ) {
+                        echo "<td>&#10004;</td>"; 
+                      } else {
+                          echo "<td>&times;</td>"; 
+                      }
                     echo "<td>".$eventRegistration['message']."</td>";         
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
              

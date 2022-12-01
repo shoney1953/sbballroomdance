@@ -79,8 +79,10 @@ date_default_timezone_set("America/Phoenix");
     <footer >
 
 <div class="footer-section">
-
-    <p>Copyright &copy; 2022    Sheila Honey  - All Rights Reserved</p>
+<?php
+$year = date("Y"); 
+    echo '<p>Copyright &copy; '.$year.'    Sheila Honey  - All Rights Reserved</p>';
+?>
     
 </div> 
 

@@ -16,6 +16,8 @@ class EventRegistrationArch {
     public $userid;
     public $message;
     public $paid;
+    public $ddattenddinner;
+    public $ddattenddance;
 
 
     // Constructor with DB
@@ -28,7 +30,7 @@ class EventRegistrationArch {
     
       $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-      r.userid, r.paid, r.message, r.preveventid
+      r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance
       FROM ' . $this->table . ' r
       LEFT JOIN
         eventsarch c ON r.preveventid = c.previd
@@ -51,7 +53,7 @@ class EventRegistrationArch {
 
           $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-          r.userid, r.paid, r.message, r.preveventid
+          r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance
           FROM ' . $this->table . ' r
           LEFT JOIN
             eventsarch c ON r.preveventid = c.previd
@@ -80,6 +82,8 @@ class EventRegistrationArch {
           $this->email = $row['email'];
           $this->dateregistered = $row['dateregistered'];
           $this->paid = $row['paid'];
+          $this->ddattenddance = $row['ddattenddance'];
+          $this->ddattenddinner = $row['ddattenddinner'];
           $this->preveventid = $row['preveventid'];
           $this->message = $row['message'];
 
@@ -91,7 +95,7 @@ public function read_ByUserid($userid) {
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.userid, r.paid, r.message, r.preveventid
+    r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance
     FROM ' . $this->table . ' r
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
@@ -117,7 +121,7 @@ public function read_ByEmail($email) {
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.userid, r.paid, r.message, r.preveventid
+    r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance
     FROM ' . $this->table . ' r
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
@@ -143,7 +147,7 @@ public function read_ByEmail($email) {
 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.userid, r.paid, r.message, r.preveventid
+    r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance
     FROM ' . $this->table . ' r
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
@@ -170,6 +174,7 @@ public function read_ByEmail($email) {
           $query = 'INSERT INTO ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           userid = :userid, paid = :paid, message = :message, preveventid = :preveventid,
+          ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance,
           eventid = :eventid';
 
           // Prepare statement
@@ -192,6 +197,8 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':userid', $this->userid);
           $stmt->bindParam(':email', $this->email);
           $stmt->bindParam(':paid', $this->paid);
+          $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
+          $stmt->bindParam(':ddattenddance', $this->ddattenddance);
           $stmt->bindParam(':message', $this->message);
      
 
@@ -212,6 +219,7 @@ public function read_ByEmail($email) {
           $query = 'UPDATE ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           userid = :userid, paid = :paid, message = :message,
+          ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance,
           eventid = :eventid  WHERE id = :id';
    
 
@@ -235,6 +243,8 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':userid', $this->userid);
           $stmt->bindParam(':email', $this->email);
           $stmt->bindParam(':paid', $this->paid);
+          $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
+          $stmt->bindParam(':ddattenddance', $this->ddattenddance);
           $stmt->bindParam(':message', $this->message);
 
 

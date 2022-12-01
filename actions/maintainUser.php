@@ -72,7 +72,7 @@ if (!isset($_POST['userId'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <title>SBDC Ballroom Dance - User Administration</title>
+    <title>SBDC Ballroom Dance - Member Administration</title>
 </head>
 <body>
 
@@ -87,12 +87,12 @@ if (!isset($_POST['userId'])) {
         echo '<section id="seluser" class="content">';
         if ($updateUser || $deleteUser) {
 
-        echo '<h1 class="section-header">Selected User</h1><br>';
+        echo '<h1 class="section-header">Selected Member</h1><br>';
         echo '<table>';
         echo '<tr>';
         
                 echo '<th>ID   </th>';  
-                echo '<th>User Name</th>';
+                echo '<th>Member Name</th>';
                 echo '<th>Role</th>';
                 echo '<th>First Name </th>';
                 echo '<th>Last Name</th>';
@@ -114,7 +114,7 @@ if (!isset($_POST['userId'])) {
         echo '</table><br>';
         }
        if($updateUser) {
-        echo '<h1 class="section-header">Update User</h1><br>';
+        echo '<h1 class="section-header">Update Member</h1><br>';
         echo '<div class="form-grid1">';
         echo '<form method="POST" action="updateUser.php">';
         echo '<div class="form-grid-div">';
@@ -204,7 +204,7 @@ if (!isset($_POST['userId'])) {
         echo '<textarea name="notes" cols="50" rows="5" 
             >'.$user->notes.'</textarea><br><br>';
         echo '<button type="submit" name="submitUpdateUser">
-             Update the User</button><br>';
+             Update the Member</button><br>';
         echo '</div>';
         echo '</form>';
         echo '</div>';
@@ -214,7 +214,7 @@ if (!isset($_POST['userId'])) {
 
         if ($addUser) {
 
-            echo '<h1 class="section-header">Add User</h1><br>';
+            echo '<h1 class="section-header">Add Member</h1><br>';
             echo '<div class="form-grid1">';
             echo '<form method="POST" action="addUser.php">';
             echo '<div class="form-grid-div">';
@@ -268,7 +268,7 @@ if (!isset($_POST['userId'])) {
             echo '<textarea name="notes" cols="50" rows="5"></textarea><br><br>';
             echo '<br>';
             echo '<button type="submit" name="submitAddUser">
-                Add the User</button><br>';
+                Add the Member</button><br>';
             echo '</div>';
             echo '</form>';
             echo '</div>';
@@ -279,13 +279,13 @@ if (!isset($_POST['userId'])) {
         if($deleteUser) {
             echo '<div class="form-grid1">';
             echo '<p> You have selected to delete user id: '.$user->id.'<br>';
-            echo '<p> <strong>NOTE: Deleting a User will also delete all registrations!</strong><br>';
+            echo '<p> <strong>NOTE: Deleting a Member will also delete all registrations!</strong><br>';
             echo 'First name:  '.$user->firstname.'   Last Name: '.$user->lastname. '<br><br><strong><em> Please click the button below to confirm delete.</em></strong></p>';
         
             echo '<form method="POST" action="deleteUser.php">';
             echo '<input type="hidden" name="id" value="'.$user->id.'">';
        
-            echo '<button type="submit" name="submitDeleteUser">Delete the User</button><br>';
+            echo '<button type="submit" name="submitDeleteUser">Delete the Member</button><br>';
             
             echo '</form>';  
             echo '</div>';
