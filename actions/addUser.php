@@ -92,6 +92,7 @@ if (isset($_POST['submitAddUser'])) {
        $user->notes = htmlentities($_POST['notes']); 
        $user->phone1 = htmlentities($_POST['phone1']);
        $user->phone2 = htmlentities($_POST['phone2']);
+       $user->directorylist = 1;
        $formerUser = "no";
        if ($userArchive->getUserName($user->username, $user->email)) {
           $formerUser = "yes";
@@ -156,10 +157,9 @@ if (isset($_POST['submitAddUser'])) {
        $emailBody .= "<li>Your name, email, phone and address will be listed in our directory by default unless
        you indicated otherwise on your membership form. But if you
        wish not to list your information in the directory, you can go to your profile on the website
-       and set the option off or contact us and we will set it off.</li>"
+       and set the option off or contact us and we will set it off.</li>";
 
-     $emailBody .= "</ul>
-     <strong>At Times we have have room changes or cancellations, so it is important to check the Activities
+     $emailBody .= "</ul><strong>At Times we have have room changes or cancellations, so it is important to check the Activities
      Calendar on the website to verify the schedule.<br>$actLink<br></strong>";
 
      $emailBody .= "

@@ -229,6 +229,7 @@ class User {
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
+       
 
           // Clean data
           $this->firstname = htmlspecialchars(strip_tags($this->firstname));
@@ -245,7 +246,7 @@ class User {
           $this->phone1 = htmlspecialchars(strip_tags($this->phone1));
           $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
           $this->zip = htmlspecialchars(strip_tags($this->zip));
-          $this->directorylist = $this->directorylist;
+          $this->directorylist = 1;
 
 
           // Bind data
@@ -264,6 +265,7 @@ class User {
           $stmt->bindParam(':phone2', $this->phone2);
           $stmt->bindParam(':notes', $this->notes);
           $stmt->bindParam(':directorylist', $this->directorylist);
+
 
           // Execute query
           if ($stmt->execute()) {
