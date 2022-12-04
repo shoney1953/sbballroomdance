@@ -124,6 +124,7 @@ public function read_ByEmail($email) {
     // Create query
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance
     FROM ' . $this->table . ' r
@@ -153,6 +154,7 @@ public function read_ByEmail($email) {
       
 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance
     FROM ' . $this->table . ' r
