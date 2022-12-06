@@ -40,7 +40,8 @@ $user = new User($db);
 $updateUser = false;
 $deleteUser = false;
 $addUser = false;
-
+$passdefault = 'test1234';
+$userdefault = ' ';
 
 
 if (isset($_POST['userId'])) {
@@ -225,7 +226,7 @@ if (!isset($_POST['userId'])) {
             echo '<label for="email">Email -- Must not be a Duplicate</label><br>';
             echo '<input type="email" name="email" ><br>';
             echo '<label for="username">Username -- Must not be a duplicate</label><br>';
-            echo '<input type="text" name="username" ><br>';
+            echo '<input type="text" name="username" value="'.$userdefault.'" ><br>';
             echo '<label for="role">Role</label><br>';
             echo '<select name = "role">';
             echo '<option value = "MEMBER">Normal Member Functions</option>';
@@ -234,9 +235,9 @@ if (!isset($_POST['userId'])) {
             echo '<option value = "INSTRUCTOR">Can Maintain Classes</option>';
             echo '</select><br>';
             echo '<label for="initPass">Initial Password</label><br>';
-            echo '<input type="password" name="initPass" minlength="8"><br>';
+            echo '<input type="password" name="initPass" minlength="8" value="'.$passdefault.'"><br>';
             echo '<label for="initPass2">Retype Initial Password</label><br>';
-            echo '<input type="password" name="initPass2" minlength="8"><br>';
+            echo '<input type="password" name="initPass2" minlength="8" value="'.$passdefault.'"><br>';
         
             echo '<label for="hoa">HOA</label><br>';
             echo '<select name = "hoa">';

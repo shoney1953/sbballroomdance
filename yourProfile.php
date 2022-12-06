@@ -126,7 +126,7 @@ if ($rowCount > 0) {
      
      <ul>
         <li><a href="index.php">Back to Home</a></li>
-
+        <li><a href="#yourregistrations">Your Registrations</a></li>
     </ul>
      </div>
 </nav>  
@@ -289,7 +289,7 @@ if ($rowCount > 0) {
         <form method="POST" action="actions/updateUserPass.php">
     
         <h4>Change Password</h4>
-        <label for="oldpassword">Enter Old Password</label><br>
+        <label for="oldpassword">Enter Current Password</label><br>
         <input type="password" name="oldpassword" required minlength="8"><br>
         <br>
         <label for="newpassword">Enter New Password minimum 8</label><br>
@@ -308,11 +308,13 @@ if ($rowCount > 0) {
         </div>
       
        </div>
-   
+       <section id="yourregistrations" class="content">
+        <h1> Your Registrations</h1>
     <div class="form-grid3">
     <div class="form-grid-div">
    
     <br>
+
         <h4 class="section-header">Class Registrations</h4><br>    
         <table>
             <tr>
@@ -411,6 +413,9 @@ if ($rowCount > 0) {
     </div>
     </div>
     </div>
+    </div>
+    </div>
+        </section>
     <footer >
 
 <?php

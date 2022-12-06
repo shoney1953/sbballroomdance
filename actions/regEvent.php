@@ -74,7 +74,7 @@ if (isset($_POST['submitEventReg'])) {
                 if ($event['eventform']) {
                     $actLink= "<a href='".$event['eventform']."'>
        Click to view event Form</a><br>";
-                   $emailBody .= 'There is a form to submit registration details and payment.<br>';
+                   $emailBody .= 'There is a signup form to submit registration details and payment.<br>';
                    $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
                     on the website to open the form. Or<br>$actLink";
                    $toCC2 = 'treasurer@sbballroomdance.com';
@@ -84,14 +84,26 @@ if (isset($_POST['submitEventReg'])) {
                     $coststr =  "Member Event Cost is approximately: "
                           .$fmt->formatCurrency($event['eventcost'], 'USD')."<br>
                           Check the form for specific costs.<br>";
+           
                     $emailBody .= $coststr;
                     $toCC2 = 'treasurer@sbballroomdance.com';
+                    if (!$event['eventform']) {
+                        $emailBody .= '<br>The signup form with meal choices and specific costs
+                        is not currently available, but
+                        you will receive an email when it is. The email will have the signup form
+                        attached.<br>';
+                    }
                  }
                 if ($message) {
                     $emailBody .= '<br> MESSAGE from Registrant: <br>';
                     $emailBody .= $message;
                     $emailBody .= '<br> <br>';
                 }
+                $emailBody .= '<br>You may login to the website and look at 
+                <strong>Your Profile</strong> to see which events and
+                classes you have registered for, 
+                and whether we have received payment for those that require it.';
+                $emailBody .= '<br> <br>';
           
                 // do the insert(s)
                 $eventReg->firstname = $regFirstName1;

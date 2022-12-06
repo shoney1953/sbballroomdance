@@ -18,6 +18,8 @@ class EventRegistrationArch {
     public $paid;
     public $ddattenddinner;
     public $ddattenddance;
+    public $mealchoice;
+    public $dietaryrestriction;
 
 
     // Constructor with DB
@@ -30,7 +32,8 @@ class EventRegistrationArch {
     
       $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-      r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance
+      r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
+      r.mealchoice, r.dietaryrestriction
       FROM ' . $this->table . ' r
       LEFT JOIN
         eventsarch c ON r.preveventid = c.previd
@@ -50,10 +53,10 @@ class EventRegistrationArch {
     // Get Single Danceevent
     public function read_single() {
       
-
           $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-          r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance
+          r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
+          r.mealchoice, r.dietaryrestriction
           FROM ' . $this->table . ' r
           LEFT JOIN
             eventsarch c ON r.preveventid = c.previd
@@ -84,6 +87,8 @@ class EventRegistrationArch {
           $this->paid = $row['paid'];
           $this->ddattenddance = $row['ddattenddance'];
           $this->ddattenddinner = $row['ddattenddinner'];
+          $this->ddattenddinner = $row['mealchoice'];
+          $this->ddattenddinner = $row['dietaryrestriction'];
           $this->preveventid = $row['preveventid'];
           $this->message = $row['message'];
 
@@ -95,7 +100,8 @@ public function read_ByUserid($userid) {
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance
+    r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
+    r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
@@ -121,7 +127,8 @@ public function read_ByEmail($email) {
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance
+    r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
+    r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
@@ -147,7 +154,8 @@ public function read_ByEmail($email) {
 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance
+    r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
+    r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
@@ -175,6 +183,7 @@ public function read_ByEmail($email) {
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           userid = :userid, paid = :paid, message = :message, preveventid = :preveventid,
           ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance,
+          mealchoice = :mealchoice, dietaryrestriction = :dietaryrestriction,
           eventid = :eventid';
 
           // Prepare statement
@@ -187,6 +196,9 @@ public function read_ByEmail($email) {
           $this->userid = htmlspecialchars(strip_tags($this->userid));
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->message = htmlspecialchars(strip_tags($this->message));
+          $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
+          $this->dietaryrestriction = 
+             htmlspecialchars(strip_tags($this->dietaryrestriction));
 
 
           // Bind data
@@ -200,6 +212,8 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
           $stmt->bindParam(':ddattenddance', $this->ddattenddance);
           $stmt->bindParam(':message', $this->message);
+          $stmt->bindParam(':mealchoice', $this->mealchoice);
+          $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
      
 
           // Execute query
@@ -220,6 +234,7 @@ public function read_ByEmail($email) {
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           userid = :userid, paid = :paid, message = :message,
           ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance,
+          mealchoice = :mealchoice, dietaryrestriction = :dietaryrestriction,
           eventid = :eventid  WHERE id = :id';
    
 
@@ -233,6 +248,10 @@ public function read_ByEmail($email) {
           $this->userid = htmlspecialchars(strip_tags($this->userid));
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->message = htmlspecialchars(strip_tags($this->message));
+          $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
+          $this->dietaryrestriction = 
+             htmlspecialchars(strip_tags($this->dietaryrestriction));
+          
 
 
           // Bind data
@@ -246,6 +265,8 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
           $stmt->bindParam(':ddattenddance', $this->ddattenddance);
           $stmt->bindParam(':message', $this->message);
+          $stmt->bindParam(':mealchoice', $this->mealchoice);
+          $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
 
 
           // Execute query

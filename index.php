@@ -190,7 +190,6 @@ if (isset($_SESSION['username'])) {
  
      <ul>
         <li><a href="#" >Home</a></li>
-        <li><a href="#about">About</a></li>
         <li><a href="#">Activities &dtrif;</a>
         <ul class="dropdown">
             <li><a href="#events">Events</a></li>
@@ -198,6 +197,7 @@ if (isset($_SESSION['username'])) {
             <li><a href="#calendar">Activities Calendar</a></li>
         </ul>
         </li>
+        <li><a href="#about">About Us</a></li>
 
         <li><a href="#contact">Contact Us</a></li>
         <li><a href="#">Volunteer &dtrif;</a>
@@ -219,15 +219,18 @@ if (isset($_SESSION['username'])) {
     <?php
    
     if (isset($_SESSION['username'])) {
+        
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {
               echo ' <li><a href="yourProfile.php">
-              Your Profile</a></li>';
+              <img src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
+              <br>Your Profile</a></li>';
+              echo ' <li><a  style="color: red;font-weight: bold;font-size: medium href="logout.php">Logout</a></li>'; 
               echo ' <li><a href="#directory">
               Member Directory</a></li>';
             }
         }
-        echo ' <li><a href="logout.php">Logout</a></li>'; 
+
         if (isset($_SESSION['role'])) {
             if (($_SESSION['role'] == 'ADMIN') ||
              ($_SESSION['role'] == 'SUPERADMIN') ||
@@ -238,7 +241,7 @@ if (isset($_SESSION['username'])) {
         }
     } else {
       
-        echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Member or Visitor Login</a></li>';
+        echo '<li><a" href="login.php">Member or Visitor Login</a></li>';
     }
     ?>
         </ul> 
