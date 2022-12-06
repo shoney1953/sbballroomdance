@@ -225,7 +225,7 @@ if (isset($_SESSION['username'])) {
               echo ' <li><a href="yourProfile.php">
               <img src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
               <br>Your Profile</a></li>';
-              echo ' <li><a  style="color: red;font-weight: bold;font-size: medium href="logout.php">Logout</a></li>'; 
+              echo ' <li><a  style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
               echo ' <li><a href="#directory">
               Member Directory</a></li>';
             }
