@@ -217,7 +217,7 @@ if (isset($_SESSION['username'])) {
      <div class="container">
      <ul>
     <?php
-   
+
     if (isset($_SESSION['username'])) {
         
         if (isset($_SESSION['role'])) {
@@ -240,8 +240,8 @@ if (isset($_SESSION['username'])) {
             }
         }
     } else {
-      
-        echo '<li><a" href="login.php">Member or Visitor Login</a></li>';
+
+        echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Member or Visitor Login</a></li>';
     }
     ?>
         </ul> 
