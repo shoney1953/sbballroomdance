@@ -73,14 +73,14 @@ if (isset($_POST['submitArchive'])) {
                 'email' => $email,
                 'dateregistered' => $dateregistered
             );
-          
+
             $classRegArch->archclassid = $reg_item['classid'];
             $classRegArch->firstname = $reg_item['firstname'];
             $classRegArch->lastname = $reg_item['lastname'];
             $classRegArch->email = $reg_item['email'];
             $classRegArch->userid = $reg_item['userid'];
             $classRegArch->dateregistered = $reg_item['dateregistered'];
-            $classRegArch->classname = $reg_item['classname'];
+            $classRegArch->classname = $reg_item['classname'];     
             $classRegArch->classdate = $reg_item['classdate'];
             $classRegArch->classtime = $reg_item['classtime'];
 
@@ -99,8 +99,8 @@ if (isset($_POST['submitArchive'])) {
    
    
     
-$redirect = "Location: ".$_SESSION['adminurl']."#classes";
+/* $redirect = "Location: ".$_SESSION['adminurl']."#classes";
 header($redirect);
-exit; 
+exit;  */
  
 ?>

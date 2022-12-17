@@ -62,6 +62,7 @@ if(isset($_POST['archiveClass'])) {
     $archiveClass = $_POST['archiveClass'];
 
      if (isset($_POST['archId'])) {
+        if ($_POST['archId']) {
         $class->id = $_POST['archId'];;
         $class->read_single(); 
         $class_item = array(
@@ -78,8 +79,9 @@ if(isset($_POST['archiveClass'])) {
             'numregistered' => $class->numregistered
         );
         array_push($classesArch, $class_item);
-        $_SESSION['classesArch'] = $classesArch;
 
+        $_SESSION['classesArch'] = $classesArch;
+    }
      }
      if (isset($_POST['archDate'])) {
        $archDate = $_POST['archDate'];
@@ -108,6 +110,7 @@ if(isset($_POST['archiveClass'])) {
                        "classnotes" => $classnotes,
                        'numregistered' => $numregistered
                    );
+        
                    array_push($classesArch, $class_item);
 
                }
