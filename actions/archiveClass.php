@@ -99,8 +99,8 @@ if (isset($_POST['submitArchive'])) {
    
    
     
-/* $redirect = "Location: ".$_SESSION['adminurl']."#classes";
+$redirect = "Location: ".$_SESSION['adminurl']."#classes";
 header($redirect);
-exit;  */
+exit; 
  
 ?>
