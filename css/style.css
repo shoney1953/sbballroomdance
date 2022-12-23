@@ -270,6 +270,14 @@ table {
   justify-content: left;
   word-wrap: break-word;
 }
+table_small {
+  width: 60%;
+  border-spacing: 5px;
+  table-layout: auto;
+  align-items: left;
+  justify-content: left;
+  word-wrap: break-word;
+}
 td {
   text-align: left;
 }

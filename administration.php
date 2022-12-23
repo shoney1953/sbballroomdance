@@ -383,11 +383,15 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<form method="POST" action="actions/maintainEvent.php">';
         echo '<input type="checkbox" name="updateEvent">';
         echo '<label for="updateEvent">Update an Event </label><br>';   
+        echo '<input type="checkbox" name="updateMealChoices">';
+        echo '<label for="updateMealChoices">
+           Update or Add Meal choice for a Dinner Dance </label><br>';   
         echo '<input type="checkbox" name="deleteEvent">';
         echo '<label for="deleteEvent">Delete an Event </label><br>';
         echo '<input type="text" class="text-small" name="eventId" >';
         echo '<label for="eventId"><em> &larr; 
-            Specify Event ID from Table below for Update or Delete: 
+            Specify Event ID from Table below for Update or Delete <br>
+            or Update/Add Meal Choices: 
             </em> </label>';
 
         echo '<p>OR</p>';

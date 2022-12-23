@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+require_once 'config/Database.php';
+require_once 'models/DinnerMealChoices.php';
 $allEvents = $_SESSION['allEvents'];
 $eventRegistrations = $_SESSION['eventRegistrations'];
 $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
@@ -9,6 +10,10 @@ if (!isset($_SESSION['username'])) {
     $redirect = "Location: ".$_SESSION['homeurl'];
     header($redirect);
 }
+$database = new Database();
+$db = $database->connect();
+$dinnermealchoices = new DinnerMealChoices($db);
+$mealChoices = [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,13 +68,53 @@ echo '<div class="container-section ">';
                     echo "<td>".$event['eventcost']."</td>";
                     echo "<td>".$event['eventnumregistered']."</td>";
                   echo "</tr>";
+                  echo '</table>';
+                  echo '<br>';
+                  if ($event['eventtype'] === 'Dinner Dance') {
+                    $result = $dinnermealchoices->read_DinnerDanceId($event['id']);
+                    $rowCount = $result->rowCount();
+       
+                    $num_mealchoices = $rowCount;
+             
+                        if ($rowCount > 0) {
+             
+                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                                extract($row);
+                                $meal_item = array(
+                                 'id' => $id,
+                                 'mealchoice' => $mealchoice,
+                                 'memberprice' => $memberprice,
+                                 'guestprice' => $guestprice,
+                                 'dinnerdanceid' => $dinnerdanceid,
+
+                             );
+                                array_push($mealChoices, $meal_item);
+             
+                            }
+                            echo '<br><br><table class="table_small">';
+                            echo '<tr>';
+                            echo '<th>Meal Choice</th>'; 
+                            echo '<th>Member Price</th>';
+                            echo '<th>Guest Price</th>';
+                             echo '</tr>';
+                            foreach ($mealChoices as $mealchoice) {
+          
+                                echo '<tr>';
+                                echo "<td>".$mealchoice['mealchoice']."</td>";
+                                echo "<td>".$mealchoice['memberprice']."</td>";
+                                echo "<td>".$mealchoice['guestprice']."</td>";
+                                echo '</tr>';
+                             }
+                             echo '</table>';
+                             echo '<br>';
+                } 
+                  }
               }
          
         
 
             }
-            echo '</table>';
-            echo '<br>';
+    
 
                
                 echo '<table>';
