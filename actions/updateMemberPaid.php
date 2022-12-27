@@ -2,6 +2,7 @@
 session_start();
 require_once '../includes/sendEmail.php';
 require_once '../config/Database.php';
+require_once '../models/User.php';
 require_once '../models/MemberPaid.php';
 date_default_timezone_set("America/Phoenix");
 $nextYear = date('Y', strtotime('+1 year'));
@@ -35,6 +36,8 @@ if (isset($_POST['nextyear'])) {
 $database = new Database();
 $db = $database->connect();
 $memberPaid = new MemberPaid($db);
+$user = new User($db);
+$userEmail = '';
 
 
 if (isset($_POST['updateMemPaid'])) {
@@ -44,24 +47,27 @@ if (isset($_POST['updateMemPaid'])) {
         $ckboxId = "pd".$memStat['id'];
         if (isset($_POST["$ckboxId"])) {
             $memberPaid->update_paid($memStat['id']);
-            if (isset($_POST['nextyear'])) {
-                sendThanks($memStat);
-            }
+            $user->id = $memStat['userid'];
+            $user->read_single();
+            $userEmail = $user->email;
+            sendThanks($memStat,$userEmail);
+          
         }
        
     }
 
 
- $redirect = "Location: ".$_SESSION['adminurl']."#membership";
+  $redirect = "Location: ".$_SESSION['adminurl']."#membership";
 header($redirect);
-exit;
+exit; 
 }
-function sendThanks($memStat) {
+function sendThanks($memStat,$userEmail) {
+
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toName = $memStat['firstname']." ".$memStat['lastname'] ;
     $mailSubject = 'Thanks for Renewing your membership at SBDC Ballroom Dance Club!';
-    $toCC2 = ' ';
-    $replyTopic = "Welcome";
+    $toCC2 = 'dancedirector@sbballroomdance.com';
+    $replyTopic = "Thanks for your renewal!";
        $replyEmail = 'sbbdcschedule@gmail.com';
        $actLink
            = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
@@ -91,7 +97,7 @@ function sendThanks($memStat) {
 
 
        sendEmail(
-        $memStat['email'], 
+        $userEmail, 
         $toName, 
         $fromCC,
         $fromEmailName,
