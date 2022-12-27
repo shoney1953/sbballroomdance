@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toCC2 = 'secretary@sbballroomdance.com';
     $toName = $contact->firstname.' '.$contact->lastname; 
-    $replyEmail = 'sbbdcschedule@gmail.com';
+    $replyEmail = 'webmaster@gmail.com';
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
     Click to view Activities Calendar</a><br>";
     if ($existingUser === 'NO') {
@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
         $replyTopic = "Message from Member"; 
     }
 
-    $replyEmail = 'sbdcmailer@sbballroomdance.com';
+    $replyEmail = 'webmaster@sbballroomdance.com';
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
     Click to view Activities Calendar</a><br>";
 

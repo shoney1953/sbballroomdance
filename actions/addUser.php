@@ -112,9 +112,9 @@ if (isset($_POST['submitAddUser'])) {
        } else {
         $mailSubject = 'Thanks for Joining us at SBDC Ballroom Dance Club!';
        }
-       $toCC2 = '';
+       $toCC2 = 'dancedirector@sbballroomdance.com';
        $replyTopic = "Welcome";
-       $replyEmail = 'sbdcmailer@sbballroomdance.com';
+       $replyEmail = 'webmaster@sbballroomdance.com';
        $actLink
            = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
        Click to view Activities Calendar</a><br>";
