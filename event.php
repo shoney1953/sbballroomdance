@@ -92,6 +92,7 @@ echo '<div class="container-section ">';
              
                             }
                             echo '<br><br><table class="table_small">';
+                            echo '<h3>Meal Choices</h3>';
                             echo '<tr>';
                             echo '<th>Meal Choice</th>'; 
                             echo '<th>Member Price</th>';
@@ -108,22 +109,29 @@ echo '<div class="container-section ">';
                              echo '</table>';
                              echo '<br>';
                 } 
-                  }
+         
               }
          
         
-
-            }
+            
+            
     
 
-               
+              echo '<h3>Registrations</h3>';
                 echo '<table>';
                     echo '<tr>';
                      
                         echo '<th>First Name</th>';
                         echo '<th>Last Name    </th>';
                         echo '<th>Email</th>';
-                        echo '<th>Paid</th>';
+                
+                        if ($event['eventtype'] === 'Dinner Dance') {
+                           echo '<th>Paid</th>';
+                        }
+                        if ($event['eventtype'] === 'Dine and Dance') {
+                            echo '<th>Attend<br>Dinner?</th>';
+                            echo '<th>Attend<br>Dance?</th>';
+                        }
                         echo '<th>Message</th>';
                         echo '<th>Date Reg</th> ';         
                     echo '</tr>';
@@ -132,17 +140,32 @@ echo '<div class="container-section ">';
                     foreach($eventRegistrations as $eventRegistration) {
                   
                          if ($eventRegistration['eventid'] === $_GET['id']) {
+                  
                           echo "<tr>";
                         
                             echo "<td>".$eventRegistration['firstname']."</td>";
                             echo "<td>".$eventRegistration['lastname']."</td>";
                             echo "<td>".$eventRegistration['email']."</td>"; 
-                 
+                            if ($event['eventtype'] === 'Dinner Dance') {
                             if ($eventRegistration['paid'] == true ) {
                                 echo "<td>&#10004;</td>"; 
                               } else {
                                   echo "<td>&times;</td>"; 
                               } 
+                            }
+                            if ($event['eventtype'] === 'Dine and Dance') {
+                                if ($eventRegistration['ddattenddinner'] == true ) {
+                                    echo "<td>&#10004;</td>"; 
+                                } else {
+                                    echo "<td>&times;</td>"; 
+                                } 
+                                if ($eventRegistration['ddattenddance'] == true ) {
+                                    echo "<td>&#10004;</td>"; 
+                                } else {
+                                    echo "<td>&times;</td>"; 
+                                } 
+                        
+                            }
                             echo "<td>".$eventRegistration['message']."</td>";         
                             echo "<td>".$eventRegistration['dateregistered']."</td>";
                      
@@ -153,8 +176,11 @@ echo '<div class="container-section ">';
                 echo '</table>';
                 echo '<br><br>';
             }
+        }
             echo '</section>'; 
             echo '</div>'; 
+    }
+
  ?> 
 
      <footer >

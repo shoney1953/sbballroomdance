@@ -259,12 +259,16 @@ if (isset($_SESSION['username'])) {
                  and opportunities to dance and socialize.</p><br>
             <p>We are comprised of members from both SaddleBrooke HOA 1 and HOA 2.</p><br>
             <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
-               are also part of our repetoire. </p><br>
-        </div>
+               are also part of our repetoire. </p><br><br>
+ 
+    </div>
+    
     </div>
     <div class="container-section ">
     <section id="about" class="content">  
-        <br>   
+    <h1><a style="color: red" href="img/Membership Form 2023 Dance Club.pdf"><strong>
+            <em>Click Here for Membership Form </em></strong></a></h1>
+    
         <h1 class="section-header">What We are About</h1>
 
         <p>If you love all kinds of dancing, we're the club for you. </p>
@@ -343,8 +347,7 @@ if (isset($_SESSION['username'])) {
         <br>
         <ul>
 
-        <li class="li-none"><a style="color: red" href="img/Membership Form 2023 Dance Club.pdf"><strong><em>Click Here for Membership Form </em></strong></a></li><br>
-        </ul>
+       
         <a href="https://drive.google.com/file/d/1AxOsZTmqIujc3ytk4KR-EJ__4UQXDdUd/view?usp=sharing">
          Click Here Read the Club By Laws.
         </a><br><br>
