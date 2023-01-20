@@ -1040,6 +1040,17 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
 
         echo '<section id="membership" class="content">';
         echo ' <h3 class="section-header">Membership Maintenance</h3> ';
+        echo '<div class="form-grid-div">';  
+        echo '<form target="_blank" method="POST" action="actions/reportPaid.php">'; 
+        echo '<h4>Report Membership</h4>';
+        echo '<input type="checkbox" name="reportPaid">';
+        echo '<label for="reportUsers">Report Membership</label><br>';    
+        echo '<label for="year" >Reporting Year</label><br>';
+        echo '<input type="number" min=2022 maxlength=4 name="year" 
+             value="'.$thisYear.'"><br>';
+             echo '<button type="submit" name="submitPaidRep">Report</button>';   
+             echo '</div> ';  
+             echo '</form>';
         echo '<div class="form-grid3">';
         echo '<div class="form-grid-div">';  
         echo '<form method="POST" action="actions/updateMemberPaid.php">';
@@ -1128,20 +1139,20 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<button type="submit" name="updateMemPaid">UPDATE</button>'; 
             echo '</form>';
             echo '</div> ';  
-        echo '<div class="form-grid-div">';  
-        echo '<form target="_blank" method="POST" action="actions/reportPaid.php">'; 
-        echo '<h4>Report Membership</h4>';
-        echo '<input type="checkbox" name="reportPaid">';
-        echo '<label for="reportUsers">Report Membership</label><br>';    
-        echo '<label for="year" >Reporting Year</label><br>';
-        echo '<input type="number" min=2022 maxlength=4 name="year" 
-             value="'.$thisYear.'"><br>';
-        echo '<input type="hidden" name="email" value="'.$memStat['email'].'"><br>';
-        echo '<input type="hidden" name="firstname" value="'.$memStat['firstname'].'"><br>';
-        echo '<input type="hidden" name="lastname" value="'.$memStat['lastname'].'"><br>';
-        echo '<button type="submit" name="submitPaidRep">Report</button>';   
-        echo '</div> ';  
-        echo '</form>';
+      /*       echo '<div class="form-grid-div">';  
+            echo '<form target="_blank" method="POST" action="actions/reportPaid.php">'; 
+            echo '<h4>Report Membership</h4>';
+            echo '<input type="checkbox" name="reportPaid">';
+            echo '<label for="reportUsers">Report Membership</label><br>';    
+            echo '<label for="year" >Reporting Year</label><br>';
+            echo '<input type="number" min=2022 maxlength=4 name="year" 
+                 value="'.$thisYear.'"><br>'; */
+            echo '<input type="hidden" name="email" value="'.$memStat['email'].'"><br>';
+            echo '<input type="hidden" name="firstname" value="'.$memStat['firstname'].'"><br>';
+            echo '<input type="hidden" name="lastname" value="'.$memStat['lastname'].'"><br>';
+  
+            echo '</div> ';  
+            echo '</form>';
         echo '</section>';
         echo '</div>';
    
