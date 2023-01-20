@@ -89,7 +89,7 @@ if ($memCount > 0) {
     $pdf->Cell(20,5,"YEAR",1,0,"L");
     $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
     $pdf->Cell(30,5,"LAST NAME",1,0,"L");
-    $pdf->Cell(50,5,"EMAIL",1,0,"L");
+    $pdf->Cell(60,5,"EMAIL",1,0,"L");
     $pdf->Cell(20,5,"PAID",1,1,"L");
     $pdf->SetFont('Arial', '', 10);
     foreach ($memPaidArr as $mem) {
@@ -99,7 +99,7 @@ if ($memCount > 0) {
          $pdf->Cell(20,5,$mem['year'],1,0,"L");
          $pdf->Cell(30,5,$mem['firstname'],1,0,"L");
          $pdf->Cell(30,5,$mem['lastname'],1,0,"L");
-         $pdf->Cell(50,5,$mem['email'],1,0,"L");
+         $pdf->Cell(60,5,$mem['email'],1,0,"L");
          if ($mem['paid'] == 1) {
             $pdf->Cell(20,5,"YES",1,1,"L");
             $totPaid++;
@@ -120,7 +120,7 @@ if ($memCount > 0) {
     $pdf->Cell(20,5,"YEAR",1,0,"L");
     $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
     $pdf->Cell(30,5,"LAST NAME",1,0,"L");
-    $pdf->Cell(50,5,"EMAIL",1,0,"L");
+    $pdf->Cell(60,5,"EMAIL",1,0,"L");
     $pdf->Cell(20,5,"PAID",1,1,"L");
     $pdf->SetFont('Arial', '', 10);
     foreach ($memNotPaidArr as $mem) {
@@ -130,7 +130,7 @@ if ($memCount > 0) {
          $pdf->Cell(20,5,$mem['year'],1,0,"L");
          $pdf->Cell(30,5,$mem['firstname'],1,0,"L");
          $pdf->Cell(30,5,$mem['lastname'],1,0,"L");
-         $pdf->Cell(50,5,$mem['email'],1,0,"L");
+         $pdf->Cell(60,5,$mem['email'],1,0,"L");
          if ($mem['paid'] == 1) {
             $pdf->Cell(20,5,"YES",1,1,"L");
             $totPaid++;
