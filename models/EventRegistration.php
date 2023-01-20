@@ -89,7 +89,7 @@ class EventRegistration {
           $this->message = $row['message'];
           $this->ddattenddinner = $row['ddattenddinner'];
           $this->ddattenddance = $row['ddattenddance'];
-          $this->mealchoice = $row['mealchoice'];
+          // $this->mealchoice = $row['mealchoice'];
           $this->dietaryrestriction = $row['dietaryrestriction'];
           return true;
           }
@@ -196,7 +196,7 @@ public function read_ByEmail($email) {
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           userid = :userid, paid = :paid, message = :message,
           ddattenddinner = :ddattenddinner,
-          mealchoice = :mealchoice, dietaryrestriction = :dietaryrestriction,
+          dietaryrestriction = :dietaryrestriction,
           eventid = :eventid';
 
           // Prepare statement
@@ -209,7 +209,7 @@ public function read_ByEmail($email) {
           $this->userid = htmlspecialchars(strip_tags($this->userid));
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->message = htmlspecialchars(strip_tags($this->message));
-          $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
+          // $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
           $this->dietaryrestriction = 
              htmlspecialchars(strip_tags($this->dietaryrestriction));
 
@@ -223,7 +223,7 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':paid', $this->paid);
           $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
           $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
-          $stmt->bindParam(':mealchoice', $this->mealchoice);
+          // $stmt->bindParam(':mealchoice', $this->mealchoice);
           $stmt->bindParam(':message', $this->message);
      
 
@@ -245,7 +245,7 @@ public function read_ByEmail($email) {
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           userid = :userid, paid = :paid, message = :message,
           ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance, 
-          mealchoice = :mealchoice, dietaryrestriction = :dietaryrestriction,
+          dietaryrestriction = :dietaryrestriction,
           eventid = :eventid  WHERE id = :id';
    
 
@@ -259,7 +259,7 @@ public function read_ByEmail($email) {
           $this->userid = htmlspecialchars(strip_tags($this->userid));
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->message = htmlspecialchars(strip_tags($this->message));
-          $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
+          // $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
           $this->dietaryrestriction = 
              htmlspecialchars(strip_tags($this->dietaryrestriction));
 
@@ -275,7 +275,7 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
           $stmt->bindParam(':ddattenddance', $this->ddattenddance);
           $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
-          $stmt->bindParam(':mealchoice', $this->mealchoice);
+          // $stmt->bindParam(':mealchoice', $this->mealchoice);
           $stmt->bindParam(':message', $this->message);
 
 

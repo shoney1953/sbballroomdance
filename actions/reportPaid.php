@@ -9,8 +9,10 @@ $db = $database->connect();
 $mem = new MemberPaid($db);
 
 $memArr = [];
+$memNotPaidArr = [];
+$memPaidArr = [];
 $totPaid = 0;
-
+$totNotPaid = 0;
 
 class PDF extends FPDF
 {
@@ -59,11 +61,19 @@ if (isset($_POST['submitPaidRep'])) {
                 'id' => $id,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
+                'email' => $email,
                 'year' => $year,
                 'paid' => $paid
    
             );
             array_push($memArr, $mem_item);
+            if ($mem_item['paid']) {
+                array_push($memPaidArr, $mem_item);
+            }
+            else {
+                array_push($memNotPaidArr, $mem_item);
+                $totNotPaid++;
+            }
         }
     }
 
@@ -75,18 +85,21 @@ if (isset($_POST['submitPaidRep'])) {
 
 if ($memCount > 0) {
     $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(20,10,"PAID UP MEMBERS",0,1,"L");
     $pdf->Cell(20,5,"YEAR",1,0,"L");
     $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
     $pdf->Cell(30,5,"LAST NAME",1,0,"L");
+    $pdf->Cell(50,5,"EMAIL",1,0,"L");
     $pdf->Cell(20,5,"PAID",1,1,"L");
     $pdf->SetFont('Arial', '', 10);
-    foreach ($memArr as $mem) {
+    foreach ($memPaidArr as $mem) {
 
 
          // $pdf->Cell(0, 5, $user_string1, 0, 1);
          $pdf->Cell(20,5,$mem['year'],1,0,"L");
          $pdf->Cell(30,5,$mem['firstname'],1,0,"L");
          $pdf->Cell(30,5,$mem['lastname'],1,0,"L");
+         $pdf->Cell(50,5,$mem['email'],1,0,"L");
          if ($mem['paid'] == 1) {
             $pdf->Cell(20,5,"YES",1,1,"L");
             $totPaid++;
@@ -99,8 +112,40 @@ if ($memCount > 0) {
     }
     $pdf->SetFont('Arial','B', 10);
     $pdf->Ln(2);
-    $pdf->Cell(0, 5, "Total Members:  ".$memCount, 0, 1);
-    $pdf->Cell(0, 5, "Total Members Paid:  ".$totPaid, 0, 1);
+    $pdf->Cell(0, 8, "Total Members Paid:  ".$totPaid, 0, 1);
+    $pdf->Cell(0, 8, "Total Members:  ".$memCount, 0, 1);
+    $pdf->AddPage();
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(20,10,"MEMBERS NOT PAID",0,1,"L");
+    $pdf->Cell(20,5,"YEAR",1,0,"L");
+    $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
+    $pdf->Cell(30,5,"LAST NAME",1,0,"L");
+    $pdf->Cell(50,5,"EMAIL",1,0,"L");
+    $pdf->Cell(20,5,"PAID",1,1,"L");
+    $pdf->SetFont('Arial', '', 10);
+    foreach ($memNotPaidArr as $mem) {
+
+
+         // $pdf->Cell(0, 5, $user_string1, 0, 1);
+         $pdf->Cell(20,5,$mem['year'],1,0,"L");
+         $pdf->Cell(30,5,$mem['firstname'],1,0,"L");
+         $pdf->Cell(30,5,$mem['lastname'],1,0,"L");
+         $pdf->Cell(50,5,$mem['email'],1,0,"L");
+         if ($mem['paid'] == 1) {
+            $pdf->Cell(20,5,"YES",1,1,"L");
+            $totPaid++;
+         } else {
+            $pdf->Cell(20,5,"NO",1,1,"L");
+         }
+  
+
+
+    }
+    $pdf->SetFont('Arial','B', 10);
+    $pdf->Ln(2);
+   
+    $pdf->Cell(0, 8, "Total Members Not Paid:  ".$totNotPaid, 0, 1);
+    $pdf->Cell(0, 8, "Total Members:  ".$memCount, 0, 1);
   
     $pdf->SetFont('Arial', '', 10);
 } else {
@@ -109,11 +154,11 @@ if ($memCount > 0) {
     $pdf->SetFont('Arial', '', 10);
 }
 $today = date("m-d-Y");
-$pdf->Output("I", "MembershipReport.".$today);
+$pdf->Output("I", "MembershipReport.".$today.".pdf");
 }
 
 $redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);
-exit;
+exit; 
 
 ?>

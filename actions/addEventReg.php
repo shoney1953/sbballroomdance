@@ -83,7 +83,7 @@ if (isset($_POST['submitAddReg'])) {
                     "<br>Room:    ".$event->eventroom.
                     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
                    
-                    if ($event->eventform) {
+                   /*  if ($event->eventform) {
 
                         $actLink= "<a href='".$event->eventform."'>
                         Click to view event Form</a>";
@@ -99,7 +99,7 @@ if (isset($_POST['submitAddReg'])) {
                               Check the form for specific costs.";
                         $emailBody .= $coststr;
                         $toCC2 = 'treasurer@sbballroomdance.com';
-                     }
+                     } */
                     
                   
                 }
