@@ -112,6 +112,7 @@ $userArc = new UserArchive($db);
     $userArc->phone1 = $user->phone1;
     $userArc->phone2 = $user->phone2;
     $userArc->notes = $user->notes;
+    $userArch->directoryList = $user->directorylist;
     $userArc->lastLogin = $user->lastLogin;
     $userArc->numlogins = $user->numlogins;
     $userArc->create();
