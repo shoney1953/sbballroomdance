@@ -39,6 +39,7 @@ $userArc = new UserArchive($db);
    
     $user->id = $_POST['id'];
     $user->read_single();
+  
 
     $result = $classReg->read_ByUserid($user->id);
     
@@ -104,7 +105,7 @@ $userArc = new UserArchive($db);
     $userArc->created = $user->created;
     $userArc->role = $user->role;
     $userArc->passwordChanged = $user->passwordChanged;
-    $userArc->streetAddress = $user->streetaddress;
+    $userArc->streetAddress = $user->streetAddress;
     $userArc->city = $user->city;
     $userArc->state = $user->state;
     $userArc->zip = $user->zip;
@@ -112,7 +113,7 @@ $userArc = new UserArchive($db);
     $userArc->phone1 = $user->phone1;
     $userArc->phone2 = $user->phone2;
     $userArc->notes = $user->notes;
-    $userArch->directoryList = $user->directorylist;
+    $userArc->directorylist = $user->directorylist;
     $userArc->lastLogin = $user->lastLogin;
     $userArc->numlogins = $user->numlogins;
     $userArc->create();
