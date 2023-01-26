@@ -35,12 +35,18 @@ $visitorLast = '';
         unset($_SESSION['username']);
         unset($_SESSION['role']);
         unset($_SESSION['userid']);
+        unset($_SESSION['useremail']);
+        unset($_SESSION['username']);
         unset($_SESSION['visitorfirstname']);
         unset($_SESSION['visitorlastname']);
+        unset($_SESSION['userfirstname']);
+        unset($_SESSION['userlastname']);
+        unset($_SESSION['partnerid']);
   
         $_SESSION['visitorfirstname'] = $visitor->firstname;
         $_SESSION['visitorlastname'] = $visitor->lastname;
         $_SESSION['username'] = $visitor->email;
+        $_SESSION['useremail'] = $visitor->email;
         $_SESSION['role'] = "visitor";
         if ($visitor->read_ByEmail($visitorEmail)) {
           $visitor->update($visitorEmail);

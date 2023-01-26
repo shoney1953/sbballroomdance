@@ -12,12 +12,13 @@ if (!isset($_SESSION['username']))
     if (isset($_SESSION['role'])) {
         if (($_SESSION['role'] != 'ADMIN') && 
         ($_SESSION['role'] != 'SUPERADMIN') &&
-        ($_SESSION['role'] != 'INSTRUCTOR')) {
+        ($_SESSION['role'] != 'INSTRUCTOR') &&
+        ($_SESSION['role'] != 'MEMBER')) {
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect); 
         }
        } else {
-        $redirect = "Location: ".$_SESSION['homeurl'];
+        $redirect = "Location: ".$_SESSION['profileurl'];
         header($redirect);
        }
 }
@@ -33,10 +34,17 @@ $danceClass = new DanceClass($db);
     
     $danceClass->decrementCount($classid);
 
-    echo ' Registration was deleted <br>';
   
-    $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
-header($redirect);
-exit;
+  
+    if ($_SESSION['role'] != 'MEMBER') {
+        $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
+        header($redirect);
+        exit;
+    } else {
+        $redirect = "Location: ".$_SESSION['profileurl']."#";
+        header($redirect);
+        exit;
+    }
+
 
 ?>

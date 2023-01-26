@@ -225,12 +225,21 @@ if (isset($_SESSION['username'])) {
               echo ' <li><a href="yourProfile.php">
               <img src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
               <br>Your Profile</a></li>';
-              echo ' <li><a  style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
+             
               echo ' <li><a href="#directory">
               Member Directory</a></li>';
             }
         }
 
+        if (isset($_SESSION['role'])) {
+            if ($_SESSION['role'] === 'visitor') {
+            echo ' <li style="color: red;font-weight: bold;font-size: medium"
+        }>Welcome '.$_SESSION["visitorfirstname"].'</li>'; 
+        }
+        if (isset($_SESSION['role'])) {
+            echo ' <li><a  style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
+        }
+    }
         if (isset($_SESSION['role'])) {
             if (($_SESSION['role'] == 'ADMIN') ||
              ($_SESSION['role'] == 'SUPERADMIN') ||
@@ -415,32 +424,67 @@ if (isset($_SESSION['username'])) {
             echo '<div class="form-grid3">';
       
             echo '<div class="form-grid-div">  <br>';
-        if (isset($_SESSION['userfirstname'])) {
+    
+
+        if (isset($_SESSION['role'])) {
+          if ($_SESSION['role'] === 'visitor') {
+      
+            if (isset($_SESSION['visitorfirstname'])) {
+                echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                echo '<input type="text" name="regFirstName1" value="'.$_SESSION['visitorfirstname'].'"><br>';
+            } else {
+                    echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                    echo '<input type="text" name="regFirstName1" ><br>';
+             }
+            if (isset($_SESSION['visitorlastname'])) {
+                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                    echo '<input type="text" name="regLastName1" value="'.$_SESSION['visitorlastname'].'"><br>';
+            } else {
+                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                    echo '<input type="text" name="regLastName1" ><br>';
+            }
+            if (isset($_SESSION['useremail'])) {
+                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                    echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
+            } else {
+                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                    echo '<input type="email" name="regEmail1" ><br><br>';
+            }
+
+
+
+          } else {
+            if (isset($_SESSION['userfirstname'])) {
                 echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
                 echo '<input type="text" name="regFirstName1" value="'.$_SESSION['userfirstname'].'"><br>';
-        } else {
-                echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                echo '<input type="text" name="regFirstName1" ><br>';
+            } else {
+                    echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                    echo '<input type="text" name="regFirstName1" ><br>';
+            }
+            if (isset($_SESSION['userlastname'])) {
+                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                    echo '<input type="text" name="regLastName1" value="'.$_SESSION['userlastname'].'"><br>';
+            } else {
+                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                    echo '<input type="text" name="regLastName1" ><br>';
+            }
+            if (isset($_SESSION['useremail'])) {
+                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                    echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
+            } else {
+                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                    echo '<input type="email" name="regEmail1" ><br><br>';
+            }
+            if (isset($_SESSION['partnerid'])) {
+                $partner->id = $_SESSION['partnerid'];
+                $partner->read_single();
+            
+            }
+       
         }
-        if (isset($_SESSION['userlastname'])) {
-                echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                echo '<input type="text" name="regLastName1" value="'.$_SESSION['userlastname'].'"><br>';
-        } else {
-                echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                echo '<input type="text" name="regLastName1" ><br>';
-        }
-        if (isset($_SESSION['useremail'])) {
-                echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
-        } else {
-                echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                echo '<input type="email" name="regEmail1" ><br><br>';
-        }
-        if (isset($_SESSION['partnerid'])) {
-            $partner->id = $_SESSION['partnerid'];
-            $partner->read_single();
            
-        }
+      }
+    
         echo '<label for="message">Message (For Dine and Dance events please indicate if you want to have dinner)</label>';
         echo '<textarea  name="message" rows="4" cols="50"></textarea><br>';
          echo' </div>';
@@ -486,7 +530,7 @@ if (isset($_SESSION['username'])) {
             echo '</form>';
     
         } else {
-           // echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
+       
             echo '<h3><a style="color: red;font-weight: bold;font-size: large"
              href="login.php"> <strong><em>Please Login to Register</em></a></h3><br><br>';
         }
@@ -558,33 +602,64 @@ if (isset($_SESSION['username'])) {
             echo '<div class="form-grid3">';
 
             echo '<div class="form-grid-div"> <br>';
+            if (isset($_SESSION['role'])) {
+                if ($_SESSION['role'] === 'visitor') {
+                    if (isset($_SESSION['visitorfirstname'])) {
+                        echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                        echo '<input type="text" name="regFirstName1" value="'.$_SESSION['visitorfirstname'].'"><br>';
+                    } else {
+                            echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                            echo '<input type="text" name="regFirstName1" ><br>';
+                }
+                    if (isset($_SESSION['visitorlastname'])) {
+                            echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                            echo '<input type="text" name="regLastName1" value="'.$_SESSION['visitorlastname'].'"><br>';
+                    } else {
+                            echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                            echo '<input type="text" name="regLastName1" ><br>';
+                    }
+                    if (isset($_SESSION['useremail'])) {
+                            echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                            echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
+                    } else {
+                            echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                            echo '<input type="email" name="regEmail1" ><br><br>';
+                    }
+        
+                } else {
+                    if (isset($_SESSION['userfirstname'])) {
+                        echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                        echo '<input type="text" name="regFirstName1" value="'.$_SESSION['userfirstname'].'"><br>';
+                } else {
+                        echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
+                        echo '<input type="text" name="regFirstName1" ><br>';
+                }
+                if (isset($_SESSION['userlastname'])) {
+                        echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                        echo '<input type="text" name="regLastName1" value="'.$_SESSION['userlastname'].'"><br>';
+                } else {
+                        echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
+                        echo '<input type="text" name="regLastName1" ><br>';
+                }
+                if (isset($_SESSION['useremail'])) {
+                        echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                        echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
+                } else {
+                        echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
+                        echo '<input type="email" name="regEmail1" ><br><br>';
+                }
+                if (isset($_SESSION['partnerid'])) {
+                    $partner->id = $_SESSION['partnerid'];
+                    $partner->read_single();
+                
+                }
+                }
                
-            if (isset($_SESSION['userfirstname'])) {
-                    echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                    echo '<input type="text" name="regFirstName1" value="'.$_SESSION['userfirstname'].'"><br>';
-            } else {
-                    echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                    echo '<input type="text" name="regFirstName1" ><br>';
-            }
-            if (isset($_SESSION['userlastname'])) {
-                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                    echo '<input type="text" name="regLastName1" value="'.$_SESSION['userlastname'].'"><br>';
-            } else {
-                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                    echo '<input type="text" name="regLastName1" ><br>';
-            }
-            if (isset($_SESSION['useremail'])) {
-                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                    echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
-            } else {
-                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                    echo '<input type="email" name="regEmail1" ><br><br>';
-            }
-            if (isset($_SESSION['partnerid'])) {
-                $partner->id = $_SESSION['partnerid'];
-                $partner->read_single();
-               
-            }
+    
+           
+                 
+             
+        }
            
                 echo '<label for="message2ins">Message to Instructor(Optional)</label><br>';
                echo '<textarea id="message2ins" name="message2ins" rows="4" cols="50"></textarea><br>';
@@ -944,6 +1019,7 @@ DJ Documents</a><br>
             echo '<h3><a style="color: red;font-weight: bold;font-size: large"
             href="login.php"> <strong><em>Please Login to View Directory</em></a></h3><br><br>'; 
         }
+    
     
 
 ?>
