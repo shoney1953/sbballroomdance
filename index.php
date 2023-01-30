@@ -269,7 +269,9 @@ if (isset($_SESSION['username'])) {
             <p>We are comprised of members from both SaddleBrooke HOA 1 and HOA 2.</p><br>
             <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
                are also part of our repetoire. </p><br><br>
- 
+            <p>Scroll down or click one of the tabs above for more information</p>
+   
+
     </div>
     
     </div>

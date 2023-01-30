@@ -184,7 +184,7 @@ if (!isset($_POST['regId'])) {
 
         if ($addReg) {
             echo '<div class="form-grid-div">';
-            echo '<form target="_blank" method="POST" action="addClassReg.php">';
+            echo '<form method="POST" action="addClassReg.php">';
             echo '<ul class="list-box">';
             echo '<h4 style="text-decoration: underline;color: black"><em>
               To Enroll -- Please select One or More of the Classes Listed</em></h4><br>';
