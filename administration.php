@@ -650,6 +650,20 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <button type='submit' name="submitClassRep">Report</button>   
         </div>   
         </form>
+       <!--  </form>
+        <form target="_blank" method='POST' action="actions/reportClassRegCSV.php"> 
+        <div class="form-grid-div">
+        <h4>Create CSV file of Email Addresses for the Class</h4>
+        <input type='checkbox' name='reportClass'>
+        <label for='reportClass'>Create EMAILS in a CSV File for one Class </label><br>  
+        <input type='text' class='text-small' name='classId' required > 
+        <label for='classId'><em> &larr; 
+            Specify Class ID from Table below to Create CSV file for the Class: </em> </label>
+       
+        <br>
+        <button type='submit' name="submitClassRepCSV">Create CSV file With Emails</button>   
+        </div>   
+        </form> -->
         <form method="POST" action="actions/emailClass.php"> 
         <div class="form-grid-div">
         <h4>Email Class Registrants</h4>
@@ -663,7 +677,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<input type="email" name="replyEmail" value="'.$_SESSION['useremail'].'"><br>'; 
         ?>
         <label for="emailBody">Short Email Text</label><br>
-        <textarea  name="emailBody" rows="10" cols="50"></textarea><br>
+        <textarea  name="emailBody" rows="30" cols="50"></textarea><br>
       
         <br>
         <button type="submit" name="submitClassEmail">Send Email</button>   

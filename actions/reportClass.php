@@ -76,7 +76,7 @@ if (isset($_POST['submitClassRep'])) {
     $pdf = new PDF();
     $pdf->AliasNbPages();
     $pdf->SetTextColor(26, 22, 22);
-    $pdf->AddPage();
+    $pdf->AddPage('L');
     $pdf->SetFont('Arial', '', 12);
 
 if ($rowCount > 0) {
@@ -101,7 +101,7 @@ if ($rowCount > 0) {
             $pdf->Cell(35,8,"LAST NAME",1,0,"L");  
             $pdf->Cell(62,8,"EMAIL",1,0,"L"); 
             $pdf->Cell(12,8,"MEM",1,0,"L"); 
-            $pdf->Cell(60,8,"DATES       ATTENDED",1,1,"L");
+            $pdf->Cell(80,8,"DATES       ATTENDED",1,1,"L");
           
         }
         if ($reg['classid'] !== $prevClass) {
@@ -126,7 +126,7 @@ if ($rowCount > 0) {
             $pdf->Cell(35,8,"LAST NAME",1,0,"L");  
             $pdf->Cell(62,8,"EMAIL",1,0,"L"); 
             $pdf->Cell(12,8,"MEM",1,0,"L");   
-            $pdf->Cell(60,8,"DATES       ATTENDED",1,1,"L");
+            $pdf->Cell(80,8,"DATES       ATTENDED",1,1,"L");
 
         
          }
@@ -146,7 +146,7 @@ if ($rowCount > 0) {
         }
 
         $pdf->SetFont('Arial','',12); 
-        $pdf->Cell(60,8," ",1,1,"L");
+        $pdf->Cell(80,8," ",1,1,"L");
       
        
 
