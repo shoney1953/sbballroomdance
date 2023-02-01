@@ -102,6 +102,11 @@ if ($rowCount > 0) {
             $pdf->Cell(62,8,"EMAIL",1,0,"L"); 
             $pdf->Cell(12,8,"MEM",1,0,"L"); 
             $pdf->Cell(80,8,"DATES       ATTENDED",1,1,"L");
+            $pdf->Cell(30,8," ",1,0,"L"); 
+            $pdf->Cell(35,8," ",1,0,"L");  
+            $pdf->Cell(62,8," ",1,0,"L"); 
+            $pdf->Cell(12,8," ",1,0,"L"); 
+            $pdf->Cell(80,8," ",1,1,"L");
           
         }
         if ($reg['classid'] !== $prevClass) {
@@ -127,6 +132,11 @@ if ($rowCount > 0) {
             $pdf->Cell(62,8,"EMAIL",1,0,"L"); 
             $pdf->Cell(12,8,"MEM",1,0,"L");   
             $pdf->Cell(80,8,"DATES       ATTENDED",1,1,"L");
+            $pdf->Cell(30,8," ",1,0,"L"); 
+            $pdf->Cell(35,8," ",1,0,"L");  
+            $pdf->Cell(62,8," ",1,0,"L"); 
+            $pdf->Cell(12,8," ",1,0,"L"); 
+            $pdf->Cell(80,8," ",1,1,"L");
 
         
          }
