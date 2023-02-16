@@ -677,7 +677,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<input type="email" name="replyEmail" value="'.$_SESSION['useremail'].'"><br>'; 
         ?>
         <label for="emailBody">Short Email Text</label><br>
-        <textarea  name="emailBody" rows="30" cols="50"></textarea><br>
+        <textarea  name="emailBody" rows="25" cols="60"></textarea><br>
       
         <br>
         <button type="submit" name="submitClassEmail">Send Email</button>   
