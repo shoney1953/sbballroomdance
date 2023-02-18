@@ -359,7 +359,7 @@ if (isset($_SESSION['username'])) {
         <ul>
 
        
-        <a href="https://drive.google.com/file/d/14xBV6WYY2UMaQPrcax3teBFFBQn86jID/view?usp=share_link">
+        <a href="https://drive.google.com/file/d/1oshvPWoc5ERLy7uD-gBuiS_c_n6hTcJE/view?usp=share_link">
          Click Here Read the Club By Laws.
         </a><br><br>
     </section>
