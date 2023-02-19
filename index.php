@@ -997,7 +997,6 @@ DJ Documents</a><br>
               
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
-                echo '<th>User Name    </th>';
                 echo '<th>Email</th>';  
                 echo '<th>Phone</th>';          
                 echo '<th>Address</th>';
@@ -1008,7 +1007,6 @@ DJ Documents</a><br>
                 
                         echo "<td>".$user['firstname']."</td>";               
                         echo "<td>".$user['lastname']."</td>";
-                        echo "<td>".$user['username']."</td>";
                         echo "<td>".$user['email']."</td>";
                         echo "<td>".$user['phone1']."</td>";
                         echo "<td>".$user['streetAddress']."</td>"; 
