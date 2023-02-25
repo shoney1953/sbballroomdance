@@ -25,7 +25,7 @@ class PDF extends FPDF
         $this->Cell(
             10,
             10,
-            'SBDC User Login by Date - '.$today, 0, 0, 'C'
+            'SBDC User Login by Num Logins - '.$today, 0, 0, 'C'
         );
         // Line break
         $this->Ln(20);
@@ -44,7 +44,7 @@ class PDF extends FPDF
 
 if (isset($_POST['submitUsageRep'])) {
  
-    $result = $user->readByLogin();
+    $result = $user->readByNumLogins();
 
     $userCount = $result->rowCount();
 
