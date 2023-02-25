@@ -9,6 +9,7 @@ $db = $database->connect();
 $user = new User($db);
 $partner = new User($db);
 $userArr = [];
+$neverLoggedOn = 0;
 
 
 class PDF extends FPDF
@@ -63,6 +64,9 @@ if (isset($_POST['submitUsageRep'])) {
 
             );
             array_push($userArr, $usr_item);
+            if ($usr_item['numlogins'] < 1) {
+                $neverLoggedOn++;
+            }
         }
     }
 
@@ -92,6 +96,7 @@ if ($userCount > 0) {
     }
     $pdf->SetFont('Arial','B', 10);
     $pdf->Ln(2);
+    $pdf->Cell(0, 5, "Num Members Never Logged on:  ".$neverLoggedOn, 0, 1);
     $pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
   
     $pdf->SetFont('Arial', '', 10);

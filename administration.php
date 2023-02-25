@@ -987,7 +987,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<div class="form-grid-div">';
         echo '<h4>Report Usage</h4>';
         echo '<input type="checkbox" name="reportUsers">';
-        echo '<label for="reportUsers">Report Members</label><br>';    
+        echo '<label for="reportUsers">Report Member Usage</label><br>';    
       
         echo '<button type="submit" name="submitUsageRep">Report Usage</button>';   
         echo '</div> '; 
