@@ -12,6 +12,7 @@ class EventRegistration {
     public $dateregistered;
     public $eventname;
     public $eventdate;
+    public $eventtype;
     public $userid;
     public $message;
     public $paid;
@@ -32,7 +33,7 @@ class EventRegistration {
       $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
       r.userid, r.paid, r.message, r.ddattenddinner, ddattenddance,
-      r.mealchoice, r.dietaryrestriction
+      r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
       FROM ' . $this->table . ' r
       LEFT JOIN
         events c ON r.eventid = c.id
@@ -56,7 +57,7 @@ class EventRegistration {
           $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
           r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-          r.mealchoice, r.dietaryrestriction
+          r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
           FROM ' . $this->table . ' r
           LEFT JOIN
             events c ON r.eventid = c.id
@@ -83,6 +84,7 @@ class EventRegistration {
           $this->userid = $row['userid'];
           $this->eventname = $row['eventname'];
           $this->eventdate = $row['eventdate'];
+          $this->eventtype = $row['eventtype'];
           $this->email = $row['email'];
           $this->dateregistered = $row['dateregistered'];
           $this->paid = $row['paid'];
@@ -104,7 +106,7 @@ public function read_ByUserid($userid) {
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.mealchoice, r.dietaryrestriction
+    r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
     FROM ' . $this->table . ' r
     LEFT JOIN
       events c ON r.eventid = c.id

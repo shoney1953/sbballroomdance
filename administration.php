@@ -143,6 +143,7 @@ if ($rowCount > 0) {
             'eventid' => $eventid,
             'eventname' => $eventname,
             'eventdate' => $eventdate,
+            'eventtype' => $eventtype,
             'message' => $message,
             'userid' => $userid,
             'email' => $email,
@@ -565,11 +566,18 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     echo "<td>".$eventRegistration['lastname']."</td>";
                     echo "<td>".$eventRegistration['email']."</td>"; 
          
-                    if ($eventRegistration['paid'] == true ) {
-                        echo "<td>&#10004;</td>"; 
-                      } else {
-                          echo "<td>&times;</td>"; 
-                      } 
+                    if ($eventRegistration['eventtype'] == 'Dinner Dance') {
+
+                        if ($eventRegistration['paid'] == true ) {
+                            echo "<td>&#10004;</td>"; 
+                          } else {
+                              echo "<td>&times;</td>"; 
+                          } 
+                    } else {
+
+                        echo "<td>NA </td>"; 
+                    }
+                  
                      if ($eventRegistration['ddattenddinner'] == true ) {
                         echo "<td>&#10004;</td>"; 
                       } else {
