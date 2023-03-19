@@ -91,6 +91,22 @@ class User {
 
       return $stmt;
     }
+    public function readByInstructor() {
+      // Create query
+      $query = 'SELECT * FROM ' . $this->table . ' WHERE role = "INSTRUCTOR" or
+      role = "SUPERADMIN"
+      ORDER BY lastname, firstname ';
+
+      // Prepare statement
+     
+      $stmt = $this->conn->prepare($query);
+
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
     // Get Single Danceclass
     public function read_single() {
         

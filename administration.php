@@ -963,44 +963,60 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<section id="users" class="content">';
         echo ' <h3 class="section-header">Members</h3> ';
         echo '<h4>Maintain Members</h4>';
-        echo '<div class="form-grid3">';
+        echo '<div class="form-grid1">';
           
-        echo '<form method="POST" action="actions/maintainUser.php">';
-        echo '<div class="form-grid-div">';
-  
-        echo '<input type="checkbox" name="updateUser">';
-        echo '<label for="updateUser">Update a Member</label><br>';   
-        echo '<input type="checkbox" name="deleteUser">';
-        echo '<label for="deleteUser">Delete a Member </label><br>';
-        echo '<input type="text" class="text-small" name="userId" >';
-        echo '<label for="userId"><em> &larr; Specify Member ID from Table above for Update or Delete:  </em></label>';
+            echo '<form method="POST" action="actions/maintainUser.php">';
+            echo '<div class="form-grid-div">';
+    
+            echo '<input type="checkbox" name="updateUser">';
+            echo '<label for="updateUser">Update a Member</label><br>';   
+            echo '<input type="checkbox" name="deleteUser">';
+            echo '<label for="deleteUser">Delete a Member </label><br>';
+            echo '<input type="text" class="text-small" name="userId" >';
+            echo '<label for="userId"><em> &larr; Specify Member ID from Table above for Update or Delete:  </em></label>';
+            
+            echo '<p>OR</p>';
+            echo '<input type="checkbox" name="addUser">';
+            echo '<label for="addUser">Add a Member</label> <br>';
+            
+            echo '<button type="submit" name="submitUser">Submit</button>';  
+            echo '</form> <br>';
+    
+            echo '</div>';
+            echo '</div>';
+                /* */
+            echo '<div class="form-grid3">';
+            echo '<form target="_blank" method="POST" action="actions/reportUser.php">'; 
+            echo '<div class="form-grid-div">';
+            echo '<h4>Report Members</h4>';
+            echo '<input type="checkbox" name="reportUsers">';
+            echo '<label for="reportUsers">Report Members</label><br>';    
+            echo '<button type="submit" name="submitUserRep">Report Members</button>';   
+            echo '</form>';
+            echo '</div> '; 
+            /* */
+
+            echo '<form target="_blank" method="POST" action="actions/reportInstructors.php">'; 
+            echo '<div class="form-grid-div">';
+            echo '<h4>Report Instructors</h4>';
+            echo '<input type="checkbox" name="reportInstructors">';
+            echo '<label for="reportInstructors">Report Instructors</label><br>';    
+            echo '<button type="submit" name="submitInstructorRep">Report Instructors</button>';   
+            echo '</form>';
+            echo '</div> '; 
+            /* */
+            echo '<form target="_blank" method="POST" action="actions/reportUsage.php">'; 
+            echo '<div class="form-grid-div">';
+            echo '<h4>Report Usage</h4>';
+            echo '<input type="checkbox" name="reportUsers">';
+            echo '<label for="reportUsers">Report Member Usage</label><br>';    
         
-        echo '<p>OR</p>';
-        echo '<input type="checkbox" name="addUser">';
-        echo '<label for="addUser">Add a Member</label> <br>';
-           
-        echo '<button type="submit" name="submitUser">Submit</button>';  
-        echo '</form> <br>';
-        echo '</div>';
-        echo '<form target="_blank" method="POST" action="actions/reportUser.php">'; 
-        echo '<div class="form-grid-div">';
-        echo '<h4>Report Members</h4>';
-        echo '<input type="checkbox" name="reportUsers">';
-        echo '<label for="reportUsers">Report Members</label><br>';    
-      
-        echo '<button type="submit" name="submitUserRep">Report Members</button>';   
-        echo '</div> ';  
-        echo '</form>';
-        echo '<form target="_blank" method="POST" action="actions/reportUsage.php">'; 
-        echo '<div class="form-grid-div">';
-        echo '<h4>Report Usage</h4>';
-        echo '<input type="checkbox" name="reportUsers">';
-        echo '<label for="reportUsers">Report Member Usage</label><br>';    
-      
-        echo '<button type="submit" name="submitUsageRep">Report Usage</button>';   
-        echo '</div> '; 
-        echo '</div> ';   
-        echo '</form>';
+            echo '<button type="submit" name="submitUsageRep">Report Usage</button>';   
+        
+            echo '</div> ';   
+            echo '</form>';
+            echo '</div>';
+        /* */
         echo '<h4>List of Members</h4>';
         echo '<form target="_blank" method="POST" action="actions/searchUser.php" >';
         echo '<input type="text"  name="search" >';
