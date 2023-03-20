@@ -20,7 +20,7 @@ $eventReg = new EventRegistration($db);
 $eventInst = new Event($db);
 $user = new User($db);
 $message = '';
-
+$result = 0;
 $regSelected = [];
 $regAll = '';
 $emailBody = "Thanks for registering for the following event(s):<br>";
@@ -113,9 +113,12 @@ if (isset($_POST['submitEventReg'])) {
                 $eventReg->userid = $regUserid1;
                 $eventReg->message = $message;
                 $eventReg->paid = 0;
+                $result = $eventReg->checkDuplicate($eventReg->email,  $$eventReg->eventid);
+            if (!$result) {
                 $eventReg->create();
                 $eventInst->addCount($eventReg->eventid);
-                if (isset($regFirstName2)) {
+             }
+             if (isset($regFirstName2)) {
                        // do the insert(s)
                     $eventReg->firstname = $regFirstName2;
                     $eventReg->lastname = $regLastName2;
@@ -124,8 +127,12 @@ if (isset($_POST['submitEventReg'])) {
                     $eventReg->userid = $regUserid2;
                     $eventReg->message = $message;
                     $eventReg->paid = 0;
-                    $eventReg->create();
-                    $eventInst->addCount($eventReg->eventid);
+                    $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
+                    if (!$result) {
+
+                        $eventReg->create();
+                        $eventInst->addCount($eventReg->eventid);
+                    }
                 }
              
 

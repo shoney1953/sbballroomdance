@@ -36,6 +36,7 @@ $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
+$result = 0;
 $fromCC = 'webmaster@sbballroomdance.com';
 $replyEmail = 'secretary@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
@@ -71,7 +72,9 @@ if (isset($_POST['submitAddReg'])) {
           
                         $eventReg->paid = 0;
                     }
-    
+                 $result = $eventReg->checkDuplicate($regEmail1, $eventReg->eventid);
+                 if (!$result) {
+
                     $eventReg->create();
                     $event->addCount($eventReg->eventid);
                     $event->id = $eventReg->eventid;
@@ -82,29 +85,10 @@ if (isset($_POST['submitAddReg'])) {
                     "<br>DJ  :    ".$event->eventdj.
                     "<br>Room:    ".$event->eventroom.
                     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
-                   
-                   /*  if ($event->eventform) {
-
-                        $actLink= "<a href='".$event->eventform."'>
-                        Click to view event Form</a>";
-                       $emailBody .= 'There is a form to submit registration details and payment.<br>';
-                       $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
-                        on the website to open the form. Or<br>$actLink";
-                       $toCC2 = 'treasurer@sbballroomdance.com';
-                    }
-                    if ($event->eventcost > 0) {
-                        $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-                        $coststr =  "<br> Member Event Cost is approximately: "
-                              .$fmt->formatCurrency($event->eventcost, 'USD')."<br>
-                              Check the form for specific costs.";
-                        $emailBody .= $coststr;
-                        $toCC2 = 'treasurer@sbballroomdance.com';
-                     } */
-                    
+    
                   
-                }
-
-        
+                  }
+                 }
                 }
                 $emailBody .= '<br>Note: You can also see these events from your profile on the website.';
                 if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
@@ -127,14 +111,14 @@ if (isset($_POST['submitAddReg'])) {
                 } else {
                     echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
             }
+        
         } //end isset
      } // end foreach
        
 }
    
 
-
-    $redirect = "Location: ".$_SESSION['adminurl']."#eventregistrations";
+$redirect = "Location: ".$_SESSION['adminurl']."#eventregistrations";
 header($redirect);
 exit;
 

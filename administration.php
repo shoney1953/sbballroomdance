@@ -520,7 +520,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<form method="POST" action="actions/addVisitorEventReg.php">';
         echo '<input type="checkbox" name="addVisitorReg">';
         echo '<label for="addVisitorReg">Add a Visitor to Event Registration</label> <br>';
-        echo '<input type="text" class="text-small" name="eventid" >';
+        echo '<input type="text" class="text-small" name="eventid" required >';
         echo '<label for="eventid"><em> &larr; 
             Specify Event ID from Table above:  
             </em></label><br>';
@@ -780,7 +780,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <form method='POST' action="actions/addVisitorClassReg.php">
         <input type='checkbox' name='addVisitorReg'>
         <label for='addVisitorReg'>Add a Visitor to Class Registration</label> <br>
-        <input type='text' class='text-small' name='classid' >
+        <input type='text' class='text-small' name='classid' required>
         <label for='classid'><em> &larr; 
             Specify Class ID from Table above:  
             </em></label><br>

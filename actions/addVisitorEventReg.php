@@ -32,6 +32,7 @@ $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
+$result = 0;
 $fromCC = 'webmaster@sbballroomdance.com';
 $replyEmail = 'secretary@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
@@ -50,7 +51,9 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $regEmail1 = $eventReg->email;
     $eventReg->paid = 0;
     $eventReg->userid = 0;
- 
+    $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
+    if (!$result) {
+
     $eventReg->create();
     $event->addCount($eventReg->eventid);
     /* assume not a member so add to visitor file */
@@ -117,8 +120,8 @@ if (isset($_POST['submitAddVisitorReg'])) {
         $emailBody = "Thanks for registering for the following events:<br>";  
     } else {
         echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
-}                    
-
+   }                    
+    }
 }  
    
 

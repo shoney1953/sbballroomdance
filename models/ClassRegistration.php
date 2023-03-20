@@ -140,6 +140,33 @@ public function read_ByEmail($email) {
   return $stmt;
 
 }
+public function checkDuplicate($email,$classid) {
+      
+  // Create query
+  // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
+
+  $query = 'SELECT  * FROM ' . $this->table . 
+    ' WHERE email = :email  AND classid = :classid LIMIT 0,1';
+
+  // Prepare statement
+  $stmt = $this->conn->prepare($query);
+
+
+  // Bind ID
+  $stmt->bindParam('email', $email);
+  $stmt->bindParam('classid', $classid);
+    // Execute query
+    $stmt->execute();
+
+  $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if ($row) {
+    return true;
+  }
+
+return false;
+
+}
 public function read_ByClassid($classid) {
 
 
@@ -196,12 +223,11 @@ public function read_ByClassid($classid) {
      
 
           // Execute query
-          if($stmt->execute()) {
+          if ($stmt->execute()) {
+ 
             return true;
-      }
-
-      // Print error if something goes wrong
-      printf("Error: %s.\n", $stmt->error);
+           
+      } 
 
       return false;
     }

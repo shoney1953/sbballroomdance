@@ -39,6 +39,7 @@ $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
+$result = 0;
 $fromCC = 'webmaster@sbballroomdance.com';
 $replyEmail = 'webmaster@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
@@ -55,13 +56,13 @@ if (isset($_POST['submitAddReg'])) {
             foreach($users as $usr) {
                 $usrID = "us".$usr['id'];
           
-                if (isset($_POST["$usrID"])) {
-                foreach($upcomingClasses as $class) {
+             if (isset($_POST["$usrID"])) {
+               foreach($upcomingClasses as $class) {
        
                         $chkboxID = "cb".$class['id'];
                      
                         
-                     if (isset($_POST["$chkboxID"])) {
+                if (isset($_POST["$chkboxID"])) {
                     $classReg->classid = $class['id'];       
                     $classReg->firstname = $usr['firstname'];
                     $classReg->lastname = $usr['lastname'];
@@ -70,7 +71,8 @@ if (isset($_POST['submitAddReg'])) {
                     $classReg->classname = $class['classname'];
                     $classReg->classtime = $class['time'];
                     $classReg->classdate = $class['date'];
-                    
+                    $result = $classReg->checkDuplicate($classReg->email, $classReg->classid);
+                 if (!$result) {
                     $classReg->create();
                     $danceClass->addCount($classReg->classid);
                     $danceClass->id = $classReg->classid;
@@ -86,8 +88,8 @@ if (isset($_POST['submitAddReg'])) {
                     $regLastName1 = $usr['lastname'];
                     $regEmail1 = $usr['email'];
                        
-                }
-             
+                } // check duplicate
+             } // chkbox
             } // end foreach class
            $emailBody .= '<br>If you need to correspond with the instructor(s), 
            please use the registration email for the appropriate class.';

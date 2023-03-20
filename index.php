@@ -372,10 +372,7 @@ if (isset($_SESSION['username'])) {
       <br>
         <h1 class="section-header">Upcoming Events</h1>
   
-        <a style="font-weight: bold"
-        href="https://drive.google.com/file/d/1mgJ-r6vAaVw9BgxuD-ae9w9Om4oWXrDV/view?usp=sharing">
-         Click Here to See Dates to Save for the Upcoming Dinner Dances for Fall 2022 and Spring 2023.
-        </a>      <br><br>
+        
         <table>
             <tr>
                 <th>Event Date</th>
@@ -548,9 +545,7 @@ if (isset($_SESSION['username'])) {
    
       <br>
         <h1 class="section-header">Ongoing and Upcoming Classes</h1>
-        <a href="https://drive.google.com/file/d/10uMkFzA0QC9KhwgtObAWG_66OKcEogsg/view?usp=sharing">
-            Click for flyer for upcoming Classes.
-        </a><br><br>
+      
         <table>
             <tr>
                 

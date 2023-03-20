@@ -29,6 +29,8 @@ $mailAttachment = "";
 $replyTopic = "Class Registration";
 $regId1 = 0;
 $regId2 = 0;
+$create_successful = 0;
+$result = 0;
 
 if (isset($_POST['submitRegClass'])) {
     echo '<h1> We are processing your request - Please wait</h1>';
@@ -96,10 +98,11 @@ if (isset($_POST['submitRegClass'])) {
                 } else {
                     $classReg->userid = $regId1;
                 }
-               
-               
-            
-                $classReg->create();
+                $result = $classReg->checkDuplicate($regEmail1, $classId);
+     
+                if (!$result) {
+
+                $classReg->create();  
                 $danceClass->addCount($classId);
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
                 
@@ -112,9 +115,16 @@ if (isset($_POST['submitRegClass'])) {
                         $emailBody .=
                      "<br> We didn't find your email. So please sign up, or you may attend only 1 class free before joining the club.<br>";
                     }
-                    $classReg->create();
-                    $danceClass->addCount($classId);
+                    $result = $classReg->checkDuplicate($regEmail2,$classId);
+                    if (!$result) {
+                        $classReg->create();
+                        $danceClass->addCount($classId);
+                    }
+                    
+                   
+                  
                      } // end regemail2
+                    }
             } // end if classid
         } // end foreach
 
