@@ -113,7 +113,7 @@ if (isset($_POST['submitEventReg'])) {
                 $eventReg->userid = $regUserid1;
                 $eventReg->message = $message;
                 $eventReg->paid = 0;
-                $result = $eventReg->checkDuplicate($eventReg->email,  $$eventReg->eventid);
+                $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
             if (!$result) {
                 $eventReg->create();
                 $eventInst->addCount($eventReg->eventid);
