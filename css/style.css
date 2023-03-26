@@ -130,7 +130,8 @@ hr {
   /*background-image: url("../img/moonrise\ opaque.jpg"); */
   /*background-image: url("../img/morning1.jpg");  */
   /*background-image: url("../img/halfmoonCrop.jpg"); */
-  background-image: url("../img/monsoon_small.jpg");
+  /* background-image: url("../img/monsoon_small.jpg"); */
+  background-image: url("../img/Spring_small.jpg");
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -387,12 +388,16 @@ input[type="select"] {
   padding: 20px 20px 20px 20px;
 }
 h2 a:link,
-a:visited {
-  color: white;
+h2 a:visited {
+  color: red;
+  font-weight: bold;
+  font-size: large; 
 }
 h2 a:hover,
-a:active {
+h2 a:active {
   color: rgb(248, 149, 149);
+  font-weight: bold;
+  font-size: large";
 }
 button {
   background-color: darkviolet;
@@ -493,7 +498,8 @@ iframe {
     /*background-image: url("../img/moonrise\ opaque.jpg"); */
     /*background-image: url("../img/morning1.jpg"); */
     /*background-image: url("../img/halfmoonCrop.jpg"); */
-    background-image: url("../img/monsoon.jpg");
+    /* background-image: url("../img/monsoon.jpg"); */
+    background-image: url("../img/Spring_small.jpg"); 
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
@@ -538,17 +544,7 @@ iframe {
     align-items: left;
   }
 
-  .membership-link:link,
-  .membership-link:visited {
-    color: #fff;
-    padding-top: 10px;
-  }
-  .membership-link:hover,
-  .membership-link:active {
-    color: #f46b6b;
-    padding-top: 10px;
-    background-color: #fff;
-  }
+  
 
   .form-grid2 {
     display: grid;

@@ -261,7 +261,6 @@ if (isset($_SESSION['username'])) {
         <div class="container">
             <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1>
 
-
             <img class="motto-img" src="img/self.png" alt="motto"></img>
           
             <img class="motto-img2" 
@@ -274,7 +273,6 @@ if (isset($_SESSION['username'])) {
                are also part of our repetoire. </p><br><br>
             <p>Scroll down or click one of the tabs above for more information</p><br>
 
-
         </div> 
      
     </div>
@@ -283,9 +281,8 @@ if (isset($_SESSION['username'])) {
     <div class="container-section ">
     <section id="about" class="content">  
 
-    
         <h1 class="section-header">What We are About</h1>
-        <h2><a  style="color: red;font-weight: bold;font-size: large" 
+        <h2><a  
             href='img/Membership Form 2023 Dance Club.pdf' target='_blank'>
             Click for Membership Form</a></h2>
         <p>If you love all kinds of dancing, we're the club for you. </p>
