@@ -407,7 +407,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<input type="text" name="archDate" ><br>';
     } 
     
-        echo '<button type="submit" name="submitEvent">Submit</button>'; 
+        echo '<button type="submit" name="submitEvent">Maintain Events</button>'; 
     
 
   
@@ -482,7 +482,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
               }
          
         
-        echo '</table>';
+        echo '</table><br>';
  
     echo '</section>';
     echo '</div>';
@@ -490,9 +490,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     
     echo '<section id="eventregistrations" class="content">';
     echo '<br><br>';
-        echo '<h3 class="section-header">Event Registrations</h3>'; 
+        echo '<h3 class="section-header">Maintain Event Registrations</h3>'; 
         echo '<br>';
-        echo '<h4>Maintain event Registrations</h4>';
+ 
         echo '<h4>Registering people for events will generate emails, so please be patient.</h4>';
        echo  '<div class="form-grid2">';
       
@@ -512,7 +512,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<label for="addReg">Add an Event Registration for a member.</label> <br> ';
         echo '<input type="text"  name="search" >';
         echo '<label for="search">Optionally Search for Members by Name or Email</label><br>       
-        <button type="submit" name="submitEventReg">Submit</button> ';
+        <button type="submit" name="submitEventReg">Maintain Event Registrations</button> ';
         echo '</form> '; 
         echo '</div> ';
         echo '<div class="form-grid-div">';
@@ -623,26 +623,26 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <input type='text' class='text-small' name='classId' >
         <label for='classId'> <em> &larr; 
          Specify Class ID from Table below for Update or Delete: </em> </label>     
-        <p>OR</p>
+        <p><strong>OR</strong></p>
         <input type='checkbox' name='addClass'>
         <label for='addClass'>Add a Class </label> <br> 
         <?php
     if ($_SESSION['role'] === 'SUPERADMIN') { 
-        echo '<p>OR</p>';
+        echo '<br><p><strong>OR</strong></p>';
     
-
         echo '<input type="checkbox" name="archiveClass">';
         echo '<label for="archiveClass">Archive Classes and Registrations </label><br>'; 
         echo '<p><em>Enter either a class id or a date for Archive Criteria</em> <br>';
         echo '<label for="archDate">Enter earliest month and day (format mm-dd) for which to keep data</label><br>';
-        echo '<input type="text" name="archDate"><br><br>';
+        echo '<input type="text" name="archDate"><br>';
+        echo '<p>OR</p>';
         echo '<input type="text" class="text-small" name="archId" >';
         echo '<label for="archId"> <em> &larr; 
         Specify Class ID from Table above for Archive: </em> </label><br> ';   
     }
     ?>
        
-        <button type='submit' name="submitClass">Submit</button>   
+        <button type='submit' name="submitClass">Maintain Class(es)</button>   
         </div>   
         </form>
         <form target="_blank" method='POST' action="actions/reportClass.php"> 
@@ -658,26 +658,13 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <button type='submit' name="submitClassRep">Report</button>   
         </div>   
         </form>
-       <!--  </form>
-        <form target="_blank" method='POST' action="actions/reportClassRegCSV.php"> 
-        <div class="form-grid-div">
-        <h4>Create CSV file of Email Addresses for the Class</h4>
-        <input type='checkbox' name='reportClass'>
-        <label for='reportClass'>Create EMAILS in a CSV File for one Class </label><br>  
-        <input type='text' class='text-small' name='classId' required > 
-        <label for='classId'><em> &larr; 
-            Specify Class ID from Table below to Create CSV file for the Class: </em> </label>
-       
-        <br>
-        <button type='submit' name="submitClassRepCSV">Create CSV file With Emails</button>   
-        </div>   
-        </form> -->
+  
         <form method="POST" action="actions/emailClass.php"> 
         <div class="form-grid-div">
         <h4>Email Class Registrants</h4>
         <input type="checkbox" name="emailClass">
         <label for="emailClass">Send email to all registered for Class </label><br>
-        <input type="text" class="text-small" name="classId" > 
+        <input type="text" class="text-small" name="classId" required > 
         <label for="classId"><em> &larr; 
         Specify Class ID from Table Above:</em> </label><br>
         <label for="replyEmail">Email to reply to: </label>> <br>
@@ -771,7 +758,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     
         <input type="text"  name="search" >
         <label for='search'>Optionally Search for Members by Name or Email</label><br>
-        <button type='submit' name="submitReg">Submit</button>   
+        <button type='submit' name="submitReg">Maintain Class Registrations</button>   
         </div>   
         </form>
         </div> 
@@ -842,6 +829,28 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     echo '<br><br>';
     echo '<section id="contacts" class="content">';
          echo '<h3 class="section-header">Contacts</h3>';  
+         echo '<div class="form-grid3">';
+      
+         echo '<form method="POST" action="actions/maintainContact.php">';
+         echo '<div class="form-grid-div">';
+         echo '<h4>Maintain Contacts</h4>';
+         echo '<input type="checkbox" name="deleteContact">';
+         echo '<label for="deleteContact">Delete a Range of Contacts</label><br>';
+         echo '<input type="date"  name="delContactBefore" >';
+         echo '<label for="delContactBefore"><em> &larr; Specify a Date 
+             to delete contacts before: </em></label><br>';
+         echo '<button type="submit" name="submitContact">Delete Contacts</button> ';
+         echo '</div>';
+         echo '</form>';
+         echo '<div class="form-grid-div">';
+         echo '<h4>Report Contacts</h4>';
+         echo '<form target="_blank" method="POST" action="actions/reportContact.php">';  
+         echo '<button type="submit" name="reportContact">Report Contacts</button> ';
+       
+         echo '</div>';     
+         echo '</form>';
+         echo '</div>';   
+         echo '<br>';
         echo '<table>';
             echo '<tr>';
                 echo '<th>Date Contacted</th> '; 
@@ -871,38 +880,38 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         
         echo '</table>';
         echo '<br>';
-        echo '<div class="form-grid3">';
-      
-        echo '<form method="POST" action="actions/maintainContact.php">';
-        echo '<div class="form-grid-div">';
-        echo '<h4>Maintain Contacts</h4>';
-        echo '<input type="checkbox" name="deleteContact">';
-        echo '<label for="deleteContact">Delete a Range of Contacts</label><br>';
-        echo '<input type="date"  name="delContactBefore" >';
-        echo '<label for="delContactBefore"><em> &larr; Specify a Date 
-            to delete contacts before: </em></label><br>';
-        echo '<button type="submit" name="submitContact">Submit</button> ';
-        echo '</div>';
-        echo '</form>';
-        echo '<div class="form-grid-div">';
-        echo '<h4>Report Contacts</h4>';
-        echo '<form target="_blank" method="POST" action="actions/reportContact.php">';
-        echo '<input type="checkbox" name="reportContact">';
-        echo '<label for="reportContact">Report on Contacts </label><br> ';   
-        echo '<button type="submit" name="reportContact">Report</button> ';
-      
-        echo '</div>';     
-        echo '</form>';
-        echo '<br>';
+   
         
     
-        echo '</div>';
     echo '</section>';
     echo '</div>';
     echo '<div class="container-section ">';
     echo '<br><br>';
     echo '<section id="visitors" class="content">';
         echo '<h3 class="section-header">Visitors</h3> '; 
+        echo '<div class="form-grid3">';
+      
+        echo '<div class="form-grid-div">';
+        echo '<h4>Report Visitors</h4>';
+        echo '<form target="_blank" method="POST" action="actions/reportVisitors.php">';
+  
+        echo '<button type="submit" name="reportVisitors">Report Visitors</button> ';
+      
+        echo '</div>';     
+        echo '</form>';
+        echo '<br>';
+        echo '<div class="form-grid-div">';
+        echo '<h4>Archive Visitors</h4>';
+        echo '<form method="POST" action="actions/archiveVisitors.php">';
+        echo '<input type="checkbox" name="archiveVisitor">';
+        echo '<label for="archiveVisitor">Archive Visitors </label><br> ';   
+        echo '<button type="submit" name="submitArchive">Archive</button> ';
+      
+        echo '</div>';     
+        echo '</form>';
+        echo '<br>';
+    
+        echo '</div>';
         echo '<table>';
             echo '<tr>';
                 echo '<th>Login Date</th> '; 
@@ -929,30 +938,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
          
         echo '</table>';   
         echo '<br>';
-        echo '<div class="form-grid3">';
       
-        echo '<div class="form-grid-div">';
-        echo '<h4>Report Visitors</h4>';
-        echo '<form target="_blank" method="POST" action="actions/reportVisitors.php">';
-        echo '<input type="checkbox" name="reportVisitor">';
-        echo '<label for="reportVisitor">Report on Visitors </label><br> ';   
-        echo '<button type="submit" name="reportVisitors">Report</button> ';
-      
-        echo '</div>';     
-        echo '</form>';
-        echo '<br>';
-        echo '<div class="form-grid-div">';
-        echo '<h4>Archive Visitors</h4>';
-        echo '<form method="POST" action="actions/archiveVisitors.php">';
-        echo '<input type="checkbox" name="archiveVisitor">';
-        echo '<label for="archiveVisitor">Archive Visitors </label><br> ';   
-        echo '<button type="submit" name="submitArchive">Archive</button> ';
-      
-        echo '</div>';     
-        echo '</form>';
-        echo '<br>';
-    
-        echo '</div>';
     echo '</section>';
     echo '</div>';
  }
@@ -979,18 +965,18 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<input type="checkbox" name="addUser">';
             echo '<label for="addUser">Add a Member</label> <br>';
             
-            echo '<button type="submit" name="submitUser">Submit</button>';  
+            echo '<button type="submit" name="submitUser">Maintain Members</button>';  
             echo '</form> <br>';
     
             echo '</div>';
             echo '</div>';
                 /* */
+                echo '<h4>Report on Members</h4>';
             echo '<div class="form-grid3">';
+         
             echo '<form target="_blank" method="POST" action="actions/reportUser.php">'; 
             echo '<div class="form-grid-div">';
-            echo '<h4>Report Members</h4>';
-            echo '<input type="checkbox" name="reportUsers">';
-            echo '<label for="reportUsers">Report Members</label><br>';    
+   
             echo '<button type="submit" name="submitUserRep">Report Members</button>';   
             echo '</form>';
             echo '</div> '; 
@@ -998,20 +984,15 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
 
             echo '<form target="_blank" method="POST" action="actions/reportInstructors.php">'; 
             echo '<div class="form-grid-div">';
-            echo '<h4>Report Instructors</h4>';
-            echo '<input type="checkbox" name="reportInstructors">';
-            echo '<label for="reportInstructors">Report Instructors</label><br>';    
+        
             echo '<button type="submit" name="submitInstructorRep">Report Instructors</button>';   
             echo '</form>';
             echo '</div> '; 
             /* */
             echo '<form target="_blank" method="POST" action="actions/reportUsage.php">'; 
             echo '<div class="form-grid-div">';
-            echo '<h4>Report Usage</h4>';
-            echo '<input type="checkbox" name="reportUsers">';
-            echo '<label for="reportUsers">Report Member Usage</label><br>';    
         
-            echo '<button type="submit" name="submitUsageRep">Report Usage</button>';   
+            echo '<button type="submit" name="submitUsageRep">Report Member Usage</button>';   
         
             echo '</div> ';   
             echo '</form>';
@@ -1177,14 +1158,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<button type="submit" name="updateMemPaid">UPDATE</button>'; 
             echo '</form>';
             echo '</div> ';  
-      /*       echo '<div class="form-grid-div">';  
-            echo '<form target="_blank" method="POST" action="actions/reportPaid.php">'; 
-            echo '<h4>Report Membership</h4>';
-            echo '<input type="checkbox" name="reportPaid">';
-            echo '<label for="reportUsers">Report Membership</label><br>';    
-            echo '<label for="year" >Reporting Year</label><br>';
-            echo '<input type="number" min=2022 maxlength=4 name="year" 
-                 value="'.$thisYear.'"><br>'; */
+
             echo '<input type="hidden" name="email" value="'.$memStat['email'].'"><br>';
             echo '<input type="hidden" name="firstname" value="'.$memStat['firstname'].'"><br>';
             echo '<input type="hidden" name="lastname" value="'.$memStat['lastname'].'"><br>';

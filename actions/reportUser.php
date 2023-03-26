@@ -21,7 +21,7 @@ class PDF extends FPDF
         $title = "SaddleBrooke Ballroom Dance Club Members - ".$today;
         $this->Image('../img/sbdc_logo_small.png',10,6,30);
         // Arial bold 15
-        $this->SetFont('Arial','B',15);
+        $this->SetFont('Arial','B',16);
         // Move to the right
         $this->Cell(80);
         // Title
@@ -42,6 +42,7 @@ class PDF extends FPDF
         $this->SetFont('Arial', 'I', 8);
         // Page number
         $this->Cell(0, 10, 'Page '.$this->PageNo().'/{nb}', 0, 0,' C');
+        $this->SetFont('Arial', '', 14);
     }
 }
 
@@ -79,47 +80,47 @@ if (isset($_POST['submitUserRep'])) {
     $pdf = new PDF("L");
     $pdf->AliasNbPages();
     $pdf->SetTextColor(26, 22, 22);
-    $pdf->AddPage();
-    $pdf->SetFont('Arial', '', 10);
+    $pdf->AddPage("L");
+    $pdf->SetFont('Arial', '', 14);
 
 if ($userCount > 0) {
   
-    $pdf->SetFont('Arial','B',10);
-    $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
-    $pdf->Cell(30,5,"LAST NAME",1,0,"L");
-    $pdf->Cell(60,5,"EMAIL",1,0,"L");
+    $pdf->SetFont('Arial','B',14);
+    $pdf->Cell(40,5,"FIRST NAME",1,0,"L");
+    $pdf->Cell(40,5,"LAST NAME",1,0,"L");
+    $pdf->Cell(70,5,"EMAIL",1,0,"L");
     $pdf->Cell(5,5,"H",1,0,"L");
-    $pdf->Cell(25,5,"PHONE",1,0,"L");
-    $pdf->Cell(60,5,"STREET ADDRESS",1,1,"L");
+    $pdf->Cell(35,5,"PHONE",1,0,"L");
+    $pdf->Cell(70,5,"STREET ADDRESS",1,1,"L");
     $pdf->SetFont('Arial', '', 10);
     foreach ($userArr as $usr) {
 
 
          // $pdf->Cell(0, 5, $user_string1, 0, 1);
-         $pdf->Cell(30,5,$usr['firstname'],1,0,"L");
-         $pdf->Cell(30,5,$usr['lastname'],1,0,"L");
-         $pdf->Cell(60,5,$usr['email'],1,0,"L");
+         $pdf->Cell(40,5,$usr['firstname'],1,0,"L");
+         $pdf->Cell(40,5,$usr['lastname'],1,0,"L");
+         $pdf->Cell(70,5,$usr['email'],1,0,"L");
          $pdf->Cell(5,5,$usr['hoa'],1,0,"L");
     
-         $pdf->Cell(25,5,$usr['phone1'],1,0,"L");
-         $pdf->Cell(60,5,$usr['streetaddress'],1,1,"L");
+         $pdf->Cell(35,5,$usr['phone1'],1,0,"L");
+         $pdf->Cell(70,5,$usr['streetaddress'],1,1,"L");
 
 
     }
-    $pdf->SetFont('Arial','B', 10);
+    $pdf->SetFont('Arial','B', 14);
     $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Members HOA1:  ".$numHOA1, 0, 1);
     $pdf->Cell(0, 5, "Total Members HOA2:  ".$numHOA2, 0, 1);
     $pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
   
-    $pdf->SetFont('Arial', '', 10);
+    $pdf->SetFont('Arial', '', 14);
 } else {
-    $pdf->SetFont('Arial','B', 12);
-    $pdf->Cell(0, 10, "   NO Members FOUND ", 0, 1); 
-    $pdf->SetFont('Arial', '', 10);
+    $pdf->SetFont('Arial','B', 14);
+    $pdf->Cell(0, 14, "   NO Members FOUND ", 0, 1); 
+    $pdf->SetFont('Arial', '', 14);
 }
 $today = date("m-d-Y");
-$pdf->Output("I", "MemberReport".$today);
+$pdf->Output("I", "MemberReport".$today.".PDF");
 }
 
 $redirect = "Location: ".$_SESSION['adminurl'];

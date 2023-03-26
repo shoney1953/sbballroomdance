@@ -23,7 +23,7 @@ class PDF extends FPDF
         $today = date("m-d-Y");
         $this->Image('../img/sbdc_logo_small.png',10,6,30);
         // Arial bold 15
-        $this->SetFont('Arial','B',15);
+        $this->SetFont('Arial','B',16);
         // Move to the right
         $this->Cell(80);
         // Title
@@ -41,7 +41,7 @@ class PDF extends FPDF
         // Position at 1.5 cm from bottom
         $this->SetY(-15);
         // Arial italic 8
-        $this->SetFont('Arial', 'I', 8);
+        $this->SetFont('Arial', 'I', 10);
         // Page number
         $this->Cell(0, 10, 'Page '.$this->PageNo().'/{nb}', 0, 0,' C');
     }
@@ -104,28 +104,28 @@ if ($rowCount > 0) {
             $init = 0;
             $event_string = ' '.$reg['eventtype'].' --- '.$reg['eventname'].'  '
                      .$reg['eventdate'].' ';
-            $pdf->SetFont('Arial', 'BU', 10);
+            $pdf->SetFont('Arial', 'BU', 14);
             $pdf->Cell(0, 10, $event_string, 0, 1);
-            $pdf->SetFont('Arial', '', 10);
-            $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
-            $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
-            $pdf->Cell(60,5,"EMAIL",1,0,"L"); 
-            $pdf->Cell(18,5,"MEMBER",1,0,"L"); 
+            $pdf->SetFont('Arial', '', 14);
+            $pdf->Cell(40,5,"FIRST NAME",1,0,"L"); 
+            $pdf->Cell(45,5,"LAST NAME",1,0,"L");  
+            $pdf->Cell(70,5,"EMAIL",1,0,"L"); 
+            $pdf->Cell(18,5,"MEM",1,0,"L"); 
             if ($reg['eventtype'] === 'Dinner Dance') {
-                $pdf->Cell(10,5,"PAID",1,0,"L");
+                $pdf->Cell(14,5,"PAID",1,0,"L");
             }
       
             if ($reg['eventtype'] === 'Dine and Dance') {
-                $pdf->Cell(20,5,"DINNER?",1,0,"L");
-                $pdf->Cell(20,5,"DANCE?",1,0,"L");
+                $pdf->Cell(22,5,"DINNER?",1,0,"L");
+
             }
 
-            $pdf->Cell(45,5,"MESSAGE",1,1,"L");    
+            $pdf->Cell(70,5,"MESSAGE",1,1,"L");    
           
     
         }
         if ($reg['eventid'] !== $prevEvent) {
-            $pdf->SetFont('Arial', 'B', 10);
+            $pdf->SetFont('Arial', 'B', 14);
             $pdf->Ln(2);
             $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1); 
             if ($reg['eventtype'] === 'Dinner Dance') {
@@ -147,21 +147,21 @@ if ($rowCount > 0) {
             $event_string = ' '.$reg['eventname'].'  '
             .$reg['eventdate'].' ';
             $pdf->Ln(3);
-            $pdf->SetFont('Arial', 'BU', 10);
+            $pdf->SetFont('Arial', 'BU', 14);
             $pdf->Cell(0, 10, $event_string, 0, 1);
-            $pdf->SetFont('Arial', '', 10);
-            $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
-            $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
-            $pdf->Cell(60,5,"EMAIL",1,0,"L");
-            $pdf->Cell(18,5,"MEMBER",1,0,"L");
+            $pdf->SetFont('Arial', '', 14);
+            $pdf->Cell(40,5,"FIRST NAME",1,0,"L"); 
+            $pdf->Cell(45,5,"LAST NAME",1,0,"L");  
+            $pdf->Cell(70,5,"EMAIL",1,0,"L");
+            $pdf->Cell(18,5,"MEM",1,0,"L");
             if ($reg['eventtype'] === 'Dinner Dance') {
-             $pdf->Cell(10,5,"PAID",1,0,"L");
+             $pdf->Cell(14,5,"PAID",1,0,"L");
             }
             if ($reg['eventtype'] === 'Dine and Dance') {
-             $pdf->Cell(20,5,"DINNER?",1,0,"L");
-             $pdf->Cell(20,5,"DANCE?",1,0,"L");
+             $pdf->Cell(22,5,"DINNER?",1,0,"L");
+
             }
-            $pdf->Cell(45,5,"MESSAGE",1,1,"L");      
+            $pdf->Cell(70,5,"MESSAGE",1,1,"L");      
     
          }
          $paid = 'Not Paid';
@@ -179,9 +179,9 @@ if ($rowCount > 0) {
  
         }
         
-          $pdf->Cell(35,5,$reg['firstname'],1,0,"L"); 
-          $pdf->Cell(35,5,$reg['lastname'],1,0,"L");  
-          $pdf->Cell(60,5,$reg['email'],1,0,"L");  
+          $pdf->Cell(40,5,$reg['firstname'],1,0,"L"); 
+          $pdf->Cell(45,5,$reg['lastname'],1,0,"L");  
+          $pdf->Cell(70,5,$reg['email'],1,0,"L");  
           if ($user->getUserName($reg['email'])) {
             $pdf->Cell(18,5,"YES",1,0,"L"); 
             $memReg++;
@@ -191,30 +191,26 @@ if ($rowCount > 0) {
         } 
         if ($reg['eventtype'] === 'Dinner Dance') {
             if ($reg['paid'] === '1') {
-                $pdf->Cell(10,5,"YES",1,0,"L");
+                $pdf->Cell(14,5,"YES",1,0,"L");
             } else {
-                $pdf->Cell(10,5,"NO ",1,0,"L");
+                $pdf->Cell(14,5,"NO ",1,0,"L");
             } 
       
       }
       if ($reg['eventtype'] === 'Dine and Dance') {
         if ($reg['ddattenddinner'] === '1') {
-            $pdf->Cell(20,5,"YES",1,0,"L");
+            $pdf->Cell(22,5,"YES",1,0,"L");
         } else {
-            $pdf->Cell(20,5,"NO ",1,0,"L");
+            $pdf->Cell(22,5,"NO ",1,0,"L");
         } 
-        if ($reg['ddattenddance'] === '1') {
-            $pdf->Cell(20,5,"YES",1,0,"L");
-        } else {
-            $pdf->Cell(20,5,"NO ",1,0,"L");
-        } 
+     
     }
         
-        $pdf->Cell(45,5,$reg['message'],1,1,"L"); 
+        $pdf->Cell(70,5,$reg['message'],1,1,"L"); 
 
 
     }
-    $pdf->SetFont('Arial','B', 10);
+    $pdf->SetFont('Arial','B', 14);
     $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1);
     if ($reg['eventtype'] === 'Dinner Dance') {
@@ -226,11 +222,11 @@ if ($rowCount > 0) {
     $pdf->Cell(0, 5, "Total Attending Dinner (if Dine and Dance):  ".$attDinner, 0, 1);
     $pdf->Cell(0, 5, "Total Attending Dance (if Dine and Dance):  ".$attDance, 0, 1);
     }
-    $pdf->SetFont('Arial', '', 10);
+    $pdf->SetFont('Arial', '', 14);
 } else {
-    $pdf->SetFont('Arial','B', 12);
+    $pdf->SetFont('Arial','B', 16);
     $pdf->Cell(0, 10, "   NO REGISTRATIONS FOUND ", 0, 1); 
-    $pdf->SetFont('Arial', '', 10);
+    $pdf->SetFont('Arial', '', 14);
 }
 $today = date("m-d-Y");
 $pdf->Output("I", "EventRegistrationReport.".$today.".PDF");

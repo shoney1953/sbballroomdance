@@ -1,7 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans");
 
 :root {
-  --lg: linear-gradient(180deg, rgba(226, 222, 223, 0.2),rgba(197, 192, 193, 0.4), rgba(190, 169, 177, 0.8));
+  --lg: linear-gradient(
+    180deg,
+    rgba(226, 222, 223, 0.2),
+    rgba(197, 192, 193, 0.4),
+    rgba(190, 169, 177, 0.8)
+  );
 }
 * {
   box-sizing: border-box;
@@ -21,17 +26,14 @@ hr {
   border-radius: 50%;
 }
 .container {
-
   max-width: 100%;
   margin-left: 5%;
   margin-right: 5%;
-  max-width: 100%; 
+  max-width: 100%;
 }
 .container-section {
-
- max-width: 100%; 
+  max-width: 100%;
   background-image: var(--lg);
- 
 }
 .nav {
   position: fixed;
@@ -57,14 +59,10 @@ hr {
   list-style-type: none;
   align-items: left;
   justify-content: space-between;
-
 }
 .nav .container ul li {
-
   display: inline-block;
   position: relative;
-
-
 }
 .nav .container ul li ul {
   visibility: hidden;
@@ -75,18 +73,18 @@ hr {
   display: none;
   border-radius: 5px;
   background: rgb(102, 100, 100);
-  color:black;
+  color: black;
 }
 
-.nav .container ul  li:hover > ul,
-.nav .container ul li  ul:hover {
+.nav .container ul li:hover > ul,
+.nav .container ul li ul:hover {
   visibility: visible;
   opacity: 1;
   display: block;
   min-width: 200px;
   text-align: left;
   padding-top: 20px;
-  color:black;
+  color: black;
   box-shadow: 0px 3px 5px -1px #ccc;
 }
 
@@ -132,7 +130,7 @@ hr {
   /*background-image: url("../img/moonrise\ opaque.jpg"); */
   /*background-image: url("../img/morning1.jpg");  */
   /*background-image: url("../img/halfmoonCrop.jpg"); */
-  background-image: url("../img/monsoon.jpg"); 
+  background-image: url("../img/monsoon.jpg");
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -167,24 +165,22 @@ hr {
 .content-left {
   margin: 10px 10px;
   text-align: center;
-  color:darkviolet;
+  color: darkviolet;
   align-items: center;
   justify-content: center;
-  background-color:rgb(241, 236, 236);
+  background-color: rgb(241, 236, 236);
   border-radius: 5px;
   border: 2px solid black;
-
 }
 .motto-font {
-  font-family: 'Dancing Script', cursive;
-  color:rgb(202, 86, 86);
+  font-family: "Dancing Script", cursive;
+  color: rgb(202, 86, 86);
   margin-bottom: 20px;
   border-radius: 5px;
 }
 .motto-img {
   width: 400px;
   margin-bottom: 20px;
-
 }
 .motto-img2 {
   width: 100px;
@@ -192,7 +188,6 @@ hr {
   opacity: 0.3;
 }
 .profile {
-
   background-image: var(--lg);
 }
 .list-box {
@@ -218,23 +213,19 @@ hr {
   margin-bottom: 2px;
   margin-top: 2px;
   text-align: center;
-  color:rgb(28, 1, 39);
+  color: rgb(28, 1, 39);
   align-items: center;
   justify-content: center;
-  background-color:rgba(252, 237, 237, 0.2);
-
-
+  background-color: rgba(252, 237, 237, 0.2);
 }
 .content h1,
-.content h2 ,
+.content h2,
 .content h3 {
   font-size: 150%;
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
-  color:rgb(25, 2, 36);
-
-
+  color: rgb(25, 2, 36);
 }
 .content p {
   color: rgb(41, 39, 39);
@@ -244,22 +235,25 @@ hr {
 }
 .content a {
   text-decoration: none;
-  color:blue;
+  color: blue;
 }
 
 .section-header {
   text-align: center;
-  color:rgb(58, 2, 82);
+  color: rgb(58, 2, 82);
   align-items: center;
   justify-content: center;
   padding-top: 70px;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
   text-align: left;
 }
-th, td {
+th,
+td {
   padding: 2px;
 }
 table {
@@ -286,46 +280,45 @@ form {
   align-items: center;
   justify-content: center;
 }
-input[type=text] {
+input[type="text"] {
   width: 400px;
   padding: 4px 4px;
   margin: 4px 4px;
   box-sizing: border-box;
 }
-input[type=email] {
+input[type="email"] {
   width: 400px;
   padding: 4px 4px;
   margin: 4px 4px;
   box-sizing: border-box;
 }
-input[type=textbox] {
+input[type="textbox"] {
   width: 400px;
   padding: 4px 4px;
   margin: 4px 4px;
   box-sizing: border-box;
 }
-input[type=text].text-small {
+input[type="text"].text-small {
   width: 40px;
   padding: 4px 4px;
   margin: 4px 4px;
   box-sizing: border-box;
 }
-input[type=text].text-large {
+input[type="text"].text-large {
   width: 400px;
   padding: 4px 4px;
   margin: 4px 4px;
   box-sizing: border-box;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   width: 20px;
   height: 20px;
   padding: 4px 4px;
   margin: 4px 4px;
   padding: 4px 4px;
- 
 }
-input[type=select]{
+input[type="select"] {
   width: 200px;
   margin: 4px 4px;
   box-sizing: border-box;
@@ -358,7 +351,7 @@ input[type=select]{
   grid-template-columns: repeat(1, 1fr);
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
-  
+
   border-radius: 5px;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -375,7 +368,7 @@ input[type=select]{
   justify-content: left;
   font-size: 85%;
 }
-.form-head-small  h3{
+.form-head-small h3 {
   font-size: 75%;
 }
 
@@ -393,6 +386,9 @@ input[type=select]{
   margin-left: 25px;
   padding: 20px 20px 20px 20px;
 }
+h2 a {
+  color: white;
+}
 button {
   background-color: darkviolet;
   width: 25%;
@@ -403,18 +399,39 @@ button {
   margin-bottom: 10px;
   cursor: pointer;
 }
+button:link,
+button:visited {
+  background-color: darkviolet;
+  width: 25%;
+  color: white;
+  margin-top: 5px;
+  padding: 12px 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+button:hover,
+button:active {
+  background-color: white;
+  width: 25%;
+  color: darkviolet;
+  margin-top: 5px;
+  padding: 12px 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
 .li-none {
   list-style: none;
-
 }
 .li-large {
   font-size: 15px;
-  color:darkslateblue;
+  color: darkslateblue;
   font-style: italic;
 }
 .li-none a {
   text-decoration: none;
-  color:blue;
+  color: blue;
 }
 .select {
   width: 100%;
@@ -427,10 +444,8 @@ button {
   cursor: pointer;
   line-height: 1.5;
   background-color: #fff;
- 
 }
 .footer-section {
-
   background-color: rgb(43, 32, 43);
   text-align: center;
   color: white;
@@ -445,12 +460,11 @@ iframe {
   width: 1200px;
   height: 800px;
   border: none;
-  
 }
 
 @media screen and (max-width: 1930px) {
   body {
-  font-size: 100%;
+    font-size: 100%;
   }
   .nav {
     position: fixed;
@@ -459,7 +473,6 @@ iframe {
     right: 0;
     transition: all 0.3s ease-in-out;
     max-width: 100vw;
-  
   }
   .container {
     margin-left: 5px;
@@ -467,16 +480,15 @@ iframe {
     max-width: 100vw;
   }
   .container-section {
-
-    max-width: 100%; 
-     background-image: var(--lg);
-     max-width: 100vw;
-   }
-   .hero {
+    max-width: 100%;
+    background-image: var(--lg);
+    max-width: 100vw;
+  }
+  .hero {
     /*background-image: url("../img/moonrise\ opaque.jpg"); */
-    /*background-image: url("../img/morning1.jpg"); */ 
-    /*background-image: url("../img/halfmoonCrop.jpg"); */ 
-    background-image: url("../img/monsoon.jpg"); 
+    /*background-image: url("../img/morning1.jpg"); */
+    /*background-image: url("../img/halfmoonCrop.jpg"); */
+    background-image: url("../img/monsoon.jpg");
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
@@ -513,12 +525,24 @@ iframe {
   }
   .li-large {
     font-size: 100%;
-    color:darkslateblue;
+    color: darkslateblue;
     font-style: italic;
   }
   .form-grid1 {
     justify-content: left;
     align-items: left;
+  }
+
+  .membership-link:link,
+  .membership-link:visited {
+    color: #fff;
+    padding-top: 10px;
+  }
+  .membership-link:hover,
+  .membership-link:active {
+    color: #f46b6b;
+    padding-top: 10px;
+    background-color: #fff;
   }
 
   .form-grid2 {
@@ -548,8 +572,8 @@ iframe {
     font-size: 100%;
   }
 
-  
-  button {
+  button:link,
+  button:visited {
     background-color: darkviolet;
     width: 25%;
     color: white;
@@ -557,25 +581,32 @@ iframe {
     padding: 8px 15px;
     border-radius: 5px;
     margin-bottom: 5px;
-
   }
-  input[type=email] {
+  button:hover,
+  button:active {
+    background-color: #fff;
+    width: 25%;
+    color: darkviolet;
+    margin-top: 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  input[type="email"] {
     width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
   }
-  input[type=textbox] {
+  input[type="textbox"] {
     width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
   }
-  input[type=checkbox] {
-    
+  input[type="checkbox"] {
     padding: 2px 2px;
     margin: 2px 2px;
-    
   }
   table {
     width: 100%;
@@ -584,12 +615,15 @@ iframe {
     align-items: left;
     justify-content: left;
   }
-  table, th, td {
+  table,
+  th,
+  td {
     border: 1px solid black;
     font-size: 100%;
     text-align: left;
   }
-  th, td {
+  th,
+  td {
     padding: 2px;
     font-size: 100%;
   }
@@ -601,22 +635,21 @@ iframe {
     color: rgb(41, 39, 39);
     line-height: 35px;
     letter-spacing: 1.1px;
- 
   }
-  
+
   .section-header {
     text-align: center;
     align-items: center;
     justify-content: center;
-      color:rgb(58, 2, 82);
-      padding-top: 50px;
+    color: rgb(58, 2, 82);
+    padding-top: 50px;
   }
 
   .nav .container {
     align-items: left;
     padding: 5px 0;
   }
-  .nav ul { 
+  .nav ul {
     align-items: space-between;
     justify-content: space-between;
   }
@@ -628,13 +661,11 @@ iframe {
     padding: 4px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
- 
-  
+
   .motto-img {
     width: 300px;
     margin-bottom: 5px;
     margin-left: 100px;
-  
   }
   .motto-img2 {
     width: 200px;
@@ -642,11 +673,10 @@ iframe {
     margin-left: 100px;
     opacity: 0.3;
   }
-
 }
 @media screen and (max-width: 1280px) {
   body {
-  font-size: 100%;
+    font-size: 100%;
   }
   .nav {
     position: fixed;
@@ -657,7 +687,7 @@ iframe {
     align-items: left;
     justify-content: left;
     text-align: left;
-  
+
     max-width: 100vw;
   }
   .nav .container {
@@ -668,7 +698,7 @@ iframe {
     text-align: left;
     max-width: 100vw;
   }
-  .nav ul { 
+  .nav ul {
     align-items: space-between;
     justify-content: space-between;
   }
@@ -680,7 +710,7 @@ iframe {
     padding: 4px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
- 
+
   .container {
     margin-left: 2px;
     margin-right: 2px;
@@ -690,15 +720,12 @@ iframe {
     max-width: 100vw;
   }
   .container-section {
-
-   
     max-width: 100vw;
+  }
 
-   }
- 
   .li-large {
     font-size: 100%;
-    color:darkslateblue;
+    color: darkslateblue;
     font-style: italic;
   }
   .form-grid1 {
@@ -732,8 +759,8 @@ iframe {
     font-size: 100%;
   }
 
-  
-  button {
+  button:link,
+  button:visited {
     background-color: darkviolet;
     width: 25%;
     color: white;
@@ -741,25 +768,32 @@ iframe {
     padding: 8px 15px;
     border-radius: 5px;
     margin-bottom: 5px;
-
   }
-  input[type=email] {
+  button:hover,
+  button:active {
+    background-color: white;
+    width: 25%;
+    color: darkviolet;
+    margin-top: 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  input[type="email"] {
     width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
   }
-  input[type=textbox] {
+  input[type="textbox"] {
     width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
   }
-  input[type=checkbox] {
-    
+  input[type="checkbox"] {
     padding: 2px 2px;
     margin: 2px 2px;
-    
   }
   table {
     width: 100%;
@@ -768,12 +802,15 @@ iframe {
     align-items: left;
     justify-content: left;
   }
-  table, th, td {
+  table,
+  th,
+  td {
     border: 1px solid black;
     font-size: 100%;
     text-align: left;
   }
-  th, td {
+  th,
+  td {
     padding: 2px;
     font-size: 100%;
   }
@@ -785,31 +822,27 @@ iframe {
     color: rgb(41, 39, 39);
     line-height: 35px;
     letter-spacing: 1.1px;
- 
   }
-  
+
   .section-header {
     text-align: center;
     align-items: center;
     justify-content: center;
-      color:rgb(58, 2, 82);
-      padding-top: 50px;
+    color: rgb(58, 2, 82);
+    padding-top: 50px;
   }
 
- 
   .hero {
- 
     justify-content: center;
     align-items: center;
     text-align: center;
 
     margin-bottom: 5px;
- 
   }
   .hero h1 {
-      font-size: 35px;
-      margin: 35px 0 0 20px;
-    }
+    font-size: 35px;
+    margin: 35px 0 0 20px;
+  }
   .hero p {
     font-size: 25px;
     letter-spacing: 1px;
@@ -819,7 +852,6 @@ iframe {
     width: 300px;
     margin-bottom: 5px;
     margin-left: 100px;
-  
   }
   .motto-img2 {
     width: 200px;
@@ -832,13 +864,11 @@ iframe {
     width: 800px;
     height: 600px;
     border: none;
-    
   }
-  
 }
 @media screen and (max-width: 895px) {
   body {
-  font-size: 80%;
+    font-size: 80%;
   }
   .nav {
     position: fixed;
@@ -849,28 +879,22 @@ iframe {
     max-width: 100vw;
   }
   .nav .container {
-
     align-items: left;
     padding: 5px 0;
-
   }
   .nav ul {
-  
     align-items: left;
     justify-content: left;
   }
   .nav a {
-
-
     padding: 5px 5px;
-  
   }
 
   .nav.active .container {
     padding: 4px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
- 
+
   .hero {
     justify-content: left;
     align-items: left;
@@ -878,10 +902,10 @@ iframe {
     margin-bottom: 5px;
   }
   .hero h1 {
-        font-size: 20px;
-        margin: 0 20px 20px 20px;
-    }
- .hero p {
+    font-size: 20px;
+    margin: 0 20px 20px 20px;
+  }
+  .hero p {
     font-size: 18px;
     letter-spacing: 1px;
     margin: 0 0 0 20px;
@@ -890,7 +914,6 @@ iframe {
     width: 300px;
     margin-bottom: 5px;
     margin-left: 40px;
-  
   }
   .motto-img2 {
     width: 150px;
@@ -907,11 +930,9 @@ iframe {
     max-width: 100vw;
   }
 
- 
-
   .li-large {
     font-size: 90%;
-    color:darkslateblue;
+    color: darkslateblue;
     font-style: italic;
   }
   .form-grid2 {
@@ -942,8 +963,9 @@ iframe {
     margin-left: 10px;
     font-size: 95%;
   }
-  
-  button {
+
+  button:link,
+  button:visited {
     background-color: darkviolet;
     width: 25%;
     color: white;
@@ -953,28 +975,38 @@ iframe {
     margin-bottom: 5px;
     cursor: pointer;
   }
-  input[type=email] {
+  button:hover,
+  button:active {
+    background-color: darkviolet;
+    width: 25%;
+    color: white;
+    margin-top: 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+  input[type="email"] {
     width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
     cursor: pointer;
   }
-  input[type=textbox] {
+  input[type="textbox"] {
     width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
     cursor: pointer;
   }
-  input[type=checkbox] {
+  input[type="checkbox"] {
     width: 25px;
     height: 25px;
     padding: 2px 2px;
     margin: 2px 2px;
     font-size: 100%;
     cursor: pointer;
-    
   }
 
   table {
@@ -984,12 +1016,15 @@ iframe {
     align-items: left;
     justify-content: left;
   }
-  table, th, td {
+  table,
+  th,
+  td {
     border: 1px solid black;
     font-size: 95%;
     text-align: left;
   }
-  th, td {
+  th,
+  td {
     padding: 2px;
     font-size: 95%;
   }
@@ -1001,30 +1036,26 @@ iframe {
     color: rgb(41, 39, 39);
     line-height: 20px;
     letter-spacing: 1.1px;
- 
   }
-  
+
   .section-header {
     text-align: left;
     align-items: left;
     justify-content: left;
-      color:rgb(58, 2, 82);
-      padding-top: 50px;
+    color: rgb(58, 2, 82);
+    padding-top: 50px;
   }
 
- 
   iframe {
     border: solid 1px #777;
     width: 600px;
     height: 500px;
     border: none;
-    
   }
-  
 }
 @media screen and (max-width: 735px) {
   body {
-  font-size: 75%;
+    font-size: 75%;
   }
   .nav {
     max-width: 100vw;
@@ -1042,7 +1073,7 @@ iframe {
 }
 @media screen and (max-width: 640px) {
   body {
-  font-size: 65%;
+    font-size: 65%;
   }
   .nav {
     max-width: 100vw;
@@ -1055,17 +1086,16 @@ iframe {
   }
 }
 @media screen and (max-width: 620px) {
-iframe {
-  border: solid 1px #777;
-  width: 500px;
-  height: 600px;
-  border: none;
-  
-}
+  iframe {
+    border: solid 1px #777;
+    width: 500px;
+    height: 600px;
+    border: none;
+  }
 }
 @media screen and (max-width: 590px) {
   body {
-  font-size: 70%;
+    font-size: 70%;
   }
   .nav {
     max-width: 100vw;
@@ -1089,7 +1119,7 @@ iframe {
 }
 @media screen and (max-width: 490px) {
   body {
-  font-size: 65%;
+    font-size: 65%;
   }
   .nav {
     position: fixed;
@@ -1098,36 +1128,31 @@ iframe {
     right: 700;
     transition: all 0.3s ease-in-out;
     max-width: 100vw;
-    
   }
-  
+
   .container {
     margin-left: 2px;
     margin-right: 2px;
-  
+
     align-items: left;
     justify-content: left;
     text-align: left;
     max-width: 100vw;
   }
   .container-section {
-
     max-width: 100vw;
-  
-   }
-   .content {
+  }
+  .content {
     max-width: 100vw;
     margin-right: 2px;
     margin-left: 2px;
     margin-bottom: 2px;
     margin-top: 2px;
     text-align: left;
-    color:rgb(28, 1, 39);
+    color: rgb(28, 1, 39);
     align-items: left;
     justify-content: left;
-    background-color:rgba(252, 237, 237, 0.2);
-  
-  
+    background-color: rgba(252, 237, 237, 0.2);
   }
   table {
     width: 60%;
@@ -1136,45 +1161,44 @@ iframe {
     align-items: left;
     justify-content: left;
   }
-  table, th, td {
+  table,
+  th,
+  td {
     border: 1px solid black;
     font-size: 80%;
     text-align: left;
   }
-  th, td {
+  th,
+  td {
     padding: 2px;
     font-size: 80%;
   }
-  input[type=email] {
+  input[type="email"] {
     width: 50%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
     cursor: pointer;
   }
-  input[type=textbox] {
+  input[type="textbox"] {
     width: 50%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
     cursor: pointer;
   }
-  input[type=checkbox] {
+  input[type="checkbox"] {
     width: 10px;
     height: 10px;
     padding: 1px 1px;
     margin: 1px 1px;
     font-size: 65%;
     cursor: pointer;
-    
   }
   iframe {
     border: solid 1px #777;
     width: 450px;
     height: 600px;
     border: none;
-    
   }
-  
 }
-

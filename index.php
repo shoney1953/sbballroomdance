@@ -260,6 +260,7 @@ if (isset($_SESSION['username'])) {
     <div class="hero">
         <div class="container">
             <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1>
+           
 
             <img class="motto-img" src="img/self.png" alt="motto">
             <!-- <img class="motto-img2" src="img/coupleSilloutteWhite.png" alt="couple"> -->
@@ -270,16 +271,16 @@ if (isset($_SESSION['username'])) {
             <p>We are comprised of members from both SaddleBrooke HOA 1 and HOA 2.</p><br>
             <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
                are also part of our repetoire. </p><br><br>
-            <p>Scroll down or click one of the tabs above for more information</p>
-   
+            <p>Scroll down or click one of the tabs above for more information</p><br>
+            <h2 ><a class="membership-link" href="img/Membership Form 2023 Dance Club.pdf"><strong>
+            <em>Click Here for Membership Form </em></strong></a></h2>
 
     </div>
     
     </div>
     <div class="container-section ">
     <section id="about" class="content">  
-    <h1><a style="color: red" href="img/Membership Form 2023 Dance Club.pdf"><strong>
-            <em>Click Here for Membership Form </em></strong></a></h1>
+    <!-- <h1><a style="color: red" href="img/Membership Form 2023 Dance Club.pdf"><strong> -->
     
         <h1 class="section-header">What We are About</h1>
 
@@ -330,6 +331,7 @@ if (isset($_SESSION['username'])) {
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
         </p>
         <br>
+        <div id="board">
         <h3>Current Board Members</h3>
         <h4>Click on the Email to correspond with one of our Board Members</h4><br>
         <ul>
@@ -356,6 +358,7 @@ if (isset($_SESSION['username'])) {
                 webmaster@sbballroomdance.com</a></li>
   
         </ul>
+        </div>
         <br>
         <ul>
 
@@ -415,7 +418,7 @@ if (isset($_SESSION['username'])) {
         $partner = new User($db);
         if (isset($_SESSION['username'])) {
             echo '<h3> Enter Information Below to Register for Event(s) </h3>';
-            echo '<h4> This process generates an email, so it takes a while. Please be patient.
+            echo '<h4> This process generates an email to confirm your registration, so it takes a while. Please be patient.
             You will be sent back to the home page when it is complete.<br>
             You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
             spam/junk folder.</h4>';
@@ -512,7 +515,7 @@ if (isset($_SESSION['username'])) {
         echo '<div class="form-grid-div">';
             echo '<ul class="list-box">';
             echo '<h4 style="text-decoration: underline;color: black"><em>
-              To Register -- Please select One or More of the Events Listed</em></h4><br>';
+              To Register -- Please select One or More of the Events Listed and click on the Register Button</em></h4><br>';
         foreach ($upcomingEvents as $event) {
                 echo '<li class="list-none">';
                 $chkboxID = "ev".$event['id'];
@@ -525,7 +528,7 @@ if (isset($_SESSION['username'])) {
             
             echo '</ul> <br><br>';
 
-                 echo '<button name="submitEventReg" type="submit">Submit</button><br>';
+                 echo '<button name="submitEventReg" type="submit">Register</button><br>';
             echo '</div>';     
             echo '</form>';
     
@@ -591,7 +594,7 @@ if (isset($_SESSION['username'])) {
         if (isset($_SESSION['username'])) {
             $partner = new User($db);
             echo '<h3> Enter Information Below to Register for all or Selected Classes </h3>';
-            echo '<h4> This process generates an email, so it takes a while. Please be patient.
+            echo '<h4> This process generates an email to confirm your registration, so it takes a while. Please be patient.
             You will be sent back to the home page when it is complete.<br>
             You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
             spam/junk folder.</h4>';
@@ -684,7 +687,7 @@ if (isset($_SESSION['username'])) {
             echo '<div class="form-grid-div">';
                 echo '<ul class="list-box">';
                 echo '<h4 style="text-decoration: underline;color: black"><em>
-                  To Enroll -- Please select One or More of the Classes Listed</em></h4><br>';
+                  To Enroll -- Please select One or More of the Classes Listed then click on the Register Button</em></h4><br>';
             foreach ($upcomingClasses as $class) {
                     echo '<li class="list-none">';
                     $chkboxID = "cb".$class['id'];
@@ -697,7 +700,7 @@ if (isset($_SESSION['username'])) {
                 echo '</ul> <br><br>';      
                 
         
-        echo '<button name="submitRegClass" type="submit">Submit</button><br>';
+        echo '<button name="submitRegClass" type="submit">Register</button><br>';
         
            
             echo '</form>';
@@ -721,11 +724,8 @@ if (isset($_SESSION['username'])) {
     <br>
     <?php
     if (isset($_SESSION['username'])) { 
-        echo '<h1 class="section-header">Please contact one of us below (Just click on the email to email us): </h1>';
-        echo '<em><h4> Once you press SUBMIT, 
-        There will be a time delay while the email is generated and sent, so please be patient.</em><br>
-        You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
-            spam/junk folder.<br><br>';
+        echo '<h1 class="section-header">To correspond with one of us, Just click on any of the emails below: </h1>';
+
         echo '<ul>';
             echo '<li class="li-none li-large">President
                    -&rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
@@ -750,11 +750,12 @@ if (isset($_SESSION['username'])) {
                 webmaster@sbballroomdance.com</a></li>';
   
         echo '</ul>';
+        echo '<br><br>';
     }
     if (!isset($_SESSION['username'])) { 
         echo '<h1 class="section-header">Enter your information below to contact us about New membership: </h1>';
         echo '<em><h4> Once you press SUBMIT, 
-        There will be a time delay while the email is generated and sent, so please be patient.</em>
+        There will be a time delay while the contact email is generated and sent, so please be patient.</em>
         You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
             spam/junk folder.<br><br>';
         
@@ -791,7 +792,7 @@ if (isset($_SESSION['username'])) {
                 echo '<div class="form-grid-div">';
                 echo '<p> Tell Us About Yourself or Provide a Message to the Club</p><br>';
                 echo '<textarea name="message" cols="50" rows="4"></textarea><br><br>';
-                echo '<button name="submit" type="submit">Submit</button><br>';
+                echo '<button name="submit" type="submit">Send Contact Info</button><br>';
                 echo '</div>';
             echo '</div>';
                 
@@ -933,7 +934,7 @@ DJ Documents</a><br>
              <li class="li-none">Encouraging your friends and neighbors to join the club. </li>
          </ul><br>
         <p>If you think <strong>any </strong> of these sound interesting, please contact one of the 
-           board members.
+           board members. <a href="#board">Click to see board members and emails</a>
        </p><br><br>
 
      
@@ -973,22 +974,21 @@ DJ Documents</a><br>
           
         echo '<form target="_blank" method="POST" action="actions/reportDirectory.php">'; 
         echo '<div class="form-grid-div">';
-  
-        echo '<h4>Report Membership Directory</h4>';
-        echo '<input type="checkbox" name="reportDirectory">';
-        echo '<label for="reportDirectory">Report Directory</label><br>';    
-      
-        echo '<button type="submit" name="submitUserRep">Report</button>';   
+
+        echo '<button type="submit" name="submitUserRep">Create Directory Report</button>';   
         echo '</div> ';  
         echo '</form>';
             
-        echo '</div> '; 
-        echo '<h4>List of Members</h4>';
+   
+        echo '<div class="form-grid-div">';
         echo '<form target="_blank" method="POST" action="actions/searchDirectory.php" >';
         echo '<input type="text"  name="search" >';
-        echo '<button type="submit" name="searchUser">Search Directory</button>';  
+        echo '<button type="submit" name="searchUser">Search Directory by Name or Email</button>';  
         echo '</form>';
      
+     echo '</div>';
+     echo '</div> ';    
+     echo '<h3>List of Members</h3>';
         echo '<table>';
         echo '<tr>';
               
