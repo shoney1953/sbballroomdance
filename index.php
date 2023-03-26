@@ -260,11 +260,12 @@ if (isset($_SESSION['username'])) {
     <div class="hero">
         <div class="container">
             <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1>
-           
 
-            <img class="motto-img" src="img/self.png" alt="motto">
-            <!-- <img class="motto-img2" src="img/coupleSilloutteWhite.png" alt="couple"> -->
-            <img class="motto-img2" src="img/dancing couple grey transparent.png" alt="couple"> 
+
+            <img class="motto-img" src="img/self.png" alt="motto"></img>
+          
+            <img class="motto-img2" 
+            src="img/dancing couple grey transparent.png" alt="couple"> 
          
             <p>We are a primarily social club that provides dance lessons,
                  and opportunities to dance and socialize.</p><br>
@@ -272,18 +273,21 @@ if (isset($_SESSION['username'])) {
             <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
                are also part of our repetoire. </p><br><br>
             <p>Scroll down or click one of the tabs above for more information</p><br>
-            <h2 ><a class="membership-link" href="img/Membership Form 2023 Dance Club.pdf"><strong>
-            <em>Click Here for Membership Form </em></strong></a></h2>
 
+
+        </div> 
+     
     </div>
+ 
     
-    </div>
     <div class="container-section ">
     <section id="about" class="content">  
-    <!-- <h1><a style="color: red" href="img/Membership Form 2023 Dance Club.pdf"><strong> -->
+
     
         <h1 class="section-header">What We are About</h1>
-
+        <h2><a  style="color: red;font-weight: bold;font-size: large" 
+            href='img/Membership Form 2023 Dance Club.pdf' target='_blank'>
+            Click for Membership Form</a></h2>
         <p>If you love all kinds of dancing, we're the club for you. </p>
         <p> We don't just do Ballroom dance - at our dances/practices, we play 
             music for Ballroom Dance, Western and Western Partner Dance, Line Dance, and Latin Dances.</p>

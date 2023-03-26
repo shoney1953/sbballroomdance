@@ -130,7 +130,7 @@ hr {
   /*background-image: url("../img/moonrise\ opaque.jpg"); */
   /*background-image: url("../img/morning1.jpg");  */
   /*background-image: url("../img/halfmoonCrop.jpg"); */
-  background-image: url("../img/monsoon.jpg");
+  background-image: url("../img/monsoon_small.jpg");
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -386,8 +386,13 @@ input[type="select"] {
   margin-left: 25px;
   padding: 20px 20px 20px 20px;
 }
-h2 a {
+h2 a:link,
+a:visited {
   color: white;
+}
+h2 a:hover,
+a:active {
+  color: rgb(248, 149, 149);
 }
 button {
   background-color: darkviolet;
