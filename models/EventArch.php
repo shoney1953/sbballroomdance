@@ -25,7 +25,7 @@ class EventArch {
     public function read() {
       // Create query
 
-      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY eventdate';
+      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY eventdate, eventtype';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);

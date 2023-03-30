@@ -316,7 +316,7 @@ if (isset($_SESSION['username'])) {
  
 
         <a style="font-weight: bold"
-        href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix">
+        href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix" target="_blank">
          Click Here to See the Activities Calendar for times and dates.
         </a>
         <br><br>
@@ -382,12 +382,14 @@ if (isset($_SESSION['username'])) {
                 <th>Event Date</th>
                 <th>Event Name    </th>
                 <th>Event Type    </th>
-                <th>Event Description</th>  
+                <th>Event Description</th> 
+                <th>Event Room</th> 
                 <th>Event DJ</th>            
-                <th>Event Room</th>
+
                 <th>Event Cost</th>
-                <th># Reg </th>
+             
                 <th>Form</th>
+                <th># Reg </th>
 
             </tr>
             <?php 
@@ -399,15 +401,17 @@ if (isset($_SESSION['username'])) {
                     echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";
                     echo "<td>".$event['eventdesc']."</td>"; 
-                    echo "<td>".$event['eventdj']."</td>";            
                     echo "<td>".$event['eventroom']."</td>";
+                    echo "<td>".$event['eventdj']."</td>";            
+
                     echo "<td>".$event['eventcost']."</td>";
+                    if ($event['eventform']) {
+                        echo '<td><a href="'.$event['eventform'].'">VIEW</a></td>';
+                    } else {
+                            echo "<td> </td>"; 
+                    }
                     echo "<td>".$event['eventnumregistered']."</td>";
-                if ($event['eventform']) {
-                    echo '<td><a href="'.$event['eventform'].'">VIEW</a></td>';
-                } else {
-                        echo "<td> </td>"; 
-                }
+              
                   echo "</tr>";
             }
          
@@ -557,12 +561,13 @@ if (isset($_SESSION['username'])) {
                 <th>Time    </th>
                 <th>Class    </th>
                 <th>Level    </th>
+                <th>Room    </th>
                 <th>Registration Email    </th>
                 <th>Instructors    </th>
                 <th>Notes</th>
                 <th>Class Limit    </th>
                 <th># Reg </th>
-                <th>Room    </th>
+               
                 
                
             </tr>
@@ -576,12 +581,13 @@ if (isset($_SESSION['username'])) {
                     echo "<td>".$class['time']."</td>";
                     echo "<td>".$class['classname']."</td>";
                     echo "<td>".$class['classlevel']."</td>";
+                    echo "<td>".$class['room']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
                     echo "<td>".$class['instructors']."</td>";
                     echo "<td>".$class['classnotes']."</td>";
                     echo "<td>".$class['classlimit']."</td>";
                     echo "<td>".$class['numregistered']."</td>";
-                    echo "<td>".$class['room']."</td>";
+         
 
                   echo "</tr>";
             }

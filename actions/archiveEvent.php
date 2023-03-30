@@ -89,7 +89,8 @@ if (isset($_POST['submitArchive'])) {
             $eventRegArch->message = $reg_item['message'];
             $eventRegArch->ddattenddance = $reg_item['ddattenddance'];
             $eventRegArch->ddattenddinner = $reg_item['ddattenddinner'];
-            $eventRegArch->mealchoice = $reg_item['mealchoice'];
+            // $eventRegArch->mealchoice = $reg_item['mealchoice'];
+            $eventRegArch->mealchoice = 1;
             $eventRegArch->dietaryrestriction = $reg_item['dietaryrestriction'];
             $eventRegArch->create();
       

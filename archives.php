@@ -309,10 +309,18 @@ if ($rowCount > 0) {
   ?>  
     <div class="container-section ">
     <section id="eventsarchived" class="content">
-       
-        <h3 class="section-header">Archived Events</h3>
-        <form method='POST' action="actions/reportEventArchived.php"> 
+    <h3 class="section-header">Archived Events</h3>
+        <div class="form-grid3">
         <div class="form-grid-div">
+         <h2 class="section-header">Summary Report</h2>
+        <form method='POST' action="actions/reportSummaryEvents.php"> 
+        <button type='submit' name="submitSummaryRep">Summary Report</button>   
+        </form>
+        </div> 
+        <div class="form-grid-div">
+        <h2 class="section-header">Event Report</h2>
+        <form method='POST' action="actions/reportEventArchived.php"> 
+
         <input type='checkbox' name='reportEvent'>
         <label for='reportEvent'>Report on all or one Archived Event </label><br>
         <input type='text' class='text-small' name='eventId' >    
@@ -320,10 +328,11 @@ if ($rowCount > 0) {
             Specify Event ID from Table below for Report on One Event: </em> </label>
       
         <br>
-        <button type='submit' name="submitEventRep">Report</button>   
+        <button type='submit' name="submitEventRep">Report Archived Events</button>   
         </div>   
 
         </form>
+        </div> 
         <br>
         <table>
             <tr>
@@ -427,8 +436,17 @@ if ($rowCount > 0) {
     <section id="classesarchived" class="content">
       <br><br>
         <h3 class="section-header">Archived Classes</h3>
-        <form method='POST' action="actions/reportClassArchive.php"> 
+        <div class="form-grid3">
         <div class="form-grid-div">
+         <h2 class="section-header">Summary Report</h2>
+        <form method='POST' action="actions/reportSummaryClasses.php"> 
+        <button type='submit' name="submitSummaryRep">Summary Report</button>   
+        </form>
+        </div> 
+        <div class="form-grid-div">
+        <form method='POST' action="actions/reportClassArchive.php"> 
+
+        <h2 class="section-header">Report Classes</h2>
         <input type='checkbox' name='reportClass'>
         <label for='reportClass'>Report on all or one Archived Class </label><br>  
         <input type='text' class='text-small' name='classId' > 
@@ -437,8 +455,10 @@ if ($rowCount > 0) {
        
         <br>
         <button type='submit' name="submitClassRep">Report</button>   
-        </div>   
+  
         </form>
+        </div> 
+        </div>
         <table>
             <tr>
            

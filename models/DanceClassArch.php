@@ -25,7 +25,7 @@ class DanceClassArch {
     // Get Danceclasss
     public function read() {
       // Create query
-      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY date';
+      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY date, classlevel';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
