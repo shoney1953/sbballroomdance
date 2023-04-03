@@ -375,7 +375,13 @@ if (isset($_SESSION['username'])) {
 
       <br>
         <h1 class="section-header">Upcoming Events</h1>
-  
+        <div class="form-grid2">
+        <div class="form-grid-div">
+        <form target="_blank" method="POST" action="actions/printEvents.php"> 
+        <button type="submit" name="submitPrintEvents">Print Upcoming Events</button>  
+        </form>
+        </div>
+        </div>
         
         <table>
             <tr>
