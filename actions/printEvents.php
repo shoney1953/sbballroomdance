@@ -4,6 +4,8 @@ require('../includes/fpdf.php');
 $upcomingEvents = $_SESSION['upcoming_events'];
 $eventName = '';
 $eventDesc = '';
+$eventDesc1 = '';
+$eventDesc2 = '';
 class PDF extends FPDF
 {
     function Header() {
@@ -71,7 +73,17 @@ if (isset($_POST['submitPrintEvents'])) {
     $pdf->Cell(220,8,$event['eventdj'],1,1,"L");
     $pdf->Cell(25,8," ",0,0,"L"); 
     $pdf->Cell(20,8,"DESC:",1,0,"L"); 
-    $pdf->Cell(220,8,$eventDesc,1,1,"L");
+    $descLen = strlen($eventDesc);
+    if ($descLen > 50) {
+      $eventDesc1 = substr($eventDesc, 0, 112);
+      $eventDesc2 = substr($eventDesc, 112);
+      $pdf->Cell(220,8,$eventDesc1,1,1,"L");
+      $pdf->Cell(45,8," ",0,0,"L");  
+      $pdf->Cell(220,8,$eventDesc2,1,1,"L");
+    } else {
+
+      $pdf->Cell(220,8,$eventDesc,1,1,"L");
+    }
     
   }
 }
@@ -79,8 +91,8 @@ $today = date("m-d-Y");
 $pdf->Output("I", "SBDCUpcomingEvents.".$today.".pdf");
 
 
-$redirect = "Location: ".$_SESSION['adminurl'];
-header($redirect);
-exit;
+// $redirect = "Location: ".$_SESSION['adminurl'];
+// header($redirect);
+// exit;
 
 ?>
