@@ -235,10 +235,19 @@ if ($rowCount > 0) {
 </nav>  
     <br>
    <br><br><br> 
-    <div class="content">
+    <!-- <div class="content">
     <br><br>
-  
+    <h3 class="section-header">Summary Report</h3>
+      <div class="form-grid3">
+        <div class="form-grid-div">
+         <h2 class="section-header">Summary Report</h2>
+        <form method='POST' action="actions/reportSummaryActivity.php"> 
+        <button type='submit' name="submitSummaryRep">Summary Report</button>   
+        </form>
+        </div> 
+      </div> -->
     <?php
+
     if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<div class="container-section ">  <br><br>';
        

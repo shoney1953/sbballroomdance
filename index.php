@@ -553,7 +553,14 @@ if (isset($_SESSION['username'])) {
    
       <br>
         <h1 class="section-header">Ongoing and Upcoming Classes</h1>
-      
+        <div class="form-grid2">
+        <div class="form-grid-div">
+        <form target="_blank" method="POST" action="actions/printClasses.php"> 
+        <button type="submit" name="submitPrintClasses">Print Upcoming Classes</button>  
+        </form>
+        </div>
+        </div>
+
         <table>
             <tr>
                 

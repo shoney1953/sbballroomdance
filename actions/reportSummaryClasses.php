@@ -166,8 +166,8 @@ $today = date("m-d-Y");
 $pdf->Output("I", "Archived Classes Summary Report.".$today.".PDF");
 
 
-// $redirect = "Location: ".$_SESSION['adminurl'];
-// header($redirect);
-// exit;
+$redirect = "Location: ".$_SESSION['adminurl'];
+header($redirect);
+exit;
 
 ?>

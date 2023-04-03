@@ -645,6 +645,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <button type='submit' name="submitClass">Maintain Class(es)</button>   
         </div>   
         </form>
+       
         <form target="_blank" method='POST' action="actions/reportClass.php"> 
         <div class="form-grid-div">
         <h4>Report Classes</h4>
@@ -655,7 +656,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             Specify Class ID from Table below for Report on One Class: </em> </label>
        
         <br>
-        <button type='submit' name="submitClassRep">Report</button>   
+        <button type='submit' name="submitClassRep">Report Class Registration</button>   
         </div>   
         </form>
   
