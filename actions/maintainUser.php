@@ -41,7 +41,7 @@ $updateUser = false;
 $deleteUser = false;
 $addUser = false;
 $passdefault = 'test1234';
-$userdefault = ' ';
+$userdefault = '';
 
 
 if (isset($_POST['userId'])) {
@@ -220,13 +220,13 @@ if (!isset($_POST['userId'])) {
             echo '<form method="POST" action="addUser.php">';
             echo '<div class="form-grid-div">';
             echo '<label for="firstname">First Name</label><br>';
-            echo '<input type="text" name="firstname"><br>';
+            echo '<input type="text" name="firstname" required><br>';
             echo '<label for="lastname">Last Name</label><br>';
-            echo '<input type="text" name="lastname" ><br>';
+            echo '<input type="text" name="lastname" required ><br>';
             echo '<label for="email">Email -- Must not be a Duplicate</label><br>';
-            echo '<input type="email" name="email" ><br>';
+            echo '<input type="email" name="email" required><br>';
             echo '<label for="username">Username -- Must not be a duplicate</label><br>';
-            echo '<input type="text" name="username" value="'.$userdefault.'" ><br>';
+            echo '<input type="text" name="username" value="'.$userdefault.'" required ><br>';
             echo '<label for="role">Role</label><br>';
             echo '<select name = "role">';
             echo '<option value = "MEMBER">Normal Member Functions</option>';
@@ -235,9 +235,9 @@ if (!isset($_POST['userId'])) {
             echo '<option value = "INSTRUCTOR">Can Maintain Classes</option>';
             echo '</select><br>';
             echo '<label for="initPass">Initial Password</label><br>';
-            echo '<input type="password" name="initPass" minlength="8" value="'.$passdefault.'"><br>';
+            echo '<input type="password" name="initPass" minlength="8" value="'.$passdefault.'" required><br>';
             echo '<label for="initPass2">Retype Initial Password</label><br>';
-            echo '<input type="password" name="initPass2" minlength="8" value="'.$passdefault.'"><br>';
+            echo '<input type="password" name="initPass2" minlength="8" value="'.$passdefault.'" required><br>';
         
             echo '<label for="hoa">HOA</label><br>';
             echo '<select name = "hoa">';
@@ -255,16 +255,16 @@ if (!isset($_POST['userId'])) {
                 >';
             echo '<small>Format: 123-456-7890</small><br>';
             echo '<label for="streetaddress">Street Address</label><br>';
-            echo '<input type="text" name="streetaddress" ><br>';
+            echo '<input type="text" name="streetaddress" required ><br>';
             echo '<label for="city">City Name</label><br>';
         
-            echo '<input type="text" name="city" ><br>';
+            echo '<input type="text" name="city" required><br>';
           
             echo '<label for="state">State</label><br>';
-            echo '<input type="text" name="state" maxlength="2"><br>';
+            echo '<input type="text" name="state" maxlength="2" required><br>';
             echo '<br>';
             echo '<label for="zip">Zip</label><br>';
-            echo '<input type="text" name="zip" maxlength="10"><br>';
+            echo '<input type="text" name="zip" maxlength="10" required><br>';
             echo '<p> Notes</p><br>';
             echo '<textarea name="notes" cols="50" rows="5"></textarea><br><br>';
             echo '<br>';
