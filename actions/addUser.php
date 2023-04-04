@@ -130,6 +130,10 @@ if (isset($_POST['submitAddUser'])) {
        }
  
        $emailBody .= "We hope you will participate in and enjoy the following club activities: <br><ul>";
+       $emailBody .= "<li><strong>Novice Events</strong> - For anyone that has little dance experience, we have a new 
+       program of Novice events: Novice classes twice a month, and then a Novice practice party. These are designed to
+       help you learn a few steps of the most common dances, and help practice with other Novices. 
+       You will also receive emails about these actvities. You can register for these on the website.</li>";
        $emailBody .= "<li><strong>Dance Classes</strong> - Classes are normally held at the Mariposa Room
        at DesertView on Mondays and at 6 - 8pm and Wednesdays 4 - 6pm. Emails will go out regarding the content, 
        format, instructors and dates; registration is also available on the website.</li>";
@@ -145,15 +149,12 @@ if (isset($_POST['submitAddUser'])) {
        $emailBody .= "<li><strong>Open Practice</strong> - These are slots open for practice dancing. They are not 
        exclusively for members, so you can bring friends. Often a DJ provides requested music. If no DJ is
        specified, you may bring your own music. Currently we have 3 different slots:
-        <ul>
-       <li>Tuesday 4 - 5:30pm in the HOA1 Vermillion Room</li>
-       <li>Friday 3 - 5pm in the HOA1 Vermillion Room</li>
-       <li>Sunday 3 - 5pm in the MountainView Ballroom</li>
-       </ul></li>";
-       $emailBody .= "<li><strong>Novice Events</strong> - For anyone that has little dance experience, we have a new 
-       program of Novice events: Novice classes twice a month, and then a Novice practice party. These are designed to
-       help you learn a few steps of the most common dances, and help practice with other Novices. 
-       You will also receive emails about these actvities. You can register for these on the website.</li>";
+         <ul>
+         <li>Tuesday 4 - 5:30pm in the HOA1 Vermillion Room</li>
+         <li>Friday 3 - 5pm in the HOA1 Vermillion Room</li>
+         <li>Sunday 3 - 5pm in the MountainView Ballroom</li>
+         </ul></li><br>";
+       
        $emailBody .= "<li>Your name, email, phone and address will be listed in our directory by default unless
        you indicated otherwise on your membership form. But if you
        wish not to list your information in the directory, you can go to your profile on the website
