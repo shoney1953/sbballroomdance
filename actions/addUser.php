@@ -132,27 +132,28 @@ if (isset($_POST['submitAddUser'])) {
        $emailBody .= "We hope you will participate in and enjoy the following club activities: <br><ul>";
        $emailBody .= "<li><strong>Novice Events</strong> - For anyone that has little dance experience, we have a new 
        program of Novice events: Novice classes twice a month, and then a Novice practice party. These are designed to
-       help you learn a few steps of the most common dances, and help practice with other Novices. 
+       help you learn a few steps of the most common dances, and help you practice with other Novices. 
        You will also receive emails about these actvities. You can register for these on the website.</li>";
        $emailBody .= "<li><strong>Dance Classes</strong> - Classes are normally held at the Mariposa Room
-       at DesertView on Mondays and at 6 - 8pm and Wednesdays 4 - 6pm. Emails will go out regarding the content, 
-       format, instructors and dates; registration is also available on the website.</li>";
-       $emailBody .= "<li><strong>Dinner Dances</strong> - These are provided most months during the snowbird
+       at DesertView on all the Mondays at 6 - 8pm and Wednesdays 4 - 6pm of each month. 
+       Emails will go out regarding the content, format, instructors and dates; registration is also available on the website.</li>";
+       $emailBody .= "<li><strong>Dinner Dances</strong> - These are provided on alternate months during the snowbird
        season. They include a plated dinner with several entree choices followed by dancing to music provided
        by one of our DJs in the MountainView Ballroom. You will receive an email with a sign-up form
-       stating the date, price and where to send the form and the check. The information will also
+       stating the date, entree options and price and where to send the form and the check. The information will also
        be available on the website.</li>";
        $emailBody .= "<li><strong>Dine and Dance or TGIFs</strong> - These are dances with the option of having
-       dinner with the group in the MountainView Bistro.  Dine and Dances has the dinner at approximately 4:30pm
-       followed by dancing in the MountainView Ballroom. TGIFs are dancing first from 3 - 5pm followed by dinner. 
-       You will also receive emails about these actvities. You can register for these on the website.</li>";
+       dinner with the group in the MountainView Bistro East Room.  Dine and Dances has the dinner at approximately 4:30pm
+       followed by dancing in the MountainView Ballroom with a no-host bar. TGIFs are dancing first from 3 - 5pm with
+       a no-host bar, followed by dinner. 
+       You will also receive emails about these actvities. You can also register for these on the website.</li>";
        $emailBody .= "<li><strong>Open Practice</strong> - These are slots open for practice dancing. They are not 
        exclusively for members, so you can bring friends. Often a DJ provides requested music. If no DJ is
        specified, you may bring your own music. Currently we have 3 different slots:
          <ul>
-         <li>Tuesday 4 - 5:30pm in the HOA1 Vermillion Room</li>
-         <li>Friday 3 - 5pm in the HOA1 Vermillion Room</li>
-         <li>Sunday 3 - 5pm in the MountainView Ballroom</li>
+         <li>Tuesday 4 - 5:30pm in the HOA1 Vermillion Room (Used twice a month for Novice Classes)</li>
+         <li>Friday  3 - 5pm in the HOA1 Vermillion Room (Used once a month for Novice Parties)</li>
+         <li>Sunday  3 - 5pm in the MountainView Ballroom</li>
          </ul></li><br>";
        
        $emailBody .= "<li>Your name, email, phone and address will be listed in our directory by default unless
@@ -165,10 +166,13 @@ if (isset($_POST['submitAddUser'])) {
 
      $emailBody .= "
    We have attached a PDF that is an introduction to the website.
-    The website shows Classes, Dances, and other events. Your login credentials will be either your <b>email
-    or your firstname and last initial with the first letter of your first name capitalized and your last initial capitalized</b>.
-    The initial password is test1234. You should change your password when you first logon from your profile.
-   Once you logon to the website, you can register for many activities from there.$webLink<br>";
+   The website shows Classes, Dances, and other events. Your login credentials will be either: 
+    <b>your email
+     <em>or</em>  
+     your firstname and last initial with the first letter of your first name capitalized and your last initial capitalized</b>.
+   The initial password is <b>test1234</b>. You should change your password when you first logon from your profile.
+   Once you logon to the website, you can register for most classes and events from there. 
+   $webLink<br>";
 
    $emailBody .= "We hope to see you soon!<br>";
 
@@ -179,8 +183,8 @@ if (isset($_POST['submitAddUser'])) {
      $emailBody .= "Rich Adinolfi, Vice President<br>"; 
      $emailBody .= "Dottie Adams, Treasurer<br>";
      $emailBody .= "Sheila Honey, Secretary<br>";
-     $emailBody .= "Ann Pizzitola, Dance Instructors<br>";
-     $emailBody .= "Rick Baumgartner, Chair, DJs<br>";
+     $emailBody .= "Ann Pizzitola, Director of Dance Instruction <br>";
+     $emailBody .= "Rick Baumgartner, Director of DJs<br>";
 
 
         sendEmail(
