@@ -3,7 +3,7 @@ session_start();
 require_once 'models/ClassRegistration.php';
 require_once 'config/Database.php';
 $allClasses = $_SESSION['upcoming_classes'];
-$classRegistrations = $_SESSION['classRegistrations'];
+$classRegistrations = [];
 $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 if (!isset($_SESSION['username'])) {
@@ -39,7 +39,7 @@ if ($rowCount > 0) {
   
     }
   
-    $_SESSION['classRegistrations'] = $classRegistrations;
+
 } 
 ?>
 <!DOCTYPE html>
