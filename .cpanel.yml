@@ -2,32 +2,28 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/sbballro/public_html
-    -  /bin/cp _.sbballroomdance.com.pem.txt $DEPLOYPATH
-    -  /bin/cp administration.php $DEPLOYPATH
-    -  /bin/cp archives.php $DEPLOYPATH
-    -  /bin/cp class.php $DEPLOYPATH
-    -  /bin/cp create.php $DEPLOYPATH
-    -  /bin/cp event.php $DEPLOYPATH
-    -  /bin/cp footer.php $DEPLOYPATH
-    -  /bin/cp favicon.ico $DEPLOYPATH
-    -  /bin/cp index.php $DEPLOYPATH
-    -  /bin/cp login.php $DEPLOYPATH
-    -  /bin/cp logout.php $DEPLOYPATH
-    -  /bin/cp member.php $DEPLOYPATH
-    -  /bin/cp resources.php $DEPLOYPATH
-    -  /bin/cp secrets.php $DEPLOYPATH
-    -  /bin/cp signup.php $DEPLOYPATH
-    -  /bin/cp yourProfile.php $DEPLOYPATH
-    -  /bin/cp -R actions $DEPLOYPATH
-    -  /bin/cp -R config $DEPLOYPATH
-    -  /bin/cp -R css $DEPLOYPATH
-    -  /bin/cp -R img $DEPLOYPATH
-    -  /bin/cp -R includes $DEPLOYPATH
-    -  /bin/cp -R js $DEPLOYPATH
-    -  /bin/cp -R models $DEPLOYPATH 
-   
-    
-    
-
-   
-    
+    - /bin/cp _.sbballroomdance.com.pem.txt $DEPLOYPATH
+    - /bin/cp administration.php $DEPLOYPATH
+    - /bin/cp archives.php $DEPLOYPATH
+    - /bin/cp class.php $DEPLOYPATH
+    - /bin/cp classMem.php $DEPLOYPATH
+    - /bin/cp create.php $DEPLOYPATH
+    - /bin/cp event.php $DEPLOYPATH
+    - /bin/cp eventMem.php $DEPLOYPATH
+    - /bin/cp footer.php $DEPLOYPATH
+    - /bin/cp favicon.ico $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp login.php $DEPLOYPATH
+    - /bin/cp logout.php $DEPLOYPATH
+    - /bin/cp member.php $DEPLOYPATH
+    - /bin/cp resources.php $DEPLOYPATH
+    - /bin/cp secrets.php $DEPLOYPATH
+    - /bin/cp signup.php $DEPLOYPATH
+    - /bin/cp yourProfile.php $DEPLOYPATH
+    - /bin/cp -R actions $DEPLOYPATH
+    - /bin/cp -R config $DEPLOYPATH
+    - /bin/cp -R css $DEPLOYPATH
+    - /bin/cp -R img $DEPLOYPATH
+    - /bin/cp -R includes $DEPLOYPATH
+    - /bin/cp -R js $DEPLOYPATH
+    - /bin/cp -R models $DEPLOYPATH

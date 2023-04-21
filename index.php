@@ -3,6 +3,7 @@ session_start();
 require_once 'config/Database.php';
 require_once 'models/Event.php';
 require_once 'models/DanceClass.php';
+require_once 'models/ClassRegistration.php';
 require_once 'models/User.php';
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
 
@@ -402,6 +403,8 @@ if (isset($_SESSION['username'])) {
             $eventNumber = 0;
             foreach ($upcomingEvents as $event) {
                  $eventNumber++;
+                 $hr = 'eventMem.php?id=';
+                 $hr .= $event["id"];
                   echo "<tr>";
                     echo "<td>".$event['eventdate']."</td>";
                     echo "<td>".$event['eventname']."</td>";
@@ -416,7 +419,8 @@ if (isset($_SESSION['username'])) {
                     } else {
                             echo "<td> </td>"; 
                     }
-                    echo "<td>".$event['eventnumregistered']."</td>";
+                    echo '<td><a href="'.$hr.'">'.$event["eventnumregistered"].'</a></td>';
+                    // echo "<td>".$event['eventnumregistered']."</td>";
               
                   echo "</tr>";
             }
@@ -588,6 +592,9 @@ if (isset($_SESSION['username'])) {
             $classNumber = 0;
             foreach ($upcomingClasses as $class) {
                  $classNumber++;
+                 echo "<tr>";
+                 $hr = 'classMem.php?id=';
+                 $hr .= $class["id"];
                   echo "<tr>";
                     
                     echo "<td>". $class['date']."</td>";
@@ -599,7 +606,8 @@ if (isset($_SESSION['username'])) {
                     echo "<td>".$class['instructors']."</td>";
                     echo "<td>".$class['classnotes']."</td>";
                     echo "<td>".$class['classlimit']."</td>";
-                    echo "<td>".$class['numregistered']."</td>";
+                    echo '<td><a href="'.$hr.'">'.$class["numregistered"].'</a></td>';
+                    // echo "<td>".$class['numregistered']."</td>";
          
 
                   echo "</tr>";
