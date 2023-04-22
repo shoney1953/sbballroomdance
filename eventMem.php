@@ -2,8 +2,9 @@
 session_start();
 require_once 'config/Database.php';
 require_once 'models/DinnerMealChoices.php';
+require_once 'models/EventRegistration.php';
 $allEvents = $_SESSION['upcoming_events'];
-$eventRegistrations = $_SESSION['eventRegistrations'];
+$eventRegistrations = [];
 $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 if (!isset($_SESSION['username'])) {
@@ -14,6 +15,37 @@ $database = new Database();
 $db = $database->connect();
 $dinnermealchoices = new DinnerMealChoices($db);
 $mealChoices = [];
+/* get event registrations */
+$eventReg = new EventRegistration($db);
+$result = $eventReg->read();
+
+$rowCount = $result->rowCount();
+$num_registrations = $rowCount;
+$_SESSION['eventRegistrations'] = [];
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $reg_item = array(
+            'id' => $id,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'eventid' => $eventid,
+            'eventname' => $eventname,
+            'eventdate' => $eventdate,
+            'eventtype' => $eventtype,
+            'message' => $message,
+            'userid' => $userid,
+            'email' => $email,
+            'paid' => $paid,
+            'ddattenddance' => $ddattenddance,
+            'ddattenddinner' => $ddattenddinner,
+            'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
+        );
+        array_push($eventRegistrations, $reg_item);
+  
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
