@@ -385,6 +385,7 @@ if (isset($_SESSION['username'])) {
         </div>
         
         <table>
+            <thead>
             <tr>
                 <th>Event Date</th>
                 <th>Event Name    </th>
@@ -399,6 +400,8 @@ if (isset($_SESSION['username'])) {
                 <th># Reg </th>
 
             </tr>
+            </thead>
+            <tbody>
             <?php 
             $eventNumber = 0;
             foreach ($upcomingEvents as $event) {
@@ -426,6 +429,7 @@ if (isset($_SESSION['username'])) {
             }
          
             ?> 
+            </tbody>
         </table>
         <br>
         <?php
@@ -572,6 +576,7 @@ if (isset($_SESSION['username'])) {
         </div>
 
         <table>
+            <thead>
             <tr>
                 
                 <th>Start Date</th>
@@ -585,9 +590,9 @@ if (isset($_SESSION['username'])) {
                 <th>Class Limit    </th>
                 <th># Reg </th>
                
-                
-               
             </tr>
+            </thead>
+            <tbody>
             <?php 
             $classNumber = 0;
             foreach ($upcomingClasses as $class) {
@@ -595,7 +600,7 @@ if (isset($_SESSION['username'])) {
                  echo "<tr>";
                  $hr = 'classMem.php?id=';
                  $hr .= $class["id"];
-                  echo "<tr>";
+        
                     
                     echo "<td>". $class['date']."</td>";
                     echo "<td>".$class['time']."</td>";
@@ -614,6 +619,7 @@ if (isset($_SESSION['username'])) {
             }
               
             ?> 
+            </tbody>
         </table>
         <br>
         
@@ -1019,6 +1025,7 @@ DJ Documents</a><br>
      echo '</div> ';    
      echo '<h3>List of Members</h3>';
         echo '<table>';
+        echo '<thead>';
         echo '<tr>';
               
                 echo '<th>First Name</th>';  
@@ -1028,8 +1035,10 @@ DJ Documents</a><br>
                 echo '<th>Address</th>';
    
                 echo '</tr>';
-                       
+        echo '</thead>';
+        echo '<tbody>' ;           
                 foreach($directory as $user) {
+                    echo "<tr>";
                 
                         echo "<td>".$user['firstname']."</td>";               
                         echo "<td>".$user['lastname']."</td>";
@@ -1040,7 +1049,7 @@ DJ Documents</a><br>
                       echo "</tr>";
                   }
              
-        
+        echo '</tbody>';
             echo '</table><br>';       
  
             echo '</section>';

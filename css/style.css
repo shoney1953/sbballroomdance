@@ -12,6 +12,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
 }
 body {
   font-family: "Open Sans", sans-serif;
@@ -253,10 +254,23 @@ th,
 td {
   border: 1px solid black;
   text-align: left;
+  border-collapse: collapse;
 }
 th,
 td {
   padding: 2px;
+}
+tbody tr:nth-child(even) {
+  background-color: rgba(252, 237, 237, 0.2);
+
+}
+tbody tr:nth-child(odd) {
+  background-color: rgba(190, 169, 177, 0.8);
+
+}
+thead tr {
+  background-color: rgba(65, 50, 50, 0.5);
+
 }
 table {
   width: 90%;
@@ -265,6 +279,7 @@ table {
   align-items: left;
   justify-content: left;
   word-wrap: break-word;
+  border-collapse: collapse;
 }
 table_small {
   width: 60%;
@@ -273,6 +288,7 @@ table_small {
   align-items: left;
   justify-content: left;
   word-wrap: break-word;
+  border-collapse: collapse;
 }
 td {
   text-align: left;
@@ -616,6 +632,7 @@ iframe {
     table-layout: auto;
     align-items: left;
     justify-content: left;
+    border-collapse: collapse;
   }
   table,
   th,
@@ -623,6 +640,7 @@ iframe {
     border: 1px solid black;
     font-size: 100%;
     text-align: left;
+    border-collapse: collapse;
   }
   th,
   td {
@@ -810,11 +828,13 @@ iframe {
     border: 1px solid black;
     font-size: 100%;
     text-align: left;
+    border-collapse: collapse;
   }
   th,
   td {
     padding: 2px;
     font-size: 100%;
+    border-collapse: collapse;
   }
   form {
     align-items: left;
@@ -1017,6 +1037,7 @@ iframe {
     table-layout: auto;
     align-items: left;
     justify-content: left;
+    border-collapse: collapse;
   }
   table,
   th,
@@ -1024,6 +1045,7 @@ iframe {
     border: 1px solid black;
     font-size: 95%;
     text-align: left;
+    border-collapse: collapse;
   }
   th,
   td {
@@ -1162,6 +1184,7 @@ iframe {
     table-layout: auto;
     align-items: left;
     justify-content: left;
+    border-collapse: collapse;
   }
   table,
   th,
@@ -1169,6 +1192,7 @@ iframe {
     border: 1px solid black;
     font-size: 80%;
     text-align: left;
+    border-collapse: collapse;
   }
   th,
   td {

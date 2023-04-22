@@ -450,6 +450,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '</div>';
         echo '<h4 class="section-header">Event List</h4>';
         echo '<table>';
+        echo '<thead>';
             echo '<tr>';
                 echo '<th>ID</th>';
                 echo '<th>Event Date</th>';
@@ -461,7 +462,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Event Cost</th>';
                 echo '<th># Reg </th>';
             echo '</tr>';
-     
+         echo '</thead>';
+         echo '<tbody>';
             $eventNumber = 0;
             foreach($allEvents as $event) {
                  $eventNumber++;
@@ -481,7 +483,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                   echo "</tr>";
               }
          
-        
+        echo '</tbody>';
         echo '</table><br>';
  
     echo '</section>';
@@ -538,6 +540,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '</div>';
         echo '<h4 class="section-header">Event Registration List</h4>';
         echo '<table>';
+        echo '<thead>';
             echo '<tr>';
                 echo '<th>ID</th>';
                 echo '<th>Event Name</th>';
@@ -552,7 +555,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Message</th>';
                 echo '<th>Date Reg</th> ';         
             echo '</tr>';
-            
+          echo '</thead>' ;
+          echo '<tbody>' ;
     
             foreach($eventRegistrations as $eventRegistration) {
           
@@ -594,7 +598,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                   echo "</tr>";
               }
          
-            
+            echo '</tbody>';
         echo '</table>';
         echo '<br>';
 
@@ -683,6 +687,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             </div>
         <h4 class="section-header">Class List</h4>'
         <table>
+            <thead>
             <tr>
            
                 <th>ID   </th>   
@@ -699,6 +704,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                
              
             </tr>
+            </thead>
+            <tbody>
             <?php 
            
             foreach($allClasses as $class)
@@ -725,6 +732,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
               }
              
             ?> 
+            </tbody>
         </table>
         <br>
 
@@ -786,6 +794,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             </div>  
             <h4>Class Registration List</h4>
         <table>
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>Class Name</th>
@@ -797,6 +806,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 <th>Email</th>
                 <th>Date Reg</th>          
             </tr>
+            </thead>
+            <tbody>
             <?php 
     
             foreach($classRegistrations as $classRegistration) {
@@ -817,6 +828,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
               }
          
             ?> 
+            </tbody>
         </table>
         <br>
  
@@ -853,6 +865,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
          echo '</div>';   
          echo '<br>';
         echo '<table>';
+        echo '<thead>';
             echo '<tr>';
                 echo '<th>Date Contacted</th> '; 
                 echo '<th>First Name</th>';
@@ -863,7 +876,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Dance Experience</th> ';       
              
             echo '</tr>';
-        
+        echo '</thead>';
+        echo '<tbody>';
     
             foreach($contacts as $contact) {
          
@@ -878,7 +892,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                   echo "</tr>";
               }
          
-        
+        echo '</tbody>';
         echo '</table>';
         echo '<br>';
    
@@ -914,6 +928,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     
         echo '</div>';
         echo '<table>';
+        echo '<thead>';
             echo '<tr>';
                 echo '<th>Login Date</th> '; 
                 echo '<th>Login #</th> '; 
@@ -923,7 +938,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Notes</th>';
               
            echo '</tr>';
-            
+          echo '</thead>'  ;
+          echo '<tbody>';
     
             foreach($visitors as $visitor) {
          
@@ -936,7 +952,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     echo "<td>".$visitor['notes']."</td>";           
                   echo "</tr>";
               }
-         
+         echo '</tbody>';
         echo '</table>';   
         echo '<br>';
       
@@ -1006,6 +1022,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '</form>';
      
         echo '<table>';
+        echo '<thead>';
         echo '<tr>';
              
                 echo '<th>ID</th>';  
@@ -1022,7 +1039,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Last Login</th>';
                 echo '<th>PWD Changed</th>';
                 echo '</tr>';
-                
+            echo '</thead>' ;
+            echo '<tbody>'  ; 
         
                 foreach($users as $user) {
              
@@ -1052,7 +1070,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                       echo "</tr>";
                   }
              
-                
+              echo '</tbody>'  ;
             echo '</table><br>';       
  
             echo '</section>';
@@ -1075,6 +1093,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<div class="form-grid-div">';  
         echo '<form method="POST" action="actions/updateMemberPaid.php">';
         echo '<table>';
+        echo '<thead>';
         echo '<tr>';
     
                 echo '<th>Year</th>'; 
@@ -1086,7 +1105,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Last Name</th>';
                 echo '<th>Email</th>';
                 echo '</tr>';
-                    
+        echo '</thead>'   ;
+        echo '<tbody>';
                 foreach ($memberStatus1 as $memStat) {
              
                       echo "<tr>";
@@ -1110,7 +1130,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                  
                       echo "</tr>";
                   }
-
+            echo '</tbody>';
             echo '</table><br>'; 
             echo '<input type=hidden name="thisyear" value="1">';
             echo '<button type="submit" name="updateMemPaid">UPDATE</button>'; 
@@ -1118,6 +1138,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '</div>';
         echo '<form method="POST" action="actions/updateMemberPaid.php">';
         echo '<table>';
+        echo '<thead>';
         echo '<tr>';
     
                 echo '<th>Year</th>'; 
@@ -1129,7 +1150,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Last Name</th>';
                 echo '<th>Email</th>';
                 echo '</tr>';
-                    
+         echo '</thead>'   ;
+         echo '<tbody>'  ;
                 foreach ($memberStatus2 as $memStat) {
              
                       echo "<tr>";
@@ -1153,7 +1175,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                  
                       echo "</tr>";
                   }
-
+            echo '</tbody>';
             echo '</table><br>'; 
             echo '<input type=hidden name="nextyear" value="1">';
             echo '<button type="submit" name="updateMemPaid">UPDATE</button>'; 
