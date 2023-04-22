@@ -554,7 +554,7 @@ if (isset($_SESSION['username'])) {
         } else {
        
             echo '<h3><a style="color: red;font-weight: bold;font-size: large"
-             href="login.php"> <strong><em>Please Login to Register</em></a></h3><br><br>';
+             href="login.php"> <strong><em>Please Login to Register</em></strong></a></h3><br><br>';
         }
     } else {
         echo '<h3> No Upcoming Events right now -- Check back soon</h3><br><br>';
@@ -744,7 +744,7 @@ if (isset($_SESSION['username'])) {
         } else {
            // echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
             echo '<h3><a style="color: red;font-weight: bold;font-size: large"
-            href="login.php"> <strong><em>Please Login to Register</em></a></h3><br><br>';
+            href="login.php"> <strong><em>Please Login to Register</em></strong></a></h3><br><br>';
         }
     } else {
         echo '<h3> No Upcoming Classes right now -- Check back soon</h3><br><br>';
@@ -1058,7 +1058,7 @@ DJ Documents</a><br>
         }
         else {
             echo '<h3><a style="color: red;font-weight: bold;font-size: large"
-            href="login.php"> <strong><em>Please Login to View Directory</em></a></h3><br><br>'; 
+            href="login.php"> <strong><em>Please Login to View Directory</em></strong></a></h3><br><br>'; 
         }
     
     
