@@ -664,26 +664,14 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         </div>   
         </form>
   
-        <form method="POST" action="actions/emailClass.php"> 
+
         <div class="form-grid-div">
         <h4>Email Class Registrants</h4>
-        <input type="checkbox" name="emailClass">
-        <label for="emailClass">Send email to all registered for Class </label><br>
-        <input type="text" class="text-small" name="classId" required > 
-        <label for="classId"><em> &larr; 
-        Specify Class ID from Table Above:</em> </label><br>
-        <label for="replyEmail">Email to reply to: </label>> <br>
-        <?php
-        echo '<input type="email" name="replyEmail" value="'.$_SESSION['useremail'].'"><br>'; 
-        ?>
-        <label for="emailBody">Short Email Text</label><br>
-        <textarea  name="emailBody" rows="25" cols="60"></textarea><br>
-      
-        <br>
-        <button type="submit" name="submitClassEmail">Send Email</button>   
-        </div>   
+       
+        <button class="button-link"><a href="classEmail.php" target="_blank" >Create an Email for Class Registrants</a></button>   
+        </div>    
 
-        </form>
+        
             </div>
         <h4 class="section-header">Class List</h4>'
         <table>

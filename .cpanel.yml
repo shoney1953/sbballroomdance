@@ -6,6 +6,7 @@ deployment:
     - /bin/cp administration.php $DEPLOYPATH
     - /bin/cp archives.php $DEPLOYPATH
     - /bin/cp class.php $DEPLOYPATH
+    - /bin/cp classEmail.php $DEPLOYPATH
     - /bin/cp classMem.php $DEPLOYPATH
     - /bin/cp create.php $DEPLOYPATH
     - /bin/cp event.php $DEPLOYPATH

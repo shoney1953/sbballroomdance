@@ -42,7 +42,6 @@ $mailAttachment = '';
 $replyTopic = "Class Message";
 $rowCount = 0;
 $preface = '';
-if (isset($_POST['submitClassEmail'])) {
     $classReg->classid = $_POST['classId'];
     $result = $classReg->read_ByClassId($classReg->classid);
     $rowCount = $result->rowCount();
@@ -94,7 +93,7 @@ if (isset($_POST['submitClassEmail'])) {
         );
          
     } // end if rowcount
-}    // end ifset                
+              
 
 $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
 header($redirect);

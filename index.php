@@ -195,7 +195,9 @@ if (isset($_SESSION['username'])) {
         <li><a href="#">Activities &dtrif;</a>
         <ul class="dropdown">
             <li><a href="#events">Events</a></li>
+            <li><a href="#eventRegistration">Event Registration</a></li>
             <li><a href="#classes">Classes</a></li>
+            <li><a href="#classRegistration">Class Registration</a></li>
             <li><a href="#calendar">Activities Calendar</a></li>
         </ul>
         </li>
@@ -432,7 +434,9 @@ if (isset($_SESSION['username'])) {
             </tbody>
         </table>
         <br>
+        <p id="eventRegistration">-------------------------------------------------------------------------</p>
         <?php
+   
         if ($eventNumber > 0) {
         $partner = new User($db);
         if (isset($_SESSION['username'])) {
@@ -562,6 +566,7 @@ if (isset($_SESSION['username'])) {
         ?>
     </section>
     </div>
+    </div>
    <div class="container-section ">
     <section id="classes" class="content">
    
@@ -622,8 +627,9 @@ if (isset($_SESSION['username'])) {
             </tbody>
         </table>
         <br>
-        
+        <p id="classRegistration">-------------------------------------------------------------------------</p>
        <?php
+
         if ($classNumber > 0) {
         if (isset($_SESSION['username'])) {
             $partner = new User($db);
@@ -751,6 +757,7 @@ if (isset($_SESSION['username'])) {
     }
         ?>
     </section>
+</div>
     </div>
   
     <div class="container-section ">
