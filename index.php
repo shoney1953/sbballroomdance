@@ -255,6 +255,7 @@ if (isset($_SESSION['username'])) {
     } else {
 
         echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="login.php"> Login</a></li>';
+        echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
     }
     ?>
         </ul> 
