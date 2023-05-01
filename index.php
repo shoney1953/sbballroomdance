@@ -340,15 +340,15 @@ if (isset($_SESSION['username'])) {
         <h3>Current Board Members</h3>
         <h4>Click on the Email to correspond with one of our Board Members</h4><br>
         <ul>
-            <li class="li-none li-large">Brian Hand, President 
+            <li class="li-none li-large">Rich Adinolfi, President 
                    -&rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
                        president@sbballroomdance.com</a></li>
-            <li class="li-none li-large">Richard Adinolfi, Vice-President 
-                -&rarr;  <a href="mailto:vicepresident@sbballroomdance.com?subject=SBDC Info">
-                    vicepresident@sbballroomdance.com</a></li>
-            <li class="li-none li-large">Dottie Adams, Treasurer 
-                  -&rarr; <a href="mailto:treasurer@sbballroomdance.com?subject=SBDC Info">
-                  treasurer@sbballroomdance.com</a></li>
+            <li class="li-none li-large">Nan Kartsonis, Vice-President 
+                -&rarr;  <a href="mailto:nkartsonis@me.com?subject=SBDC Info">
+                nkartsonis@me.com</a></li>
+            <li class="li-none li-large">Roger Shamburg, Treasurer 
+                  -&rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
+                  shamburgrog23@gmail.com</a></li>
             <li class="li-none li-large">Sheila Honey, Secretary 
                   -&rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
                   secretary@sbballroomdance.com</a></li>
@@ -773,11 +773,11 @@ if (isset($_SESSION['username'])) {
                    -&rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
                        president@sbballroomdance.com</a></li>';
             echo '<li class="li-none li-large">Vice President  
-                -&rarr;  <a href="mailto:vicepresident@sbballroomdance.com?subject=SBDC Info">
-                    vicepresident@sbballroomdance.com</a></li>';
+                -&rarr;  <a href="mailto:nkartsonis@me.com?subject=SBDC Info">
+                nkartsonis@me.com</a></li>';
             echo '<li class="li-none li-large">Questions about costs of events or membership 
-                  -&rarr; <a href="mailto:treasurer@sbballroomdance.com?subject=SBDC Info">
-                  treasurer@sbballroomdance.com</a></li>';
+                  -&rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
+                  shamburgrog23@gmail.com</a></li>';
             echo '<li class="li-none li-large">General Membership Questions    
                 -&rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
                 secretary@sbballroomdance.com</a></li>';

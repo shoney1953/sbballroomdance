@@ -88,9 +88,9 @@ function sendThanks($memStat,$userEmail) {
 
        $emailBody .= "----------------------------<br>";
        $emailBody .= "<em>SaddleBrooke Ballroom Dance Club Board Members</em><br>";
-       $emailBody .= "Brian Hand, President<br>";
-       $emailBody .= "Rich Adinolfi, Vice President<br>"; 
-       $emailBody .= "Dottie Adams, Treasurer<br>";
+       $emailBody .= "Rich Adinolfi, President<br>";
+       $emailBody .= "Nan Kartsonis, Vice President<br>"; 
+       $emailBody .= "Roger Shamburg, Treasurer<br>";
        $emailBody .= "Sheila Honey, Secretary<br>";
        $emailBody .= "Ann Pizzitola, Chair, Dance Instructors<br>";
        $emailBody .= "Rick Baumgartner, Chair, DJs<br>";

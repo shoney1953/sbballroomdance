@@ -179,9 +179,9 @@ if (isset($_POST['submitAddUser'])) {
 
      $emailBody .= "----------------------------<br>";
      $emailBody .= "<em>SaddleBrooke Ballroom Dance Club Board Members</em><br>";
-     $emailBody .= "Brian Hand, President<br>";
-     $emailBody .= "Rich Adinolfi, Vice President<br>"; 
-     $emailBody .= "Dottie Adams, Treasurer<br>";
+     $emailBody .= "Rich Adinolfi, President<br>";
+     $emailBody .= "Nan Kartsonis, Vice President<br>"; 
+     $emailBody .= "Roger Shamburg, Treasurer<br>";
      $emailBody .= "Sheila Honey, Secretary<br>";
      $emailBody .= "Ann Pizzitola, Director of Dance Instruction <br>";
      $emailBody .= "Rick Baumgartner, Director of DJs<br>";
