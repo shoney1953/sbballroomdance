@@ -452,7 +452,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<table>';
         echo '<thead>';
             echo '<tr>';
-                echo '<th>ID</th>';
+                echo '<th>Event ID</th>';
+                echo '<th># Reg </th>';
                 echo '<th>Event Date</th>';
                 echo '<th>Event Name    </th>';
                 echo '<th>Event Type    </th>';
@@ -460,7 +461,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Event DJ</th>';         
                 echo '<th>Event Room</th>';
                 echo '<th>Event Cost</th>';
-                echo '<th># Reg </th>';
+                echo '<th>Form / Flyer</th>';
             echo '</tr>';
          echo '</thead>';
          echo '<tbody>';
@@ -472,6 +473,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     $hr .= $event["id"];
                
                     echo '<td> <a href="'.$hr.'">'.$event["id"].'</a></td>';
+                    echo '<td><a href="'.$hr.'">'.$event["eventnumregistered"].'</a></td>';
                     echo "<td>".$event['eventdate']."</td>";
                     echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";
@@ -479,7 +481,12 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     echo "<td>".$event['eventdj']."</td>";           
                     echo "<td>".$event['eventroom']."</td>";
                     echo "<td>".$event['eventcost']."</td>";
-                    echo '<td><a href="'.$hr.'">'.$event["eventnumregistered"].'</a></td>';
+                    if ($event['eventform']) {
+                        echo '<td><a href="'.$event['eventform'].'">VIEW</a></td>';
+                    } else {
+                            echo "<td> </td>"; 
+                    }
+               
                   echo "</tr>";
               }
          
@@ -553,6 +560,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Attend Dinner</th>';
                 echo '<th>Attend Dance</th>';
                 echo '<th>Message</th>';
+
                 echo '<th>Date Reg</th> ';         
             echo '</tr>';
           echo '</thead>' ;

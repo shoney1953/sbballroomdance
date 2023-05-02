@@ -26,13 +26,13 @@ date_default_timezone_set("America/Phoenix");
     <section id="joinUs" class="content">
    <br><br><br>
    <h1>Join Our Club Today</h1>
-   <h2>Members enjoy the benefits of attending any of our classes at no cost!
-   They also receive reduced prices for our dinner dances!
-   We would love to have you join us! It's easy.</h2>
+   <h3>Members enjoy the benefits of attending any of our classes at no cost!
+   They also receive reduced prices for our dinner dances!</h3>
+   <h3>We would love to have you join us! It's easy.</h3>
 
-  <h2>Just fill out the form below and send it along with member dues to the treasurer of our club (name and address is on the form).</h2>
+  <h3>Just click on the form below, print it and then fill it in and send it along with member dues to the treasurer of our club (name and address is on the form).</h3>
   <h1><a  
-            href='img/Membership Form 2023 Dance Club.pdf' target='_blank'>
+            href='img/Membership Form 2023 Dance Club 05 02 2023.pdf' target='_blank'>
             Click for Membership Form</a></h1>
     <h3> As soon as your information is entered, you'll get a login and password and can login to the website to register for events and classes.</h3>  
     <br><br>
@@ -42,10 +42,8 @@ date_default_timezone_set("America/Phoenix");
 
     <footer >
 
-<div class="footer-section">
-<?php
-$year = date("Y"); 
-    echo '<p>Copyright &copy; '.$year.'    Sheila Honey  - All Rights Reserved</p>';
+    <?php
+  require 'footer.php';
 ?>
     
 </div> 

@@ -37,7 +37,7 @@ $fromCC = 'webmaster@sbballroomdance.com';
 $replyEmail = 'secretary@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = ''; 
-$mailAttachment = '../img/Membership Form 2023 Dance Club.pdf'; 
+$mailAttachment = '../img/Membership Form 2023 Dance Club 05 02 2023.pdf'; 
 $replyTopic = "Event Registration";
 $emailSubject = "The SBDC administrator has registered you as a Visitor for an Event";
 

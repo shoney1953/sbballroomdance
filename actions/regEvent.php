@@ -61,6 +61,12 @@ if (isset($_POST['submitEventReg'])) {
     $emailSubject = "You have registered for SBDC event(s)";
     foreach ($events as $event) {
         $chkboxID = "ev".$event['id'];
+        $chkboxID2 = "dd".$event['id'];
+        $messID = "mess".$event['id'];
+        $message = '';
+        if (isset($_POST["$messID"])) {            
+            $message = $_POST["$messID"];
+        }
        if (isset($_POST["$chkboxID"])) {
         $eventNum = (int)substr($chkboxID,2);
             if ($event['id'] == $eventNum) {
@@ -88,7 +94,7 @@ if (isset($_POST['submitEventReg'])) {
                     }
                     if ($event['eventform']) {
                         $actLink= "<a href='".$event['eventform']."'>
-           Click to view event Form</a><br>";
+                        Click to view event Form</a><br>";
                        $emailBody .= 'There is a signup form to submit registration details and payment.<br>';
                        $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
                         on the website to open the form. Or<br>$actLink";
@@ -112,7 +118,15 @@ if (isset($_POST['submitEventReg'])) {
                 $eventReg->eventid = $eventId;
                 $eventReg->email = $regEmail1;
                 $eventReg->userid = $regUserid1;
+                if (isset($_POST["$chkboxID2"])) {
+                    $eventReg->ddattenddinner = 1;
+                } else {
+                    $eventReg->ddattenddinner = 0;
+                }
+         
                 $eventReg->message = $message;
+                
+            
                 $eventReg->paid = 0;
                 $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
             if (!$result) {

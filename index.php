@@ -6,7 +6,7 @@ require_once 'models/DanceClass.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/User.php';
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
-
+$_SESSION['upcoming_eventnumber'] = 0;
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
     Please Validate Input</h4><br>';
@@ -22,6 +22,7 @@ if (isset($_GET['error'])) {
 
 
 $_SESSION['user'] = null;
+$_SESSION['numupcomingclasses'] = 0;
 date_default_timezone_set("America/Phoenix");
 $num_classes = 0;
 $num_events = 0;
@@ -83,10 +84,11 @@ $result = $class->read();
 
 $rowCount = $result->rowCount();
 $num_classes = $rowCount;
+
 $current_month = date('m');
 $current_year = date('Y');
 
-
+$numUpcomingClasses = 0;
 if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -109,15 +111,17 @@ if ($rowCount > 0) {
         $class_year = substr($row['date'], 0, 4);
 
         if ($current_year < $class_year) {
+            $numUpcomingClasses++;
             array_push($upcomingClasses, $class_item);
         } else {         
             if ($current_month <= $class_month) {
+                $numUpcomingClasses++;
                   array_push($upcomingClasses, $class_item);
              } 
             
         }
 
-
+   $_SESSION['numupcomingclasses'] = $numUpcomingClasses;
        
      
     }
@@ -191,30 +195,21 @@ if (isset($_SESSION['username'])) {
     <div class="container">
  
      <ul>
-        <li><a href="#" >Home</a></li>
-        <li><a href="#">Activities &dtrif;</a>
-        <ul class="dropdown">
-            <li><a href="#events">Events</a></li>
-            <li><a href="#eventRegistration">Event Registration</a></li>
-            <li><a href="#classes">Classes</a></li>
-            <li><a href="#classRegistration">Class Registration</a></li>
+            <li><a href="#" >Home</a></li>
+            <li><a href="#events">Event List</a></li>
+            <li><a href="#classes">Class List</a></li>
             <li><a href="#calendar">Activities Calendar</a></li>
-        </ul>
-        </li>
-        <li><a href="#about">About Us</a></li>
-
-        <li><a href="#contact">Contact Us</a></li>
-        <li><a href="#">Volunteer &dtrif;</a>
-        <ul class="dropdown">
-            <li><a href="#djinfo">DJ Info</a></li>
-            <li><a href="#instructorinfo">Instructor Info</a></li>
-            <li><a href="#othervolunteer">Other Opportunities</a></li>
-        </ul>
-        </li>
-        <li><a href="#pictures">Picture Gallery</a></li>
-        <li><a href="#help">Help</a></li>
-        <li><a href="resources.php">Resources</a></li>
    
+    
+       
+        <li><a href="#">More ... &dtrif;</a>
+        <ul class="dropdown">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#help">Help</a></li>
+        <li><a href="#pictures">Picture Gallery</a></li>
+        <li><a href="resources.php">Resources</a></li>
+        </ul>
     </li>
      </ul>
 </div>
@@ -223,15 +218,25 @@ if (isset($_SESSION['username'])) {
     <?php
 
     if (isset($_SESSION['username'])) {
-        
+        if (isset($_SESSION['role'])) {
+            echo ' <li><a  style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
+
+        }
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {
               echo ' <li><a href="yourProfile.php">
               <img src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
               <br>Your Profile</a></li>';
-             
+              echo '<li><a href="regForEvents.php">Register for Events</a></li>';
+              echo '<li><a href="regForClasses.php">Register for Classes</a></li>';
               echo ' <li><a href="#directory">
               Member Directory</a></li>';
+              echo '<li><a href="#">Volunteer &dtrif;</a>';
+              echo '<ul class="dropdown">';
+                  echo '<li><a href="#djinfo">DJ Info</a></li>';
+                  echo '<li><a href="#instructorinfo">Instructor Info</a></li>';
+                  echo '<li><a href="#othervolunteer">Other Opportunities</a></li>';
+              echo '</ul>';
             }
         }
 
@@ -240,9 +245,7 @@ if (isset($_SESSION['username'])) {
             echo ' <li style="color: red;font-weight: bold;font-size: medium"
         }>Welcome '.$_SESSION["visitorfirstname"].'</li>'; 
         }
-        if (isset($_SESSION['role'])) {
-            echo ' <li><a  style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
-        }
+       
     }
         if (isset($_SESSION['role'])) {
             if (($_SESSION['role'] == 'ADMIN') ||
@@ -287,7 +290,7 @@ if (isset($_SESSION['username'])) {
 
         <h1 class="section-header">What We are About</h1>
         <h2><a  
-            href='img/Membership Form 2023 Dance Club.pdf' target='_blank'>
+            href='img/Membership Form 2023 Dance Club 05 02 2023.pdf' target='_blank'>
             Click for Membership Form</a></h2>
         <p>If you love all kinds of dancing, we're the club for you. </p>
         <p> We don't just do Ballroom dance - at our dances/practices, we play 
@@ -381,6 +384,12 @@ if (isset($_SESSION['username'])) {
         <h1 class="section-header">Upcoming Events</h1>
         <div class="form-grid2">
         <div class="form-grid-div">
+        <button>
+        <a href="regForEvents.php">Register For Events</a>
+        </button>  
+    
+        </div>
+        <div class="form-grid-div">
         <form target="_blank" method="POST" action="actions/printEvents.php"> 
         <button type="submit" name="submitPrintEvents">Print Upcoming Events</button>  
         </form>
@@ -399,7 +408,7 @@ if (isset($_SESSION['username'])) {
 
                 <th>Event Cost</th>
              
-                <th>Form</th>
+                <th>Form/Flyer</th>
                 <th># Reg </th>
 
             </tr>
@@ -430,141 +439,12 @@ if (isset($_SESSION['username'])) {
               
                   echo "</tr>";
             }
-         
+            $_SESSION['upcoming_eventnumber'] = $eventNumber;
             ?> 
             </tbody>
         </table>
         <br>
-        <p id="eventRegistration">-------------------------------------------------------------------------</p>
-        <?php
-   
-        if ($eventNumber > 0) {
-        $partner = new User($db);
-        if (isset($_SESSION['username'])) {
-            echo '<h3> Enter Information Below to Register for Event(s) </h3>';
-            echo '<h4> This process generates an email to confirm your registration, so it takes a while. Please be patient.
-            You will be sent back to the home page when it is complete.<br>
-            You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
-            spam/junk folder.</h4>';
-        
-            echo '<form method="POST"  action="actions/regEvent.php" target="_blank">';
-            echo '<div class="form-grid3">';
-      
-            echo '<div class="form-grid-div">  <br>';
-    
 
-        if (isset($_SESSION['role'])) {
-          if ($_SESSION['role'] === 'visitor') {
-      
-            if (isset($_SESSION['visitorfirstname'])) {
-                echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                echo '<input type="text" name="regFirstName1" value="'.$_SESSION['visitorfirstname'].'"><br>';
-            } else {
-                    echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                    echo '<input type="text" name="regFirstName1" ><br>';
-             }
-            if (isset($_SESSION['visitorlastname'])) {
-                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                    echo '<input type="text" name="regLastName1" value="'.$_SESSION['visitorlastname'].'"><br>';
-            } else {
-                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                    echo '<input type="text" name="regLastName1" ><br>';
-            }
-            if (isset($_SESSION['useremail'])) {
-                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                    echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
-            } else {
-                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                    echo '<input type="email" name="regEmail1" ><br><br>';
-            }
-
-
-
-          } else {
-            if (isset($_SESSION['userfirstname'])) {
-                echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                echo '<input type="text" name="regFirstName1" value="'.$_SESSION['userfirstname'].'"><br>';
-            } else {
-                    echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                    echo '<input type="text" name="regFirstName1" ><br>';
-            }
-            if (isset($_SESSION['userlastname'])) {
-                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                    echo '<input type="text" name="regLastName1" value="'.$_SESSION['userlastname'].'"><br>';
-            } else {
-                    echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                    echo '<input type="text" name="regLastName1" ><br>';
-            }
-            if (isset($_SESSION['useremail'])) {
-                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                    echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
-            } else {
-                    echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                    echo '<input type="email" name="regEmail1" ><br><br>';
-            }
-            if (isset($_SESSION['partnerid'])) {
-                $partner->id = $_SESSION['partnerid'];
-                $partner->read_single();
-            
-            }
-       
-        }
-           
-      }
-    
-        echo '<label for="message">Message (For Dine and Dance events please indicate if you want to have dinner)</label>';
-        echo '<textarea  name="message" rows="4" cols="50"></textarea><br>';
-         echo' </div>';
-        echo '<div class="form-grid-div"> <br>';
-     
-        if (isset($_SESSION['partnerid'])) {
-    
-            echo '<label for="regFirstName2">Second Registrant First Name(optional)</label><br>';
-            echo '<input type="text" name="regFirstName2" value="'.$partner->firstname.'" ><br>';
-            echo '<label for="regLastName2">Second Registrant Last Name(optional)</label><br>';
-            echo '<input type="text" name="regLastName2" value="'.$partner->lastname.'"><br>';
-            echo '<label for="regEmail2">Second Registrant Email (optional)</label><br>';
-            echo '<input type="email" name="regEmail2" value="'.$partner->email.'"><br> <br>';
-
-           } else {
-            echo '<label for="regFirstName2">Second Registrant First Name(optional)</label><br>';
-            echo '<input type="text" name="regFirstName2" ><br>';
-            echo '<label for="regLastName2">Second Registrant Last Name(optional)</label><br>';
-            echo '<input type="text" name="regLastName2" ><br>';
-            echo '<label for="regEmail2">Second Registrant Email (optional)</label><br>';
-            echo '<input type="email" name="regEmail2" ><br> <br>';
-           }
-
-        echo '</div>';     
-        echo '<div class="form-grid-div">';
-            echo '<ul class="list-box">';
-            echo '<h4 style="text-decoration: underline;color: black"><em>
-              To Register -- Please select One or More of the Events Listed and click on the Register Button</em></h4><br>';
-        foreach ($upcomingEvents as $event) {
-                echo '<li class="list-none">';
-                $chkboxID = "ev".$event['id'];
-                $eventString = " ".$event['eventname']." ".$event['eventdate']." ";
-                echo "<input type='checkbox' name='$chkboxID'>";
-                echo "<label for='$chkboxID'> I/We would like to register for:
-                    <strong>$eventString </strong></label><br>";
-        }
-                echo '</li>';
-            
-            echo '</ul> <br><br>';
-
-                 echo '<button name="submitEventReg" type="submit">Register</button><br>';
-            echo '</div>';     
-            echo '</form>';
-    
-        } else {
-       
-            echo '<h3><a style="color: red;font-weight: bold;font-size: large"
-             href="login.php"> <strong><em>Please Login to Register</em></strong></a></h3><br><br>';
-        }
-    } else {
-        echo '<h3> No Upcoming Events right now -- Check back soon</h3><br><br>';
-    }
-        ?>
     </section>
     </div>
     </div>
@@ -574,6 +454,12 @@ if (isset($_SESSION['username'])) {
       <br>
         <h1 class="section-header">Ongoing and Upcoming Classes</h1>
         <div class="form-grid2">
+        <div class="form-grid-div">
+        <button>
+        <a href="regForClasses.php">Register For Classes</a>
+        </button>  
+    
+        </div>
         <div class="form-grid-div">
         <form target="_blank" method="POST" action="actions/printClasses.php"> 
         <button type="submit" name="submitPrintClasses">Print Upcoming Classes</button>  
@@ -628,135 +514,7 @@ if (isset($_SESSION['username'])) {
             </tbody>
         </table>
         <br>
-        <p id="classRegistration">-------------------------------------------------------------------------</p>
-       <?php
 
-        if ($classNumber > 0) {
-        if (isset($_SESSION['username'])) {
-            $partner = new User($db);
-            echo '<h3> Enter Information Below to Register for all or Selected Classes </h3>';
-            echo '<h4> This process generates an email to confirm your registration, so it takes a while. Please be patient.
-            You will be sent back to the home page when it is complete.<br>
-            You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
-            spam/junk folder.</h4>';
-        
-            echo '<form method="POST"  action="actions/regClass.php" target="_blank">';
-            echo '<div class="form-grid3">';
-
-            echo '<div class="form-grid-div"> <br>';
-            if (isset($_SESSION['role'])) {
-                if ($_SESSION['role'] === 'visitor') {
-                    if (isset($_SESSION['visitorfirstname'])) {
-                        echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                        echo '<input type="text" name="regFirstName1" value="'.$_SESSION['visitorfirstname'].'"><br>';
-                    } else {
-                            echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                            echo '<input type="text" name="regFirstName1" ><br>';
-                }
-                    if (isset($_SESSION['visitorlastname'])) {
-                            echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                            echo '<input type="text" name="regLastName1" value="'.$_SESSION['visitorlastname'].'"><br>';
-                    } else {
-                            echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                            echo '<input type="text" name="regLastName1" ><br>';
-                    }
-                    if (isset($_SESSION['useremail'])) {
-                            echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                            echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
-                    } else {
-                            echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                            echo '<input type="email" name="regEmail1" ><br><br>';
-                    }
-        
-                } else {
-                    if (isset($_SESSION['userfirstname'])) {
-                        echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                        echo '<input type="text" name="regFirstName1" value="'.$_SESSION['userfirstname'].'"><br>';
-                } else {
-                        echo '<label for="regFirstName1">First Registrant First Name (Required)</label><br>';
-                        echo '<input type="text" name="regFirstName1" ><br>';
-                }
-                if (isset($_SESSION['userlastname'])) {
-                        echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                        echo '<input type="text" name="regLastName1" value="'.$_SESSION['userlastname'].'"><br>';
-                } else {
-                        echo '<label for="regLastName1">First Registrant Last Name (Required)</label><br>';
-                        echo '<input type="text" name="regLastName1" ><br>';
-                }
-                if (isset($_SESSION['useremail'])) {
-                        echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                        echo '<input type="email" name="regEmail1" value="'.$_SESSION['useremail'].'"><br><br>';
-                } else {
-                        echo '<label for="regEmail1">First Registrant Email (Required)</label><br>';
-                        echo '<input type="email" name="regEmail1" ><br><br>';
-                }
-                if (isset($_SESSION['partnerid'])) {
-                    $partner->id = $_SESSION['partnerid'];
-                    $partner->read_single();
-                
-                }
-                }
-               
-    
-           
-                 
-             
-        }
-           
-                echo '<label for="message2ins">Message to Instructor(Optional)</label><br>';
-               echo '<textarea id="message2ins" name="message2ins" rows="4" cols="50"></textarea><br>';
-             echo' </div>';
-            echo '<div class="form-grid-div"> <br>';
-            if (isset($_SESSION['partnerid'])) {
-    
-                echo '<label for="regFirstName2">Second Registrant First Name(optional)</label><br>';
-                echo '<input type="text" name="regFirstName2" value="'.$partner->firstname.'" ><br>';
-                echo '<label for="regLastName2">Second Registrant Last Name(optional)</label><br>';
-                echo '<input type="text" name="regLastName2" value="'.$partner->lastname.'"><br>';
-                echo '<label for="regEmail2">Second Registrant Email (optional)</label><br>';
-                echo '<input type="email" name="regEmail2" value="'.$partner->email.'"><br> <br>';
-    
-               } else {
-                echo '<label for="regFirstName2">Second Registrant First Name(optional)</label><br>';
-                echo '<input type="text" name="regFirstName2" ><br>';
-                echo '<label for="regLastName2">Second Registrant Last Name(optional)</label><br>';
-                echo '<input type="text" name="regLastName2" ><br>';
-                echo '<label for="regEmail2">Second Registrant Email (optional)</label><br>';
-                echo '<input type="email" name="regEmail2" ><br> <br>';
-               }
-            echo '</div>';     
-            echo '<div class="form-grid-div">';
-                echo '<ul class="list-box">';
-                echo '<h4 style="text-decoration: underline;color: black"><em>
-                  To Enroll -- Please select One or More of the Classes Listed then click on the Register Button</em></h4><br>';
-            foreach ($upcomingClasses as $class) {
-                    echo '<li class="list-none">';
-                    $chkboxID = "cb".$class['id'];
-                    $classString = " ".$class['classname']." ".$class['classlevel']." ".$class['date']." ";
-                    echo "<input type='checkbox' name='$chkboxID'>";
-                    echo "<label for='$chkboxID'> I/We would like to register for:
-                        <strong>$classString </strong></label><br>";         
-                    echo '</li>';   
-                    }            
-                echo '</ul> <br><br>';      
-                
-        
-        echo '<button name="submitRegClass" type="submit">Register</button><br>';
-        
-           
-            echo '</form>';
-            echo '</div>'; 
-            echo '</div>';
-    
-        } else {
-           // echo '<h3 style="color: red"> <strong><em>Please Login to Register</em></strong> </h3><br><br>';
-            echo '<h3><a style="color: red;font-weight: bold;font-size: large"
-            href="login.php"> <strong><em>Please Login to Register</em></strong></a></h3><br><br>';
-        }
-    } else {
-        echo '<h3> No Upcoming Classes right now -- Check back soon</h3><br><br>';
-    }
-        ?>
     </section>
 </div>
     </div>
