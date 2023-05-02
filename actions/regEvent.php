@@ -71,14 +71,7 @@ if (isset($_POST['submitEventReg'])) {
                 "<br>Room:    ".$event['eventroom'].
                 "<br>Date:    ".date('M d Y',strtotime($event['eventdate']))."</strong><br>"; 
                
-                if ($event['eventform']) {
-                    $actLink= "<a href='".$event['eventform']."'>
-       Click to view event Form</a><br>";
-                   $emailBody .= 'There is a signup form to submit registration details and payment.<br>';
-                   $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
-                    on the website to open the form. Or<br>$actLink";
-                   $toCC2 = 'treasurer@sbballroomdance.com';
-                }
+      
                 if ($event['eventcost'] > 0) {
                     $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
                     $coststr =  "Member Event Cost is approximately: "
@@ -86,12 +79,20 @@ if (isset($_POST['submitEventReg'])) {
                           Check the form for specific costs.<br>";
            
                     $emailBody .= $coststr;
-                    $toCC2 = 'treasurer@sbballroomdance.com';
+                    $toCC2 = 'shamburgrog23@gmail.com';
                     if (!$event['eventform']) {
                         $emailBody .= '<br>The signup form with meal choices and specific costs
                         is not currently available, but
                         you will receive an email when it is. The email will have the signup form
                         attached.<br>';
+                    }
+                    if ($event['eventform']) {
+                        $actLink= "<a href='".$event['eventform']."'>
+           Click to view event Form</a><br>";
+                       $emailBody .= 'There is a signup form to submit registration details and payment.<br>';
+                       $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
+                        on the website to open the form. Or<br>$actLink";
+                       $toCC2 = 'shamburgrog23@gmail.com';
                     }
                  }
                 if ($message) {

@@ -83,22 +83,23 @@ if (isset($_POST['submitAddVisitorReg'])) {
     "<br>Room:    ".$event->eventroom.
     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
                     
-    if ($event->eventform) {
 
-        $actLink= "<a href='".$event->eventform."'>
-        Click to view event Form</a>";
-        $emailBody .= 'There is a form to submit registration details and payment.<br>';
-        $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
-            on the website to open the form. Or<br>$actLink";
-        $toCC2 = 'treasurer@sbballroomdance.com';
-    }
     if ($event->eventcost > 0) {
         $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
         $coststr =  "<br> Member Event Cost is approximately: "
         .$fmt->formatCurrency($event->eventcost, 'USD')."<br>
             Check the form for specific costs. <br>Non-member cost will be slightly higher.";
         $emailBody .= $coststr;
-        $toCC2 = 'treasurer@sbballroomdance.com';
+        $toCC2 = 'shamburgrog23@gmail.com';
+        if ($event->eventform) {
+
+            $actLink= "<a href='".$event->eventform."'>
+            Click to view event Form</a>";
+            $emailBody .= 'There is a form to submit registration details and payment.<br>';
+            $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
+                on the website to open the form. Or<br>$actLink";
+            $toCC2 = 'shamburgrog23@gmail.com';
+        }
     }
     $emailBody .= '<br>We hope you enjoy the event and consider joining our club.';
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
