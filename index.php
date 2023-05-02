@@ -383,12 +383,20 @@ if (isset($_SESSION['username'])) {
       <br>
         <h1 class="section-header">Upcoming Events</h1>
         <div class="form-grid2">
-        <div class="form-grid-div">
-        <button>
-        <a href="regForEvents.php">Register For Events</a>
-        </button>  
+        <?php
+         if (isset($_SESSION['username'])) {
+            if (isset($_SESSION['role'])) {
+        echo '<div class="form-grid-div">';
+        echo '<button>';
+        echo '<a href="regForEvents.php">Register For Events</a>';
+        echo '</button>';  
     
-        </div>
+        echo '</div>';
+            }
+        } else {
+            echo '<h4><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Please Login to Register</a></h4>';
+        }
+        ?>
         <div class="form-grid-div">
         <form target="_blank" method="POST" action="actions/printEvents.php"> 
         <button type="submit" name="submitPrintEvents">Print Upcoming Events</button>  
@@ -454,12 +462,20 @@ if (isset($_SESSION['username'])) {
       <br>
         <h1 class="section-header">Ongoing and Upcoming Classes</h1>
         <div class="form-grid2">
-        <div class="form-grid-div">
-        <button>
-        <a href="regForClasses.php">Register For Classes</a>
-        </button>  
+        <?php
+         if (isset($_SESSION['username'])) {
+            if (isset($_SESSION['role'])) {
+        echo '<div class="form-grid-div">';
+        echo '<button>';
+        echo '<a href="regForClasses.php">Register For Classes</a>';
+        echo '</button>';  
     
-        </div>
+        echo '</div>';
+            }
+        } else {
+            echo '<h4><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Please Login to Register</a></h4>';
+        }
+        ?>
         <div class="form-grid-div">
         <form target="_blank" method="POST" action="actions/printClasses.php"> 
         <button type="submit" name="submitPrintClasses">Print Upcoming Classes</button>  
