@@ -55,6 +55,7 @@ if (isset($_POST['submitUserRep'])) {
     
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
+            $total_members++;
             $usr_item = array(
                 'firstname' => $firstname,
                 'lastname' => $lastname,
@@ -68,7 +69,7 @@ if (isset($_POST['submitUserRep'])) {
  
            if ($usr_item['directorylist']) {
             array_push($userArr, $usr_item);
-            $total_members++;
+            
            }
 
         }
@@ -108,8 +109,8 @@ if ($userCount > 0) {
     $pdf->SetFont('Arial', '', 10);
 }
 $pdf->SetFont('Arial','B',12);
-$pdf->Cell(50,8,"NUMBER OF MEMBERS",0,0,"L");
-$pdf->Cell(30,8,$total_members,0,0,"L");
+$pdf->Cell(75,8,"TOTAL NUMBER OF MEMBERS",0,0,"L");
+$pdf->Cell(60,8,$total_members,0,0,"L");
 $today = date("m-d-Y");
 $pdf->Output("I", "MemberReport".$today.".PDF");
 }
