@@ -384,23 +384,23 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<form method="POST" action="actions/maintainEvent.php">';
         echo '<input type="checkbox" name="updateEvent">';
         echo '<label for="updateEvent">Update an Event </label><br>';   
-        echo '<input type="checkbox" name="updateMealChoices">';
-        echo '<label for="updateMealChoices">
-           Update or Add Meal choice for a Dinner Dance </label><br>';   
+        // echo '<input type="checkbox" name="updateMealChoices">';
+        // echo '<label for="updateMealChoices">
+        //    Update or Add Meal choice for a Dinner Dance </label><br>';   
         echo '<input type="checkbox" name="deleteEvent">';
         echo '<label for="deleteEvent">Delete an Event </label><br>';
         echo '<input type="text" class="text-small" name="eventId" >';
         echo '<label for="eventId"><em> &larr; 
-            Specify Event ID from Table below for Update or Delete <br>
-            or Update/Add Meal Choices: 
+            Specify Event ID from Table below for Update or Delete: <br>
             </em> </label>';
 
-        echo '<p>OR</p>';
+        echo '<p><strong><em>OR</em></strong></p>';
         echo '<input type="checkbox" name="addEvent">';
         echo '<label for="addEvent">Add an Event </label> <br>'; 
         
         if ($_SESSION['role'] === 'SUPERADMIN') { 
-        echo '<p>OR</p>';
+            echo '<p><strong><em>OR</em></strong></p>';
+  
         echo '<input type="checkbox" name="archiveEvent">';
         echo '<label for="archiveEvent">Archive Events and Registrations </label><br>'; 
         echo '<label for="archDate">Enter earliest month and day (format mm-dd) for which to keep data</label><br>';
@@ -434,7 +434,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<label for="emailEvent">Send email to all registered for Event </label><br>';
         echo '<input type="text" class="text-small" name="eventId" > '  ; 
         echo '<label for="eventId"><em> &larr; 
-        Specify Event ID from Table Above:</em> </label><br>';
+        Specify Event ID from Table Below:</em> </label><br>';
         echo '<label for="replyEmail">Email to reply to: </label>> <br>';
         echo '<input type="email" name="replyEmail" value="'.$_SESSION['useremail'].'"><br>';  
 
@@ -650,7 +650,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<p>OR</p>';
         echo '<input type="text" class="text-small" name="archId" >';
         echo '<label for="archId"> <em> &larr; 
-        Specify Class ID from Table above for Archive: </em> </label><br> ';   
+        Specify Class ID from Table below for Archive: </em> </label><br> ';   
     }
     ?>
        
@@ -972,7 +972,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<input type="checkbox" name="deleteUser">';
             echo '<label for="deleteUser">Delete a Member </label><br>';
             echo '<input type="text" class="text-small" name="userId" >';
-            echo '<label for="userId"><em> &larr; Specify Member ID from Table above for Update or Delete:  </em></label>';
+            echo '<label for="userId"><em> &larr; Specify Member ID from Table below for Update or Delete:  </em></label>';
             
             echo '<p>OR</p>';
             echo '<input type="checkbox" name="addUser">';

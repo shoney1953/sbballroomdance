@@ -11,7 +11,7 @@ $partner = new User($db);
 $userArr = [];
 $numHOA1 = 0;
 $numHOA2 = 0;
-
+$total_members = 0;
 
 class PDF extends FPDF
 {
@@ -68,6 +68,7 @@ if (isset($_POST['submitUserRep'])) {
  
            if ($usr_item['directorylist']) {
             array_push($userArr, $usr_item);
+            $total_members++;
            }
 
         }
@@ -106,8 +107,11 @@ if ($userCount > 0) {
     $pdf->Cell(0, 10, "   NO Members FOUND ", 0, 1); 
     $pdf->SetFont('Arial', '', 10);
 }
+$pdf->SetFont('Arial','B',12);
+$pdf->Cell(50,8,"NUMBER OF MEMBERS",0,0,"L");
+$pdf->Cell(30,8,$total_members,0,0,"L");
 $today = date("m-d-Y");
-$pdf->Output("I", "MemberReport".$today);
+$pdf->Output("I", "MemberReport".$today.".PDF");
 }
 
 $redirect = "Location: ".$_SESSION['adminurl'];
