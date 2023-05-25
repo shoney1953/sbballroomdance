@@ -36,7 +36,7 @@ if (isset($_POST['submitUpdateUser'])) {
     $user->email = $_POST['email'];
   
     $user->role = $_POST['role'];
-    
+
     if ($_POST['newemail'] != $_POST['email']) {  
         $newemail = $_POST['newemail'];
         if (filter_var($newemail, FILTER_VALIDATE_EMAIL)) {
@@ -62,6 +62,7 @@ if (isset($_POST['submitUpdateUser'])) {
     if ($_POST['newuser'] != $_POST['username']) {
         $newuser = $_POST['newuser'];
         $newuser = htmlentities($_POST['newuser']);
+
         if ($user->validate_user($newuser)) {
       
             $redirect = "Location: ".$_SESSION['userurl'].'?error=UserExists';

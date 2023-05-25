@@ -3,8 +3,7 @@ session_start();
 require_once '../config/Database.php';
 require_once '../models/Event.php';
 date_default_timezone_set("America/Phoenix");
-if (!isset($_SESSION['username']))
-{
+if (!isset($_SESSION['username'])) {
     $redirect = "Location: ".$_SESSION['homeurl'];
     header($redirect);
 } else {
@@ -20,21 +19,39 @@ if (!isset($_SESSION['username']))
 }
 $database = new Database();
 $db = $database->connect();
-$event = new Event($db);
-
+$eventRec = new Event($db);
+$allEvents = $_SESSION['allEvents'];
+var_dump($_POST);
 if (isset($_POST['submitUpdate'])) {
-    $event->id = $_POST['id'];
-    $event->eventname = $_POST['eventname'];
-    $event->eventtype = $_POST['eventtype'];
-    $event->eventdesc = $_POST['eventdesc'];
-    $event->eventdj = $_POST['eventdj'];
-    $event->eventform = $_POST['eventform'];
-    $event->eventroom = $_POST['eventroom'];
-    $event->eventdate = $_POST['eventdate'];
-    $event->eventcost = $_POST['eventcost'];
-    $event->eventnumregistered = $_POST['eventnumregistered'];
-    $event->update();
-    echo ' Event was updated  <br>';
+    
+    foreach ($allEvents as $event) {
+        $evSelectChk = "evselect".$event['id'];
+    $evnamID = "evnam".$event['id'];
+    $evtypeID = "evtype".$event['id'];
+    $evdescID = "evdesc".$event['id'];
+    $evdjID = "evdj".$event['id'];
+    $evroomID = "evroom".$event['id'];
+    $evdateID = "evdate".$event['id'];
+    $evcostID = "evcost".$event['id'];
+    $evnumregID = "evnumreg".$event['id'];
+    $evformID = "evform".$event['id'];
+    $evidID = "evid".$event['id'];
+        if (isset($_POST["$evSelectChk"])) {
+
+            $eventRec->id = $event['id'];
+            $eventRec->eventname = $_POST["$evnamID"];
+            $eventRec->eventtype = $_POST["$evtypeID"];
+            $eventRec->eventdesc = $_POST["$evdescID"];
+            $eventRec->eventdj = $_POST["$evdjID"];
+            $eventRec->eventform = $_POST["$evformID"];
+            $eventRec->eventroom = $_POST["$evroomID"];
+            $eventRec->eventdate = $_POST["$evdateID"];
+            $eventRec->eventcost = $_POST["$evcostID"];
+            $eventRec->eventnumregistered = $_POST["$evnumregID"];
+            $eventRec->update();
+        }
+    }
+    
     
     $redirect = "Location: ".$_SESSION['adminurl']."#events";
     header($redirect);

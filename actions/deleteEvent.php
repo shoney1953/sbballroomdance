@@ -2,6 +2,7 @@
 session_start();
 
 require_once '../config/Database.php';
+require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
 if (!isset($_SESSION['username']))
 {
@@ -18,16 +19,23 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
+$allEvents = $_SESSION['allEvents'];
 $database = new Database();
 $db = $database->connect();
-$event = new Event($db);
+$eventRec = new Event($db);
+$eventReg = new EventRegistration($db);
 
+if (isset($_POST['submitDelete'])) {
+    foreach ($allEvents as $event) {
+        $evSelectChk = "evselect".$event['id'];
+        if (isset($_POST["$evSelectChk"])) {
+            $eventRec->id = $event['id'];
+            $eventRec->delete();
+            $eventReg->deleteEventid($event['id']);
+        }
+    }
+}
    
-$event->id = $_POST['id'];
-   
-$event->delete();
-echo ' Event was deleted <br>';
-
 $redirect = "Location: ".$_SESSION['adminurl']."#events";
 header($redirect);
 exit;

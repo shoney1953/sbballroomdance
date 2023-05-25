@@ -332,7 +332,6 @@ if (isset($_POST['archiveEvent'])) {
     
         echo '<br><select name = "eventtype" value="'.$event->eventtype.'">'; 
         echo '<option value = "Dine and Dance">Dine and Dance</option>';
-        echo '<option value = "Dance">Dance</option>';
         echo '<option value = "Novice Practice Dance">Novice Practice Dance</option>';
         echo '<option value = "Dinner Dance">Dinner Dance</option>';
         echo '<option value = "TGIF">TGIF</option>';

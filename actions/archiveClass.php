@@ -7,7 +7,7 @@ require_once '../models/ClassRegistrationArch.php';
 require_once '../models/DanceClass.php';
 require_once '../models/DanceClassArch.php';
 
-$classesArch = $_SESSION['classesArch'];
+$allClasses = $_SESSION['allClasses'];
 
 
 if (!isset($_SESSION['username']))
@@ -35,16 +35,18 @@ $classRegArch = new ClassRegistrationArch($db);
 $class = new DanceClass($db);
 $classArch = new DanceClassArch($db);
 
-if (isset($_POST['submitArchive'])) {
-  foreach($classesArch as $ca) {
- 
+if (isset($_POST['submitArchive'])) {  
+  foreach($allClasses as $ca) {
+    $clSelectChk = "clselect".$ca['id'];
+    if (isset($_POST["$clSelectChk"])) {
+
       $classArch->previd = $ca['id'];
       $classArch->classlevel = $ca['classlevel'];
       $classArch->classname = $ca['classname'];
       $classArch->room = $ca['room'];
       $classArch->registrationemail = $ca['registrationemail'];
       $classArch->date = $ca['date'];
-      $classArch->time = $ca['time'];
+      $classArch->time = $ca['time2'];
       $classArch->instructors = $ca['instructors'];
       $classArch->classlimit = $ca['classlimit'];
       $classArch->numregistered = $ca['numregistered'];
@@ -88,11 +90,11 @@ if (isset($_POST['submitArchive'])) {
       
         }
        $classReg->deleteClassid($ca['id']);
-       
-       
+     
   }
   $class->id = $ca['id'];
   $class->delete();
+}
 }
 }
 

@@ -31,6 +31,7 @@ $visitorLast = '';
         $existingUser = "YES";
        echo '<script>alert("You are already a member; Please use Member Login.")</script>';    
     }
+ 
     if ($existingUser === 'NO') {
         unset($_SESSION['username']);
         unset($_SESSION['role']);
@@ -54,6 +55,7 @@ $visitorLast = '';
            $visitor->create();
             unset($_SESSION['username']);
         }
+      
         $redirect = "Location: ".$_SESSION['homeurl'];
         header($redirect);
          exit;   

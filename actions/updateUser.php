@@ -18,38 +18,64 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
-
+$users = $_SESSION['process_users'];
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
 
 if (isset($_POST['submitUpdateUser'])) {
-
-    $user->id = $_POST['id'];
-    $user->firstname = $_POST['firstname'];
-    $user->lastname = $_POST['lastname'];
-    $user->username = $_POST['username'];
-    $user->streetAddress = $_POST['streetaddress'];
-    $user->city = $_POST['city'];
-    $user->state = $_POST['state'];
-    $user->zip = $_POST['zip'];
-    $user->phone1 = $_POST['phone1'];
-    $user->phone2 = $_POST['phone2'];
-    $user->hoa = $_POST['hoa'];
-    $user->notes = $_POST['notes'];
-    $user->partnerId = $_POST['partnerid'];
-    
-    $user->password = $_POST['password'];
-
-    $user->email = $_POST['email'];
-    $user->directorylist = $_POST['directorylist'];
+    foreach ($users as $usr) {
+      $upChk = "up".$usr['id'];
+      $usrSelChk ="userSel".$usr['id'];
+      $fnamID = "fnam".$usr['id'];
+      $lnamID = "lnam".$usr['id'];
+      $nemailID = "nemail".$usr['id'];
+      $nuserID = "nuser".$usr['id'];
+      $dlistID = "dlist".$usr['id'];
+      $hoaID = "hoa".$usr['id'];
+      $phone1ID = "phone1".$usr['id'];
+      $phone2ID = "phone2".$usr['id'];
+      $staddID = "stadd".$usr['id'];
+      $cityID = "city".$usr['id'];
+      $stateID = "state".$usr['id'];
+      $zipID = "zip".$usr['id'];
+      $notesID = "notes".$usr['id'];
+      $partID = "part".$usr['id'];
+      $emailID = "email".$usr['id'];
+      $userID = "user".$usr['id'];
+      $idID = "id".$usr['id'];
+      $pwdID  = "pwd".$usr['id'];
+      $roleID = "role".$usr['id'];
+      $rpwdID = "rpwd".$usr['id'];
+      $rpwd2ID = "rpwd2".$usr['id'];
+ 
+   if (isset($_POST["$usrSelChk"])) {
   
-    $user->role = $_POST['role'];
+    $user->id = $_POST["$idID"];
+    $user->firstname = $_POST["$fnamID"];
+    $user->lastname = $_POST["$lnamID"];
+    $user->username = $_POST["$userID"];
+    $user->streetAddress = $_POST["$staddID"];
+    $user->city = $_POST["$cityID"];
+    $user->state = $_POST["$stateID"];
+    $user->zip = $_POST["$zipID"];
+    $user->phone1 = $_POST["$phone1ID"];
+    $user->phone2 = $_POST["$phone2ID"];
+    $user->hoa = $_POST["$hoaID"];
+    $user->notes = $_POST["$notesID"];
+    $user->partnerId = $_POST["$partID"];
     
-    if ($_POST['newemail'] != $_POST['email']) {  
-        $newemail = $_POST['newemail'];
+    $user->password = $_POST["$pwdID"];
+
+    $user->email = $_POST["$emailID"];
+    $user->directorylist = $_POST["$dlistID"];
+  
+    $user->role = $_POST["$roleID"];
+    
+    if ($_POST["$nemailID"] != $_POST["$emailID"]) {  
+        $newemail = $_POST["$nemailID"];
         if (filter_var($newemail, FILTER_VALIDATE_EMAIL)) {
-            $newemail = htmlentities($_POST['newemail']);
+            $newemail = htmlentities($_POST["$nemailID"]);
             $newemail = filter_var($newemail, FILTER_SANITIZE_EMAIL);
         } else {
             $redirect = "Location: ".$_SESSION['userurl'].'?error=EmailInvalid';
@@ -68,9 +94,9 @@ if (isset($_POST['submitUpdateUser'])) {
     }   
   
  
-    if ($_POST['newuser'] != $_POST['username']) {
-        $newuser = $_POST['newuser'];
-        $newuser = htmlentities($_POST['newuser']);
+    if ($_POST["$nuserID"] != $_POST["$userID"]) {
+        $newuser = $_POST["$nuserID"];
+        $newuser = htmlentities($_POST["$nuserID"]);
         if ($user->validate_user($newuser)) {
       
             $redirect = "Location: ".$_SESSION['userurl'].'?error=UserExists';
@@ -82,11 +108,11 @@ if (isset($_POST['submitUpdateUser'])) {
 
     }
     $pass2 = NULL;
-    if (isset($_POST['resetPass'])) {
-        if ($_POST['resetPass'] != NULL) {
-        $newpass = $_POST['resetPass'];
-        if (isset($_POST['resetPass2'])) {
-            $pass2 = $_POST['resetPass2'];
+    if (isset($_POST["$rpwdID"])) {
+        if ($_POST["$rpwdID"] != NULL) {
+        $newpass = $_POST["$rpwdID"];
+        if (isset($_POST["$rpwd2ID"])) {
+            $pass2 = $_POST["$rpwd2ID"];
         }
     
         if (!$newpass == $pass2) {
@@ -104,17 +130,20 @@ if (isset($_POST['submitUpdateUser'])) {
 
     }
 
-       $user->firstname = htmlentities($_POST['firstname']);
-       $user->lastname = htmlentities($_POST['lastname']);
-       $user->streetAddress = htmlentities($_POST['streetaddress']); 
-       $user->city = htmlentities($_POST['city']); 
-       $user->notes = htmlentities($_POST['notes']); 
+       $user->firstname = htmlentities($_POST["$fnamID"]);
+       $user->lastname = htmlentities($_POST["$lnamID"]);
+       $user->streetAddress = htmlentities($_POST["$staddID"]); 
+       $user->city = htmlentities($_POST["$cityID"]); 
+       $user->notes = htmlentities($_POST["$notesID"]); 
       
     $user->update();
 
-   
-    $redirect = "Location: ".$_SESSION['adminurl']."#users";
-    header($redirect);
-    exit;
 }
+   
+}
+}
+unset($_SESSION['process_users']);
+$redirect = "Location: ".$_SESSION['adminurl']."#users";
+header($redirect);
+exit;
 ?>

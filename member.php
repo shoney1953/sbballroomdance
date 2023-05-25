@@ -191,78 +191,136 @@ if ($rowCount > 0) {
     <div class="content">
     <br>
     <h1>Admin Member Profile</h1>
-    <div class="form-grid3">
+    <div class="form-grid2">
     <div class="form-grid-div">
-       <div class="list-box">
-       <ul>
+   
+
            <?php
-            echo '<li class=li-none> Name:    <strong> '.$user->firstname.' '
-            .$user->lastname.'</strong></li>';
-            echo '<li class=li-none> Username:  <strong>'.$user->username.' 
-            </strong></li>';
-            echo '<li class=li-none> Email:    <strong> '.$user->email.' 
-            </strong></li>';
-            echo '<li class=li-none> Created:   <strong>'.$user->created.' 
-            </strong></li>';
-            echo '<li class=li-none> Last Login:  <strong>'.$user->lastLogin.' 
-            </strong></li>';
-            echo '<li class=li-none> Number Logins:  <strong>'.$user->numlogins.' 
-            </strong></li>';
-            echo '<li class=li-none> Password Last Changed: 
-            <strong>'.$user->passwordChanged.' 
-            </strong></li>';
-            echo '<li class=li-none> Partner Id: 
-            <strong>'.$user->partnerId.' 
-            </strong></li>';
-            if ($user->partnerId !== 0) {
-                echo '<li class=li-none> Partner Name: 
-                <strong>'.$partner->firstname.' '.$partner->lastname.' 
-                </strong></li>';
-            }
-            echo '<li class=li-none> Primary Phone: 
-            <strong>'.$user->phone1.' 
-            </strong></li>';
-            echo '<li class=li-none> Secondary Phone: 
-            <strong>'.$user->phone2.' 
-            </strong></li>';
-            echo '<li class=li-none> HOA: 
-            <strong>'.$user->hoa.' 
-            </strong></li>';
-            echo '<li class=li-none> Street Address: 
-            <strong>'.$user->streetAddress.' 
-            </strong></li>';
-            echo '<li class=li-none> City: 
-            <strong>'.$user->city.' 
-            </strong></li>';
-            echo '<li class=li-none> State: 
-            <strong>'.$user->state.' 
-            </strong></li>';
-            echo '<li class=li-none> Zip: 
-            <strong>'.$user->zip.' 
-            </strong></li>';
-            echo '<li class=li-none> Notes: 
-            <strong>'.$user->notes.' 
-            </strong></li>';
-            echo '<li class=li-none> Current Events: 
-            <strong>'.$numEvents.' 
-            </strong></li>';
-            echo '<li class=li-none> Current Classes: 
-            <strong>'.$numClasses.' 
-            </strong></li>';
-            echo '<li class=li-none> Past Events: 
-            <strong>'.$numEventsArch.' 
-            </strong></li>';
-            echo '<li class=li-none> Past Classes: 
-            <strong>'.$numClassesArch.' 
-            </strong></li>';
-            
-        echo '</ul><br>';
-    echo '<h4>Membership Status</h4>';
+            echo '<table>';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th colspan="4" style="color: darkviolet;text-align:center">Membership Data</th>';
+            echo '</tr>';
+            echo '<tr>';
+            echo '<th>First Name</td>';
+            echo '<th>Last Name</td>';
+            echo '<th>Email</th>';
+            echo '<th>User Name</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+            echo '<tr>';
+            echo "<td>$user->firstname</td>";
+            echo "<td>$user->lastname</td>";
+            echo "<td>$user->email</td>";
+            echo "<td>$user->username</td>";
+            echo '</tr>';
+            echo '</tbody>';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>Created</td>';
+            echo '<th>Last Login</td>';
+            echo '<th>Num Logins</th>';
+            echo '<th>PWD Last Changed</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+            echo '<tr>';
+            echo "<td>$user->created</td>";
+            echo "<td>$user->lastLogin</td>";
+            echo "<td>$user->numlogins</td>";
+            echo "<td>$user->passwordChanged</td>";
+            echo '</tr>';
+            echo '</tbody>';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>Partner ID</td>';
+            echo '<th>Partner Name</td>';
+            echo '<th>Primary Phone</th>';
+            echo '<th>Secondary Phone</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+            echo '<tr>';
+            echo "<td>$user->partnerId</td>";
+            echo "<td>$partner->firstname $partner->lastname </td>";
+            echo "<td>$user->phone1</td>";
+            echo "<td>$user->phone2</td>";
+            echo '</tr>';
+            echo '</tbody>';
+            echo '<thead>';
+            echo '<tr>';
+       
+            echo '<th>Street Address</td>';
+            echo '<th>City</th>';
+            echo '<th>State</th>';
+            echo '<th>Zip</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+            echo '<tr>';
+     
+            echo "<td>$user->streetAddress</td>";
+            echo "<td>$user->city</td>";
+            echo "<td>$user->state</td>";
+            echo "<td>$user->zip</td>";
+            echo '</tr>';
+            echo '</tbody>';
+            echo '<thead>';
+            echo '<tr>';
+       
+            echo '<th>HOA</td>';
+            echo '<th>Directory</th>';
+            echo '<th colspan="2">Notes</th>';
+ 
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+            echo '<tr>';
+     
+            echo "<td>$user->hoa</td>";
+            echo "<td>$user->directorylist</td>";
+            echo "<td colspan='2'>$user->notes</td>";
+
+            echo '</tr>';
+            echo '</tbody>';
+            echo '<thead>';
+            echo '<tr>';
+       
+            echo '<th>Current Classes</td>';
+            echo '<th>Past Classes</th>';
+            echo '<th>Current Events</th>';
+            echo '<th>Past Events</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+            echo '<tr>';
+     
+            echo "<td>$numClasses</td>";
+            echo "<td>$numClassesArch</td>";
+            echo "<td>$numEvents</td>";
+            echo "<td>$numEventsArch</td>";
+
+            echo '</tr>';
+            echo '</tbody>';
+            echo '</table>';
+        
+           
+          
+    echo "<br><br>";
+    echo '</div>';
+    echo '<div class="form-grid-div">';
     echo '<table>';
-    echo "<tr>";
-    echo "<td>YEAR</td>";
-    echo "<td>PAID?</td>";
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th colspan="2" style="color: darkviolet;text-align:center">Membership Status</th>';
+    echo '</tr>';
+    echo '<tr>';
+    echo "<th>YEAR</th>";
+    echo "<th>PAID?</th>";
     echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
     foreach ($yearsPaid as $year) {
         echo "<tr>";
         echo "<td>".$year['year']."</td>";
@@ -274,22 +332,25 @@ if ($rowCount > 0) {
           }  
         echo "</tr>";
     }
+    echo "</tbody>";
     echo '</table>';
     echo '</div>';
 
- 
   
      ?>
     
       
-       </div>
+
    
 
     <div class="form-grid-div">
    
-    <br>
-        <h4 class="section-header">Active Class Registrations</h4><br>    
+  
         <table>
+            <thead>
+            <tr>
+            <th colspan="5" style="color: darkviolet;text-align:center">Active Classes</th>
+            </tr>
             <tr>
                 <th>ID</th>
                 <th>Class Name</th>
@@ -297,6 +358,9 @@ if ($rowCount > 0) {
                 <th>Class Time</th>
                 <th>Date Registered</th>          
             </tr>
+           </thead>
+           <tbody>
+
             <?php 
     
             foreach ($classRegs as $classRegistration) {
@@ -313,16 +377,20 @@ if ($rowCount > 0) {
             }
          
             ?> 
+           </tbody>
         </table>
-    <br><br>
 
         
     </div>
 
     <div class="form-grid-div">
-    <br><br>
-    <h4 class="section-header">Active Event Registrations</h4><br>    
+
+   
         <table>
+        <thead>
+            <tr>
+            <th colspan="5" style="color: darkviolet;text-align:center">Active Events</th>
+            </tr>
             <tr>
                 <th>ID</th>
                 <th>Event Name</th>
@@ -330,6 +398,8 @@ if ($rowCount > 0) {
                 <th>Paid</th>
                 <th>Date Registered</th>          
             </tr>
+        </thead>
+        <tbody>
             <?php 
     
             foreach ($eventRegs as $eventRegistration) {
@@ -350,15 +420,16 @@ if ($rowCount > 0) {
             }
          
             ?> 
+        </tbody>
         </table>
- 
-    <br><br>
     </div>
     <div class="form-grid-div">
    
-   <br>
-       <h4 class="section-header">Past Class Registrations</h4><br>    
        <table>
+       <thead>
+            <tr>
+            <th colspan="5" style="color: darkviolet;text-align:center">Past Class Registrations</th>'
+            </tr>
            <tr>
                <th>ID</th>
                <th>Class Name</th>
@@ -366,6 +437,8 @@ if ($rowCount > 0) {
                <th>Class Time</th>
                <th>Date Registered</th>          
            </tr>
+       </thead>
+       <tbody>
            <?php 
    
            foreach ($classRegsArch as $classRegistration) {
@@ -382,6 +455,7 @@ if ($rowCount > 0) {
            }
         
            ?> 
+       </tbody>
        </table>
    <br><br>
 
@@ -389,9 +463,12 @@ if ($rowCount > 0) {
    </div>
 
    <div class="form-grid-div">
-   <br><br>
-   <h4 class="section-header">Past Event Registrations</h4><br>    
-       <table>
+   <table>
+   <thead>
+            <tr>
+            <th colspan="5" style="color: darkviolet;text-align:center">Past Event Registrations</th>'
+            </tr> 
+
            <tr>
                <th>ID</th>
                <th>Event Name</th>
@@ -399,6 +476,8 @@ if ($rowCount > 0) {
                <th>Paid</th>
                <th>Date Registered</th>          
            </tr>
+   </thead>
+   <tbody>
            <?php 
    
            foreach ($eventRegsArch as $eventRegistration) {
@@ -419,9 +498,9 @@ if ($rowCount > 0) {
            }
         
            ?> 
+   </tbody>
        </table>
 
-   <br><br>
    </div>
     </div>
     <footer >

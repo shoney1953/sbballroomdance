@@ -5,6 +5,8 @@ session_start();
 require_once '../config/Database.php';
 require_once '../models/DanceClass.php';
 require_once '../models/ClassRegistration.php';
+
+
 if (!isset($_SESSION['username']))
 {
     $redirect = "Location: ".$_SESSION['homeurl'];
@@ -26,12 +28,20 @@ $database = new Database();
 $db = $database->connect();
 $class = new DanceClass($db);
 $classReg = new ClassRegistration($db);
+$allClasses = $_SESSION['allClasses'];
 
+if (issset($_POST['submitDelete'])) {
+    foreach ($allClasses as $ca) {
+        $clSelectChk = "clselect".$class['id'];
+        if (isset($_POST("$clSelectChk"))) {
+            $class->id = $ca['id'];
+            $class->delete();
+            $classReg->deleteClassid($class->id);
+        }
+    }
 
-    $class->id = $_POST['id'];
-    $class->delete();
-    $classReg->deleteClassid($class->id);
-  
+}
+   
     $redirect = "Location: ".$_SESSION['adminurl']."#classes";
 header($redirect);
 exit;

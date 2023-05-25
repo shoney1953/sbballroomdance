@@ -7,8 +7,7 @@ require_once '../models/EventRegistrationArch.php';
 require_once '../models/Event.php';
 require_once '../models/EventArch.php';
 
-$eventsArch = $_SESSION['eventsArch'];
-
+$allEvents = $_SESSION['allEvents'];
 
 if (!isset($_SESSION['username']))
 {
@@ -37,8 +36,10 @@ $eventArch = new EventArch($db);
 
 
 if (isset($_POST['submitArchive'])) {
-  foreach($eventsArch as $ea) {
- 
+    foreach ($allEvents as $ea) {
+    $evSelectChk = "evselect".$ea['id'];
+    if (isset($_POST["$evSelectChk"])) {
+   
       $eventArch->previd = $ea['id'];
       $eventArch->eventtype = $ea['eventtype'];
       $eventArch->eventname = $ea['eventname'];
@@ -97,19 +98,18 @@ if (isset($_POST['submitArchive'])) {
         }
   
         $eventReg->deleteEventid($ea['id']);
-       
+     
        
   }
   $event->id = $ea['id'];
   $event->delete();
 }
+    }
 }
 
    
-   
-    
-$redirect = "Location: ".$_SESSION['adminurl']."#classes";
-header($redirect);
-exit;
+// $redirect = "Location: ".$_SESSION['adminurl']."#events";
+// header($redirect);
+// exit;
 
 ?>

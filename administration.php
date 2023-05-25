@@ -17,6 +17,7 @@ $visitors = [];
 $allEvents = [];
 $contacts = [];
 $users = [];
+unset($_SESSION['process_users']);
 $classRegistrations = [];
 $eventRegistrations = [];
 $num_registrations = 0;
@@ -27,6 +28,17 @@ $memberStatus1 = [];
 $memberStatus2 = [];
 $nextYear = date('Y', strtotime('+1 year'));
 $thisYear = date("Y"); 
+$current_month = date('m');
+$current_year = date('Y');
+$currentDate = new DateTime();
+$compareDate = $currentDate->format('Y-m-d');
+
+$rpChk = '';
+$upChk = '';
+$dlChk = '';
+$emChk = '';
+$dpChk = '';
+$arChk = '';
 
 $database = new Database();
 $db = $database->connect();
@@ -84,6 +96,7 @@ if ($rowCount > 0) {
             'classlimit' => $classlimit,
             'date' => $date,
             'time' => date('h:i:s A', strtotime($time)),
+            'time2' => $time,
             'instructors' => $instructors,
             'classnotes' => $classnotes,
             "registrationemail" => $registrationemail,
@@ -238,11 +251,16 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'role' => $role,
                 'email' => $email,
                 'phone1' => $phone1,
+                'phone2' => $phone2,
                 'password' => $password,
                 'partnerId' => $partnerid,
                 'hoa' => $hoa,
                 'passwordChanged' => $passwordChanged,
                 'streetAddress' => $streetaddress,
+                'city' => $city,
+                'state' => $state,
+                'zip' => $zip,
+                'notes' => $notes,
                 'lastLogin' => date('m d Y h:i:s A', strtotime($lastLogin)),
                 'numlogins' => $numlogins,
                 'directorylist' => $directorylist
@@ -252,6 +270,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         }
    
         $_SESSION['members'] = $users;
+        $_SESSION['process_users'] = $users;
     } 
     $memPaid = new MemberPaid($db);
     $result = $memPaid->read_byYear($nextYear);
@@ -324,10 +343,10 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         ($_SESSION['role'] === 'SUPERADMIN')) 
        {
         echo '<li><a href="index.php">Back to Home</a></li>';
-        echo '<li><a href="#events">Events</a></li>';
-        echo '<li><a href="#classes">Classes</a></li>';
-        echo '<li><a href="#classregistrations">Class Registrations</a></li>';
-        echo '<li><a href="#eventregistrations">Event Registrations</a></li>';
+        echo '<li><a href="#events">Maintain Events</a></li>';
+        echo '<li><a href="#classes">Maintain Classes</a></li>';
+     
+
         echo '</ul>';
         echo '</div>';
         echo '<div class="container">';
@@ -341,15 +360,14 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
      }
      if ($_SESSION['role'] === 'INSTRUCTOR') {
         echo '<li><a href="index.php">Back to Home</a></li>';
-        echo '<li><a href="#classes">Classes</a></li>';
-        echo '<li><a href="#classregistrations">Class Registrations</a></li>';
+        echo '<li><a href="#classes">Maintain Classes</a></li>';
         echo '</ul>';
         echo '</div>';
      }
         
         if ($_SESSION['role'] === 'SUPERADMIN') {
 
-            echo '<li><a href="#users">Members</a></li>';
+            echo '<li><a href="#users">Maintain Members</a></li>';
             echo '<li><a href="#membership">Membership</a></li>';
             echo '<li><a href="archives.php">Archives</a></li>';
             echo '</ul>';
@@ -366,665 +384,327 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     <br>
     <br>
     <h1 style="text-align: center; margin-top: 40px; color:white">Administrative Functions for SaddleBrooke Ballroom Dance Club</h1>
+    <br>
     </div>
     
 <?php
     if ($_SESSION['role'] != 'INSTRUCTOR') {
+
     echo '<div class="container-section ">';
+    echo '<br>';
     echo '<section id="events" class="content">';
-       
-        echo '<h3 class="section-header">Events</h3>';
-        echo '<h4 >Maintain Events</h4>';
-        echo '<div class="form-grid3">';
-       
-        echo '<form method="POST" action="actions/maintainEvent.php">';
-        
-        echo' <div class="form-grid-div">';
+    echo '<form method="POST" action="actions/processEvents.php">';
 
-        echo '<form method="POST" action="actions/maintainEvent.php">';
-        echo '<input type="checkbox" name="updateEvent">';
-        echo '<label for="updateEvent">Update an Event </label><br>';   
-        // echo '<input type="checkbox" name="updateMealChoices">';
-        // echo '<label for="updateMealChoices">
-        //    Update or Add Meal choice for a Dinner Dance </label><br>';   
-        echo '<input type="checkbox" name="deleteEvent">';
-        echo '<label for="deleteEvent">Delete an Event </label><br>';
-        echo '<input type="text" class="text-small" name="eventId" >';
-        echo '<label for="eventId"><em> &larr; 
-            Specify Event ID from Table below for Update or Delete: <br>
-            </em> </label>';
-
-        echo '<p><strong><em>OR</em></strong></p>';
-        echo '<input type="checkbox" name="addEvent">';
-        echo '<label for="addEvent">Add an Event </label> <br>'; 
-        
-        if ($_SESSION['role'] === 'SUPERADMIN') { 
-            echo '<p><strong><em>OR</em></strong></p>';
+       echo '<h3 class="form-title">Maintain Events</h3>';
   
-        echo '<input type="checkbox" name="archiveEvent">';
-        echo '<label for="archiveEvent">Archive Events and Registrations </label><br>'; 
-        echo '<label for="archDate">Enter earliest month and day (format mm-dd) for which to keep data</label><br>';
-        echo '<input type="text" name="archDate" ><br>';
-    } 
-    
-        echo '<button type="submit" name="submitEvent">Maintain Events</button>'; 
-    
+       foreach($allEvents as $event) {
+        $rpChk = "rp".$event['id'];
+        $upChk = "up".$event['id'];
+        $dlChk = "dl".$event['id'];
+        $emChk = "em".$event['id'];
+        $aeChk = "ae".$event['id'];
+        $dpChk = "dp".$event['id'];
+        $arChk = "ar".$event['id'];
+        $drChk = "dr".$event['id'];
+        $urChk = "ur".$event['id'];
+ 
+        $mbSrch = "srch".$event['id'];
+        $class_month = substr($row['date'], 5, 2);
+        $class_year = substr($row['date'], 0, 4);
+        $showReg = 0;
+        echo '<div class="form-container">';
+        echo '<div class="form-grid">';
 
+       echo '<div class="form-item">';
+       echo "<h4 class='form-title'>Event Name: ".$event['eventname']." </h4>";
+       echo '</div>';
+       echo '<div class="form-item">';
+       echo "<h4 class='form-title'>Event Type: ".$event['eventtype']."</h4>";
+       echo '</div>';
+       echo '<div class="form-item">';
+       echo "<h4 class='form-title'>Event Date: ".$event['eventdate']."</h4>";
+       echo '</div>';
+       echo '<div class="form-item">';
+       echo "<h4 class='form-title'>Event ID: ".$event['id']."</h4>";
+       echo '</div>';
+       echo '<div class="form-item">';
+       $hr = 'eventMem.php?id=';
+       $hr .= $event["id"];
+       echo "<h4 class='form-title'>Number Registered: 
+            <a href='".$hr."'>".$event['eventnumregistered']."</a></h4>";
+       echo '</div>';
   
+       echo '</div>';
+    //    echo '<hr>';
+       echo '<h4 class="form-title form-division">Event Level Actions</h4>';
+       echo '<div class="form-grid">';
+
+        echo '<div class="form-item">';
+        echo '<h4 class="form-item-title">Report?</h4>';
+        echo "<input type='checkbox' title='Only select 1 event for Report' name='".$rpChk."'>";
+        echo '</div>';
+
+       echo '<div class="form-item">';
+       echo '<h4 class="form-item-title">Email?</h4>';
+       echo "<input type='checkbox' title='Only select 1 event for Email' name='".$emChk."'>";
+       echo '</div>';
+
+       echo '<div class="form-item">';
+       echo '<h4 class="form-item-title">Duplicate?</h4>';
+       echo "<input type='checkbox' title='Only select 1 event to Duplicate' name='".$dpChk."'>";
+       echo '</div>';
+
+       echo '<div class="form-item">';
+       echo '<h4 class="form-item-title">Update?</h4>';
+       echo "<input type='checkbox' title='Select to Update Event(s)' name='".$upChk."'>";   
+       echo '</div>';
+
+       echo '<div class="form-item">';
+       echo '<h4 class="form-item-title">Delete?</h4>';
+       echo "<input type='checkbox' title='Select to Delete Event(s)' name='".$dlChk."'>";
+       echo '</div>';
+
+       if ($_SESSION['role'] === 'SUPERADMIN') {
+        echo '<div class="form-item">';
+       echo '<h4 class="form-item-title">Archive?</h4>';
+       echo "<input type='checkbox' title='Select to Archive Events' name='".$aeChk."'>";
+       echo '</div>';
+       }
+    
         echo '</div>';  
-        echo '</form>';
-        echo '<form target="_blank" method="POST" action="actions/reportEvent.php"> ';
-        echo '<div class="form-grid-div">';
-        echo '<h4>Report Events</h4>';
-        echo '<input type="checkbox" name="reportEvent">';
-        echo '<label for="reportEvent">Report on all or one Event </label><br>';
-        echo '<input type="text" class="text-small" name="eventId" > '  ; 
-        echo '<label for="eventId"><em> &larr; 
-            Specify Event ID from Table below for Report on One Event: </em> </label>';
-      
-        echo '<br>';
-        echo '<button type="submit" name="submitEventRep">Report</button> ';  
-        echo '</div> ';  
-
-        echo '</form>';
-        echo '<form method="POST" action="actions/emailEvent.php"> ';
-        echo '<div class="form-grid-div">';
-        echo '<h4>Email Event Registrants</h4>';
-        echo '<input type="checkbox" name="emailEvent">';
-        echo '<label for="emailEvent">Send email to all registered for Event </label><br>';
-        echo '<input type="text" class="text-small" name="eventId" > '  ; 
-        echo '<label for="eventId"><em> &larr; 
-        Specify Event ID from Table Below:</em> </label><br>';
-        echo '<label for="replyEmail">Email to reply to: </label>> <br>';
-        echo '<input type="email" name="replyEmail" value="'.$_SESSION['useremail'].'"><br>';  
-
-        echo '<label for="emailBody">Short Email Text</label><br>';
-        echo '<textarea  name="emailBody" rows="10" cols="50"></textarea><br>';
-      
-        echo '<br>';
-        echo '<button type="submit" name="submitEventEmail">Send Email</button> ';  
-        echo '</div> ';  
-
-        echo '</form>';
-      
+        if ($compareDate <= $event['eventdate']) {
+        echo '<h4 class="form-title form-division">Event Registration Actions</h4>';
+     
+        echo '<div class="form-grid">';
+         echo '<div class="form-item">';
+         echo '<h4 class="form-item-title">Add Member Registration?</h4>';
+              echo "<input type='checkbox' 
+              title='Only select 1 event to Add Member Registrations' name='".$arChk."'>";
+         echo '</div>';
+              echo '<div class="form-item">';
+        echo '<h4 class="form-item-title">Update Registrations</h4>';
+        echo "<input type='checkbox' 
+                 title='Only select 1 event to Update Registrations' name='".$urChk."'>";
         echo '</div>';
-        echo '<h4 class="section-header">Event List</h4>';
-        echo '<table>';
-        echo '<thead>';
-            echo '<tr>';
-                echo '<th>Event ID</th>';
-                echo '<th># Reg </th>';
-                echo '<th>Event Date</th>';
-                echo '<th>Event Name    </th>';
-                echo '<th>Event Type    </th>';
-                echo '<th>Event Description</th>';
-                echo '<th>Event DJ</th>';         
-                echo '<th>Event Room</th>';
-                echo '<th>Event Cost</th>';
-                echo '<th>Form / Flyer</th>';
-            echo '</tr>';
-         echo '</thead>';
-         echo '<tbody>';
-            $eventNumber = 0;
-            foreach($allEvents as $event) {
-                 $eventNumber++;
-                  echo "<tr>";
-                    $hr = 'event.php?id=';
-                    $hr .= $event["id"];
-               
-                    echo '<td> <a href="'.$hr.'">'.$event["id"].'</a></td>';
-                    echo '<td><a href="'.$hr.'">'.$event["eventnumregistered"].'</a></td>';
-                    echo "<td>".$event['eventdate']."</td>";
-                    echo "<td>".$event['eventname']."</td>";
-                    echo "<td>".$event['eventtype']."</td>";
-                    echo "<td>".$event['eventdesc']."</td>"; 
-                    echo "<td>".$event['eventdj']."</td>";           
-                    echo "<td>".$event['eventroom']."</td>";
-                    echo "<td>".$event['eventcost']."</td>";
-                    if ($event['eventform']) {
-                        echo '<td><a href="'.$event['eventform'].'">VIEW</a></td>';
-                    } else {
-                            echo "<td> </td>"; 
-                    }
-               
-                  echo "</tr>";
-              }
-         
-        echo '</tbody>';
-        echo '</table><br>';
- 
-    echo '</section>';
-    echo '</div>';
-    echo '<div class="container-section ">';
-    
-    echo '<section id="eventregistrations" class="content">';
-    echo '<br><br>';
-        echo '<h3 class="section-header">Maintain Event Registrations</h3>'; 
-        echo '<br>';
- 
-        echo '<h4>Registering people for events will generate emails, so please be patient.</h4>';
-       echo  '<div class="form-grid2">';
-      
-        echo '<div class="form-grid-div">';
-
-        echo '<form method="POST" action="actions/maintainEventReg.php">';
-        echo '<input type="checkbox" name="updateReg">';
-        echo '<label for="updateReg">Update a Event Registration </label><br>';   
-        echo '<input type="checkbox" name="deleteReg">';
-        echo '<label for="deleteReg">Delete a Event Registration </label><br>';
-        echo '<input type="text" class="text-small" name="regId" >';
-        echo '<label for="regId"><em> &larr; 
-            Specify Registration ID from Table below for Update or Delete:  
-            </em></label>';
-        echo '<p>OR</p>';
-        echo '<input type="checkbox" name="addReg">';
-        echo '<label for="addReg">Add an Event Registration for a member.</label> <br> ';
-        echo '<input type="text"  name="search" >';
-        echo '<label for="search">Optionally Search for Members by Name or Email</label><br>       
-        <button type="submit" name="submitEventReg">Maintain Event Registrations</button> ';
-        echo '</form> '; 
-        echo '</div> ';
-        echo '<div class="form-grid-div">';
-        echo '<h4>Add Visitor Registrations</h4>';
-        echo '<form method="POST" action="actions/addVisitorEventReg.php">';
-        echo '<input type="checkbox" name="addVisitorReg">';
-        echo '<label for="addVisitorReg">Add a Visitor to Event Registration</label> <br>';
-        echo '<input type="text" class="text-small" name="eventid" required >';
-        echo '<label for="eventid"><em> &larr; 
-            Specify Event ID from Table above:  
-            </em></label><br>';
-        echo '<label for="firstname">First Name</label><br>';
-        echo '<input type="text" name="firstname"><br>';
-        echo '<label for="lastname">Last Name</label><br>';
-        echo '<input type="text" name="lastname"><br>';
-        echo '<label for="email">Email</label><br>';
-        echo '<input type="email" name="email" required><br>';
-        echo '<label for="notes">Notes</label><br>';
-        echo '<textarea  name="notes" rows="4" cols="50"></textarea><br>';
-        echo '<button type="submit" name="submitAddVisitorReg">Add Visitor Registration</button> ';
-        echo '</form>'; 
-        echo '</div> ';   
+           echo '<div class="form-item">';
+        echo '<h4 class="form-item-title">Delete Registrations?</h4>';
+        echo "<input type='checkbox' 
+              title='Only select 1 event to Delete Registrations' name='".$drChk."'>";
         echo '</div>';
-        echo '<h4 class="section-header">Event Registration List</h4>';
-        echo '<table>';
-        echo '<thead>';
-            echo '<tr>';
-                echo '<th>ID</th>';
-                echo '<th>Event Name</th>';
-                echo '<th>Event Id</th>';
-                echo '<th>Event Date</th>';
-                echo '<th>First Name</th>';
-                echo '<th>Last Name    </th>';
-                echo '<th>Email</th>';
-                echo '<th>Paid</th>';
-                echo '<th>Attend Dinner</th>';
-                echo '<th>Attend Dance</th>';
-                echo '<th>Message</th>';
-
-                echo '<th>Date Reg</th> ';         
-            echo '</tr>';
-          echo '</thead>' ;
-          echo '<tbody>' ;
+            echo '<div class="form-item">';
+        echo '<h4 class="form-item-title">Enter Search Criteria to limit Registrations</h4>';
+        echo "<input type='text'  
+              title='Enter Partial or Full Name to qualify Registrations' name='".$mbSrch."' >"; 
+        echo '</div>';
+        
+         echo '</div>'; 
+        } else {
+            echo '<h4 class="form-title">Registration Options Not Available for Past Events</h4>';
+        }
+     
+       echo '</div>';
+       }
+       echo '<button type="submit" name="submitEventProcess">Process Events</button>'; 
     
-            foreach($eventRegistrations as $eventRegistration) {
-          
-    
-                  echo "<tr>";
-                    echo "<td>".$eventRegistration['id']."</td>";
-                    echo "<td>".$eventRegistration['eventname']."</td>";
-                    echo "<td>".$eventRegistration['eventid']."</td>";
-                    echo "<td>".$eventRegistration['eventdate']."</td>";
-                    echo "<td>".$eventRegistration['firstname']."</td>";
-                    echo "<td>".$eventRegistration['lastname']."</td>";
-                    echo "<td>".$eventRegistration['email']."</td>"; 
-         
-                    if ($eventRegistration['eventtype'] == 'Dinner Dance') {
+    }
+   
+    echo '</form>';
+       echo '<br>';
+        echo '</div>';
 
-                        if ($eventRegistration['paid'] == true ) {
-                            echo "<td>&#10004;</td>"; 
-                          } else {
-                              echo "<td>&times;</td>"; 
-                          } 
-                    } else {
-
-                        echo "<td>NA </td>"; 
-                    }
-                  
-                     if ($eventRegistration['ddattenddinner'] == true ) {
-                        echo "<td>&#10004;</td>"; 
-                      } else {
-                          echo "<td>&times;</td>"; 
-                      } 
-                      if ($eventRegistration['ddattenddance'] == true ) {
-                        echo "<td>&#10004;</td>"; 
-                      } else {
-                          echo "<td>&times;</td>"; 
-                      } 
-                    echo "<td>".$eventRegistration['message']."</td>";         
-                    echo "<td>".$eventRegistration['dateregistered']."</td>";
-             
-                  echo "</tr>";
-              }
-         
-            echo '</tbody>';
-        echo '</table>';
-        echo '<br>';
-
-       
         echo '</section>';
     echo '</div>';
-   }
+   
    ?>
+ 
     <div class="container-section ">
-    <section id="classes" class="content">
-   
-      <br><br>
-        <h3 class="section-header">Classes</h3>
-        <h4>Maintain Classes</h4>
-        <div class="form-grid3">
-        
-        <form method='POST' action="actions/maintainClass.php">
-        
-        <div class="form-grid-div">
-        <h4>Maintain Classes</h4>
-        
-        <input type='checkbox' name='updateClass'>
-        <label for='updateClass'>Update a Class </label><br>   
-        <input type='checkbox' name='deleteClass'>
-        <label for='deleteClass'>Delete a Class </label><br>
-        <input type='text' class='text-small' name='classId' >
-        <label for='classId'> <em> &larr; 
-         Specify Class ID from Table below for Update or Delete: </em> </label>     
-        <p><strong>OR</strong></p>
-        <input type='checkbox' name='addClass'>
-        <label for='addClass'>Add a Class </label> <br> 
-        <?php
-    if ($_SESSION['role'] === 'SUPERADMIN') { 
-        echo '<br><p><strong>OR</strong></p>';
     
-        echo '<input type="checkbox" name="archiveClass">';
-        echo '<label for="archiveClass">Archive Classes and Registrations </label><br>'; 
-        echo '<p><em>Enter either a class id or a date for Archive Criteria</em> <br>';
-        echo '<label for="archDate">Enter earliest month and day (format mm-dd) for which to keep data</label><br>';
-        echo '<input type="text" name="archDate"><br>';
-        echo '<p>OR</p>';
-        echo '<input type="text" class="text-small" name="archId" >';
-        echo '<label for="archId"> <em> &larr; 
-        Specify Class ID from Table below for Archive: </em> </label><br> ';   
-    }
-    ?>
-       
-        <button type='submit' name="submitClass">Maintain Class(es)</button>   
-        </div>   
-        </form>
-       
-        <form target="_blank" method='POST' action="actions/reportClass.php"> 
-        <div class="form-grid-div">
-        <h4>Report Classes</h4>
-        <input type='checkbox' name='reportClass'>
-        <label for='reportClass'>Report on all or one Class </label><br>  
-        <input type='text' class='text-small' name='classId' > 
-        <label for='classId'><em> &larr; 
-            Specify Class ID from Table below for Report on One Class: </em> </label>
-       
-        <br>
-        <button type='submit' name="submitClassRep">Report Class Registration</button>   
-        </div>   
-        </form>
-  
-
-        <div class="form-grid-div">
-        <h4>Email Class Registrants</h4>
-       
-        <button class="button-link"><a href="classEmail.php" target="_blank" >Create an Email for Class Registrants</a></button>   
-        </div>    
-
-        
-            </div>
-        <h4 class="section-header">Class List</h4>'
-        <table>
-            <thead>
-            <tr>
-           
-                <th>ID   </th>   
-                <th>Start Date</th>
-                <th>Time    </th>
-                <th>Room    </th>
-                <th>Class    </th>
-                <th>Level    </th>
-                <th>Registration Email </th>
-                <th>Notes</th>
-                <th>Instructors    </th>
-                <th>Class Limit    </th>
-                <th># Reg </th>
-               
-             
-            </tr>
-            </thead>
-            <tbody>
-            <?php 
-           
-            foreach($allClasses as $class)
-             { 
-                  echo "<tr>";
-                  $hr = 'class.php?id=';
-                  $hr .= $class["id"];
-             
-                  echo '<td> <a href="'.$hr.'">'.$class["id"].'</a></td>';
+    <section id="classes" class="content">
+   <?php
    
-                    echo "<td>".$class['date']."</td>";
-                    echo "<td>".$class['time']."</td>";
-                    echo "<td>".$class['room']."</td>";
-                    echo "<td>".$class['classname']."</td>";
-                    echo "<td>".$class['classlevel']."</td>";
-                    echo "<td>".$class['registrationemail']."</td>";
-                    echo "<td>".$class['classnotes']."</td>";
-                    echo "<td>".$class['instructors']."</td>";
-                    echo "<td>".$class['classlimit']."</td>";
-                    echo '<td><a href="'.$hr.'">'.$class["numregistered"].'</a></td>';
-   
-                echo "</tr>";
+           
+            echo '<h3 class="form-title">Maintain Classes</h3>';
+            echo '<h4> Please check only 1 action per class.</h4>';
+            echo '<form method="POST" action="actions/processClasses.php">';
+      
+            foreach($allClasses as $class) {
+                $rpChk = "rp".$class['id'];
+                $upChk = "up".$class['id'];
+                $dlChk = "dl".$class['id'];
+                $emChk = "em".$class['id'];
+                $aeChk = "ae".$class['id'];
+                $dpChk = "dp".$class['id'];
+                $arChk = "ar".$class['id'];
+                $drChk = "dr".$class['id'];
+                $urChk = "ur".$class['id'];
+         
+                $mbSrch = "srch".$class['id'];
+                $class_month = substr($row['date'], 5, 2);
+                $class_year = substr($row['date'], 0, 4);
+                $showReg = 0;
+                echo "<div class='form-container'>";
+                echo "<div class='form-grid'>";
+                echo "<h4 class='form-title'>Class Name: ".$class['classname']."</h4>";
+                echo "<h4 class='form-title'>Class Level: ".$class['classlevel']."</h4>";
+                echo "<h4 class='form-title'>Class Date: ".$class['date']."</h4>";
+                $hr = 'classMem.php?id=';
+                $hr .= $class["id"];
+              
+                echo "<h4 class='form-title'>
+                       Number Registered: <a href='".$hr."'>".$class['numregistered']."</a></h4>";
                 
-              }
-             
-            ?> 
-            </tbody>
-        </table>
-        <br>
+                echo "</div>"; // end of form grid
+                // echo '<hr>';
+                echo '<h4 class="form-title form-division">Class Level Actions</h4>';
+                
+                echo "<div class='form-grid'>";
+
+                echo "<div class='form-item'>";
+                echo "<h4 class='form-item-title'>Report?</h4>";
+                echo "<input type='checkbox' title='Only select 1 event for Report' name='".$rpChk."'>";
+                echo "</div>";
+                echo "<div class='form-item'>";
+                echo "<h4 class='form-item-title'>Email?</h4>";
+                echo "<input type='checkbox' title='Only select 1 event for Email' name='".$emChk."'>";
+                echo "</div>";
+                echo "<div class='form-item'>";
+                echo "<h4 class='form-item-title'>Duplicate?</h4>";
+                echo "<input type='checkbox' title='Only select 1 event to Duplicate' name='".$dpChk."'>";
+                echo "</div>";
+                echo "<div class='form-item'>";
+                echo "<h4 class='form-item-title'>Update?</h4>";
+                echo "<input type='checkbox' title='Select to Update Classes(s)' name='".$upChk."'>";  
+                echo "</div>";
+                echo "<div class='form-item'>";
+                echo "<h4 class='form-item-title'>Delete?</h4>";
+                echo "<input type='checkbox' title='Select to Delete Classes(s)' name='".$dlChk."'>";
+                echo "</div>";
+                if ($_SESSION['role'] === 'SUPERADMIN') {
+                    echo "<div class='form-item'>";
+                    echo "<h4 class='form-item-title'>Archive?</h4>";
+                    echo "<input type='checkbox' title='Select to Archive Classes' name='".$aeChk."'>";
+                    echo "</div>";
+                }
+                echo "</div>"; // end of form grid
+          
+        
+                if ($compareDate <= $class['date']) {
+                    echo '<h4 class="form-title form-division">Class Registration Actions</h4>';
+                    echo "<div class='form-grid'>";
+                    echo "<div class='form-item'>";
+                    echo "<h4 class='form-item-title'>Add Registrations?</h4>";
+                    echo "<input type='checkbox' 
+                          title='Only select 1 event to Add Member Registrations' name='".$arChk."'>";
+                    echo '</div>';
+                    echo "<div class='form-item'>";
+                    echo "<h4 class='form-item-title'>Update Registrations?</h4>";
+                    echo "<input type='checkbox' 
+                          title='Only select 1 event to Update Registrations' name='".$urChk."'>";
+                    echo '</div>';
+                    echo "<div class='form-item'>";
+                    echo "<h4 class='form-item-title'>Delete Registrations?</h4>";
+                    echo "<input type='checkbox' 
+                          title='Only select 1 event to Delete Registrations' name='".$drChk."'>";
+                    echo '</div>';
+                    echo "<div class='form-item'>";
+                    echo "<h4 class='form-item-title'>Search Criteria to Qualify Registrations?</h4>";
+                    echo "<input type='text'  
+                          title='Enter Partial or Full Name to qualify Registrations' name='".$mbSrch."' >";
+                    echo '</div>';
+                    echo "</div>"; // end of form grid
+                } else {
+                    echo "<h4 class='form-title'>Registration Options not Available for Past Class</h4>";
+                }
+
+
+            
+        
+                echo "</div>"; // end of form container
+            }
+            echo '<button type="submit" name="submitClassProcess">Process Classes</button><br><br>'; 
+            echo '</form>';
+            
+  
+    
+            echo '</section>';
+        echo '</div>';
+       
+
+    ?>
+
 
     </section>
     </div>
-   
-    <div class="container-section ">
-    
-    <section id="classregistrations" class="content">
-    <br><br>
-        <h3 class="section-header">Class Registrations</h3> 
-        <h4>Maintain Class Registrations</h4>
-        <h4>Registering people for classes will generate emails, so please be patient.</h4>
-        
-        <div class="form-grid2">
-         <div>
-        <form method='POST' action="actions/maintainClassReg.php">
-        
-        <div class="form-grid-div">
-    
-        <input type='checkbox' name='updateReg'>
-        <label for='updateReg'>Update a Class Registration </label><br>    
-        <input type='checkbox' name='deleteReg'>
-        <label for='deleteReg'>Delete a Class Registration </label><br>
-        <input type='text' class='text-small' name='regId' >
-        <label for='regId'><em> &larr; Specify Registration ID from
-             Table below for Update or Delete: </em></label>
 
-        <p>OR</p>
-        <input type='checkbox' name='addReg'>
-        <label for='addReg'>Add a Class Registration for a Member</label> <br> 
-    
-        <input type="text"  name="search" >
-        <label for='search'>Optionally Search for Members by Name or Email</label><br>
-        <button type='submit' name="submitReg">Maintain Class Registrations</button>   
-        </div>   
-        </form>
-        </div> 
-        <div class="form-grid-div">
-        <h4>Add Visitor Registrations</h4>
-        <form method='POST' action="actions/addVisitorClassReg.php">
-        <input type='checkbox' name='addVisitorReg'>
-        <label for='addVisitorReg'>Add a Visitor to Class Registration</label> <br>
-        <input type='text' class='text-small' name='classid' required>
-        <label for='classid'><em> &larr; 
-            Specify Class ID from Table above:  
-            </em></label><br>
-        <label for="firstname">First Name</label><br>
-        <input type="text" name="firstname"><br>
-        <label for="lastname">Last Name</label><br>
-        <input type="text" name="lastname"><br>
-        <label for="email">Email</label><br>
-        <input type="email" name="email" required><br>
-        <label for="notes">Notes</label><br>
-        <textarea  name="notes" rows="4" cols="50"></textarea><br>
-        <button type='submit' name="submitAddVisitorReg">Add Visitor Registration</button> 
-        </form>  
-        </div>
-            </div>  
-            <h4>Class Registration List</h4>
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Class Name</th>
-                <th>Class Id</th>
-                <th>Class Date</th>
-                <th>Class Time</th>
-                <th>First Name</th>
-                <th>Last Name    </th>
-                <th>Email</th>
-                <th>Date Reg</th>          
-            </tr>
-            </thead>
-            <tbody>
-            <?php 
-    
-            foreach($classRegistrations as $classRegistration) {
-          
-    
-                  echo "<tr>";
-                    echo "<td>".$classRegistration['id']."</td>";
-                    echo "<td>".$classRegistration['classname']."</td>";
-                    echo "<td>".$classRegistration['classid']."</td>";
-                    echo "<td>".$classRegistration['classdate']."</td>";
-                    echo "<td>".$classRegistration['classtime']."</td>";
-                    echo "<td>".$classRegistration['firstname']."</td>";
-                    echo "<td>".$classRegistration['lastname']."</td>";
-                    echo "<td>".$classRegistration['email']."</td>";           
-                    echo "<td>".$classRegistration['dateregistered']."</td>";
-             
-                  echo "</tr>";
-              }
-         
-            ?> 
-            </tbody>
-        </table>
-        <br>
- 
-        </section>
-    </div>
   
 <?php
- if ($_SESSION['role'] != 'INSTRUCTOR') {
- 
-    echo '<div class="container-section ">';
-    echo '<br><br>';
-    echo '<section id="contacts" class="content">';
-         echo '<h3 class="section-header">Contacts</h3>';  
-         echo '<div class="form-grid3">';
-      
-         echo '<form method="POST" action="actions/maintainContact.php">';
-         echo '<div class="form-grid-div">';
-         echo '<h4>Maintain Contacts</h4>';
-         echo '<input type="checkbox" name="deleteContact">';
-         echo '<label for="deleteContact">Delete a Range of Contacts</label><br>';
-         echo '<input type="date"  name="delContactBefore" >';
-         echo '<label for="delContactBefore"><em> &larr; Specify a Date 
-             to delete contacts before: </em></label><br>';
-         echo '<button type="submit" name="submitContact">Delete Contacts</button> ';
-         echo '</div>';
-         echo '</form>';
-         echo '<div class="form-grid-div">';
-         echo '<h4>Report Contacts</h4>';
-         echo '<form target="_blank" method="POST" action="actions/reportContact.php">';  
-         echo '<button type="submit" name="reportContact">Report Contacts</button> ';
-       
-         echo '</div>';     
-         echo '</form>';
-         echo '</div>';   
-         echo '<br>';
-        echo '<table>';
-        echo '<thead>';
-            echo '<tr>';
-                echo '<th>Date Contacted</th> '; 
-                echo '<th>First Name</th>';
-                echo '<th>Last Name    </th>';
-                echo '<th>Email</th>';
-                echo '<th>Message</th> ';
-                echo '<th>Favorite Dance Style</th>';
-                echo '<th>Dance Experience</th> ';       
-             
-            echo '</tr>';
-        echo '</thead>';
-        echo '<tbody>';
-    
-            foreach($contacts as $contact) {
-         
-                  echo "<tr>";
-                    echo "<td>".$contact['contactdate']."</td>";
-                    echo "<td>".$contact['firstname']."</td>";               
-                    echo "<td>".$contact['lastname']."</td>";
-                    echo "<td>".$contact['email']."</td>";
-                    echo "<td>".$contact['message']."</td>"; 
-                    echo "<td>".$contact['danceFavorite']."</td>"; 
-                    echo "<td>".$contact['danceExperience']."</td>";             
-                  echo "</tr>";
-              }
-         
-        echo '</tbody>';
-        echo '</table>';
-        echo '<br>';
-   
-        
-    
-    echo '</section>';
-    echo '</div>';
-    echo '<div class="container-section ">';
-    echo '<br><br>';
-    echo '<section id="visitors" class="content">';
-        echo '<h3 class="section-header">Visitors</h3> '; 
-        echo '<div class="form-grid3">';
-      
-        echo '<div class="form-grid-div">';
-        echo '<h4>Report Visitors</h4>';
-        echo '<form target="_blank" method="POST" action="actions/reportVisitors.php">';
-  
-        echo '<button type="submit" name="reportVisitors">Report Visitors</button> ';
-      
-        echo '</div>';     
-        echo '</form>';
-        echo '<br>';
-        echo '<div class="form-grid-div">';
-        echo '<h4>Archive Visitors</h4>';
-        echo '<form method="POST" action="actions/archiveVisitors.php">';
-        echo '<input type="checkbox" name="archiveVisitor">';
-        echo '<label for="archiveVisitor">Archive Visitors </label><br> ';   
-        echo '<button type="submit" name="submitArchive">Archive</button> ';
-      
-        echo '</div>';     
-        echo '</form>';
-        echo '<br>';
-    
-        echo '</div>';
-        echo '<table>';
-        echo '<thead>';
-            echo '<tr>';
-                echo '<th>Login Date</th> '; 
-                echo '<th>Login #</th> '; 
-                echo '<th>First Name</th>';
-                echo '<th>Last Name    </th>';
-                echo '<th>Email</th>';
-                echo '<th>Notes</th>';
-              
-           echo '</tr>';
-          echo '</thead>'  ;
-          echo '<tbody>';
-    
-            foreach($visitors as $visitor) {
-         
-                  echo "<tr>";
-                    echo "<td>".$visitor['logindate']."</td>";
-                    echo "<td>".$visitor['numlogins']."</td>";
-                    echo "<td>".$visitor['firstname']."</td>";               
-                    echo "<td>".$visitor['lastname']."</td>";
-                    echo "<td>".$visitor['email']."</td>";  
-                    echo "<td>".$visitor['notes']."</td>";           
-                  echo "</tr>";
-              }
-         echo '</tbody>';
-        echo '</table>';   
-        echo '<br>';
-      
-    echo '</section>';
-    echo '</div>';
- }
+
  
     if ($_SESSION['role'] === 'SUPERADMIN') {
-        echo '<div class="container-section ">  <br><br>';
+  
+        echo "<div class='container-section' name='users'>  <br><br>";
        
-        echo '<section id="users" class="content">';
-        echo ' <h3 class="section-header">Members</h3> ';
-        echo '<h4>Maintain Members</h4>';
-        echo '<div class="form-grid1">';
-          
-            echo '<form method="POST" action="actions/maintainUser.php">';
-            echo '<div class="form-grid-div">';
-    
-            echo '<input type="checkbox" name="updateUser">';
-            echo '<label for="updateUser">Update a Member</label><br>';   
-            echo '<input type="checkbox" name="deleteUser">';
-            echo '<label for="deleteUser">Delete a Member </label><br>';
-            echo '<input type="text" class="text-small" name="userId" >';
-            echo '<label for="userId"><em> &larr; Specify Member ID from Table below for Update or Delete:  </em></label>';
-            
-            echo '<p>OR</p>';
-            echo '<input type="checkbox" name="addUser">';
-            echo '<label for="addUser">Add a Member</label> <br>';
-            
-            echo '<button type="submit" name="submitUser">Maintain Members</button>';  
-            echo '</form> <br>';
-    
-            echo '</div>';
-            echo '</div>';
-                /* */
-                echo '<h4>Report on Members</h4>';
-            echo '<div class="form-grid3">';
+        echo '<section id="users"  class="content">';
+        echo ' <h3 class="section-header">Maintain Members</h3> ';
+
+        echo '<div class="form-grid4">';
+        
+            echo "<div class='form-grid-div'>";
+            echo "<form method='POST' action='actions/maintainUser.php'>"; 
+            echo "<button type='submit' name='submitAddUser'>Add a New Member</button>";   
+            echo '</form>'    ;   
+            echo '</div> ';   
          
-            echo '<form target="_blank" method="POST" action="actions/reportUser.php">'; 
-            echo '<div class="form-grid-div">';
+         
    
+            echo '<div class="form-grid-div">';
+            echo '<form target="_blank" method="POST" action="actions/reportUser.php">'; 
             echo '<button type="submit" name="submitUserRep">Report Members</button>';   
             echo '</form>';
             echo '</div> '; 
             /* */
 
-            echo '<form target="_blank" method="POST" action="actions/reportInstructors.php">'; 
+
             echo '<div class="form-grid-div">';
-        
+            echo '<form target="_blank" method="POST" action="actions/reportInstructors.php">'; 
             echo '<button type="submit" name="submitInstructorRep">Report Instructors</button>';   
             echo '</form>';
             echo '</div> '; 
             /* */
-            echo '<form target="_blank" method="POST" action="actions/reportUsage.php">'; 
+
             echo '<div class="form-grid-div">';
-        
+            echo '<form target="_blank" method="POST" action="actions/reportUsage.php">'; 
             echo '<button type="submit" name="submitUsageRep">Report Member Usage</button>';   
-        
+            echo '</form>'    ;          
             echo '</div> ';   
-            echo '</form>';
+           
+    
+      
+   
             echo '</div>';
         /* */
-        echo '<h4>List of Members</h4>';
-        echo '<form target="_blank" method="POST" action="actions/searchUser.php" >';
-        echo '<input type="text"  name="search" >';
-        echo '<button type="submit" name="searchUser">Search Members</button>'; 
+        echo '<div class="form-grid3">';
+        echo '<form  method="POST" action="actions/searchUser.php" >';
+        echo '<div class="form-grid-div">';
+    
+        echo '<button type="submit" name="searchUser">Search Criteria to Qualify Members for Maintenance</button>'; 
+        echo '<input type="text" title="Enter Full or Partial Name or Email to Search." name="search" >';
+        echo '</div>';
+        echo '</div>';
         echo '</form>';
      
         echo '<table>';
         echo '<thead>';
         echo '<tr>';
-             
+        echo '<th colspan="13" style="color: darkviolet;text-align:center">Member List</th>';
+        echo '</tr>';
+        echo '<tr>';
+                echo '<th>Update</th>';
+                echo '<th>Archive</th>';
                 echo '<th>ID</th>';  
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
-                echo '<th>User Name    </th>';
+                echo '<th>User Name</th>';
                 echo '<th>Role</th>'; 
                 echo '<th>Part ID</th>';
                 echo '<th>Email</th>';  
@@ -1032,17 +712,21 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>HOA</th>';
                 echo '<th>Address</th>';
                 echo '<th>Directory</th>';
-                echo '<th>Last Login</th>';
-                echo '<th>PWD Changed</th>';
+           
+  
                 echo '</tr>';
+                echo '<form method="POST" action="actions/processUsers.php">';
             echo '</thead>' ;
             echo '<tbody>'  ; 
         
                 foreach($users as $user) {
-             
+                    $upChk = "up".$user['id'];
+                    $arChk = "ar".$user['id'];
+
                     $hr = 'member.php?id=';
                     $hr .= $user["id"];
-               
+                    echo "<td><input type='checkbox' name='".$upChk."'>";
+                    echo "<td><input type='checkbox' name='".$arChk."'>";
                     echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
      
                         echo "<td>".$user['firstname']."</td>";               
@@ -1059,16 +743,17 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         } else {
                             echo "<td>No</td>"; 
                         }
-                        echo "<td>".$user['lastLogin']."</td>"; 
-                        echo "<td>".$user['passwordChanged']."</td>"; 
+                        // echo "<td>".$user['lastLogin']."</td>"; 
+                        // echo "<td>".$user['passwordChanged']."</td>"; 
                        
                         
                       echo "</tr>";
                   }
-             
+              
               echo '</tbody>'  ;
             echo '</table><br>';       
- 
+            echo '<button type="submit" name="submitUserProcess">Process Users</button>';  
+            echo '</form>';
             echo '</section>';
       
 
@@ -1129,7 +814,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '</tbody>';
             echo '</table><br>'; 
             echo '<input type=hidden name="thisyear" value="1">';
-            echo '<button type="submit" name="updateMemPaid">UPDATE</button>'; 
+            echo "<button type='submit' name='updateMemPaid'>UPDATE MEMBERSHIP: ".$thisYear."</button>"; 
             echo '</form>';
         echo '</div>';
         echo '<form method="POST" action="actions/updateMemberPaid.php">';
@@ -1174,7 +859,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '</tbody>';
             echo '</table><br>'; 
             echo '<input type=hidden name="nextyear" value="1">';
-            echo '<button type="submit" name="updateMemPaid">UPDATE</button>'; 
+            echo "<button type='submit' name='updateMemPaid'>UPDATE MEMBERSHIP: ".$nextYear."</button>"; 
             echo '</form>';
             echo '</div> ';  
 
@@ -1187,17 +872,139 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '</section>';
         echo '</div>';
    
-        echo '</section>';
-        echo '</div>';
+
 
     }
-
+    if ($_SESSION['role'] != 'INSTRUCTOR') {
+ 
+        echo '<div class="container-section ">';
+        echo '<br><br>';
+        echo '<section id="contacts" class="content">';
+             echo '<h3 class="section-header">Contacts</h3>';  
+             echo '<div class="form-grid3">';
+          
+             echo '<form method="POST" action="actions/maintainContact.php">';
+             echo '<div class="form-grid-div">';
+             echo '<h4>Maintain Contacts</h4>';
+             echo '<input type="checkbox" name="deleteContact">';
+             echo '<label for="deleteContact">Delete a Range of Contacts</label><br>';
+             echo '<input type="date"  name="delContactBefore" >';
+             echo '<label for="delContactBefore"><em> &larr; Specify a Date 
+                 to delete contacts before: </em></label><br>';
+             echo '<button type="submit" name="submitContact">Delete Contacts</button> ';
+             echo '</div>';
+             echo '</form>';
+             echo '<div class="form-grid-div">';
+             echo '<h4>Report Contacts</h4>';
+             echo '<form target="_blank" method="POST" action="actions/reportContact.php">';  
+             echo '<button type="submit" name="reportContact">Report Contacts</button> ';
+           
+             echo '</div>';     
+             echo '</form>';
+             echo '</div>';   
+             echo '<br>';
+            echo '<table>';
+            echo '<thead>';
+                echo '<tr>';
+                    echo '<th>Date Contacted</th> '; 
+                    echo '<th>First Name</th>';
+                    echo '<th>Last Name    </th>';
+                    echo '<th>Email</th>';
+                    echo '<th>Message</th> ';
+                    echo '<th>Favorite Dance Style</th>';
+                    echo '<th>Dance Experience</th> ';       
+                 
+                echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+        
+                foreach($contacts as $contact) {
+             
+                      echo "<tr>";
+                        echo "<td>".$contact['contactdate']."</td>";
+                        echo "<td>".$contact['firstname']."</td>";               
+                        echo "<td>".$contact['lastname']."</td>";
+                        echo "<td>".$contact['email']."</td>";
+                        echo "<td>".$contact['message']."</td>"; 
+                        echo "<td>".$contact['danceFavorite']."</td>"; 
+                        echo "<td>".$contact['danceExperience']."</td>";             
+                      echo "</tr>";
+                  }
+             
+            echo '</tbody>';
+            echo '</table>';
+            echo '<br>';
+       
+            
+        
+        echo '</section>';
+        echo '</div>';
+        echo '<div class="container-section ">';
+        echo '<br><br>';
+        echo '<section id="visitors" class="content">';
+            echo '<h3 class="section-header">Visitors</h3> '; 
+            echo '<div class="form-grid3">';
+          
+            echo '<div class="form-grid-div">';
+            echo '<h4>Report Visitors</h4>';
+            echo '<form target="_blank" method="POST" action="actions/reportVisitors.php">';
+      
+            echo '<button type="submit" name="reportVisitors">Report Visitors</button> ';
+          
+            echo '</div>';     
+            echo '</form>';
+            echo '<br>';
+            echo '<div class="form-grid-div">';
+            echo '<h4>Archive Visitors</h4>';
+            echo '<form method="POST" action="actions/archiveVisitors.php">';
+            echo '<input type="checkbox" name="archiveVisitor">';
+            echo '<label for="archiveVisitor">Archive Visitors </label><br> ';   
+            echo '<button type="submit" name="submitArchive">Archive</button> ';
+          
+            echo '</div>';     
+            echo '</form>';
+            echo '<br>';
+        
+            echo '</div>';
+            echo '<table>';
+            echo '<thead>';
+                echo '<tr>';
+                    echo '<th>Login Date</th> '; 
+                    echo '<th>Login #</th> '; 
+                    echo '<th>First Name</th>';
+                    echo '<th>Last Name    </th>';
+                    echo '<th>Email</th>';
+                    echo '<th>Notes</th>';
+                  
+               echo '</tr>';
+              echo '</thead>'  ;
+              echo '<tbody>';
+        
+                foreach($visitors as $visitor) {
+             
+                      echo "<tr>";
+                        echo "<td>".$visitor['logindate']."</td>";
+                        echo "<td>".$visitor['numlogins']."</td>";
+                        echo "<td>".$visitor['firstname']."</td>";               
+                        echo "<td>".$visitor['lastname']."</td>";
+                        echo "<td>".$visitor['email']."</td>";  
+                        echo "<td>".$visitor['notes']."</td>";           
+                      echo "</tr>";
+                  }
+             echo '</tbody>';
+            echo '</table>';   
+            echo '<br>';
+          
+        echo '</section>';
+        echo '</div>';
+     }
     ?>
 
     <footer >
     <?php
     require 'footer.php';
    ?>
+    </footer>
    
 </body>
 </html>

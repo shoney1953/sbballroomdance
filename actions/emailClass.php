@@ -95,7 +95,7 @@ $preface = '';
     } // end if rowcount
               
 
-$redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
+$redirect = "Location: ".$_SESSION['adminurl']."#classes";
 header($redirect);
 exit;
 ?>

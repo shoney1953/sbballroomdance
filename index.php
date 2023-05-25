@@ -196,43 +196,53 @@ if (isset($_SESSION['username'])) {
  
      <ul>
             <li><a href="#" >Home</a></li>
-            <li><a href="#events">Event List</a></li>
-            <li><a href="#classes">Class List</a></li>
-            <li><a href="#calendar">Activities Calendar</a></li>
-   
-    
+            <?php
+             if (isset($_SESSION['role'])) {
+                if ($_SESSION['role'] != 'visitor') {
+                  echo ' <li><a href="yourProfile.php">
+                  <img title="Click to see or update your information or registrations" src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
+                  <br>Your Profile</a></li>';
+                }
+                if ($_SESSION['role'] === 'visitor') {
+                echo ' <li style="color: red;font-weight: bold;font-size: medium">
+                Welcome '.$_SESSION["visitorfirstname"].'</li>'; 
+                }
+            }
        
-        <li><a href="#">More ... &dtrif;</a>
-        <ul class="dropdown">
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-        <li><a href="#help">Help</a></li>
-        <li><a href="#pictures">Picture Gallery</a></li>
-        <li><a href="resources.php">Resources</a></li>
-        </ul>
-    </li>
+            ?>
+            <li><a title="Combined Calendar of Events and Classes" href="#calendar">Activities Calendar</a></li>
+            <li><a href="#events">Event List</a></li>
+            <?php
+             if (isset($_SESSION['role'])) {
+                echo '<li><a href="regForEvents.php">Register for Events</a></li>';
+             }
+            ?>
+            <li><a href="#classes">Class List</a></li>
+            <?php
+             if (isset($_SESSION['role'])) {
+                echo '<li><a href="regForClasses.php">Register for Classes</a></li>';
+                
+             }
+            ?>
+        
+   
      </ul>
 </div>
      <div class="container">
      <ul>
     <?php
-
-    if (isset($_SESSION['username'])) {
+  
+        if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
         if (isset($_SESSION['role'])) {
             echo ' <li><a  style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
-
         }
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {
-              echo ' <li><a href="yourProfile.php">
-              <img src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
-              <br>Your Profile</a></li>';
-              echo '<li><a href="regForEvents.php">Register for Events</a></li>';
-              echo '<li><a href="regForClasses.php">Register for Classes</a></li>';
+              
               echo ' <li><a href="#directory">
               Member Directory</a></li>';
               echo '<li><a href="#">Volunteer &dtrif;</a>';
-              echo '<ul class="dropdown">';
+              echo '<ul >';
                   echo '<li><a href="#djinfo">DJ Info</a></li>';
                   echo '<li><a href="#instructorinfo">Instructor Info</a></li>';
                   echo '<li><a href="#othervolunteer">Other Opportunities</a></li>';
@@ -240,11 +250,7 @@ if (isset($_SESSION['username'])) {
             }
         }
 
-        if (isset($_SESSION['role'])) {
-            if ($_SESSION['role'] === 'visitor') {
-            echo ' <li style="color: red;font-weight: bold;font-size: medium"
-        }>Welcome '.$_SESSION["visitorfirstname"].'</li>'; 
-        }
+     
        
     }
         if (isset($_SESSION['role'])) {
@@ -255,11 +261,26 @@ if (isset($_SESSION['username'])) {
                 echo '<li><a href="administration.php">Administration</a></li>';
             }
         }
-    } else {
+     else {
 
-        echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="login.php"> Login</a></li>';
+        echo '<li><a title="Login as a Member or Visitor" style="color: red;font-weight: bold;font-size: medium" href="login.php"> Login</a></li>';
         echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
     }
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] == 'visitor') {
+            echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
+        }
+    }
+    echo '<li><a title="Frequently Asked Questions" href="faq.php">FAQs</a></li>';
+    echo '<li><a href="#">More ... &dtrif;</a>';
+    echo '<ul>';
+    echo '<li><a href="#about">About Us</a></li>';
+    echo '<li><a href="#contact">Contact Us</a></li>';
+    echo '<li><a href="#help">Help</a></li>';
+    echo '<li><a href="#pictures">Picture Gallery</a></li>';
+    echo '<li><a href="resources.php">Resources</a></li>';
+    echo '</ul>';
+    echo '</li>';
     ?>
         </ul> 
 </div>
@@ -372,19 +393,20 @@ if (isset($_SESSION['username'])) {
 
        
         <a href="https://drive.google.com/file/d/1oshvPWoc5ERLy7uD-gBuiS_c_n6hTcJE/view?usp=share_link">
-         Click Here Read the Club By Laws.
+         Click Here To Read the Club By Laws.
         </a><br><br>
     </section>
     </div>
 
-    <div class="container-section ">
+    <div class="container-section">
     <section id="events" class="content">
 
       <br>
         <h1 class="section-header">Upcoming Events</h1>
         <div class="form-grid2">
         <?php
-         if (isset($_SESSION['username'])) {
+
+         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
             if (isset($_SESSION['role'])) {
         echo '<div class="form-grid-div">';
         echo '<button>';
@@ -463,12 +485,14 @@ if (isset($_SESSION['username'])) {
         <h1 class="section-header">Ongoing and Upcoming Classes</h1>
         <div class="form-grid2">
         <?php
-         if (isset($_SESSION['username'])) {
+
+        if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
             if (isset($_SESSION['role'])) {
         echo '<div class="form-grid-div">';
         echo '<button>';
         echo '<a href="regForClasses.php">Register For Classes</a>';
         echo '</button>';  
+
     
         echo '</div>';
             }
@@ -679,6 +703,8 @@ if (isset($_SESSION['username'])) {
     <section id="help" class="content">
     <br><br> 
         <h1 class="section-header">For Website Help</h1><br>
+        <p><a href="faq.php">Click to see Frequently Asked Questions</a></p>
+        <br>
         <p>Contact one of the board members or webmaster
         <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Website Help">
                 webmaster@sbballroomdance.com</a> listed in the about section or
@@ -840,7 +866,7 @@ DJ Documents</a><br>
         }
         else {
             echo '<h3><a style="color: red;font-weight: bold;font-size: large"
-            href="login.php"> <strong><em>Please Login to View Directory</em></strong></a></h3><br><br>'; 
+            href="login.php"> <strong><em>Please Login as a Member to View Directory</em></strong></a></h3><br><br>'; 
         }
     
     

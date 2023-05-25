@@ -47,7 +47,7 @@ class PDF extends FPDF
     }
 }
 
-if (isset($_POST['submitEventRep'])) {
+
  
     if (isset($_POST['eventId'])) {
         if ($_POST['eventId'] !== '') {
@@ -56,7 +56,7 @@ if (isset($_POST['submitEventRep'])) {
         } else {
         $result = $eventReg->read();
     }
-}
+
     $rowCount = $result->rowCount();
     $num_reg = $rowCount;
     if ($rowCount > 0) {
@@ -232,8 +232,6 @@ $today = date("m-d-Y");
 $pdf->Output("I", "EventRegistrationReport.".$today.".PDF");
 }
 
-$redirect = "Location: ".$_SESSION['adminurl'];
-header($redirect);
-exit;
+
 
 ?>

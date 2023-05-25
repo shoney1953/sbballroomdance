@@ -41,8 +41,6 @@ class PDF extends FPDF
     }
 }
 
-if (isset($_POST['submitClassRep'])) {
- 
     if (isset($_POST['classId'])) {
         if ($_POST['classId'] !== '') {
             $classId = htmlentities($_POST['classId']);
@@ -50,7 +48,7 @@ if (isset($_POST['submitClassRep'])) {
         } else {
         $result = $classReg->read();
     }
-}
+
     $rowCount = $result->rowCount();
     $num_reg = $rowCount;
     if ($rowCount > 0) {
@@ -183,8 +181,8 @@ $today = date("m-d-Y");
 $pdf->Output("I", "ClassRegistrationReport.".$today.".pdf");
 }
 
-$redirect = "Location: ".$_SESSION['adminurl'];
-header($redirect);
-exit;
+// $redirect = "Location: ".$_SESSION['adminurl'];
+// header($redirect);
+// exit;
 
 ?>

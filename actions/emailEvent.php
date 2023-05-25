@@ -92,7 +92,7 @@ if (isset($_POST['submitEventEmail'])) {
     } // end if rowcount
 }    // end ifset                
 
-$redirect = "Location: ".$_SESSION['adminurl']."#eventregistrations";
+$redirect = "Location: ".$_SESSION['adminurl']."#events";
 header($redirect);
 exit;
 ?>

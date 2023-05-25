@@ -2,6 +2,7 @@
 session_start();
 require('../includes/fpdf.php');
 $upcomingClasses = $_SESSION['upcoming_classes'];
+
 $instructors = '';
 class PDF extends FPDF
 {
@@ -36,27 +37,25 @@ $pdf->AddPage('L');
 $pdf->SetFont('Arial', '', 12);
 if (isset($_POST['submitPrintClasses'])) {
   $pdf->SetFont('Arial', 'B', 12);
+  $pdf->Cell(25,8,"START",1,0,"L"); 
+  $pdf->Cell(90,8," ",1,0,"L");  
+  $pdf->Cell(50,8," ",1,0,"L"); 
+  $pdf->Cell(100,8," ",1,1,"L"); 
   $pdf->Cell(25,8,"DATE",1,0,"L"); 
   $pdf->Cell(90,8,"CLASS",1,0,"L");  
   $pdf->Cell(50,8,"LEVEL",1,0,"L"); 
   $pdf->Cell(100,8,"INSTRUCTORS",1,1,"L"); 
- 
-
-
   $pdf->SetFont('Arial', '', 12);
-  foreach ($upcomingClasses as $class) {
+  foreach ($upcomingClasses as $class) {  
     $pdf->Cell(25,8,$class['date'],1,0,"L"); 
     $pdf->Cell(90,8,$class['classname'],1,0,"L");  
     $pdf->Cell(50,8,$class['classlevel'],1,0,"L"); 
     $instructors = $class['instructors'];
- 
-    $ampPos = strpos($instructors, "&amp;", 0);
-  
+    $ampPos = strpos($instructors, "&amp;", 0); 
     if ($ampPos) {
       $instructors = substr_replace($instructors, 'and', $ampPos, 5) ;
     }
 
-  
     $pdf->Cell(100,8,$instructors,1,1,"L"); 
     $pdf->Cell(25,8," ",0,0,"L"); 
     $pdf->Cell(20,8,"EMAIL:",1,0,"L"); 
@@ -73,12 +72,13 @@ if (isset($_POST['submitPrintClasses'])) {
     $pdf->Cell(220,8,$class['classnotes'],1,1,"L");
   }
 }
+
 $today = date("m-d-Y");
 $pdf->Output("I", "SBDCUpcomingClasses.".$today.".pdf");
 
 
-$redirect = "Location: ".$_SESSION['adminurl'];
-header($redirect);
-exit;
+// $redirect = "Location: ".$_SESSION['homeurl'];
+// header($redirect);
+// exit;
 
 ?>

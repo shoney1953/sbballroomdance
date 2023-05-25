@@ -195,6 +195,41 @@ public function read_ByClassid($classid) {
 
 
 }
+public function readLike($classid, $search) {
+
+
+  $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
+  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+  r.userid
+  FROM ' . $this->table . ' r
+  LEFT JOIN
+    danceclasses c ON r.classid = c.id
+  WHERE
+    r.classid = :classid AND 
+    (r.firstname LIKE :search1 OR 
+     r.lastname LIKE :search2 OR 
+     r.email LIKE :search3)
+
+  ORDER BY 
+     r.lastname, r.firstname';
+  
+
+  // Prepare statement
+  $stmt = $this->conn->prepare($query);
+
+  // Bind ID
+  $stmt->bindParam('classid', $classid);
+  $stmt->bindParam('search1', $search);
+  $stmt->bindParam('search2', $search);
+  $stmt->bindParam('search3', $search);
+
+  // Execute query
+  $stmt->execute();
+
+  return $stmt;
+
+
+}
     // Create Danceclass
     public function create() {
           // Create query

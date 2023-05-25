@@ -4,47 +4,35 @@ session_start();
 require_once '../config/Database.php';
 require_once '../models/ClassRegistration.php';
 require_once '../models/DanceClass.php';
-if (!isset($_SESSION['username']))
-{
-    $redirect = "Location: ".$_SESSION['homeurl'];
-    header($redirect);
-} else {
-    if (isset($_SESSION['role'])) {
-        if (($_SESSION['role'] != 'ADMIN') && 
-        ($_SESSION['role'] != 'SUPERADMIN') &&
-        ($_SESSION['role'] != 'INSTRUCTOR') &&
-        ($_SESSION['role'] != 'MEMBER')) {
-            $redirect = "Location: ".$_SESSION['homeurl'];
-            header($redirect); 
-        }
-       } else {
-        $redirect = "Location: ".$_SESSION['profileurl'];
-        header($redirect);
-       }
-}
+
+
 $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
 $danceClass = new DanceClass($db);
+$regs = $_SESSION['classRegistrations'];
+var_dump($regs);
+if (isset($_POST['submitDeleteReg'])) {
+  foreach ($regs as $reg) {
 
-   
-    $classReg->id = $_POST['id'];
-    $classid = $_POST['classid'];
+    $delID = "del".$reg['id'];
+
+   if (isset($_POST["$delID"])) {
+
+    $classReg->id = $reg['id'];
+    $classid = $reg['classid'];
     $classReg->delete();
     
     $danceClass->decrementCount($classid);
+   }
+  }
+}
+  
 
-  
-  
-    if ($_SESSION['role'] != 'MEMBER') {
-        $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
+        $redirect = "Location: ".$_SESSION['returnurl'];
         header($redirect);
         exit;
-    } else {
-        $redirect = "Location: ".$_SESSION['profileurl']."#";
-        header($redirect);
-        exit;
-    }
-
+  
+   
 
 ?>

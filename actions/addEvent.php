@@ -27,13 +27,13 @@ $event = new Event($db);
     $event->eventtype = $_POST['eventtype'];
     $event->eventdesc = $_POST['eventdesc'];
     $event->eventdj = $_POST['eventdj'];
-    $event->eventform = $_POST['eventform'];
+    $event->eventform = '';
     $event->eventroom = $_POST['eventroom'];
     $event->eventdate = $_POST['eventdate'];
     $event->eventcost = $_POST['eventcost'];
     $event->eventnumregistered = 0;
     $event->create();
-    echo ' Event was created <br>';
+
 
     $redirect = "Location: ".$_SESSION['adminurl']."#events";
 header($redirect);

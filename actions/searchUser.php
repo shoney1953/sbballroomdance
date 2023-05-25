@@ -47,17 +47,24 @@ if (isset($_POST['searchUser'])) {
                     'role' => $role,
                     'email' => $email,
                     'phone1' => $phone1,
+                    'phone2' => $phone2,
                     'password' => $password,
                     'partnerId' => $partnerid,
                     'hoa' => $hoa,
                     'passwordChanged' => $passwordChanged,
                     'streetAddress' => $streetaddress,
-                    'lastLogin' => $lastLogin,
+                    'city' => $city,
+                    'state' => $state,
+                    'zip' => $zip,
+                    'notes' => $notes,
+                    'lastLogin' => date('m d Y h:i:s A', strtotime($lastLogin)),
+                    'numlogins' => $numlogins,
                     'directorylist' => $directorylist
                 );
                 array_push( $users, $user_item);
           
             }
+            $_SESSION['process_users'] = $users;
         }
         
 
@@ -75,16 +82,29 @@ if (isset($_POST['searchUser'])) {
     <title>SBDC Ballroom Dance - Selected Members</title>
 </head>
 <body>
-
+<nav class="nav">
+    <div class="container">
+        
+     <ul> 
+    <li><a href="../administration.php">Back to Administration</a></li>
+     </ul>
+    </div>
+</nav>
     <div class="section-back">
     <section id="selectedMembers" class="container content">
-   
+        <h2>Selected Users</h2>
       <br>
+      <h4> Please check only 1 action per event.</h4>
+  
       <?php
+
       if ($num_users > 0 ) {
+      echo '<form method="POST" action="processUsers.php">';
       echo '<table>';
+      echo '<thead>';
         echo '<tr>';
-             
+                echo '<th>Update</th>';
+                echo '<th>Archive</th>';
                 echo '<th>ID</th>';  
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
@@ -96,15 +116,18 @@ if (isset($_POST['searchUser'])) {
                 echo '<th>HOA</th>';
                 echo '<th>Address</th>';
                 echo '<th>Directory</th>';
-                echo '<th>Last Login</th>';
-                echo '<th>PWD Changed</th>';
+
                 echo '</tr>';
-                
+           echo '</thead>'   ;
+           echo '<tbody>' ; 
         
                 foreach($users as $user) {
                     $hr = '../member.php?id=';
                     $hr .= $user["id"];
-               
+                    $upChk = "up".$user['id'];
+                    $arChk = "ar".$user['id'];
+                    echo "<td><input type='checkbox' name='".$upChk."'>";
+                    echo "<td><input type='checkbox' name='".$arChk."'>";
                     echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
              
               
@@ -122,15 +145,16 @@ if (isset($_POST['searchUser'])) {
                         } else {
                             echo "<td>No</td>"; 
                         }
-                        echo "<td>".$user['lastLogin']."</td>"; 
-                        echo "<td>".$user['passwordChanged']."</td>"; 
+
                        
                         
                       echo "</tr>";
                   }
              
-                
-            echo '</table><br>';  
+            echo '</tbody>' ;     
+            echo '</table><br>'; 
+            echo '<button type="submit" name="submitUserProcess">Process Users</button>';  
+            echo '</form>';
                 } else {
                     echo '<h4>No matching members found.</h4>';
                 }  

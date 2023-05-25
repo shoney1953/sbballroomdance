@@ -22,21 +22,31 @@ $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
 
+$regs = $_SESSION['classRegistrations'];
+
 if (isset($_POST['submitUpdateReg'])) {
-
-    $classReg->id = $_POST['id'];
-    $classReg->firstname = $_POST['firstname'];
-    $classReg->lastname = $_POST['lastname'];
-    $classReg->classid = $_POST['classid'];
-    $classReg->email = $_POST['email'];
-    $classReg->userid = $_POST['userid'];
-  
-
-    $classReg->update();
+  foreach ($regs as $reg) {
+    $updID = "upd".$reg['id'];
    
+    $fnamID = "fnam".$reg['id'];
+    $lnamID = "lnam".$reg['id'];
+    $emailID = "email".$reg['id'];
+    $useridID = "userid".$reg['id'];
   
-    $redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
-    header($redirect);
-    exit;
+    if (isset($_POST["$updID"])) {
+        $regID = (int)substr($updID,3);
+        $classReg->id = $regID;
+        $classReg->firstname = $_POST["$fnamID"];
+        $classReg->lastname = $_POST["$lnamID"];
+        $classReg->classid = $_POST['classid'];
+        $classReg->email = $_POST["$emailID"];
+        $classReg->userid = $_POST["$useridID"];
+        $classReg->update();
+    }
+    }
+   
 }
+$redirect = "Location: ".$_SESSION['adminurl']."#classes";
+header($redirect);
+exit;
 ?>

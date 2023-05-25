@@ -13,11 +13,19 @@ deployment:
     - /bin/cp eventMem.php $DEPLOYPATH
     - /bin/cp footer.php $DEPLOYPATH
     - /bin/cp favicon.ico $DEPLOYPATH
+    - /bin/cp faq.php $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
     - /bin/cp joinUsNow.php $DEPLOYPATH
     - /bin/cp login.php $DEPLOYPATH
     - /bin/cp logout.php $DEPLOYPATH
     - /bin/cp member.php $DEPLOYPATH
+    - /bin/cp processClasses.php $DEPLOYPATH
+    - /bin/cp processClassItems.php $DEPLOYPATH
+    - /bin/cp processClassRegs.php $DEPLOYPATH
+    - /bin/cp processEvents.php $DEPLOYPATH
+    - /bin/cp processEventItems.php $DEPLOYPATH
+    - /bin/cp processEventRegs.php $DEPLOYPATH
+    - /bin/cp processUserItems.php $DEPLOYPATH
     - /bin/cp regForClasses.php $DEPLOYPATH
     - /bin/cp regForEvents.php $DEPLOYPATH
     - /bin/cp resources.php $DEPLOYPATH

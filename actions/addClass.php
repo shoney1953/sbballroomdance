@@ -25,20 +25,43 @@ if (!isset($_SESSION['username']))
 $database = new Database();
 $db = $database->connect();
 $class = new DanceClass($db);
+$allClasses = $_SESSION['allClasses'];
 
+if (isset($_POST['submitAdd'])) {
+   foreach ($allClasses as $ca) {
+     
+       $clSelectChk = "clselect".$ca['id'];
+       $clidID = "clid".$ca['id'];
+    if (isset($_POST["$clidID"])) {
+     if ($ca['id'] === $_POST["$clidID"]) {
+ 
+       $clnamID = "clnam".$ca['id'];
+       $cllevelID = "cllevel".$ca['id'];
+       $clnotesID = "clnotes".$ca['id'];
+       $clroomID = "clroom".$ca['id'];
+       $cldateID = "cldate".$ca['id'];
+       $cltimeID = "cltime".$ca['id'];
+       $clinstructorsID = "clinstructors".$ca['id'];
+       $clregemailID = "clregemail".$ca['id'];
+       $clnumregID = "clnumreg".$ca['id'];
+       $cllimitID = "cllimit".$ca['id'];
 
-    $class->classname = $_POST['classname'];
-    $class->classlevel = $_POST['classlevel'];
-    $class->classlimit = $_POST['classlimit'];
-    $class->instructors = $_POST['instructors'];
-    $class->registrationemail = $_POST['registrationemail'];
-    $class->classnotes = $_POST['classnotes'];
-    $class->room = $_POST['room'];
-    $class->date = $_POST['date'];
-    $class->time = $_POST['time'];
+    $class->classname = $_POST["$clnamID"];
+    $class->classlevel = $_POST["$cllevelID"];
+    $class->classlimit = $_POST["$cllimitID"];
+    $class->instructors = $_POST["$clinstructorsID"];
+    $class->registrationemail = $_POST["$clregemailID"];
+    $class->classnotes = $_POST["$clnotesID"];
+    $class->room = $_POST["$clroomID"];
+    $class->date = $_POST["$cldateID"];
+    $class->time = $_POST["$cltimeID"];
     $class->numregistered = 0;
     $class->create();
-    echo ' Class was created <br>';
+    break;
+       }
+    }
+}
+}
  
     $redirect = "Location: ".$_SESSION['adminurl']."#classes";
 header($redirect);

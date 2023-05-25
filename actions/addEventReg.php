@@ -46,18 +46,17 @@ $replyTopic = "Event Registration";
 $emailSubject = "The SBDC administrator has registered you for selected Events";
 
 if (isset($_POST['submitAddReg'])) {        
-         
+    if (isset($_POST['eventid'])) {
+        $event->id = $_POST['eventid'];
+        $event->read_single();
+    
         foreach($users as $usr) {
          $usrID = "us".$usr['id'];
-          
+         $attDin = "datt".$usr['id']; 
+   
             if (isset($_POST["$usrID"])) {
-                foreach($upcomingEvents as $ev) {
-       
-                $chkboxID = "ev".$ev['id'];   
-                        
-                if (isset($_POST["$chkboxID"])) {
-           
-                    $eventReg->eventid = $ev['id'];
+                   
+                    $eventReg->eventid = $_POST['eventid'];
                     $eventReg->firstname = $usr['firstname'];
                     $regFirstName1 = $eventReg->firstname;
                     $eventReg->lastname = $usr['lastname'];
@@ -65,7 +64,17 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->email = $usr['email'];
                     $regEmail1 = $eventReg->email;
                     $eventReg->userid = $usr['id'];
-                    if ($ev['eventtype'] === 'Dinner Dance') {
+
+                    if ($event->eventtype === 'Dine and Dance') {
+                    
+                        if (isset($_POST["$attDin"])) {
+                            $eventReg->ddattenddinner = 1;
+                        }
+                        
+                    } else {
+                        $eventReg->ddattenddinner = 0;
+                    }
+                    if ($event->eventtype === 'Dinner Dance') {
             
                         $eventReg->paid = 1;
                     } else {
@@ -85,11 +94,17 @@ if (isset($_POST['submitAddReg'])) {
                     "<br>DJ  :    ".$event->eventdj.
                     "<br>Room:    ".$event->eventroom.
                     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
-    
+                    if ($event->eventtype === 'Dine and Dance') {
+                        if (isset($_POST["$attDin"])) {
+                            $emailBody .= "<br>You have chosen to attend dinner before the dance.";
+                        } else {
+                            $emailBody .= "<br>You have chosen not to attend dinner before the dance.";
+                        }
+                    }
                   
-                  }
+                  
                  }
-                }
+                
                 $emailBody .= '<br>Note: You can also see these events from your profile on the website.';
                 if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
       
@@ -114,11 +129,12 @@ if (isset($_POST['submitAddReg'])) {
         
         } //end isset
      } // end foreach
+    }
        
 }
    
 
-$redirect = "Location: ".$_SESSION['adminurl']."#eventregistrations";
+$redirect = "Location: ".$_SESSION['adminurl']."#events";
 header($redirect);
 exit;
 

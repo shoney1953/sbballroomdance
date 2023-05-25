@@ -27,16 +27,19 @@ hr {
   border-radius: 50%;
 }
 .container {
-  max-width: 100%;
+  max-width: 100vw;
   margin-left: 5%;
   margin-right: 5%;
-  max-width: 100%;
+
 }
 .container-section {
-  max-width: 100%;
+  max-width: 100vw;
   background-image: var(--lg);
+
 }
+
 .nav {
+  width: 80%;
   position: fixed;
   top: 0;
   left: 0;
@@ -45,6 +48,7 @@ hr {
 }
 .nav .container {
   /*display: flex; */
+  width: 100%;
   display: block;
   /* flex-direction: column; */
   justify-content: space-between;
@@ -53,7 +57,7 @@ hr {
   transition: all 0.3s ease-in-out;
   background-color: rgba(65, 50, 50, 0.5);
   border-radius: 5px;
-  max-width: 75%;
+  max-width: 100%;
 }
 .nav .container ul {
   display: flex;
@@ -175,6 +179,22 @@ hr {
   border-radius: 5px;
   border: 2px solid black;
 }
+.content-faq {
+  margin: 10px 10px;
+  gap: 2px;
+  text-align: center;
+  color: darkviolet;
+  align-items: left;
+  justify-content: left;
+  background-color: rgb(241, 236, 236);
+  padding-bottom: 100px;
+
+}
+.faq-title {
+  font-weight: 500;
+  font-size: 24px;
+  text-align: left;
+}
 .motto-font {
   font-family: "Dancing Script", cursive;
   color: rgb(202, 86, 86);
@@ -253,32 +273,112 @@ hr {
   justify-content: center;
   padding-top: 70px;
 }
+.dropdown {
+  padding-top: 10px;
+  position: relative;
+  display: inline-block;
+  text-align: left;
+  align-items: left;
+  justify-content: left;
+  width: 80%;
+  padding-bottom: 10px;
+}
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  color:rgb(25, 2, 36);
+  /* min-width: 500px; */
+  min-width: 75%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  text-align: left;
+  align-items: left;
+  justify-content: left;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.form-container {
+  width: 100%;
+  border: 2px solid rgb(55, 30, 66);
+  border-radius: 4px;
+  background:  var(--lg); 
+  margin: 10px;
+  box-shadow: 2px 2px 2px 1px rgba(33, 24, 37, 0.2);
+}
+.form-title {
+color: rgb(42, 7, 58);
+text-align: center;
+font-weight: bolder;
+}
+.form-division {
+  color: darkviolet;
+  text-align: center;
+  font-weight: bolder;
+  text-decoration: underline;
+  }
+.form-item-title {
+  color: darkviolet;
+  text-align: left;
+  font-size: small;
+  }
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  grid-auto-rows: minmax(50px, auto);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: left; 
+  padding: 4px;
+}
+.form-item {
+  text-align: left;
+  align-items: left;
+  justify-content: left;
+  /* margin-left: 4px;
+  margin-right: 4px; */
+  padding: 2px 2px;
+  /* border: 1px solid rgba(55, 55, 55, .5);
+  border-radius: 2px; */
+}
+table {
+  width: 100%;
+}
 table,
 th,
 td {
+
   border: 1px solid black;
   text-align: left;
   border-collapse: collapse;
+
 }
 th,
 td {
   padding: 2px;
 }
-tbody tr:nth-child(even) {
-  background-color: rgba(252, 237, 237, 0.2);
 
-}
-tbody tr:nth-child(odd) {
+
+tbody tr:nth-child(even) {
   background-color: rgba(190, 169, 177, 0.8);
 
 }
+tbody tr:nth-child(odd) {
+ 
+  background-color: rgba(252, 237, 237, 0.2);
+
+}
 thead tr {
-  background-color: rgba(65, 50, 50, 0.5);
+  background-color: rgba(96, 83, 83, 0.5);
 
 }
 table {
-  width: 90%;
+  width: 100%;
   border-spacing: 5px;
   table-layout: auto;
   align-items: left;
@@ -286,7 +386,7 @@ table {
   word-wrap: break-word;
   border-collapse: collapse;
 }
-table_small {
+.table_small {
   width: 60%;
   border-spacing: 5px;
   table-layout: auto;
@@ -304,48 +404,156 @@ form {
   justify-content: center;
 }
 input[type="text"] {
-  width: 400px;
-  padding: 4px 4px;
-  margin: 4px 4px;
+  width: 80%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  /* border-radius: 2px; */
   box-sizing: border-box;
 }
 input[type="email"] {
-  width: 400px;
-  padding: 4px 4px;
-  margin: 4px 4px;
+  width: 80%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  /* border-radius: 2px; */
+  box-sizing: border-box;
+}
+select {
+  width: 80%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  /* border-radius: 2px; */
+
+  box-sizing: border-box;
+}
+input[type="password"] {
+  width: 80%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  /* border-radius: 2px; */
+  box-sizing: border-box;
+}
+input[type="checkbox"] {
+
+  width: 25px;
+  height: 25px;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  /* border-radius: 2px; */
+  box-sizing: border-box;
+}
+input[type="number"] {
+  width: 75px;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  /* border-radius: 2px; */
+  box-sizing: border-box;
+}
+input[type="date"] {
+  width: 80%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  /* border-radius: 2px; */
+  box-sizing: border-box;
+}
+input[type="tel"] {
+  width: 80%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  /* border-radius: 2px; */
   box-sizing: border-box;
 }
 input[type="textbox"] {
-  width: 400px;
-  padding: 4px 4px;
-  margin: 4px 4px;
+  width: 80%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  /* border-radius: 2px; */
   box-sizing: border-box;
 }
 input[type="text"].text-small {
   width: 60px;
-  padding: 4px 4px;
-  margin: 4px 4px;
-  box-sizing: border-box;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    /* border-radius: 2px; */
+    box-sizing: border-box;
+
 }
 input[type="text"].text-large {
-  width: 400px;
+  width: 600px;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    /* border-radius: 2px; */
+  box-sizing: border-box;
+}
+/*  table qualifiers */
+td input[type="text"] {
+  width: 200px;
   padding: 4px 4px;
   margin: 4px 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+td input[type="password"] {
+  width: 200px;
+  padding: 4px 4px;
+  margin: 4px 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+td input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+
+  padding: 4px 4px;
+  margin: 4px 4px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+td input[type="number"] {
+  width: 75px;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+td input[type="date"] {
+
+  width: 80%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+td input[type="email"] {
+  width: 80%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+
+  border-radius: 2px;
+
   box-sizing: border-box;
 }
 
-input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
+td input[type="textbox"] {
+  width: 300px;
   padding: 4px 4px;
   margin: 4px 4px;
-  padding: 4px 4px;
-}
-input[type="select"] {
-  width: 200px;
-  margin: 4px 4px;
+  border-radius: 4px;
+
   box-sizing: border-box;
 }
+
+
+
+td input[type="select"] {
+  width: 80%;
+  height: 150px;
+  margin: 4px 4px;
+  padding: 4px 4px;
+  border-radius: 4px;
+
+  box-sizing: border-box;
+}
+
 .form-grid2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -391,6 +599,18 @@ input[type="select"] {
   justify-content: left;
   font-size: 85%;
 }
+.form-grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  grid-auto-rows: minmax(100px, auto);
+  /* border: 1px solid rgb(91, 2, 129);  */
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: left;
+  font-size: 85%;
+}
 .form-head-small h3 {
   font-size: 75%;
 }
@@ -423,7 +643,7 @@ h2 a:active {
 }
 button {
   background-color: darkviolet;
-  width: 25%;
+  width: 50%;
   color: white;
   margin-top: 5px;
   padding: 12px 20px;
@@ -435,7 +655,7 @@ button {
 button:link,
 button:visited {
   background-color: darkviolet;
-  width: 25%;
+  width: 50%;
   color: white;
   margin-top: 5px;
   padding: 12px 20px;
@@ -446,12 +666,13 @@ button:visited {
 button:hover,
 button:active {
   background-color: white;
-  width: 25%;
+  width: 50%;
   color: darkviolet;
   margin-top: 5px;
   padding: 12px 20px;
   border-radius: 5px;
   margin-bottom: 10px;
+  font-size: normal;
   cursor: pointer;
 }
 button a:link,
@@ -478,7 +699,7 @@ button a:active {
   color: blue;
 }
 .select {
-  width: 100%;
+  width: 80%;
   min-width: 15ch;
   max-width: 30ch;
   border: 1px solid darkslateblue;
@@ -495,6 +716,7 @@ button a:active {
   color: white;
   padding-top: 20px;
   padding-bottom: 20px;
+  margin-top: 40px;
 }
 .footer-section a.link,
 .footer-section a:visited {
@@ -534,10 +756,11 @@ iframe {
     max-width: 100vw;
   }
   .container-section {
-    max-width: 100%;
-    background-image: var(--lg);
     max-width: 100vw;
+    background-image: var(--lg);
+
   }
+ 
   .hero {
     /*background-image: url("../img/moonrise\ opaque.jpg"); */
     /*background-image: url("../img/morning1.jpg"); */
@@ -588,8 +811,7 @@ iframe {
     align-items: left;
   }
 
-  
-
+ 
   .form-grid2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -609,6 +831,17 @@ iframe {
     justify-content: left;
     font-size: 75%;
   }
+  .form-grid4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left;
+    font-size: 75%;
+  }
   .form-grid-div {
     text-align: left;
     align-items: left;
@@ -620,7 +853,7 @@ iframe {
   button:link,
   button:visited {
     background-color: darkviolet;
-    width: 25%;
+    width: 50%;
     color: white;
     margin-top: 5px;
     padding: 8px 15px;
@@ -630,7 +863,7 @@ iframe {
   button:hover,
   button:active {
     background-color: #fff;
-    width: 25%;
+    width: 50%;
     color: darkviolet;
     margin-top: 5px;
     padding: 8px 15px;
@@ -639,8 +872,8 @@ iframe {
   }
   input[type="email"] {
     width: 70%;
-    padding: 2px 2px;
-    margin: 2px 2px;
+    padding: 1px 1px;
+    margin: 1px 1px;
     box-sizing: border-box;
   }
   input[type="textbox"] {
@@ -650,6 +883,8 @@ iframe {
     box-sizing: border-box;
   }
   input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
     padding: 2px 2px;
     margin: 2px 2px;
   }
@@ -665,7 +900,7 @@ iframe {
   th,
   td {
     border: 1px solid black;
-    font-size: 100%;
+    font-size: 80%;
     text-align: left;
     border-collapse: collapse;
   }
@@ -715,7 +950,7 @@ iframe {
     margin-left: 100px;
   }
   .motto-img2 {
-    width: 200px;
+    width: 100px;
     margin-bottom: 5px;
     margin-left: 100px;
     opacity: 0.3;
@@ -769,7 +1004,7 @@ iframe {
   .container-section {
     max-width: 100vw;
   }
-
+ 
   .li-large {
     font-size: 100%;
     color: darkslateblue;
@@ -778,6 +1013,23 @@ iframe {
   .form-grid1 {
     justify-content: left;
     align-items: left;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left; 
+  }
+  .form-item {
+    text-align: left;
+    align-items: left;
+    justify-content: left;
+    margin-left: 10px;
+    border: 1px solid black;
+    border-radius: 2px;
   }
 
   .form-grid2 {
@@ -788,6 +1040,17 @@ iframe {
   }
 
   .form-grid3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left;
+    font-size: 75%;
+  }
+  .form-grid4 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2px;
@@ -809,7 +1072,7 @@ iframe {
   button:link,
   button:visited {
     background-color: darkviolet;
-    width: 25%;
+    width: 50%;
     color: white;
     margin-top: 5px;
     padding: 8px 15px;
@@ -819,7 +1082,7 @@ iframe {
   button:hover,
   button:active {
     background-color: white;
-    width: 25%;
+    width: 50%;
     color: darkviolet;
     margin-top: 5px;
     padding: 8px 15px;
@@ -827,7 +1090,7 @@ iframe {
     margin-bottom: 5px;
   }
   input[type="email"] {
-    width: 70%;
+    width: 400px;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
@@ -839,6 +1102,8 @@ iframe {
     box-sizing: border-box;
   }
   input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
     padding: 2px 2px;
     margin: 2px 2px;
   }
@@ -853,7 +1118,7 @@ iframe {
   th,
   td {
     border: 1px solid black;
-    font-size: 100%;
+    font-size: 70%;
     text-align: left;
     border-collapse: collapse;
   }
@@ -903,7 +1168,7 @@ iframe {
     margin-left: 100px;
   }
   .motto-img2 {
-    width: 200px;
+    width: 100px;
     margin-bottom: 5px;
     margin-left: 100px;
     opacity: 0.3;
@@ -913,6 +1178,25 @@ iframe {
     width: 800px;
     height: 600px;
     border: none;
+  }
+}
+@media screen and (max-width: 950px) {
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left; 
+  }
+  .form-item {
+    text-align: left;
+    align-items: left;
+    justify-content: left;
+    margin-left: 5px;
+    border: 1px solid black;
+    border-radius: 2px;
   }
 }
 @media screen and (max-width: 895px) {
@@ -965,7 +1249,7 @@ iframe {
     margin-left: 40px;
   }
   .motto-img2 {
-    width: 150px;
+    width: 50px;
     margin-bottom: 5px;
     margin-left: 40px;
     opacity: 0.3;
@@ -979,11 +1263,14 @@ iframe {
     max-width: 100vw;
   }
 
+  
   .li-large {
     font-size: 90%;
     color: darkslateblue;
     font-style: italic;
   }
+  
+
   .form-grid2 {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -1005,18 +1292,29 @@ iframe {
     justify-content: left;
     font-size: 100%;
   }
+  .form-grid4 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left;
+    font-size: 80%;
+  }
   .form-grid-div {
     text-align: left;
     align-items: left;
     justify-content: left;
     margin-left: 10px;
-    font-size: 95%;
+    font-size: 80%;
   }
 
   button:link,
   button:visited {
     background-color: darkviolet;
-    width: 25%;
+    width: 50%;
     color: white;
     margin-top: 5px;
     padding: 8px 15px;
@@ -1027,7 +1325,7 @@ iframe {
   button:hover,
   button:active {
     background-color: darkviolet;
-    width: 25%;
+    width: 50%;
     color: white;
     margin-top: 5px;
     padding: 8px 15px;
@@ -1036,7 +1334,7 @@ iframe {
     cursor: pointer;
   }
   input[type="email"] {
-    width: 70%;
+    width: 400px;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
@@ -1054,12 +1352,12 @@ iframe {
     height: 25px;
     padding: 2px 2px;
     margin: 2px 2px;
-    font-size: 100%;
+    font-size: 80%;
     cursor: pointer;
   }
 
   table {
-    width: 90%;
+    width: 100%;
     border-spacing: 2px;
     table-layout: auto;
     align-items: left;
@@ -1070,7 +1368,7 @@ iframe {
   th,
   td {
     border: 1px solid black;
-    font-size: 95%;
+    font-size: 70%;
     text-align: left;
     border-collapse: collapse;
   }
@@ -1117,9 +1415,19 @@ iframe {
   .container-section {
     max-width: 100vw;
   }
+
   .hero h1 {
     font-size: 20px;
     margin: 15px 0 0 20px;
+  }
+     
+  .form-item {
+    text-align: left;
+    align-items: left;
+    justify-content: left;
+    margin-left: 5px;
+
+    border-radius: 2px;
   }
 }
 @media screen and (max-width: 640px) {
@@ -1162,7 +1470,7 @@ iframe {
     margin: 35px 0 0 20px;
   }
   .motto-img2 {
-    width: 100px;
+    width: 50px;
     margin-bottom: 5px;
     margin-left: 40px;
     opacity: 0.3;
@@ -1217,7 +1525,7 @@ iframe {
   th,
   td {
     border: 1px solid black;
-    font-size: 80%;
+    font-size: 70%;
     text-align: left;
     border-collapse: collapse;
   }
@@ -1227,22 +1535,22 @@ iframe {
     font-size: 80%;
   }
   input[type="email"] {
-    width: 50%;
+    width: 400px;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
     cursor: pointer;
   }
   input[type="textbox"] {
-    width: 50%;
+    width: 70%;
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
     cursor: pointer;
   }
   input[type="checkbox"] {
-    width: 10px;
-    height: 10px;
+    width: 25px;
+    height: 25px;
     padding: 1px 1px;
     margin: 1px 1px;
     font-size: 65%;

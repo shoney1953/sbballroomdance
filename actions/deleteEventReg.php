@@ -4,35 +4,30 @@ session_start();
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
-if (!isset($_SESSION['username']))
-{
-    $redirect = "Location: ".$_SESSION['homeurl'];
-    header($redirect);
-} else {
-    if (isset($_SESSION['role'])) {
-        if (($_SESSION['role'] != 'ADMIN') && ($_SESSION['role'] != 'SUPERADMIN')) {
-            $redirect = "Location: ".$_SESSION['homeurl'];
-            header($redirect); 
-        }
-       } else {
-        $redirect = "Location: ".$_SESSION['homeurl'];
-        header($redirect);
-       }
-}
+
+var_dump($_SESSION['returnurl']);
+$regs = $_SESSION['eventregistrations'];
+var_dump($regs);
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $event = new Event($db);
 
    
-    $eventReg->id = $_POST['id'];
-    $eventid = $_POST['eventid'];
-   
-    $eventReg->delete();
-    $event->decrementCount($eventid);
-;
-$redirect = "Location: ".$_SESSION['adminurl']."#eventregistrations";
-header($redirect);
-exit;
+    foreach ($regs as $reg) {
+       $delId = 'del'.$reg['id'];
+
+       if (isset($_POST["$delId"])) {
+           $eventReg->id = $reg['id'];
+           $eventid = $reg['eventid'];
+           $eventReg->delete();
+           $event->decrementCount($eventid);
+       }
+    }
+
+        $redirect = "Location: ".$_SESSION['returnurl']";
+        header($redirect);
+        exit;
+ 
 
 ?>

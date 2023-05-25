@@ -50,27 +50,23 @@ $replyTopic = "Class Registration";
 $emailSubject = "Your instructor has registered you for selected Classes";
 $usersSelected = 0;
 
+
 if (isset($_POST['submitAddReg'])) {
-   
-         
+    if (isset($_POST['classid'])) {
+        $danceClass->id = $_POST['classid'];
+        $danceClass->read_single();
+
             foreach($users as $usr) {
-                $usrID = "us".$usr['id'];
-          
-             if (isset($_POST["$usrID"])) {
-               foreach($upcomingClasses as $class) {
-       
-                        $chkboxID = "cb".$class['id'];
-                     
-                        
-                if (isset($_POST["$chkboxID"])) {
-                    $classReg->classid = $class['id'];       
+             $usrID = "us".$usr['id'];     
+             if (isset($_POST["$usrID"])) {                         
+                    $classReg->classid = $danceClass->id ;      
                     $classReg->firstname = $usr['firstname'];
                     $classReg->lastname = $usr['lastname'];
                     $classReg->email = $usr['email'];
                     $classReg->userid = $usr['id'];
-                    $classReg->classname = $class['classname'];
-                    $classReg->classtime = $class['time'];
-                    $classReg->classdate = $class['date'];
+                    $classReg->classname = $danceClass->classname;
+                    $classReg->classtime = $danceClass->time;
+                    $classReg->classdate = $danceClass->date;
                     $result = $classReg->checkDuplicate($classReg->email, $classReg->classid);
                  if (!$result) {
                     $classReg->create();
@@ -88,9 +84,7 @@ if (isset($_POST['submitAddReg'])) {
                     $regLastName1 = $usr['lastname'];
                     $regEmail1 = $usr['email'];
                        
-                } // check duplicate
-             } // chkbox
-            } // end foreach class
+
            $emailBody .= '<br>If you need to correspond with the instructor(s), 
            please use the registration email for the appropriate class.';
            $emailBody .= '<br>Note: You can also see these classes from your profile on the website.';
@@ -114,11 +108,14 @@ if (isset($_POST['submitAddReg'])) {
                 echo 'Member Email is empty or Invalid. Please enter valid email.';
             }
             $emailBody = "Thanks for registering for the following classes:<br>";
-        } //end isset
+        } // check duplicate
+        } //end isset usrid
      } // end foreach user
        
+
 }
-$redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
+}
+$redirect = "Location: ".$_SESSION['adminurl']."#classes";
 header($redirect);
 exit;
 

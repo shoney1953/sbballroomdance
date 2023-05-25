@@ -64,6 +64,7 @@ if ($rowCount > 0) {
     
     }
 } 
+$_SESSION['classregistrations'] = $classRegs;
 $eventReg = new EventRegistration($db);
 $result = $eventReg->read_ByUserid($_SESSION['userid']);
 
@@ -89,6 +90,7 @@ if ($rowCount > 0) {
 
     }
 } 
+$_SESSION['eventregistrations'] = $eventRegs;
 $eventReg = new MemberPaid($db);
 $yearsPaid = [];
 $result = $eventReg->read_byUserid($_SESSION['userid']);
@@ -120,217 +122,172 @@ if ($rowCount > 0) {
     <title>SBDC Ballroom Dance - Profile</title>
 </head>
 <body>
-<div class="profile">
+
+  
 <nav class="nav">
-    <div class="container">
-     
+    <div class="container">     
      <ul>
         <li><a href="index.php">Back to Home</a></li>
         <li><a href="#yourregistrations">Your Registrations</a></li>
     </ul>
-     </div>
-</nav>  
-    <br>
-   <br><br><br> 
-    <div class="content">
-    <br>
-    <h1>User Profile</h1>
-    <div class="form-grid3">
-    <div class="form-grid-div">
-       <div class="list-box">
-       <ul>
-           <?php
-            echo '<li class=li-none> Name:    <strong> '.$user->firstname.' '
-            .$user->lastname.'</strong></li>';
-            echo '<li class=li-none> Username:  <strong>'.$user->username.' 
-            </strong></li>';
-            echo '<li class=li-none> Email:    <strong> '.$user->email.' 
-            </strong></li>';
-            echo '<li class=li-none> Created:   <strong>'.$user->created.' 
-            </strong></li>';
-            echo '<li class=li-none> Last Login:  <strong>'.$user->lastLogin.' 
-            </strong></li>';
-            echo '<li class=li-none> Password Last Changed: 
-            <strong>'.$user->passwordChanged.' 
-            </strong></li>';
-            echo '<li class=li-none> Partner Id: 
-            <strong>'.$user->partnerId.' 
-            </strong></li>';
-            if ($user->partnerId !== 0) {
-                echo '<li class=li-none> Partner Name: 
-                <strong>'.$partner->firstname.' '.$partner->lastname.' 
-                </strong></li>';
-            }
-            echo '<li class=li-none> Primary Phone: 
-            <strong>'.$user->phone1.' 
-            </strong></li>';
-            echo '<li class=li-none> Secondary Phone: 
-            <strong>'.$user->phone2.' 
-            </strong></li>';
-            echo '<li class=li-none> HOA: 
-            <strong>'.$user->hoa.' 
-            </strong></li>';
-            echo '<li class=li-none> Street Address: 
-            <strong>'.$user->streetAddress.' 
-            </strong></li>';
-            echo '<li class=li-none> City: 
-            <strong>'.$user->city.' 
-            </strong></li>';
-            echo '<li class=li-none> State: 
-            <strong>'.$user->state.' 
-            </strong></li>';
-            echo '<li class=li-none> Zip: 
-            <strong>'.$user->zip.' 
-            </strong></li>';
-            if ($user->directorylist) {
-                echo '<li class=li-none> List in Directory: 
-                <strong>Yes </strong></li>';
-            } else {
-                echo '<li class=li-none> List in Directory: 
-                <strong>No </strong></li>';
-            }
+    </div>
+</nav> 
+
+
+<div class="container-section" >
+<div class="content">
+    <br><br>
+    <h3>Member Profile</h3>
+    <form method='POST' action='actions/updateUserInfo.php'>
+  
+    <div class="form-container">
+    <h4 class="form-title">Your Profile Information</h4>
+        <div class="form-grid">
+            <div class="form-item">
+            <h4 class="form-item-title">First Name</h4>
+             <input type='text' name='firstname' value='<?php echo $user->firstname ?>'>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Last Name</h4>
+             <input type='text' name='lastname' value='<?php echo $user->lastname ?>'>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Email</h4>
+             <input type='email' name='newemail' value='<?php echo $user->email?>'>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">User Name</h4>
+             <input type='text' name='newuser' value='<?php echo $user->username ?>'>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Directory List: </h4>
+             <input type='number' name='directorylist' min='0' max='1' value='<?php echo $user->directorylist ?>'>
+             <br><label style='font: smaller;color: darkviolet' for='directorylist'><em>1 to list, 0 to Remove</em></label>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">HOA</h4>
+            <select name = 'hoa' value='<?php echo $user->hoa ?>'>
+            <?php
+                if ($user->hoa == '1') {
+                    echo "<option value = '1' selected>HOA 1</option>";
+                } else {
+                    echo "<option value = '1' >HOA 1</option>";
+                }
+                if ($user->hoa == 2) {
+                    echo "<option value = '2' selected>HOA 2</option>";
+                } else {
+                    echo "<option value = '2' >HOA 2</option>";
+                }
+                ?>
+            </select>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Primary Phone: </h4>
+            <input type='tel'  name='phone1' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' required value='<?php echo $user->phone1 ?>'><br>
+             <small> Format: 123-456-7890</small>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Secondary Phone: </h4>
+            <input type='tel'  name='phone2' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' required value='<?php echo $user->phone2 ?>'><br>
+             <small> Format: 123-456-7890</small>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Street Address: </h4>
+            <input type='text' name='streetaddress' value='<?php echo $user->streetAddress ?>'>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">City: </h4>
+            <input type='text' name='city' value='<?php echo $user->city ?>'>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">State: </h4>
+            <input class='text-small' type='text' name='state' maxsize='2' value='<?php echo $user->state ?>'>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">zip: </h4>
+            <input  type='text' name='zip' maxsize='10' value='<?php echo $user->zip ?>'>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Partner ID: </h4>
+            <input type='number' name='partnerid' value='<?php echo $user->partnerId ?>'>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Notes: </h4>
+            <textarea  name='notes' rows='4' cols='50'><?php echo $user->notes ?></textarea>
+            </div>
+
+        </div>
+        <input type='hidden' name='id' value='<?php echo $user->id?>'>
+        <input type='hidden' name='username' value='<?php echo $user->username?>'>
+        <input type='hidden' name='email' value='<?php echo $user->email?>'>
+        <input type='hidden' name='password' value='<?php echo $user->password ?>'>
+        <input type='hidden' name='role' value='<?php echo $user->role ?>'>
       
-            echo '<li class=li-none> Notes: 
-            <strong>'.$user->notes.' 
-            </strong></li>';
-            
-        echo '</ul><br>';
-    echo '<h4>Membership Status</h4>';
-    echo '<table>';
-    echo "<tr>";
-    echo "<td>YEAR</td>";
-    echo "<td>PAID?</td>";
-    echo "</tr>";
-    foreach ($yearsPaid as $year) {
-        echo "<tr>";
-        echo "<td>".$year['year']."</td>";
+        <button type="submit" name="submitUpdateUser">Update Your Information</button>
+        </form>
+    </div>
         
-        if ($year['paid'] == true ) {
-            echo "<td>&#10004;</td>"; 
-          } else {
-              echo "<td>&times;</td>"; 
-          }  
-        echo "</tr>";
-    }
-    echo '</table>';
-    echo '</div>';
-    echo '</div>';
-    echo '<div class="form-grid-div">';
-
-        echo '<form method="POST" action="actions/updateUserInfo.php">';
-        echo '<label for="firstname">First Name</label><br>';
-        echo '<input type="text" name="firstname" value="'.$user->firstname.'"><br>';
-        echo '<label for="lastname">Last Name</label><br>';
-        echo '<input type="text" name="lastname" value="'.$user->lastname.'"><br>';
-        echo '<label for="partnerid">Partner Id</label><br>';
-        echo '<input type="text" name="partnerid" value="'.$user->partnerId.'"><br>';
-        echo '<label for="newemail">New Email -- Must Not Be a Duplicate</label><br>';
-        echo '<input type="email" name="newemail" value="'.$user->email.'" ><br>';
-        echo '<label for="newuser">Username -- Must not be a Duplicate</label><br>';
-        echo '<input type="text" name="newuser" value="'.$user->username.'"><br>';
-        echo '<label for="directorylist">List in Directory (1 = YES; 0 = NO)</label>';
-        echo '<input type="number" name="directorylist" min="0" max="1" value="'.$user->directorylist.'"><br>';
-        echo '<input type="hidden" name="id" value="'.$user->id.'">';
-        echo '<input type="hidden" name="username" value="'.$user->username.'">';
-        echo '<input type="hidden" name="email" value="'.$user->email.'">';
-
-        echo '<input type="hidden" name="password" value="'.$user->password.'">';
-        echo '<input type="hidden" name="role" value="'.$user->role.'">';
-        echo '<label for="hoa">HOA</label><br>';
-    
-        echo '<select name = "hoa" >';
-        if ($user->hoa == "1") {
-            echo '<option value = "1" selected>HOA 1</option>';
-        } else {
-            echo '<option value = "1" >HOA 1</option>';
-        }
-        if ($user->hoa == "2") {
-            echo '<option value = "2" selected>HOA 2</option>';
-        } else {
-            echo '<option value = "2" >HOA 2</option>';
-        }
-
-        echo '</select><br>';
-  
-        echo '<label for="phone1" >Enter primary phone number: </label><br>';
-        echo '<input type="tel"  name="phone1"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            required value="'.$user->phone1.'">';
-        echo '<small>Format: 123-456-7890</small><br>';
-        echo '<label for="phone2">Enter secondary phone number (Optional): </label><br>';
-        echo '<input type="tel"  name="phone2"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            value="'.$user->phone2.'">' ;
-        echo '<small>Format: 123-456-7890</small><br>';
-        echo '<label for="streetaddress">Street Address</label><br>';
-        echo '<input type="text" name="streetaddress" 
-            value="'.$user->streetAddress.'"><br>';
-        echo '<label for="city">City</label><br>';
-        echo '<input type="text" name="city" value="'.$user->city.'">  ';
-        echo '<label for="state">State</label><br>';
-        echo '<input type="text" name="state" maxsize="2" 
-            value="'.$user->state.'">  ';
-        echo '<label for="zip">Zip</label><br>';
-        echo '<input type="text" name="zip" maxsize="10" 
-            value="'.$user->zip.'"><br>';
-
-        echo '<p> Notes</p><br>';
-        echo '<textarea name="notes" cols="50" rows="5" 
-            >'.$user->notes.'</textarea><br><br>';
-        echo '<button type="submit" name="submitUpdateUser">
-             Update Your Information</button><br>';
-  
-        echo '</form>';
-        echo '</div>';
-  
-     ?>
-    
-       <div class="form-grid-div">
+        <div class="form-container">
         <form method="POST" action="actions/updateUserPass.php">
-    
-        <h4>Change Password</h4>
-        <label for="oldpassword">Enter Current Password</label><br>
-        <input type="password" name="oldpassword" required minlength="8"><br>
-        <br>
-        <label for="newpassword">Enter New Password minimum 8</label><br>
-        <input type="password" name="newpassword" required minlength="8"><br>
-        <label for="pass2">Reenter New Password</label><br>
-        <input type="password" name="newpass2" required minlength="8"><br>
-        <?php
-            echo '<input type="hidden" name="currentpass" 
-            value="'.$user->password.'"><br>';
-            echo '<input type="hidden" name="id" value="'.$user->id.'"><br>';
-        ?>
-        <br>
-        <button type="submit" name="SubmitPassChange">Change Your Password</button><br>
-    
+        <h4 class="form-title">Change Your Password</h4>
+        <div class="form-grid">
+            <div class="form-item">
+            <h4 class="form-item-title">Enter Your Current Password</h4>
+            <input type="password" name="oldpassword" required minlength="8">
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Enter Your New Password</h4>
+            <input type="password" name="newpassword" required minlength="8">
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Re-Enter Your New Password</h4>
+            <input type="password" name="newpass2" required minlength="8">
+            </div>
+        </div>
+        <input type="hidden" name="currentpass" value='<?php echo $user->password ?>'>
+        <input type="hidden" name="id" value='<?php echo $user->id ?>'>   
+        <button type='submit' name='SubmitPassChange'>Change Your Password</button>
         </form>
         </div>
-      
+     
+        
+    
+       
+   
        </div>
+       <br>
        <section id="yourregistrations" class="content">
-        <h1> Your Registrations</h1>
+       
     <div class="form-grid3">
     <div class="form-grid-div">
-   
-    <br>
 
-        <h4 class="section-header">Class Registrations</h4><br>    
+ 
         <table>
+        <thead>  
             <tr>
-                <th>ID</th>
+                <th colspan='5' style='text-align: center;color: darkviolet'>Your Class Registrations</th>
+            </tr>
+            <tr>
+             
+                <th>Delete?</th>
+     
                 <th>Class Name</th>
                 <th>Class Date</th>
                 <th>Class Time</th>
                 <th>Date Registered</th>          
             </tr>
+        </thead>
+        <tbody>
+        <form method='POST' action="actions/deleteClassReg.php">
             <?php 
-    
+ 
             foreach ($classRegs as $classRegistration) {
+                $delID = "del".$classRegistration['id'];
         
-    
                   echo "<tr>";
-                    echo "<td>".$classRegistration['id']."</td>";
+                    echo "<td><input type='checkbox' title='Check to Delete Class Registration' 
+                    name='".$delID."'></td>";
+       
                     echo "<td>".$classRegistration['classname']."</td>";
                     echo "<td>".$classRegistration['classdate']."</td>";  
                     echo "<td>".$classRegistration['classtime']."</td>";         
@@ -340,44 +297,43 @@ if ($rowCount > 0) {
             }
          
             ?> 
+        </tbody>
         </table>
-    <br><br>
-    <form method='POST' action="actions/maintainClassReg.php">
-        
-      
-        <h4>Manage Your Class Registration(s)</h4>
-         
-        <input type='checkbox' name='deleteReg'>
-        <label for='deleteReg'>Delete</label>
-        <label for='regId'>
-        <em> &rarr; Specify Registration ID from Table to Delete Your Registration:  
-        </em></label>
-        <input type='text' class='text-small' name='regId' >
-        <br>
-       
-        <button type='submit' name="submitReg">Submit</button>    
+        <button type='submit' name="submitDeleteReg">Delete Your Class Registrations</button>    
         </form>
-        
     </div>
 
+
+
     <div class="form-grid-div">
-    <br><br>
-    <h4 class="section-header">Event Registrations</h4><br>    
+ 
+
+    <form method='POST' action="actions/deleteEventReg.php">  
         <table>
+            <thead>
             <tr>
-                <th>ID</th>
+                <th colspan="5" style="text-align: center;color: darkviolet">Your Event Registrations</th>
+            </tr>
+            <tr>
+                <th>Delete?</th>
+      
                 <th>Event Name</th>
                 <th>Event Date</th>
                 <th>Paid</th>
                 <th>Date Registered</th>          
             </tr>
+            </thead>
+            <tbody>
             <?php 
     
             foreach ($eventRegs as $eventRegistration) {
                 $eventName = 'NONE';
-            
+                $delID = "del".$eventRegistration['id'];
                   echo "<tr>";
-                    echo "<td>".$eventRegistration['id']."</td>";
+                  echo "<td><input type='checkbox' 
+                       title='Check to Delete Event Registration' 
+                       name='".$delID."'> </td>";
+ 
                     echo "<td>".$eventRegistration['eventname']."</td>";
                     echo "<td>".$eventRegistration['eventdate']."</td>";  
                     if ($eventRegistration['paid'] == true ) {
@@ -391,33 +347,52 @@ if ($rowCount > 0) {
             }
          
             ?> 
-        </table>
- 
-    <br><br>
-    <form method='POST' action="actions/maintainEventReg.php">
-        
-        <div class="form-grid-div">
-        <h4>Manage Your Event Registration(s)</h4>
-    
-        <input type='checkbox' name='deleteReg'>
-        <label for='deleteReg'>Delete</label>
-        <label for='regId'><em> &rarr; 
-        Specify Registration ID from Table above to Delete Your Registration:  
-        </em></label>
-        <input type='text' class='text-small' name='regId' >
-        <br>
        
-        <button type='submit' name="submitEventReg">Submit</button>   
-        </div>   
-        </form>
+        </div>
+            </tbody>
+        </table>
+        <button type='submit' name="submitDeleteReg">Delete Your Event Registrations</button>   
+        
+    </form>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
+
+    <?php
+  
+    echo "<div class='form-grid-div'>";
+
+    echo '<table>';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th colspan=2 style="text-align: center;color: darkviolet">Membership Status</th>';
+    echo '</tr>';
+    echo "<tr>";
+    echo "<td>YEAR</td>";
+    echo "<td>PAID?</td>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    foreach ($yearsPaid as $year) {
+        echo "<tr>";
+        echo "<td>".$year['year']."</td>";
+        
+        if ($year['paid'] == true ) {
+            echo "<td>&#10004;</td>"; 
+          } else {
+              echo "<td>&times;</td>"; 
+          }  
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo '</table>';
+  
+    echo '</div>';
+    echo '<br><br>';
+    echo '</div>';
+   
+    ?>
         </section>
     <footer >
-
+    </div>
 <?php
   require 'footer.php';
 ?>

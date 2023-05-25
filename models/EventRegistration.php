@@ -217,6 +217,41 @@ public function checkDuplicate($email,$eventid) {
 return false;
 
 }
+// Get reg by userid
+public function readLike($eventid, $search) {
+
+  // Create query
+  // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
+  $query = 'SELECT 
+  id, eventid, firstname, lastname, email, dateregistered,
+  userid, paid, message, ddattenddinner, ddattenddance
+
+  FROM ' . $this->table . ' 
+  
+  WHERE
+    eventid = :eventid AND
+    (firstname LIKE :search1 OR
+    lastname LIKE :search2 OR
+    email LIKE :search3)
+  ORDER BY 
+      lastname, firstname';
+
+
+  // Prepare statement
+  $stmt = $this->conn->prepare($query);
+
+  // Bind ID
+  $stmt->bindParam('eventid', $eventid);
+  $stmt->bindParam('search1', $search);
+  $stmt->bindParam('search2', $search);
+  $stmt->bindParam('search3', $search);
+
+  // Execute query
+  $stmt->execute();
+
+  return $stmt;
+
+}
   
     // Create Danceevent
     public function create() {
