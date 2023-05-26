@@ -137,7 +137,8 @@ hr {
   /*background-image: url("../img/halfmoonCrop.jpg"); */
   /* background-image: url("../img/monsoon_small.jpg"); */
   /* background-image: url("../img/Spring_small.jpg"); */
-  background-image: url("../img/painterly\ flowers.jpg"); 
+  /* background-image: url("../img/painterly\ flowers.jpg");  */
+  background-image: url("../img/background\ collage.jpg");  
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -766,8 +767,7 @@ iframe {
     /*background-image: url("../img/morning1.jpg"); */
     /*background-image: url("../img/halfmoonCrop.jpg"); */
     /* background-image: url("../img/monsoon.jpg"); */
-    background-image: url("../img/painterly\ flowers.jpg"); 
-    height: 100vh;
+    background-image: url("../img/background\ collage.jpg"); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom center;
