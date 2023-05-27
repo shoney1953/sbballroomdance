@@ -87,7 +87,7 @@ if (isset($_POST['submitUserProcess'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
-    <title>SBDC Ballroom Dance - Process Users</title>
+    <title>SBDC Ballroom Dance - Process Members</title>
 </head>
 <body>
 <nav class="nav">

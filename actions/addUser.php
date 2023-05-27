@@ -108,7 +108,7 @@ if (isset($_POST['submitAddUser'])) {
        $fromEmailName = 'SBDC Ballroom Dance Club';
        $toName = $user->firstname.' '.$user->lastname; 
        if ($formerUser === 'yes') {
-        $mailSubject = 'Thanks for Returning to   us at SBDC Ballroom Dance Club!';
+        $mailSubject = 'Thanks for Returning to us at SBDC Ballroom Dance Club!';
        } else {
         $mailSubject = 'Thanks for Joining us at SBDC Ballroom Dance Club!';
        }
@@ -120,7 +120,7 @@ if (isset($_POST['submitAddUser'])) {
        Click to view Activities Calendar</a><br>";
        $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
-       $mailAttachment = "../img/Intro.pdf"; 
+       $mailAttachment = "../img/Member Guide to Website Version 2.pdf"; 
        $fromCC = "webmaster@sbballroomdance.com";
        if ($formerUser === 'yes') {
         $emailBody = "<br>Welcome back<b> $toName </b> as a returning member 
@@ -137,6 +137,8 @@ if (isset($_POST['submitAddUser'])) {
        $emailBody .= "<li><strong>Dance Classes</strong> - Classes are normally held at the Mariposa Room
        at DesertView on all the Mondays at 6 - 8pm and Wednesdays 4 - 6pm of each month. 
        Emails will go out regarding the content, format, instructors and dates; registration is also available on the website.</li>";
+       $emailBody .= "<li><strong>Dances</strong> - These are provided on many occasions during the year.
+       They include a dance with a no host bar in the MountainView Ballroom. </li>";
        $emailBody .= "<li><strong>Dinner Dances</strong> - These are provided on alternate months during the snowbird
        season. They include a plated dinner with several entree choices followed by dancing to music provided
        by one of our DJs in the MountainView Ballroom. You will receive an email with a sign-up form
@@ -165,7 +167,7 @@ if (isset($_POST['submitAddUser'])) {
      Calendar on the website to verify the schedule.<br>$actLink<br></strong>";
 
      $emailBody .= "
-   We have attached a PDF that is an introduction to the website.
+   We have attached a PDF that is an guide to the website.
    The website shows Classes, Dances, and other events. Your login credentials will be either: 
     <b>your email
      <em>or</em>  
@@ -183,7 +185,7 @@ if (isset($_POST['submitAddUser'])) {
      $emailBody .= "Nan Kartsonis, Vice President<br>"; 
      $emailBody .= "Roger Shamburg, Treasurer<br>";
      $emailBody .= "Sheila Honey, Secretary<br>";
-     $emailBody .= "Ann Pizzitola, Director of Dance Instruction <br>";
+     $emailBody .= "Ann and Dale Pizzitola, Directors of Dance Instruction <br>";
      $emailBody .= "Rick Baumgartner, Director of DJs<br>";
 
 

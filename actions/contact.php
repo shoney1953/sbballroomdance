@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
         $emailBody = "<br>We would love to have <b>you, $toName </b>, as a new member to our club.<br>
         Please see attached membership form if you are interested in joining.<br>";
     } else {
-        $mailAttachment = "../img/Intro.pdf"; 
+        $mailAttachment = '../img/Member Guide to Website Version 2.pdf'; 
         $emailBody = "<br>$toName </b>, thanks for being a member of our club<br>
         We'll try to get back to you to answer your concern as soon as possible.<br>
         If you need website help please refer to help section 

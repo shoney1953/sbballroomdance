@@ -386,8 +386,16 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     <h1 style="text-align: center; margin-top: 40px; color:white">Administrative Functions for SaddleBrooke Ballroom Dance Club</h1>
     <br>
     </div>
-    
+
 <?php
+    echo '<div class="container-section ">';
+    echo '<section  class="content">';
+    echo '<br>';
+    echo '<h4><a href="https://drive.google.com/file/d/1R7kQMmGTbadaz_0ekPAIQXOrYvo0Mut8/view?usp=sharing">Click for Administrators Guide</a></h4>';
+    echo '<br>';
+    echo '</div>';
+    echo '</div>';
+
     if ($_SESSION['role'] != 'INSTRUCTOR') {
 
     echo '<div class="container-section ">';

@@ -709,8 +709,8 @@ if (isset($_SESSION['username'])) {
         <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Website Help">
                 webmaster@sbballroomdance.com</a> listed in the about section or
             read the introduction to the website PDF below.<br>
-            <a href="https://drive.google.com/file/d/1UsEnVCytYHFuoEIlworrTg049jIzV2H6/view?usp=sharing">
-                Click for the Introduction PDF
+            <a href="https://drive.google.com/file/d/1wbiW8gOqQ-rM9dpyz7p9qIBHKX_2WvDQ/view?usp=sharing">
+                Click for the Member's Guide to the Website
             </a>
         </p><br><br>
     </section>

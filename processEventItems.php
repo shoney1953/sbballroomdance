@@ -262,46 +262,33 @@ echo '</form>';
       echo '</form>';
       echo '<br>';
   }
+
   if ($duplicateEvent) {
-   
-    echo "<h4>Duplicate this event</h4>";
+
+    echo '<div class="form-container">';
     echo '<form method="POST" action="addEvent.php">';
-    echo '<table>' ;
-    echo '<thead>';
-    echo '<tr>';
-
-    echo '<th>Name</th>';  
-    echo '<th>Description</th>';
-    echo '<th>Type</th>';
-    echo '<th>Room</th>';
-    echo '<th>Date</th>';
-    echo '</tr><tr>';
-    echo '<th>DJ</th>';
-    echo '<th>Cost</th>';
-
-
-    echo '</tr>';
-    echo '</thead>';
-    echo '<tbody>';
-
+    echo "<h4 class='form-title'>Duplicate this event</h4>";
+    echo '<div class="form-grid">';
     foreach ($allEvents as $event) {
       $dpChk = "dp".$event['id'];
       if (isset($_POST["$dpChk"])) {
-   
-          echo '<tr>';
-   
-          echo "<td><input type='text' name='eventname' value='".$event['eventname']."' 
-                title='Enter the Name of the Event'></td>";
-          echo "<td><input type='text' class='text-large' name='eventdesc' 
-                value='".$event['eventdesc']."' title='Enter the Description of the Event'></td>";
-          echo "<td>";
-          echo "<select  title='Select the type of Event' name = 'eventtype' ";
-             echo '<br>';
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Event Name</h4>";
+          echo "<input type='text' name='eventname' value='".$event['eventname']."' 
+                title='Enter the Name of the Event'>";
+          echo '</div>';
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Event Description</h4>";
+          echo "<input type='text' class='text-large' name='eventdesc' 
+                value='".$event['eventdesc']."' title='Enter the Description of the Event'>";
+          echo '</div>';
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Event Type</h4>";
+          echo "<select  title='Select the type of Event' name = 'eventtype'> ";
+          
             if ($event['eventtype'] == 'Novice Practice Dance') {
-           
               echo "<option value = 'Novice Practice Dance' selected>Novice Practice Dance </option>";
             } else {
-             
               echo "<option value = 'Novice Practice Dance'>Novice Practice Dance</option>";
             }
             if ($event['eventtype'] == 'Dance') {
@@ -329,30 +316,39 @@ echo '</form>';
             } else {
               echo "<option value = 'Meeting'>Meeting</option>";
             }
-          echo " </select> </td>";
-   
-          echo "<td><input type='text' name='eventroom' value='".$event['eventroom']."' 
-              title='Enter the Room Where the Event will Occur'></td>";
+          echo " </select>";
+          echo '</div>';
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Event Room</h4>";
+          echo "<input type='text' name='eventroom' value='".$event['eventroom']."' 
+              title='Enter the Room Where the Event will Occur'>";
+          echo '</div>';
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Event Date</h4>";
           echo "<td><input type='date' name='eventdate' value='".$event['eventdate']."' 
               title='Select the Date of the Event' ></td>";
-          echo '</tr><tr>';
-      
-          echo "<td><input type='text' name='eventdj' value='".$event['eventdj']."' 
-              title='Enter the DJ for the Event' ></td>";
-          echo "<td><input type='text' class='text-small' name='eventcost' value='".$event['eventcost']."' 
-              title='Enter the Event Cost if any' ></td>";
-        
+          echo '</div>';
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Event DJ</h4>";
+          echo "<input type='text' name='eventdj' value='".$event['eventdj']."' 
+              title='Enter the DJ for the Event' >";
+          echo '</div>';
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Event Cost</h4>";
+          echo "<input type='text' class='text-small' name='eventcost' value='".$event['eventcost']."' 
+              title='Enter the Event Cost if any' >";
+          echo '</div>';
+       
 
-          echo '</tr>';
-          echo '</tbody>';
-      echo '</table><br>';
-      echo '<button type="submit" name="submitAdd">Add a New Event</button><br>';
-      echo '</form>';
-      echo '<br>';
-          break;
+          break; // break out of for each loop after 1 found
       }
       
+    
 }
+      echo '</div>'; // end form grid
+      echo '<button type="submit" name="submitAdd">Add a New Event</button><br>';
+      echo '</form>';
+      echo '</div>'; // end form container  
   }
     // 
   // $redirect = "Location: ".$_SESSION['adminurl']."#events";

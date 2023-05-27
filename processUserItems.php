@@ -35,7 +35,7 @@ $users = $_SESSION['process_users'];
             $rpwd2ID = "rpwd2".$usr['id'];
             if (isset($_POST["$upChk"])) {
                 echo '<div class="form-container">';
-                echo "<h4 class='form-title'>".$usr['firstname']." ".$usr['lastname']." --   User ID: ".$usr['id']."</h4>";
+                echo "<h4 class='form-title'>".$usr['firstname']." ".$usr['lastname']." --   Member ID: ".$usr['id']."</h4>";
                 echo '<div class="form-grid">';
 
 
@@ -154,7 +154,7 @@ $users = $_SESSION['process_users'];
     
         }
 
-        echo '<button type="submit" name="submitUpdateUser">Update the User(s)</button><br>';
+        echo '<button type="submit" name="submitUpdateUser">Update the Member(s)</button><br>';
         echo '</form>';
         echo '</div>';
   }
@@ -164,7 +164,7 @@ $users = $_SESSION['process_users'];
   
 
  if ($archiveUser) {
-  echo "<h4>Archiving Users</h4>";
+  echo "<h4>Archiving Members</h4>";
 
  
   echo '<form method="POST" action="deleteUser.php">';
@@ -177,7 +177,7 @@ $users = $_SESSION['process_users'];
   if (isset($_POST["$arChk"])) {
    
         echo '<div class="form-container">';
-        echo "<h4 class='form-title'>".$usr['firstname']." ".$usr['lastname']." --   User ID: ".$usr['id']."</h4>";
+        echo "<h4 class='form-title'>".$usr['firstname']." ".$usr['lastname']." --   Member ID: ".$usr['id']."</h4>";
         echo '<div class="form-grid">';
 
 
@@ -209,7 +209,7 @@ $users = $_SESSION['process_users'];
     }
     
 }
-echo '<button type="submit" name="submitArchiveUser">Archive the User(s)</button><br>';
+echo '<button type="submit" name="submitArchiveUser">Archive the Member(s)</button><br>';
 echo '</form>';
 
 echo '</div>';

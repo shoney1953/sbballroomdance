@@ -49,30 +49,10 @@ if ($reportClass) {
   }
   if ($updateClass) {
    
-    echo "<h4>Updating Selected Classes</h4>";
+    echo '<div class="form-container">';
     echo '<form method="POST" action="updateClass.php">';
-    echo '<table>' ;
-    echo '<thead>';
-    echo '<tr>';
-    echo '<th>Update</th>';
-    echo '<th>Name</th>';  
-    echo '<th>Level</th>';
-    echo '<th>Room</th>';
-    echo '<th>Start<br>Date</th>';
-    echo '<th>Start<br>Time</th>';
-    
-    echo '</tr><tr>';
-    echo '<th></th>'; 
-    echo '<th>Instructor(s)</th>';
-    echo '<th>Reg Email</th>';
-    echo '<th>Limit</th>';
-    echo '<th># Reg</th>';
-    echo "<th colspan=>Class Notes</th>";
-
-    echo '</tr>';
-    echo '</thead>';
-    echo '<tbody>';
-
+    echo "<h4 class='form-title'>Updating Selected Classes</h4>";
+   
     foreach ($allClasses as $class) {
    
       $upChk = "up".$class['id'];
@@ -89,14 +69,20 @@ if ($reportClass) {
        $clnumregID = "clnumreg".$class['id'];
        $cllimitID = "cllimit".$class['id'];
        $clidID = "clid".$class['id'];
-          echo '<tr>';
-          echo "<td><input type='checkbox' name='".$clSelectChk."' title='Check this box to update'></td>";
-          echo "<td><input type='text' name='".$clnamID."' value='".$class['classname']."' 
-                title='Enter the Name of the Class'></td>";
-      
-          echo "<td>";
-          echo "<select  title='Select the Level of Class' name = '".$cllevelID."' ";
-             echo '<br>';
+       echo '<div class="form-grid">';
+       echo '<div class="form-item">';
+       echo "<h4 class='form-item-title'>Update?</h4>";
+          echo "<input type='checkbox' name='".$clSelectChk."' title='Check this box to update'>";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Name</h4>";
+          echo "<input type='text' name='".$clnamID."' value='".$class['classname']."' 
+                title='Enter the Name of the Class'>";
+          echo '</div>';
+          echo '<div class="form-item">';
+                echo "<h4 class='form-item-title'>Class Name</h4>";
+          echo "<select  title='Select the Level of Class' name = '".$cllevelID."'> ";
+   
              if ($class['classlevel'] == 'Novice') {
               echo '<option value = "Novice" selected>Novice </option>';
           } else {
@@ -123,38 +109,57 @@ if ($reportClass) {
               echo '<option value = "Advanced">Advanced</option>';
           }
   
-          echo " </select> </td>";
-   
-          echo "<td><input type='text' name='".$clroomID."' value='".$class['room']."' 
-              title='Enter the Room Where the Class will Occur'></td>";
-          echo "<td><input type='date' name='".$cldateID."' value='".$class['date']."' 
-              title='Select the Start Date of the Class' ></td>";     
-          echo "<td><input type='time' name='".$cltimeID."' value='".$class['time2']."' 
-              title='Select the Start Time of the Class' ></td>";
-         
-         
-          echo '</tr><tr>';
-          echo '<td></td>';
-          echo "<td><input type='text' name='".$clinstructorsID."' value='".$class['instructors']."' 
-          title='Enter the Instructor(s) Name(s)' ></td>";
-          echo "<td><input type='email' name='".$clregemailID."' value='".$class['registrationemail']."' 
-          title='Enter the Registration Email' ></td>";
-          echo "<td><input type='number' class='number-small' name='".$cllimitID."' 
-                value='".$class['classlimit']."' title='Enter the Class Limit'></td>";
-          echo "<td><input type='number' class='number-small' name='".$clnumregID."' 
-                value='".$class['numregistered']."' title='Update the Number Registered'></td>";
-          echo "<td>";
+          echo " </select>";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Room</h4>";
+          echo "<input type='text' name='".$clroomID."' value='".$class['room']."' 
+              title='Enter the Room Where the Class will Occur'>";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Date</h4>";
+          echo "<input type='date' name='".$cldateID."' value='".$class['date']."' 
+              title='Select the Start Date of the Class' >";  
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Time</h4>";   
+          echo "<input type='time' name='".$cltimeID."' value='".$class['time2']."' 
+              title='Select the Start Time of the Class' >";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Instructors</h4>";
+          echo "<input type='text' name='".$clinstructorsID."' value='".$class['instructors']."' 
+          title='Enter the Instructor(s) Name(s)' >";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Registration Email</h4>";
+          echo "<input type='email' name='".$clregemailID."' value='".$class['registrationemail']."' 
+          title='Enter the Registration Email' >";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Limit</h4>";
+          echo "<input type='number' class='number-small' name='".$cllimitID."' 
+                value='".$class['classlimit']."' title='Enter the Class Limit'>";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class # Reg</h4>";
+          echo "<input type='number' class='number-small' name='".$clnumregID."' 
+                value='".$class['numregistered']."' title='Update the Number Registered'>";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Notes</h4>";
           echo "<textarea title='Enter Notes About the Class' name='".$clnotesID."' cols='100' rows='3' >".$class['classnotes']."</textarea>";
-          echo "</td>";
+          echo '</div>';
+
           echo "<input type='hidden' name='".$clidID."' value='".$class['id']."'>";
-          echo '</tr>';
+          echo '</div>';
       }
   
 }
-echo '</tbody>';
-echo '</table>';  
+ 
 echo '<button type="submit" name="submitUpdate">Update the Class(s)</button><br>';
 echo '</form>';
+echo '</div>';
   }
 if ($deleteClass) {
 
@@ -245,33 +250,16 @@ echo '</form>';
   }
   if ($duplicateClass) {
    
-    echo "<h4>Duplicate this Class</h4>";
+   
+    echo '<div class="form-container">';
+    echo "<h4 class='form-title'>Duplicate this Class</h4>";
     echo '<form method="POST" action="addClass.php">';
-    echo '<table>' ;
-    echo '<thead>';
-    echo '<tr>';
-    echo '<th>Duplicate</th>';
-    echo '<th>Name</th>';  
-    echo '<th>Level</th>';
-    echo '<th>Room</th>';
-    echo '<th>Start<br>Date</th>';
-    echo '<th>Start<br>Time</th>';  
-    echo '</tr><tr>';
-    echo '<th></th>'; 
-    echo '<th>Instructor(s)</th>';
-    echo '<th>Reg Email</th>';
-    echo '<th>Limit</th>';
-    echo '<th># Reg</th>';
-    echo "<th colspan=>Class Notes</th>";
-
-    echo '</tr>';
-    echo '</thead>';
-    echo '<tbody>';
+    echo '<div class="form-grid">';
     foreach ($allClasses as $class) {
    
       $dpChk = "dp".$class['id'];
       if (isset($_POST["$dpChk"])) {
-        
+  
        $clSelectChk = "clselect".$class['id'];
        $clnamID = "clnam".$class['id'];
        $cllevelID = "cllevel".$class['id'];
@@ -284,15 +272,20 @@ echo '</form>';
        $clnumregID = "clnumreg".$class['id'];
        $cllimitID = "cllimit".$class['id'];
        $clidID = "clid".$class['id'];
-          echo '<tr>';
-
-          echo "<td><input type='checkbox' name='".$clSelectChk."' title='Check this box to update'></td>";
-          echo "<td><input type='text' name='".$clnamID."' value='".$class['classname']."' 
-                title='Enter the Name of the Class'></td>";
-          echo "<td>";
-          echo "<select  title='Select the Level of Class' name = '".$cllevelID."' ";
-             echo '<br>';
-             if ($class['classlevel'] == 'Novice') {
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Duplicate?</h4>";
+          echo "<input type='checkbox' name='".$clSelectChk."'>"; 
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Name</h4>";
+          echo "<input type='text' name='".$clnamID."' value='".$class['classname']."' 
+                title='Enter the Name of the Class'>";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Level</h4>";
+          echo "<select  title='Select the Level of Class' name = '".$cllevelID."'> ";
+       
+          if ($class['classlevel'] == 'Novice') {
               echo '<option value = "Novice" selected>Novice </option>';
           } else {
               echo '<option value = "Novice">Novice </option>';
@@ -318,40 +311,60 @@ echo '</form>';
               echo '<option value = "Advanced">Advanced</option>';
           }
   
-          echo " </select> </td>";
-   
-          echo "<td><input type='text' name='".$clroomID."' value='".$class['room']."' 
-              title='Enter the Room Where the Class will Occur'></td>";
-          echo "<td><input type='date' name='".$cldateID."' value='".$class['date']."' 
-              title='Select the Start Date of the Class' ></td>";     
-          echo "<td><input type='time' name='".$cltimeID."' value='".$class['time2']."' 
-              title='Select the Start Time of the Class' ></td>";
-         
-         
-          echo '</tr><tr>';
-          echo '<td></td>';
-          echo "<td><input type='text' name='".$clinstructorsID."' value='".$class['instructors']."' 
-          title='Enter the Instructor(s) Name(s)' ></td>";
-          echo "<td><input type='email' name='".$clregemailID."' value='".$class['registrationemail']."' 
-          title='Enter the Registration Email' ></td>";
-          echo "<td><input type='number' class='number-small' name='".$cllimitID."' 
-                value='".$class['classlimit']."' title='Enter the Class Limit'></td>";
-          echo "<td><input type='number' class='number-small' name='".$clnumregID."' 
-                value='".$class['numregistered']."' title='Update the Number Registered'></td>";
-          echo "<td>";
+          echo " </select>";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Room</h4>";
+          echo "<input type='text' name='".$clroomID."' value='".$class['room']."' 
+              title='Enter the Room Where the Class will Occur'>";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Date</h4>";
+          echo "<input type='date' name='".$cldateID."' value='".$class['date']."' 
+              title='Select the Start Date of the Class' >";    
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Time</h4>"; 
+          echo "<input type='time' name='".$cltimeID."' value='".$class['time2']."' 
+              title='Select the Start Time of the Class' >";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Instructor(s)</h4>";
+ 
+          echo "<input type='text' name='".$clinstructorsID."' value='".$class['instructors']."' 
+          title='Enter the Instructor(s) Name(s)' >";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Registration Email</h4>";
+          echo "<input type='email' name='".$clregemailID."' value='".$class['registrationemail']."' 
+          title='Enter the Registration Email' >";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Limit</h4>";
+          echo "<input type='number' class='number-small' name='".$cllimitID."' 
+                value='".$class['classlimit']."' title='Enter the Class Limit'>";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class #Registered</h4>";
+          echo "<input type='number' class='number-small' name='".$clnumregID."' 
+                value='".$class['numregistered']."' title='Update the Number Registered'>";
+                echo '</div>';
+                echo '<div class="form-item">';
+                echo "<h4 class='form-item-title'>Class Notes</h4>";
           echo "<textarea title='Enter Notes About the Class' name='".$clnotesID."' cols='100' rows='3' >".$class['classnotes']."</textarea>";
-          echo "</td>";
+          echo '</div>';
+
           echo "<input type='hidden' name='".$clidID."' value='".$class['id']."'>";
-          echo '</tr>';
-          echo '</tbody>';
-          echo '</table><br>';
-          echo '<button type="submit" name="submitAdd">Add a New Class</button><br>';
-          echo '</form>';
-          echo '<br>';
+          
+          echo '</div>';
               break;
-      }
 
       }
+     
+      }
+      echo '<button type="submit" name="submitAdd">Add a New Class</button><br>';
+      echo '</form>';
+      echo '</div>';
     }   
 
     // 

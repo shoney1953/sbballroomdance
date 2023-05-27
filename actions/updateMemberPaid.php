@@ -74,7 +74,7 @@ function sendThanks($memStat,$userEmail) {
        Click to view Activities Calendar</a><br>";
        $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
-       $mailAttachment = "../img/Intro.pdf"; 
+       $mailAttachment = "../img/Member Guide to Website Version 2.pdf"; 
        $fromCC = "webmaster@sbballroomdance.com";
        $emailBody = "<br>Welcome renewing member <b>$toName </b>
        to the SaddleBrooke Ballroom Dance Club.<br><br>";
