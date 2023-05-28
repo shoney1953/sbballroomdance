@@ -825,6 +825,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo "<button type='submit' name='updateMemPaid'>UPDATE MEMBERSHIP: ".$thisYear."</button>"; 
             echo '</form>';
         echo '</div>';
+        echo '<div class="form-grid-div">';
         echo '<form method="POST" action="actions/updateMemberPaid.php">';
         echo '<table>';
         echo '<thead>';

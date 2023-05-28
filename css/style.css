@@ -591,9 +591,10 @@ td input[type="select"] {
 .form-grid3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  gap: 8px;
   grid-auto-rows: minmax(100px, auto);
   /* border: 1px dashed rgb(91, 2, 129); */
+
   border-radius: 5px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -823,7 +824,7 @@ iframe {
   .form-grid3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+    gap: 8px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
     margin-top: 10px;
@@ -1042,7 +1043,7 @@ iframe {
   .form-grid3 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
+    gap: 8px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
     margin-top: 10px;
@@ -1284,7 +1285,7 @@ iframe {
   .form-grid3 {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 2px;
+    gap: 4px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
     margin-top: 10px;
