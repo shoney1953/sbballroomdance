@@ -45,6 +45,18 @@ class User {
 
       return $stmt;
     }
+    public function readByCreated() {
+      // Create query
+      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY created DESC, lastname, firstname ';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
     public function readByLogin() {
       // Create query
       $query = 'SELECT * FROM ' . $this->table . ' ORDER BY lastLogin DESC, lastname, firstname ';
