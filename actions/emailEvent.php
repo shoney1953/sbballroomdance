@@ -69,6 +69,8 @@ if (isset($_POST['submitEventEmail'])) {
              'name' => $reg_item['firstname'].' '.$reg_item['lastname']);
         } // end while
       $replyEmail = htmlentities($_POST['replyEmail']);
+      $toCC2 = htmlentities($_POST['replyEmail']); 
+
       $emailText = strip_tags($_POST['emailBody']);
       $emailText = htmlentities($emailText);
     

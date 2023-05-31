@@ -11,7 +11,7 @@ $db = $database->connect();
 $classReg = new ClassRegistration($db);
 $danceClass = new DanceClass($db);
 $regs = $_SESSION['classRegistrations'];
-var_dump($regs);
+
 if (isset($_POST['submitDeleteReg'])) {
   foreach ($regs as $reg) {
 

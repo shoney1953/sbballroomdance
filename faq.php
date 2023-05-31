@@ -18,12 +18,15 @@
     </ul>
      </div>
 </nav>  
-
+<div class="container">
+  <br><br>
+<h1 style="text-align: center">Frequently Asked Questions</h1>
+<div class="form-grid2">
 
 <div class="content-faq">
 
-<h1>Frequently Asked Questions</h1>
-    <br><br>
+
+   
   
         <div class="dropdown">
          <span class="faq-title">Why should I become a member?</span>
@@ -120,6 +123,31 @@
         </p>
         </div> 
       </div> 
+</div>
+
+<div class="content-faq">
+<div class="dropdown">
+      <span class="faq-title">What Are Dance Events?</span>
+        <div class="dropdown-content">
+        <p>Dances are events that are simply dances with a no host bar in the MountainView Ballroom. 
+          Doors normally open at 6pm and the Dance ends at 8pm. We ask that you register by emailing countmein@sbballroomdance.com or registering on the website 
+          so we can have the ballroom staff set up the right number of tables.
+        </p>
+        
+        </div> 
+      </div> 
+<div class="dropdown">
+      <span class="faq-title">What Are Dinner Dance Events?</span>
+        <div class="dropdown-content">
+        <p>Dinner Dances are events that provide a plated dinner in the MountainView Ballroom followed by a dance. There is a no host bar available as well. 
+          Doors normally open at 5pm followed by the meal at 5:30pm. Unlike Dine and Dance, attending the dance portion alone is not allowed unless you've paid for the dinner. 
+        </p>
+        <p>
+          There will be a form with a selection of meals and prices prior to the dance. 
+          The form with meal selections and appropriate payment must be filled in and sent to Treasurer prior to the deadline. 
+        </p>
+        </div> 
+      </div> 
       <div class="dropdown">
       <span class="faq-title">What Are Dine and Dance Events?</span>
         <div class="dropdown-content">
@@ -130,18 +158,6 @@
         <p>
         You can register by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Dine and Dance Info">
                        countmein@sbballroomdance.com</a> or on the website.
-        </p>
-        </div> 
-      </div> 
-      <div class="dropdown">
-      <span class="faq-title">What Are Dinner Dance Events?</span>
-        <div class="dropdown-content">
-        <p>Dinner Dances are events that provide a plated dinner in the MountainView Ballroom followed by a dance. There is a no host bar available as well. 
-          Doors normally open at 5pm followed by the meal at 5:30pm. Unlike Dine and Dance, attending the dance portion alone is not allowed unless you've paid for the dinner. 
-        </p>
-        <p>
-          There will be a form with a selection of meals and prices prior to the dance. 
-          The form with meal selections and appropriate payment must be filled in and sent to Treasurer prior to the deadline. 
         </p>
         </div> 
       </div> 
@@ -180,12 +196,11 @@
         </ul>
         </div> 
       </div> 
-    </div>
-    </div>
-
 </div>
 </div>
-
+</div>
+</div>
+</div>
 <?php
   include 'footer.php';
 ?>

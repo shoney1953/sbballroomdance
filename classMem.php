@@ -57,6 +57,14 @@ if ($rowCount > 0) {
         
      <ul> 
     <li><a href="index.php">Back to Home</a></li>
+    <?php
+    if (isset($_SESSION['role'])) {
+        if (($_SESSION['role'] != 'MEMBER') && ($_SESSION['role'] != 'visitor') ) {
+        echo '<li><a href="administration.php">Back to Administration</a></li>';
+        }
+    }
+    ?>
+
      </ul>
     </div>
 </nav>
