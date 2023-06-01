@@ -193,9 +193,10 @@ hr {
 
 }
 .faq-title {
-  font-weight: 500;
+  font-weight: bold;
   font-size: 24px;
   text-align: left;
+  text-decoration: underline;
 }
 .motto-font {
   font-family: "Dancing Script", cursive;
