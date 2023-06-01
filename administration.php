@@ -649,60 +649,47 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
 
  
     if ($_SESSION['role'] === 'SUPERADMIN') {
-  
         echo "<div class='container-section' name='users'>  <br><br>";
-       
         echo '<section id="users"  class="content">';
         echo ' <h3 class="section-header">Maintain Members</h3> ';
-
         echo '<div class="form-grid2">';
-        
             echo "<div class='form-grid-div'>";
             echo "<form method='POST' action='actions/maintainUser.php'>"; 
             echo "<button type='submit' name='submitAddUser'>Add a New Member</button>";   
             echo '</form>'    ;   
             echo '</div> ';   
             echo '</div> ';  
-
             echo '<div class="form-grid4">';
-         
-   
             echo '<div class="form-grid-div">';
             echo '<form target="_blank" method="POST" action="actions/reportUser.php">'; 
             echo '<button type="submit" name="submitUserRep">Report Members</button>';   
             echo '</form>';
             echo '</div> '; 
             /* */
-
             echo '<div class="form-grid-div">';
             echo '<form target="_blank" method="POST" action="actions/reportUserByMonth.php">'; 
             echo '<button type="submit" name="submitUserRep">Report Members By Create Date</button>';   
             echo '</form>';
             echo '</div> '; 
             /* */
-
             echo '<div class="form-grid-div">';
             echo '<form target="_blank" method="POST" action="actions/reportInstructors.php">'; 
             echo '<button type="submit" name="submitInstructorRep">Report Instructors</button>';   
             echo '</form>';
             echo '</div> '; 
             /* */
-
             echo '<div class="form-grid-div">';
             echo '<form target="_blank" method="POST" action="actions/reportUsage.php">'; 
             echo '<button type="submit" name="submitUsageRep">Report Member Usage</button>';   
             echo '</form>'    ;          
             echo '</div> ';   
-           
-    
-      
+
    
             echo '</div>';
         /* */
         echo '<div class="form-grid3">';
         echo '<form  method="POST" action="actions/searchUser.php" >';
         echo '<div class="form-grid-div">';
-    
         echo '<button type="submit" name="searchUser">Search Criteria to Qualify Members for Maintenance</button>'; 
         echo '<input type="text" title="Enter Full or Partial Name or Email to Search." name="search" >';
         echo '</div>';
