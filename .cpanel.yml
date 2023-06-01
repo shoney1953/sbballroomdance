@@ -12,7 +12,7 @@ deployment:
     - /bin/cp create.php $DEPLOYPATH
     - /bin/cp event.php $DEPLOYPATH
     - /bin/cp eventMem.php $DEPLOYPATH
-    - /bin/cp faq.php $DEPLOYPAT
+    - /bin/cp faq.php $DEPLOYPATH
     - /bin/cp favicon.ico $DEPLOYPATH
     - /bin/cp footer.php $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
