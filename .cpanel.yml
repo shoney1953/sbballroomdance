@@ -5,24 +5,23 @@ deployment:
     - /bin/cp _.sbballroomdance.com.pem.txt $DEPLOYPATH
     - /bin/cp administration.php $DEPLOYPATH
     - /bin/cp archives.php $DEPLOYPATH
+    - /bin/cp checkout.html $DEPLOYPATH
     - /bin/cp class.php $DEPLOYPATH
     - /bin/cp classEmail.php $DEPLOYPATH
     - /bin/cp classMem.php $DEPLOYPATH
     - /bin/cp create.php $DEPLOYPATH
     - /bin/cp event.php $DEPLOYPATH
     - /bin/cp eventMem.php $DEPLOYPATH
-    - /bin/cp footer.php $DEPLOYPATH
+    - /bin/cp faq.php $DEPLOYPAT
     - /bin/cp favicon.ico $DEPLOYPATH
-    - /bin/cp faq.php $DEPLOYPATH
+    - /bin/cp footer.php $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
     - /bin/cp joinUsNow.php $DEPLOYPATH
     - /bin/cp login.php $DEPLOYPATH
     - /bin/cp logout.php $DEPLOYPATH
     - /bin/cp member.php $DEPLOYPATH
-    - /bin/cp processClasses.php $DEPLOYPATH
     - /bin/cp processClassItems.php $DEPLOYPATH
     - /bin/cp processClassRegs.php $DEPLOYPATH
-    - /bin/cp processEvents.php $DEPLOYPATH
     - /bin/cp processEventItems.php $DEPLOYPATH
     - /bin/cp processEventRegs.php $DEPLOYPATH
     - /bin/cp processUserItems.php $DEPLOYPATH
