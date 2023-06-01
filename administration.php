@@ -417,8 +417,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         $urChk = "ur".$event['id'];
  
         $mbSrch = "srch".$event['id'];
-        $class_month = substr($row['date'], 5, 2);
-        $class_year = substr($row['date'], 0, 4);
+        $class_month = substr($event['date'], 5, 2);
+        $class_year = substr($event['date'], 0, 4);
         $showReg = 0;
         echo '<div class="form-container">';
         echo '<div class="form-grid">';
