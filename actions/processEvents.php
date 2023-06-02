@@ -289,7 +289,7 @@ $_SESSION['regUsers'] = $users;
         <div class="container">
         
         <ul>
-            <li><a href="../administration#events.php">Back to Events</a></li>
+            <li><a href="../administration.php">Back to Administration</a></li>
         </ul>
         </div>
 </nav>

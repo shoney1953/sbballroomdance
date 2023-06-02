@@ -282,7 +282,7 @@ $_SESSION['regUsers'] = $users;
         <div class="container">
         
         <ul>
-            <li><a href="../administration#classes.php">Back to Classes</a></li>
+            <li><a href="../administration.php">Back to administration</a></li>
         </ul>
         </div>
     </nav>

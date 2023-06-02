@@ -106,7 +106,7 @@ if ($addReg) {
         echo '<tr>';
         echo "<td><input title='Enter Visitor First Name' type='text' name='firstname2'></td>";
         echo "<td><input title='Enter Visitor Last Name' type='text' name='lastname2'></td>";
-        echo "<td><input type='email' name='email2' required></td>";
+        echo "<td><input type='email' name='email2' ></td>";
        
         echo "<td> <textarea  title='Enter any notes about the visitor registration' name='notes2' rows='5' cols='50'></textarea></td>";
         echo '</tr>';

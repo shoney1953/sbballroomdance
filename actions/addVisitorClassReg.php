@@ -53,21 +53,21 @@ $webLink
 if (isset($_POST['submitAddVisitorReg'])) {
  
     $classReg->classid = $_POST['classid'];
-    $classReg->firstname = $_POST['firstname'];
-    $classReg->lastname = $_POST['lastname'];
-    $classReg->email = $_POST['email'];
+    $classReg->firstname = $_POST['firstname1'];
+    $classReg->lastname = $_POST['lastname1'];
+    $classReg->email = $_POST['email1'];
     $classReg->paid = 0;
     $classReg->userid = 0;
     $result = $classReg->checkDuplicate($classReg->email, $classReg->classid );
     if (!$result) {
     $classReg->classid = $_POST['classid'];
     $classReg->classid = $_POST['classid'];
-    $classReg->firstname = $_POST['firstname'];
-    $classReg->lastname = $_POST['lastname'];
-    $classReg->email = $_POST['email'];
+    $classReg->firstname = $_POST['firstname1'];
+    $classReg->lastname = $_POST['lastname1'];
+    $classReg->email = $_POST['email1'];
     $classReg->paid = 0;
     $classReg->userid = 0;
-    var_dump($classReg);
+
     $classReg->create();
     $class->addCount($classReg->classid);
     $class->id = $classReg->classid;
@@ -83,28 +83,28 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $emailBody .= "<br>We hope you'll enjoy your experience and consider joining our club.<br>";
     $replyEmail = $class->registrationemail;
     /* assume not a member so add to visitor file */
-    $visitor->email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL); 
-    $visitor->firstname = $_POST['firstname'];
-    $visitor->lastname = $_POST['lastname'];
-    $visitor->notes = $_POST['notes'];
+    $visitor->email = filter_var($_POST['email1'], FILTER_SANITIZE_EMAIL); 
+    $visitor->firstname = $_POST['firstname1'];
+    $visitor->lastname = $_POST['lastname1'];
+    $visitor->notes = $_POST['notes1'];
     if ($visitor->read_ByEmail($visitor->email)) {
-        $visitor->firstname = $_POST['firstname'];
-        $visitor->lastname = $_POST['lastname'];
-        $visitor->notes = $_POST['notes'];
+        $visitor->firstname = $_POST['firstname1'];
+        $visitor->lastname = $_POST['lastname1'];
+        $visitor->notes = $_POST['notes1'];
         $visitor->update($visitor->email);
     } else {
-        echo 'visitor not found',$visitor->email,"<br>>";
-        $visitor->email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL); 
-        $visitor->firstname = $_POST['firstname'];
-        $visitor->lastname = $_POST['lastname'];
-        $visitor->notes = $_POST['notes'];
+      
+        $visitor->email = filter_var($_POST['email1'], FILTER_SANITIZE_EMAIL); 
+        $visitor->firstname = $_POST['firstname1'];
+        $visitor->lastname = $_POST['lastname1'];
+        $visitor->notes = $_POST['notes1'];
         $visitor->create();
     }
  
     /* send email */
-    $regFirstName1 = htmlentities($_POST['firstname']);
-    $regLastName1 = htmlentities($_POST['lastname']);
-    $regEmail1 = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $regFirstName1 = htmlentities($_POST['firstname1']);
+    $regLastName1 = htmlentities($_POST['lastname1']);
+    $regEmail1 = filter_var($_POST['email1'], FILTER_SANITIZE_EMAIL);
   
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
         $regName1 = $regFirstName1.' '.$regLastName1;
@@ -120,15 +120,97 @@ if (isset($_POST['submitAddVisitorReg'])) {
             $mailAttachment,
             $toCC2
         );
+
     } else {
         echo 'Visitor Email is empty or Invalid. Please enter valid email.';
     }
   } // duplicate registration
-}  
+
+  // ** check on visitor 2 //
+  if (isset($_POST['email2'])) {
+    $emailBody = "Thanks for registering for the following classes:<br>";
+    $classReg->classid = $_POST['classid'];
+    $classReg->firstname = $_POST['firstname2'];
+    $classReg->lastname = $_POST['lastname2'];
+    $classReg->email = $_POST['email2'];
+    $classReg->paid = 0;
+    $classReg->userid = 0;
+    $result = $classReg->checkDuplicate($classReg->email, $classReg->classid );
+    if (!$result) {
+    $classReg->classid = $_POST['classid'];
+    $classReg->classid = $_POST['classid'];
+    $classReg->firstname = $_POST['firstname2'];
+    $classReg->lastname = $_POST['lastname2'];
+    $classReg->email = $_POST['email2'];
+    $classReg->paid = 0;
+    $classReg->userid = 0;
+
+    $classReg->create();
+    $class->addCount($classReg->classid);
+    $class->id = $classReg->classid;
+    $class->read_single();
+    $emailBody .= "You are registered as a visitor for: <br>";
+    $emailBody .= "<br> ".$class->classlevel."  ".$class->classname.
+                "<br>   Instructor(s):   ".$class->instructors.
+                "<br>   Registration Email:   ".$class->registrationemail.
+                "<br>   Room:    ".$class->room.
+                "<br>   Beginning on date:    ".date('M d Y',strtotime($class->date)).
+                "<br>  Time: ".date('h:i:s A', strtotime($class->time))."<br>"; 
+    $emailBody .= "<br>If you need to communicate with the instructor(s), please use the registration email.<br>";
+    $emailBody .= "<br>We hope you'll enjoy your experience and consider joining our club.<br>";
+    $replyEmail = $class->registrationemail;
+    /* assume not a member so add to visitor file */
+    $visitor->email = filter_var($_POST['email2'], FILTER_SANITIZE_EMAIL); 
+    $visitor->firstname = $_POST['firstname2'];
+    $visitor->lastname = $_POST['lastname2'];
+    $visitor->notes = $_POST['notes2'];
+    if ($visitor->read_ByEmail($visitor->email)) {
+        $visitor->firstname = $_POST['firstname2'];
+        $visitor->lastname = $_POST['lastname2'];
+        $visitor->notes = $_POST['notes2'];
+        $visitor->update($visitor->email);
+    } else {
+       
+        $visitor->email = filter_var($_POST['email2'], FILTER_SANITIZE_EMAIL); 
+        $visitor->firstname = $_POST['firstname2'];
+        $visitor->lastname = $_POST['lastname2'];
+        $visitor->notes = $_POST['notes2'];
+        $visitor->create();
+    }
+ 
+    /* send email */
+    $regFirstName1 = htmlentities($_POST['firstname2']);
+    $regLastName1 = htmlentities($_POST['lastname2']);
+    $regEmail1 = filter_var($_POST['email2'], FILTER_SANITIZE_EMAIL);
+  
+    if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
+        $regName1 = $regFirstName1.' '.$regLastName1;
+        sendEmail(
+            $regEmail1, 
+            $regName1, 
+            $fromCC,
+            $fromEmailName,
+            $emailBody,
+            $emailSubject,
+            $replyEmail,
+            $replyTopic,
+            $mailAttachment,
+            $toCC2
+        );
+
+    } else {
+        echo 'Visitor Email is empty or Invalid. Please enter valid email.';
+    }
+  } // duplicate registration
+
+  } // end email2
+
+}  // end submit
+
    
 
 
-$redirect = "Location: ".$_SESSION['adminurl']."#classregistrations";
+$redirect = "Location: ".$_SESSION['adminurl']."#classes";
 header($redirect);
 exit;
 
