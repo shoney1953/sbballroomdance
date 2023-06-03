@@ -61,7 +61,7 @@ if ($rowCount > 0) {
     <div class="container">
         
      <ul> 
-    <li><a href="index#events.php">Back to Home</a></li>
+    <li><a href="index.php">Back to Home</a></li>
     <?php
     if (isset($_SESSION['role'])) {
         if (($_SESSION['role'] != 'MEMBER') && ($_SESSION['role'] != 'visitor') ) {
