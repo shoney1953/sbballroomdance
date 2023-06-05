@@ -52,6 +52,9 @@ if ($addReg) {
     if ($event['eventtype'] === 'Dine and Dance') {
         echo '<th>Attend<br>Dinner?</th>';
     }
+    if ($event['eventtype'] === 'Dance Party') {
+        echo '<th>Attend<br>Dinner?</th>';
+    }
 
     echo '<th>First Name</th>';
     echo '<th>Last Name</th>';
@@ -67,6 +70,9 @@ if ($addReg) {
         echo '<tr>';
         echo "<td><input  title='Select to Add Registrations' type='checkbox'name='".$usrID."'></td>";
         if ($event['eventtype'] === 'Dine and Dance') {
+            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='".$attDin."'></td>";
+        }
+        if ($event['eventtype'] === 'Dance Party') {
             echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='".$attDin."'></td>";
         }
  
@@ -101,6 +107,9 @@ if ($addReg) {
         if ($event['eventtype'] === 'Dine and Dance') {
             echo '<th>Attend<br>Dinner?</th>';
         }
+        if ($event['eventtype'] === 'Dance Party') {
+            echo '<th>Attend<br>Dinner?</th>';
+        }
         echo '<th>Notes</td>';
         echo '</tr>';
         echo '</thead>';
@@ -112,6 +121,9 @@ if ($addReg) {
         if ($event['eventtype'] === 'Dine and Dance') {
             echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='attdin1'></td>";
         }
+        if ($event['eventtype'] === 'Dance Party') {
+            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='attdin1'></td>";
+        }
         echo "<td> <textarea  title='Enter any notes about the visitor registration' name='notes1' rows='5' cols='50'></textarea></td>";
         echo '</tr>';
         echo '<tr>';
@@ -119,6 +131,9 @@ if ($addReg) {
         echo "<td><input title='Enter Visitor Last Name' type='text' name='lastname2'></td>";
         echo "<td><input type='email' name='email2'></td>";
         if ($event['eventtype'] === 'Dine and Dance') {
+            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='attdin2'></td>";
+        }
+        if ($event['eventtype'] === 'Dance Party') {
             echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='attdin2'></td>";
         }
         echo "<td> <textarea  title='Enter any notes about the visitor registration' name='notes2' rows='5' cols='50'></textarea></td>";
@@ -219,24 +234,27 @@ if ($addReg) {
             echo '<div class="form-grid">';
 
             echo '<div class="form-item">';
-            echo '<h4 class="form-title">Event ID</h4>';
-            echo   $event['id'];
+    
+            echo  "<h4 class='form-title'>Event ID: ".$event['id']."</h4>";
             echo '</div>'; // end of form item
 
         
             echo '<div class="form-item">';
-            echo '<h4 class="form-title">Event Name</h4>';
-            echo $event['eventname'];
+
+            echo "<h4 class='form-title'>Event Name: ".$event['eventname']."</h4>";
             echo '</div>'; // end of form item
 
             echo '<div class="form-item">';
-            echo '<h4 class="form-title">Event Type</h4>';
-            echo $event['eventtype'];
+
+            echo "<h4 class='form-title'>Event Type: ".$event['eventtype']."</h4>";
             echo '</div>'; // end of form item
 
             echo '<div class="form-item">';
-            echo '<h4 class="form-title">Event Date</h4>';
-            echo $event['eventdate'];
+            echo "<h4 class='form-title'>Event Date: ".$event['eventdate']."</h4>";
+            echo '</div>'; // end of form item
+
+            echo '<div class="form-item">';
+            echo "<h4 class='form-title'>Event Cost: ".$event['eventcost']."</h4>";
             echo '</div>'; // end of form item
 
             echo '</div>'; // end form grid
@@ -276,8 +294,25 @@ if ($addReg) {
             echo '<h4 class="form-item-title">User ID</h4>';
             echo "<input type='text'  title='Registrant User Id' name='".$useridID."' value='".$reg['userid']."'>";
             echo '</div>'; // end of form item
+            if ($event['eventtype'] === 'Dance Party') {
+                $ad = 0;
+                if ($reg['ddattenddinner']) {
+                    $ad = $reg['ddattenddinner'];
+                }
+                else {
+                    $ad = 0;
+                }
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Attend Dinner?</h4>';
+                echo "<input type='number'  title='Enter 1 for Attend dinner' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+                echo '</div>'; // end of form item
+                echo '<div class="form-item">';
+                    echo '<h4 class="form-item-title">Paid?</h4>';
+                    echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
+                    echo '</div>'; // end of form item
+            } // end dance party
 
-           
+            
             if ($event['eventtype'] === 'Dine and Dance') {
                 $ad = 0;
                 if ($reg['ddattenddinner']) {
@@ -291,6 +326,8 @@ if ($addReg) {
                 echo "<input type='number'  title='Enter 1 for Attend dinner' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
                 echo '</div>'; // end of form item
             } // end if dine and dance
+
+          
             if ($event['eventtype'] === 'Dinner Dance') {
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Paid?</h4>';

@@ -433,6 +433,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
        echo "<h4 class='form-title'>Event Date: ".$event['eventdate']."</h4>";
        echo '</div>';
        echo '<div class="form-item">';
+       echo "<h4 class='form-title'>Event Cost: ".$event['eventcost']."</h4>";
+       echo '</div>';
+       echo '<div class="form-item">';
        echo "<h4 class='form-title'>Event ID: ".$event['id']."</h4>";
        echo '</div>';
        echo '<div class="form-item">';
@@ -485,9 +488,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
      
         echo '<div class="form-grid">';
          echo '<div class="form-item">';
-         echo '<h4 class="form-item-title">Add Member Registration?</h4>';
+         echo '<h4 class="form-item-title">Add Registrations</h4>';
               echo "<input type='checkbox' 
-              title='Only select 1 event to Add Member Registrations' name='".$arChk."'>";
+              title='Only select 1 event to Add Registrations' name='".$arChk."'>";
          echo '</div>';
               echo '<div class="form-item">';
         echo '<h4 class="form-item-title">Update Registrations</h4>';
@@ -504,10 +507,17 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo "<input type='text'  
               title='Enter Partial or Full Name to qualify Registrations' name='".$mbSrch."' >"; 
         echo '</div>';
+        echo '<div class="form-item">';
+        echo '<button type="submit" name="submitEventProcess">Process This Event</button>'; 
+    
+        echo '</div>';
         
          echo '</div>'; 
         } else {
+   
             echo '<h4 class="form-title">Registration Options Not Available for Past Events</h4>';
+            echo '<button type="submit" name="submitEventProcess">Process This Event</button>';
+  
         }
      
        echo '</div>';
@@ -619,9 +629,17 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                     echo "<input type='text'  
                           title='Enter Partial or Full Name to qualify Registrations' name='".$mbSrch."' >";
                     echo '</div>';
-                    echo "</div>"; // end of form grid
+                    echo "<div class='form-item'>";
+                    echo '<button type="submit" name="submitClassProcess">Process This Class</button>'; 
+                    echo '</div>';
+                    // echo "</div>"; // end of form grid
+                    echo '</div>';
+                    
                 } else {
+   
                     echo "<h4 class='form-title'>Registration Options not Available for Past Class</h4>";
+                    echo '<button type="submit" name="submitClassProcess">Process This Class</button>'; 
+       
                 }
 
 

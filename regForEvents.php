@@ -143,7 +143,7 @@ $db = $database->connect();
             
             echo '<h4 class="form-title"><em>
               To Register -- Please select One or More of the Events Listed along with associated information. <br>Then click on the Submit Registration(s) Button.</em></h4><br>
-              <p class="small-p">Please note if the event is a Dinner Dance, there will be a form (click on VIEW) to select meal choices and determine the cost. 
+              <p class="small-p">Please note if the event is a Dinner Dance or a Dance Party, there will be a form (click on VIEW) to select meal choices and determine the cost. 
               This should be printed and sent to the treasurer along with payment.
               Their address will appear on the form. If no form exists yet for the event, you will receive an email with the form when it becomes available.
               </p><br>';
@@ -188,6 +188,16 @@ $db = $database->connect();
                 echo '</div> ';
 
                   } 
+                if ($event['eventtype'] === 'Dance Party') {
+
+                  $chkboxID2 = "dd".$event['id'];
+          
+                  echo '<div class="form-item">';
+                  echo '<h4 class="form-item-title">Attend Dinner?</h4>';
+                  echo "<input type='checkbox' name='$chkboxID2'>";
+                  echo '</div> ';
+  
+                    } 
                if ($event['eventform']) {
     
                 echo '<div class="form-item">';

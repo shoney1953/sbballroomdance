@@ -54,7 +54,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     } else {
         $eventReg->ddattenddinner = 0; 
     }
-    $eventReg->paid = 0;
+    $eventReg->paid = 1;
     $eventReg->userid = 0;
     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
     if (!$result) {
@@ -143,7 +143,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     } else {
         $eventReg->ddattenddinner = 0; 
     }
-    $eventReg->paid = 0;
+    $eventReg->paid = 1;
     $eventReg->userid = 0;
     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
     if (!$result) {

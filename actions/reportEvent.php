@@ -111,11 +111,22 @@ if ($rowCount > 0) {
             $pdf->Cell(45,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(70,5,"EMAIL",1,0,"L"); 
             $pdf->Cell(18,5,"MEM",1,0,"L"); 
-            if ($reg['eventtype'] === 'Dinner Dance') {
+            if ($reg['eventtype'] === 'Dance Party') {
                 $pdf->Cell(14,5,"PAID",1,0,"L");
             }
       
             if ($reg['eventtype'] === 'Dine and Dance') {
+                $pdf->Cell(22,5,"DINNER?",1,0,"L");
+
+            }
+            if ($reg['eventtype'] === 'Dinner Dance') {
+                $pdf->Cell(14,5,"PAID",1,0,"L");
+            }
+            if ($reg['eventtype'] === 'Dine and Dance') {
+                $pdf->Cell(22,5,"DINNER?",1,0,"L");
+
+            }
+            if ($reg['eventtype'] === 'Dance Party') {
                 $pdf->Cell(22,5,"DINNER?",1,0,"L");
 
             }
@@ -131,12 +142,19 @@ if ($rowCount > 0) {
             if ($reg['eventtype'] === 'Dinner Dance') {
              $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
             }
+            if ($reg['eventtype'] === 'Dance Party') {
+                $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
+               }
             $pdf->Cell(0, 5, "Total Member Registrations:          ".$memReg, 0, 1);
             $pdf->Cell(0, 5, "Total Non Member Registrations:      ".$nonMemReg, 0, 1);
             if ($reg['eventtype'] === 'Dine and Dance') {
-             $pdf->Cell(0, 5, "Total Attending Dinner (if Dine and Dance):  ".$attDinner, 0, 1);
-             $pdf->Cell(0, 5, "Total Attending Dance  (if Dine and Dance):  ".$attDance, 0, 1);
+             $pdf->Cell(0, 5, "Total Attending Dinner (if Dance Party):  ".$attDinner, 0, 1);
+             $pdf->Cell(0, 5, "Total Attending Dance  (if Dance Party):  ".$attDance, 0, 1);
             }
+            if ($reg['eventtype'] === 'Dance Party') {
+                $pdf->Cell(0, 5, "Total Attending Dinner (if Dance Party):  ".$attDinner, 0, 1);
+                $pdf->Cell(0, 5, "Total Attending Dance  (if Dance Party):  ".$attDance, 0, 1);
+               }
             $regCount = 1;
             $paidNum = 0;
             $memReg = 0;
@@ -154,6 +172,10 @@ if ($rowCount > 0) {
             $pdf->Cell(45,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(70,5,"EMAIL",1,0,"L");
             $pdf->Cell(18,5,"MEM",1,0,"L");
+            if ($reg['eventtype'] === 'Dance Party') {
+                $pdf->Cell(14,5,"PAID",1,0,"L");
+                $pdf->Cell(22,5,"DINNER?",1,0,"L");
+               }
             if ($reg['eventtype'] === 'Dinner Dance') {
              $pdf->Cell(14,5,"PAID",1,0,"L");
             }
@@ -197,7 +219,23 @@ if ($rowCount > 0) {
             } 
       
       }
+      if ($reg['eventtype'] === 'Dance Party') {
+        if ($reg['paid'] === '1') {
+            $pdf->Cell(14,5,"YES",1,0,"L");
+        } else {
+            $pdf->Cell(14,5,"NO ",1,0,"L");
+        } 
+  
+  }
       if ($reg['eventtype'] === 'Dine and Dance') {
+        if ($reg['ddattenddinner'] === '1') {
+            $pdf->Cell(22,5,"YES",1,0,"L");
+        } else {
+            $pdf->Cell(22,5,"NO ",1,0,"L");
+        } 
+     
+    }
+    if ($reg['eventtype'] === 'Dance Party') {
         if ($reg['ddattenddinner'] === '1') {
             $pdf->Cell(22,5,"YES",1,0,"L");
         } else {
@@ -216,12 +254,19 @@ if ($rowCount > 0) {
     if ($reg['eventtype'] === 'Dinner Dance') {
     $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1); 
     } 
+    if ($reg['eventtype'] === 'Dance Party') {
+        $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1); 
+        } 
     $pdf->Cell(0, 5, "Total Member Registrations:          ".$memReg, 0, 1);
     $pdf->Cell(0, 5, "Total Non Member Registrations:      ".$nonMemReg, 0, 1);
     if ($reg['eventtype'] === 'Dine and Dance') {
     $pdf->Cell(0, 5, "Total Attending Dinner (if Dine and Dance):  ".$attDinner, 0, 1);
     $pdf->Cell(0, 5, "Total Attending Dance (if Dine and Dance):  ".$attDance, 0, 1);
     }
+    if ($reg['eventtype'] === 'Dance Party') {
+        $pdf->Cell(0, 5, "Total Attending Dinner (if Dance Party):  ".$attDinner, 0, 1);
+        $pdf->Cell(0, 5, "Total Attending Dance (if Dance Party):  ".$attDance, 0, 1);
+        }
     $pdf->SetFont('Arial', '', 14);
 } else {
     $pdf->SetFont('Arial','B', 16);

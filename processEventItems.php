@@ -87,17 +87,17 @@ if ($reportEvent) {
 
        echo "<div class='form-item'>";
        echo "<h4 class='form-item-title'>Event Type</h4>";
-       echo "<select  title='Select the type of Event' name = '".$evtypeID."' ";
+       echo "<select  title='Select the type of Event' name = '".$evtypeID."' >";
 
         if ($event['eventtype'] == 'Novice Practice Dance') {
           echo "<option value = 'Novice Practice Dance' selected>Novice Practice Dance </option>";
         } else {
           echo "<option value = 'Novice Practice Dance'>Novice Practice Dance</option>";
         }
-        if ($event['eventtype'] == 'Dance') {
-          echo "<option value = 'Dance' selected>Dance</option>";
+        if ($event['eventtype'] == 'Dance Party') {
+          echo "<option value = 'Dance Party' selected>Dance Party</option>";
         } else {
-          echo "<option value = 'Dance'>Dance</option>";
+          echo "<option value = 'Dance Party'>Dance Party</option>";
           }
         if ($event['eventtype'] == 'Dine and Dance') {
           echo "<option value = 'Dine and Dance' selected>Dine and Dance </option>";
@@ -285,16 +285,16 @@ echo '</form>';
           echo "<div class='form-item'>";
           echo "<h4 class='form-item-title'>Event Type</h4>";
           echo "<select  title='Select the type of Event' name = 'eventtype'> ";
-          
+           echo '<br>';
             if ($event['eventtype'] == 'Novice Practice Dance') {
               echo "<option value = 'Novice Practice Dance' selected>Novice Practice Dance </option>";
             } else {
               echo "<option value = 'Novice Practice Dance'>Novice Practice Dance</option>";
             }
-            if ($event['eventtype'] == 'Dance') {
-              echo "<option value = 'Dance' selected>Dance </option>";
+            if ($event['eventtype'] == 'Dance Party') {
+              echo "<option value = 'Dance Party' selected>Dance Party</option>";
             } else {
-              echo "<option value = 'Dance'>Dance</option>";
+              echo "<option value = 'Dance Party'>Dance Party</option>";
               }
             if ($event['eventtype'] == 'Dine and Dance') {
               echo "<option value = 'Dine and Dance' selected>Dine and Dance </option>";

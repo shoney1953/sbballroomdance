@@ -109,52 +109,48 @@ echo '<div class="container-section ">';
                   echo "</tr>";
                   echo '</table>';
                   echo '<br>';
-                  if ($event['eventtype'] === 'Dinner Dance') {
-                    $result = $dinnermealchoices->read_DinnerDanceId($event['id']);
-                    $rowCount = $result->rowCount();
+            //       if ($event['eventtype'] === 'Dinner Dance') {
+            //         $result = $dinnermealchoices->read_DinnerDanceId($event['id']);
+            //         $rowCount = $result->rowCount();
        
-                    $num_mealchoices = $rowCount;
+            //         $num_mealchoices = $rowCount;
              
-                        if ($rowCount > 0) {
+            //             if ($rowCount > 0) {
              
-                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                                extract($row);
-                                $meal_item = array(
-                                 'id' => $id,
-                                 'mealchoice' => $mealchoice,
-                                 'memberprice' => $memberprice,
-                                 'guestprice' => $guestprice,
-                                 'dinnerdanceid' => $dinnerdanceid,
+            //                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            //                     extract($row);
+            //                     $meal_item = array(
+            //                      'id' => $id,
+            //                      'mealchoice' => $mealchoice,
+            //                      'memberprice' => $memberprice,
+            //                      'guestprice' => $guestprice,
+            //                      'dinnerdanceid' => $dinnerdanceid,
 
-                             );
-                                array_push($mealChoices, $meal_item);
+            //                  );
+            //                     array_push($mealChoices, $meal_item);
              
-                            }
-                            echo '<br><br><table class="table_small">';
-                            echo '<h3>Meal Choices</h3>';
-                            echo '<tr>';
-                            echo '<th>Meal Choice</th>'; 
-                            echo '<th>Member Price</th>';
-                            echo '<th>Guest Price</th>';
-                             echo '</tr>';
-                            foreach ($mealChoices as $mealchoice) {
+            //                 }
+            //                 echo '<br><br><table class="table_small">';
+            //                 echo '<h3>Meal Choices</h3>';
+            //                 echo '<tr>';
+            //                 echo '<th>Meal Choice</th>'; 
+            //                 echo '<th>Member Price</th>';
+            //                 echo '<th>Guest Price</th>';
+            //                  echo '</tr>';
+            //                 foreach ($mealChoices as $mealchoice) {
           
-                                echo '<tr>';
-                                echo "<td>".$mealchoice['mealchoice']."</td>";
-                                echo "<td>".$mealchoice['memberprice']."</td>";
-                                echo "<td>".$mealchoice['guestprice']."</td>";
-                                echo '</tr>';
-                             }
-                             echo '</table>';
-                             echo '<br>';
-                } 
+            //                     echo '<tr>';
+            //                     echo "<td>".$mealchoice['mealchoice']."</td>";
+            //                     echo "<td>".$mealchoice['memberprice']."</td>";
+            //                     echo "<td>".$mealchoice['guestprice']."</td>";
+            //                     echo '</tr>';
+            //                  }
+            //                  echo '</table>';
+            //                  echo '<br>';
+            //     } 
          
-              }
-         
-        
-            
-            
-    
+            //   }
+
 
               echo '<h3>Registrations</h3>';
                 echo '<table>';
@@ -167,6 +163,11 @@ echo '<div class="container-section ">';
                         if ($event['eventtype'] === 'Dine and Dance') {
                             echo '<th>Attend<br>Dinner?</th>';
                             echo '<th>Attend<br>Dance?</th>';
+                        }
+                        if ($event['eventtype'] === 'Dance Party') {
+                            echo '<th>Attend<br>Dinner?</th>';
+                            echo '<th>Attend<br>Dance?</th>';
+                            echo '<th>Paid?</th>';
                         }
                          
                     echo '</tr>';
@@ -196,7 +197,24 @@ echo '<div class="container-section ">';
                                 } 
                             
                             }
-                           
+                            if ($event['eventtype'] === 'Dance Party') {
+                                if ($eventRegistration['ddattenddinner'] == true ) {
+                                    echo "<td>&#10004;</td>"; 
+                                } else {
+                                    echo "<td>&times;</td>"; 
+                                } 
+                                if ($eventRegistration['ddattenddance'] == true ) {
+                                    echo "<td>&#10004;</td>"; 
+                                } else {
+                                    echo "<td>&times;</td>"; 
+                                } 
+                                if ($eventRegistration['paid'] == true ) {
+                                    echo "<td>&#10004;</td>"; 
+                                } else {
+                                    echo "<td>&times;</td>"; 
+                                } 
+                            
+                            }
                         
                           echo "</tr>";
                       

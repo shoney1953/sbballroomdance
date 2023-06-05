@@ -126,7 +126,7 @@
 </div>
 
 <div class="content-faq">
-<div class="dropdown">
+<!-- <div class="dropdown">
       <span class="faq-title">What Are Dance Events?</span>
         <div class="dropdown-content">
         <p>Dances are events that are simply dances with a no host bar in the MountainView Ballroom. 
@@ -135,8 +135,8 @@
         </p>
         
         </div> 
-      </div> 
-<div class="dropdown">
+      </div>  -->
+<!-- <div class="dropdown">
       <span class="faq-title">What Are Dinner Dance Events?</span>
         <div class="dropdown-content">
         <p>Dinner Dances are events that provide a plated dinner in the MountainView Ballroom followed by a dance. There is a no host bar available as well. 
@@ -147,14 +147,31 @@
           The form with meal selections and appropriate payment must be filled in and sent to Treasurer prior to the deadline. 
         </p>
         </div> 
-      </div> 
-      <div class="dropdown">
+      </div>  -->
+      <!-- <div class="dropdown">
       <span class="faq-title">What Are Dine and Dance Events?</span>
         <div class="dropdown-content">
         <p>Dine and Dance events provide the option of dining with the group (normally in a private room) off the regular menu in the MountainView Grill at 4:30pm. Then a Dance is held in the MountainView
           ballroom at 6pm. The dance features a no host bar. We ask that when you register, you let us know if you are planning to attend dinner and the dance, or just the dance so we can give correct headcount
           numbers to the restaurant and the ballroom staff. 
         </p>
+        <p>
+        You can register by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Dine and Dance Info">
+                       countmein@sbballroomdance.com</a> or on the website.
+        </p>
+        </div>  -->
+      <!-- </div>  -->
+      <div class="dropdown">
+      <span class="faq-title">What are Dance Parties?</span>
+        <div class="dropdown-content">
+        <p>Dance Parties are dances where food may or may not be served. The food will be served prior to the dance usually at 4:30pm.
+          The dance will normally start at 6pm once the food is cleared if food was served. 
+        </p>
+        <p>There may be a cost involved
+          and if there is, it will be indicated on the event. Normally if payment is required for the event, a form will be associated with the event that will be submitted
+          to the treasurer with the check. The treasurer's address will be indicated on the form.
+        </p>
+        <p>We will need to know if you plan to partake of the meal, or just attend the dance so that the correct number of tables can be set up in the ballroom.
         <p>
         You can register by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Dine and Dance Info">
                        countmein@sbballroomdance.com</a> or on the website.

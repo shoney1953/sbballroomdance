@@ -64,7 +64,8 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->email = $usr['email'];
                     $regEmail1 = $eventReg->email;
                     $eventReg->userid = $usr['id'];
-
+                  
+                    
                     if ($event->eventtype === 'Dine and Dance') {
                     
                         if (isset($_POST["$attDin"])) {
@@ -74,7 +75,22 @@ if (isset($_POST['submitAddReg'])) {
                     } else {
                         $eventReg->ddattenddinner = 0;
                     }
+                    if ($event->eventtype === 'Dance Party') {
+                        if (isset($_POST["$attDin"])) {
+                            $eventReg->ddattenddinner = 1;
+                        } else {
+                        $eventReg->ddattenddinner = 0;
+                        }
+                        $eventReg->paid = 0;
+                    }
                     if ($event->eventtype === 'Dinner Dance') {
+            
+                        $eventReg->paid = 1;
+                    } else {
+          
+                        $eventReg->paid = 0;
+                    }
+                    if ($event->eventtype === 'Dance Party') {
             
                         $eventReg->paid = 1;
                     } else {
@@ -95,6 +111,13 @@ if (isset($_POST['submitAddReg'])) {
                     "<br>Room:    ".$event->eventroom.
                     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
                     if ($event->eventtype === 'Dine and Dance') {
+                        if (isset($_POST["$attDin"])) {
+                            $emailBody .= "<br>You have chosen to attend dinner before the dance.";
+                        } else {
+                            $emailBody .= "<br>You have chosen not to attend dinner before the dance.";
+                        }
+                    }
+                    if ($event->eventtype === 'Dance Party') {
                         if (isset($_POST["$attDin"])) {
                             $emailBody .= "<br>You have chosen to attend dinner before the dance.";
                         } else {
