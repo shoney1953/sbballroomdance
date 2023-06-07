@@ -191,42 +191,56 @@ if (isset($_SESSION['username'])) {
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+<div class="container-section">
 <nav class="nav">
     <div class="container">
- 
      <ul>
-            <li><a href="#" >Home</a></li>
+         <li><a href="#" >Home</a></li>
+     
             <?php
              if (isset($_SESSION['role'])) {
                 if ($_SESSION['role'] != 'visitor') {
+           
                   echo ' <li><a href="yourProfile.php">
                   <img title="Click to see or update your information or registrations" src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
                   <br>Your Profile</a></li>';
+     
                 }
                 if ($_SESSION['role'] === 'visitor') {
+        
                 echo ' <li style="color: red;font-weight: bold;font-size: medium">
                 Welcome '.$_SESSION["visitorfirstname"].'</li>'; 
+ 
                 }
             }
        
             ?>
+      
             <li><a title="Combined Calendar of Events and Classes" href="#calendar">Activities Calendar</a></li>
+      
+       
             <li><a href="#events">Event List</a></li>
+
             <?php
              if (isset($_SESSION['role'])) {
+             
                 echo '<li><a href="regForEvents.php">Register for Events</a></li>';
+               
              }
             ?>
             <li><a href="#classes">Class List</a></li>
             <?php
              if (isset($_SESSION['role'])) {
+            
                 echo '<li><a href="regForClasses.php">Register for Classes</a></li>';
+  
                 
              }
             ?>
         
    
      </ul>
+   
 </div>
      <div class="container">
      <ul>
@@ -287,6 +301,7 @@ if (isset($_SESSION['username'])) {
         </ul> 
 </div>
 </nav>
+</div>
     <div class="hero">
         <div class="container">
             <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1>
@@ -695,6 +710,17 @@ if (isset($_SESSION['username'])) {
        <h4>SBDC CLASS VIDEOS</h4>
        <ul>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SaddleBrooke-Ballroom-Dance-Club-Videos">Class Videos</a></li>    
+       </ul>
+       <br>
+      </div>
+      <div class="form-grid-div">
+        <br>
+       <h4>SBDC Open Practice Photos</h4>
+       <ul>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Open-Practice-Photos/">Random Photos from Open Practice</a></li>    
+       </ul>
+       <br>
+      </div>">Class Videos</a></li>    
        </ul>
        <br>
       </div>
