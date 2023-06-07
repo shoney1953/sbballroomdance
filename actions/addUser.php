@@ -134,28 +134,21 @@ if (isset($_POST['submitAddUser'])) {
        program of Novice events: Novice classes twice a month, and then a Novice practice party. These are designed to
        help you learn a few steps of the most common dances, and help you practice with other Novices. 
        You will also receive emails about these actvities. You can register for these on the website.</li>";
-       $emailBody .= "<li><strong>Dance Classes</strong> - Classes are normally held at the Mariposa Room
-       at DesertView on all the Mondays at 6 - 8pm and Wednesdays 4 - 6pm of each month. 
+       $emailBody .= "<li><strong>Dance Classes</strong> - Classes are normally held at the MountainView Ballroom
+       at the MountainView clubhouse on all the Sundays from 3pm to 5pm and Tuesdays from 4pm to 6pm of each month.
        Emails will go out regarding the content, format, instructors and dates; registration is also available on the website.</li>";
-       $emailBody .= "<li><strong>Dances</strong> - These are provided on many occasions during the year.
-       They include a dance with a no host bar in the MountainView Ballroom. </li>";
-       $emailBody .= "<li><strong>Dinner Dances</strong> - These are provided on alternate months during the snowbird
-       season. They include a plated dinner with several entree choices followed by dancing to music provided
-       by one of our DJs in the MountainView Ballroom. You will receive an email with a sign-up form
-       stating the date, entree options and price and where to send the form and the check. The information will also
-       be available on the website.</li>";
-       $emailBody .= "<li><strong>Dine and Dance or TGIFs</strong> - These are dances with the option of having
-       dinner with the group in the MountainView Bistro East Room.  Dine and Dances has the dinner at approximately 4:30pm
-       followed by dancing in the MountainView Ballroom with a no-host bar. TGIFs are dancing first from 3 - 5pm with
-       a no-host bar, followed by dinner. 
-       You will also receive emails about these actvities. You can also register for these on the website.</li>";
+       $emailBody .= "<li><strong>Dance Parties</strong> - These are provided on most months during the year.
+       They include a dance with a no host bar in the MountainView Ballroom, and may or not have some food served. 
+       If there is a charge for attendance, there will be a form associated with the event and you may print it and
+       send in meal selections with your payment to the treasurer. You may click on the VIEW tab of the event to get the form,
+       but it will also be sent out by email and available at events and classes prior to the Dance Party.</li>";     
        $emailBody .= "<li><strong>Open Practice</strong> - These are slots open for practice dancing. They are not 
        exclusively for members, so you can bring friends. Often a DJ provides requested music. If no DJ is
        specified, you may bring your own music. Currently we have 3 different slots:
          <ul>
-         <li>Tuesday 4 - 5:30pm in the HOA1 Vermillion Room (Used twice a month for Novice Classes)</li>
-         <li>Friday  3 - 5pm in the HOA1 Vermillion Room (Used once a month for Novice Parties)</li>
-         <li>Sunday  3 - 5pm in the MountainView Ballroom</li>
+         <li>Fourth Monday of each month 4 - 6pm in the HOA1 Vermillion Room</li>
+         <li>Friday  4 - 6pm in the HOA1 Vermillion Room (Used once a month for Novice Parties)</li>
+         <li>Wednesday from 4pm to 6pm in the Mariposa Room at DesertView</li>
          </ul></li><br>";
        
        $emailBody .= "<li>Your name, email, phone and address will be listed in our directory by default unless

@@ -348,14 +348,14 @@ if (isset($_SESSION['username'])) {
             sessions designated as "Open Practice" are not restricted to members. </p>
             <p><em>Always check the Activites Calendar because we do have 
             cancellations.. and also for DJ information.</em> </p>
-        <br><p>For 2023, we now have 3 different time slots for Open Practice - Sometimes these are used for Novice Classes or Parties as well:</p>
+        <br><p>As of July 1 2023, we now have 3 different time slots for Open Practice - Sometimes these are used for Novice Classes or Parties as well:</p>
         <ul>
-            <li class="li-none">Tuesday 4 to 5:30pm - Vermillion Room
+            <li class="li-none">Fourth Monday of the Month 4pm to 6pm - Vermillion Room
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a></li>
-            <li class="li-none">Friday 3 to 5pm - Vermillion Room
-            <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a></li>
-            <li class="li-none">Sunday 3 to 5pm - MountainView Ballroom
-            <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map</a>
+            <li class="li-none">Wednesdays 4pm to 6pm in the Mariposa Room
+            <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map</a></li>
+            <li class="li-none">Fridays from 4pm to 6pm in the Vermillion Room (when not used for the Novice Party)
+            <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
             </li>
         </ul><br>
  
@@ -365,16 +365,20 @@ if (isset($_SESSION['username'])) {
          Click Here to See the Activities Calendar for times and dates.
         </a>
         <br><br>
-        <p>Our classes are normally at the Mariposa Room at the DesertView Clubhouse
-            <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map.</a>
+        <p style="text-weight: bold">Note that as of July 1 2023 There are changes</p>
+        <p>Our monthly classes will be held in the MountainView Ballroom on Sundays and Tuesdays
+            <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map.</a>
         </p>
-        <p>Our Sunday Open Practices, and our Dinner Dances are normally in the MountainView
+        <p>Our Dance Parties are normally in the MountainView
             clubhouse in the Ballroom.
             <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map</a>
         </p>
-        <p>Our Tuesday and Friday Open Practices, and a few Dinner Dances are in the HOA 1 
-            clubhouse in the Vermillion Room and or Vistas Dining Room.
+        <p>Our fourth Monday Open Practices and Saturday Western Partner Review sessions will be held
+            in the Vermillion Room at HOA 1
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
+        </p>
+        <p>Our Wednesday Open Practices will be held in the Mariposa Room at Desertview
+        <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map</a></li>
         </p>
         <br>
         <div id="board">
