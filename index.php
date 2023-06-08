@@ -335,7 +335,7 @@ if (isset($_SESSION['username'])) {
             music for Ballroom Dance, Western and Western Partner Dance, Line Dance, and Latin Dances.</p>
        <br><strong> <p> We will help you get started if you've never stepped foot on the dance floor. We now are featuring Novice classes twice 
             a month, with a Novice Practice party once a month to help you feel more comfortable about joining dinner dances and other events.
-            The classes are normally on Tuesdays in the Vermillion room, and the Novice Parties are on Fridays in the Vermillion room in the 
+            The classes are normally on Tuesdays in the Vermilion room, and the Novice Parties are on Fridays in the Vermilion room in the 
             same time slots as our open practice. Check the Activities calendar or send a note to <a href="mailto:countmein@sbballroomdance.com?subject=Novice Dancing Info">
                        countmein@sbballroomdance.com</a> for
             more information.</p></strong>
@@ -350,11 +350,11 @@ if (isset($_SESSION['username'])) {
             cancellations.. and also for DJ information.</em> </p>
         <br><p>As of July 1 2023, we now have 3 different time slots for Open Practice - Sometimes these are used for Novice Classes or Parties as well:</p>
         <ul>
-            <li class="li-none">Fourth Monday of the Month 4pm to 6pm - Vermillion Room
+            <li class="li-none">Fourth Monday of the Month 4pm to 6pm - Vermilion Room
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a></li>
             <li class="li-none">Wednesdays 4pm to 6pm in the Mariposa Room
             <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map</a></li>
-            <li class="li-none">Fridays from 4pm to 6pm in the Vermillion Room (when not used for the Novice Party)
+            <li class="li-none">Fridays from 4pm to 6pm in the Vermilion Room (when not used for the Novice Party)
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
             </li>
         </ul><br>
@@ -374,7 +374,7 @@ if (isset($_SESSION['username'])) {
             <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map</a>
         </p>
         <p>Our fourth Monday Open Practices and Saturday Western Partner Review sessions will be held
-            in the Vermillion Room at HOA 1
+            in the Vermilion Room at HOA 1
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
         </p>
         <p>Our Wednesday Open Practices will be held in the Mariposa Room at Desertview

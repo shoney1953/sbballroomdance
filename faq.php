@@ -202,7 +202,7 @@
         <p>Here are links to maps for the various places our events are held: 
         </p>
         <ul>
-            <li class="li-none">Vermillion Room in the HOA 1 clubhouse (Open Practice; Novice Classes & Novice Parties)
+            <li class="li-none">Vermilion Room in the HOA 1 clubhouse (Open Practice; Novice Classes & Novice Parties)
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a></li>
             <li class="li-none">MountainView Ballroom in the MountainView Clubhouse (Open Practice; Dine and Dance Dances; Dinner Dances)
             <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map</a>

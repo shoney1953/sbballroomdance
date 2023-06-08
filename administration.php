@@ -605,8 +605,10 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 }
                 echo "</div>"; // end of form grid
           
-        
-                if ($compareDate <= $class['date']) {
+                $class_month = substr($class['date'], 5, 2);
+                $class_year = substr($class['date'], 0, 4);
+                // if ($compareDate <= $class['date']) {
+                if (($current_month <= $class_month ) || ($current_year < $class_year)){
                     echo '<h4 class="form-title form-division">Class Registration Actions</h4>';
                     echo "<div class='form-grid'>";
                     echo "<div class='form-item'>";
