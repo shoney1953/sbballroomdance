@@ -288,7 +288,7 @@ if (isset($_SESSION['username'])) {
     echo '<li><a title="Frequently Asked Questions" href="faq.php">FAQs</a></li>';
     echo '<li><a href="#">More ... &dtrif;</a>';
     echo '<ul>';
-    echo '<li><a href="#about">About Us</a></li>';
+    echo '<li><a href="#about">About Our Club</a></li>';
     if (isset($_SESSION['username'])) {
         echo '<li><a href="#contact">Contact Us</a></li>';
     }
@@ -373,7 +373,7 @@ if (isset($_SESSION['username'])) {
             clubhouse in the Ballroom.
             <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map</a>
         </p>
-        <p>Our fourth Monday Open Practices and Saturday Western Partner Review sessions will be held
+        <p>Our Monday Open Practices and Saturday Western Partner Review sessions will be held
             in the Vermilion Room at HOA 1
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
         </p>
@@ -386,25 +386,25 @@ if (isset($_SESSION['username'])) {
         <h4>Click on the Email to correspond with one of our Board Members</h4><br>
         <ul>
             <li class="li-none li-large">Rich Adinolfi, President 
-                   -&rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
+                   &rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
                        president@sbballroomdance.com</a></li>
             <li class="li-none li-large">Nan Kartsonis, Vice-President 
-                -&rarr;  <a href="mailto:nkartsonis@me.com?subject=SBDC Info">
+                &rarr;  <a href="mailto:nkartsonis@me.com?subject=SBDC Info">
                 nkartsonis@me.com</a></li>
             <li class="li-none li-large">Roger Shamburg, Treasurer 
-                  -&rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
+                  &rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
                   shamburgrog23@gmail.com</a></li>
             <li class="li-none li-large">Sheila Honey, Secretary 
-                  -&rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
+                  &rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
                   secretary@sbballroomdance.com</a></li>
             <li class="li-none li-large">Dale & Ann Pizzitola, Chairs Instruction Director    
-                -&rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
+                &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
                 dancedirector@sbballroomdance.com</a></li>
            <li class="li-none li-large">Rick Baumgartner, Chair D J and Music  
-                -&rarr; <a href="mailto:djdirector@sbballroomdance.com?subject=SBDC Info">
+                &rarr; <a href="mailto:djdirector@sbballroomdance.com?subject=SBDC Info">
                 djdirector@sbballroomdance.com</a></li>
             <li class="li-none li-large">Sheila Honey, Web Master    
-                -&rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
+                &rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
                 webmaster@sbballroomdance.com</a></li>
   
         </ul>
@@ -585,30 +585,33 @@ if (isset($_SESSION['username'])) {
     <br>
     <?php
     if (isset($_SESSION['username'])) { 
-        echo '<h1 class="section-header">To correspond with one of us, Just click on any of the emails below: </h1>';
+        echo '<h1 class="section-header">To correspond with one of the board members, Just click on any of the emails below: </h1>';
 
         echo '<ul>';
             echo '<li class="li-none li-large">President
-                   -&rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
+                   &rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
                        president@sbballroomdance.com</a></li>';
             echo '<li class="li-none li-large">Vice President  
-                -&rarr;  <a href="mailto:nkartsonis@me.com?subject=SBDC Info">
+                &rarr;  <a href="mailto:nkartsonis@me.com?subject=SBDC Info">
                 nkartsonis@me.com</a></li>';
             echo '<li class="li-none li-large">Questions about costs of events or membership 
-                  -&rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
+                  &rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
                   shamburgrog23@gmail.com</a></li>';
-            echo '<li class="li-none li-large">General Membership Questions    
-                -&rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
+            echo '<li class="li-none li-large">General Questions    
+                &rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
                 secretary@sbballroomdance.com</a></li>';
             echo '<li class="li-none li-large">Questions about Classes   
-                -&rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
+                &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
                 dancedirector@sbballroomdance.com</a></li>';
            echo '<li class="li-none li-large">Questions about Music or DJing 
-                -&rarr; <a href="mailto:djdirector@sbballroomdance.com?subject=SBDC Info">
+                &rarr; <a href="mailto:djdirector@sbballroomdance.com?subject=SBDC Info">
                 djdirector@sbballroomdance.com</a></li>';
             echo '<li class="li-none li-large">Questions about the Website   
-                -&rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
+                &rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
                 webmaster@sbballroomdance.com</a></li>';
+            echo '<li class="li-none li-large">Registering for or questions about events or classes   
+                &rarr; <a href="mailto:countmein@sbballroomdance.com?subject=SBDC Info">
+                countmein@sbballroomdance.com</a></li>';
   
         echo '</ul>';
         echo '<br><br>';
@@ -724,7 +727,7 @@ if (isset($_SESSION['username'])) {
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Open-Practice-Photos/">Random Photos from Open Practice</a></li>    
        </ul>
        <br>
-      </div>">Class Videos</a></li>    
+       
        </ul>
        <br>
       </div>

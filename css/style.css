@@ -723,7 +723,7 @@ button a:active {
   list-style: none;
 }
 .li-large {
-  font-size: 15px;
+  font-size: medium;
   color: darkslateblue;
   font-style: italic;
 }
