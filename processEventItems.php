@@ -8,7 +8,7 @@ if ($reportEvent) {
 
     if (isset($_POST["$rpChk"])) {
       echo "<h4>Generated Report for  ".$event['eventname']."  ".$event['eventdate']."</h4>";
-      echo "<form target='_blank' name='reportEventForm'   method='POST' action='reportEvent.php'> ";
+      echo "<form  name='reportEventForm'   method='POST' action='reportEvent.php'> ";
       echo "<input type='hidden' name='eventId' value='".$event['id']."'>"; 
       echo '<script language="JavaScript">document.reportEventForm.submit();</script></form>';
       break;

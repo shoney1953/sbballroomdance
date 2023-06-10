@@ -8,7 +8,7 @@ if ($reportClass) {
 
     if (isset($_POST["$rpChk"])) {
       echo "<h4>Generated Report for  ".$class['classname']."  ".$class['date']."</h4>";
-      echo "<form target='_blank' name='reportClassForm'   method='POST' action='reportClass.php'> ";
+      echo "<form  name='reportClassForm'   method='POST' action='reportClass.php'> ";
       echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
       echo '<script language="JavaScript">document.reportClassForm.submit();</script></form>';
       break;
