@@ -3,12 +3,14 @@ session_start();
 require('../includes/fpdf.php');
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
+require_once '../models/Event.php';
 require_once '../models/User.php';
 
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $user = new User($db);
+$event = new Event($db);
 $regArr = [];
 $memReg = 0;
 $nonMemReg = 0;
@@ -51,7 +53,10 @@ class PDF extends FPDF
  
     if (isset($_POST['eventId'])) {
         if ($_POST['eventId'] !== '') {
+
             $eventId = htmlentities($_POST['eventId']);
+            $event->id = $eventId;
+            $event->read_single();
             $result = $eventReg->read_ByEventId($eventId);
         } else {
         $result = $eventReg->read();
@@ -103,7 +108,7 @@ if ($rowCount > 0) {
             $prevEvent = $reg['eventid'];
             $init = 0;
             $event_string = ' '.$reg['eventtype'].' --- '.$reg['eventname'].'  '
-                     .$reg['eventdate'].' ';
+                     .$reg['eventdate'].'   Cost: '.$event->eventcost.' ';
             $pdf->SetFont('Arial', 'BU', 14);
             $pdf->Cell(0, 10, $event_string, 0, 1);
             $pdf->SetFont('Arial', '', 14);
@@ -112,7 +117,9 @@ if ($rowCount > 0) {
             $pdf->Cell(70,5,"EMAIL",1,0,"L"); 
             $pdf->Cell(18,5,"MEM",1,0,"L"); 
             if ($reg['eventtype'] === 'Dance Party') {
-                $pdf->Cell(14,5,"PAID",1,0,"L");
+                if ($event->eventcost > 0) {
+                    $pdf->Cell(14,5,"PAID",1,0,"L");
+                }
             }
       
             if ($reg['eventtype'] === 'Dine and Dance') {
@@ -122,10 +129,7 @@ if ($rowCount > 0) {
             if ($reg['eventtype'] === 'Dinner Dance') {
                 $pdf->Cell(14,5,"PAID",1,0,"L");
             }
-            if ($reg['eventtype'] === 'Dine and Dance') {
-                $pdf->Cell(22,5,"DINNER?",1,0,"L");
-
-            }
+           
             if ($reg['eventtype'] === 'Dance Party') {
                 $pdf->Cell(22,5,"DINNER?",1,0,"L");
 
@@ -143,7 +147,10 @@ if ($rowCount > 0) {
              $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
             }
             if ($reg['eventtype'] === 'Dance Party') {
-                $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
+                if ($event->eventcost > 0) {
+
+                    $pdf->Cell(0, 5, "Total Paid for this Event:           ".$paidNum, 0, 1);  
+                }
                }
             $pdf->Cell(0, 5, "Total Member Registrations:          ".$memReg, 0, 1);
             $pdf->Cell(0, 5, "Total Non Member Registrations:      ".$nonMemReg, 0, 1);
@@ -173,7 +180,10 @@ if ($rowCount > 0) {
             $pdf->Cell(70,5,"EMAIL",1,0,"L");
             $pdf->Cell(18,5,"MEM",1,0,"L");
             if ($reg['eventtype'] === 'Dance Party') {
-                $pdf->Cell(14,5,"PAID",1,0,"L");
+                if ($event->eventcost > 0) {
+                    $pdf->Cell(14,5,"PAID",1,0,"L");
+                }
+
                 $pdf->Cell(22,5,"DINNER?",1,0,"L");
                }
             if ($reg['eventtype'] === 'Dinner Dance') {
@@ -212,20 +222,23 @@ if ($rowCount > 0) {
             $nonMemReg++; 
         } 
         if ($reg['eventtype'] === 'Dinner Dance') {
-            if ($reg['paid'] === '1') {
-                $pdf->Cell(14,5,"YES",1,0,"L");
-            } else {
-                $pdf->Cell(14,5,"NO ",1,0,"L");
-            } 
-      
+            if ($event->eventcost > 0) {
+                if ($reg['paid'] === '1') {
+                    $pdf->Cell(14,5,"YES",1,0,"L");
+                } else {
+                    $pdf->Cell(14,5,"NO ",1,0,"L");
+                } 
+            }
+
       }
       if ($reg['eventtype'] === 'Dance Party') {
+        if ($event->eventcost > 0) {
         if ($reg['paid'] === '1') {
             $pdf->Cell(14,5,"YES",1,0,"L");
         } else {
             $pdf->Cell(14,5,"NO ",1,0,"L");
         } 
-  
+    }
   }
       if ($reg['eventtype'] === 'Dine and Dance') {
         if ($reg['ddattenddinner'] === '1') {
