@@ -3,7 +3,7 @@
 $users = $_SESSION['process_users'];
 
   if ($updateUser) {
-    echo "<form method='POST' action='actions/updateUser.php'>";
+    echo "<form method='POST' action='updateUser.php'>";
   
 
 
@@ -136,6 +136,7 @@ $users = $_SESSION['process_users'];
               }
               echo '</select>';
             echo '</div>';
+           
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Partner ID</h4>'; 
             echo "<input type='number' name='".$partID."' value='".$usr['partnerId']."'>";
@@ -143,6 +144,14 @@ $users = $_SESSION['process_users'];
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Notes</h4>';
             echo "<textarea  name='".$notesID."' rows='2' cols='100'>".$usr['notes']."</textarea>"; 
+            echo '</div>';
+            echo '<div class="form-item">';
+            echo '<h4 class="form-item-title">New Password</h4>'; 
+            echo "<input type='password' minlength='8' name='".$rpwdID."'>";
+            echo '</div>';
+            echo '<div class="form-item">';
+            echo '<h4 class="form-item-title">Repeat New Password</h4>'; 
+            echo "<input type='password' minlength='8' name='".$rpwd2ID."'>";
             echo '</div>';
             echo "<input type='hidden' name='".$idID."' value='".$usr['id']."'>";
             echo "<input type='hidden' name='".$userID."' value='".$usr['username']."'>";
