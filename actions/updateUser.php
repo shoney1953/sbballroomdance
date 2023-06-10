@@ -22,7 +22,7 @@ $users = $_SESSION['process_users'];
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
-var_dump($_POST);
+
 if (isset($_POST['submitUpdateUser'])) {
     foreach ($users as $usr) {
       $upChk = "up".$usr['id'];
@@ -143,7 +143,7 @@ if (isset($_POST['submitUpdateUser'])) {
 }
 }
 unset($_SESSION['process_users']);
-// $redirect = "Location: ".$_SESSION['adminurl']."#users";
-// header($redirect);
-// exit;
+$redirect = "Location: ".$_SESSION['adminurl']."#users";
+header($redirect);
+exit;
 ?>
