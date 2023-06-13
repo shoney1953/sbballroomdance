@@ -348,7 +348,142 @@ if (isset($_SESSION['username'])) {
             sessions designated as "Open Practice" are not restricted to members. </p>
             <p><em>Always check the Activites Calendar because we do have 
             cancellations.. and also for DJ information.</em> </p>
-        <br><p>As of July 1 2023, we now have 3 different time slots for Open Practice - Sometimes these are used for Novice Classes or Parties as well:</p>
+            <br>
+            <br><h3>As of July 1 2023, we have a completely new schedule for our Activities.</h3>
+            <a style="font-weight: bold"
+        href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix" target="_blank">
+         Click Here to See the Activities Calendar for times and dates.
+        </a>
+        <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan=6>For Novice Dancers</th>
+                </tr>  
+                <tr>
+                    <th> </th>
+                    <th>Day</th>
+                    <th>Location (Click for Map)</th>
+                    <th>Time</th>
+                    <th>Activity</th>
+                    <th>Notes</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr>
+                    <td>   </td>
+                    <td>Monday</td>
+                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></li></td>
+                    <td>4 - 5pm</td>
+                    <td>Class</td>
+                    <td>Typically First and Third Mondays</td>
+                </tr>
+                <tr>
+                    <td>   </td>
+                    <td>Friday</td>
+                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></li></td>
+                    <td>4 - 5:30pm</td>
+                    <td>Practice Party</td>
+                    <td>Typically Fourth or Fifth Friday</td>
+                </tr>
+                <tr>
+            <td colspan=6> </td>        
+            </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th colspan=6>For Beginner and Intermediate Dancers</th>
+                </tr>   
+                <tr>
+                    <th> </th>
+                    <th>Day</th>
+                    <th>Location (Click for Map)</th>
+                    <th>Time</th>
+                    <th>Activity</th>
+                    <th>Notes</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr>
+                    <td>   </td>
+                    <td>Sunday</td>
+                    <td><a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">MountainView Ballroom</a> </td>
+                    <td>3 - 5pm</td>
+                    <td>Class(es)</td>
+                    <td>Monthly classes are held twice a week for the entire month.</td>
+                </tr>
+                <tr>
+                    <td>   </td>
+                    <td>Tuesday</td>
+                    <td><a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">MountainView Ballroom</a> </td>
+                    <td>5:30 - 7:30pm</td>
+                    <td>Class(es)</td>
+                    <td>Monthly classes are held twice a week for the entire month.</td>
+                </tr>
+               <tr>
+               <td colspan=6> </td> 
+                 </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th colspan=6>For Everyone - Open Practice</th>
+                </tr>   
+                <tr>
+                    <th> </th>
+                    <th>Day</th>
+                    <th>Location (Click for Map)</th>
+                    <th>Time</th>
+                    <th>Activity</th>
+                    <th>Notes</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr>
+                    <td>   </td>
+                    <td>Monday</td>
+                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
+                    <td>5 - 6pm</td>
+                    <td>Open Practice </td>
+                    <td>When there is a Novice Class</td>
+                
+                </tr>
+                <tr>
+                    <td>   </td>
+                    <td>Monday</td>
+                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
+                    <td>4 - 6pm</td>
+                    <td>Open Practice </td>
+                    <td>When there is a not Novice Class</td>
+               
+                </tr>
+                <tr>
+                    <td>   </td>
+                    <td>Wednesday</td>
+                    <td> <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Mariposa Room at DesertView</a></td>
+                    <td>4 - 6pm</td>
+                    <td>Open Practice </td>
+                    <td> </td>
+                
+                </tr>
+                <tr>
+                    <td>   </td>
+                    <td>Friday</td>
+                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
+                    <td>4 - 6pm</td>
+                    <td>Open Practice </td>
+                    <td>When there is a not a Novice Party</td>
+                    
+                </tr>
+               
+            </tbody>
+        </table>
+        <br>
+        <h3>Our monthly Dance Parties are normally held in the MountainView
+            clubhouse in the Ballroom.  <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map. </a>
+            They are often on Fridays, but sometimes on other days of the week. Check emails or the Activities Calendar.
+           
+        </h3>
+        <!-- <p>For Our Open Practices:</p>
         <ul>
             <li class="li-none">Fourth Monday of the Month 4pm to 6pm - Vermilion Room
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a></li>
@@ -357,29 +492,19 @@ if (isset($_SESSION['username'])) {
             <li class="li-none">Fridays from 4pm to 6pm in the Vermilion Room (when not used for the Novice Party)
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
             </li>
-        </ul><br>
+        </ul><br> -->
  
-
-        <a style="font-weight: bold"
-        href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix" target="_blank">
-         Click Here to See the Activities Calendar for times and dates.
-        </a>
-        <br><br>
-        <p style="text-weight: bold">Note that as of July 1 2023 There are changes</p>
-        <p>Our monthly classes will be held in the MountainView Ballroom on Sundays and Tuesdays
+        <!-- <p>Our monthly classes will be held in the MountainView Ballroom on Sundays and Tuesdays
             <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map.</a>
         </p>
-        <p>Our Dance Parties are normally in the MountainView
-            clubhouse in the Ballroom.
-            <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map</a>
-        </p>
+
         <p>Our Monday Open Practices and Saturday Western Partner Review sessions will be held
             in the Vermilion Room at HOA 1
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
         </p>
         <p>Our Wednesday Open Practices will be held in the Mariposa Room at Desertview
         <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map</a></li>
-        </p>
+        </p> -->
         <br>
         <div id="board">
         <h3>Current Board Members</h3>

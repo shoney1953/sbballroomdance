@@ -352,7 +352,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<div class="container">';
   
         echo '<ul>';
-        echo '<li><a href="#contacts">Contacts</a></li>';
+        // echo '<li><a href="#contacts">Contacts</a></li>';
         echo '<li><a href="#visitors">Visitors</a></li>';
         echo '<li><a href="https://drive.google.com/drive/folders/1PQSs3_gNDuSfQ2L24Gw0Fnsoe9_vQlQ-?usp=sharing">
              Booking Reports</a></li>';
@@ -901,68 +901,68 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     }
     if ($_SESSION['role'] != 'INSTRUCTOR') {
  
-        echo '<div class="container-section ">';
-        echo '<br><br>';
-        echo '<section id="contacts" class="content">';
-             echo '<h3 class="section-header">Contacts</h3>';  
-             echo '<div class="form-grid3">';
+        // echo '<div class="container-section ">';
+        // echo '<br><br>';
+        // echo '<section id="contacts" class="content">';
+        //      echo '<h3 class="section-header">Contacts</h3>';  
+        //      echo '<div class="form-grid3">';
           
-             echo '<form method="POST" action="actions/maintainContact.php">';
-             echo '<div class="form-grid-div">';
-             echo '<h4>Maintain Contacts</h4>';
-             echo '<input type="checkbox" name="deleteContact">';
-             echo '<label for="deleteContact">Delete a Range of Contacts</label><br>';
-             echo '<input type="date"  name="delContactBefore" >';
-             echo '<label for="delContactBefore"><em> &larr; Specify a Date 
-                 to delete contacts before: </em></label><br>';
-             echo '<button type="submit" name="submitContact">Delete Contacts</button> ';
-             echo '</div>';
-             echo '</form>';
-             echo '<div class="form-grid-div">';
-             echo '<h4>Report Contacts</h4>';
-             echo '<form target="_blank" method="POST" action="actions/reportContact.php">';  
-             echo '<button type="submit" name="reportContact">Report Contacts</button> ';
+        //      echo '<form method="POST" action="actions/maintainContact.php">';
+        //      echo '<div class="form-grid-div">';
+        //      echo '<h4>Maintain Contacts</h4>';
+        //      echo '<input type="checkbox" name="deleteContact">';
+        //      echo '<label for="deleteContact">Delete a Range of Contacts</label><br>';
+        //      echo '<input type="date"  name="delContactBefore" >';
+        //      echo '<label for="delContactBefore"><em> &larr; Specify a Date 
+        //          to delete contacts before: </em></label><br>';
+        //      echo '<button type="submit" name="submitContact">Delete Contacts</button> ';
+        //      echo '</div>';
+        //      echo '</form>';
+        //      echo '<div class="form-grid-div">';
+        //      echo '<h4>Report Contacts</h4>';
+        //      echo '<form target="_blank" method="POST" action="actions/reportContact.php">';  
+        //      echo '<button type="submit" name="reportContact">Report Contacts</button> ';
            
-             echo '</div>';     
-             echo '</form>';
-             echo '</div>';   
-             echo '<br>';
-            echo '<table>';
-            echo '<thead>';
-                echo '<tr>';
-                    echo '<th>Date Contacted</th> '; 
-                    echo '<th>First Name</th>';
-                    echo '<th>Last Name    </th>';
-                    echo '<th>Email</th>';
-                    echo '<th>Message</th> ';
-                    echo '<th>Favorite Dance Style</th>';
-                    echo '<th>Dance Experience</th> ';       
+        //      echo '</div>';     
+        //      echo '</form>';
+        //      echo '</div>';   
+        //      echo '<br>';
+        //     echo '<table>';
+        //     echo '<thead>';
+        //         echo '<tr>';
+        //             echo '<th>Date Contacted</th> '; 
+        //             echo '<th>First Name</th>';
+        //             echo '<th>Last Name    </th>';
+        //             echo '<th>Email</th>';
+        //             echo '<th>Message</th> ';
+        //             echo '<th>Favorite Dance Style</th>';
+        //             echo '<th>Dance Experience</th> ';       
                  
-                echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
+        //         echo '</tr>';
+        //     echo '</thead>';
+        //     echo '<tbody>';
         
-                foreach($contacts as $contact) {
+        //         foreach($contacts as $contact) {
              
-                      echo "<tr>";
-                        echo "<td>".$contact['contactdate']."</td>";
-                        echo "<td>".$contact['firstname']."</td>";               
-                        echo "<td>".$contact['lastname']."</td>";
-                        echo "<td>".$contact['email']."</td>";
-                        echo "<td>".$contact['message']."</td>"; 
-                        echo "<td>".$contact['danceFavorite']."</td>"; 
-                        echo "<td>".$contact['danceExperience']."</td>";             
-                      echo "</tr>";
-                  }
+        //               echo "<tr>";
+        //                 echo "<td>".$contact['contactdate']."</td>";
+        //                 echo "<td>".$contact['firstname']."</td>";               
+        //                 echo "<td>".$contact['lastname']."</td>";
+        //                 echo "<td>".$contact['email']."</td>";
+        //                 echo "<td>".$contact['message']."</td>"; 
+        //                 echo "<td>".$contact['danceFavorite']."</td>"; 
+        //                 echo "<td>".$contact['danceExperience']."</td>";             
+        //               echo "</tr>";
+        //           }
              
-            echo '</tbody>';
-            echo '</table>';
-            echo '<br>';
+        //     echo '</tbody>';
+        //     echo '</table>';
+        //     echo '<br>';
        
             
         
-        echo '</section>';
-        echo '</div>';
+        // echo '</section>';
+        // echo '</div>';
         echo '<div class="container-section ">';
         echo '<br><br>';
         echo '<section id="visitors" class="content">';
