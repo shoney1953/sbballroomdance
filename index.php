@@ -892,6 +892,7 @@ if (isset($_SESSION['username'])) {
 href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?usp=sharing">
 DJ Documents</a><br>
         <a  target="_blank" href="https://sbdcrobodj.com/">Robo DJ App</a><br>
+           <a target="_blank" href="https://drive.google.com/file/d/1lRa1Sr_RIpyj-yLF_9qeZgdC7QGZ5q-X/view?usp=sharing"><em>Click for Robo DJ Guide</em></a><br>
         <a  target="_blank" href="https://zedar.com?x=82351 "
         >DJ Equipment Checkout App</a><br><br>
         <p>Contact our DJ Director for more information<a href="mailto:djdirector@sbballroomdance.com?subject=SBDC DJ Info">
