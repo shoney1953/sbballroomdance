@@ -97,7 +97,7 @@ if ($rowCount > 0) {
 } 
 $eventReg = new EventRegistration($db);
 $eventRegArch = new EventRegistrationArch($db);
-$result = $eventRegArch->read_ByUserid($userid);
+$result = $eventReg->read_ByUserid($userid);
 
 $rowCount = $result->rowCount();
 $numEvents = $rowCount;
@@ -121,6 +121,7 @@ if ($rowCount > 0) {
 
     }
 } 
+
 $result = $eventRegArch->read_ByUserid($userid);
 
 $rowCount = $result->rowCount();
@@ -144,7 +145,8 @@ if ($rowCount > 0) {
         array_push($eventRegsArch, $reg_item);
 
     }
-} 
+}
+
 $eventReg = new MemberPaid($db);
 $yearsPaid = [];
 $result = $eventReg->read_byUserid($userid);
