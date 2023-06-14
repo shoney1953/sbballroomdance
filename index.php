@@ -335,7 +335,7 @@ if (isset($_SESSION['username'])) {
             music for Ballroom Dance, Western and Western Partner Dance, Line Dance, and Latin Dances.</p>
        <br><strong> <p> We will help you get started if you've never stepped foot on the dance floor. We now are featuring Novice classes twice 
             a month, with a Novice Practice party once a month to help you feel more comfortable about joining dinner dances and other events.
-            The classes are normally on Tuesdays in the Vermilion room, and the Novice Parties are on Fridays in the Vermilion room in the 
+            The classes are normally on Mondays in the Vermilion room, and the Novice Parties are on Fridays in the Vermilion room in the 
             same time slots as our open practice. Check the Activities calendar or send a note to <a href="mailto:countmein@sbballroomdance.com?subject=Novice Dancing Info">
                        countmein@sbballroomdance.com</a> for
             more information.</p></strong>
