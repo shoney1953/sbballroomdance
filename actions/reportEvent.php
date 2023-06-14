@@ -16,6 +16,8 @@ $memReg = 0;
 $nonMemReg = 0;
 $attDance = 0;
 $attDinner = 0;
+$dwop = 0;
+$numDwop = 0;
 
 
 class PDF extends FPDF
@@ -116,6 +118,7 @@ if ($rowCount > 0) {
             $pdf->Cell(45,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(70,5,"EMAIL",1,0,"L"); 
             $pdf->Cell(18,5,"MEM",1,0,"L"); 
+            $pdf->Cell(18,5,"DWOP",1,0,"L"); 
             if ($reg['eventtype'] === 'Dance Party') {
                 if ($event->eventcost > 0) {
                     $pdf->Cell(14,5,"PAID",1,0,"L");
@@ -179,6 +182,7 @@ if ($rowCount > 0) {
             $pdf->Cell(45,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(70,5,"EMAIL",1,0,"L");
             $pdf->Cell(18,5,"MEM",1,0,"L");
+            $pdf->Cell(18,5,"DWOP",1,0,"L");
             if ($reg['eventtype'] === 'Dance Party') {
                 if ($event->eventcost > 0) {
                     $pdf->Cell(14,5,"PAID",1,0,"L");
@@ -210,17 +214,32 @@ if ($rowCount > 0) {
             $attDance++;
  
         }
-        
+ 
+        $user->id = $reg['userid'];
+    
           $pdf->Cell(40,5,$reg['firstname'],1,0,"L"); 
           $pdf->Cell(45,5,$reg['lastname'],1,0,"L");  
           $pdf->Cell(70,5,$reg['email'],1,0,"L");  
           if ($user->getUserName($reg['email'])) {
             $pdf->Cell(18,5,"YES",1,0,"L"); 
             $memReg++;
+            $user->id = $reg['userid'];
+            $user->read_single();  {
+               if ($user->partnerId > 0) {
+                $pdf->Cell(18,5,"NO",1,0,"L"); 
+               } else {
+                $pdf->Cell(18,5,"YES",1,0,"L"); 
+                $numDwop++;
+               } 
+            }
         } else {
             $pdf->Cell(18,5,"NO",1,0,"L");
+            $pdf->Cell(18,5,"UNK",1,0,"L"); 
             $nonMemReg++; 
+            $dwop = "NO";
         } 
+        $user->id = $reg['userid'];
+        $user->read_single();
         if ($reg['eventtype'] === 'Dinner Dance') {
             if ($event->eventcost > 0) {
                 if ($reg['paid'] === '1') {
@@ -272,6 +291,7 @@ if ($rowCount > 0) {
         } 
     $pdf->Cell(0, 5, "Total Member Registrations:          ".$memReg, 0, 1);
     $pdf->Cell(0, 5, "Total Non Member Registrations:      ".$nonMemReg, 0, 1);
+    $pdf->Cell(0, 5, "Total DWOP Member Registrations:      ".$numDwop, 0, 1);
     if ($reg['eventtype'] === 'Dine and Dance') {
     $pdf->Cell(0, 5, "Total Attending Dinner (if Dine and Dance):  ".$attDinner, 0, 1);
     $pdf->Cell(0, 5, "Total Attending Dance (if Dine and Dance):  ".$attDance, 0, 1);
