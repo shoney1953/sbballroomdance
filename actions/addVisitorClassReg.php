@@ -31,7 +31,7 @@ $classReg = new ClassRegistration($db);
 $class = new DanceClass($db);
 $visitor = new Visitor($db);
 
-$emailBody = "Thanks for registering for the following classes:<br>";
+$emailBody = "Thanks for registering for the following SBDC classes:<br>";
 $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';

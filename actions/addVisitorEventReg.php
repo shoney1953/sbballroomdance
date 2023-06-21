@@ -27,7 +27,7 @@ $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $event = new Event($db);
 $visitor = new Visitor($db);
-$emailBody = "Thanks for registering for the following events:<br>";
+$emailBody = "Thanks for registering for the following SBDC events:<br>";
 $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
@@ -38,9 +38,9 @@ $replyEmail = 'secretary@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = ''; 
 $mailAttachment = '../img/Membership Form 2023 Dance Club 05 02 2023.pdf'; 
-$replyTopic = "Event Registration";
+$replyTopic = "SBDC Event Registration";
 $emailSubject = "The SBDC administrator has registered you as a Visitor for an Event";
-var_dump($_POST);
+
 if (isset($_POST['submitAddVisitorReg'])) {
 
     $eventReg->eventid = $_POST['eventid'];

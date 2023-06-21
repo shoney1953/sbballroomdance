@@ -39,7 +39,7 @@ if (isset($_POST['updateMealChoices'])) {
         if (isset($_POST[$chkboxID])) {
           
             $dinnermealchoices->id = (int)$mealchoice['id'];
-            var_dump($dinnermealchoices->id);
+
             $dinnermealchoices->mealchoice = $_POST[$mchoiceNM];
             $dinnermealchoices->guestprice = $_POST[$gPrice];
             $dinnermealchoices->memberprice = $_POST[$mPrice];

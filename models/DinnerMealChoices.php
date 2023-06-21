@@ -131,7 +131,7 @@ class DinnerMealChoices {
           $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
           $this->memberprice = htmlspecialchars(strip_tags($this->memberprice));
           $this->guestprice = htmlspecialchars(strip_tags($this->guestprice));
-          var_dump($this);
+
 
 
           // Bind data

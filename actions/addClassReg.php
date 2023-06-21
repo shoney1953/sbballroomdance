@@ -34,7 +34,7 @@ $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
 $danceClass = new DanceClass($db);
-$emailBody = "Thanks for registering for the following classes:<br>";
+$emailBody = "Thanks for registering for the following SBDC classes:<br>";
 $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
@@ -46,8 +46,8 @@ $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = '';
 $mailAttachment = ''; 
 $replyEmail = 'dancedirector@sbballroomdance.com';
-$replyTopic = "Class Registration";
-$emailSubject = "Your instructor has registered you for selected Classes";
+$replyTopic = "SBDC Class Registration";
+$emailSubject = "Your instructor has registered you for selected SBDC Classes";
 $usersSelected = 0;
 
 
@@ -79,7 +79,7 @@ if (isset($_POST['submitAddReg'])) {
                     "<br>   Registration Email:   ".$danceClass->registrationemail.
                     "<br>   Room:    ".$danceClass->room.
                     "<br>   Beginning on date:    ".date('M d Y',strtotime($danceClass->date)).
-                    "<br>  Time: ".date('h:i:s A', strtotime($danceClass->time))."<br>"; 
+                    "<br>   Time: ".date('h:i:s A', strtotime($danceClass->time))."<br>"; 
                     $regFirstName1 = $usr['firstname'];
                     $regLastName1 = $usr['lastname'];
                     $regEmail1 = $usr['email'];

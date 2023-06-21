@@ -6,6 +6,7 @@ require_once 'models/DanceClass.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/User.php';
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
+
 $_SESSION['upcoming_eventnumber'] = 0;
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
@@ -802,6 +803,7 @@ if (isset($_SESSION['username'])) {
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/2023-01-20-Dine-Dance">January Dine and Dance 01 2023</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/2023-02-15-Sweetheart-Dance/">February Sweetheart Dance 02 15 2023</a></li> 
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/04-20-2023-Dinner-Dance/">Dinner Dance 04 20 2023</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-June-Dance-Party-6-16-2023/">June Dance Party 06 16 2023</a></li>
        </ul>
        </div>
        <div class="form-grid-div">

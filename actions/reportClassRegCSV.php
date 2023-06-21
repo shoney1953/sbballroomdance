@@ -15,7 +15,7 @@ $nonMemReg = 0;
 
 $today = date("m-d-Y");
 $fileName = "ClassEmails-".$today.".CSV";
-var_dump($fileName);
+
 
 if (isset($_POST['submitClassRepCSV'])) {
  

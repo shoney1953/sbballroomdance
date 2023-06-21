@@ -16,7 +16,7 @@ $user = new User($db);
 
 $regSelected = [];
 $regAll = '';
-$emailBody = "Thanks for registering for the following classes:<br>";
+$emailBody = "Thanks for registering for the following SBDC classes:<br>";
 $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
@@ -26,7 +26,7 @@ $replyEmail = 'webmaster@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = '';
 $mailAttachment = "";
-$replyTopic = "Class Registration";
+$replyTopic = "SBDC Class Registration";
 $regId1 = 0;
 $regId2 = 0;
 $create_successful = 0;

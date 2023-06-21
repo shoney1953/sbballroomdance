@@ -109,7 +109,6 @@ if (isset($_POST['submitSummaryRep'])) {
    
 
   }
-  var_dump($comboArr);
 
 //     $pdf = new PDF();
 //     $pdf->AliasNbPages();

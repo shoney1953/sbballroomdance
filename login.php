@@ -48,7 +48,11 @@ date_default_timezone_set("America/Phoenix");
                 <br>
                 <button type="submit" name="SubmitLogIN">Submit</button><br>              
         </form>
-    
+       
+        <br>
+              <a style="font-weight: bold; font-size: 16px" href="forgotPassword.php"><em>Forgot Your Member Password?</em></a>
+              <br><br><br>
+
         </div>
         <div class="form-grid-div">
         </div>
@@ -78,10 +82,8 @@ date_default_timezone_set("America/Phoenix");
     </div>
     <footer >
 
-<div class="footer-section">
-<?php
-$year = date("Y"); 
-    echo '<p>Copyright &copy; '.$year.'    Sheila Honey  - All Rights Reserved</p>';
+    <?php
+  require 'footer.php';
 ?>
     
 </div> 

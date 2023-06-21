@@ -25,7 +25,7 @@ $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $event = new Event($db);
 $emailText = '';
-$emailBody = "A Message About Your Ballroom Dance Event:<br>";
+$emailBody = "A Message About Your SBDC Ballroom Dance Event:<br>";
 $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
@@ -37,7 +37,7 @@ $regEmail1 = [];
 $toCC2 = ''; 
 $mailAttachment = ''; 
 $replyTopic = "Event Message";
-$emailSubject = "A Message about Your Ballroom Dance Club Event";
+$emailSubject = "A Message about Your SBDC Ballroom Dance Club Event";
 $preface = '';
 $rowCount = 0;
 if (isset($_POST['submitEventEmail'])) {

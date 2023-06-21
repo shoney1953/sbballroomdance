@@ -31,7 +31,7 @@ $upcomingEvents = [];
 $upcomingEvents = $_SESSION['upcoming_events'] ;
 $users = [];
 $users = $_SESSION['regUsers'] ;
-$emailBody = "Thanks for registering for the following events:<br>";
+$emailBody = "Thanks for registering for the following SBDC events:<br>";
 $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
@@ -42,8 +42,8 @@ $replyEmail = 'secretary@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = '';
 $mailAttachment = ''; 
-$replyTopic = "Event Registration";
-$emailSubject = "The SBDC administrator has registered you for selected Events";
+$replyTopic = "SBDC Event Registration";
+$emailSubject = "The SBDC administrator has registered you for selected SBDC Events";
 
 if (isset($_POST['submitAddReg'])) {        
     if (isset($_POST['eventid'])) {
