@@ -167,7 +167,9 @@ echo '<div class="container-section ">';
                         if ($event['eventtype'] === 'Dance Party') {
                             echo '<th>Attend<br>Dinner?</th>';
                             echo '<th>Attend<br>Dance?</th>';
-                            echo '<th>Paid?</th>';
+                            if ($event['eventcost'] > 0) {
+                                echo '<th>Paid?</th>';
+                            }
                         }
                          
                     echo '</tr>';
@@ -190,6 +192,7 @@ echo '<div class="container-section ">';
                                 } else {
                                     echo "<td>&times;</td>"; 
                                 } 
+                      
                                 if ($eventRegistration['ddattenddance'] == true ) {
                                     echo "<td>&#10004;</td>"; 
                                 } else {
@@ -208,12 +211,17 @@ echo '<div class="container-section ">';
                                 } else {
                                     echo "<td>&times;</td>"; 
                                 } 
-                                if ($eventRegistration['paid'] == true ) {
-                                    echo "<td>&#10004;</td>"; 
+                                if ($event['eventcost'] > 0) {
+                                    if ($eventRegistration['ddattenddinner'] == true ) {  
+                                    if ($eventRegistration['paid'] == true ) {
+                                        echo "<td>&#10004;</td>"; 
+                                    } else {
+                                        echo "<td>&times;</td>"; 
+                                    } 
                                 } else {
-                                    echo "<td>&times;</td>"; 
-                                } 
-                            
+                                    echo "<td>N/A</td>"; 
+                                }
+                                }
                             }
                         
                           echo "</tr>";

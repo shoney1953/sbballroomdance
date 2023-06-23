@@ -203,8 +203,13 @@ if ($rowCount > 0) {
          $paid = 'Not Paid';
 
         if ($reg['paid'] == true) {
+          if ($reg['ddattenddinner'] == true) {
             $paidNum++;
-          $paid = 'Paid';
+            $paid = 'Paid';
+            } else {
+                 $paid = 'NA';
+         }
+          
         }
         if ($reg['ddattenddinner'] == true) {
             $attDinner++;
@@ -253,7 +258,11 @@ if ($rowCount > 0) {
       if ($reg['eventtype'] === 'Dance Party') {
         if ($event->eventcost > 0) {
         if ($reg['paid'] === '1') {
-            $pdf->Cell(14,5,"YES",1,0,"L");
+            if ($reg['ddattenddinner'] === '1') {
+              $pdf->Cell(14,5,"YES",1,0,"L");
+            } else {
+              $pdf->Cell(14,5,"NA ",1,0,"L");
+             } 
         } else {
             $pdf->Cell(14,5,"NO ",1,0,"L");
         } 
