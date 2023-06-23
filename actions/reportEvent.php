@@ -261,10 +261,15 @@ if ($rowCount > 0) {
             if ($reg['ddattenddinner'] === '1') {
               $pdf->Cell(14,5,"YES",1,0,"L");
             } else {
-              $pdf->Cell(14,5,"NA ",1,0,"L");
+              $pdf->Cell(14,5,"N/A ",1,0,"L");
              } 
         } else {
-            $pdf->Cell(14,5,"NO ",1,0,"L");
+            if ($reg['ddattenddinner'] === '1') {
+                $pdf->Cell(14,5,"NO",1,0,"L");
+              } else {
+                $pdf->Cell(14,5,"N/A ",1,0,"L");
+               } 
+     
         } 
     }
   }
