@@ -43,7 +43,7 @@ if (isset($_POST['SubmitResetPwd'])) {
  
 
   $currentDate = new DateTime();
-  $expirationDate = $currentDate->format('u') + 1800;
+  $expirationDate = $currentDate->format('U') + 1800;
 
   $pwdReset->pwdResetEmail = $_POST['email'];
   $pwdReset->pwdResetToken = $hashedToken;

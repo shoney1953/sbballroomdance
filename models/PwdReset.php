@@ -41,10 +41,11 @@ class PwdReset {
   }
  return false;
 }
-public function readBy_selector($selector) {
+public function readBy_selector($selector, $expiration) {
  
   // Create query
   $query = 'SELECT * FROM ' . $this->table . ' WHERE pwdResetSelector = :selector
+  AND pwdResetExpiration >= :expiration
   LIMIT 0,1'; 
 
   // Prepare statement
@@ -52,6 +53,7 @@ public function readBy_selector($selector) {
 
   // Bind ID
   $stmt->bindParam('selector', $selector);
+  $stmt->bindParam('expiration', $expiration);
  
   // Execute query
   $stmt->execute();

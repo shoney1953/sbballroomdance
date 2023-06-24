@@ -24,9 +24,9 @@ if (isset($_POST['SubmitCreatePwd'])) {
     exit();
   }
   $currentDate = new DateTime();
-  $expirationDate = $currentDate->format('u');
+  $expirationDate = $currentDate->format('U');
 
-  if ($pwdReset->readBy_selector($selector)) {
+  if ($pwdReset->readBy_selector($selector, $expirationDate)) {
 
       $tokenBin = hex2bin($validator);
       $tokenCheck = password_verify($tokenBin, $pwdReset->pwdResetToken);
@@ -44,7 +44,13 @@ if (isset($_POST['SubmitCreatePwd'])) {
       if ($tokenCheck === false) {
         echo '<p>Internal Error Occured; please start over</p>';
       }
-    } 
+    } else {
+
+      $redirect = "Location: ../createNewPassword.php?error=timeout&selector=".$selector."&validator=".$validator."";;
+      header($redirect); 
+      exit();
+
+    }
 
   }  else {
   $redirect = "Location: ".$_SESSION['homeurl'];
