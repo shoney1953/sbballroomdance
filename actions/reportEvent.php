@@ -111,7 +111,7 @@ if ($rowCount > 0) {
             $init = 0;
             $event_string = ' '.$reg['eventtype'].' --- '.$reg['eventname'].'  '
                      .$reg['eventdate'].'   Cost: '.$event->eventcost.' ';
-            $pdf->SetFont('Arial', 'BU', 14);
+            $pdf->SetFont('Arial', 'B', 14);
             $pdf->Cell(0, 10, $event_string, 0, 1);
             $pdf->SetFont('Arial', '', 14);
             $pdf->Cell(40,5,"FIRST NAME",1,0,"L"); 
@@ -143,6 +143,7 @@ if ($rowCount > 0) {
     
         }
         if ($reg['eventid'] !== $prevEvent) {
+            $pdf->addPage('L');
             $pdf->SetFont('Arial', 'B', 14);
             $pdf->Ln(2);
             $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1); 
@@ -175,7 +176,7 @@ if ($rowCount > 0) {
             $event_string = ' '.$reg['eventname'].'  '
             .$reg['eventdate'].' ';
             $pdf->Ln(3);
-            $pdf->SetFont('Arial', 'BU', 14);
+            $pdf->SetFont('Arial', 'B', 14);
             $pdf->Cell(0, 10, $event_string, 0, 1);
             $pdf->SetFont('Arial', '', 14);
             $pdf->Cell(40,5,"FIRST NAME",1,0,"L"); 
@@ -294,6 +295,7 @@ if ($rowCount > 0) {
 
 
     }
+    $pdf->addPage('L');
     $pdf->SetFont('Arial','B', 14);
     $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1);
