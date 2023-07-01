@@ -576,7 +576,11 @@ if (isset($_SESSION['username'])) {
         <table>
             <thead>
             <tr>
-                <th>Report?</th>
+                <?php
+                if (isset($_SESSION['username'])) {
+                    echo '<th>Report?</th>';
+                }
+                ?>
                 <th>Event Date</th>
                 <th>Event Name    </th>
                 <th>Event Type    </th>
@@ -599,6 +603,7 @@ if (isset($_SESSION['username'])) {
                  $hr = 'eventMem.php?id=';
                  $hr .= $event["id"];
                   echo "<tr>";
+                    if (isset($_SESSION['username'])) {
                     echo "<td>";
                     echo "<form  target='_blank' name='reportEventForm'   method='POST' action='actions/reportEvent.php'> ";
                     echo "<input type='hidden' name='eventId' value='".$event['id']."'>"; 
@@ -606,6 +611,7 @@ if (isset($_SESSION['username'])) {
                     // echo '<script language="JavaScript">document.reportEventForm.submit();</script></form>';
                     echo '</form>';
                     echo "</td>";
+                    }
                     echo "<td>".$event['eventdate']."</td>";
                     echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";
