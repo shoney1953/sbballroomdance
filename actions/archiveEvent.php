@@ -108,8 +108,8 @@ if (isset($_POST['submitArchive'])) {
 }
 
    
-// $redirect = "Location: ".$_SESSION['adminurl']."#events";
-// header($redirect);
-// exit;
+$redirect = "Location: ".$_SESSION['adminurl']."#events";
+header($redirect);
+exit;
 
 ?>
