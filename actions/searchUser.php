@@ -115,6 +115,7 @@ if (isset($_POST['searchUser'])) {
                 echo '<th>Email</th>';  
                 echo '<th>Phone</th>';
                 echo '<th>HOA</th>';
+                echo '<th>Fulltime</th>';
                 echo '<th>Address</th>';
                 echo '<th>Directory</th>';
 
@@ -140,6 +141,11 @@ if (isset($_POST['searchUser'])) {
                         echo "<td>".$user['email']."</td>";
                         echo "<td>".$user['phone1']."</td>";
                         echo "<td>".$user['hoa']."</td>";
+                        if ($user['fulltime']) {
+                            echo "<td>Yes</td>"; 
+                        } else {
+                            echo "<td>No</td>"; 
+                        }
                         echo "<td>".$user['streetAddress']."</td>"; 
                         if ($user['directorylist']) {
                             echo "<td>Yes</td>"; 

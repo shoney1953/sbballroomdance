@@ -89,7 +89,7 @@ $users = $_SESSION['process_users'];
         } else {
             echo "<option value = '1' >Fulltime Resident</option>";
         }
-        if ($usr['hoa'] == 2) {
+        if ($usr['fulltime'] == 0) {
             echo "<option value = '0' selected>Gone for the Summer</option>";
         } else {
             echo "<option value = '0' >Gone for the Summer</option>";

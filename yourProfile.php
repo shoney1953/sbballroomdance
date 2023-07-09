@@ -165,11 +165,7 @@ if ($rowCount > 0) {
              <br><label style='font: smaller;color: darkviolet' for='directorylist'><em>1 to list, 0 to Remove</em></label>
             </div>
        
-            <div class="form-item">
-            <h4 class="form-item-title">Fulltime Resident: </h4>
-             <input type='number' name='fulltime' min='0' max='1' value='<?php echo $user->fulltime ?>'>
-             <br><label style='font: smaller;color: darkviolet' for='fulltime'><em>1 Yes, 0 Gone for the Summer</em></label>
-            </div>
+           
             <div class="form-item">
             <h4 class="form-item-title">HOA</h4>
             <select name = 'hoa' value='<?php echo $user->hoa ?>'>
@@ -183,6 +179,25 @@ if ($rowCount > 0) {
                     echo "<option value = '2' selected>HOA 2</option>";
                 } else {
                     echo "<option value = '2' >HOA 2</option>";
+                }
+                ?>
+            </select>
+            </div>
+            <div class="form-item">
+            <h4 class="form-item-title">Fulltime Resident: </h4>
+             <!-- <input type='number' name='fulltime' min='0' max='1' value='<?php echo $user->fulltime ?>'> -->
+             <!-- <br><label style='font: smaller;color: darkviolet' for='fulltime'><em>1 Yes, 0 Gone for the Summer</em></label> -->
+             <select name = 'fulltime' value='<?php echo $user->fulltime ?>'>
+            <?php
+                if ($user->fulltime == '1') {
+                    echo "<option value = 1 selected>Fulltime</option>";
+                } else {
+                    echo "<option value = '1' >Fulltime</option>";
+                }
+                if ($user->fulltime == '0') {
+                    echo "<option value = '0' selected>Gone for the Summer</option>";
+                } else {
+                    echo "<option value = '0' >Gone for the Summer</option>";
                 }
                 ?>
             </select>
