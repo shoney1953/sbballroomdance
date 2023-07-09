@@ -273,6 +273,7 @@ if ($rowCount > 0) {
        
             echo '<th>HOA</td>';
             echo '<th>Directory</th>';
+            echo '<th>Fulltime</th>';
             echo '<th colspan="2">Notes</th>';
  
             echo '</tr>';
@@ -282,6 +283,7 @@ if ($rowCount > 0) {
      
             echo "<td>$user->hoa</td>";
             echo "<td>$user->directorylist</td>";
+            echo "<td>$user->fulltime</td>";
             echo "<td colspan='2'>$user->notes</td>";
 
             echo '</tr>';

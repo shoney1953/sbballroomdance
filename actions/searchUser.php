@@ -59,7 +59,8 @@ if (isset($_POST['searchUser'])) {
                     'notes' => $notes,
                     'lastLogin' => date('m d Y h:i:s A', strtotime($lastLogin)),
                     'numlogins' => $numlogins,
-                    'directorylist' => $directorylist
+                    'directorylist' => $directorylist,
+                    'fulltime' => $fulltime
                 );
                 array_push( $users, $user_item);
           

@@ -263,7 +263,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'notes' => $notes,
                 'lastLogin' => date('m d Y h:i:s A', strtotime($lastLogin)),
                 'numlogins' => $numlogins,
-                'directorylist' => $directorylist
+                'directorylist' => $directorylist,
+                'fulltime' => $fulltime
             );
             array_push($users, $user_item);
       
@@ -719,7 +720,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<table>';
         echo '<thead>';
         echo '<tr>';
-        echo '<th colspan="13" style="color: darkviolet;text-align:center">Member List</th>';
+        echo '<th colspan="14" style="color: darkviolet;text-align:center">Member List</th>';
         echo '</tr>';
         echo '<tr>';
                 echo '<th>Update</th>';
@@ -735,6 +736,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>HOA</th>';
                 echo '<th>Address</th>';
                 echo '<th>Directory</th>';
+                echo '<th>Fulltime?</th>';
            
   
                 echo '</tr>';
@@ -762,6 +764,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         echo "<td>".$user['hoa']."</td>";
                         echo "<td>".$user['streetAddress']."</td>"; 
                         if ($user['directorylist']) {
+                            echo "<td>Yes</td>"; 
+                        } else {
+                            echo "<td>No</td>"; 
+                        }
+                        if ($user['fulltime']) {
                             echo "<td>Yes</td>"; 
                         } else {
                             echo "<td>No</td>"; 

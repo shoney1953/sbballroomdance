@@ -33,6 +33,7 @@ $users = $_SESSION['process_users'];
             $roleID = "role".$usr['id'];
             $rpwdID = "rpwd".$usr['id'];
             $rpwd2ID = "rpwd2".$usr['id'];
+            $fullID = "full".$usr['id'];
             if (isset($_POST["$upChk"])) {
                 echo '<div class="form-container">';
                 echo "<h4 class='form-title'>".$usr['firstname']." ".$usr['lastname']." --   Member ID: ".$usr['id']."</h4>";
@@ -80,6 +81,21 @@ $users = $_SESSION['process_users'];
           }
           echo "</select>";
           echo '</div>';
+          echo '<div class="form-item">';
+          echo '<h4 class="form-item-title">Fulltime?</h4>'; 
+         echo "<select name = '".$fullID."' value'".$usr['fulltime']."'>";
+         if ($usr['fulltime'] == '1') {
+            echo "<option value = '1' selected>Fulltime Resident</option>";
+        } else {
+            echo "<option value = '1' >Fulltime Resident</option>";
+        }
+        if ($usr['hoa'] == 2) {
+            echo "<option value = '0' selected>Gone for the Summer</option>";
+        } else {
+            echo "<option value = '0' >Gone for the Summer</option>";
+        }
+        echo "</select>";
+        echo '</div>';
           echo '<div class="form-item">';
           echo '<h4 class="form-item-title">Primary Phone</h4>'; 
           echo "<input type='tel'  name='".$phone1ID."'

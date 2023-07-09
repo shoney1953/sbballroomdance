@@ -27,6 +27,7 @@ class UserArchive {
     public $dateArchived;
     public $numlogins;
     public $directorylist;
+    public $fulltime;
 
     // Constructor with DB
     public function __construct($db) {
@@ -119,6 +120,7 @@ class UserArchive {
           $this->dateArchived = $row['dateArchived'];
          $this->numlogins = $row['numlogins'];
          $this->directorylist = $row['directorylist'];
+         $this->fulltime = $row['fulltime'];
 
     }
     public function getUserName($user, $email) {
@@ -162,6 +164,7 @@ class UserArchive {
       $this->dateArchived = $row['dateArchived'];
       $this->numlogins = $row['numlogins'];
       $this->directorylist = $row['directorylist'];
+      $this->fulltime = $row['fulltime'];
   
         return true;
       }
@@ -177,7 +180,7 @@ class UserArchive {
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           username = :username, password = :password , numlogins = :numlogins,
           partnerid = :partnerid, streetaddress = :streetaddress,
-          directorylist = :directorylist,
+          directorylist = :directorylist, fulltime = :fulltime,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
           phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
 
@@ -200,6 +203,7 @@ class UserArchive {
           $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
           $this->zip = htmlspecialchars(strip_tags($this->zip));
           $this->directorylist = $this->directorylist;
+          $this->fulltime = $this->fulltime;
      
 
 
@@ -220,7 +224,7 @@ class UserArchive {
           $stmt->bindParam(':notes', $this->notes);
           $stmt->bindParam(':numlogins', $this->numlogins);
           $stmt->bindParam(':directorylist', $this->directorylist);
-
+          $stmt->bindParam(':fulltime', $this->fulltime);
 
           // Execute query
           if ($stmt->execute()) {
@@ -242,6 +246,7 @@ class UserArchive {
           username = :username, partnerid = :partnerid, 
           streetaddress = :streetaddress,
           directorylist = :directorylist,
+          fulltime = :fulltime,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
           phone1 = :phone1, phone2 = :phone2, notes = :notes
           WHERE id = :id';
@@ -265,6 +270,7 @@ class UserArchive {
           $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
           $this->zip = htmlspecialchars(strip_tags($this->zip));
           $this->directorylist = $this->directorylist;
+          $this->fulltime = $this->fulltime;
       
 
           // Bind data
@@ -283,6 +289,7 @@ class UserArchive {
           $stmt->bindParam(':phone2', $this->phone2);
           $stmt->bindParam(':notes', $this->notes);
           $stmt->bindParam(':directorylist', $this->directorylist);
+          $stmt->bindParam(':fulltime', $this->fulltime);
 
           // Execute query
           if($stmt->execute()) {

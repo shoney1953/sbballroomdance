@@ -134,6 +134,13 @@ if (isset($_POST['submitAddUser'])) {
             echo '<option value = "2">HOA 2</option>';
             echo '</select>';
             echo '</div>';
+            echo '<div class="form-item">';
+            echo '<h4 class="form-item-title">Fulltime</h4>';
+            echo '<select name = "fulltime">';
+            echo '<option value = "1">Fulltime</option>';
+            echo '<option value = "0">Gone for the Summer</option>';
+            echo '</select>';
+            echo '</div>';
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Role</h4>';

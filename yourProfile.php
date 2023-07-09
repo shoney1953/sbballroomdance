@@ -164,6 +164,12 @@ if ($rowCount > 0) {
              <input type='number' name='directorylist' min='0' max='1' value='<?php echo $user->directorylist ?>'>
              <br><label style='font: smaller;color: darkviolet' for='directorylist'><em>1 to list, 0 to Remove</em></label>
             </div>
+       
+            <div class="form-item">
+            <h4 class="form-item-title">Fulltime Resident: </h4>
+             <input type='number' name='fulltime' min='0' max='1' value='<?php echo $user->fulltime ?>'>
+             <br><label style='font: smaller;color: darkviolet' for='fulltime'><em>1 Yes, 0 Gone for the Summer</em></label>
+            </div>
             <div class="form-item">
             <h4 class="form-item-title">HOA</h4>
             <select name = 'hoa' value='<?php echo $user->hoa ?>'>

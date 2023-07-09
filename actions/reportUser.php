@@ -64,6 +64,7 @@ if (isset($_POST['submitUserRep'])) {
                 'phone1' => $phone1,
                 'hoa' => $hoa,
                 'email' => $email,
+                'fulltime' => $fulltime,
                 'streetaddress' => $streetaddress
 
             );
@@ -90,6 +91,7 @@ if ($userCount > 0) {
     $pdf->Cell(40,5,"LAST NAME",1,0,"L");
     $pdf->Cell(70,5,"EMAIL",1,0,"L");
     $pdf->Cell(5,5,"H",1,0,"L");
+    $pdf->Cell(5,5,"F",1,0,"L");
     $pdf->Cell(35,5,"PHONE",1,0,"L");
     $pdf->Cell(70,5,"STREET ADDRESS",1,1,"L");
     $pdf->SetFont('Arial', '', 10);
@@ -101,7 +103,7 @@ if ($userCount > 0) {
          $pdf->Cell(40,5,$usr['lastname'],1,0,"L");
          $pdf->Cell(70,5,$usr['email'],1,0,"L");
          $pdf->Cell(5,5,$usr['hoa'],1,0,"L");
-    
+         $pdf->Cell(5,5,$usr['fulltime'],1,0,"L");
          $pdf->Cell(35,5,$usr['phone1'],1,0,"L");
          $pdf->Cell(70,5,$usr['streetaddress'],1,1,"L");
 

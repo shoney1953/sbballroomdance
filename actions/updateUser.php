@@ -48,6 +48,7 @@ if (isset($_POST['submitUpdateUser'])) {
       $roleID = "role".$usr['id'];
       $rpwdID = "rpwd".$usr['id'];
       $rpwd2ID = "rpwd2".$usr['id'];
+      $fullID = "full".$usr['id'];
  
    if (isset($_POST["$usrSelChk"])) {
   
@@ -69,6 +70,7 @@ if (isset($_POST['submitUpdateUser'])) {
 
     $user->email = $_POST["$emailID"];
     $user->directorylist = $_POST["$dlistID"];
+    $user->fulltime = $_POST["$fullID"];
   
     $user->role = $_POST["$roleID"];
     

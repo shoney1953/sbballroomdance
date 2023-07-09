@@ -120,6 +120,7 @@ if (isset($_POST['submitArchiveUser'])) {
         $userArc->phone2 = $user->phone2;
         $userArc->notes = $user->notes;
         $userArc->directorylist = $user->directorylist;
+        $userArc->fulltime = $user->fulltime;
         $userArc->lastLogin = $user->lastLogin;
         $userArc->numlogins = $user->numlogins;
         $userArc->create();

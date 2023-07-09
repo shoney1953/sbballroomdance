@@ -92,6 +92,7 @@ if (isset($_POST['submitAddUser'])) {
        $user->notes = htmlentities($_POST['notes']); 
        $user->phone1 = htmlentities($_POST['phone1']);
        $user->phone2 = htmlentities($_POST['phone2']);
+       $user->fulltime = htmlentities($_POST['fulltime']);
        $user->directorylist = 1;
        $formerUser = "no";
        if ($userArchive->getUserName($user->username, $user->email)) {

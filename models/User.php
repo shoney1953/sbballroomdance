@@ -26,6 +26,7 @@ class User {
     public $lastLogin;
     public $numlogins;
     public $directorylist;
+    public $fulltime;
 
     // Constructor with DB
     public function __construct($db) {
@@ -159,6 +160,7 @@ class User {
           $this->lastLogin = $row['lastLogin'];
           $this->numlogins = $row['numlogins'];
           $this->directorylist = $row['directorylist'];
+          $this->fulltime = $row['fulltime'];
           return true;
           }
         
@@ -203,6 +205,7 @@ class User {
       $this->lastLogin = $row['lastLogin'];
       $this->numlogins = $row['numlogins'];
       $this->directorylist = $row['directorylist'];
+      $this->fulltime = $row['fulltime'];
   
         return true;
       }
@@ -265,7 +268,7 @@ class User {
           username = :username, password = :password ,
           partnerid = :partnerid, streetaddress = :streetaddress,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
-          directorylist = :directorylist,
+          directorylist = :directorylist, fulltime = :fulltime,
           phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
 
           // Prepare statement
@@ -288,6 +291,7 @@ class User {
           $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
           $this->zip = htmlspecialchars(strip_tags($this->zip));
           $this->directorylist = 1;
+          $this->fulltime = $this->fulltime;
 
 
           // Bind data
@@ -306,6 +310,7 @@ class User {
           $stmt->bindParam(':phone2', $this->phone2);
           $stmt->bindParam(':notes', $this->notes);
           $stmt->bindParam(':directorylist', $this->directorylist);
+           $stmt->bindParam(':fulltime', $this->fulltime);
 
 
           // Execute query
@@ -328,7 +333,7 @@ class User {
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           username = :username, partnerid = :partnerid, 
           streetaddress = :streetaddress, role = :role,
-          directorylist = :directorylist,
+          directorylist = :directorylist, fulltime = :fulltime,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
           phone1 = :phone1, phone2 = :phone2, notes = :notes
           WHERE id = :id';
@@ -352,6 +357,7 @@ class User {
           $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
           $this->zip = htmlspecialchars(strip_tags($this->zip));
           $this->directorylist = htmlspecialchars(strip_tags($this->directorylist));
+          $this->fulltime = htmlspecialchars(strip_tags($this->fulltime));
       
 
           // Bind data
@@ -371,6 +377,7 @@ class User {
           $stmt->bindParam(':notes', $this->notes);
           $stmt->bindParam(':role', $this->role);
           $stmt->bindParam(':directorylist', $this->directorylist);
+          $stmt->bindParam(':fulltime', $this->fulltime);
 
           // Execute query
           if($stmt->execute()) {
