@@ -59,7 +59,12 @@ class PDF extends FPDF
             $eventId = htmlentities($_POST['eventId']);
             $event->id = $eventId;
             $event->read_single();
-            $result = $eventReg->read_ByEventId($eventId);
+            if ($event->eventtype === 'Dance Party') {
+                $result = $eventReg->read_ByEventIdDinner($eventId);
+            } else {
+                $result = $eventReg->read_ByEventId($eventId);  
+            }
+           
         } else {
         $result = $eventReg->read();
     }

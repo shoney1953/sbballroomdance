@@ -190,6 +190,36 @@ public function read_ByEmail($email) {
     return $stmt;
 
 }
+public function read_ByEventIdDinner($eventid) {
+      
+
+  $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+  c.eventtype as eventtype,
+  r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+  r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+  r.mealchoice, r.dietaryrestriction
+  FROM ' . $this->table . ' r
+  LEFT JOIN
+    events c ON r.eventid = c.id
+  WHERE
+    r.eventid = :eventid 
+  ORDER BY 
+    r.ddattenddinner, r.lastname, r.firstname';
+
+
+
+  // Prepare statement
+  $stmt = $this->conn->prepare($query);
+
+  // Bind ID
+  $stmt->bindParam('eventid', $eventid);
+
+  // Execute query
+  $stmt->execute();
+
+  return $stmt;
+
+}
 public function checkDuplicate($email,$eventid) {
       
   // Create query
