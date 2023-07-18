@@ -123,6 +123,8 @@
         </p>
         </div> 
       </div> 
+     
+
 </div>
 
 <div class="content-faq">
@@ -212,8 +214,31 @@
             </li>
         </ul>
         </div> 
+        </div>
+        <div class="dropdown">
+      <span class="faq-title">What is ROBO DJ?</span>
+        <div class="dropdown-content">
+        <p>Robo DJ is a website designed to provide music for SBDC members. There are categories of music, and a facility to create a random playlist that includes various type of music. 
+          You will need to login with your regular SBDC userid and password.
+          </p>
+        <p>
+         More information is provided in the ROBO DJ guide<a target="_blank" href="https://drive.google.com/file/d/1lRa1Sr_RIpyj-yLF_9qeZgdC7QGZ5q-X/view?usp=sharing"> Click to read the guide</a>
+        </p>
+
+        </div> 
       </div> 
-</div>
+      <div class="dropdown">
+      <span class="faq-title">How do I access ROBO DJ?</span>
+        <div class="dropdown-content">
+        
+        <p>
+         <a target="_blank" href="https://sbdcrobodj.com/">Click to access the Robo DJ Website</a>
+        </p>
+
+        </div> 
+      </div> 
+      </div> 
+
 </div>
 </div>
 </div>

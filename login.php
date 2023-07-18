@@ -29,8 +29,11 @@ date_default_timezone_set("America/Phoenix");
     <div class="container-section ">
     <section id="login" class="content">
    <br><br><br><h1>If you are a member, please use the SBDC member log in. If not, please log in as a visitor.</h1>
-   <br<h2>If you are a member and having trouble logging on please contact <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
-                webmaster@sbballroomdance.com</a></h2><br>
+   <br<h2>If you are a member and having trouble logging on 
+                <a href="faq.php">Click to See Our Frequently Asked Questions</a>, or 
+                please contact <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
+                webmaster@sbballroomdance.com</a>.
+            </h2><br>
         
         <div class="form-grid3">
         <div class="form-grid-div">
@@ -50,8 +53,10 @@ date_default_timezone_set("America/Phoenix");
         </form>
        
         <br>
-              <a style="font-weight: bold; font-size: 16px" href="forgotPassword.php"><em>Forgot Your Member Password?</em></a>
+        
+              <a style="font-weight: bold; font-size: 16px" href="forgotPassword.php"><em>Forgot Your Member Password?  Click to get a reset password email.</em></a>
               <br><br><br>
+              
 
         </div>
         <div class="form-grid-div">
