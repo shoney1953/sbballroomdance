@@ -70,7 +70,7 @@ if ($reportEvent) {
 
        echo "<div class='form-item'>";
        echo "<h4 class='form-item-title'>Update?</h4>";
-       echo "<input type='checkbox' name='".$evSelectChk."' title='Check this box to update'>";
+       echo "<input type='checkbox' name='".$evSelectChk."' checked title='Check this box to update'>";
        echo '</div>';
 
        echo "<div class='form-item'>";
@@ -197,7 +197,7 @@ if ($deleteEvent) {
      $evidID = "evid".$event['id'];
      
         echo '<tr>';
-        echo "<td><input type='checkbox' name='".$evSelectChk."' title='Check this box to delete'></td>";
+        echo "<td><input type='checkbox' name='".$evSelectChk."' checked title='Check this box to delete'></td>";
         echo "<td>".$event['eventtype']."</td>";
         echo "<td>".$event['eventdesc']."</td>";
         echo "<td>".$event['eventtype']."</td>";
@@ -243,7 +243,7 @@ echo '</form>';
        $evidID = "evid".$event['id'];
        
           echo '<tr>';
-          echo "<td><input type='checkbox' name='".$evSelectChk."' title='Check this box to delete'></td>";
+          echo "<td><input type='checkbox' name='".$evSelectChk."' checked title='Check this box to delete'></td>";
           echo "<td>".$event['eventtype']."</td>";
           echo "<td>".$event['eventdesc']."</td>";
           echo "<td>".$event['eventtype']."</td>";
