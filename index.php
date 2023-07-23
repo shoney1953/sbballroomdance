@@ -297,6 +297,7 @@ if (isset($_SESSION['username'])) {
     echo '<li><a href="#help">Help</a></li>';
     echo '<li><a href="#pictures">Picture Gallery</a></li>';
     echo '<li><a href="resources.php">Resources</a></li>';
+    echo '<li><a href="sponsor.php">Sponsors</a></li>';
     echo '</ul>';
     echo '</li>';
     ?>
