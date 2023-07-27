@@ -122,7 +122,7 @@ if (isset($_POST['submitAddUser'])) {
        $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
        $mailAttachment = "../img/Member Guide to Website Version 2.pdf"; 
-       $fromCC = "webmaster@sbballroomdance.com";
+       $fromCC = "calamitywjs@gmail.com";
        if ($formerUser === 'yes') {
         $emailBody = "<br>Welcome back<b> $toName </b> as a returning member 
         to the SaddleBrooke Ballroom Dance Club.<br><br>";
