@@ -178,9 +178,9 @@ if (isset($_POST['submitAddUser'])) {
      $emailBody .= "Rich Adinolfi, President<br>";
      $emailBody .= "Nan Kartsonis, Vice President<br>"; 
      $emailBody .= "Roger Shamburg, Treasurer<br>";
-     $emailBody .= "Sheila Honey, Secretary<br>";
+     $emailBody .= "Jane Sims, Secretary<br>";
      $emailBody .= "Ann and Dale Pizzitola, Directors of Dance Instruction <br>";
-     $emailBody .= "Rick Baumgartner, Director of DJs<br>";
+     $emailBody .= "Vivian Herman, Director of DJs<br>";
 
 
         sendEmail(

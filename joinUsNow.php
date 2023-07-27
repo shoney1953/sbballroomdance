@@ -34,7 +34,7 @@ date_default_timezone_set("America/Phoenix");
   <h1><a  
             href='img/SBDC Membership Form 07 08 2023.pdf' target='_blank'>
             Click for Membership Form</a></h1>
-    <h3> As soon as your information is entered, you'll get a login and password and can login to the website to register for events and classes.</h3>  
+    <h3> As soon as your information is entered, you'll get your userid and password and can login to the website to register for events and classes.</h3>  
     <br><br>
    
     </section>

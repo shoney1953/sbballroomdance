@@ -91,9 +91,9 @@ function sendThanks($memStat,$userEmail) {
        $emailBody .= "Rich Adinolfi, President<br>";
        $emailBody .= "Nan Kartsonis, Vice President<br>"; 
        $emailBody .= "Roger Shamburg, Treasurer<br>";
-       $emailBody .= "Sheila Honey, Secretary<br>";
+       $emailBody .= "Jane Sims, Secretary<br>";
        $emailBody .= "Ann Pizzitola, Chair, Dance Instructors<br>";
-       $emailBody .= "Rick Baumgartner, Chair, DJs<br>";
+       $emailBody .= "Vivian Herman, Chair, DJs<br>";
 
 
        sendEmail(

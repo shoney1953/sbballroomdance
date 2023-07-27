@@ -24,15 +24,15 @@
     <img  class="sponsorLogo" src="img/SponsorHeader.png" alt="Sponsor Logo">
     </div>
     <div class="form-grid3">
-    <div class="sponsorCard">
-    <img  class="sponsorImage" src="img/AnnFraley.png" alt="Ann Fraley"> 
+      <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/AnnFraley.png" alt="Ann Fraley info">
+      </div>
     </div>
-    
-   
-    </div>   
-    <br><br><br>        
+    <br><br><br>     
+      
     </section>
     </div>
+
     <?php
   require 'footer.php';
 ?>

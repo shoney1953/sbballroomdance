@@ -157,17 +157,17 @@ $db = $database->connect();
                     echo '<h4 class="form-item-title">Partner Email</h4>';
                     echo '<input type="text" name="regEmail2" value="'.$partner->email.'">';
                     echo '</div>';
+                    echo '<div class="form-item">';
+                    echo '<h4 class="form-item-title">Message To Instructor</h4>';
+                    echo "<textarea name='message2ins' cols='100' rows='4'></textarea><br><br>";
+                    echo '</div>';
                  }
                 }
                 echo '</div>';
                 echo '</div>';
             }
-   
  
-       
-        echo "<label for='message2ins'>Message to Instructor(s)</label><br>";
-        echo "<textarea name='message2ins' cols='35' rows='2'></textarea><br><br>";
-    
+
         echo '<h4 class="form-title"><em>
         To Register -- Please select One or More of the Classes Listed along with associated information. <br>Then click on the Submit Registration(s) Button.</em></h4>';
           

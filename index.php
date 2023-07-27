@@ -522,14 +522,14 @@ if (isset($_SESSION['username'])) {
             <li class="li-none li-large">Roger Shamburg, Treasurer 
                   &rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
                   shamburgrog23@gmail.com</a></li>
-            <li class="li-none li-large">Sheila Honey, Secretary 
-                  &rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
+            <li class="li-none li-large">Jane Sims, Secretary 
+                  &rarr; <a href="mailto:calamitywjs@gmail.com?subject=SBDC Info">
                   secretary@sbballroomdance.com</a></li>
             <li class="li-none li-large">Dale & Ann Pizzitola, Chairs Instruction Director    
                 &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
                 dancedirector@sbballroomdance.com</a></li>
-           <li class="li-none li-large">Rick Baumgartner, Chair D J and Music  
-                &rarr; <a href="mailto:djdirector@sbballroomdance.com?subject=SBDC Info">
+           <li class="li-none li-large">Vivian Herman, Chair D J and Music  
+                &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">
                 djdirector@sbballroomdance.com</a></li>
             <li class="li-none li-large">Sheila Honey, Web Master    
                 &rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
