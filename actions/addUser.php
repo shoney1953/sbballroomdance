@@ -180,7 +180,7 @@ if (isset($_POST['submitAddUser'])) {
      $emailBody .= "Roger Shamburg, Treasurer<br>";
      $emailBody .= "Jane Sims, Secretary<br>";
      $emailBody .= "Ann and Dale Pizzitola, Directors of Dance Instruction <br>";
-     $emailBody .= "Vivian Herman, Director of DJs<br>";
+     $emailBody .= "Vivian Herman, Director of Volunteers<br>";
 
 
         sendEmail(

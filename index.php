@@ -528,7 +528,7 @@ if (isset($_SESSION['username'])) {
             <li class="li-none li-large">Dale & Ann Pizzitola, Chairs Instruction Director    
                 &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
                 dancedirector@sbballroomdance.com</a></li>
-           <li class="li-none li-large">Vivian Herman, Chair D J and Music  
+           <li class="li-none li-large">Vivian Herman, Chair Volunteer Coordinator  
                 &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">
                 djdirector@sbballroomdance.com</a></li>
             <li class="li-none li-large">Sheila Honey, Web Master    
@@ -740,14 +740,17 @@ if (isset($_SESSION['username'])) {
                   &rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
                   shamburgrog23@gmail.com</a></li>';
             echo '<li class="li-none li-large">General Questions    
-                &rarr; <a href="mailto:secretary@sbballroomdance.com?subject=SBDC Info">
-                secretary@sbballroomdance.com</a></li>';
+                &rarr; <a href="mailto:calamitywjs@gmail.com?subject=SBDC Info">
+                Jane Sims</a></li>';
             echo '<li class="li-none li-large">Questions about Classes   
                 &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
                 dancedirector@sbballroomdance.com</a></li>';
+            echo '<li class="li-none li-large">Questions about Volunteering   
+                &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">
+                Vivian Herman</a></li>';
            echo '<li class="li-none li-large">Questions about Music or DJing 
-                &rarr; <a href="mailto:djdirector@sbballroomdance.com?subject=SBDC Info">
-                djdirector@sbballroomdance.com</a></li>';
+                &rarr; <a href="mailto:rb@zedargroup.com?subject=SBDC Info">
+                Rick Baumgartner</a></li>';
             echo '<li class="li-none li-large">Questions about the Website   
                 &rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
                 webmaster@sbballroomdance.com</a></li>';
@@ -915,8 +918,8 @@ DJ Documents</a><br>
            <a target="_blank" href="https://drive.google.com/file/d/1lRa1Sr_RIpyj-yLF_9qeZgdC7QGZ5q-X/view?usp=sharing"><em>Click for Robo DJ Guide</em></a><br>
         <a  target="_blank" href="https://zedar.com?x=82351 "
         >DJ Equipment Checkout App</a><br><br>
-        <p>Contact our DJ Director for more information<a href="mailto:tucsonviv6228@gmail.com?subject=SBDC DJ Info">
-        Vivian Herman</a><br><br></p>
+        <p>Contact our DJ coordinator,<a href="mailto:rb@zedargroup.com?subject=SBDC DJ Info">
+        Rick Baumgartner</a><br><br></p>
        
      
    </section>
@@ -957,8 +960,8 @@ DJ Documents</a><br>
              <li class="li-none">Suggesting new Music </li>
              <li class="li-none">Encouraging your friends and neighbors to join the club. </li>
          </ul><br>
-        <p>If you think <strong>any </strong> of these sound interesting, please contact one of the 
-           board members. <a href="#board">Click to see board members and emails</a>
+        <p>If you think <strong>any </strong> of these opportunities sound interesting, please contact our Director of Volunteers, 
+        <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">Vivian Herman</a>
        </p><br><br>
 
      

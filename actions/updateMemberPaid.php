@@ -93,7 +93,7 @@ function sendThanks($memStat,$userEmail) {
        $emailBody .= "Roger Shamburg, Treasurer<br>";
        $emailBody .= "Jane Sims, Secretary<br>";
        $emailBody .= "Ann Pizzitola, Chair, Dance Instructors<br>";
-       $emailBody .= "Vivian Herman, Chair, DJs<br>";
+       $emailBody .= "Vivian Herman, Chair, Volunteer Coordinator<br>";
 
 
        sendEmail(
