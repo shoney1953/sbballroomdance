@@ -514,26 +514,29 @@ if (isset($_SESSION['username'])) {
         <h4>Click on the Email to correspond with one of our Board Members</h4><br>
         <ul>
             <li class="li-none li-large">Rich Adinolfi, President 
-                   &rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
-                       president@sbballroomdance.com</a></li>
+                   &rarr; <a href="mailto:adinolfir@outlook.com?subject=SBDC Info">
+                       Email Rich</a></li>
             <li class="li-none li-large">Nan Kartsonis, Vice-President 
                 &rarr;  <a href="mailto:nkartsonis@me.com?subject=SBDC Info">
-                nkartsonis@me.com</a></li>
+                Email Nan</a></li>
             <li class="li-none li-large">Roger Shamburg, Treasurer 
                   &rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
-                  shamburgrog23@gmail.com</a></li>
+                  Email Roger</a></li>
             <li class="li-none li-large">Jane Sims, Secretary 
                   &rarr; <a href="mailto:calamitywjs@gmail.com?subject=SBDC Info">
-                  secretary@sbballroomdance.com</a></li>
+                  Email Jane</a></li>
             <li class="li-none li-large">Dale & Ann Pizzitola, Chairs Instruction Director    
                 &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
-                dancedirector@sbballroomdance.com</a></li>
+                Email Ann & Dale</a></li>
            <li class="li-none li-large">Vivian Herman, Chair Volunteer Coordinator  
                 &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">
-                djdirector@sbballroomdance.com</a></li>
+                Email Vivian</a></li>
+            <li class="li-none li-large">Rick Baumgartner, DJ Coordinator   
+                &rarr; <a href="mailto:rb@zedargroup.com?subject=SBDC Info">
+                Email Rick</a></li>
             <li class="li-none li-large">Sheila Honey, Web Master    
                 &rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
-                webmaster@sbballroomdance.com</a></li>
+                Email Sheila</a></li>
   
         </ul>
         </div>
@@ -727,35 +730,35 @@ if (isset($_SESSION['username'])) {
     <br>
     <?php
     if (isset($_SESSION['username'])) { 
-        echo '<h1 class="section-header">To correspond with one of the board members, Just click on any of the emails below: </h1>';
+        echo '<h1 class="section-header">To correspond with one of the board members, Just click on any of the names below: </h1>';
 
         echo '<ul>';
             echo '<li class="li-none li-large">President
-                   &rarr; <a href="mailto:president@sbballroomdance.com?subject=SBDC Info">
-                       president@sbballroomdance.com</a></li>';
+                   &rarr; <a href="mailto:adinolfir@outlook.com?subject=SBDC Contact Info">
+                       Rich Adinolfi</a></li>';
             echo '<li class="li-none li-large">Vice President  
                 &rarr;  <a href="mailto:nkartsonis@me.com?subject=SBDC Info">
-                nkartsonis@me.com</a></li>';
+                Nan Kartsonis</a></li>';
             echo '<li class="li-none li-large">Questions about costs of events or membership 
-                  &rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
-                  shamburgrog23@gmail.com</a></li>';
+                  &rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Contact Info">
+                  Roger Shamburg</a></li>';
             echo '<li class="li-none li-large">General Questions    
-                &rarr; <a href="mailto:calamitywjs@gmail.com?subject=SBDC Info">
+                &rarr; <a href="mailto:calamitywjs@gmail.com?subject=SBDC Contact Info">
                 Jane Sims</a></li>';
             echo '<li class="li-none li-large">Questions about Classes   
-                &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
-                dancedirector@sbballroomdance.com</a></li>';
+                &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Contact Info">
+                Ann and Dale Pizzitola</a></li>';
             echo '<li class="li-none li-large">Questions about Volunteering   
-                &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">
+                &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Contact Info">
                 Vivian Herman</a></li>';
            echo '<li class="li-none li-large">Questions about Music or DJing 
-                &rarr; <a href="mailto:rb@zedargroup.com?subject=SBDC Info">
+                &rarr; <a href="mailto:rb@zedargroup.com?subject=SBDC Contact Info">
                 Rick Baumgartner</a></li>';
             echo '<li class="li-none li-large">Questions about the Website   
-                &rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
-                webmaster@sbballroomdance.com</a></li>';
+                &rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Contact Info">
+                Sheila Honey</a></li>';
             echo '<li class="li-none li-large">Registering for or questions about events or classes   
-                &rarr; <a href="mailto:countmein@sbballroomdance.com?subject=SBDC Info">
+                &rarr; <a href="mailto:countmein@sbballroomdance.com?subject=SBDC Contact Info">
                 countmein@sbballroomdance.com</a></li>';
   
         echo '</ul>';
