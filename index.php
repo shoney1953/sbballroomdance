@@ -917,7 +917,8 @@ DJ Documents</a><br>
         <a  target="_blank" href="https://sbdcrobodj.com/">Robo DJ App</a><br>
            <a target="_blank" href="https://drive.google.com/file/d/1lRa1Sr_RIpyj-yLF_9qeZgdC7QGZ5q-X/view?usp=sharing"><em>Click for Robo DJ Guide</em></a><br>
         <a  target="_blank" href="https://zedar.com?x=82351 "
-        >DJ Equipment Checkout App</a><br><br>
+        >DJ Equipment Checkout App</a><br>
+        <a target="_blank" href="https://drive.google.com/file/d/1y6GRdngzNWCgx-xSKYwk2wtc-8qK8eGC/view?usp=sharing">DJ Policy</a><br>
         <p>Contact our DJ coordinator,<a href="mailto:rb@zedargroup.com?subject=SBDC DJ Info">
         Rick Baumgartner</a><br><br></p>
        
