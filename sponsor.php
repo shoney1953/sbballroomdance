@@ -27,6 +27,9 @@
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/AnnFraley.png" alt="Ann Fraley info">
       </div>
+       <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/GaryKueker.png" alt="Gary Kueker info">
+      </div>
     </div>
     <br><br><br>     
       
