@@ -148,7 +148,7 @@ if ($regCount > 0) {
 
       if ($event['dateregistered'] > $sixMonthdate) {
         $user['sixmonthevents']++;
- 
+
       }
 
 }
@@ -167,6 +167,7 @@ if ($regCount > 0) {
         'dateregistered' => $dateregistered
     );
     $user['totclasses']++;
+
 
 
 
@@ -202,8 +203,9 @@ $pdf->Ln(2);
 // $pdf->Cell(15,5,"T EV",1,0,"L"); 
 // $pdf->Cell(15,5,"6 EV",1,1,"L"); 
 
-foreach ($userArrMod as $user) {
 
+foreach ($userArrMod as $user) {
+  var_dump($user);
   if (($user['sixmonthevents'] === 0) && 
      ($user['sixmonthclasses'] === 0)) {
     $pdf->Cell(40,5,$user['firstname'],0,0,"L"); 
