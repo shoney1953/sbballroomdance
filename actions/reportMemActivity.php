@@ -188,11 +188,12 @@ if ($regCount > 0) {
       }
     }
     array_push($userArrMod, $user);
+    var_dump($user);echo "<br>";
 }
  
 }
 
-var_dump($userArrMod);
+
 $pdf->SetFont('Arial', '', 14);
 $pdf->Cell(70,5,"MEMBERS WITH NO CLASSES OR EVENTS IN THE LAST 6 MONTHS",0,1,"L"); 
 $pdf->Cell(70,5," ",0,1,"L"); 
