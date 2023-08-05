@@ -133,7 +133,10 @@ public function read_ByEmail($email) {
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
     WHERE
-      r.email = :email ';
+      r.email = :email 
+    ORDER BY 
+      c.eventdate, r.preveventid, r.lastname, r.firstname';
+      
   
   
     // Prepare statement

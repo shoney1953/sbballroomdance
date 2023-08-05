@@ -704,7 +704,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<button type="submit" name="submitUsageRep">Report Member Usage</button>';   
             echo '</form>'    ;          
             echo '</div> ';   
-
+            echo '<div class="form-grid-div">';
+            echo '<form target="_blank" method="POST" action="actions/reportMemActivity.php">'; 
+            echo '<button type="submit" name="submitActivityRep">Report Members W/O Activity</button>';   
+            echo '</form>'    ;          
+            echo '</div> ';   
    
             echo '</div>';
         /* */

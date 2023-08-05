@@ -72,7 +72,34 @@ class ClassRegistrationArch {
       return $stmt;
     
     
-    } 
+    } public function read_ByEmail($email) {
+      
+      // Create query
+      // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
+      $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
+      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+      r.userid
+      FROM ' . $this->table . ' r
+      LEFT JOIN
+        danceclassesarch c ON r.classid = c.id
+      WHERE
+        r.email = :email ';
+    
+    
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+    
+      // Bind ID
+      $stmt->bindParam('email', $email);
+    
+      // Execute query
+      $stmt->execute();
+    
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+      return $stmt;
+    
+    }
     public function read_ByUserid($userid) {
 
 
