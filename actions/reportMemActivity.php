@@ -103,7 +103,7 @@ if ($userCount > 0) {
         );
         $user['totevents']++;
         $user['sixmonthevents']++;    
-       var_dump($user);
+
 
         array_push($eventArr, $event_item);
 
@@ -121,7 +121,7 @@ if ($userCount > 0) {
             );
             $user['totclasses']++;
             $user['sixmonthclasses']++;  
-            var_dump($user)  ;
+
     
     
             // array_push($eventArr, $event_item);
@@ -168,7 +168,6 @@ if ($regCount > 0) {
         'dateregistered' => $dateregistered
     );
     $user['totclasses']++;
-   var_dump($user);
 
 
 
@@ -178,7 +177,7 @@ if ($regCount > 0) {
 
       if ($event['dateregistered'] > $sixMonthdate) {
         $user['sixmonthclasses']++;
-       var_dump($user);
+
       }
 
 }
@@ -193,7 +192,7 @@ if ($regCount > 0) {
  
 }
 
-
+var_dump($userArrMod);
 $pdf->SetFont('Arial', '', 14);
 $pdf->Cell(70,5,"MEMBERS WITH NO CLASSES OR EVENTS IN THE LAST 6 MONTHS",0,1,"L"); 
 $pdf->Cell(70,5," ",0,1,"L"); 
