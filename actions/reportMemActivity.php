@@ -103,7 +103,7 @@ if ($userCount > 0) {
         );
         $user['totevents']++;
         $user['sixmonthevents']++;    
-
+       var_dump($user);
 
         array_push($eventArr, $event_item);
 
@@ -120,7 +120,8 @@ if ($userCount > 0) {
                 'dateregistered' => $dateregistered
             );
             $user['totclasses']++;
-            $user['sixmonthclasses']++;    
+            $user['sixmonthclasses']++;  
+            var_dump($user)  ;
     
     
             // array_push($eventArr, $event_item);
@@ -167,7 +168,7 @@ if ($regCount > 0) {
         'dateregistered' => $dateregistered
     );
     $user['totclasses']++;
-
+   var_dump($user);
 
 
 
@@ -177,7 +178,7 @@ if ($regCount > 0) {
 
       if ($event['dateregistered'] > $sixMonthdate) {
         $user['sixmonthclasses']++;
- 
+       var_dump($user);
       }
 
 }
@@ -205,7 +206,7 @@ $pdf->Ln(2);
 
 
 foreach ($userArrMod as $user) {
-  var_dump($user);
+
   if (($user['sixmonthevents'] === 0) && 
      ($user['sixmonthclasses'] === 0)) {
     $pdf->Cell(40,5,$user['firstname'],0,0,"L"); 
