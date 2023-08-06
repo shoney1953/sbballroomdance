@@ -88,7 +88,6 @@ $result = $user->read();
 if ($userCount > 0) {
   foreach ($userArr as $user) {
  
- 
     $result = $eventRegistration->read_ByEmail($user['email']);
 
     $regCount = $result->rowCount();
@@ -105,7 +104,8 @@ if ($userCount > 0) {
         $user['sixmonthevents']++;    
 
 
-        array_push($eventArr, $event_item);
+      }
+    }
 
         $result = $classRegistration->read_ByEmail($user['email']);
 
@@ -122,10 +122,9 @@ if ($userCount > 0) {
             $user['totclasses']++;
             $user['sixmonthclasses']++;  
 
-    
-    
-            // array_push($eventArr, $event_item);
-   
+          } 
+
+        }
 
 $result = $eventRegistrationArch->read_ByEmail($user['email']);
 
@@ -142,17 +141,12 @@ if ($regCount > 0) {
     $user['totevents']++;
 
 
-
-    array_push($eventArr, $event_item);
-
-    foreach ($eventArr as $event) {
-
-      if ($event['dateregistered'] > $sixMonthdate) {
+      if ($event_item['dateregistered'] > $sixMonthdate) {
         $user['sixmonthevents']++;
 
       }
 
-}
+
 }
 }  
 $result = $classRegistrationArch->read_ByEmail($user['email']);
@@ -162,36 +156,28 @@ $regCount = $result->rowCount();
 if ($regCount > 0) {
   while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     extract($row);
-    $event_item = array(
+    $class_item = array(
         'id' => $id,
-        'classname' => $eventname,
+        'classname' => $classname,
         'dateregistered' => $dateregistered
     );
     $user['totclasses']++;
 
-
-
-    array_push($eventArr, $event_item);
-
-    foreach ($eventArr as $event) {
-
-      if ($event['dateregistered'] > $sixMonthdate) {
+      if ($class_item['dateregistered'] > $sixMonthdate) {
         $user['sixmonthclasses']++;
 
       }
 
-}
-}
-}  
-}
+
         }
       }
+      array_push($userArrMod, $user);
     }
-    array_push($userArrMod, $user);
-    var_dump($user);echo "<br>";
+
+
 }
  
-}
+
 
 
 $pdf->SetFont('Arial', '', 14);
@@ -203,7 +189,7 @@ $pdf->Cell(70,5,"EMAIL",1,1,"L");
 $pdf->Ln(2);
 // $pdf->Cell(15,5,"T EV",1,0,"L"); 
 // $pdf->Cell(15,5,"6 EV",1,1,"L"); 
-
+// 
 
 foreach ($userArrMod as $user) {
 
