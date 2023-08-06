@@ -21,6 +21,8 @@ $userArr = [];
 $userArrMod = [];
 $eventArr = [];
 $totalNoAct = 0;
+$totalNoActEver = 0;
+$regCount = 0;
 
 class PDF extends FPDF
 {
@@ -87,7 +89,7 @@ $result = $user->read();
 
 if ($userCount > 0) {
   foreach ($userArr as $user) {
- 
+
     $result = $eventRegistration->read_ByEmail($user['email']);
 
     $regCount = $result->rowCount();
@@ -110,7 +112,7 @@ if ($userCount > 0) {
         $result = $classRegistration->read_ByEmail($user['email']);
 
         $regCount = $result->rowCount();
-    
+
         if ($regCount > 0) {
           while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
@@ -139,9 +141,9 @@ if ($regCount > 0) {
         'dateregistered' => $dateregistered
     );
     $user['totevents']++;
+    $dateregts = strtotime($event_item['dateregistered']);
 
-
-      if ($event_item['dateregistered'] > $sixMonthdate) {
+      if ($dateregts > $sixMonthdate) {
         $user['sixmonthevents']++;
 
       }
@@ -162,8 +164,10 @@ if ($regCount > 0) {
         'dateregistered' => $dateregistered
     );
     $user['totclasses']++;
+    $dateregts = strtotime($class_item['dateregistered']);
 
-      if ($class_item['dateregistered'] > $sixMonthdate) {
+
+      if ($dateregts > $sixMonthdate) {
         $user['sixmonthclasses']++;
 
       }
@@ -203,11 +207,20 @@ foreach ($userArrMod as $user) {
     // $pdf->Cell(15,5,$user['sixmonthevents'],0,1,"L");  
   
   }
+  if (($user['totevents'] === 0) && 
+     ($user['totclasses'] === 0)) {
+  
+    $totalNoActEver++;
+    // $pdf->Cell(15,5,$user['totevents'],0,0,"L"); 
+    // $pdf->Cell(15,5,$user['sixmonthevents'],0,1,"L");  
+  
+  }
 }
 
 $pdf->Ln(2);
 
-$pdf->Cell(0, 5, "Total Members without Activity:  ".$totalNoAct, 0, 1);
+$pdf->Cell(0, 5, "Total Members without Activity in the last 6 Months:  ".$totalNoAct, 0, 1);
+$pdf->Cell(0, 5, "Total Members without any Activity:  ".$totalNoActEver, 0, 1);
 
 $pdf->Output("I", "MemberNoActivity.".$today.".PDF");
 
