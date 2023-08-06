@@ -67,6 +67,7 @@ $result = $user->read();
                 'id' => $id,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
+                'fulltime' => $fulltime,
                 'email' => $email
 
             );
@@ -189,7 +190,8 @@ $pdf->Cell(70,5,"MEMBERS WITH NO CLASSES OR EVENTS IN THE LAST 6 MONTHS",0,1,"L"
 $pdf->Cell(70,5," ",0,1,"L"); 
 $pdf->Cell(40,5,"FIRST NAME",1,0,"L"); 
 $pdf->Cell(40,5,"LAST NAME",1,0,"L");  
-$pdf->Cell(70,5,"EMAIL",1,1,"L"); 
+$pdf->Cell(75,5,"EMAIL",1,0,"L"); 
+$pdf->Cell(30,5,"FULLTIME",1,1,"L"); 
 $pdf->Ln(2);
 // $pdf->Cell(15,5,"T EV",1,0,"L"); 
 // $pdf->Cell(15,5,"6 EV",1,1,"L"); 
@@ -201,7 +203,12 @@ foreach ($userArrMod as $user) {
      ($user['sixmonthclasses'] === 0)) {
     $pdf->Cell(40,5,$user['firstname'],0,0,"L"); 
     $pdf->Cell(40,5,$user['lastname'],0,0,"L");  
-    $pdf->Cell(70,5,$user['email'],0,01,"L");   
+    $pdf->Cell(75,5,$user['email'],0,0,"L"); 
+    if ($user['fulltime']) {
+      $pdf->Cell(10,5,"YES",0,1,"L");   
+    } else {
+      $pdf->Cell(10,5,"NO",0,1,"L");  
+    }
     $totalNoAct++;
     // $pdf->Cell(15,5,$user['totevents'],0,0,"L"); 
     // $pdf->Cell(15,5,$user['sixmonthevents'],0,1,"L");  
