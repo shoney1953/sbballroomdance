@@ -44,6 +44,8 @@ $fromCC = 'webmaster@sbballroomdance.com';
 $replyEmail = 'webmaster@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = '';
+$toCC3 = '';
+$toCC4 = '';
 $mailAttachment = ''; 
 $replyEmail = 'dancedirector@sbballroomdance.com';
 $replyTopic = "SBDC Class Registration";
@@ -100,7 +102,9 @@ if (isset($_POST['submitAddReg'])) {
                     $replyEmail,
                     $replyTopic,
                     $mailAttachment,
-                    $toCC2
+                    $toCC2,
+                    $toCC3,
+                    $toCC4
                     
                 );
 

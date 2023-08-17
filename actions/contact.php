@@ -28,7 +28,9 @@ if (isset($_POST['submit'])) {
     $contact->email = filter_var($contact->email, FILTER_SANITIZE_EMAIL);  
     $contact->create();
     $fromEmailName = 'SBDC Ballroom Dance Club';
-    $toCC2 = 'secretary@sbballroomdance.com';
+    $toCC2 = 'calamitywjs@gmail.com';
+    $toCC3 = '';
+    $toCC4 = '';
     $toName = $contact->firstname.' '.$contact->lastname; 
     $replyEmail = 'webmaster@gmail.com';
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
@@ -77,7 +79,9 @@ if (isset($_POST['submit'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
-            $toCC2
+            $toCC2,
+            $toCC3,
+            $toCC4
         );
     
        $redirect = "Location: ".$_SESSION['homeurl'];

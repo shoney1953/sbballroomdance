@@ -66,7 +66,11 @@ function sendThanks($memStat,$userEmail) {
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toName = $memStat['firstname']." ".$memStat['lastname'] ;
     $mailSubject = 'Thanks for Renewing your membership at SBDC Ballroom Dance Club!';
+    $fromCC = "calamitywjs@gmail.com";
     $toCC2 = 'dancedirector@sbballroomdance.com';
+    $toCC3 = "webmaster@sbballroomdance.com";
+    $toCC4 = '';
+
     $replyTopic = "Thanks for your renewal!";
        $replyEmail = 'sbbdcschedule@gmail.com';
        $actLink
@@ -75,7 +79,7 @@ function sendThanks($memStat,$userEmail) {
        $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
        $mailAttachment = "../img/Member Guide to Website Version 2.pdf"; 
-       $fromCC = "webmaster@sbballroomdance.com";
+
        $emailBody = "<br>Welcome renewing member <b>$toName </b>
        to the SaddleBrooke Ballroom Dance Club.<br><br>";
        $emailBody .= "Thanks for renewing your membership. We hope you'll 
@@ -106,7 +110,9 @@ function sendThanks($memStat,$userEmail) {
         $replyEmail,
         $replyTopic,
         $mailAttachment,
-        $toCC2
+        $toCC2,
+        $toCC3,
+        $toCC4
     );
 }
 ?>

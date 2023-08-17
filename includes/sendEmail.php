@@ -18,7 +18,9 @@ function sendEmail($toEmail,
     $replyEmail,
     $replyTopic,
     $emailAttach,
-    $toCC2
+    $toCC2,
+    $toCC3,
+    $toCC4
 )
 {
   
@@ -49,6 +51,13 @@ function sendEmail($toEmail,
         }
         if ($toCC2) {
             $mail->addCC($toCC2);
+        }
+
+        if ($toCC3) {
+            $mail->addCC($toCC3);
+        }
+        if ($toCC4) {
+            $mail->addCC($toCC4);
         }
         
        // $mail->addBCC('webmaster@sbballroomdance.com');

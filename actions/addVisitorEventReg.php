@@ -37,6 +37,8 @@ $fromCC = 'webmaster@sbballroomdance.com';
 $replyEmail = 'secretary@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = ''; 
+$toCC3 = '';
+$toCC4 = '';
 $mailAttachment = '../img/Membership Form 2023 Dance Club 05 02 2023.pdf'; 
 $replyTopic = "SBDC Event Registration";
 $emailSubject = "The SBDC administrator has registered you as a Visitor for an Event";
@@ -121,7 +123,9 @@ if (isset($_POST['submitAddVisitorReg'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
-            $toCC2
+            $toCC2,
+            $toCC3,
+            $toCC4
         );
         $emailBody = "Thanks for registering for the following events:<br>";  
     } else {
@@ -210,7 +214,9 @@ if (isset($_POST['submitAddVisitorReg'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
-            $toCC2
+            $toCC2,
+            $toCC3,
+            $toCC4
         );
         $emailBody = "Thanks for registering for the following events:<br>";  
     } else {

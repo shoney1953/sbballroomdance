@@ -38,6 +38,8 @@ $replyEmail = 'dancedirector@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $regEmail1 = [];
 $toCC2 = ''; 
+$toCC3 = '';
+$toCC4 = '';
 $mailAttachment = ''; 
 $replyTopic = "Class Message";
 $rowCount = 0;
@@ -89,7 +91,9 @@ $preface = '';
             $replyEmail,
             $replyTopic,
             $mailAttachment,
-            $toCC2
+            $toCC2,
+            $toCC3,
+            $toCC4
         );
          
     } // end if rowcount

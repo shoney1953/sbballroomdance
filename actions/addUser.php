@@ -28,6 +28,10 @@ $db = $database->connect();
 $user = new User($db);
 $userArchive = new UserArchive($db);
 
+$toCC2 = 'dancedirector@sbballroomdance.com';
+$toCC3 = 'webmaster@sbballroomdance.com';
+$toCC4 = 'tucsonviv6228@gmail.com';
+$fromCC = "calamitywjs@gmail.com";
 
 if (isset($_POST['submitAddUser'])) {
 
@@ -113,7 +117,7 @@ if (isset($_POST['submitAddUser'])) {
        } else {
         $mailSubject = 'Thanks for Joining us at SBDC Ballroom Dance Club!';
        }
-       $toCC2 = 'dancedirector@sbballroomdance.com';
+
        $replyTopic = "Welcome";
        $replyEmail = 'webmaster@sbballroomdance.com';
        $actLink
@@ -122,10 +126,11 @@ if (isset($_POST['submitAddUser'])) {
        $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
        $mailAttachment = "../img/Member Guide to Website Version 2.pdf"; 
-       $fromCC = "calamitywjs@gmail.com";
+ 
        if ($formerUser === 'yes') {
         $emailBody = "<br>Welcome back<b> $toName </b> as a returning member 
         to the SaddleBrooke Ballroom Dance Club.<br><br>";
+        $toCC4 = '';
        } else {
         $emailBody = "<br>Welcome<b> $toName </b>to the SaddleBrooke Ballroom Dance Club.<br><br>";
        }
@@ -193,7 +198,9 @@ if (isset($_POST['submitAddUser'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
-            $toCC2
+            $toCC2,
+            $toCC3,
+            $toCC4
         );
     
     $user->create();

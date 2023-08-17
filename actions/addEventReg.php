@@ -41,6 +41,8 @@ $fromCC = 'webmaster@sbballroomdance.com';
 $replyEmail = 'secretary@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = '';
+$toCC3 = '';
+$toCC4 = '';
 $mailAttachment = ''; 
 $replyTopic = "SBDC Event Registration";
 $emailSubject = "The SBDC administrator has registered you for selected SBDC Events";
@@ -143,7 +145,9 @@ if (isset($_POST['submitAddReg'])) {
                         $replyEmail,
                         $replyTopic,
                         $mailAttachment,
-                        $toCC2
+                        $toCC2,
+                        $toCC3,
+                        $toCC4
                     );
                     $emailBody = "Thanks for registering for the following events:<br>";  
                 } else {

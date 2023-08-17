@@ -35,6 +35,8 @@ $replyEmail = 'webmaster@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $regEmail1 = [];
 $toCC2 = ''; 
+$toCC3 = '';
+$toCC4 = '';
 $mailAttachment = ''; 
 $replyTopic = "Event Message";
 $emailSubject = "A Message about Your SBDC Ballroom Dance Club Event";
@@ -88,7 +90,9 @@ if (isset($_POST['submitEventEmail'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
-            $toCC2
+            $toCC2,
+            $toCC3,
+            $toCC4
         );
          
     } // end if rowcount
