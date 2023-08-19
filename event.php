@@ -136,7 +136,8 @@ echo '<div class="container-section ">';
                             echo '<th>Attend<br>Dance?</th>';
                         }
                         echo '<th>Message</th>';
-                        echo '<th>Date Reg</th> ';         
+                        echo '<th>Date Reg</th> '; 
+                        echo '<th>Reg By</th> ';         
                     echo '</tr>';
                     
             
@@ -189,6 +190,7 @@ echo '<div class="container-section ">';
                             }
                             echo "<td>".$eventRegistration['message']."</td>";         
                             echo "<td>".$eventRegistration['dateregistered']."</td>";
+                            echo "<td>".$eventRegistration['registeredby']."</td>";
                      
                           echo "</tr>";
                       }

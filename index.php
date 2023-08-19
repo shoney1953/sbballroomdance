@@ -23,6 +23,7 @@ if (isset($_GET['error'])) {
 
 
 $_SESSION['user'] = null;
+
 $_SESSION['numupcomingclasses'] = 0;
 date_default_timezone_set("America/Phoenix");
 $num_classes = 0;

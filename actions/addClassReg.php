@@ -69,6 +69,9 @@ if (isset($_POST['submitAddReg'])) {
                     $classReg->classname = $danceClass->classname;
                     $classReg->classtime = $danceClass->time;
                     $classReg->classdate = $danceClass->date;
+                    $classReg->registeredby = $_SESSION['username'];
+             
+                    
                     $result = $classReg->checkDuplicate($classReg->email, $classReg->classid);
                  if (!$result) {
                     $classReg->create();

@@ -151,6 +151,7 @@ if (isset($_POST['submitEventReg'])) {
                 $eventReg->lastname = $regLastName1;
                 $eventReg->eventid = $eventId;
                 $eventReg->email = $regEmail1;
+                $eventReg->registeredby = $_SESSION['username'];
                 $eventReg->userid = $regUserid1;
                 if (isset($_POST["$chkboxID2"])) {
                     $eventReg->ddattenddinner = 1;
@@ -175,6 +176,7 @@ if (isset($_POST['submitEventReg'])) {
                     $eventReg->email = $regEmail2;
                     $eventReg->userid = $regUserid2;
                     $eventReg->message = $message;
+                    $eventReg->registeredby = $_SESSION['username'];
                     $eventReg->paid = 0;
                     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
                     if (!$result) {

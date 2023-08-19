@@ -14,6 +14,7 @@ class ClassRegistration {
     public $classdate;
     public $classtime;
     public $userid;
+    public $registeredby;
 
 
     // Constructor with DB
@@ -26,7 +27,7 @@ class ClassRegistration {
       // Create query
       // $query = 'SELECT * FROM ' . $this->table . ' ORDER BY dateregistered DESC';
       $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime, 
-      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
       r.userid
       FROM ' . $this->table . ' r
       LEFT JOIN
@@ -50,7 +51,7 @@ class ClassRegistration {
           // Create query
           // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
           $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
-          r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+          r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
           r.userid
           FROM ' . $this->table . ' r
           LEFT JOIN
@@ -80,6 +81,7 @@ class ClassRegistration {
           $this->classname = $row['classdate'];
           $this->email = $row['email'];
           $this->dateregistered = $row['dateregistered'];
+          $this->registeredby = $row['registeredby'];
           return true;
           }
           return false;
@@ -90,7 +92,7 @@ public function read_ByUserid($userid) {
 
 
   $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
-  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
   r.userid
   FROM ' . $this->table . ' r
   LEFT JOIN
@@ -117,7 +119,7 @@ public function read_ByEmail($email) {
   // Create query
   // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
   $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
-  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
   r.userid
   FROM ' . $this->table . ' r
   LEFT JOIN
@@ -171,7 +173,7 @@ public function read_ByClassid($classid) {
 
 
   $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
-  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
   r.userid
   FROM ' . $this->table . ' r
   LEFT JOIN
@@ -199,7 +201,7 @@ public function readLike($classid, $search) {
 
 
   $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
-  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
   r.userid
   FROM ' . $this->table . ' r
   LEFT JOIN
@@ -235,7 +237,7 @@ public function readLike($classid, $search) {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          userid = :userid,
+          userid = :userid, registeredby = :registeredby,
           classid = :classid';
 
           // Prepare statement
@@ -247,7 +249,7 @@ public function readLike($classid, $search) {
           $this->classid = htmlspecialchars(strip_tags($this->classid));
           $this->userid = htmlspecialchars(strip_tags($this->userid));
           $this->email = htmlspecialchars(strip_tags($this->email));
-
+          $this->registeredby = htmlspecialchars(strip_tags($this->registeredby));
   
           // Bind data
           $stmt->bindParam(':firstname', $this->firstname);
@@ -255,6 +257,7 @@ public function readLike($classid, $search) {
           $stmt->bindParam(':classid', $this->classid);
           $stmt->bindParam(':userid', $this->userid);
           $stmt->bindParam(':email', $this->email);
+          $stmt->bindParam(':registeredby', $this->registeredby);
      
 
           // Execute query

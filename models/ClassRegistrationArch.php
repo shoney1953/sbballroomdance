@@ -15,6 +15,7 @@ class ClassRegistrationArch {
     public $classdate;
     public $classtime;
     public $userid;
+    public $registeredby;
 
 
     // Constructor with DB
@@ -27,7 +28,7 @@ class ClassRegistrationArch {
       // Create query
       // $query = 'SELECT * FROM ' . $this->table . ' ORDER BY dateregistered DESC';
       $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime, 
-      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
       r.userid, r.archclassid
       FROM ' . $this->table . ' r
       LEFT JOIN
@@ -49,7 +50,7 @@ class ClassRegistrationArch {
 
 
       $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
-      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
       r.userid
       FROM ' . $this->table . ' r
       LEFT JOIN
@@ -77,7 +78,7 @@ class ClassRegistrationArch {
       // Create query
       // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
       $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
-      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
       r.userid
       FROM ' . $this->table . ' r
       LEFT JOIN
@@ -104,7 +105,7 @@ class ClassRegistrationArch {
 
 
       $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
-      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered,
+      r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
       r.userid
       FROM ' . $this->table . ' r
       LEFT JOIN
@@ -132,7 +133,7 @@ class ClassRegistrationArch {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
-          userid = :userid, archclassid = :archclassid,
+          userid = :userid, archclassid = :archclassid, registeredby = :registeredby,
           classid = :classid';
 
           // Prepare statement
@@ -144,6 +145,7 @@ class ClassRegistrationArch {
           $this->classid = htmlspecialchars(strip_tags($this->classid));
           $this->userid = htmlspecialchars(strip_tags($this->userid));
           $this->email = htmlspecialchars(strip_tags($this->email));
+          $this->registeredby = htmlspecialchars(strip_tags($this->registeredby));
 
   
           // Bind data
@@ -153,6 +155,7 @@ class ClassRegistrationArch {
           $stmt->bindParam(':archclassid', $this->archclassid);
           $stmt->bindParam(':userid', $this->userid);
           $stmt->bindParam(':email', $this->email);
+          $stmt->bindParam(':registeredby', $this->registeredby);
      
 
           // Execute query

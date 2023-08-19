@@ -65,6 +65,7 @@ class PDF extends FPDF
                 'classtime' => date('h:i:s A', strtotime($classtime)),
                 'userid' => $userid,
                 'email' => $email,
+                'registeredby' => $registeredby,
                 'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
             );
             array_push($regArr, $reg_item);

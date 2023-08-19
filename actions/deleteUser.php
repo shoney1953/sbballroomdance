@@ -65,6 +65,7 @@ if (isset($_POST['submitArchiveUser'])) {
                     'classtime' => $classtime,
                     'classdate' => $classdate,
                     'email' => $email,
+                    'registeredby' => $registeredby,
                     "dateregistered" => $dateregistered
 
                 );
@@ -92,6 +93,7 @@ if (isset($_POST['submitArchiveUser'])) {
                     'eventname' => $eventname,
                     'eventdate' => $eventdate,
                     'email' => $email,
+                    'registeredby' => $registeredby,
                     'dateregistered' => $dateregistered,
                     'numlogins' => $numlogins
                 );

@@ -99,7 +99,8 @@ if ($rowCount > 0) {
             $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(60,5,"EMAIL",1,0,"L");   
-            $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
+            $pdf->Cell(60,5,"DATE REGISTERED",1,0,"L");
+            $pdf->Cell(35,5,"REG BY",1,1,"L");
     
         }
         if ($reg['preveventid'] !== $prevEvent) {
@@ -120,7 +121,8 @@ if ($rowCount > 0) {
             $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(60,5,"EMAIL",1,0,"L");   
-            $pdf->Cell(60,5,"DATE REGISTERED",1,1,"L");
+            $pdf->Cell(60,5,"DATE REGISTERED",1,0,"L");
+            $pdf->Cell(35,5,"REG BY",1,1,"L");
          }
          $paid = 'Not Paid';
         if ($reg['paid'] == true) {
@@ -133,7 +135,8 @@ if ($rowCount > 0) {
           $pdf->Cell(35,5,$reg['firstname'],1,0,"L"); 
           $pdf->Cell(35,5,$reg['lastname'],1,0,"L");  
           $pdf->Cell(60,5,$reg['email'],1,0,"L");   
-          $pdf->Cell(60,5,$reg['dateregistered'],1,1,"L");
+          $pdf->Cell(60,5,$reg['dateregistered'],1,0,"L");
+          $pdf->Cell(35,5,$reg['registeredby'],1,1,"L");
 
 
     }

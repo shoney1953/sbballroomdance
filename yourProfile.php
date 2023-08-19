@@ -58,6 +58,7 @@ if ($rowCount > 0) {
             'classtime' => date('h:i:s A', strtotime($classtime)),
             'classdate' => $classdate,
             'email' => $email,
+            'registeredby' => $registeredby,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($classRegs, $reg_item);
@@ -84,6 +85,7 @@ if ($rowCount > 0) {
             'eventdate' => $eventdate,
             'email' => $email,
             'paid' => $paid,
+            'registeredby' => $registeredby,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegs, $reg_item);
@@ -286,7 +288,7 @@ if ($rowCount > 0) {
         <table>
         <thead>  
             <tr>
-                <th colspan='5' style='text-align: center;color: darkviolet'>Your Class Registrations</th>
+                <th colspan='6' style='text-align: center;color: darkviolet'>Your Class Registrations</th>
             </tr>
             <tr>
              
@@ -295,7 +297,8 @@ if ($rowCount > 0) {
                 <th>Class Name</th>
                 <th>Class Date</th>
                 <th>Class Time</th>
-                <th>Date Registered</th>          
+                <th>Date Registered</th>     
+                <th>Registered By</th>       
             </tr>
         </thead>
         <tbody>
@@ -313,6 +316,7 @@ if ($rowCount > 0) {
                     echo "<td>".$classRegistration['classdate']."</td>";  
                     echo "<td>".$classRegistration['classtime']."</td>";         
                     echo "<td>".$classRegistration['dateregistered']."</td>";
+                    echo "<td>".$classRegistration['registeredby']."</td>";
              
                   echo "</tr>";
             }
@@ -333,7 +337,7 @@ if ($rowCount > 0) {
         <table>
             <thead>
             <tr>
-                <th colspan="5" style="text-align: center;color: darkviolet">Your Event Registrations</th>
+                <th colspan="6" style="text-align: center;color: darkviolet">Your Event Registrations</th>
             </tr>
             <tr>
                 <th>Delete?</th>
@@ -341,7 +345,8 @@ if ($rowCount > 0) {
                 <th>Event Name</th>
                 <th>Event Date</th>
                 <th>Paid</th>
-                <th>Date Registered</th>          
+                <th>Date Registered</th>   
+                <th>Registered By</th>         
             </tr>
             </thead>
             <tbody>
@@ -363,6 +368,7 @@ if ($rowCount > 0) {
                         echo "<td>&times;</td>"; 
                     }
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
+                    echo "<td>".$eventRegistration['registeredby']."</td>";
              
                   echo "</tr>";
             }

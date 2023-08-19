@@ -20,6 +20,7 @@ class EventRegistration {
     public $ddattenddance;
     public $mealchoice;
     public $dietaryrestriction;
+    public $registeredby;
 
 
     // Constructor with DB
@@ -32,7 +33,8 @@ class EventRegistration {
     
       $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-      r.userid, r.paid, r.message, r.ddattenddinner, ddattenddance,
+      r.registeredby,
+      r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
       r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
       FROM ' . $this->table . ' r
       LEFT JOIN
@@ -56,6 +58,7 @@ class EventRegistration {
 
           $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+          r.registeredby,
           r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
           r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
           FROM ' . $this->table . ' r
@@ -93,6 +96,7 @@ class EventRegistration {
           $this->ddattenddance = $row['ddattenddance'];
           // $this->mealchoice = $row['mealchoice'];
           $this->dietaryrestriction = $row['dietaryrestriction'];
+          $this->registeredby = $row['registeredby'];
           return true;
           }
           return false;
@@ -105,6 +109,7 @@ public function read_ByUserid($userid) {
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
     r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
     FROM ' . $this->table . ' r
@@ -135,6 +140,7 @@ public function read_ByEmail($email) {
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     c.eventtype as eventtype,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
     r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
@@ -166,6 +172,7 @@ public function read_ByEmail($email) {
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     c.eventtype as eventtype,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
     r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
@@ -196,6 +203,7 @@ public function read_ByEventIdDinner($eventid) {
   $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
   c.eventtype as eventtype,
   r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+  r.registeredby,
   r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
   r.mealchoice, r.dietaryrestriction
   FROM ' . $this->table . ' r
@@ -253,8 +261,8 @@ public function readLike($eventid, $search) {
   // Create query
   // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
   $query = 'SELECT 
-  id, eventid, firstname, lastname, email, dateregistered,
-  userid, paid, message, ddattenddinner, ddattenddance
+  id, eventid, firstname, lastname, email, dateregistered, registeredby,
+  userid, paid, "message", ddattenddinner, ddattenddance
 
   FROM ' . $this->table . ' 
   
@@ -290,6 +298,7 @@ public function readLike($eventid, $search) {
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           userid = :userid, paid = :paid, message = :message,
           ddattenddinner = :ddattenddinner,
+          registeredby = :registeredby,
           dietaryrestriction = :dietaryrestriction,
           eventid = :eventid';
 
@@ -303,6 +312,7 @@ public function readLike($eventid, $search) {
           $this->userid = htmlspecialchars(strip_tags($this->userid));
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->message = htmlspecialchars(strip_tags($this->message));
+          $this->registeredby = htmlspecialchars(strip_tags($this->registeredby));
           // $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
           $this->dietaryrestriction = 
              htmlspecialchars(strip_tags($this->dietaryrestriction));
@@ -317,6 +327,7 @@ public function readLike($eventid, $search) {
           $stmt->bindParam(':paid', $this->paid);
           $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
           $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
+          $stmt->bindParam(':registeredby', $this->registeredby);
           // $stmt->bindParam(':mealchoice', $this->mealchoice);
           $stmt->bindParam(':message', $this->message);
      

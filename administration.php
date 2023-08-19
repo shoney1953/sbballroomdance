@@ -129,6 +129,7 @@ if ($rowCount > 0) {
             'classtime' => date('h:i:s A', strtotime($classtime)),
             'userid' => $userid,
             'email' => $email,
+            'registeredby' => $registeredby,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
       
@@ -163,6 +164,7 @@ if ($rowCount > 0) {
             'paid' => $paid,
             'ddattenddance' => $ddattenddance,
             'ddattenddinner' => $ddattenddinner,
+            'registeredby' => $registeredby,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);

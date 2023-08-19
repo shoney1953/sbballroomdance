@@ -66,6 +66,8 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->email = $usr['email'];
                     $regEmail1 = $eventReg->email;
                     $eventReg->userid = $usr['id'];
+   
+                    $eventReg->registeredby = $_SESSION['username'];
                   
                     
                     if ($event->eventtype === 'Dine and Dance') {

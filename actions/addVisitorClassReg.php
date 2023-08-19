@@ -67,6 +67,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $classReg->firstname = $_POST['firstname1'];
     $classReg->lastname = $_POST['lastname1'];
     $classReg->email = $_POST['email1'];
+    $classReg->registeredby = $_SESSION['username'];
     $classReg->paid = 0;
     $classReg->userid = 0;
 
@@ -139,6 +140,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $classReg->email = $_POST['email2'];
     $classReg->paid = 0;
     $classReg->userid = 0;
+    $classReg->registeredby = $_SESSION['username'];
     $result = $classReg->checkDuplicate($classReg->email, $classReg->classid );
     if (!$result) {
     $classReg->classid = $_POST['classid'];

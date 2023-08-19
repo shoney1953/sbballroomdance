@@ -101,6 +101,7 @@ if ($userCount > 0) {
         $event_item = array(
             'id' => $id,
             'eventname' => $eventname,
+            'registeredby' => $registeredby,
             'dateregistered' => $dateregistered
         );
         $user['totevents']++;
@@ -120,6 +121,7 @@ if ($userCount > 0) {
             $event_item = array(
                 'id' => $id,
                 'classname' => $eventname,
+                'registeredby' => $registeredby,
                 'dateregistered' => $dateregistered
             );
             $user['totclasses']++;
@@ -139,6 +141,7 @@ if ($regCount > 0) {
     $event_item = array(
         'id' => $id,
         'eventname' => $eventname,
+        'registeredby' => $registeredby,
         'dateregistered' => $dateregistered
     );
     $user['totevents']++;
@@ -162,6 +165,7 @@ if ($regCount > 0) {
     $class_item = array(
         'id' => $id,
         'classname' => $classname,
+        'registeredby' => $registeredby,
         'dateregistered' => $dateregistered
     );
     $user['totclasses']++;

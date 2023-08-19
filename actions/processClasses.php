@@ -161,7 +161,8 @@ if (isset($_POST['submitClassProcess'])) {
               'id' => $id,
               'firstname' => $firstname,
               'lastname' => $lastname,
-              'email' => $email,    
+              'email' => $email,   
+              'registeredby' => $registeredby,
               'dateregistered' => $dateregistered,
               'userid' => $userid
            
@@ -183,7 +184,8 @@ if (isset($_POST['submitClassProcess'])) {
                 'id' => $id,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
-                'email' => $email,    
+                'email' => $email,  
+                'registeredby'  => $registeredby,
                 'dateregistered' => $dateregistered,
                 'userid' => $userid
        

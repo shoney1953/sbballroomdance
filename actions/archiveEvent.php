@@ -75,6 +75,7 @@ if (isset($_POST['submitArchive'])) {
                 'ddattenddance' => $ddattenddance,
                 'mealchoice' => $mealchoice,
                 'dietaryrestriction' => $dietaryrestriction,
+                'registeredby' => $registeredby,
                 'dateregistered' => $dateregistered
             );
           
@@ -84,6 +85,7 @@ if (isset($_POST['submitArchive'])) {
             $eventRegArch->email = $reg_item['email'];
             $eventRegArch->userid = $reg_item['userid'];
             $eventRegArch->dateregistered = $reg_item['dateregistered'];
+            $eventRegArch->registeredby = $reg_item['registeredby'];
             $eventRegArch->eventname = $reg_item['eventname'];
             $eventRegArch->eventdate = $reg_item['eventdate'];
             $eventRegArch->paid = $reg_item['paid'];

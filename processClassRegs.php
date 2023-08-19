@@ -235,6 +235,7 @@ if ($addReg) {
         echo '<th>Last Name</th>';
         echo '<th>Email</th>';
         echo '<th>Userid</th>';
+
         
         echo '</tr>';
         echo '</thead>';
@@ -265,7 +266,7 @@ if ($addReg) {
             echo "<td>";
             echo "<input type='text'  title='Registrant User Id' name='".$useridID."' value='".$reg['userid']."'>";
             echo "</td>";
-          
+        
         
             echo '</tr>';
         }

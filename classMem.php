@@ -32,6 +32,7 @@ if ($rowCount > 0) {
             'classtime' => date('h:i:s A', strtotime($classtime)),
             'userid' => $userid,
             'email' => $email,
+            'registeredby' => $registeredby,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
       
@@ -121,7 +122,7 @@ echo '<div class="container-section ">';
                         echo '<th>First Name</th>';
                         echo '<th>Last Name    </th>';
                         echo '<th>Email</th>';
-
+                        echo '<th>Reg By</th>';
                     echo '</tr>';
                     
             
@@ -133,7 +134,7 @@ echo '<div class="container-section ">';
                             echo "<td>".$classRegistration['firstname']."</td>";
                             echo "<td>".$classRegistration['lastname']."</td>";
                             echo "<td>".$classRegistration['email']."</td>"; 
-           
+                            echo "<td>".$classRegistration['registeredby']."</td>"; 
                           echo "</tr>";
                       }
                     }

@@ -62,6 +62,7 @@ if (isset($_POST['submitEventEmail'])) {
                 'userid' => $userid,
                 'email' => $email,
                 'paid' => $paid,
+                'registeredby' => $registeredby,
                 'dateregistered' => $dateregistered
               
             );

@@ -20,6 +20,7 @@ class EventRegistrationArch {
     public $ddattenddance;
     public $mealchoice;
     public $dietaryrestriction;
+    public $registeredby;
 
 
     // Constructor with DB
@@ -32,6 +33,7 @@ class EventRegistrationArch {
     
       $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+      r.registeredby,
       r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
       r.mealchoice, r.dietaryrestriction
       FROM ' . $this->table . ' r
@@ -55,6 +57,7 @@ class EventRegistrationArch {
       
           $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+          r.registeredby,
           r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
           r.mealchoice, r.dietaryrestriction
           FROM ' . $this->table . ' r
@@ -91,6 +94,7 @@ class EventRegistrationArch {
           $this->ddattenddinner = $row['dietaryrestriction'];
           $this->preveventid = $row['preveventid'];
           $this->message = $row['message'];
+          $this->registeredby = $row['registeredby'];
 
     }
 // Get reg by userid
@@ -100,6 +104,7 @@ public function read_ByUserid($userid) {
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,
     r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
     r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
@@ -127,6 +132,7 @@ public function read_ByEmail($email) {
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,
     r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
     r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
@@ -157,6 +163,7 @@ public function read_ByEmail($email) {
 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,
     r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
     r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
@@ -186,6 +193,7 @@ public function read_ByEmail($email) {
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           userid = :userid, paid = :paid, message = :message, preveventid = :preveventid,
           ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance,
+          registeredby = :registeredby,
           mealchoice = :mealchoice, dietaryrestriction = :dietaryrestriction,
           eventid = :eventid';
 
@@ -200,6 +208,7 @@ public function read_ByEmail($email) {
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->message = htmlspecialchars(strip_tags($this->message));
           $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
+          $this->registeredby = htmlspecialchars(strip_tags($this->registeredby));
           $this->dietaryrestriction = 
              htmlspecialchars(strip_tags($this->dietaryrestriction));
 
@@ -217,6 +226,7 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':message', $this->message);
           $stmt->bindParam(':mealchoice', $this->mealchoice);
           $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
+          $stmt->bindParam(':registeredby', $this->registeredby);
      
 
           // Execute query

@@ -73,6 +73,7 @@ if (isset($_POST['submitArchive'])) {
                 'classtime' => $classtime,
                 'userid' => $userid,
                 'email' => $email,
+                'registeredby' => $registeredby,
                 'dateregistered' => $dateregistered
             );
 
@@ -82,6 +83,7 @@ if (isset($_POST['submitArchive'])) {
             $classRegArch->email = $reg_item['email'];
             $classRegArch->userid = $reg_item['userid'];
             $classRegArch->dateregistered = $reg_item['dateregistered'];
+            $classRegArch->registeredby = $reg_item['registeredby'];
             $classRegArch->classname = $reg_item['classname'];     
             $classRegArch->classdate = $reg_item['classdate'];
             $classRegArch->classtime = $reg_item['classtime'];

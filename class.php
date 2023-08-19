@@ -82,7 +82,8 @@ echo '<div class="container-section ">';
                         echo '<th>Last Name    </th>';
                         echo '<th>Email</th>';
 
-                        echo '<th>Date Reg</th> ';         
+                        echo '<th>Date Reg</th> ';    
+                        echo '<th>Reg By</th> ';        
                     echo '</tr>';
                     
             
@@ -97,6 +98,8 @@ echo '<div class="container-section ">';
                  
        
                             echo "<td>".$classRegistration['dateregistered']."</td>";
+                            
+                            echo "<td>".$classRegistration['registeredby']."</td>";
                      
                           echo "</tr>";
                       }

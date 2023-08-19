@@ -43,19 +43,21 @@ if (isset($_POST['submitRegClass'])) {
 
              $regId1 = $user->id;
         }
+    if (isset($_POST['regFirstName2'])) {
 
-    $regFirstName2 = htmlentities($_POST['regFirstName2']);
-    $regLastName2 = htmlentities($_POST['regLastName2']);
-    $regEmail2 = htmlentities($_POST['regEmail2']);
-    $regEmail2 = filter_var($regEmail2, FILTER_SANITIZE_EMAIL); 
-    if ($user->getUserName($regEmail2)) {    
-
-        $regId2 = $user->id;
-   }  
-
-    if (isset($_POST['message2ins'])) {
-        $message2Ins = $_POST['message2ins'];
-      }
+        $regFirstName2 = htmlentities($_POST['regFirstName2']);
+        $regLastName2 = htmlentities($_POST['regLastName2']);
+        $regEmail2 = htmlentities($_POST['regEmail2']);
+        $regEmail2 = filter_var($regEmail2, FILTER_SANITIZE_EMAIL); 
+        if ($user->getUserName($regEmail2)) {    
+    
+            $regId2 = $user->id;
+       }  
+    
+        if (isset($_POST['message2ins'])) {
+            $message2Ins = $_POST['message2ins'];
+          }
+    }
 
     $regEmail1 = filter_var($regEmail1, FILTER_SANITIZE_EMAIL); 
     
@@ -95,6 +97,13 @@ if (isset($_POST['submitRegClass'])) {
                 $classReg->lastname = $regLastName1;
                 $classReg->classid = $classId;
                 $classReg->email = $regEmail1;
+                if ($_SESSION['role'] != 'visitor') {
+                    $classReg->registeredby = $_SESSION['username'];
+                } else {
+                    $classReg->registeredby = $_SESSION['visitorfirstname'];
+                }
+
+        
                 if(isset($_SESSION['userid'])) {
                     $classReg->userid = $_SESSION['userid'];
                 } else {
@@ -106,6 +115,7 @@ if (isset($_POST['submitRegClass'])) {
 
                 $classReg->create();  
                 $danceClass->addCount($classId);
+                if ($_SESSION['role'] != 'visitor') {
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
                 
                     $classReg->firstname = $regFirstName2;
@@ -113,6 +123,7 @@ if (isset($_POST['submitRegClass'])) {
                     $classReg->classid = $classId;
                     $classReg->email = $regEmail2;
                     $classReg->userid = $regId2;
+                    $classReg->registeredby = $_SESSION['username'];
                     if ($regId1 === 0) {
                         $emailBody .=
                      "<br> We didn't find your email. So please sign up, or you may attend only 1 class free before joining the club.<br>";
@@ -122,11 +133,11 @@ if (isset($_POST['submitRegClass'])) {
                         $classReg->create();
                         $danceClass->addCount($classId);
                     }
-                    
                    
-                  
+
                      } // end regemail2
                     }
+                }
             } // end if classid
         } // end foreach
 

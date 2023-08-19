@@ -137,6 +137,7 @@ if ($rowCount > 0) {
             'classtime' => $classtime,
             'userid' => $userid,
             'email' => $email,
+            'registeredby' => $registeredby,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
       
@@ -169,6 +170,7 @@ if ($rowCount > 0) {
             'paid' => $paid,
             'ddattenddinner' => $ddattenddinner,
             'ddattenddance' => $ddattenddance,
+            'registeredby' => $registeredby,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);
@@ -398,7 +400,8 @@ if ($rowCount > 0) {
                 <th>Attend Dinner</th>
                 <th>Attend Dance</th>
                 <th>Message</th>
-                <th>Date Reg</th>          
+                <th>Date Reg</th>  
+                <th>Reg By</th>          
             </tr>
             <?php 
     
@@ -432,6 +435,7 @@ if ($rowCount > 0) {
                       }
                     echo "<td>".$eventRegistration['message']."</td>";         
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
+                    echo "<td>".$eventRegistration['registeredby']."</td>";
              
                   echo "</tr>";
               }
@@ -526,7 +530,8 @@ if ($rowCount > 0) {
                 <th>First Name</th>
                 <th>Last Name    </th>
                 <th>Email</th>
-                <th>Date Reg</th>          
+                <th>Date Reg</th> 
+                <th>Reg By</th>             
             </tr>
             <?php 
     
@@ -543,6 +548,7 @@ if ($rowCount > 0) {
                     echo "<td>".$classRegistration['lastname']."</td>";
                     echo "<td>".$classRegistration['email']."</td>";           
                     echo "<td>".$classRegistration['dateregistered']."</td>";
+                    echo "<td>".$classRegistration['registeredby']."</td>";
              
                   echo "</tr>";
 

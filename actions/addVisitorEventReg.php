@@ -47,6 +47,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
 
     $eventReg->eventid = $_POST['eventid'];
     $eventReg->firstname = $_POST['firstname1'];
+    $eventReg->registeredby = $_SESSION['username'];
     $regFirstName1 = $eventReg->firstname;
     $eventReg->lastname = $_POST['lastname1'];
     $eventReg->email = $_POST['email1'];
@@ -141,6 +142,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $regFirstName1 = $eventReg->firstname;
     $eventReg->lastname = $_POST['lastname2'];
     $eventReg->email = $_POST['email2'];
+    $eventReg->registeredby = $_SESSION['username'];
     $regEmail1 = $eventReg->email;
     if (isset($_POST['attdin2'])) {
         $eventReg->ddattenddinner = 1;
