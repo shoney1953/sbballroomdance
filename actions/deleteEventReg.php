@@ -6,8 +6,8 @@ require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
 
 
-$regs = $_SESSION['eventregistrations'];
 
+$regs = $_SESSION['registrations'];
 
 $database = new Database();
 $db = $database->connect();
@@ -20,7 +20,7 @@ $event = new Event($db);
 
        if (isset($_POST["$delId"])) {
            $eventReg->id = $reg['id'];
-           $eventid = $reg['eventid'];
+           $eventid = $_POST['eventid'];
   
            $eventReg->delete();
            $event->decrementCount($eventid);

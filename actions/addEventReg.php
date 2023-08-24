@@ -37,6 +37,7 @@ $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
 $result = 0;
+$fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 $fromCC = 'webmaster@sbballroomdance.com';
 $replyEmail = 'secretary@sbballroomdance.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
@@ -68,7 +69,7 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->userid = $usr['id'];
    
                     $eventReg->registeredby = $_SESSION['username'];
-                  
+         
                     
                     if ($event->eventtype === 'Dine and Dance') {
                     
@@ -101,18 +102,22 @@ if (isset($_POST['submitAddReg'])) {
           
                         $eventReg->paid = 0;
                     }
+  
                  $result = $eventReg->checkDuplicate($regEmail1, $eventReg->eventid);
-                 if (!$result) {
 
+                 if (!$result) {
+ 
                     $eventReg->create();
                     $event->addCount($eventReg->eventid);
                     $event->id = $eventReg->eventid;
                     $event->read_single();
+
                     $emailBody .= '<br>************************************';
                     $emailBody .= "<br> <strong>Event: ".$event->eventname.
                     "<br>Type:    ".$event->eventtype.
                     "<br>DJ  :    ".$event->eventdj.
                     "<br>Room:    ".$event->eventroom.
+                    "<br>Cost:    ".$fmt->formatCurrency($event->eventcost, 'USD').
                     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
                     if ($event->eventtype === 'Dine and Dance') {
                         if (isset($_POST["$attDin"])) {
@@ -128,7 +133,14 @@ if (isset($_POST['submitAddReg'])) {
                             $emailBody .= "<br>You have chosen not to attend dinner before the dance.";
                         }
                     }
-                  
+                    if ($event->eventform) {
+                        $actLink= "<a href='".$event->eventform."'>
+                        Click to view event Form</a><br>";
+                       $emailBody .= 'There is a flyer associated with the dance.<br>';
+                       $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
+                        on the website to open the form. Or<br>$actLink";
+     
+                    }
                   
                  }
                 

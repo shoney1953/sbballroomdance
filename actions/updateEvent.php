@@ -21,7 +21,7 @@ $database = new Database();
 $db = $database->connect();
 $eventRec = new Event($db);
 $allEvents = $_SESSION['allEvents'];
-var_dump($_POST);
+
 if (isset($_POST['submitUpdate'])) {
     
     foreach ($allEvents as $event) {

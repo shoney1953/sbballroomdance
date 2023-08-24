@@ -153,13 +153,14 @@ if ($addReg) {
         echo '<div class="form-grid-div">';
         
             echo '<form method="POST" action="deleteEventReg.php">';
+
             foreach ($upcomingEvents as $event) {
                 $eventNum = (int)substr($drChk,2);
                 if ($event['id'] == $eventNum) {
                     break;
                 }
             }
-            echo '<h2>Delete registrations to the following event</h2>';
+            echo '<h2>Delete registrations to the following Event</h2>';
             echo '<input type=hidden name="eventid" value="'.$eventNum.'">';
     
             echo '<table>';
