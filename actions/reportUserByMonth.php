@@ -84,10 +84,10 @@ if (isset($_POST['submitUserRep'])) {
         }
     }
 
-    $pdf = new PDF("P");
+    $pdf = new PDF("L");
     $pdf->AliasNbPages();
     $pdf->SetTextColor(26, 22, 22);
-    $pdf->AddPage("P");
+    $pdf->AddPage("L");
     $pdf->SetFont('Arial', '', 14);
 
 if ($userCount > 0) {
@@ -117,6 +117,7 @@ if ($userCount > 0) {
         $pdf->Cell(40,5,"FIRST NAME",1,0,"L");
         $pdf->Cell(40,5,"LAST NAME",1,0,"L");
         $pdf->Cell(70,5,"EMAIL",1,0,"L");
+        $pdf->Cell(40,5,"PHONE",1,0,"L");
         $pdf->Cell(5,5,"H",1,1,"L");
     
         $pdf->SetFont('Arial', '', 10);
@@ -160,6 +161,7 @@ if ($userCount > 0) {
         $pdf->Cell(40,5,"FIRST NAME",1,0,"L");
         $pdf->Cell(40,5,"LAST NAME",1,0,"L");
         $pdf->Cell(70,5,"EMAIL",1,0,"L");
+        $pdf->Cell(40,5,"PHONE",1,0,"L");
         $pdf->Cell(5,5,"H",1,1,"L");
         $pdf->SetFont('Arial', '', 10);
 
@@ -176,6 +178,7 @@ if ($userCount > 0) {
          $pdf->Cell(40,5,$usr['firstname'],1,0,"L");
          $pdf->Cell(40,5,$usr['lastname'],1,0,"L");
          $pdf->Cell(70,5,$usr['email'],1,0,"L");
+         $pdf->Cell(40,5,$usr['phone1'],1,0,"L");
          $pdf->Cell(5,5,$usr['hoa'],1,1,"L");
 
 
