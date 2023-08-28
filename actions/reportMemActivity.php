@@ -68,6 +68,7 @@ $result = $user->read();
                 'firstname' => $firstname,
                 'lastname' => $lastname,
                 'fulltime' => $fulltime,
+                'phone1' => $phone1,
                 'email' => $email
 
             );
@@ -195,6 +196,7 @@ $pdf->Cell(70,5," ",0,1,"L");
 $pdf->Cell(40,5,"FIRST NAME",1,0,"L"); 
 $pdf->Cell(40,5,"LAST NAME",1,0,"L");  
 $pdf->Cell(75,5,"EMAIL",1,0,"L"); 
+$pdf->Cell(40,5,"PHONE",1,0,"L"); 
 $pdf->Cell(30,5,"FULLTIME",1,1,"L"); 
 $pdf->Ln(2);
 // $pdf->Cell(15,5,"T EV",1,0,"L"); 
@@ -208,6 +210,7 @@ foreach ($userArrMod as $user) {
     $pdf->Cell(40,5,$user['firstname'],0,0,"L"); 
     $pdf->Cell(40,5,$user['lastname'],0,0,"L");  
     $pdf->Cell(75,5,$user['email'],0,0,"L"); 
+    $pdf->Cell(40,5,$user['phone1'],0,0,"L"); 
     if ($user['fulltime']) {
       $pdf->Cell(10,5,"YES",0,1,"L");   
     } else {
