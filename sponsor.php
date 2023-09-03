@@ -30,6 +30,12 @@
        <div class="sponsorCard">
        <img  class="sponsorImage" src="img/GaryKueker.png" alt="Gary Kueker info">
       </div>
+
+       <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/golfcarts.png" alt="Golf Carts info">
+      </div>
+            </div>
+               <br><br><br> 
     </div>
     <br><br><br>     
       
