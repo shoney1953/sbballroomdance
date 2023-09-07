@@ -34,7 +34,12 @@
        <div class="sponsorCard">
        <img  class="sponsorImage" src="img/golfcarts.png" alt="Golf Carts info">
       </div>
-            </div>
+      
+        <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Desert life.png" alt="Desert Life info">
+      </div>
+      </div>
+      
                <br><br><br> 
     </div>
     <br><br><br>     
