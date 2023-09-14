@@ -18,6 +18,7 @@ $attDance = 0;
 $attDinner = 0;
 $dwop = 0;
 $numDwop = 0;
+$init_dinner = 1;
 
 
 class PDF extends FPDF
@@ -59,11 +60,11 @@ class PDF extends FPDF
             $eventId = htmlentities($_POST['eventId']);
             $event->id = $eventId;
             $event->read_single();
-            // if ($event->eventtype === 'Dance Party') {
-            //     $result = $eventReg->read_ByEventIdDinner($eventId);
-            // } else {
+            if ($event->eventtype === 'Dance Party') {
+                $result = $eventReg->read_ByEventIdDinner($eventId);
+            } else {
                 $result = $eventReg->read_ByEventId($eventId);  
-            // }
+            }
            
         } else {
         $result = $eventReg->read();
@@ -108,6 +109,7 @@ if ($rowCount > 0) {
     $paidNum = 0;
     $prevEvent = '';
     $init = 1;
+
     foreach ($regArr as $reg) {
 
         $regCount++;
@@ -139,14 +141,52 @@ if ($rowCount > 0) {
             }
            
             if ($reg['eventtype'] === 'Dance Party') {
-                $pdf->Cell(22,5,"DINNER?",1,0,"L");
+                $pdf->Cell(22,5,"DINNER?",1,1,"L");
 
             }
 
-            $pdf->Cell(70,5,"MESSAGE",1,1,"L");    
+            // $pdf->Cell(70,5,"MESSAGE",1,1,"L");    
           
     
         }
+        if ($reg['eventtype'] === 'Dance Party') {
+
+            if ($init_dinner === 1) {
+             if ($reg['ddattenddinner'] != true) {
+                    $init_dinner = 0; 
+                    $pdf->addPage('L');  
+                    $event_string = ' '.$reg['eventtype'].' --- '.$reg['eventname'].'  '
+                    .$reg['eventdate'].'   Cost: '.$event->eventcost.' ';
+           $pdf->SetFont('Arial', 'B', 14);
+           $pdf->Cell(0, 10, $event_string, 0, 1);
+           $pdf->SetFont('Arial', '', 14);
+           $pdf->Cell(40,5,"FIRST NAME",1,0,"L"); 
+           $pdf->Cell(45,5,"LAST NAME",1,0,"L");  
+           $pdf->Cell(70,5,"EMAIL",1,0,"L"); 
+           $pdf->Cell(18,5,"MEM",1,0,"L"); 
+           $pdf->Cell(18,5,"DWOP",1,0,"L"); 
+           if ($reg['eventtype'] === 'Dance Party') {
+               if ($event->eventcost > 0) {
+                   $pdf->Cell(14,5,"PAID",1,0,"L");
+               }
+           }
+     
+           if ($reg['eventtype'] === 'Dine and Dance') {
+               $pdf->Cell(22,5,"DINNER?",1,0,"L");
+
+           }
+           if ($reg['eventtype'] === 'Dinner Dance') {
+               $pdf->Cell(14,5,"PAID",1,0,"L");
+           }
+          
+           if ($reg['eventtype'] === 'Dance Party') {
+               $pdf->Cell(22,5,"DINNER?",1,1,"L");
+
+           }
+  
+            }
+        }
+    }
         if ($reg['eventid'] !== $prevEvent) {
             $pdf->addPage('L');
             $pdf->SetFont('Arial', 'B', 14);
@@ -200,10 +240,10 @@ if ($rowCount > 0) {
              $pdf->Cell(14,5,"PAID",1,0,"L");
             }
             if ($reg['eventtype'] === 'Dine and Dance') {
-             $pdf->Cell(22,5,"DINNER?",1,0,"L");
+             $pdf->Cell(22,5,"DINNER?",1,1,"L");
 
             }
-            $pdf->Cell(70,5,"MESSAGE",1,1,"L");      
+            // $pdf->Cell(70,5,"MESSAGE",1,1,"L");      
     
          }
          $paid = 'Not Paid';
@@ -225,7 +265,15 @@ if ($rowCount > 0) {
             $attDance++;
  
         }
- 
+        if ($reg['eventtype'] === 'Dance Party') {
+
+            if ($init_dinner === 1) {
+                if ($reg['ddattenddinner'] != true) {
+                    $init_dinner = 0;
+                    $pdf->Cell(100,5,' ',0,1,"L");       
+            }
+        }
+    }
         $user->id = $reg['userid'];
     
           $pdf->Cell(40,5,$reg['firstname'],1,0,"L"); 
@@ -289,14 +337,14 @@ if ($rowCount > 0) {
     }
     if ($reg['eventtype'] === 'Dance Party') {
         if ($reg['ddattenddinner'] === '1') {
-            $pdf->Cell(22,5,"YES",1,0,"L");
+            $pdf->Cell(22,5,"YES",1,1,"L");
         } else {
-            $pdf->Cell(22,5,"NO ",1,0,"L");
+            $pdf->Cell(22,5,"NO ",1,1,"L");
         } 
      
     }
         
-        $pdf->Cell(70,5,$reg['message'],1,1,"L"); 
+        // $pdf->Cell(70,5,$reg['message'],1,1,"L"); 
 
 
     }
