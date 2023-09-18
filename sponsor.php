@@ -38,6 +38,9 @@
         <div class="sponsorCard">
        <img  class="sponsorImage" src="img/Desert life.png" alt="Desert Life info">
       </div>
+      <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/NestInTheDesert.png" alt="Nest In the Desert info">
+      </div>
       </div>
       
                <br><br><br> 
