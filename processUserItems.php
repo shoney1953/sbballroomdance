@@ -100,7 +100,7 @@ $users = $_SESSION['process_users'];
           echo '<h4 class="form-item-title">Primary Phone</h4>'; 
           echo "<input type='tel'  name='".$phone1ID."'
           pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
-          required value='".$usr['phone1']."'><br>
+          value='".$usr['phone1']."'><br>
              <small> Format: 123-456-7890</small>";
           echo '</div>';
           echo '<div class="form-item">';

@@ -97,7 +97,7 @@ if (isset($_POST['submitAddUser'])) {
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Primary Phone</h4>';
-            echo '<input type="tel" name="phone1" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br>';
+            echo '<input type="tel" name="phone1" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>';
             echo '<small>Format: 123-456-7890</small>';
             echo '</div>'; 
 
