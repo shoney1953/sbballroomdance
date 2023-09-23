@@ -59,7 +59,9 @@ if (isset($_POST['submitUsageRep'])) {
                 'firstname' => $firstname,
                 'lastname' => $lastname,
                 'email' => $email,
-                'numlogins' => $numlogins
+                'numlogins' => $numlogins,
+                'robodjnumlogins' => $robodjnumlogins,
+                'robodjlastlogin' => $robodjlastlogin
 
 
             );
@@ -78,20 +80,27 @@ if (isset($_POST['submitUsageRep'])) {
 
 if ($userCount > 0) {
     $pdf->SetFont('Arial','B',10);
+    $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
+    $pdf->Cell(30,5,"LAST NAME",1,0,"L");
     $pdf->Cell(20,5,"LOGINS",1,0,"L");
     $pdf->Cell(45,5,"LAST LOGIN",1,0,"L");
-    $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
-    $pdf->Cell(30,5,"LAST NAME",1,1,"L");
+    $pdf->Cell(45,5,"ROBODJ LOGINS",1,0,"L");
+    $pdf->Cell(45,5,"ROBODJ LAST LOGIN",1,1,"L");
+
 
     $pdf->SetFont('Arial', '', 10);
     foreach ($userArr as $usr) {
 
 
          // $pdf->Cell(0, 5, $user_string1, 0, 1);
+         $pdf->Cell(30,5,$usr['firstname'],1,0,"L");
+         $pdf->Cell(30,5,$usr['lastname'],1,0,"L");
          $pdf->Cell(20,5,$usr['numlogins'],1,0,"L");
          $pdf->Cell(45,5,$usr['lastLogin'],1,0,"L");
-         $pdf->Cell(30,5,$usr['firstname'],1,0,"L");
-         $pdf->Cell(30,5,$usr['lastname'],1,1,"L");
+
+         $pdf->Cell(45,5,$usr['robodjnumlogins'],1,0,"L");
+         $pdf->Cell(45,5,$usr['robodjlastlogin'],1,1,"L");
+        
 
     }
     $pdf->SetFont('Arial','B', 10);
