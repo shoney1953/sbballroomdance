@@ -27,6 +27,8 @@ class User {
     public $numlogins;
     public $directorylist;
     public $fulltime;
+    public $robodjnumlogins;
+    public $robodjlastlogin;
 
     // Constructor with DB
     public function __construct($db) {
@@ -161,6 +163,8 @@ class User {
           $this->numlogins = $row['numlogins'];
           $this->directorylist = $row['directorylist'];
           $this->fulltime = $row['fulltime'];
+          $this->robodjnumlogins = $row['robodjnumlogins'];
+          $this->robodjlastlogin = $row['robodjlastlogin'];
           return true;
           }
         
@@ -206,6 +210,8 @@ class User {
       $this->numlogins = $row['numlogins'];
       $this->directorylist = $row['directorylist'];
       $this->fulltime = $row['fulltime'];
+      $this->robodjnumlogins = $row['robodjnumlogins'];
+      $this->robodjlastlogin = $row['robodjlastlogin'];
   
         return true;
       }

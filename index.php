@@ -162,7 +162,9 @@ if (isset($_SESSION['username'])) {
                 'lastLogin' => date('m d Y h:i:s A', strtotime($lastLogin)),
                 'numlogins' => $numlogins,
                 'directorylist' => $directorylist,
-                'fulltime' => $fulltime
+                'fulltime' => $fulltime,
+                'robodjnumlogins' => $robodjnumlogins,
+                'robodjlastlogin' => $robodjlastlogin
             );
             if ($user_item['directorylist']) {
                 array_push($directory, $user_item);

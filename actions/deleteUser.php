@@ -125,6 +125,8 @@ if (isset($_POST['submitArchiveUser'])) {
         $userArc->fulltime = $user->fulltime;
         $userArc->lastLogin = $user->lastLogin;
         $userArc->numlogins = $user->numlogins;
+        $userArc->robodjnumlogins = $user->robodjnumlogins;
+        $userArc->robodjlastlogin = $user->robodjlastlogin;
         $userArc->create();
 
         $eventReg->deleteUserid($user->id);

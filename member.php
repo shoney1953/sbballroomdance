@@ -294,7 +294,7 @@ if ($rowCount > 0) {
             echo '</tbody>';
             echo '<thead>';
             echo '<tr>';
-       
+  
             echo '<th>Current Classes</td>';
             echo '<th>Past Classes</th>';
             echo '<th>Current Events</th>';
@@ -309,6 +309,20 @@ if ($rowCount > 0) {
             echo "<td>$numEvents</td>";
             echo "<td>$numEventsArch</td>";
 
+            echo '</tr>';
+
+            echo '</tbody>';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>ROBO DJ Num Logins</td>';
+            echo '<th>ROBO DJ Last Login</th>';
+            echo '</tr>';
+
+            echo '</thead>';
+            echo '<tbody>';
+            echo '<tr>';
+            echo "<td>$user->robodjnumlogins</td>";
+            echo "<td>$user->robodjlastlogin</td>";
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';

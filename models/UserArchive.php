@@ -28,6 +28,8 @@ class UserArchive {
     public $numlogins;
     public $directorylist;
     public $fulltime;
+    public $robodjnumlogins;
+    public $robodjlastlogin;
 
     // Constructor with DB
     public function __construct($db) {
@@ -121,6 +123,8 @@ class UserArchive {
          $this->numlogins = $row['numlogins'];
          $this->directorylist = $row['directorylist'];
          $this->fulltime = $row['fulltime'];
+         $this->robodjnumlogins = $row['robodjnumlogins'];
+         $this->robodjlastlogin = $row['robodjlastlogin'];
 
     }
     public function getUserName($user, $email) {
@@ -165,6 +169,8 @@ class UserArchive {
       $this->numlogins = $row['numlogins'];
       $this->directorylist = $row['directorylist'];
       $this->fulltime = $row['fulltime'];
+      $this->robodjnumlogins = $row['robodjnumlogins'];
+      $this->robodjlastlogin = $row['robodjlastlogin'];
   
         return true;
       }
@@ -182,6 +188,7 @@ class UserArchive {
           partnerid = :partnerid, streetaddress = :streetaddress,
           directorylist = :directorylist, fulltime = :fulltime,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
+          robodjnumlogins = :robodjnumlogins, robodjlastlogin = :robodjlastlogin,
           phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
 
           // Prepare statement
@@ -204,8 +211,8 @@ class UserArchive {
           $this->zip = htmlspecialchars(strip_tags($this->zip));
           $this->directorylist = $this->directorylist;
           $this->fulltime = $this->fulltime;
-     
-
+          $this->robodjlastlogin = $this->robodjlastlogin;
+          $this->robodjnumlogins = $this->robodjnumlogins;
 
           // Bind data
           $stmt->bindParam(':firstname', $this->firstname);
@@ -225,7 +232,8 @@ class UserArchive {
           $stmt->bindParam(':numlogins', $this->numlogins);
           $stmt->bindParam(':directorylist', $this->directorylist);
           $stmt->bindParam(':fulltime', $this->fulltime);
-
+          $stmt->bindParam(':robodjnumlogins', $this->robodjnumlogins);
+          $stmt->bindParam(':robodjlastlogin', $this->robodjlastlogin);
           // Execute query
           if ($stmt->execute()) {
 
