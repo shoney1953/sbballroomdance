@@ -20,15 +20,15 @@
     <section id="sponsors" class="content">
     <br><br>
     <h1>Current Sponsors of the SaddleBrooke Ballroom Dance Club</h1>
-    <div class="sponsorLogo-Div">
+    <!-- <div class="sponsorLogo-Div">
     <img  class="sponsorLogo" src="img/SponsorHeader.png" alt="Sponsor Logo">
-    </div>
+    </div> -->
     <div class="form-grid3">
       <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/AnnFraley.png" alt="Ann Fraley info">
+       <img  class="sponsorImage" src="img/Fraley.png" alt="Ann Fraley info">
       </div>
        <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/GaryKueker.png" alt="Gary Kueker info">
+       <img  class="sponsorImage" src="img/SC Cares.png" alt="Gary Kueker info">
       </div>
 
        <div class="sponsorCard">
@@ -36,10 +36,13 @@
       </div>
       
         <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/Desert life.png" alt="Desert Life info">
+       <img  class="sponsorImage" src="img/desertlife.png" alt="Desert Life info">
       </div>
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/NestInTheDesert.png" alt="Nest In the Desert info">
+      </div>
+      <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Vantagewest.png" alt="VantageWest info">
       </div>
       </div>
       
