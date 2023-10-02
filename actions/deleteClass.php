@@ -30,11 +30,13 @@ $class = new DanceClass($db);
 $classReg = new ClassRegistration($db);
 $allClasses = $_SESSION['allClasses'];
 
-if (issset($_POST['submitDelete'])) {
+if (isset($_POST['submitDelete'])) {
     foreach ($allClasses as $ca) {
-        $clSelectChk = "clselect".$class['id'];
-        if (isset($_POST("$clSelectChk"))) {
+        $clSelectChk = "clselect".$ca['id'];
+        if (isset($_POST["$clSelectChk"])) {
+
             $class->id = $ca['id'];
+     
             $class->delete();
             $classReg->deleteClassid($class->id);
         }

@@ -187,7 +187,7 @@ if ($deleteClass) {
         echo '<tr>';
         echo "<td><input type='checkbox' name='".$clSelectChk."' title='Check this box to delete'></td>";
         echo "<td>".$class['classname']."</td>";
-        echo "<td>".$class['level']."</td>";
+        echo "<td>".$class['classlevel']."</td>";
         echo "<td>".$class['instructors']."</td>";
         echo "<td>".$class['date']."</td>";
         echo "<td>".$class['time']."</td>";
