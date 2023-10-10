@@ -46,7 +46,7 @@ if (isset($_POST['submitArchiveUser'])) {
     if (isset($_POST["$usrSelChk"])) {
         $user->id = $_POST["$idID"];
         $user->read_single();
-    
+
         $result = $classReg->read_ByUserid($user->id);
         
         $rowCount = $result->rowCount();
@@ -127,6 +127,7 @@ if (isset($_POST['submitArchiveUser'])) {
         $userArc->numlogins = $user->numlogins;
         $userArc->robodjnumlogins = $user->robodjnumlogins;
         $userArc->robodjlastlogin = $user->robodjlastlogin;
+        $userArc->memberorigcreated = $user->created;
         $userArc->create();
 
         $eventReg->deleteUserid($user->id);

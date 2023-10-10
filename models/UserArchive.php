@@ -30,6 +30,7 @@ class UserArchive {
     public $fulltime;
     public $robodjnumlogins;
     public $robodjlastlogin;
+    public $memberorigcreated;
 
     // Constructor with DB
     public function __construct($db) {
@@ -125,6 +126,7 @@ class UserArchive {
          $this->fulltime = $row['fulltime'];
          $this->robodjnumlogins = $row['robodjnumlogins'];
          $this->robodjlastlogin = $row['robodjlastlogin'];
+         $this->memberorigcreated = $row['memberorigcreated'];
 
     }
     public function getUserName($user, $email) {
@@ -171,7 +173,7 @@ class UserArchive {
       $this->fulltime = $row['fulltime'];
       $this->robodjnumlogins = $row['robodjnumlogins'];
       $this->robodjlastlogin = $row['robodjlastlogin'];
-  
+      $this->memberorigcreated = $row['memberorigcreated'];
         return true;
       }
      return false;
@@ -188,6 +190,7 @@ class UserArchive {
           partnerid = :partnerid, streetaddress = :streetaddress,
           directorylist = :directorylist, fulltime = :fulltime,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
+          memberorigcreated = :memberorigcreated,
           robodjnumlogins = :robodjnumlogins, robodjlastlogin = :robodjlastlogin,
           phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
 
@@ -213,6 +216,7 @@ class UserArchive {
           $this->fulltime = $this->fulltime;
           $this->robodjlastlogin = $this->robodjlastlogin;
           $this->robodjnumlogins = $this->robodjnumlogins;
+          $this->memberorigcreated = $this->memberorigcreated;
 
           // Bind data
           $stmt->bindParam(':firstname', $this->firstname);
@@ -234,6 +238,8 @@ class UserArchive {
           $stmt->bindParam(':fulltime', $this->fulltime);
           $stmt->bindParam(':robodjnumlogins', $this->robodjnumlogins);
           $stmt->bindParam(':robodjlastlogin', $this->robodjlastlogin);
+          $stmt->bindParam(':memberorigcreated', $this->memberorigcreated);
+
           // Execute query
           if ($stmt->execute()) {
 
