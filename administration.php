@@ -690,6 +690,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<button type="submit" name="submitUserRep">Report Members</button>';   
             echo '</form>';
             echo '</div> '; 
+            echo '<div class="form-grid-div">';
+            echo '<form target="_blank" method="POST" action="actions/reportUserHoa.php">'; 
+            echo '<button type="submit" name="submitHOAreport">Report Members by HOA</button>';   
+            echo '</form>';
+            echo '</div> '; 
             /* */
             echo '<div class="form-grid-div">';
             echo '<form target="_blank" method="POST" action="actions/reportUserByMonth.php">'; 

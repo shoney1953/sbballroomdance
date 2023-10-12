@@ -60,6 +60,18 @@ class User {
 
       return $stmt;
     }
+    public function readByHOA() {
+      // Create query
+      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY hoa, lastname, firstname ';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
     public function readByLogin() {
       // Create query
       $query = 'SELECT * FROM ' . $this->table . ' ORDER BY lastLogin DESC, lastname, firstname ';
