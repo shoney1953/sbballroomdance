@@ -25,7 +25,7 @@ class PDF extends FPDF
         // Logo
         $today = date("m-d-Y");
         $title = "SaddleBrooke Ballroom Dance Club Members - ".$today;
-        $this->Image('../img/sbdc_logo_small.png',10,6,30);
+        // $this->Image('../img/sbdc_logo_small.png',10,6,30);
         // Arial bold 15
         $this->SetFont('Arial','B',16);
         // Move to the right
@@ -141,7 +141,7 @@ if ($userCount > 0) {
    
 
         if ($dateYear != $prevYear) {
-          $pdf->AddPage("P");
+          $pdf->AddPage("L");
           $pdf->SetFont('Arial','B',16);
           $pdf->Ln(2);
           $pdf->Cell(5,10,"YEAR  ".$dateYear,0,1,"l");
@@ -192,7 +192,7 @@ if ($userCount > 0) {
     $pdf->Cell(0, 5, "Year: ".$prevYear."      Total:  ".$countPerYear, 0, 1);
 
 
-    $pdf->AddPage("P");
+    $pdf->AddPage("L");
     $pdf->Cell(0, 5, "Summary Totals", 0, 1);
     $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Members HOA1:  ".$numHOA1, 0, 1);
