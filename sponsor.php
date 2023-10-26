@@ -50,6 +50,9 @@
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/Danswear.png" alt="Club Pilates info">
       </div>
+      <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/closettrends.png" alt="Closet Trends info">
+      </div>
       </div>
       
                <br><br><br> 
