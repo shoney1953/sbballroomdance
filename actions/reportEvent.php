@@ -125,7 +125,12 @@ if ($rowCount > 0) {
             $pdf->Cell(45,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(70,5,"EMAIL",1,0,"L"); 
             $pdf->Cell(18,5,"MEM",1,0,"L"); 
-            $pdf->Cell(18,5,"DWOP",1,0,"L"); 
+            if ($reg['eventtype'] === 'Novice Practice Dance') {
+                $pdf->Cell(18,5,"DWOP",1,1,"L"); 
+            } else {
+                $pdf->Cell(18,5,"DWOP",1,0,"L");  
+            }
+            
             if ($reg['eventtype'] === 'Dance Party') {
                 if ($event->eventcost > 0) {
                     $pdf->Cell(14,5,"PAID",1,0,"L");
@@ -229,7 +234,13 @@ if ($rowCount > 0) {
             $pdf->Cell(45,5,"LAST NAME",1,0,"L");  
             $pdf->Cell(70,5,"EMAIL",1,0,"L");
             $pdf->Cell(18,5,"MEM",1,0,"L");
-            $pdf->Cell(18,5,"DWOP",1,0,"L");
+            if ($reg['eventtype'] === 'Novice Practice Dance') {
+                $pdf->Cell(18,5,"DWOP",1,1,"L");
+            } else {
+                $pdf->Cell(18,5,"DWOP",1,0,"L");
+            }
+          
+       
             if ($reg['eventtype'] === 'Dance Party') {
                 if ($event->eventcost > 0) {
                     $pdf->Cell(14,5,"PAID",1,0,"L");
@@ -285,12 +296,21 @@ if ($rowCount > 0) {
             $memReg++;
             $user->id = $reg['userid'];
             $user->read_single();  {
+            if ($reg['eventtype'] === 'Novice Practice Dance') {
                if ($user->partnerId > 0) {
-                $pdf->Cell(18,5,"NO",1,0,"L"); 
+                $pdf->Cell(18,5,"NO",1,1,"L"); 
                } else {
-                $pdf->Cell(18,5,"YES",1,0,"L"); 
+                $pdf->Cell(18,5,"YES",1,1,"L"); 
                 $numDwop++;
                } 
+            } else {
+                if ($user->partnerId > 0) {
+                    $pdf->Cell(18,5,"NO",1,0,"L"); 
+                   } else {
+                    $pdf->Cell(18,5,"YES",1,0,"L"); 
+                    $numDwop++;
+                   } 
+            }
             }
         } else {
             $pdf->Cell(18,5,"NO",1,0,"L");
