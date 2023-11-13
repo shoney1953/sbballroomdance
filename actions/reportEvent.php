@@ -19,7 +19,7 @@ $attDinner = 0;
 $dwop = 0;
 $numDwop = 0;
 $init_dinner = 1;
-
+$paidNum = 0;
 
 class PDF extends FPDF
 {
@@ -106,7 +106,7 @@ class PDF extends FPDF
 
 if ($rowCount > 0) {
     $regCount = 0;
-    $paidNum = 0;
+
     $prevEvent = '';
     $init = 1;
 
@@ -261,6 +261,9 @@ if ($rowCount > 0) {
          $paid = 'Not Paid';
 
         if ($reg['paid'] == true) {
+            if ($reg['eventtype'] === 'Dinner Dance') {
+                $paidNum++;
+            }
           if ($reg['ddattenddinner'] == true) {
             $paidNum++;
             $paid = 'Paid';

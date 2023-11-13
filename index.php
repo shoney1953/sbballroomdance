@@ -832,6 +832,10 @@ if (isset($_SESSION['username'])) {
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/07-14-2023-SBDC-Dance-Party/">July Dance Party 07 14 2023</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-August-Dance-Party/">August Dance Party 08 11 2023</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/09-15-2023-SBDC-Dance-Party/">September Dance Party 09 15 2023</a></li>
+       <!-- <li class="li-none">
+        <a href="https://sheilahoney.smugmug.com/frame/slideshow?key=pbjK5H&speed=5&transition=fade&autoStart=1&captions=0&navigation=0&playButton=1&randomize=1&transitionSpeed=3&clickable=1"
+        target="_blank">test slideshow</a></li> -->
+       
        
      
        </ul>
@@ -842,7 +846,7 @@ if (isset($_SESSION['username'])) {
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/03-22-2022-March-Dinner-Dance">March Dinner Dance 03 22 2022</a></li> 
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/04-29-2022-SBDC-dinner-dance">April Dinner Dance 04 29 2022</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/2022-09-02-Dine-and-Dance/">Dine and Dance 09 02 2022</a></li>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/Nov-3-2022-SBDC-dinner-dance-with-Chuck-Moses">November Dinner Dance 11 03 2022</a></li>
+           <li class="li-none"><a  href="https://sheilahoney.smugmug.com/Nov-3-2022-SBDC-dinner-dance-with-Chuck-Moses">November Dinner Dance 11 03 2022</a></li>
 
        
         </ul>
