@@ -263,7 +263,7 @@ if ($rowCount > 0) {
         if ($reg['paid'] == true) {
             if ($reg['eventtype'] === 'Dinner Dance') {
                 $paidNum++;
-            } else {}
+            } else {
      
           if ($reg['ddattenddinner'] == true) {
             $paidNum++;
