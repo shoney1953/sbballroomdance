@@ -68,8 +68,11 @@ $preface = '';
             "\n Date: ".$reg_item['classdate'].
             "\n Time: ".date('h:i:s A', strtotime($reg_item['classtime']))."\n\r"
             ;
-            $regEmail1[] = array('email' => $reg_item['email'],
-             'name' => $reg_item['firstname'].' '.$reg_item['lastname']);
+            if ($reg_item['email'] != '') {
+                $regEmail1[] = array('email' => $reg_item['email'],
+                'name' => $reg_item['firstname'].' '.$reg_item['lastname']);
+            }
+
         } // end while
       
       $replyEmail = htmlentities($_POST['replyEmail']);
