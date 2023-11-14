@@ -46,7 +46,7 @@ if (isset($_POST['submitEventEmail'])) {
     $eventReg->eventid = $_POST['eventId'];
     $result = $eventReg->read_ByEventId($eventReg->eventid);
     $rowCount = $result->rowCount();
-
+  
       if ($rowCount > 0) {
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -68,10 +68,14 @@ if (isset($_POST['submitEventEmail'])) {
             );
             $preface = "Event: ".$reg_item['eventname'].
                     "\n Date: ".$reg_item['eventdate']."\n\r";
-            $regEmail1[] = array('email' => $reg_item['email'],
-             'name' => $reg_item['firstname'].' '.$reg_item['lastname']);
+            if ($reg_item['email'] != '') {
+                $regEmail1[] = array('email' => $reg_item['email'],
+                'name' => $reg_item['firstname'].' '.$reg_item['lastname']);
+            }
+           
+           
         } // end while
-        var_dump($regEmail1);
+ 
       $replyEmail = htmlentities($_POST['replyEmail']);
       $toCC2 = htmlentities($_POST['replyEmail']); 
 
@@ -100,7 +104,7 @@ if (isset($_POST['submitEventEmail'])) {
     } // end if rowcount
 }    // end ifset                
 
-// $redirect = "Location: ".$_SESSION['adminurl']."#events";
-// header($redirect);
-// exit;
+$redirect = "Location: ".$_SESSION['adminurl']."#events";
+header($redirect);
+exit;
 ?>
