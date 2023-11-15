@@ -6,7 +6,7 @@ if ($addReg) {
         echo '<div class="form-grid-div">';
         echo '<form method="POST" action="addClassReg.php">';
        
-        foreach ($upcomingClasses as $class) {
+        foreach ($allClasses as $class) {
           
             $classNum = (int)substr($arChk,2);
             if ($class['id'] == $classNum) {
@@ -125,7 +125,7 @@ if ($addReg) {
         echo '<div class="form-grid-div">';
         
             echo '<form method="POST" action="deleteClassReg.php">';
-            foreach ($upcomingClasses as $class) {
+            foreach ($allClasses as $class) {
                 $classNum = (int)substr($drChk,2);
                 if ($class['id'] == $classNum) {
                     break;
@@ -194,7 +194,7 @@ if ($addReg) {
         echo '<div class="form-grid-div">';
         
             echo '<form method="POST" action="updateClassReg.php">';
-            foreach ($upcomingClasses as $class) {
+            foreach ($allClasses as $class) {
                 $classNum = (int)substr($urChk,2);
                 if ($class['id'] == $classNum) {
                     break;
