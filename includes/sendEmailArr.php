@@ -43,7 +43,8 @@ function sendEmailArray(
         //Recipients
         $mail->setFrom($mailUsername, $fromEmailName);
        foreach($toArray as $to) {
-        $mail->addAddress($to['email'], $to['name']);     //Add all recipents in array
+        // $mail->addAddress($to['email'], $to['name']);     //Add all recipents in array
+          $mail->addBCC($to['email'], $to['name']);     //Add all recipents in array
        }
       
  
