@@ -15,16 +15,16 @@ class PDF extends FPDF
     function Header() {
         // Logo
         $today = date("m-d-Y");
-        $this->Image('../img/sbdc_logo_small.png',10,6,30);
+        $this->Image('../img/SBDC LOGO.png',10,6,30);
         // Arial bold 15
         $this->SetFont('Arial','B',15);
         // Move to the right
         $this->Cell(80);
         // Title
         $this->Cell(
+            50,
             10,
-            10,
-            'SBDC Archived Event Registration Report - '.$today, 0, 0, 'C'
+            'SBDC Archived Event Registration Report - '.$today, 0, 1, 'C'
         );
         // Line break
         $this->Ln(20);
@@ -68,6 +68,7 @@ if (isset($_POST['submitEventRep'])) {
                 'userid' => $userid,
                 'email' => $email,
                 'paid' => $paid,
+                'registeredby' => $registeredby,
                 'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
             );
             array_push($regArr, $reg_item);
@@ -77,7 +78,7 @@ if (isset($_POST['submitEventRep'])) {
     $pdf = new PDF();
     $pdf->AliasNbPages();
     $pdf->SetTextColor(26, 22, 22);
-    $pdf->AddPage();
+    $pdf->AddPage('L');
     $pdf->SetFont('Arial', '', 10);
 
 if ($rowCount > 0) {

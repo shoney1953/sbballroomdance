@@ -19,16 +19,16 @@ class PDF extends FPDF
         // Logo
         $today = date("m-d-Y");
         $title = "SaddleBrooke Ballroom Dance Club Members - ".$today;
-        $this->Image('../img/sbdc_logo_small.png',10,6,30);
+        $this->Image('../img/SBDC LOGO.png',10,6,30);
         // Arial bold 15
         $this->SetFont('Arial','B',16);
         // Move to the right
         $this->Cell(80);
         // Title
         $this->Cell(
+            65,
             10,
-            10,
-            $title, 0, 0, 'C'
+            $title, 0, 1, 'C'
         );
         // Line break
         $this->Ln(20);

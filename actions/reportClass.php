@@ -18,14 +18,14 @@ class PDF extends FPDF
     function Header() {
         // Logo
         $today = date("m-d-Y");
-        $this->Image('../img/sbdc_logo_small.png',8,6,30);
+        $this->Image('../img/SBDC LOGO.png',8,6,30);
         // Arial bold 15
         $this->SetFont('Arial','B',16);
         // Move to the right
         $this->Cell(80);
         // Title
-        $this->Cell(10,8,
-            'SBDC Class Registration Report  - '.$today, 0, 0, 'C');
+        $this->Cell(30,8,
+            'SBDC Class Registration Report  - '.$today, 0, 1, 'C');
         // Line break
         $this->Ln(15);
     }
@@ -165,7 +165,7 @@ if ($rowCount > 0) {
 
     }
     $pdf->SetFont('Arial','B',16);
-    $pdf->Ln(2);
+    $pdf->Ln(3);
     $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
     $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
     $pdf->Cell(0, 5, "Total Non Member Registrations:  ".$nonMemReg, 0, 1);

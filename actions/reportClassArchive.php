@@ -15,14 +15,14 @@ class PDF extends FPDF
     function Header() {
         // Logo
         $today = date("m-d-Y");
-        $this->Image('../img/sbdc_logo_small.png',8,6,30);
+        $this->Image('../img/SBDC LOGO.png',8,6,30);
         // Arial bold 15
         $this->SetFont('Arial','B',15);
         // Move to the right
         $this->Cell(80);
         // Title
-        $this->Cell(10,8,
-            'SBDC Archived Class Registration Report  - '.$today, 0, 0, 'C');
+        $this->Cell(40,8,
+            'SBDC Archived Class Registration Report  - '.$today, 0, 1, 'C');
         // Line break
         $this->Ln(15);
     }

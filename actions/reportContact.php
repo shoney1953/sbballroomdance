@@ -15,7 +15,7 @@ function Header()
 {
 	// Logo
 	$today = date("m-d-Y");
-	$this->Image('../img/sbdc_logo_small.png',10,6,30);
+	$this->Image('../img/SBDC LOGO.png',10,6,30);
 	// Arial bold 15
 	$this->SetFont('Arial','B',15);
 	// Move to the right
