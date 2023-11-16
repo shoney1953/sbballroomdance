@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
     Click to view Activities Calendar</a><br>";
 
     if ($existingUser === 'NO') {
-        $mailAttachment = '../img/Membership Form 2023 Dance Club 05 02 2023.pdf'; 
+        $mailAttachment = '../img/SBDC Membership Form 2024.pdf'; 
         $emailBody = "<br>We would love to have <b>you, $toName </b>, as a new member to our club.<br>
         Please see attached membership form if you are interested in joining.<br>";
     } else {
