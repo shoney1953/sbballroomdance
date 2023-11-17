@@ -200,7 +200,8 @@ if (isset($_SESSION['username'])) {
 <nav class="nav">
     <div class="container">
      <ul>
-         <li><a href="#" >Home</a></li>
+        <!-- <li> </li> -->
+         <li> <a href="#" >Home</a></li>
      
             <?php
              if (isset($_SESSION['role'])) {
@@ -310,12 +311,19 @@ if (isset($_SESSION['username'])) {
 </div>
     <div class="hero">
         <div class="container">
-            <h1 >Welcome to the SaddleBrooke Ballroom Dance Club Website</h1>
+        <!-- <img class="motto-img2" 
+            src="img/SBDC LOGO.png" alt="logo">  -->
+            <br><br>
+            <h1><img class="motto-img2" 
+            src="img/SBDC LOGO.png" alt="logo"></h1>
+            <h1 > Welcome to the SaddleBrooke Ballroom Dance Club Website        </h1>
 
-            <img class="motto-img" src="img/self.png" alt="motto"></img>
+
+            <!-- <img class="motto-img" src="img/self.png" alt="motto"></img> -->
           
-            <img class="motto-img2" 
-            src="img/dancing couple grey transparent.png" alt="couple"> 
+            <!-- <img class="motto-img2" 
+            src="img/dancing couple grey transparent.png" alt="couple">  -->
+
          
             <p>We are a primarily social club that provides dance lessons,
                  and opportunities to dance and socialize.</p><br>
