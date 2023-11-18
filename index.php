@@ -536,10 +536,10 @@ if (isset($_SESSION['username'])) {
             <li class="li-none li-large">Jane Sims, Secretary 
                   &rarr; <a href="mailto:calamitywjs@gmail.com?subject=SBDC Info">
                   Email Jane</a></li>
-            <li class="li-none li-large">Dale & Ann Pizzitola, Chairs Instruction Director    
+            <li class="li-none li-large">Dale & Ann Pizzitola, Directors of Dance Instruction    
                 &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
                 Email Ann & Dale</a></li>
-           <li class="li-none li-large">Vivian Herman, Chair Volunteer Coordinator  
+           <li class="li-none li-large">Vivian Herman, Volunteer Coordinator  
                 &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">
                 Email Vivian</a></li>
             <li class="li-none li-large">Rick Baumgartner, DJ Coordinator   

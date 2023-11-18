@@ -69,7 +69,7 @@ function sendThanks($memStat,$userEmail) {
     $fromCC = "calamitywjs@gmail.com";
     $toCC2 = 'dancedirector@sbballroomdance.com';
     $toCC3 = "webmaster@sbballroomdance.com";
-    $toCC4 = 'dale.pizz13@gmail.com';
+    $toCC4 = '';
     $toCC5 = null;
 
     $replyTopic = "Thanks for your renewal!";
@@ -97,8 +97,8 @@ function sendThanks($memStat,$userEmail) {
        $emailBody .= "Nan Kartsonis, Vice President<br>"; 
        $emailBody .= "Roger Shamburg, Treasurer<br>";
        $emailBody .= "Jane Sims, Secretary<br>";
-       $emailBody .= "Ann Pizzitola, Chair, Dance Instructors<br>";
-       $emailBody .= "Vivian Herman, Chair, Volunteer Coordinator<br>";
+       $emailBody .= "Ann & Dale Pizzitola, Directors of Dance Instruction<br>";
+       $emailBody .= "Vivian Herman, Volunteer Coordinator<br>";
 
 
        sendEmail(
