@@ -31,6 +31,7 @@ if (isset($_POST['submit'])) {
     $toCC2 = 'calamitywjs@gmail.com';
     $toCC3 = '';
     $toCC4 = '';
+    $toCC5 = '':
     $toName = $contact->firstname.' '.$contact->lastname; 
     $replyEmail = 'webmaster@gmail.com';
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
@@ -81,7 +82,8 @@ if (isset($_POST['submit'])) {
             $mailAttachment,
             $toCC2,
             $toCC3,
-            $toCC4
+            $toCC4,
+            $toCC5
         );
     
        $redirect = "Location: ".$_SESSION['homeurl'];

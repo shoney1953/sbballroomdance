@@ -43,6 +43,7 @@ $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = '';
 $toCC3 = '';
 $toCC4 = '';
+$toCC5 = '';
 $mailAttachment = '../img/SBDC Membership Form 2024.pdf'; 
 $replyTopic = "Class Registration";
 $emailSubject = "Your instructor has registered you for selected Classes";
@@ -123,7 +124,8 @@ if (isset($_POST['submitAddVisitorReg'])) {
             $mailAttachment,
             $toCC2,
             $toCC3,
-            $toCC4
+            $toCC4,
+            $toCC5
         );
 
     } else {
@@ -203,7 +205,8 @@ if (isset($_POST['submitAddVisitorReg'])) {
             $mailAttachment,
             $toCC2,
             $toCC3,
-            $toCC4
+            $toCC4,
+            $toCC5
         );
 
     } else {

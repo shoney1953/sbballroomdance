@@ -39,11 +39,12 @@ $id_int = 0;
 $result = 0;
 $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 $fromCC = 'webmaster@sbballroomdance.com';
-$replyEmail = 'secretary@sbballroomdance.com';
+$replyEmail = 'calamitywjs@gmail.com';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = '';
 $toCC3 = '';
 $toCC4 = '';
+$toCC5 = '';
 $mailAttachment = ''; 
 $replyTopic = "SBDC Event Registration";
 $emailSubject = "The SBDC administrator has registered you for selected SBDC Events";
@@ -161,7 +162,8 @@ if (isset($_POST['submitAddReg'])) {
                         $mailAttachment,
                         $toCC2,
                         $toCC3,
-                        $toCC4
+                        $toCC4,
+                        $toCC5
                     );
                     $emailBody = "Thanks for registering for the following events:<br>";  
                 } else {

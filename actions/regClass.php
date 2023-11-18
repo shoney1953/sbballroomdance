@@ -27,6 +27,7 @@ $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = '';
 $toCC3 = '';
 $toCC4 = '';
+$toCC5 = '';
 $mailAttachment = "";
 $replyTopic = "SBDC Class Registration";
 $regId1 = 0;
@@ -158,7 +159,8 @@ if (isset($_POST['submitRegClass'])) {
             $mailAttachment,
             $toCC2,
             $toCC3,
-            $toCC4
+            $toCC4,
+            $toCC5
         );
     } else {
         echo 'Registrant 1 Email is empty or Invalid. Please enter valid email.';
@@ -181,7 +183,8 @@ if (isset($_POST['submitRegClass'])) {
             $mailAttachment,
             $toCC2,
             $toCC3,
-            $toCC4
+            $toCC4,
+            $toCC5
 
         );
     } 
@@ -226,7 +229,8 @@ if (isset($_POST['submitRegClass'])) {
                          $mailAttachment,
                          $toCC2,
                          $toCC3,
-                         $toCC4
+                         $toCC4,
+                         $toCC5
                      );
                      $classString = '';
                   

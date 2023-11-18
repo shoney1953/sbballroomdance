@@ -31,6 +31,7 @@ $userArchive = new UserArchive($db);
 $toCC2 = 'dancedirector@sbballroomdance.com';
 $toCC3 = 'webmaster@sbballroomdance.com';
 $toCC4 = 'tucsonviv6228@gmail.com';
+$toCC5 = 'dale.pizz13@gmail.com'
 $fromCC = "calamitywjs@gmail.com";
 
 if (isset($_POST['submitAddUser'])) {
@@ -200,7 +201,8 @@ if (isset($_POST['submitAddUser'])) {
             $mailAttachment,
             $toCC2,
             $toCC3,
-            $toCC4
+            $toCC4,
+            $toCC5
         );
     
     $user->create();

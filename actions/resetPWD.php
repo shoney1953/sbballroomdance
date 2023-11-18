@@ -59,6 +59,7 @@ if (isset($_POST['SubmitResetPwd'])) {
   $toCC2 = null;
   $toCC3 = null;
   $toCC4 = null;
+  $toCC5 = null;
   $replyTopic = "Forgotten Password";
   $replyEmail = 'webmaster@sbballroomdance.com';
   $emailBody = "<p>We received a request to reset your password on the SaddleBrooke Ballroom Dance Club site. Please ignore this email if you did not make the request.</p><br>";
@@ -77,7 +78,8 @@ if (isset($_POST['SubmitResetPwd'])) {
     $mailAttachment,
     $toCC2,
     $toCC3,
-    $toCC4
+    $toCC4,
+    $toCC5
   );
 
   $redirect = "Location: ../forgotPassword.php?reset=success";

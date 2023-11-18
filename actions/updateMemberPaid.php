@@ -69,7 +69,8 @@ function sendThanks($memStat,$userEmail) {
     $fromCC = "calamitywjs@gmail.com";
     $toCC2 = 'dancedirector@sbballroomdance.com';
     $toCC3 = "webmaster@sbballroomdance.com";
-    $toCC4 = '';
+    $toCC4 = 'dale.pizz13@gmail.com';
+    $toCC5 = null;
 
     $replyTopic = "Thanks for your renewal!";
        $replyEmail = 'sbbdcschedule@gmail.com';
@@ -112,7 +113,8 @@ function sendThanks($memStat,$userEmail) {
         $mailAttachment,
         $toCC2,
         $toCC3,
-        $toCC4
+        $toCC4,
+        $toCC5
     );
 }
 ?>

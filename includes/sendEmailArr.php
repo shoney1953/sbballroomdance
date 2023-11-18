@@ -20,7 +20,8 @@ function sendEmailArray(
     $emailAttach,
     $toCC2,
     $toCC3,
-    $toCC4
+    $toCC4,
+    $toCC5
 )
 {
   
@@ -60,6 +61,9 @@ function sendEmailArray(
         }
         if ($toCC4) {
             $mail->addCC($toCC4);
+        }
+        if ($toCC5) {
+            $mail->addCC($toCC5);
         }
         
         

@@ -31,6 +31,7 @@ $regUserid2 = 0;
 $toCC2 = '';
 $toCC3 = '';
 $toCC4 = '';
+$toCC5 = '';
 
 $id_int = 0;
 
@@ -207,7 +208,8 @@ if (isset($_POST['submitEventReg'])) {
             $mailAttachment,
             $toCC2,
             $toCC3,
-            $toCC4
+            $toCC4,
+            $toCC5
         );
     } else {
         echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
@@ -229,7 +231,8 @@ if (isset($_POST['submitEventReg'])) {
             $mailAttachment,
             $toCC2,
             $toCC3,
-            $toCC4
+            $toCC4,
+            $toCC5
         );
              
     }
