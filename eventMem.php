@@ -172,6 +172,12 @@ echo '<div class="container-section ">';
                                 echo '<th>Paid?</th>';
                             }
                         }
+                        if ($event['eventtype'] === 'Dinner Dance') {
+
+                            if ($event['eventcost'] > 0) {
+                                echo '<th>Paid?</th>';
+                            }
+                        }
                         echo '<th>Reg By</th>';
                     echo '</tr>';
                     
@@ -222,6 +228,17 @@ echo '<div class="container-section ">';
                                 } else {
                                     echo "<td>N/A</td>"; 
                                 }
+                                }
+                            }
+                            if ($event['eventtype'] === 'Dinner Dance') {
+                                if ($event['eventcost'] > 0) {
+                              
+                                    if ($eventRegistration['paid'] == true ) {
+                                        echo "<td>&#10004;</td>"; 
+                                    } else {
+                                        echo "<td>&times;</td>"; 
+                                    } 
+
                                 }
                             }
                             echo "<td>".$eventRegistration['registeredby']."</td>"; 
