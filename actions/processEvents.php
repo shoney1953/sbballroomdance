@@ -145,7 +145,9 @@ if (isset($_POST['submitEventProcess'])) {
   if ($deleteReg | $updateReg) {
     if (isset($_POST["$mbSrch"])) {
     $regs = [];
-    $search = $_POST["$mbSrch"];
+
+    $search = trim($_POST["$mbSrch"]);
+ 
     $search .= '%';
     $eventid = $event['id'];
     $result = $eventReg->readLike($eventid, $search);
@@ -217,7 +219,7 @@ if ($addReg) {
  
   if (isset($_POST["$mbSrch"])) {
     $users = [];
-    $search = $_POST["$mbSrch"];
+    $search = trim($_POST["$mbSrch"]);
     $search .= '%';
 
     $result = $user->readLike($search);

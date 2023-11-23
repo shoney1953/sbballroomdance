@@ -147,7 +147,7 @@ if (isset($_POST['submitClassProcess'])) {
   if ($deleteReg | $updateReg) {
     if (isset($_POST["$mbSrch"])) {
     $regs = [];
-    $search = $_POST["$mbSrch"];
+    $search = trim($_POST["$mbSrch"]);
     $search .= '%';
     $classid = $class['id'];
     $result = $classReg->readLike($classid, $search);
@@ -210,7 +210,7 @@ if ($addReg) {
  
   if (isset($_POST["$mbSrch"])) {
     $users = [];
-    $search = $_POST["$mbSrch"];
+    $search = trim($_POST["$mbSrch"]);
     $search .= '%';
 
     $result = $user->readLike($search);
