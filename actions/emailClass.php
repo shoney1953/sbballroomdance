@@ -40,6 +40,7 @@ $regEmail1 = [];
 $toCC2 = ''; 
 $toCC3 = 'dancedirector@sbballroomdance.com';
 $toCC4 = '';
+$toCC5 = '';
 $mailAttachment = ''; 
 $replyTopic = "Class Message";
 $rowCount = 0;
@@ -85,6 +86,19 @@ $preface = '';
 
        
      
+        // sendEmailArray(
+        //     $regEmail1,  
+        //     $fromCC,
+        //     $fromEmailName,
+        //     $htmlEmail,
+        //     $emailSubject,
+        //     $replyEmail,
+        //     $replyTopic,
+        //     $mailAttachment,
+        //     $toCC2,
+        //     $toCC3,
+        //     $toCC4
+        // );
         sendEmailArray(
             $regEmail1,  
             $fromCC,
@@ -96,7 +110,8 @@ $preface = '';
             $mailAttachment,
             $toCC2,
             $toCC3,
-            $toCC4
+            $toCC4,
+            $toCC5
         );
          
     } // end if rowcount

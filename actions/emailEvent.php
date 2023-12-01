@@ -37,6 +37,7 @@ $regEmail1 = [];
 $toCC2 = ''; 
 $toCC3 = '';
 $toCC4 = '';
+$toCC5 = '';
 $mailAttachment = ''; 
 $replyTopic = "Event Message";
 $emailSubject = "A Message about Your SBDC Ballroom Dance Club Event";
@@ -98,7 +99,8 @@ if (isset($_POST['submitEventEmail'])) {
             $mailAttachment,
             $toCC2,
             $toCC3,
-            $toCC4
+            $toCC4,
+            $toCC5
         );
          
     } // end if rowcount

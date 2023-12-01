@@ -3,6 +3,7 @@ session_start();
 require('../includes/fpdf.php');
 require_once '../config/Database.php';
 require_once '../models/User.php';
+require_once '../includes/CreateCSV.php';
 
 $database = new Database();
 $db = $database->connect();
@@ -83,7 +84,7 @@ if (isset($_POST['submitUserRep'])) {
             array_push($userArr, $usr_item);
         }
     }
-
+ 
     $pdf = new PDF("L");
     $pdf->AliasNbPages();
     $pdf->SetTextColor(26, 22, 22);
