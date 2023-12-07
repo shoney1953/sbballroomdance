@@ -349,13 +349,13 @@ if ($rowCount > 0) {
             <tr>
                 <th>ID</th>
                 <th>Prev ID</th>
-                <th>Event Date</th>
-                <th>Event Name    </th>
-                <th>Event Type    </th>
-                <th>Event Description</th> 
-                <th>Event DJ</th>          
-                <th>Event Room</th>
-                <th>Event Cost</th>
+                <th>Date</th>
+                <th>Name    </th>
+                <th>Type    </th>
+                <th>Description</th> 
+                <th>DJ</th>          
+                <th>Room</th>
+                <th>Cost</th>
                 <th># Reg </th>
             </tr>
             <?php 

@@ -151,14 +151,14 @@ if (isset($_POST['archiveEvent'])) {
         echo '<tr>';
                 echo '<th>ID   </th>';  
                 echo '<th>Date    </th>';
-                echo '<th>Event Name    </th>';
+                echo '<th>Name    </th>';
                 echo '<th>Type    </th>';
-                echo '<th>Event Description </th>';
-                echo '<th>Event DJ </th>';
+                echo '<th>Description </th>';
+                echo '<th>DJ </th>';
                 echo '<th>Room    </th>';
                 echo '<th>Cost   </th>';
                 echo '<th># Registered </th>';
-                echo '<th>Event Form </th>';
+                echo '<th>Form </th>';
   
             echo '</tr>';
           
@@ -365,9 +365,9 @@ if (isset($_POST['archiveEvent'])) {
             echo '<form method="POST" action="addEvent.php">';
             echo '<h3 class="heading-left" ><em>Add Event</em></h3><br>';
            
-            echo '<label for="eventname">Event Name</label><br>';
+            echo '<label for="eventname">Name</label><br>';
             echo '<input type="text" name="eventname" required><br>';
-            echo '<label for="eventtype">Event Type</label><br> ';
+            echo '<label for="eventtype">Type</label><br> ';
           
             echo '<br><select name = "eventtype">';
             echo '<option value = "Dine and Dance">Dine and Dance</option>'; 
@@ -376,7 +376,7 @@ if (isset($_POST['archiveEvent'])) {
             echo '<option value = "TGIF">TGIF</option>';  
             echo '<option value = "Meeting">Meeting</option>';
             echo '</select><br>';
-            echo '<label for="eventdesc">Event Description</label><br>';
+            echo '<label for="eventdesc">Description</label><br>';
             echo '<textarea name="eventdesc" cols="100" rows="3" required></textarea><br>';
             echo '<label for="eventdj">Event DJ</label><br>';
             echo '<input type="text" name="eventdj"><br>';

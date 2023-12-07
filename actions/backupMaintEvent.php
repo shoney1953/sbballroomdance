@@ -112,6 +112,7 @@ if (isset($_POST['archiveEvent'])) {
                     'eventname' => $eventname,
                     'eventtype' => $eventtype,
                     'eventdate' => $eventdate,
+                    'eventregend' => $eventregend,
                     'eventcost' => $eventcost,
                     'eventform' => $eventform,
                     'eventdj' => $eventdj,
@@ -151,10 +152,11 @@ if (isset($_POST['archiveEvent'])) {
         echo '<tr>';
                 echo '<th>ID   </th>';  
                 echo '<th>Date    </th>';
-                echo '<th>Event Name    </th>';
+                echo '<th>Registration Closes</th>';
+                echo '<th>Name    </th>';
                 echo '<th>Type    </th>';
-                echo '<th>Event Description </th>';
-                echo '<th>Event DJ </th>';
+                echo '<th>Description </th>';
+                echo '<th>DJ </th>';
                 echo '<th>Room    </th>';
                 echo '<th>Cost   </th>';
                 echo '<th># Registered </th>';
@@ -165,6 +167,7 @@ if (isset($_POST['archiveEvent'])) {
                 echo "<tr>";
                     echo "<td>".$event->id."</td>";
                     echo "<td>".$event->eventdate."</td>";
+                    echo "<td>".$event->eventregend."</td>";
                     echo "<td>".$event->eventname."</td>";
                     echo "<td>".$event->eventtype."</td>";
                     echo "<td>".$event->eventdesc."</td>";

@@ -310,7 +310,9 @@ if ($rowCount > 0) {
                } 
             } else {
                 if ($user->partnerId > 0) {
+                 
                     $pdf->Cell(18,5,"NO",1,0,"L"); 
+             
                    } else {
                     $pdf->Cell(18,5,"YES",1,0,"L"); 
                     $numDwop++;
@@ -330,7 +332,9 @@ if ($rowCount > 0) {
                 if ($reg['paid'] === '1') {
                     $pdf->Cell(14,5,"YES",1,1,"L");
                 } else {
+                    $pdf->SetTextColor(255 , 0, 0);
                     $pdf->Cell(14,5,"NO ",1,1,"L");
+                    $pdf->SetTextColor(0 , 0, 0);
                 } 
             }
 
@@ -345,7 +349,9 @@ if ($rowCount > 0) {
              } 
         } else {
             if ($reg['ddattenddinner'] === '1') {
+                $pdf->SetTextColor(255 , 0, 0);
                 $pdf->Cell(14,5,"NO",1,0,"L");
+                $pdf->SetTextColor(0 , 0, 0);
               } else {
                 $pdf->Cell(14,5,"N/A ",1,0,"L");
                } 

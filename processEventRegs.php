@@ -23,6 +23,7 @@ if ($addReg) {
         echo '<th>Event Name</th>';
         echo '<th>Event Type</th>';
         echo '<th>Event Date</th>';
+        echo '<th>Registration Closes</th>';
         echo '</tr>';
         echo '</thead>';
 
@@ -32,6 +33,7 @@ if ($addReg) {
         echo "<td>".$event['eventname']."</td>";
         echo "<td>".$event['eventtype']."</td>";
         echo "<td>".$event['eventdate']."</td>";
+        echo "<td>".$event['eventregend']."</td>";
         echo '</tr>';
         echo '</tbody>';
         echo '</table>';
@@ -171,6 +173,7 @@ if ($addReg) {
             echo '<th>Event Name</th>';
             echo '<th>Event Type</th>';
             echo '<th>Event Date</th>';
+            echo '<th>Registration Closes</th>';
             echo '</tr>';
             echo '</thead>';
     
@@ -180,6 +183,7 @@ if ($addReg) {
             echo "<td>".$event['eventname']."</td>";
             echo "<td>".$event['eventtype']."</td>";
             echo "<td>".$event['eventdate']."</td>";
+            echo "<td>".$event['eventregend']."</td>";
             echo '</tr>';
             echo '</tbody>';
             echo '</table>';
@@ -253,6 +257,7 @@ if ($addReg) {
             echo '<div class="form-item">';
             echo "<h4 class='form-title'>Event Date: ".$event['eventdate']."</h4>";
             echo '</div>'; // end of form item
+
 
             echo '<div class="form-item">';
             echo "<h4 class='form-title'>Event Cost: ".$event['eventcost']."</h4>";

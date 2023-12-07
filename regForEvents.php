@@ -9,7 +9,8 @@
 date_default_timezone_set("America/Phoenix");
 $database = new Database();
 $db = $database->connect();
-
+$currentDate = new DateTime();
+$compareDate = $currentDate->format('Y-m-d');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -149,6 +150,8 @@ $db = $database->connect();
               </p><br>';
             
         foreach ($upcomingEvents as $event) {
+   
+           if ($compareDate <= $event['eventregend']) {
              echo '<div class="form-container">'; 
              echo '<div class="form-grid">';
 
@@ -166,6 +169,10 @@ $db = $database->connect();
                echo '<div class="form-item">';
                echo '<h4 class="form-item-title">Event Date</h4>';
                echo $event['eventdate'];
+               echo '</div>';
+               echo '<div class="form-item">';
+               echo '<h4 class="form-item-title">Registration Ends</h4>';
+               echo $event['eventregend'];
                echo '</div>';
 
                echo '<div class="form-item">';
@@ -214,6 +221,7 @@ $db = $database->connect();
             echo '</div>';
             echo '</div>'; 
             echo '</div>'; 
+              }
         }
            
 

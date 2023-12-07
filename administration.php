@@ -64,6 +64,7 @@ if ($rowCount > 0) {
             'eventname' => $eventname,
             'eventtype' => $eventtype,
             'eventdate' => $eventdate,
+            'eventregend' => $eventregend,
             'eventcost' => $eventcost,
             'eventform' => $eventform,
             'eventdj' => $eventdj,
@@ -429,19 +430,19 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<div class="form-grid">';
 
        echo '<div class="form-item">';
-       echo "<h4 class='form-title'>Event Name: ".$event['eventname']." </h4>";
+       echo "<h4 class='form-title'>Name: ".$event['eventname']." </h4>";
        echo '</div>';
        echo '<div class="form-item">';
-       echo "<h4 class='form-title'>Event Type: ".$event['eventtype']."</h4>";
+       echo "<h4 class='form-title'>Type: ".$event['eventtype']."</h4>";
        echo '</div>';
        echo '<div class="form-item">';
-       echo "<h4 class='form-title'>Event Date: ".$event['eventdate']."</h4>";
+       echo "<h4 class='form-title'>Date: ".$event['eventdate']."</h4>";
        echo '</div>';
        echo '<div class="form-item">';
-       echo "<h4 class='form-title'>Event Cost: ".$event['eventcost']."</h4>";
+       echo "<h4 class='form-title'>Cost: ".$event['eventcost']."</h4>";
        echo '</div>';
        echo '<div class="form-item">';
-       echo "<h4 class='form-title'>Event ID: ".$event['id']."</h4>";
+       echo "<h4 class='form-title'>ID: ".$event['id']."</h4>";
        echo '</div>';
        echo '<div class="form-item">';
        $hr = 'eventMem.php?id=';

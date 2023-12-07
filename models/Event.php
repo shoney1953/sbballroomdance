@@ -14,6 +14,7 @@ class Event {
     public $eventcost;
     public $eventform;
     public $eventnumregistered;
+    public $eventregend;
 
     // Constructor with DB
     public function __construct($db) {
@@ -75,6 +76,7 @@ class Event {
           $this->eventdate = $row['eventdate'];
           $this->eventdesc = $row['eventdesc'];
           $this->eventform = $row['eventform'];
+          $this->eventform = $row['eventregend'];
           $this->eventdj = $row['eventdj'];
           $this->eventnumregistered = $row['eventnumregistered'];
           return true;
@@ -91,6 +93,7 @@ class Event {
           ' SET eventname = :eventname, eventtype = :eventtype, 
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
+          eventregend = :eventregend,
           eventnumregistered = :eventnumregistered';
 
           // Prepare statement
@@ -104,6 +107,7 @@ class Event {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+          $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
           $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
           $this->eventnumregistered = htmlspecialchars(strip_tags($this->eventnumregistered));
 
@@ -115,6 +119,7 @@ class Event {
           $stmt->bindParam(':eventcost', $this->eventcost);
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
+          $stmt->bindParam(':eventregend', $this->eventregend);
           $stmt->bindParam(':eventdj', $this->eventdj);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
          
@@ -137,6 +142,7 @@ class Event {
           ' SET eventname = :eventname, eventtype = :eventtype, 
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
+          eventregend = :eventregend,
           eventnumregistered = :eventnumregistered
             WHERE id = :id ';
    
@@ -152,6 +158,7 @@ class Event {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+          $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
           $this->eventnumregistered = htmlspecialchars(strip_tags($this->eventnumregistered));
           $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
 
@@ -164,6 +171,7 @@ class Event {
           $stmt->bindParam(':eventcost', $this->eventcost);
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
+          $stmt->bindParam(':eventregend', $this->eventregend);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
           $stmt->bindParam(':id', $this->id);
 
