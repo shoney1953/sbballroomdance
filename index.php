@@ -598,8 +598,8 @@ if (isset($_SESSION['username'])) {
                     echo '<th>Report?</th>';
                 }
                 ?>
-                <th>Date</th>
-                <th>Registration Ends</th>
+                <th>Date of Event    </th>
+                <th>Register By</th>
                 <th>Name    </th>
                 <th>Type    </th>
                 <th>Description</th> 
@@ -843,6 +843,7 @@ if (isset($_SESSION['username'])) {
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/07-14-2023-SBDC-Dance-Party/">July Dance Party 07 14 2023</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-August-Dance-Party/">August Dance Party 08 11 2023</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/09-15-2023-SBDC-Dance-Party/">September Dance Party 09 15 2023</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/December-2023-SBDC-Holiday-Gala/">Holiday Gala 12 14 2023</a></li>
        <!-- <li class="li-none">
         <a href="https://sheilahoney.smugmug.com/frame/slideshow?key=pbjK5H&speed=5&transition=fade&autoStart=1&captions=0&navigation=0&playButton=1&randomize=1&transitionSpeed=3&clickable=1"
         target="_blank">test slideshow</a></li> -->
