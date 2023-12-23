@@ -58,6 +58,7 @@ class PDF extends FPDF
         if ($_POST['eventId'] !== '') {
 
             $eventId = htmlentities($_POST['eventId']);
+     
             $event->id = $eventId;
             $event->read_single();
             if ($event->eventtype === 'Dance Party') {

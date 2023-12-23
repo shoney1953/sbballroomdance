@@ -92,6 +92,7 @@ if (isset($_POST['submitEventProcess'])) {
     if (isset($_POST["$rpChk"])) {
         $reportEvent = true;
         $processEvent = true;
+    
         break;
        
     }

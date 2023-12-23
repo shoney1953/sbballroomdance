@@ -121,7 +121,7 @@ if ($userCount > 0) {
             extract($row);
             $event_item = array(
                 'id' => $id,
-                'classname' => $eventname,
+                'classname' => $classname,
                 'registeredby' => $registeredby,
                 'dateregistered' => $dateregistered
             );
