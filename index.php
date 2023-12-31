@@ -76,8 +76,7 @@ if ($rowCount > 0) {
   
 
 } 
-var_dump($events);
-var_dump($upcomingEvents);
+
 $_SESSION['events'] = $events;
 $_SESSION['upcoming_events'] = $upcomingEvents;
 

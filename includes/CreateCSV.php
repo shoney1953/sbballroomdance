@@ -8,7 +8,7 @@ function writeToCsv($array) {
 
 
   foreach ($array as $entry) {
-    var_dump($entry);
+
       $values = array_values(get_object_vars($entry));
       fputcsv($fp, $values);
   }
