@@ -29,6 +29,7 @@ $event = new Event($db);
 $user = new User($db);
 $upcomingEvents = [];
 $upcomingEvents = $_SESSION['upcoming_events'] ;
+
 $users = [];
 $users = $_SESSION['regUsers'] ;
 $emailBody = "Thanks for registering for the following SBDC events:<br>";
@@ -53,7 +54,7 @@ if (isset($_POST['submitAddReg'])) {
     if (isset($_POST['eventid'])) {
         $event->id = $_POST['eventid'];
         $event->read_single();
-    
+     
         foreach($users as $usr) {
          $usrID = "us".$usr['id'];
          $attDin = "datt".$usr['id']; 
@@ -131,13 +132,14 @@ if (isset($_POST['submitAddReg'])) {
                         if (isset($_POST["$attDin"])) {
                             $emailBody .= "<br>You have chosen to attend dinner before the dance.";
                         } else {
-                            $emailBody .= "<br>You have chosen not to attend dinner before the dance.";
+                            $emailBody .= "<br>You have chosen not to attend dinner before the dance.<br>";
                         }
                     }
+
                     if ($event->eventform) {
                         $actLink= "<a href='".$event->eventform."'>
                         Click to view event Form</a><br>";
-                       $emailBody .= 'There is a flyer associated with the dance.<br>';
+                       $emailBody .= '<br>There is a flyer associated with the dance.<br>';
                        $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
                         on the website to open the form. Or<br>$actLink";
      

@@ -69,6 +69,7 @@ class Event {
 
           // Set properties
           if ($row) {
+ 
           $this->eventname = $row['eventname'];
           $this->eventtype = $row['eventtype'];
           $this->eventroom = $row['eventroom'];
@@ -76,7 +77,7 @@ class Event {
           $this->eventdate = $row['eventdate'];
           $this->eventdesc = $row['eventdesc'];
           $this->eventform = $row['eventform'];
-          $this->eventform = $row['eventregend'];
+          $this->eventregend = $row['eventregend'];
           $this->eventdj = $row['eventdj'];
           $this->eventnumregistered = $row['eventnumregistered'];
           return true;
