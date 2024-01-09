@@ -371,7 +371,7 @@ if ($rowCount > 0) {
         <table>
             <thead>
             <tr>
-            <th colspan="5" style="color: darkviolet;text-align:center">Active Classes</th>
+            <th colspan="6" style="color: darkviolet;text-align:center">Active Classes</th>
             </tr>
             <tr>
                 <th>ID</th>
@@ -452,7 +452,7 @@ if ($rowCount > 0) {
        <table>
        <thead>
             <tr>
-            <th colspan="5" style="color: darkviolet;text-align:center">Past Class Registrations</th>'
+            <th colspan="6" style="color: darkviolet;text-align:center">Past Class Registrations</th>'
             </tr>
            <tr>
                <th>ID</th>
@@ -492,7 +492,7 @@ if ($rowCount > 0) {
    <table>
    <thead>
             <tr>
-            <th colspan="5" style="color: darkviolet;text-align:center">Past Event Registrations</th>'
+            <th colspan="6" style="color: darkviolet;text-align:center">Past Event Registrations</th>'
             </tr> 
 
            <tr>

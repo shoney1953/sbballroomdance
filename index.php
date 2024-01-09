@@ -365,7 +365,7 @@ if (isset($_SESSION['username'])) {
             <p><em>Always check the Activites Calendar because we do have 
             cancellations.. and also for DJ information.</em> </p>
             <br>
-            <br><h3>As of July 1 2023, we have a completely new schedule for our Activities.</h3>
+            <br><h3>As of January 1 2024, we have a completely new schedule for our Activities.</h3>
             <a style="font-weight: bold"
         href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix" target="_blank">
          Click Here to See the Activities Calendar for times and dates.
@@ -432,7 +432,7 @@ if (isset($_SESSION['username'])) {
                     <td>   </td>
                     <td>Tuesday</td>
                     <td><a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">MountainView Ballroom</a> </td>
-                    <td>5:30 - 7:30pm</td>
+                    <td>5 - 7pm</td>
                     <td>Class(es)</td>
                     <td>Monthly classes are held twice a week for the entire month.</td>
                 </tr>
@@ -488,6 +488,15 @@ if (isset($_SESSION['username'])) {
                     <td>4 - 6pm</td>
                     <td>Open Practice </td>
                     <td>When there is a not a Novice Party</td>
+                    
+                </tr>
+                <tr>
+                    <td>   </td>
+                    <td>Saturday</td>
+                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
+                    <td>10 - 12am</td>
+                    <td>Western Partner Pattern Review</td>
+                    <td> </td>
                     
                 </tr>
                
