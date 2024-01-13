@@ -842,6 +842,16 @@ if (isset($_SESSION['username'])) {
    <section id="pictures" class="content">
    <br>  
        <h1 class="section-header">Pictures from Past Events</h1>
+      
+       <div class="form-grid3">
+       <div class="form-grid-div">
+       <h4>2024</h4>
+       <ul>
+       <li class="li-none"><a href=" https://sheilahoney.smugmug.com/01-12-2024-SBDC-Winter-wonderland-dance">Winter Wonderland Dance 01 12 2024</a></li>
+       </ul>
+       </div>
+       </div>
+      
        <div class="form-grid3">
        <div class="form-grid-div">
        <h4>2023</h4>
