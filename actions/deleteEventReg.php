@@ -7,7 +7,7 @@ require_once '../models/Event.php';
 
 
 
-$regs = $_SESSION['registrations'];
+$regs = $_SESSION['eventregistrations'];
 
 $database = new Database();
 $db = $database->connect();

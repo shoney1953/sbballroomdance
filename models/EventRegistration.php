@@ -439,7 +439,7 @@ public function deleteEventid($eventid) {
 }
     // Delete Danceevent
     public function delete() {
-        
+   
           // Create query
           $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 

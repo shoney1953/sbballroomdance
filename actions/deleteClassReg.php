@@ -10,7 +10,8 @@ $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
 $danceClass = new DanceClass($db);
-$regs = $_SESSION['classRegistrations'];
+$regs = $_SESSION['classregistrations'];
+
 
 if (isset($_POST['submitDeleteReg'])) {
   foreach ($regs as $reg) {
