@@ -135,6 +135,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
 
   // ** check on visitor 2 //
   if (isset($_POST['email2'])) {
+    if ($_POST['lastname2'] != '') {
     $emailBody = "Thanks for registering for the following classes:<br>";
     $classReg->classid = $_POST['classid'];
     $classReg->firstname = $_POST['firstname2'];
@@ -213,7 +214,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
         echo 'Visitor Email is empty or Invalid. Please enter valid email.';
     }
   } // duplicate registration
-
+    }
   } // end email2
 
 }  // end submit

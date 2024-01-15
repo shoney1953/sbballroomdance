@@ -138,6 +138,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     /*      2nd visitor */
     $eventReg->eventid = $_POST['eventid'];
     if (isset($_POST['email2'])) {
+        if ($_POST['lastname2'] != '') {
 
     
     $eventReg->firstname = $_POST['firstname2'];
@@ -225,9 +226,10 @@ if (isset($_POST['submitAddVisitorReg'])) {
         );
         $emailBody = "Thanks for registering for the following events:<br>";  
     } else {
-        echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
+        echo 'Registrant Email 2 is empty or Invalid. Please enter valid email.';
    }                    
     }
+}
 }
 }  
    

@@ -322,7 +322,7 @@ if ($rowCount > 0) {
             }
         } else {
             $pdf->Cell(18,8,"NO",1,0,"L");
-            $pdf->Cell(18,8,"UNK",1,0,"L"); 
+            $pdf->Cell(18,8,"UNK",1,1,"L"); 
             $nonMemReg++; 
             $dwop = "NO";
         } 
