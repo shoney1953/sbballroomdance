@@ -26,6 +26,7 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
+
 $upcomingClasses = [];
 $upcomingClasses = $_SESSION['upcoming_classes'] ;
 $users = [];

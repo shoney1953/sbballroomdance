@@ -115,7 +115,7 @@ $result = $classReg->read();
 
 $rowCount = $result->rowCount();
 $num_registrations = $rowCount;
-$_SESSION['ClassRegistrations'] = [];
+$_SESSION['classregistrations'] = [];
 if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -138,7 +138,7 @@ if ($rowCount > 0) {
   
     }
   
-    $_SESSION['classRegistrations'] = $classRegistrations;
+    $_SESSION['classregistrations'] = $classRegistrations;
 } 
 /* get event registrations */
 $eventReg = new EventRegistration($db);
@@ -146,7 +146,7 @@ $result = $eventReg->read();
 
 $rowCount = $result->rowCount();
 $num_registrations = $rowCount;
-$_SESSION['eventRegistrations'] = [];
+$_SESSION['eventregistrations'] = [];
 if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -172,7 +172,7 @@ if ($rowCount > 0) {
   
     }
   
-    $_SESSION['eventRegistrations'] = $eventRegistrations;
+    $_SESSION['eventregistrations'] = $eventRegistrations;
 } 
 /* get contacts */
 $contact = new Contact($db);
