@@ -1,18 +1,18 @@
 <?php
 function writeToCsv($array) {
-  $fp = fopen('php://temp','rb+');
-  // $fp = fopen($filename, 'w');
 
-  // $keys = array_keys(get_object_vars($array[0]));
-  // fputcsv($fp, $keys);
+  header('Content-Type: text/csv');
+  $today = date("m-d-Y");
+  $fileName = 'SBDCMembers '.$today.'.csv';
+  header('Content-Disposition: attachment; filename="'.$fileName.'"'); 
+  $fp = fopen('php://output', 'wb');
+  
+  foreach ( $array as $entry ) {
 
-
-  foreach ($array as $entry) {
-
-      $values = array_values(get_object_vars($entry));
-      fputcsv($fp, $values);
-  }
+    fputcsv($fp, $entry, ',');
+}
 
   fclose($fp);
 }
+
 ?>

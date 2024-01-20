@@ -182,6 +182,33 @@ class User {
         
        return false;
     }
+    public function readForCsv($year) {
+    $query = 'SELECT u.id as id, u.lastname as lastname, u.firstname as firstname, u.email as email, 
+    u.phone1 as phone, u.hoa as hoa,
+    u.streetaddress as streetaddress,
+    p.paid as paid, p.year as year
+    FROM ' . $this->table . ' u
+   
+    JOIN
+      memberpaid p ON p.userid = u.id and p.year = :year
+
+    ORDER BY
+      lastname, firstname';
+       // Prepare statement
+       $stmt = $this->conn->prepare($query);
+
+       // Bind ID
+       $stmt->bindParam('year', $year);
+ 
+       // Execute query
+       $stmt->execute();
+
+
+       return $stmt;
+        // Set properties
+     
+    }
+  
     public function getUserName($user) {
         
       // Create query
