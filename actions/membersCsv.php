@@ -9,8 +9,8 @@ $database = new Database();
 $db = $database->connect();
 $user = new User($db);
 $thisYear = date("Y"); 
-$pretendYear = '2023';
-$result = $user->readForCsv($pretendYear);
+
+$result = $user->readForCsv($thisYear);
 
 $rowCount = $result->rowCount();
 $num_members = $rowCount;
