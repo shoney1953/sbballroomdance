@@ -184,7 +184,7 @@ class User {
     }
     public function readForCsv($year) {
     $query = 'SELECT u.id as id, u.lastname as lastname, u.firstname as firstname, u.email as email, 
-    u.phone1 as phone, u.hoa as hoa,
+    u.phone1 as phone, u.hoa as hoa, u.created as datejoined, 
     u.streetaddress as streetaddress,
     p.paid as paid, p.year as year
     FROM ' . $this->table . ' u

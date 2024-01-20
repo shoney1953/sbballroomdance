@@ -16,8 +16,15 @@ $rowCount = $result->rowCount();
 $num_members = $rowCount;
 $_SESSION['csvMembers'] = [];
 $csvMembers = [];
-$title_array = ['Last Name','First Name', 'Email', 'Phone', 
-  'Address', 'Paid', 'Year'];
+$title_array = 
+['Last Name',
+'First Name', 
+'Email', 
+'Phone', 
+'Address',
+'Date Joined', 
+'Paid', 
+'Year'];
   array_push($csvMembers, $title_array);
 if ($rowCount > 0) {
 
@@ -30,6 +37,7 @@ if ($rowCount > 0) {
           'email' => $email,
           'phone' => $phone,
           'streetaddress' => $streetaddress,
+          'datejoined' => $datejoined,
           'paid' => $paid,
           'year' => $year
 
