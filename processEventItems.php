@@ -122,6 +122,11 @@ if ($reportEvent) {
         } else {
           echo "<option value = 'Meeting'>Meeting</option>";
         }
+        if ($event['eventtype'] == 'Social') {
+          echo "<option value = 'Social' selected>Social </option>";
+      } else {
+        echo "<option value = 'Social'>Social</option>";
+      }
       echo " </select>";
       echo '</div>';
 
@@ -329,6 +334,11 @@ echo '</form>';
             } else {
               echo "<option value = 'Meeting'>Meeting</option>";
             }
+            if ($event['eventtype'] == 'Social') {
+              echo "<option value = 'Social' selected>Social </option>";
+          } else {
+            echo "<option value = 'Social'>Social</option>";
+          }
           echo " </select>";
           echo '</div>';
           echo "<div class='form-item'>";

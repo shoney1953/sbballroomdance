@@ -337,6 +337,7 @@ if (isset($_POST['archiveEvent'])) {
         echo '<option value = "Dinner Dance">Dinner Dance</option>';
         echo '<option value = "TGIF">TGIF</option>';
         echo '<option value = "Meeting">Meeting</option>';
+        echo '<option value = "Social">Social</option>';
         echo '</select><br>';
         echo '<label for="eventdesc">Event Description</label><br>';
         echo '<textarea name="eventdesc" cols="100" rows="3" >'.$event->eventdesc.'</textarea><br>';
@@ -375,6 +376,7 @@ if (isset($_POST['archiveEvent'])) {
             echo '<option value = "Dinner Dance">Dinner Dance </option>';
             echo '<option value = "TGIF">TGIF</option>';  
             echo '<option value = "Meeting">Meeting</option>';
+            echo '<option value = "Social">Social</option>';
             echo '</select><br>';
             echo '<label for="eventdesc">Description</label><br>';
             echo '<textarea name="eventdesc" cols="100" rows="3" required></textarea><br>';
