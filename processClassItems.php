@@ -1,9 +1,22 @@
 <?php
 $classsArch = [];
 
+if ($csvClass) {
+  foreach ($allClasses as $class) {
+    $cvChk = 'cv'.$class['id'];
+    if (isset($_POST["$cvChk"])) {
+      echo "<h4>Generated CSV for  ".$class['classname']."  ".$class['date']."</h4>";
+      echo "<form  name='csvClassForm'   method='POST' action='csvClass.php'> ";
+      echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
+      echo '<script language="JavaScript">document.csvClassForm.submit();</script></form>';
+      break;
+     }
+    }
+}
 if ($reportClass) {
 
   foreach ($allClasses as $class) {
+
     $rpChk = 'rp'.$class['id'];
 
     if (isset($_POST["$rpChk"])) {

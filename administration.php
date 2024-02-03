@@ -553,6 +553,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
       
             foreach($allClasses as $class) {
                 $rpChk = "rp".$class['id'];
+                $cvChk = "cv".$class['id'];
                 $upChk = "up".$class['id'];
                 $dlChk = "dl".$class['id'];
                 $emChk = "em".$class['id'];
@@ -586,6 +587,10 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo "<div class='form-item'>";
                 echo "<h4 class='form-item-title'>Report?</h4>";
                 echo "<input type='checkbox' title='Only select 1 event for Report' name='".$rpChk."'>";
+                echo "</div>";
+                echo "<div class='form-item'>";
+                echo "<h4 class='form-item-title'>Create CSV file?</h4>";
+                echo "<input type='checkbox' title='Only select 1 event for Report' name='".$cvChk."'>";
                 echo "</div>";
                 echo "<div class='form-item'>";
                 echo "<h4 class='form-item-title'>Email?</h4>";

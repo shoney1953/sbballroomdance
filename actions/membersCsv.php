@@ -48,8 +48,9 @@ if ($rowCount > 0) {
 
   $_SESSION['csvMembers'] = $csvMembers;
 } 
-
-writeToCsv($csvMembers);
+$today = date("m-d-Y");
+$fileName = 'SBDCMembers '.$today.'.csv';
+writeToCsv($csvMembers, $fileName);
 
 
 

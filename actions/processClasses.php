@@ -46,6 +46,7 @@ $addReg = false;
 $processReg = false;
 $processClass = false;
 $reportClass = false;
+$csvClass = false;
 $updateClass = false;
 $deleteClass = false;
 $emailClass = false;
@@ -74,12 +75,14 @@ if (isset($_POST['submitClassProcess'])) {
         $processReg = false;
         $processClass = false;
         $reportClass = false;
+        $csvClass = false;
         $updateClass = false;
         $deleteClass = false;
         $emailClass = false;
         $duplicateClass = false;
         $archiveClass = false;
         $rpChk = "rp".$class['id'];
+        $cvChk = "cv".$class['id'];
         $upChk = "up".$class['id'];
         $dlChk = "dl".$class['id'];
         $emChk = "em".$class['id'];
@@ -93,6 +96,12 @@ if (isset($_POST['submitClassProcess'])) {
 
     if (isset($_POST["$rpChk"])) {
         $reportClass = true;
+        $processClass = true;
+        break;
+       
+    }
+    if (isset($_POST["$cvChk"])) {
+        $csvClass = true;
         $processClass = true;
         break;
        
