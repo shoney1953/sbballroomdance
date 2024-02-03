@@ -240,6 +240,7 @@ if ($addReg) {
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
+        $_SESSION['classRegs'] = $regs;
         foreach ($regs as $reg) {
   
             $updID = "upd".$reg['id'];

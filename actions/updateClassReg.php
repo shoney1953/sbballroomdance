@@ -18,11 +18,13 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
+
 $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
 
-$regs = $_SESSION['classRegistrations'];
+$regs = $_SESSION['classRegs'];
+
 
 if (isset($_POST['submitUpdateReg'])) {
   foreach ($regs as $reg) {
