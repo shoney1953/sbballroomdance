@@ -20,7 +20,7 @@ class PDF extends FPDF
         $today = date("m-d-Y");
         $this->Image('../img/SBDC LOGO.png',8,6,30);
         // Arial bold 15
-        $this->SetFont('Arial','B',16);
+        $this->SetFont('Arial','B',12);
         // Move to the right
         $this->Cell(80);
         // Title
@@ -35,7 +35,7 @@ class PDF extends FPDF
         // Position at 1.5 cm from bottom
         $this->SetY(-15);
         // Arial italic 8
-        $this->SetFont('Arial','I',8);
+        $this->SetFont('Arial','I',6);
         // Page number
         $this->Cell(0,8,'Page '.$this->PageNo().'/{nb}',0,0,'C');
     }
@@ -75,8 +75,8 @@ class PDF extends FPDF
     $pdf = new PDF();
     $pdf->AliasNbPages();
     $pdf->SetTextColor(26, 22, 22);
-    $pdf->AddPage('L');
-    $pdf->SetFont('Arial', '', 16);
+    $pdf->AddPage('P');
+    $pdf->SetFont('Arial', '', 12);
 
 if ($rowCount > 0) {
     $regCount = 0;
@@ -92,26 +92,26 @@ if ($rowCount > 0) {
                      .$reg['classdate'].' '
                      .$reg['classtime'].' ';
 
-            $pdf->SetFont('Arial','BU',16);
+            $pdf->SetFont('Arial','BU',12);
             $pdf->Cell(0, 5, $class_string, 0, 1);
             $pdf->Ln(3);
-            $pdf->SetFont('Arial','B',16);
-            $pdf->Cell(40,8," ",1,0,"L"); 
-            $pdf->Cell(45,8," ",1,0,"L");  
-            $pdf->Cell(72,8," ",1,0,"L"); 
-            $pdf->Cell(14,8," ",1,0,"L"); 
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(25,8,"FIRST ",1,0,"L"); 
+            $pdf->Cell(30,8,"LAST ",1,0,"L");  
+            $pdf->Cell(50,8," ",1,0,"L"); 
+            $pdf->Cell(10,8," ",1,0,"L"); 
            
-            $pdf->Cell(110,8,"DATES       ATTENDED",1,1,"L");
+            $pdf->Cell(80,8,"DATES       ATTENDED",1,1,"L");
 
-            $pdf->Cell(40,8,"FIRST NAME",1,0,"L"); 
-            $pdf->Cell(45,8,"LAST NAME",1,0,"L");  
-            $pdf->Cell(72,8,"EMAIL",1,0,"L"); 
-            $pdf->Cell(14,8,"MEM",1,0,"L"); 
-            $pdf->Cell(110,8," ",1,1,"L");
+            $pdf->Cell(25,8,"NAME",1,0,"L"); 
+            $pdf->Cell(30,8,"NAME",1,0,"L");  
+            $pdf->Cell(50,8,"EMAIL",1,0,"L"); 
+            $pdf->Cell(10,8,"MEM",1,0,"L"); 
+            $pdf->Cell(80,8," ",1,1,"L");
           
         }
         if ($reg['classid'] !== $prevClass) {
-            $pdf->SetFont('Arial','B',16);
+            $pdf->SetFont('Arial','B',12);
             $pdf->Ln(2);
             $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
             $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
@@ -123,60 +123,60 @@ if ($rowCount > 0) {
             $class_string = ' '.$reg['classname'].'  '
             .$reg['classdate'].' '
             .$reg['classtime'].' ';
-            $pdf->SetFont('Arial','BU',16);
+            $pdf->SetFont('Arial','BU',12);
             $pdf->Ln(3);
-            $pdf->AddPage('L');
+            $pdf->AddPage('P');
             $pdf->Cell(0, 15, $class_string, 0, 1);
-            $pdf->SetFont('Arial', 'B', 16); 
+            $pdf->SetFont('Arial', 'B', 12); 
 
-            $pdf->Cell(40,8," ",1,0,"L"); 
-            $pdf->Cell(45,8," ",1,0,"L");  
-            $pdf->Cell(72,8," ",1,0,"L"); 
-            $pdf->Cell(14,8," ",1,0,"L");       
-            $pdf->Cell(110,8,"DATES       ATTENDED",1,1,"L");
+            $pdf->Cell(25,8,"FIRST ",1,0,"L"); 
+            $pdf->Cell(30,8,"LAST ",1,0,"L");  
+            $pdf->Cell(50,8," ",1,0,"L"); 
+            $pdf->Cell(10,8," ",1,0,"L");       
+            $pdf->Cell(80,8,"DATES       ATTENDED",1,1,"L");
 
-            $pdf->Cell(40,8,"FIRST NAME",1,0,"L"); 
-            $pdf->Cell(45,8,"LAST NAME",1,0,"L");  
-            $pdf->Cell(72,8,"EMAIL",1,0,"L"); 
-            $pdf->Cell(14,8,"MEM",1,0,"L"); 
-            $pdf->Cell(110,8," ",1,1,"L");
+            $pdf->Cell(25,8,"NAME",1,0,"L"); 
+            $pdf->Cell(30,8,"NAME",1,0,"L");  
+            $pdf->Cell(50,8,"EMAIL",1,0,"L"); 
+            $pdf->Cell(10,8,"MEM",1,0,"L"); 
+            $pdf->Cell(80,8," ",1,1,"L");
 
         
          }
 
         $regCount++;
-        $pdf->SetFont('Arial','',16);
-        $pdf->Cell(40,8,$reg['firstname'],1,0,"L"); 
-        $pdf->Cell(45,8,$reg['lastname'],1,0,"L"); 
-        $pdf->SetFont('Arial','',14); 
-        $pdf->Cell(72,8,$reg['email'],1,0,"L"); 
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(25,8,$reg['firstname'],1,0,"L"); 
+        $pdf->Cell(30,8,$reg['lastname'],1,0,"L"); 
+        $pdf->SetFont('Arial','',10); 
+        $pdf->Cell(50,8,$reg['email'],1,0,"L"); 
         if ($user->getUserName($reg['email'])) {
-            $pdf->Cell(14,8,"YES",1,0,"L"); 
+            $pdf->Cell(10,8,"YES",1,0,"L"); 
             $memReg++;
         } else {
-            $pdf->Cell(14,8,"NO",1,0,"L");
+            $pdf->Cell(10,8,"NO",1,0,"L");
             $nonMemReg++; 
         }
 
-        $pdf->SetFont('Arial','',16); 
-        $pdf->Cell(110,8," ",1,1,"L");
+        $pdf->SetFont('Arial','',12); 
+        $pdf->Cell(80,8," ",1,1,"L");
       
        
 
     }
-    $pdf->SetFont('Arial','B',16);
+    $pdf->SetFont('Arial','B',12);
     $pdf->Ln(3);
     $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
     $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
     $pdf->Cell(0, 5, "Total Non Member Registrations:  ".$nonMemReg, 0, 1);
-    $pdf->SetFont('Arial', '', 16);
+    $pdf->SetFont('Arial', '', 12);
     $regCount == 0;
     $memReg == 0;
     $nonMemReg == 0;
 } else {
     $pdf->SetFont('Arial','B',16);
     $pdf->Cell(0, 10, "   NO REGISTRATIONS FOUND ", 0, 1); 
-    $pdf->SetFont('Arial', '', 14);
+    $pdf->SetFont('Arial', '', 10);
 }
 $today = date("m-d-Y");
 $pdf->Output("I", "ClassRegistrationReport.".$today.".pdf");
