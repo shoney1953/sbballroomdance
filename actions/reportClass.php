@@ -18,16 +18,16 @@ class PDF extends FPDF
     function Header() {
         // Logo
         $today = date("m-d-Y");
-        $this->Image('../img/SBDC LOGO.png',8,6,30);
+        $this->Image('../img/SBDC LOGO.png',8,6,20);
         // Arial bold 15
-        $this->SetFont('Arial','B',12);
+        $this->SetFont('Arial','B',10);
         // Move to the right
         $this->Cell(80);
         // Title
         $this->Cell(30,8,
             'SBDC Class Registration Report  - '.$today, 0, 1, 'C');
         // Line break
-        $this->Ln(15);
+        $this->Ln(10);
     }
 
     // Page footer
@@ -92,10 +92,10 @@ if ($rowCount > 0) {
                      .$reg['classdate'].' '
                      .$reg['classtime'].' ';
 
-            $pdf->SetFont('Arial','BU',12);
+            $pdf->SetFont('Arial','B',12);
             $pdf->Cell(0, 5, $class_string, 0, 1);
             $pdf->Ln(3);
-            $pdf->SetFont('Arial','B',12);
+            $pdf->SetFont('Arial','B',10);
             $pdf->Cell(25,8,"FIRST ",1,0,"L"); 
             $pdf->Cell(30,8,"LAST ",1,0,"L");  
             $pdf->Cell(50,8," ",1,0,"L"); 
@@ -111,7 +111,7 @@ if ($rowCount > 0) {
           
         }
         if ($reg['classid'] !== $prevClass) {
-            $pdf->SetFont('Arial','B',12);
+            $pdf->SetFont('Arial','B',10);
             $pdf->Ln(2);
             $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
             $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
@@ -164,8 +164,8 @@ if ($rowCount > 0) {
        
 
     }
-    $pdf->SetFont('Arial','B',12);
-    $pdf->Ln(3);
+    $pdf->SetFont('Arial','B',10);
+    $pdf->Ln(5);
     $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
     $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
     $pdf->Cell(0, 5, "Total Non Member Registrations:  ".$nonMemReg, 0, 1);
@@ -174,7 +174,7 @@ if ($rowCount > 0) {
     $memReg == 0;
     $nonMemReg == 0;
 } else {
-    $pdf->SetFont('Arial','B',16);
+    $pdf->SetFont('Arial','B',10);
     $pdf->Cell(0, 10, "   NO REGISTRATIONS FOUND ", 0, 1); 
     $pdf->SetFont('Arial', '', 10);
 }
