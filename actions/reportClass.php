@@ -164,6 +164,56 @@ if ($rowCount > 0) {
        
 
     }
+    /* 6 blank lines at the end */
+    $pdf->SetFont('Arial','',12);
+    $pdf->Cell(25,8,' ',1,0,"L"); 
+    $pdf->Cell(30,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',10); 
+    $pdf->Cell(50,8,' ',1,0,"L"); 
+    $pdf->Cell(10,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',12); 
+    $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',12);
+    $pdf->Cell(25,8,' ',1,0,"L"); 
+    $pdf->Cell(30,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',10); 
+    $pdf->Cell(50,8,' ',1,0,"L"); 
+    $pdf->Cell(10,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',12); 
+    $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',12);
+    $pdf->Cell(25,8,' ',1,0,"L"); 
+    $pdf->Cell(30,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',10); 
+    $pdf->Cell(50,8,' ',1,0,"L"); 
+    $pdf->Cell(10,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',12); 
+    $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',12);
+    $pdf->Cell(25,8,' ',1,0,"L"); 
+    $pdf->Cell(30,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',10); 
+    $pdf->Cell(50,8,' ',1,0,"L"); 
+    $pdf->Cell(10,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',12); 
+    $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',12);
+    $pdf->Cell(25,8,' ',1,0,"L"); 
+    $pdf->Cell(30,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',10); 
+    $pdf->Cell(50,8,' ',1,0,"L"); 
+    $pdf->Cell(10,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',12); 
+    $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',12);
+    $pdf->Cell(25,8,' ',1,0,"L"); 
+    $pdf->Cell(30,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',10); 
+    $pdf->Cell(50,8,' ',1,0,"L"); 
+    $pdf->Cell(10,8,' ',1,0,"L"); 
+    $pdf->SetFont('Arial','',12); 
+    $pdf->Cell(80,8," ",1,1,"L");
+    /* */
     $pdf->SetFont('Arial','B',10);
     $pdf->Ln(5);
     $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
