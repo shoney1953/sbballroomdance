@@ -18,6 +18,7 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
+
 $users = $_SESSION['process_users'];
 $database = new Database();
 $db = $database->connect();
@@ -118,9 +119,9 @@ if (isset($_POST['submitUpdateUser'])) {
         }
     
         if (!$newpass == $pass2) {
-            $redirect = "Location: ".$_SESSION['userurl'].'?error=PasswordMatch';
-            header($redirect);
-            exit;
+            // $redirect = "Location: ".$_SESSION['userurl'].'?error=PasswordMatch';
+            // header($redirect);
+            // exit;
         } else {
             $newHash = password_hash($newpass, PASSWORD_DEFAULT);
             if ($newHash != $user->password) {
@@ -137,7 +138,7 @@ if (isset($_POST['submitUpdateUser'])) {
        $user->streetAddress = htmlentities($_POST["$staddID"]); 
        $user->city = htmlentities($_POST["$cityID"]); 
        $user->notes = htmlentities($_POST["$notesID"]); 
-      
+
     $user->update();
 
 }
