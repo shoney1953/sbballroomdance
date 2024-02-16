@@ -7,11 +7,12 @@ require_once '../models/UserArchive.php';
 $database = new Database();
 $db = $database->connect();
 $user = new UserArchive($db);
-$partner = new UserArchive($db);
+
 $userArr = [];
 $numHOA1 = 0;
 $numHOA2 = 0;
-
+$dateJoined = '';
+$dateArchived = '';
 
 class PDF extends FPDF
 {
@@ -63,6 +64,8 @@ if (isset($_POST['submitUserRep'])) {
                 'phone1' => $phone1,
                 'hoa' => $hoa,
                 'email' => $email,
+                'created' => $created,
+                'memberorigcreated' => $memberorigcreated,
                 'streetaddress' => $streetaddress
 
             );
@@ -90,11 +93,12 @@ if ($userCount > 0) {
     $pdf->Cell(60,5,"EMAIL",1,0,"L");
     $pdf->Cell(5,5,"H",1,0,"L");
     $pdf->Cell(25,5,"PHONE",1,0,"L");
-    $pdf->Cell(60,5,"STREET ADDRESS",1,1,"L");
+    $pdf->Cell(30,5,"ORG JOINED",1,0,"L");
+    $pdf->Cell(30,5,"ARCHIVED",1,1,"L");
     $pdf->SetFont('Arial', '', 10);
     foreach ($userArr as $usr) {
-
-
+        $dateJoined = substr($memberorigcreated,0,10);
+        $dateArchived = substr($created,0,10);
          // $pdf->Cell(0, 5, $user_string1, 0, 1);
          $pdf->Cell(30,5,$usr['firstname'],1,0,"L");
          $pdf->Cell(30,5,$usr['lastname'],1,0,"L");
@@ -102,7 +106,8 @@ if ($userCount > 0) {
          $pdf->Cell(5,5,$usr['hoa'],1,0,"L");
     
          $pdf->Cell(25,5,$usr['phone1'],1,0,"L");
-         $pdf->Cell(60,5,$usr['streetaddress'],1,1,"L");
+         $pdf->Cell(30,5,$dateJoined,1,0,"L");
+         $pdf->Cell(30,5,$dateArchived,1,1,"L");
 
 
     }

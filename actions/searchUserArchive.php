@@ -100,7 +100,10 @@ if (isset($_POST['searchUser'])) {
                 
         
                 foreach($users as $user) {
-             
+                    $hr = '../archmember.php?id=';
+                    $hr .= $user["id"];
+               
+                    echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
              
                         echo "<td>".$user['id']."</td>"; 
                         echo "<td>".$user['firstname']."</td>";               

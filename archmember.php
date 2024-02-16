@@ -223,7 +223,7 @@ if ($rowCount > 0) {
             echo '</tbody>';
             echo '<thead>';
             echo '<tr>';
-            echo '<th>Created</td>';
+            echo '<th>Primary Phone</th>';
             echo '<th>Last Login</td>';
             echo '<th>Num Logins</th>';
             echo '<th>PWD Last Changed</th>';
@@ -231,7 +231,7 @@ if ($rowCount > 0) {
             echo '</thead>';
             echo '<tbody>';
             echo '<tr>';
-            echo "<td>$user->memberorigcreated</td>";
+            echo "<td>$user->phone1</td>";
             echo "<td>$user->lastLogin</td>";
             echo "<td>$user->numlogins</td>";
             echo "<td>$user->passwordChanged</td>";
@@ -240,13 +240,15 @@ if ($rowCount > 0) {
             echo '<thead>';
             echo '<tr>';
 
-            echo '<th>Primary Phone</th>';
+            
+            echo '<th>Created</td>';
             echo '<th>Date Archived</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
             echo '<tr>';
-            echo "<td>$user->phone1</td>";
+            
+            echo "<td>$user->memberorigcreated</td>";
             echo "<td>$user->dateArchived</td>";
             echo '</tr>';
             echo '</tbody>';
