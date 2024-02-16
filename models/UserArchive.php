@@ -1,10 +1,8 @@
 <?php
-
 class UserArchive {
     // DB stuff
     private $conn;
     private $table = 'usersarchive';
-
     public $id;
     public $firstname;
     public $lastname;
