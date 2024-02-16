@@ -38,7 +38,9 @@ $db = $database->connect();
 $user = new UserArchive($db);
 $partner = new UserArchive($db);
 $user->id = $userid;
+var_dump($user->id);
 $user->read_single();
+var_dump($user);
 if ($user->partnerId !== 0) {
     $partner->id = $user->partnerId;
     $partner->read_single();
