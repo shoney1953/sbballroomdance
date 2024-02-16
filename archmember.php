@@ -36,15 +36,11 @@ $database = new Database();
 $db = $database->connect();
 
 $user = new UserArchive($db);
-$partner = new UserArchive($db);
+
 $user->id = $userid;
 
 $user->read_single();
 
-if ($user->partnerId !== 0) {
-    $partner->id = $user->partnerId;
-    $partner->read_single();
-}
 
 /* get class registrations */
 $classReg = new ClassRegistration($db);
@@ -243,16 +239,13 @@ if ($rowCount > 0) {
             echo '</tbody>';
             echo '<thead>';
             echo '<tr>';
-            echo '<th>Partner ID</td>';
-            echo '<th>Partner Name</td>';
+
             echo '<th>Primary Phone</th>';
             echo '<th>Date Archived</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
             echo '<tr>';
-            echo "<td>$user->partnerId</td>";
-            echo "<td>$partner->firstname $partner->lastname </td>";
             echo "<td>$user->phone1</td>";
             echo "<td>$user->dateArchived</td>";
             echo '</tr>';

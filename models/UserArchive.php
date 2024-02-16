@@ -97,7 +97,6 @@ class UserArchive {
 
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-          var_dump($row);
 
           // Set properties
           $this->id = $row['id'];
