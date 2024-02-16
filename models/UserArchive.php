@@ -82,7 +82,7 @@ class UserArchive {
     }
     // Get Single Danceclass
     public function read_single() {
-        
+         var_dump($this);
           // Create query
           $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
   
@@ -96,7 +96,7 @@ class UserArchive {
           $stmt->execute();
 
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+          var_dump($row);
           // Set properties
           $this->id = $row['id'];
           $this->firstname = $row['firstname'];
