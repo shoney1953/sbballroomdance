@@ -97,8 +97,8 @@ if ($userCount > 0) {
     $pdf->Cell(30,5,"ARCHIVED",1,1,"L");
     $pdf->SetFont('Arial', '', 10);
     foreach ($userArr as $usr) {
-        $dateJoined = substr($memberorigcreated,0,10);
-        $dateArchived = substr($created,0,10);
+        $dateJoined = substr($usr['memberorigcreated'],0,10);
+        $dateArchived = substr($usr['created'],0,10);
          // $pdf->Cell(0, 5, $user_string1, 0, 1);
          $pdf->Cell(30,5,$usr['firstname'],1,0,"L");
          $pdf->Cell(30,5,$usr['lastname'],1,0,"L");
