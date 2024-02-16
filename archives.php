@@ -45,6 +45,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'partnerId' => $partnerid,
                 'hoa' => $hoa,
                 'passwordChanged' => $passwordChanged,
+                'memberorigcreated' => $memberorigcreated,
                 'streetAddress' => $streetaddress,
                 'lastLogin' => $lastLogin
             );
@@ -280,31 +281,32 @@ if ($rowCount > 0) {
                 echo '<th>Last Name</th>';
                 echo '<th>User Name    </th>';
                 echo '<th>Role</th>'; 
-                echo '<th>Part ID</th>';
                 echo '<th>Email</th>';  
                 echo '<th>Phone</th>';
                 echo '<th>HOA</th>';
                 echo '<th>Address</th>';
-                echo '<th>Last Login</th>';
-                echo '<th>PWD Changed</th>';
+                echo '<th>Orig Created</th>';
+
                 echo '</tr>';
                 
         
                 foreach($users as $user) {
+                    $hr = 'archmember.php?id=';
+                    $hr .= $user["id"];
+               
+                    echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
              
-             
-                        echo "<td>".$user['id']."</td>"; 
+                        // echo "<td>".$user['id']."</td>"; 
                         echo "<td>".$user['firstname']."</td>";               
                         echo "<td>".$user['lastname']."</td>";
                         echo "<td>".$user['username']."</td>";
                         echo "<td>".$user['role']."</td>"; 
-                        echo "<td>".$user['partnerId']."</td>"; 
                         echo "<td>".$user['email']."</td>";
                         echo "<td>".$user['phone1']."</td>";
                         echo "<td>".$user['hoa']."</td>";
                         echo "<td>".$user['streetAddress']."</td>"; 
-                        echo "<td>".$user['lastLogin']."</td>"; 
-                        echo "<td>".$user['passwordChanged']."</td>"; 
+                        echo "<td>".$user['memberorigcreated']."</td>"; 
+              
                        
                         
                       echo "</tr>";

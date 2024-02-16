@@ -329,7 +329,7 @@ if (isset($_SESSION['username'])) {
          
             <p>We are a primarily social club that provides dance lessons,
                  and opportunities to dance and socialize.</p><br>
-            <p>We are comprised of members from both SaddleBrooke HOA 1 and HOA 2.</p><br>
+            <p>We are comprised of around 200 members from both SaddleBrooke HOA 1 and HOA 2.</p><br>
             <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
                are also part of our repetoire. </p><br><br>
             <p>Scroll down or click one of the tabs above for more information</p><br>
@@ -358,7 +358,7 @@ if (isset($_SESSION['username'])) {
 
         <br><p>Our members can go to any class we provide free. Prospective members may attend one class free to see if they like it. </p>
         <p>Our members also receive reduced rates for our dinner dances, but you may attend as a guest
-            if you'd like to put your toe in the water before committing. </p><br>
+            if you'd like to get a feel for the club before committing. </p><br>
         <p>We also have several times during the week
             available for practice - some with D.J.s, sometimes you can bring your favorite music. These
             sessions designated as "Open Practice" are not restricted to members. </p>
@@ -508,28 +508,7 @@ if (isset($_SESSION['username'])) {
             They are often on Fridays, but sometimes on other days of the week. Check emails or the Activities Calendar.
            
         </h3>
-        <!-- <p>For Our Open Practices:</p>
-        <ul>
-            <li class="li-none">Fourth Monday of the Month 4pm to 6pm - Vermilion Room
-            <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a></li>
-            <li class="li-none">Wednesdays 4pm to 6pm in the Mariposa Room
-            <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map</a></li>
-            <li class="li-none">Fridays from 4pm to 6pm in the Vermilion Room (when not used for the Novice Party)
-            <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
-            </li>
-        </ul><br> -->
- 
-        <!-- <p>Our monthly classes will be held in the MountainView Ballroom on Sundays and Tuesdays
-            <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map.</a>
-        </p>
-
-        <p>Our Monday Open Practices and Saturday Western Partner Review sessions will be held
-            in the Vermilion Room at HOA 1
-            <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a>
-        </p>
-        <p>Our Wednesday Open Practices will be held in the Mariposa Room at Desertview
-        <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map</a></li>
-        </p> -->
+       
         <br>
         <div id="board">
         <h3>Current Board Members</h3>
@@ -548,7 +527,7 @@ if (isset($_SESSION['username'])) {
                   &rarr; <a href="mailto:calamitywjs@gmail.com?subject=SBDC Info">
                   Email Jane</a></li>
             <li class="li-none li-large">Dale & Ann Pizzitola, Directors of Dance Instruction    
-                &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Info">
+                &rarr; 
                 Email Ann & Dale</a></li>
            <li class="li-none li-large">Vivian Herman, Volunteer Coordinator  
                 &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">

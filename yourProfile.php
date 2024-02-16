@@ -82,6 +82,7 @@ if ($rowCount > 0) {
             'lastname' => $lastname,
             'eventid' => $eventid,
             'eventname' => $eventname,
+            'eventtype' => $eventtype,
             'eventdate' => $eventdate,
             'email' => $email,
             'paid' => $paid,
