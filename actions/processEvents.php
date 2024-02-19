@@ -185,7 +185,7 @@ if (isset($_POST['submitEventProcess'])) {
       
           while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
               extract($row);
-              $user_item = array(
+              $reg_item = array(
                   'id' => $id,
                   'firstname' => $firstname,
                   'lastname' => $lastname,

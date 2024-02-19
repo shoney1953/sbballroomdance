@@ -46,6 +46,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'hoa' => $hoa,
                 'passwordChanged' => $passwordChanged,
                 'memberorigcreated' => $memberorigcreated,
+                'created' => $created,
                 'streetAddress' => $streetaddress,
                 'lastLogin' => $lastLogin
             );
@@ -238,17 +239,7 @@ if ($rowCount > 0) {
 </nav>  
     <br>
    <br><br><br> 
-    <!-- <div class="content">
-    <br><br>
-    <h3 class="section-header">Summary Report</h3>
-      <div class="form-grid3">
-        <div class="form-grid-div">
-         <h2 class="section-header">Summary Report</h2>
-        <form method='POST' action="actions/reportSummaryActivity.php"> 
-        <button type='submit' name="submitSummaryRep">Summary Report</button>   
-        </form>
-        </div> 
-      </div> -->
+   
     <?php
 
     if ($_SESSION['role'] === 'SUPERADMIN') {
@@ -256,15 +247,14 @@ if ($rowCount > 0) {
        
         echo '<section id="usersarchived" class="content">';
         echo ' <h3 class="section-header">Archived Member List</h3> ';
-        echo '<form method="POST" action="actions/reportUserArchive.php">'; 
+        echo '<form name="reportUserArchive" method="POST" action="actions/reportUserArchive.php">'; 
         echo  '<div class="form-grid2">';
         echo '<div class="form-grid-div">';
      
-        echo '<input type="checkbox" name="reportUsers">';
-        echo '<label for="reportUsers">Report Archived Members</label><br>';    
+     
       
-        echo '<button type="submit" name="submitUserRep">  Report Members</button>';   
-    
+        echo '<button type="submit" name="submitUserRep">  Report Archived Members</button>';   
+        // echo '<script language="JavaScript">document.reportUserArchive.submit();</script>';
         echo '</form>';   
         echo '</div> ';    
         echo '<form target="_blank" method="POST" action="actions/searchUserArchive.php" >';
@@ -283,9 +273,10 @@ if ($rowCount > 0) {
                 echo '<th>Role</th>'; 
                 echo '<th>Email</th>';  
                 echo '<th>Phone</th>';
-                echo '<th>HOA</th>';
-                echo '<th>Address</th>';
+                // echo '<th>HOA</th>';
+                // echo '<th>Address</th>';
                 echo '<th>Orig Created</th>';
+                echo '<th>Archived</th>';
 
                 echo '</tr>';
                 
@@ -303,9 +294,10 @@ if ($rowCount > 0) {
                         echo "<td>".$user['role']."</td>"; 
                         echo "<td>".$user['email']."</td>";
                         echo "<td>".$user['phone1']."</td>";
-                        echo "<td>".$user['hoa']."</td>";
-                        echo "<td>".$user['streetAddress']."</td>"; 
+                        // echo "<td>".$user['hoa']."</td>";
+                        // echo "<td>".$user['streetAddress']."</td>"; 
                         echo "<td>".$user['memberorigcreated']."</td>"; 
+                        echo "<td>".$user['created']."</td>"; 
               
                        
                         
@@ -364,8 +356,13 @@ if ($rowCount > 0) {
             $eventNumber = 0;
             foreach($allEvents as $event) {
                  $eventNumber++;
+                 $hr = 'archevent.php?id=';
+                 $hr .= $event["id"];
+            
+                
                   echo "<tr>";
-                    echo "<td>".$event['id']."</td>";
+                  echo '<td> <a href="'.$hr.'">'.$event["id"].'</a></td>';
+                    // echo "<td>".$event['id']."</td>";
                     echo "<td>".$event['previd']."</td>";
                     echo "<td>".$event['eventdate']."</td>";
                     echo "<td>".$event['eventname']."</td>";

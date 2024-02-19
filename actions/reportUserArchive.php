@@ -46,7 +46,7 @@ class PDF extends FPDF
     }
 }
 
-if (isset($_POST['submitUserRep'])) {
+// if (isset($_POST['submitUserRep'])) {
  
     $result = $user->read();
 
@@ -125,7 +125,7 @@ if ($userCount > 0) {
 }
 $today = date("m-d-Y");
 $pdf->Output("I", "ArchivedMemberReport".$today);
-}
+// }
 
 $redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);
