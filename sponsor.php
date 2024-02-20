@@ -39,7 +39,7 @@
        <img  class="sponsorImage" src="img/desertlife.png" alt="Desert Life info">
       </div>
       <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/NestInTheDesert.png" alt="Nest In the Desert info">
+       <img  class="sponsorImage" src="img/Nest_In_the_Desert_NEW.png" alt="Nest In the Desert info">
       </div>
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/Vantagewest.png" alt="VantageWest info">
@@ -52,6 +52,9 @@
       </div>
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/closettrends.png" alt="Closet Trends info">
+      </div>
+      <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/cruiseplanner.png" alt="Cruise Planner">
       </div>
       </div>
       
