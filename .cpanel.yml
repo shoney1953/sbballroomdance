@@ -5,6 +5,8 @@ deployment:
     - /bin/cp _.sbballroomdance.com.pem.txt $DEPLOYPATH
     - /bin/cp administration.php $DEPLOYPATH
     - /bin/cp archives.php $DEPLOYPATH
+    - /bin/cp archclass.php $DEPLOYPATH
+    - /bin/cp archevent.php $DEPLOYPATH
     - /bin/cp archmember.php $DEPLOYPATH
     - /bin/cp checkout.html $DEPLOYPATH
     - /bin/cp class.php $DEPLOYPATH

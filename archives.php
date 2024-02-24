@@ -84,6 +84,7 @@ if ($rowCount > 0) {
   
 
 } 
+$_SESSION['allArchEvents'] = $allEvents;
 /* get classes */
 
 $class = new DanceClassArch($db);
@@ -117,6 +118,7 @@ if ($rowCount > 0) {
 
 } 
 /* get class registrations */
+$_SESSION['allArchClasses'] = $allClasses;
 $classReg = new ClassRegistrationArch($db);
 $result = $classReg->read();
 
@@ -148,6 +150,7 @@ if ($rowCount > 0) {
     }
 } 
 /* get event registrations */
+$_SESSION['archClassRegistrations'] = $classRegistrations;
 $eventReg = new EventRegistrationArch($db);
 $result = $eventReg->read();
 
@@ -179,7 +182,7 @@ if ($rowCount > 0) {
   
     }
 }
-
+$_SESSION['archeventreg'] = $eventRegistrations;
   
 /* get archived visitors */
 $visitorArch = new VisitorArch($db);
@@ -228,9 +231,9 @@ if ($rowCount > 0) {
         <li><a href="administration.php">Back to Administration</a></li>
         <li><a href="#usersarchived">Archived Members</a></li>
         <li><a href="#eventsarchived">Archived Events</a></li>
-        <li><a href="#eventregistrationsarchived">Archived Event Registrations</a></li>
+        <!-- <li><a href="#eventregistrationsarchived">Archived Event Registrations</a></li> -->
         <li><a href="#classesarchived">Archived Classes</a></li>
-        <li><a href="#classregistrationsarchived">Archived Class Registrations</a></li>
+        <!-- <li><a href="#classregistrationsarchived">Archived Class Registrations</a></li> -->
         <li><a href="#visitorsarchived">Visitors</a></li>
 
 
@@ -382,7 +385,7 @@ if ($rowCount > 0) {
             </section>
         <div class="container-section ">
   
-    <section id="eventregistrationsarchived" class="content">
+    <!-- <section id="eventregistrationsarchived" class="content">
     <br><br>
         <h3 class="section-header">Archived Event Registrations</h3>   
         <table>
@@ -444,7 +447,7 @@ if ($rowCount > 0) {
         <br>
         <div class="container-section ">
         </div>
-    </section>
+    </section> -->
     <section id="classesarchived" class="content">
       <br><br>
         <h3 class="section-header">Archived Classes</h3>
@@ -493,7 +496,11 @@ if ($rowCount > 0) {
             foreach($allClasses as $class)
              { 
                   echo "<tr>";
-                    echo "<td>".$class['id']."</td>";
+                  $hr = 'archclass.php?id=';
+                    $hr .= $class["id"];
+               
+                    echo '<td> <a href="'.$hr.'">'.$class["id"].'</a></td>';
+                    // echo "<td>".$class['id']."</td>";
                     echo "<td>".$class['date']."</td>";
                     echo "<td>".$class['time']."</td>";
                     echo "<td>".$class['room']."</td>";
@@ -514,7 +521,7 @@ if ($rowCount > 0) {
         <br>
     </section>
     </section>
-        <div class="container-section ">
+        <!-- <div class="container-section ">
     
     <section id="classregistrationsarchived" class="content">
     <br><br>
@@ -542,7 +549,7 @@ if ($rowCount > 0) {
                     echo "<td>".$classRegistration['classname']."</td>";
                     echo "<td>".$classRegistration['classid']."</td>";
                     echo "<td>".$classRegistration['classdate']."</td>";
-                    echo "<td>".$classRegistration['classtime']."</td>";
+            echo "<td>".$classRegistration['classtime']."</td>";
                     echo "<td>".$classRegistration['firstname']."</td>";
                     echo "<td>".$classRegistration['lastname']."</td>";
                     echo "<td>".$classRegistration['email']."</td>";           
@@ -556,7 +563,7 @@ if ($rowCount > 0) {
             ?> 
         </table>
         </div>
-        </section>
+        </section>         -->
 
         <br>
         <?php
