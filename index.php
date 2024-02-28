@@ -203,7 +203,7 @@ if (isset($_SESSION['username'])) {
     <div class="container">
      <ul>
         <!-- <li> </li> -->
-         <li> <a href="#" >Home</a></li>
+         <li> <a href="#" >Home</a></li>w 
      
             <?php
              if (isset($_SESSION['role'])) {
