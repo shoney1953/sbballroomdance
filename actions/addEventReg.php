@@ -88,22 +88,12 @@ if (isset($_POST['submitAddReg'])) {
                         } else {
                         $eventReg->ddattenddinner = 0;
                         }
-                        $eventReg->paid = 0;
+                      
                     }
-                    if ($event->eventtype === 'Dinner Dance') {
-            
-                        $eventReg->paid = 1;
-                    } else {
+              
           
                         $eventReg->paid = 0;
-                    }
-                    if ($event->eventtype === 'Dance Party') {
-            
-                        $eventReg->paid = 1;
-                    } else {
-          
-                        $eventReg->paid = 0;
-                    }
+                    
   
                  $result = $eventReg->checkDuplicate($regEmail1, $eventReg->eventid);
 
