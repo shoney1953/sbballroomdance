@@ -58,6 +58,7 @@ if (isset($_POST['submitAddReg'])) {
         foreach($users as $usr) {
          $usrID = "us".$usr['id'];
          $attDin = "datt".$usr['id']; 
+         $pdDinn = "dpaid".$usr['id'];
    
             if (isset($_POST["$usrID"])) {
                    
@@ -69,7 +70,7 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->email = $usr['email'];
                     $regEmail1 = $eventReg->email;
                     $eventReg->userid = $usr['id'];
-   
+                    $eventReg->paid = 0;
                     $eventReg->registeredby = $_SESSION['username'];
          
                     
@@ -82,18 +83,20 @@ if (isset($_POST['submitAddReg'])) {
                     } else {
                         $eventReg->ddattenddinner = 0;
                     }
-                    if ($event->eventtype === 'Dance Party') {
+                    if (isset($_POST["$pdDinn"])) {
+                        $eventReg->paid = 1;
+                    }
+                    if (($event->eventtype === 'Dance Party') || ($event->eventtype === 'Dinner Dance')) {
                         if (isset($_POST["$attDin"])) {
                             $eventReg->ddattenddinner = 1;
+                           
                         } else {
                         $eventReg->ddattenddinner = 0;
                         }
                       
                     }
               
-          
-                        $eventReg->paid = 0;
-                    
+     
   
                  $result = $eventReg->checkDuplicate($regEmail1, $eventReg->eventid);
 
@@ -111,20 +114,14 @@ if (isset($_POST['submitAddReg'])) {
                     "<br>Room:    ".$event->eventroom.
                     "<br>Cost:    ".$fmt->formatCurrency($event->eventcost, 'USD').
                     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
-                    if ($event->eventtype === 'Dine and Dance') {
+                    if (($event->eventtype === 'Dine and Dance') || ($event->eventtype === 'Dance Party') ){
                         if (isset($_POST["$attDin"])) {
                             $emailBody .= "<br>You have chosen to attend dinner before the dance.";
                         } else {
                             $emailBody .= "<br>You have chosen not to attend dinner before the dance.";
                         }
                     }
-                    if ($event->eventtype === 'Dance Party') {
-                        if (isset($_POST["$attDin"])) {
-                            $emailBody .= "<br>You have chosen to attend dinner before the dance.";
-                        } else {
-                            $emailBody .= "<br>You have chosen not to attend dinner before the dance.<br>";
-                        }
-                    }
+                   
 
                     if ($event->eventform) {
                         $actLink= "<a href='".$event->eventform."'>

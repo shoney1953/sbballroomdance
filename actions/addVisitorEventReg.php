@@ -53,12 +53,16 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $eventReg->lastname = $_POST['lastname1'];
     $eventReg->email = $_POST['email1'];
     $regEmail1 = $eventReg->email;
+    $eventReg->paid = 0;
     if (isset($_POST['attdin1'])) {
         $eventReg->ddattenddinner = 1;
     } else {
         $eventReg->ddattenddinner = 0; 
     }
-    $eventReg->paid = 1;
+    if (isset($_POST['pddinn1'])) {
+        $eventReg->paid = 1;
+    }
+   
     $eventReg->userid = 0;
     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
     if (!$result) {
@@ -147,12 +151,16 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $eventReg->email = $_POST['email2'];
     $eventReg->registeredby = $_SESSION['username'];
     $regEmail1 = $eventReg->email;
+    $eventReg->paid = 0;
     if (isset($_POST['attdin2'])) {
         $eventReg->ddattenddinner = 1;
     } else {
         $eventReg->ddattenddinner = 0; 
     }
-    $eventReg->paid = 1;
+    if (isset($_POST['pddinn2'])) {
+        $eventReg->paid = 1;
+    }
+   
     $eventReg->userid = 0;
     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
     if (!$result) {

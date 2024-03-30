@@ -44,18 +44,20 @@ if ($addReg) {
     echo '<br><br><table>';
     echo '<thead>';
     echo '<tr>';
-    echo '<th colspan=6>Add Member Registrations</th>';
+    echo '<th colspan=7>Add Member Registrations</th>';
     echo '</tr>';
     echo '<tr>';
-    echo '<th colspan=6>Select One or all of the following members</th>';
+    echo '<th colspan=7>Select One or all of the following members</th>';
     echo '</tr>';
     echo '<tr>';
     echo '<th>Add</th>';
-    if ($event['eventtype'] === 'Dine and Dance') {
+    if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party')){
         echo '<th>Attend<br>Dinner?</th>';
+        echo '<th>Paid?</th>';
     }
-    if ($event['eventtype'] === 'Dance Party') {
-        echo '<th>Attend<br>Dinner?</th>';
+    if ($event['eventtype'] === 'Dinner Dance'){
+  
+        echo '<th>Paid?</th>';
     }
 
     echo '<th>First Name</th>';
@@ -69,13 +71,15 @@ if ($addReg) {
   
         $usrID = "us".$usr['id'];
         $attDin = "datt".$usr['id'];
+        $pdDinn = "dpaid".$usr['id'];
         echo '<tr>';
         echo "<td><input  title='Select to Add Registrations' type='checkbox'name='".$usrID."'></td>";
-        if ($event['eventtype'] === 'Dine and Dance') {
+        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party') ){
             echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='".$attDin."'></td>";
+            echo "<td><input title='Select to indicate Registrant has Paid' type='checkbox' name='".$pdDinn."'></td>";
         }
-        if ($event['eventtype'] === 'Dance Party') {
-            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='".$attDin."'></td>";
+        if ($event['eventtype'] === 'Dinner Dance'){
+            echo "<td><input title='Select to indicate Registrant has Paid' type='checkbox' name='".$pdDinn."'></td>";
         }
  
         echo "<td >".$usr['firstname']."</td>";
@@ -99,18 +103,20 @@ if ($addReg) {
         echo '<table>';   
         echo '<thead>';
         echo '<tr>';
-        echo '<th colspan=5>Add Visitor Registration</th>';
+        echo '<th colspan=6>Add Visitor Registration</th>';
         echo '</tr>';
         echo '<tr>';
         echo '<th>First Name</td>';
         echo '<th>Last Name</td>';
         echo '<th>Email</td>';
     
-        if ($event['eventtype'] === 'Dine and Dance') {
+        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party') ) {
             echo '<th>Attend<br>Dinner?</th>';
+            echo '<th>Paid?</th>';
         }
-        if ($event['eventtype'] === 'Dance Party') {
-            echo '<th>Attend<br>Dinner?</th>';
+        if ($event['eventtype'] === 'Dinner Dance') {
+
+            echo '<th>Paid?</th>';
         }
         echo '<th>Notes</td>';
         echo '</tr>';
@@ -120,11 +126,12 @@ if ($addReg) {
         echo "<td><input title='Enter Visitor First Name' type='text' name='firstname1'></td>";
         echo "<td><input title='Enter Visitor Last Name' type='text' name='lastname1'></td>";
         echo "<td><input type='email' name='email1' required></td>";
-        if ($event['eventtype'] === 'Dine and Dance') {
+        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party')){
             echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='attdin1'></td>";
+            echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn1'></td>";
         }
-        if ($event['eventtype'] === 'Dance Party') {
-            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='attdin1'></td>";
+        if ($event['eventtype'] === 'Dinner Dance'){
+            echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn1'></td>";
         }
         echo "<td> <textarea  title='Enter any notes about the visitor registration' name='notes1' rows='5' cols='50'></textarea></td>";
         echo '</tr>';
@@ -132,11 +139,12 @@ if ($addReg) {
         echo "<td><input title='Enter Visitor First Name' type='text' name='firstname2'></td>";
         echo "<td><input title='Enter Visitor Last Name' type='text' name='lastname2'></td>";
         echo "<td><input type='email' name='email2'></td>";
-        if ($event['eventtype'] === 'Dine and Dance') {
+        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party'))  {
             echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='attdin2'></td>";
+            echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn2'></td>";
         }
-        if ($event['eventtype'] === 'Dance Party') {
-            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='attdin2'></td>";
+        if ($event['eventtype'] === 'Dinner Dance'){
+            echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn2'></td>";
         }
         echo "<td> <textarea  title='Enter any notes about the visitor registration' name='notes2' rows='5' cols='50'></textarea></td>";
         echo '</tr>';
