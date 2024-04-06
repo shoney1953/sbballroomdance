@@ -261,7 +261,8 @@ class User {
     public function validate_user($user) {
     
        // Create query
-       $query = 'SELECT * FROM ' . $this->table . ' WHERE username = :user or email = :user LIMIT 0,1'; 
+       $query = 'SELECT * FROM ' . $this->table . ' WHERE BINARY username = :user 
+           or email = :user LIMIT 0,1'; 
 
        // Prepare statement
        $stmt = $this->conn->prepare($query);
@@ -392,7 +393,6 @@ class User {
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
           $this->email = htmlspecialchars(strip_tags($this->email));
           $this->username = htmlspecialchars(strip_tags($this->username));
-        
           $this->partnerId = $this->partnerId;
           $this->streetAddress = htmlspecialchars(strip_tags($this->streetAddress));
           $this->city = htmlspecialchars(strip_tags($this->city));

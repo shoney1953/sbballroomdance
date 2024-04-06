@@ -1,7 +1,7 @@
 <?php
 
 $users = $_SESSION['process_users'];
-
+$_SESSION['userurl'] = $_SERVER['REQUEST_URI']; 
   if ($updateUser) {
     echo "<form method='POST' action='updateUser.php'>";
   

@@ -25,6 +25,7 @@ $db = $database->connect();
 $user = new User($db);
 
 if (isset($_POST['submitUpdateUser'])) {
+
     foreach ($users as $usr) {
       $upChk = "up".$usr['id'];
       $usrSelChk ="userSel".$usr['id'];
@@ -52,11 +53,11 @@ if (isset($_POST['submitUpdateUser'])) {
       $fullID = "full".$usr['id'];
  
    if (isset($_POST["$usrSelChk"])) {
-  
     $user->id = $_POST["$idID"];
     $user->firstname = $_POST["$fnamID"];
     $user->lastname = $_POST["$lnamID"];
-    $user->username = $_POST["$userID"];
+    $user->username = $_POST["$nuserID"];
+
     $user->streetAddress = $_POST["$staddID"];
     $user->city = $_POST["$cityID"];
     $user->state = $_POST["$stateID"];
@@ -96,8 +97,9 @@ if (isset($_POST['submitUpdateUser'])) {
         
     }   
   
- 
-    if ($_POST["$nuserID"] != $_POST["$userID"]) {
+
+    if ($_POST["$nuserID"] !== $_POST["$userID"]) {
+
         $newuser = $_POST["$nuserID"];
         $newuser = htmlentities($_POST["$nuserID"]);
         if ($user->validate_user($newuser)) {
@@ -107,6 +109,7 @@ if (isset($_POST['submitUpdateUser'])) {
               exit;  
           } else {
               $user->username = $newuser;
+
           }
 
     }
