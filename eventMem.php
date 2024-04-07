@@ -41,7 +41,7 @@ if ($rowCount > 0) {
             'ddattenddance' => $ddattenddance,
             'ddattenddinner' => $ddattenddinner,
             'registeredby' => $registeredby,
-            'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
+            'dateregistered' => date('m d Y', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);
   
@@ -178,6 +178,7 @@ echo '<div class="container-section ">';
                                 echo '<th>Paid?</th>';
                             }
                         }
+                        echo '<th>Reg Date</th>';
                         echo '<th>Reg By</th>';
                     echo '</tr>';
                     
@@ -241,6 +242,7 @@ echo '<div class="container-section ">';
 
                                 }
                             }
+                            echo "<td>".$eventRegistration['dateregistered']."</td>"; 
                             echo "<td>".$eventRegistration['registeredby']."</td>"; 
                           echo "</tr>";
                       

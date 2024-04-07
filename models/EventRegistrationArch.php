@@ -13,6 +13,7 @@ class EventRegistrationArch {
     public $dateregistered;
     public $eventname;
     public $eventdate;
+    public $eventtype;
     public $userid;
     public $message;
     public $paid;
@@ -31,7 +32,7 @@ class EventRegistrationArch {
     // Get Danceevents
     public function read() {
     
-      $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+      $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate, c.eventtype as eventtype,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
       r.registeredby,
       r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
@@ -40,7 +41,29 @@ class EventRegistrationArch {
       LEFT JOIN
         eventsarch c ON r.preveventid = c.previd
       ORDER BY
-        r.preveventid, r.lastname, r.firstname, r.dateregistered';
+        c.eventdate DESC, r.preveventid, r.lastname, r.firstname, r.dateregistered';
+
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
+    public function readByType() {
+    
+      $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate, c.eventtype as eventtype,
+      r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+      r.registeredby,
+      r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
+      r.mealchoice, r.dietaryrestriction
+      FROM ' . $this->table . ' r
+      LEFT JOIN
+        eventsarch c ON r.preveventid = c.previd
+      ORDER BY
+        c.eventdate, c.eventtype';
 
 
       // Prepare statement

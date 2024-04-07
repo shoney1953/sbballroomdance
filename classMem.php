@@ -33,7 +33,7 @@ if ($rowCount > 0) {
             'userid' => $userid,
             'email' => $email,
             'registeredby' => $registeredby,
-            'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
+            'dateregistered' => date('m d Y', strtotime($dateregistered))
         );
       
         array_push($classRegistrations, $reg_item);
@@ -122,6 +122,7 @@ echo '<div class="container-section ">';
                         echo '<th>First Name</th>';
                         echo '<th>Last Name    </th>';
                         echo '<th>Email</th>';
+                        echo '<th>Reg Date</th>';
                         echo '<th>Reg By</th>';
                     echo '</tr>';
                     
@@ -134,6 +135,7 @@ echo '<div class="container-section ">';
                             echo "<td>".$classRegistration['firstname']."</td>";
                             echo "<td>".$classRegistration['lastname']."</td>";
                             echo "<td>".$classRegistration['email']."</td>"; 
+                            echo "<td>".$classRegistration['dateregistered']."</td>"; 
                             echo "<td>".$classRegistration['registeredby']."</td>"; 
                           echo "</tr>";
                       }

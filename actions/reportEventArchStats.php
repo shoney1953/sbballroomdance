@@ -2,14 +2,14 @@
 session_start();
 require('../includes/fpdf.php');
 require_once '../config/Database.php';
-require_once '../models/EventRegistrationArch.php';
+require_once '../models/EventArch.php';
 
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistrationArch($db);
-$regArr = [];
-$eventname = '';
-$eventYear = '';
+$eventArr = [];
+$prevYear = '0000';
+$prevEventType = '';
 
 class PDF extends FPDF
 {
@@ -25,7 +25,7 @@ class PDF extends FPDF
         $this->Cell(
             50,
             10,
-            'SBDC Archived Event Registration Report - '.$today, 0, 1, 'C'
+            'SBDC Archived Event Statistics Report - '.$today, 0, 1, 'C'
         );
         // Line break
         $this->Ln(20);
@@ -42,15 +42,10 @@ class PDF extends FPDF
     }
 }
 
-if (isset($_POST['submitEventRep'])) {
+if (isset($_POST['submitEventStatsRep'])) {
  
-    if (isset($_POST['eventId'])) {
-        if ($_POST['eventId'] !== '') {
-            $eventId = htmlentities($_POST['eventId']);
-            $result = $eventReg->read_ByEventId($eventId);
-        } else {
-        $result = $eventReg->read();
-    }
+        $result = $eventReg->readByType();
+    
 }
     $rowCount = $result->rowCount();
     $num_reg = $rowCount;
@@ -58,21 +53,20 @@ if (isset($_POST['submitEventRep'])) {
     
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
-            $reg_item = array(
+            $event_item = array(
                 'id' => $id,
-                'firstname' => $firstname,
-                'lastname' => $lastname,
-                'eventid' => $eventid,
-                'preveventid' => $preveventid,
+                'previd' => $previd,
                 'eventname' => $eventname,
+                'eventtype' => $eventtype,
+                'eventroom' => $eventroom,
+                'eventdesc' => $eventdesc,
+                'eventdj' => $eventdj,
                 'eventdate' => $eventdate,
-                'userid' => $userid,
-                'email' => $email,
-                'paid' => $paid,
-                'registeredby' => $registeredby,
-                'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
+                'eventcost' => $eventcost,
+                'eventnumregistered' => $eventnumregistered,
+                'eventregend' => $eventregend
             );
-            array_push($regArr, $reg_item);
+            array_push($eventArr, $event_item);
         }
     }
 
@@ -87,31 +81,19 @@ if ($rowCount > 0) {
     $paidNum = 0;
     $prevEvent = '';
     $init = 1;
-    foreach ($regArr as $reg) {
+    foreach ($eventArr as $event) {
 
         $regCount++;
         if ($init == 1) {
-            $prevEvent = $reg['preveventid'];
-
+     
+            $prevYear = substr($event['eventdate'], 0, 4);
+            $prevEventType = $event['eventtype'];
+            $prevEvent = $event['preveventid'];
             $init = 0;
-            $eventname = $reg['eventname'];
-            $ampPos = strpos($eventname, "&amp;amp;", 0); 
-            if ($ampPos) {
-            $eventname = substr_replace($eventname, 'and', $ampPos, 9) ;
-            }
-            $event_string = ' '.$eventname.'  '
-                     .$reg['eventdate'].' ';
-            $pdf->SetFont('Arial', 'BU', 10);
-            $pdf->Cell(0, 10, $event_string, 0, 1);
-            $pdf->SetFont('Arial', '', 10);
-            $pdf->Cell(35,5,"FIRST NAME",1,0,"L"); 
-            $pdf->Cell(35,5,"LAST NAME",1,0,"L");  
-            $pdf->Cell(60,5,"EMAIL",1,0,"L");   
-            $pdf->Cell(60,5,"DATE REGISTERED",1,0,"L");
-            $pdf->Cell(35,5,"REG BY",1,1,"L");
-    
+ 
         }
-        if ($reg['preveventid'] !== $prevEvent) {
+        $eventYear = substr($event['eventdate'], 0, 4);
+        if ($eventYear != $prevYear) {
             $pdf->SetFont('Arial', 'B', 10);
             $pdf->Ln(2);
             $pdf->Cell(0, 5, "Total Registrations for this Event:  ".$regCount, 0, 1); 
@@ -120,14 +102,7 @@ if ($rowCount > 0) {
             $paidNum = 0;
          
             $prevEvent = $reg['preveventid'];
-            $eventname = $reg['eventname'];
-            $ampPos = strpos($eventname, "&amp;amp;", 0); 
-            if ($ampPos) {
-            $eventname = substr_replace($eventname, 'and', $ampPos, 9) ;
-            }
-
-            
-            $event_string = ' '.$eventname.'  '
+            $event_string = ' '.$reg['eventname'].'  '
             .$reg['eventdate'].' ';
             $pdf->Ln(3);
             $pdf->SetFont('Arial', 'BU', 10);
