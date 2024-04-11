@@ -115,6 +115,7 @@ if (isset($_POST['archiveEvent'])) {
                     'eventcost' => $eventcost,
                     'eventform' => $eventform,
                     'eventdj' => $eventdj,
+                    'orgemail' => $orgemail,
                     'eventdesc' => $eventdesc,
                     'eventroom' => $eventroom,
                     'eventnumregistered' => $eventnumregistered
@@ -155,6 +156,7 @@ if (isset($_POST['archiveEvent'])) {
                 echo '<th>Type    </th>';
                 echo '<th>Description </th>';
                 echo '<th>DJ </th>';
+                echo '<th>ORG Email/th>';
                 echo '<th>Room    </th>';
                 echo '<th>Cost   </th>';
                 echo '<th># Registered </th>';
@@ -169,6 +171,7 @@ if (isset($_POST['archiveEvent'])) {
                     echo "<td>".$event->eventtype."</td>";
                     echo "<td>".$event->eventdesc."</td>";
                     echo "<td>".$event->eventdj."</td>";
+                    echo "<td>".$event->orgemail."</td>";
                     echo "<td>".$event->eventroom."</td>";
                     echo "<td>".$event->eventcost."</td>";
                     echo "<td>".$event->eventnumregistered."</td>";
@@ -343,6 +346,8 @@ if (isset($_POST['archiveEvent'])) {
         echo '<textarea name="eventdesc" cols="100" rows="3" >'.$event->eventdesc.'</textarea><br>';
         echo '<label for="eventdj">Event DJ</label><br>';
         echo '<input type="text" name="eventdj" value="'.$event->eventdj.'"><br>';
+        echo '<label for="orgemail">Organizer Email</label><br>';
+        echo '<input type="email" name="orgemail" value="'.$event->orgemail.'"><br>';
         echo '<label for="eventroom">Room</label><br>';
         echo '<input type="text" name="eventroom" value="'.$event->eventroom.'"><br>';
         echo '<label for="eventdate">Date</label><br>';
@@ -382,6 +387,8 @@ if (isset($_POST['archiveEvent'])) {
             echo '<textarea name="eventdesc" cols="100" rows="3" required></textarea><br>';
             echo '<label for="eventdj">Event DJ</label><br>';
             echo '<input type="text" name="eventdj"><br>';
+            echo '<label for="orgemail">Organizer Email</label><br>';
+            echo '<input type="email" name="orgemail"><br>';
             echo '<label for="eventroom">Room</label><br>';
             echo '<input type="text" name="eventroom" required><br>';
             echo '<label for="eventdate">Date</label><br>';
@@ -414,6 +421,7 @@ if (isset($_POST['archiveEvent'])) {
                     echo '<th>Event    </th>';
                     echo '<th>Type    </th>';
                     echo '<th>DJ    </th>';
+                    echo '<th>Organizer Email</th>';
                     echo '<th># Registered </th>';
                     echo '<th>Room    </th>';
                     echo '<th>Cost    </th>';
@@ -428,6 +436,7 @@ if (isset($_POST['archiveEvent'])) {
                 echo "<td>".$event['eventname']."</td>";
                 echo "<td>".$event['eventtype']."</td>";
                 echo "<td>".$event['eventdj']."</td>";
+                echo "<td>".$event['orgemail']."</td>";
                 echo "<td>".$event['eventnumregistered']."</td>";
                 echo "<td>".$event['eventroom']."</td>";
                 echo "<td>".$event['eventcost']."</td>";

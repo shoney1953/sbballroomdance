@@ -80,6 +80,12 @@ if (isset($_POST['submitEventReg'])) {
                 "<br>DJ  :    ".$event['eventdj'].
                 "<br>Room:    ".$event['eventroom'].
                 "<br>Date:    ".date('M d Y',strtotime($event['eventdate']))."</strong><br>"; 
+                if ($event['orgemail'] != null) {
+                    $toCC2 = $event['orgemail'];
+                }
+                else {        
+                        $toCC2 = '';                    
+                }
                 if ($event['eventtype'] === 'Dance Party') {
                     if (isset($_POST["$chkboxID2"])) {
                         $emailBody .= "You have chosen to attend dinner.<br>";

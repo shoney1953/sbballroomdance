@@ -85,6 +85,7 @@ class PDF extends FPDF
                 'eventname' => $eventname,
                 'eventdate' => $eventdate,
                 'eventtype' => $eventtype,
+                'orgemail' => $orgemail,
                 'userid' => $userid,
                 'email' => $email,
                 'paid' => $paid,
@@ -118,9 +119,14 @@ if ($rowCount > 0) {
             $prevEvent = $reg['eventid'];
             $init = 0;
             $event_string = ' '.$reg['eventtype'].' --- '.$reg['eventname'].'  '
-                     .$reg['eventdate'].'   Cost: '.$event->eventcost.' ';
+                     .$reg['eventdate'].'   Cost: '.$event->eventcost;
             $pdf->SetFont('Arial', 'B', 14);
             $pdf->Cell(0, 10, $event_string, 0, 1);
+            if ($reg['orgemail'] != null) {
+                $pdf->Cell(0, 10, 'Organizer Email: '.$reg['orgemail'], 0, 1);
+            }
+          
+          
             $pdf->SetFont('Arial', '', 14);
             $pdf->Cell(40,8,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(45,8,"LAST NAME",1,0,"L");  
@@ -173,6 +179,10 @@ if ($rowCount > 0) {
                     .$reg['eventdate'].'   Cost: '.$event->eventcost.' ';
            $pdf->SetFont('Arial', 'B', 14);
            $pdf->Cell(0, 10, $event_string, 0, 1);
+           if ($reg['orgemail'] != null) {
+            $pdf->Cell(0, 10, 'Organizer Email: '.$reg['orgemail'], 0, 1);
+        }
+        
            $pdf->SetFont('Arial', '', 14);
            $pdf->Cell(40,8,"FIRST NAME",1,0,"L"); 
            $pdf->Cell(45,8,"LAST NAME",1,0,"L");  

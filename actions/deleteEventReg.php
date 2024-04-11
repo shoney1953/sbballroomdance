@@ -38,9 +38,12 @@ $result = 0;
        $delId = 'del'.$reg['id'];
 
     if (isset($_POST["$delId"])) {
+    
         $eventReg->id = $reg['id'];
         $eventid = $_POST['eventid'];
-
+        if ($reg['orgemail'] != null) {
+            $toCC2 = $reg['orgemail'];
+        }
     $regFirstName1 = $reg['firstname'];
     $regLastName1 = $reg['lastname'];
     $regEmail1 = $reg['email'];;

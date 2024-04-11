@@ -47,6 +47,7 @@ if (isset($_POST['submitArchive'])) {
       $eventArch->eventdate = $ea['eventdate'];
       $eventArch->eventregend = $ea['eventregend'];
       $eventArch->eventdj = $ea['eventdj'];
+      $eventArch->orgemail = $ea['orgemail'];
       $eventArch->eventdesc = $ea['eventdesc'];
       $eventArch->eventnumregistered = $ea['eventnumregistered'];
       $eventArch->eventcost = $ea['eventcost'];

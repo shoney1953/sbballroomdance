@@ -58,6 +58,7 @@ if ($rowCount > 0) {
             'eventdate' => $eventdate,
             'eventcost' => $eventcost,
             'eventform' => $eventform,
+            'orgemail' => $orgemail,
             'eventdj' => $eventdj,
             'eventdesc' => $eventdesc,
             'eventroom' => $eventroom,
@@ -626,7 +627,7 @@ if (isset($_SESSION['username'])) {
                     echo "<td>".$event['eventdesc']."</td>"; 
                     echo "<td>".$event['eventroom']."</td>";
                     echo "<td>".$event['eventdj']."</td>";            
-
+  
                     echo "<td>".$event['eventcost']."</td>";
                     if ($event['eventform']) {
                         echo '<td><a href="'.$event['eventform'].'">VIEW</a></td>';

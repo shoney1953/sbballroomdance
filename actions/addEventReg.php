@@ -72,7 +72,8 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->userid = $usr['id'];
                     $eventReg->paid = 0;
                     $eventReg->registeredby = $_SESSION['username'];
-         
+                    
+                    
                     
                     if ($event->eventtype === 'Dine and Dance') {
                     
@@ -133,7 +134,9 @@ if (isset($_POST['submitAddReg'])) {
                     }
                   
                  }
-                
+                 if ($event->orgemail != null) {
+                    $toCC2 = $event->orgemail;
+                }
                 $emailBody .= '<br>Note: You can also see these events from your profile on the website.';
                 if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
       

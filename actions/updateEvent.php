@@ -37,6 +37,7 @@ if (isset($_POST['submitUpdate'])) {
     $evformID = "evform".$event['id'];
     $evrendID = "evrend".$event['id'];
     $evidID = "evid".$event['id'];
+    $evoeID = "evoe".$event['id'];
         if (isset($_POST["$evSelectChk"])) {
 
             $eventRec->id = $event['id'];
@@ -44,6 +45,7 @@ if (isset($_POST['submitUpdate'])) {
             $eventRec->eventtype = $_POST["$evtypeID"];
             $eventRec->eventdesc = $_POST["$evdescID"];
             $eventRec->eventdj = $_POST["$evdjID"];
+            $eventRec->orgemail = $_POST["$evoeID"];
             $eventRec->eventform = $_POST["$evformID"];
             $eventRec->eventroom = $_POST["$evroomID"];
             $eventRec->eventdate = $_POST["$evdateID"];

@@ -84,6 +84,7 @@ if ($rowCount > 0) {
             'eventname' => $eventname,
             'eventtype' => $eventtype,
             'eventdate' => $eventdate,
+            'orgemail' => $orgemail,
             'email' => $email,
             'paid' => $paid,
             'registeredby' => $registeredby,

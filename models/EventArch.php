@@ -16,6 +16,7 @@ class EventArch {
     public $eventform;
     public $eventnumregistered;
     public $eventregend;
+    public $orgemail;
 
     // Constructor with DB
     public function __construct($db) {
@@ -30,6 +31,71 @@ class EventArch {
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
+    public function readByYear($year) {
+      // Create query
+
+      $query = 'SELECT * FROM ' . $this->table . ' 
+      WHERE YEAR(eventdate) = :year
+      ORDER BY eventdate DESC, eventtype';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':year', $year);
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
+    public function readByYearType($year, $type) {
+      // Create query
+
+      $query = 'SELECT * FROM ' . $this->table . ' 
+      WHERE YEAR(eventdate) = :year AND eventtype = :type
+      ORDER BY eventdate DESC, eventtype';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':year', $year);
+      $stmt->bindParam(':type', $type);
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
+    public function distinctYear() {
+      // Create query
+
+      $query = 'SELECT DISTINCT YEAR(eventdate) FROM ' . $this->table . ' ';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
+    public function distinctType($year) {
+      // Create query
+
+      $query = 'SELECT DISTINCT eventtype FROM ' . $this->table . ' 
+       WHERE YEAR(eventdate) = :year';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':year', $year);
+
+
+      // Execute query
+      $stmt->execute();
+
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
       // Execute query
       $stmt->execute();
@@ -62,6 +128,7 @@ class EventArch {
           $this->eventdesc = $row['eventdesc'];
           $this->eventform = $row['eventform'];
           $this->eventregend = $row['eventregend'];
+          $this->orgemail = $row['orgemail'];
           $this->eventdj = $row['eventdj'];
           $this->eventnumregistered = $row['eventnumregistered'];
     }
@@ -73,7 +140,7 @@ class EventArch {
           ' SET eventname = :eventname, eventtype = :eventtype, 
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
-          previd = :previd, eventregend = :eventregend,
+          previd = :previd, eventregend = :eventregend,  orgemail= :orgemail,
           eventnumregistered = :eventnumregistered';
 
           // Prepare statement
@@ -87,6 +154,7 @@ class EventArch {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+          $this->orgemail = htmlspecialchars(strip_tags($this->orgemail));
           $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
           
           $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
@@ -100,6 +168,7 @@ class EventArch {
           $stmt->bindParam(':eventdesc', $this->eventdesc);
           $stmt->bindParam(':eventcost', $this->eventcost);
           $stmt->bindParam(':eventdate', $this->eventdate);
+          $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventregend', $this->eventregend);
           
           $stmt->bindParam(':eventform', $this->eventform);
@@ -126,7 +195,7 @@ class EventArch {
           ' SET eventname = :eventname, eventtype = :eventtype, 
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
-          previd = :previd, eventregend = :eventregend,
+          previd = :previd, eventregend = :eventregend, orgemail = :orgemail,
           eventnumregistered = :eventnumregistered
             WHERE id = :id ';
    
@@ -142,6 +211,7 @@ class EventArch {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+          $this->orgemail = htmlspecialchars(strip_tags($this->orgemail));
           $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
           $this->eventnumregistered = htmlspecialchars(strip_tags($this->eventnumregistered));
           $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
@@ -155,6 +225,7 @@ class EventArch {
           $stmt->bindParam(':eventcost', $this->eventcost);
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
+          $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventregend', $this->eventregend);
           $stmt->bindParam(':previd', $this->previd);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);

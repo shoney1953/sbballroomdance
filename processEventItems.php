@@ -68,6 +68,7 @@ if ($reportEvent) {
        $evrendID = "evrend".$event['id'];
        $evformID = "evform".$event['id'];
        $evidID = "evid".$event['id'];
+       $evoeID = "evoe".$event['id'];
        echo '<div class="form-container">';
        echo '<div class="form-grid">';
 
@@ -155,6 +156,12 @@ if ($reportEvent) {
       echo '</div>';
 
       echo "<div class='form-item'>";
+      echo "<h4 class='form-item-title'>Organizer Email</h4>";
+      echo "<input type='text' name='".$evoeID."' value='".$event['orgemail']."' 
+      title='Enter the Organizers email' >";
+      echo '</div>';
+
+      echo "<div class='form-item'>";
       echo "<h4 class='form-item-title'>Event Cost</h4>";
       echo "<input type='text' class='text-small' name='".$evcostID."' value='".$event['eventcost']."' 
       title='Enter the Event Cost if any' >";
@@ -201,6 +208,7 @@ if ($deleteEvent) {
   echo '<th>Date</th>';
   echo '<th>Registration Ends</th>';
   echo '<th>DJ</th>';
+  echo '<th>ORG email</th>';
   echo '</tr>';
   echo '</thead>';
   echo '<tbody>';
@@ -220,6 +228,7 @@ if ($deleteEvent) {
         echo "<td>".$event['eventdate']."</td>";
         echo "<td>".$event['eventregebd']."</td>";
         echo "<td>".$event['eventdj']."</td>";
+        echo "<td>".$event['orgid']."</td>";
 
         echo "<input type='hidden' name='".$evidID."' value='".$event['id']."'>";
         echo '</tr>';
@@ -249,6 +258,7 @@ echo '</form>';
     echo '<th>Date</th>';
     echo '<th>Registration Ends</th>';
     echo '<th>DJ</th>';
+    echo '<th>ORG Email</th>';
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
@@ -268,6 +278,7 @@ echo '</form>';
           echo "<td>".$event['eventdate']."</td>";
           echo "<td>".$event['eventregend']."</td>";
           echo "<td>".$event['eventdj']."</td>";
+          echo "<td>".$event['orgemail']."</td>";
           echo "<input type='hidden' name='".$evidID."' value='".$event['id']."'>";
           echo '</tr>';
    
@@ -360,6 +371,11 @@ echo '</form>';
           echo "<h4 class='form-item-title'>Event DJ</h4>";
           echo "<input type='text' name='eventdj' value='".$event['eventdj']."' 
               title='Enter the DJ for the Event' >";
+          echo '</div>';
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Organizer Email</h4>";
+          echo "<input type='email' name='orgemail' value='".$event['orgemail']."' 
+              title='Enter the Organizers Email' >";
           echo '</div>';
           echo "<div class='form-item'>";
           echo "<h4 class='form-item-title'>Event Cost</h4>";

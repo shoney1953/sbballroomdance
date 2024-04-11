@@ -32,6 +32,7 @@ $event = new Event($db);
     $event->eventdate = $_POST['eventdate'];
     $event->eventregend = $_POST['eventregend'];
     $event->eventcost = $_POST['eventcost'];
+    $event->orgemail = $_POST['orgemail'];
     $event->eventnumregistered = 0;
     $event->create();
 

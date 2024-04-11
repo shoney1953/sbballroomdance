@@ -13,6 +13,7 @@ class EventRegistration {
     public $eventname;
     public $eventdate;
     public $eventtype;
+    public $orgemail;
     public $userid;
     public $message;
     public $paid;
@@ -32,6 +33,7 @@ class EventRegistration {
     public function read() {
     
       $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+      c.orgemail as orgemail,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
       r.registeredby,
       r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
@@ -57,6 +59,7 @@ class EventRegistration {
       
 
           $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+          c.orgemail as orgemail
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
           r.registeredby,
           r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
@@ -88,6 +91,7 @@ class EventRegistration {
           $this->eventname = $row['eventname'];
           $this->eventdate = $row['eventdate'];
           $this->eventtype = $row['eventtype'];
+          $this->orgemail = $row['orgemail'];
           $this->email = $row['email'];
           $this->dateregistered = $row['dateregistered'];
           $this->paid = $row['paid'];
@@ -108,6 +112,7 @@ public function read_ByUserid($userid) {
     // Create query
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.orgemail as orgemail,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
@@ -138,7 +143,7 @@ public function read_ByEmail($email) {
     // Create query
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
-    c.eventtype as eventtype,
+    c.eventtype as eventtype, c.orgemail as orgemail,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
@@ -170,7 +175,7 @@ public function read_ByEmail($email) {
       
 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
-    c.eventtype as eventtype,
+    c.eventtype as eventtype, c.orgemail as orgemail,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
@@ -201,7 +206,7 @@ public function read_ByEventIdDinner($eventid) {
       
 
   $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
-  c.eventtype as eventtype,
+  c.eventtype as eventtype, c.orgemail as orgemail,
   r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
   r.registeredby,
   r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,

@@ -61,6 +61,7 @@ if (isset($_POST['submitEventStatsRep'])) {
                 'eventroom' => $eventroom,
                 'eventdesc' => $eventdesc,
                 'eventdj' => $eventdj,
+                'orgemail' => $orgemail,
                 'eventdate' => $eventdate,
                 'eventcost' => $eventcost,
                 'eventnumregistered' => $eventnumregistered,
