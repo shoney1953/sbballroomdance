@@ -35,6 +35,7 @@ deployment:
     - /bin/cp resources.php $DEPLOYPATH
     - /bin/cp secrets.php $DEPLOYPATH
     - /bin/cp signup.php $DEPLOYPATH
+    - /bin/cp specialevent.php $DEPLOYPATH
     - /bin/cp sponsor.php $DEPLOYPATH
     - /bin/cp yourProfile.php $DEPLOYPATH
     - /bin/cp -R actions $DEPLOYPATH
