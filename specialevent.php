@@ -40,6 +40,7 @@ special moment — Only on Cunard.
     <ul>
           <li class="li-none"><a href="https://drive.google.com/file/d/1P08KiOFzkvCw-d8Uqxn_DL6L5ic-qV1w/view?usp=sharing">Click to get more information about the cruise sale.</a></li>
           <li class="li-none"><a href="https://drive.google.com/file/d/1Jt3-0jWUezLERNlI8wUs4AgRtko4PV1c/view?usp=drive_link">Click to get the deck plans of the QE2</a></li>
+          <li class="li-none"><a href="https://www.cruiseplannersandmore.com/cs/1712274">Click to see the Dance Cruise details</a></li>
     </ul>
     <br><br>
     <h4>Brought to you by</h4>
