@@ -427,7 +427,10 @@ font-weight: bolder;
   color: white;
   transform: rotateY(180deg);
 }
-
+.cruise {
+  width: 500px;
+  margin-bottom: 20px;
+}
 table {
   width: 100%;
 }
@@ -1313,6 +1316,10 @@ iframe {
     margin-left: 250px;
     opacity: 0.3;
   }
+  .cruise {
+    width: 400px;
+    margin-bottom: 20px;
+  }
   iframe {
     border: solid 1px #777;
     width: 800px;
@@ -1397,6 +1404,10 @@ iframe {
     margin-bottom: 5px;
     margin-left: 100px;
     opacity: 0.3;
+  }
+  .cruise {
+    width: 300px;
+    margin-bottom: 20px;
   }
   .container {
     margin-left: 1%;
