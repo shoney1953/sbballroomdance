@@ -294,7 +294,7 @@ if (isset($_SESSION['username'])) {
             echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
         }
     }
-    // echo '<li><a title="New Membership Benefits" href="benefits.php">FAQs</a></li>';
+    // echo '<li><a title="New Membership Benefits" href="benefits.php">Special Member Benefit</a></li>';
     echo '<li><a title="Frequently Asked Questions" href="faq.php">FAQs</a></li>';
     echo '<li><a href="#">More ... &dtrif;</a>';
     echo '<ul>';
@@ -528,6 +528,9 @@ if (isset($_SESSION['username'])) {
             <li class="li-none li-large">Jane Sims, Secretary 
                   &rarr; <a href="mailto:calamitywjs@gmail.com?subject=SBDC Info">
                   Email Jane</a></li>
+            <!-- <li class="li-none li-large">Peggy Albrect, Secretary 
+                  &rarr; <a href="mailto:peggeyalbrect@gmail.com?subject=SBDC Info">
+                  Email Peggy</a></li> -->
             <li class="li-none li-large">Dale & Ann Pizzitola, Directors of Dance Instruction    
                 &rarr; 
                 Email Ann & Dale</a></li>
@@ -830,6 +833,8 @@ if (isset($_SESSION['username'])) {
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/01-12-2024-SBDC-Winter-wonderland-dance">Winter Wonderland Dance 01 12 2024</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-16-2024-Valentines-Dance">Valentines Dance 02 16 2024</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-BBQ-Picnic-April-13-2024">BBQ Picnic Social 04 13 2024</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Mama-Mia-Dance-Party-4-19-2024">Mama Mia Dance Party 04 19 2024</a></li>
+       
       
        </ul>
        </div>

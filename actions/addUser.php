@@ -185,6 +185,7 @@ if (isset($_POST['submitAddUser'])) {
      $emailBody .= "Nan Kartsonis, Vice President<br>"; 
      $emailBody .= "Roger Shamburg, Treasurer<br>";
      $emailBody .= "Jane Sims, Secretary<br>";
+    //  $emailBody .= "Peggy Albrect, Secretary<br>";
      $emailBody .= "Ann and Dale Pizzitola, Directors of Dance Instruction <br>";
      $emailBody .= "Vivian Herman, Director of Volunteers<br>";
 
