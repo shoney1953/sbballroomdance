@@ -294,7 +294,7 @@ if (isset($_SESSION['username'])) {
             echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
         }
     }
-    // echo '<li><a title="New Membership Benefits" href="benefits.php">Special Member Benefit</a></li>';
+    echo '<li><a title="New Membership Benefits" href="benefits.php">Special Member Benefits</a></li>';
     echo '<li><a title="Frequently Asked Questions" href="faq.php">FAQs</a></li>';
     echo '<li><a href="#">More ... &dtrif;</a>';
     echo '<ul>';
