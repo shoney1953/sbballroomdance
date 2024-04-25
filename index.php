@@ -228,20 +228,20 @@ if (isset($_SESSION['username'])) {
             <li><a title="Combined Calendar of Events and Classes" href="#calendar">Activities Calendar</a></li>
             <li><a title="2025 New Years Cruise" href="specialevent.php">2025 Cruise Info</a></li>
        
-            <li><a href="#events">Event List</a></li>
+            <li><a title="List of Upcoming Events" href="#events">Event List</a></li>
 
             <?php
              if (isset($_SESSION['role'])) {
              
-                echo '<li><a href="regForEvents.php">Register for Events</a></li>';
+                echo '<li><a title="Register for Upcoming Events" href="regForEvents.php">Register for Events</a></li>';
                
              }
             ?>
-            <li><a href="#classes">Class List</a></li>
+            <li><a title="List of Upcoming Classes" href="#classes">Class List</a></li>
             <?php
              if (isset($_SESSION['role'])) {
             
-                echo '<li><a href="regForClasses.php">Register for Classes</a></li>';
+                echo '<li><a title="Register for Upcoming Classes" href="regForClasses.php">Register for Classes</a></li>';
   
                 
              }
@@ -257,14 +257,14 @@ if (isset($_SESSION['username'])) {
   
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
         if (isset($_SESSION['role'])) {
-            echo ' <li><a  style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
+            echo ' <li><a  title="Logout from the Website" style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
         }
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {
               
-              echo ' <li><a href="#directory">
+              echo ' <li><a title="List of SaddleBrooke Ballroom Dance Club Members" href="#directory">
               Member Directory</a></li>';
-              echo '<li><a href="#">Volunteer &dtrif;</a>';
+              echo '<li><a title="List of Volunteer Activites" href="#">Volunteer &dtrif;</a>';
               echo '<ul >';
                   echo '<li><a href="#djinfo">DJ Info</a></li>';
                   echo '<li><a href="#instructorinfo">Instructor Info</a></li>';
@@ -281,31 +281,31 @@ if (isset($_SESSION['username'])) {
              ($_SESSION['role'] == 'SUPERADMIN') ||
              ($_SESSION['role'] == 'INSTRUCTOR')
              ) {
-                echo '<li><a href="administration.php">Administration</a></li>';
+                echo '<li><a title="Club Administrative Functions" href="administration.php">Administration</a></li>';
             }
         }
      else {
 
         echo '<li><a title="Login as a Member or Visitor" style="color: red;font-weight: bold;font-size: medium" href="login.php"> Login</a></li>';
-        echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
+        echo '<li><a title="Information on Joining the Club" style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
     }
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'visitor') {
-            echo '<li><a style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
+            echo '<li><a title="Information on Joining the Club" style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
         }
     }
     echo '<li><a title="New Membership Benefits" href="benefits.php">Special Member Benefits</a></li>';
     echo '<li><a title="Frequently Asked Questions" href="faq.php">FAQs</a></li>';
-    echo '<li><a href="#">More ... &dtrif;</a>';
+    echo '<li><a title="Additional Options" href="#">More ... &dtrif;</a>';
     echo '<ul>';
-    echo '<li><a href="#about">About Our Club</a></li>';
+    echo '<li><a title="More information about our club" href="#about">About Our Club</a></li>';
     if (isset($_SESSION['username'])) {
-        echo '<li><a href="#contact">Contact Us</a></li>';
+        echo '<li><a title="How to Contact Us" href="#contact">Contact Us</a></li>';
     }
-    echo '<li><a href="#help">Help</a></li>';
-    echo '<li><a href="#pictures">Picture Gallery</a></li>';
-    echo '<li><a href="resources.php">Resources</a></li>';
-    echo '<li><a href="sponsor.php">Sponsors</a></li>';
+    echo '<li><a title="Where to find Help" href="#help">Help</a></li>';
+    echo '<li><a title="Pictures from various activities and class videos" href="#pictures">Picture Gallery</a></li>';
+    echo '<li><a title="Various Sources of More information" href="resources.php">Resources</a></li>';
+    echo '<li><a title="Sponsors for the SaddleBrooke Ballroom Dance Club" href="sponsor.php">Sponsors</a></li>';
     echo '</ul>';
     echo '</li>';
     ?>
