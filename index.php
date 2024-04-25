@@ -203,8 +203,8 @@ if (isset($_SESSION['username'])) {
 <nav class="nav">
     <div class="container">
      <ul>
-        <!-- <li> </li> -->
-         <li> <a href="#" >Home</a></li>w 
+       
+         <li> <a href="#" >Home</a></li>
      
             <?php
              if (isset($_SESSION['role'])) {
