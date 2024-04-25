@@ -350,9 +350,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     if (($_SESSION['role'] === 'ADMIN') ||
         ($_SESSION['role'] === 'SUPERADMIN')) 
        {
-        echo '<li><a href="index.php">Back to Home</a></li>';
-        echo '<li><a href="#events">Maintain Events</a></li>';
-        echo '<li><a href="#classes">Maintain Classes</a></li>';
+        echo '<li><a title="Return to Home Page" href="index.php">Back to Home</a></li>';
+        echo '<li><a title="Add, Update and Archive Events" href="#events">Maintain Events</a></li>';
+        echo '<li><a title="Class Related Functions" href="#classes">Maintain Classes</a></li>';
      
 
         echo '</ul>';
@@ -361,23 +361,23 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
   
         echo '<ul>';
         // echo '<li><a href="#contacts">Contacts</a></li>';
-        echo '<li><a href="#visitors">Visitors</a></li>';
-        echo '<li><a href="https://drive.google.com/drive/folders/1PQSs3_gNDuSfQ2L24Gw0Fnsoe9_vQlQ-?usp=sharing">
+        echo '<li><a title="List Visitors" href="#visitors">Visitors</a></li>';
+        echo '<li><a title="List Booking Reports" href="https://drive.google.com/drive/folders/1PQSs3_gNDuSfQ2L24Gw0Fnsoe9_vQlQ-?usp=sharing">
              Booking Reports</a></li>';
 
      }
      if ($_SESSION['role'] === 'INSTRUCTOR') {
-        echo '<li><a href="index.php">Back to Home</a></li>';
-        echo '<li><a href="#classes">Maintain Classes</a></li>';
+        echo '<li><a title="Return to Home Page" href="index.php">Back to Home</a></li>';
+        echo '<li><a title="Class Related Functions" href="#classes">Maintain Classes</a></li>';
         echo '</ul>';
         echo '</div>';
      }
         
         if ($_SESSION['role'] === 'SUPERADMIN') {
 
-            echo '<li><a href="#users">Maintain Members</a></li>';
-            echo '<li><a href="#membership">Membership</a></li>';
-            echo '<li><a href="archives.php">Archives</a></li>';
+            echo '<li><a title="Add, Update, Report on Members" href="#users">Maintain Members</a></li>';
+            echo '<li><a title="List Members Status" href="#membership">Membership</a></li>';
+            echo '<li><a title="List Historical Data" href="archives.php">Archives</a></li>';
             echo '</ul>';
             echo '</div>';
         }
