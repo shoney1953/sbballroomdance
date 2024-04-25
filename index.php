@@ -226,7 +226,7 @@ if (isset($_SESSION['username'])) {
             ?>
       
             <li><a title="Combined Calendar of Events and Classes" href="#calendar">Activities Calendar</a></li>
-            <li><a  style="color: red;font-weight: bold;font-size: medium" href="specialevent.php">Special Cruise Info</a></li>
+            <li><a title="2025 New Years Cruise" href="specialevent.php">2025 Cruise Info</a></li>
        
             <li><a href="#events">Event List</a></li>
 
