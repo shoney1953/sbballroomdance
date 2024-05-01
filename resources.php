@@ -33,6 +33,7 @@
           <li class="li-none"><a href="https://www.youtube.com/c/SocialDanceOnline">YouTube - Social Dance Online</a></li>
           <li class="li-none"><a href="https://www.youtube.com/c/CountryDanceX">YouTube - Country DanceX</a></li>
           <li class="li-none"><a href="https://www.youtube.com/c/DanceVisionOfficial">YouTube - Dance Vision Official</a></li>
+          <li class="li-none"><a href="https://www.theaterseatstore.com/blog/dance-glossary">Glossary of Dance terms</a></li>
        </ul>
        </div>
     </div>

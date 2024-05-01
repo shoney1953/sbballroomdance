@@ -525,14 +525,14 @@ if (isset($_SESSION['username'])) {
             <li class="li-none li-large">Roger Shamburg, Treasurer 
                   &rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
                   Email Roger</a></li>
-            <li class="li-none li-large">Jane Sims, Secretary 
-                  &rarr; <a href="mailto:calamitywjs@gmail.com?subject=SBDC Info">
-                  Email Jane</a></li>
+            <li class="li-none li-large">Peggy Albrecht, Secretary 
+                  &rarr; <a href="mailto:peggyalbrecht@gmail.com?subject=SBDC Info">
+                  Email Peggy</a></li>
             <!-- <li class="li-none li-large">Peggy Albrect, Secretary 
                   &rarr; <a href="mailto:peggeyalbrect@gmail.com?subject=SBDC Info">
                   Email Peggy</a></li> -->
             <li class="li-none li-large">Dale & Ann Pizzitola, Directors of Dance Instruction    
-                &rarr; 
+                &rarr; <a href="mailto:annzabinski@gmail.com?subject=SBDC Info">
                 Email Ann & Dale</a></li>
            <li class="li-none li-large">Vivian Herman, Volunteer Coordinator  
                 &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">
@@ -750,8 +750,8 @@ if (isset($_SESSION['username'])) {
                   &rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Contact Info">
                   Roger Shamburg</a></li>';
             echo '<li class="li-none li-large">General Questions    
-                &rarr; <a href="mailto:calamitywjs@gmail.com?subject=SBDC Contact Info">
-                Jane Sims</a></li>';
+                &rarr; <a href="mailto:peggyalbrecht@gmail.com?subject=SBDC Contact Info">
+                Peggy Albrecht</a></li>';
             echo '<li class="li-none li-large">Questions about Classes   
                 &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Contact Info">
                 Ann and Dale Pizzitola</a></li>';

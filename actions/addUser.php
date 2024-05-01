@@ -32,7 +32,7 @@ $toCC2 = 'dancedirector@sbballroomdance.com';
 $toCC3 = 'webmaster@sbballroomdance.com';
 $toCC4 = 'tucsonviv6228@gmail.com';
 $toCC5 = '';
-$fromCC = "calamitywjs@gmail.com";
+$fromCC = "peggyalbrecht@gmail.com";
 
 if (isset($_POST['submitAddUser'])) {
 
@@ -184,7 +184,7 @@ if (isset($_POST['submitAddUser'])) {
      $emailBody .= "Rich Adinolfi, President<br>";
      $emailBody .= "Nan Kartsonis, Vice President<br>"; 
      $emailBody .= "Roger Shamburg, Treasurer<br>";
-     $emailBody .= "Jane Sims, Secretary<br>";
+     $emailBody .= "Peggy Albrecht, Secretary<br>";
     //  $emailBody .= "Peggy Albrect, Secretary<br>";
      $emailBody .= "Ann and Dale Pizzitola, Directors of Dance Instruction <br>";
      $emailBody .= "Vivian Herman, Director of Volunteers<br>";

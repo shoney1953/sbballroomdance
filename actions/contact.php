@@ -28,10 +28,10 @@ if (isset($_POST['submit'])) {
     $contact->email = filter_var($contact->email, FILTER_SANITIZE_EMAIL);  
     $contact->create();
     $fromEmailName = 'SBDC Ballroom Dance Club';
-    $toCC2 = 'calamitywjs@gmail.com';
+    $toCC2 = 'peggyalbrecht@gmail.com';
     $toCC3 = '';
     $toCC4 = '';
-    $toCC5 = '':
+    $toCC5 = '';
     $toName = $contact->firstname.' '.$contact->lastname; 
     $replyEmail = 'webmaster@gmail.com';
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>

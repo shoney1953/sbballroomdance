@@ -66,7 +66,7 @@ function sendThanks($memStat,$userEmail) {
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toName = $memStat['firstname']." ".$memStat['lastname'] ;
     $mailSubject = 'Thanks for Renewing your membership at SBDC Ballroom Dance Club!';
-    $fromCC = "calamitywjs@gmail.com";
+    $fromCC = "peggyalbrecht@gmail.com";
     $toCC2 = 'dancedirector@sbballroomdance.com';
     $toCC3 = "webmaster@sbballroomdance.com";
     $toCC4 = '';
@@ -96,7 +96,7 @@ function sendThanks($memStat,$userEmail) {
        $emailBody .= "Rich Adinolfi, President<br>";
        $emailBody .= "Nan Kartsonis, Vice President<br>"; 
        $emailBody .= "Roger Shamburg, Treasurer<br>";
-       $emailBody .= "Jane Sims, Secretary<br>";
+       $emailBody .= "Peggy Albrecht, Secretary<br>";
     //    $emailBody .= "Peggy Albrect, Secretary<br>";
        $emailBody .= "Ann & Dale Pizzitola, Directors of Dance Instruction<br>";
        $emailBody .= "Vivian Herman, Volunteer Coordinator<br>";
