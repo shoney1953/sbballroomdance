@@ -36,7 +36,10 @@
     <h3>
     <ul>
 
-          <li class="li-none"><a href="https://www.cruiseplannersandmore.com/cs/1712274">Click to see the Dance Cruise details</a></li>
+          <li class="li-none"><a href="https://www.cruiseplannersandmore.com/cs/1730907">Click to see the Dance Cruise details</a></li>
+          <li class="li-none"><a href="https://drive.google.com/file/d/1CdylqdIm9iyPfJzIVxQPlXckC8kjUyxn/view?usp=sharing">Click to download the Military Benefits.</a></li>
+          
+          
     </ul>
     </h3>
     <br>
