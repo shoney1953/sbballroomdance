@@ -156,7 +156,7 @@ echo '<div class="container-section ">';
               echo '<h3>Registrations</h3>';
                 echo '<table>';
                     echo '<tr>';
-                     
+                        echo '<th>ID</th>';
                         echo '<th>First Name</th>';
                         echo '<th>Last Name    </th>';
                         echo '<th>Email</th>';
@@ -188,7 +188,10 @@ echo '<div class="container-section ">';
                          if ($eventRegistration['eventid'] === $_GET['id']) {
                   
                           echo "<tr>";
-                        
+                          $hr = 'member.php?id=';
+                          $hr .= $eventRegistration["userid"];
+
+                          echo '<td> <a href="'.$hr.'">'.$eventRegistration["userid"].'</a></td>';
                             echo "<td>".$eventRegistration['firstname']."</td>";
                             echo "<td>".$eventRegistration['lastname']."</td>";
                             echo "<td>".$eventRegistration['email']."</td>"; 

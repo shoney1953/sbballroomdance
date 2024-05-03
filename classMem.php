@@ -118,7 +118,7 @@ echo '<div class="container-section ">';
                
                 echo '<table>';
                     echo '<tr>';
-                     
+                        echo '<th>ID</th>';
                         echo '<th>First Name</th>';
                         echo '<th>Last Name    </th>';
                         echo '<th>Email</th>';
@@ -131,7 +131,10 @@ echo '<div class="container-section ">';
                   
                          if ($classRegistration['classid'] === $_GET['id']) {
                           echo "<tr>";
-                        
+                          $hr = 'member.php?id=';
+                          $hr .= $classRegistration["userid"];
+
+                          echo '<td> <a href="'.$hr.'">'.$classRegistration["userid"].'</a></td>';
                             echo "<td>".$classRegistration['firstname']."</td>";
                             echo "<td>".$classRegistration['lastname']."</td>";
                             echo "<td>".$classRegistration['email']."</td>"; 
