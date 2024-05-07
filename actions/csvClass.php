@@ -19,9 +19,12 @@ $className = '';
 $classLevel = '';
 $_SESSION['csvClass'] = [];
 $csvClass = [];
+$number = 0;
 $title_array = 
-['Last Name',
-'First Name', 
+[
+'#',  
+'First Name',
+'Last Name', 
 'Email', 
 'Member'
 ];
@@ -54,8 +57,9 @@ $title_array =
               } else {
               $member = "NO";
                }
+               $number++;
             $reg_item = array(
-
+                'number' => $number,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
                 'email' => $email,
