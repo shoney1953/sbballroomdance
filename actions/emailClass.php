@@ -66,8 +66,7 @@ $preface = '';
               
             );
             $preface = "Class: ".$reg_item['classname'].
-            "\n Date: ".$reg_item['classdate'].
-            "\n Time: ".date('h:i:s A', strtotime($reg_item['classtime']))."\n\r"
+            "\n Beginning Date: ".$reg_item['classdate']."\n\r"
             ;
             if ($reg_item['email'] != '') {
                 $regEmail1[] = array('email' => $reg_item['email'],
