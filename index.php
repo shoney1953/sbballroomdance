@@ -825,7 +825,10 @@ if (isset($_SESSION['username'])) {
    <section id="pictures" class="content">
    <br>  
        <h1 class="section-header">Pictures from Past Events</h1>
-      
+       <h4>All Events</h4>
+       <ul>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Photos">Combination of All Event Photos</a></li>
+       </ul>
        <div class="form-grid3">
        <div class="form-grid-div">
        <h4>2024</h4>
