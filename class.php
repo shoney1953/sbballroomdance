@@ -2,7 +2,7 @@
 session_start();
 
 $allClasses = $_SESSION['allClasses'];
-$classRegistrations = $_SESSION['classRegistrations'];
+
 $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 if (!isset($_SESSION['username'])) {
@@ -17,14 +17,14 @@ if (!isset($_SESSION['username'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>SBDC Ballroom Dance - Admin Class</title>
+    <title>SBDC Ballroom Dance - Class Dates</title>
 </head>
 <body>
 <nav class="nav">
     <div class="container">
         
      <ul> 
-    <li><a href="administration.php">Back to Admin</a></li>
+    <li><a href="index.php">Back to Home</a></li>
      </ul>
     </div>
 </nav>
@@ -33,19 +33,21 @@ if (!isset($_SESSION['username'])) {
 if (isset($_GET['id'])) {
 echo '<div class="container-section ">';
     echo '<section id="classes" class="content">';
-    echo '<br><br><h1>Selected Classes</h1>';
+    echo '<br><br><h1>Class Details</h1>';
 
         echo '<table>';
             echo '<tr>';
-            echo '<th>ID   </th>';   
-            echo '<th>Start Date</th>';
+            echo '<th>Name    </th>';
+            echo '<th>Level    </th>';
+            echo '<th>Instructors    </th>';
+            echo '<th>Registration Email </th>';
             echo '<th>Time    </th>';
             echo '<th>Room    </th>';
-            echo '<th>Class    </th>';
-            echo '<th>Level    </th>';
-            echo '<th>Registration Email </th>';
+
+
+
             echo '<th>Notes</th>';
-            echo '<th>Instructors    </th>';
+   
             echo '<th>Class Limit    </th>';
             echo '<th># Reg </th>';
            
@@ -55,57 +57,59 @@ echo '<div class="container-section ">';
             foreach($allClasses as $class) {
                  if ($class["id"] === $_GET['id']) {
                   echo "<tr>";              
-                  echo "<td>".$class['id']."</td>";
-                  echo "<td>".$class['date']."</td>";
-                  echo "<td>".$class['time']."</td>";
-                  echo "<td>".$class['room']."</td>";
+            
                   echo "<td>".$class['classname']."</td>";
                   echo "<td>".$class['classlevel']."</td>";
-                  echo "<td>".$class['registrationemail']."</td>";
-                  echo "<td>".$class['classnotes']."</td>";
                   echo "<td>".$class['instructors']."</td>";
+                  echo "<td>".$class['registrationemail']."</td>";
+                  echo "<td>".$class['time']."</td>";
+                  echo "<td>".$class['room']."</td>";
+
+
+
+
+                  echo "<td>".$class['classnotes']."</td>";
+
                   echo "<td>".$class['classlimit']."</td>";
                   echo "<td>".$class['numregistered']."</td>";
                   echo "</tr>";
+                  echo "<tr>";  
+                  echo '<th>Start Date</th>';
+                  echo '<th>Date 2</th>';
+                  echo '<th>Date 3</th>';
+                  echo '<th>Date 4</th>';
+                  echo '<th>Date 5</th>';
+                  echo '<th>Date 6</th>';
+                  echo '<th>Date 7</th>';
+                  echo '<th>Date 8</th>';
+                  echo '<th>Date 9</th>';
+                  echo "</tr>";
+                  echo "<tr>";              
+       
+                  echo "<td>".$class['date']."</td>";
+                  echo "<td>".$class['date2']."</td>";
+                  echo "<td>".$class['date3']."</td>";
+                  echo "<td>".$class['date4']."</td>";
+                  echo "<td>".$class['date5']."</td>";
+                  echo "<td>".$class['date6']."</td>";
+                  echo "<td>".$class['date7']."</td>";
+                  echo "<td>".$class['date8']."</td>";
+                  echo "<td>".$class['date9']."</td>";
+                  echo "</tr>";
+                 }
+                  
               }
-         
         
-            }
+          
+
+             
+              
+         
             echo '</table>';
             echo '<br>';
 
                
-                echo '<table>';
-                    echo '<tr>';
-                     
-                        echo '<th>First Name</th>';
-                        echo '<th>Last Name    </th>';
-                        echo '<th>Email</th>';
-
-                        echo '<th>Date Reg</th> ';    
-                        echo '<th>Reg By</th> ';        
-                    echo '</tr>';
-                    
-            
-                    foreach($classRegistrations as $classRegistration) {
-                  
-                         if ($classRegistration['classid'] === $_GET['id']) {
-                          echo "<tr>";
-                        
-                            echo "<td>".$classRegistration['firstname']."</td>";
-                            echo "<td>".$classRegistration['lastname']."</td>";
-                            echo "<td>".$classRegistration['email']."</td>"; 
-                 
-       
-                            echo "<td>".$classRegistration['dateregistered']."</td>";
-                            
-                            echo "<td>".$classRegistration['registeredby']."</td>";
-                     
-                          echo "</tr>";
-                      }
-                    }
-                    
-                echo '</table>';
+             
                 echo '<br><br>';
             }
             echo '</section>'; 

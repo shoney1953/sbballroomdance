@@ -26,18 +26,38 @@ $title_array =
 'First Name',
 'Last Name', 
 'Email', 
-'Member'
+'Member',
+'Dates Attended'
 ];
   array_push($csvClass, $title_array);
-
+  
 
 
     if (isset($_POST['classId'])) {
         if ($_POST['classId'] !== '') {
             $class->id = htmlentities($_POST['classId']);
             $class->read_single();
-            $className = $class->classname;
-            $classLevel = $class->classlevel;
+
+            $title_array2 = 
+            [
+                ' ',  
+                ' ',
+                ' ', 
+                ' ', 
+                ' ',
+                substr($class->date,5,5),
+                substr($class->date2,5,5),
+                substr($class->date3,5,5),
+                substr($class->date4,5,5),
+                substr($class->date5,5,5),
+                substr($class->date6,5,5),
+                substr($class->date7,5,5),
+                substr($class->date8,5,5),
+                substr($class->date9,5,5)
+                ];
+                array_push($csvClass, $title_array2);
+                $className = $class->classname;
+                $classLevel = $class->classlevel;
             $classId = htmlentities($_POST['classId']);
 
             $result = $classReg->read_ByClassId($classId);

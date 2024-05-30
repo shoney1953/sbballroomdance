@@ -12,6 +12,14 @@ class ClassRegistration {
     public $dateregistered;
     public $classname;
     public $classdate;
+    public $classdate2;
+    public $classdate3;
+    public $classdate4;
+    public $classdate5;
+    public $classdate6;
+    public $classdate7;
+    public $classdate8;
+    public $classdate9;
     public $classtime;
     public $userid;
     public $registeredby;
@@ -51,6 +59,9 @@ class ClassRegistration {
           // Create query
           // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
           $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
+            c.date2 as classdate2, c.date3 as classdate3, c.date4 as classdate4,
+           c.date5 as classdate5, c.date6 as classdate6, c.date7 as classdate7, 
+           c.date8 as classdate8, c.date9 as classdate9, 
           r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
           r.userid
           FROM ' . $this->table . ' r
@@ -78,10 +89,18 @@ class ClassRegistration {
           $this->classid = $row['classid'];
           $this->userid = $row['userid'];
           $this->classname = $row['classname'];
-          $this->classname = $row['classdate'];
+          $this->classdate = $row['classdate'];
           $this->email = $row['email'];
           $this->dateregistered = $row['dateregistered'];
           $this->registeredby = $row['registeredby'];
+          $this->classdate2 = $row['classdate2'];
+          $this->classdate3 = $row['classdate3'];
+          $this->classdate4 = $row['classdate4'];
+          $this->classdate5 = $row['classdate5'];
+          $this->classdate6 = $row['classdate6'];
+          $this->classdate7 = $row['classdate7'];
+          $this->classdate8 = $row['classdate8'];
+          $this->classdate9 = $row['classdate9'];
           return true;
           }
           return false;
@@ -92,6 +111,9 @@ public function read_ByUserid($userid) {
 
 
   $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
+    c.date2 as classdate2, c.date3 as classdate3, c.date4 as classdate4,
+  c.date5 as classdate5, c.date6 as classdate6, c.date7 as classdate7, 
+  c.date8 as classdate8, c.date9 as classdate9, 
   r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
   r.userid
   FROM ' . $this->table . ' r
@@ -119,6 +141,9 @@ public function read_ByEmail($email) {
   // Create query
   // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
   $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
+    c.date2 as classdate2, c.date3 as classdate3, c.date4 as classdate4,
+  c.date5 as classdate5, c.date6 as classdate6, c.date7 as classdate7, 
+  c.date8 as classdate8, c.date9 as classdate9, 
   r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
   r.userid
   FROM ' . $this->table . ' r
@@ -173,6 +198,9 @@ public function read_ByClassid($classid) {
 
 
   $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
+  c.date2 as classdate2, c.date3 as classdate3, c.date4 as classdate4,
+  c.date5 as classdate5, c.date6 as classdate6, c.date7 as classdate7, 
+  c.date8 as classdate8, c.date9 as classdate9, 
   r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
   r.userid
   FROM ' . $this->table . ' r

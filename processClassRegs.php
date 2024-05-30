@@ -22,7 +22,7 @@ if ($addReg) {
         echo '<th>ID</th>';
         echo '<th>Class Name</th>';
         echo '<th>Class Level</th>';
-        echo '<th>Class Date</th>';
+        echo '<th>Start Date</th>';
         echo '</tr>';
         echo '</thead>';
 
@@ -141,7 +141,7 @@ if ($addReg) {
             echo '<th>ID</th>';
             echo '<th>Class Name</th>';
             echo '<th>Class Level</th>';
-            echo '<th>Class Date</th>';
+            echo '<th>Start Date</th>';
             echo '</tr>';
             echo '</thead>';
     
@@ -210,7 +210,7 @@ if ($addReg) {
             echo '<th>ID</th>';
             echo '<th>Class Name</th>';
             echo '<th>Class Type</th>';
-            echo '<th>Class Date</th>';
+            echo '<th>Start Date</th>';
             echo '</tr>';
             echo '</thead>';
     

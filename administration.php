@@ -103,7 +103,16 @@ if ($rowCount > 0) {
             'classnotes' => $classnotes,
             "registrationemail" => $registrationemail,
             "room" => $room,
-            'numregistered' => $numregistered
+            'numregistered' => $numregistered,
+            'date2' => $date2,
+            'date3' => $date3,
+            'date4' => $date4,
+            'date5' => $date5,
+            'date6' => $date6,
+            'date7' => $date7,
+            'date8' => $date8,
+            'date9' => $date9
+            
         );
         array_push($allClasses, $class_item);
 
@@ -573,7 +582,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo "<div class='form-grid'>";
                 echo "<h4 class='form-title'>Class Name: ".$class['classname']."</h4>";
                 echo "<h4 class='form-title'>Class Level: ".$class['classlevel']."</h4>";
-                echo "<h4 class='form-title'>Class Date: ".$class['date']."</h4>";
+                echo "<h4 class='form-title'>Start Date: ".$class['date']."</h4>";
                 $hr = 'classMem.php?id=';
                 $hr .= $class["id"];
               

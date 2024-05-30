@@ -15,6 +15,14 @@ class DanceClass {
     public $classlimit;
     public $numregistered;
     public $classnotes;
+    public $date2;
+    public $date3;
+    public $date4;
+    public $date5;
+    public $date6;
+    public $date7;
+    public $date8;
+    public $date9;
 
     // Constructor with DB
     public function __construct($db) {
@@ -64,6 +72,14 @@ class DanceClass {
           $this->classlimit = $row['classlimit'];
           $this->numregistered = $row['numregistered'];
           $this->classnotes = $row['classnotes'];
+          $this->date2 = $row['date2'];
+          $this->date3 = $row['date3'];
+          $this->date4 = $row['date4'];
+          $this->date5 = $row['date5'];
+          $this->date6 = $row['date6'];
+          $this->date7 = $row['date7'];
+          $this->date8 = $row['date8'];
+          $this->date9 = $row['date9'];
           return true;
           }
           return false;
@@ -91,16 +107,47 @@ class DanceClass {
 
     // Create Danceclass
     public function create() {
-          // Create query
+        if ($this->date2 == '') {
+          $this->date2 = NULL;
+        }
+        if ($this->date3 == '') {
+          $this->date3 = NULL;
+        }
+        if ($this->date4 == '') {
+          $this->date4 = NULL;
+        }
+        if ($this->date5 == '') {
+          $this->date5 = NULL;
+        }
+        if ($this->date6 == '') {
+          $this->date6 = NULL;
+        }
+        if ($this->date7 == '') {
+          $this->date7 = NULL;
+        }
+        if ($this->date8 == '') {
+          $this->date8 = NULL;
+        }
+        if ($this->date9 == '') {
+          $this->date9 = NULL;
+        }
           $query = 'INSERT INTO ' . $this->table . 
           ' SET classname = :classname, classlevel = :classlevel, registrationemail = :registrationemail,
           time = :time, instructors = :instructors, classlimit = :classlimit, numregistered = :numregistered,
-          classnotes = :classnotes,
+          classnotes = :classnotes, 
+          date2 = :date2, 
+          date3 = :date3, 
+          date4 = :date4, 
+          date5 = :date5,
+          date6 = :date6, 
+          date7 = :date7, 
+          date8 = :date8,
+          date9 = :date9,
           room = :room, date = :date';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
-
+        
           // Clean data
           $this->classname = htmlspecialchars(strip_tags($this->classname));
           $this->classlevel = htmlspecialchars(strip_tags($this->classlevel));
@@ -113,6 +160,7 @@ class DanceClass {
           $this->numregistered = htmlspecialchars(strip_tags($this->numregistered));
           $this->classnotes = htmlspecialchars(strip_tags($this->classnotes));
 
+
           // Bind data
           $stmt->bindParam(':classname', $this->classname);
           $stmt->bindParam(':classlevel', $this->classlevel);
@@ -124,24 +172,58 @@ class DanceClass {
           $stmt->bindParam(':classlimit', $this->classlimit);
           $stmt->bindParam(':numregistered', $this->numregistered);
           $stmt->bindParam(':classnotes', $this->classnotes);
+          $stmt->bindParam(':date2', $this->date2);
+          $stmt->bindParam(':date3', $this->date3);
+          $stmt->bindParam(':date4', $this->date4);
+          $stmt->bindParam(':date5', $this->date5);
+          $stmt->bindParam(':date6', $this->date6);
+          $stmt->bindParam(':date7', $this->date7);
+          $stmt->bindParam(':date8', $this->date8);
+          $stmt->bindParam(':date9', $this->date9);
 
-          // Execute query
+     
           if($stmt->execute()) {
             return true;
       }
 
       // Print error if something goes wrong
-      printf("Error: %s.\n", $stmt->error);
+
 
       return false;
     }
        // Create Danceclass
        public function update() {
         // Create query
+        if ($this->date2 == '') {
+          $this->date2 = NULL;
+        }
+        if ($this->date3 == '') {
+          $this->date3 = NULL;
+        }
+        if ($this->date4 == '') {
+          $this->date4 = NULL;
+        }
+        if ($this->date5 == '') {
+          $this->date5 = NULL;
+        }
+        if ($this->date6 == '') {
+          $this->date6 = NULL;
+        }
+        if ($this->date7 == '') {
+          $this->date7 = NULL;
+        }
+        if ($this->date8 == '') {
+          $this->date8 = NULL;
+        }
+        if ($this->date9 == '') {
+          $this->date9 = NULL;
+        }
         $query = 'UPDATE ' . $this->table . 
         ' SET classname = :classname, classlevel = :classlevel, registrationemail = :registrationemail,
         time = :time, instructors = :instructors, classlimit = :classlimit, numregistered = :numregistered,
         classnotes = :classnotes,
+        date2 = :date2, date3 = :date3, date4 = :date4, date5 = :date5, date6 = :date6, date7 = :date7, date8 = :date8,
+        date9 = :date9,
         room = :room, date = :date  where id = :id';
 
         // Prepare statement
@@ -172,10 +254,22 @@ class DanceClass {
         $stmt->bindParam(':numregistered', $this->numregistered);
         $stmt->bindParam(':classnotes', $this->classnotes);
         $stmt->bindParam(':id', $this->id);
-
-        // Execute query
+        $stmt->bindParam(':date2', $this->date2);
+        $stmt->bindParam(':date3', $this->date3);
+        $stmt->bindParam(':date4', $this->date4);
+        $stmt->bindParam(':date5', $this->date5);
+        $stmt->bindParam(':date6', $this->date6);
+        $stmt->bindParam(':date7', $this->date7);
+        $stmt->bindParam(':date8', $this->date8);
+        $stmt->bindParam(':date9', $this->date9);
+        
+   
+                // Execute query
         if($stmt->execute()) {
-          return true;
+                  return true;
+        
+
+
     }
 
     // Print error if something goes wrong

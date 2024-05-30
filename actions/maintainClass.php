@@ -223,6 +223,22 @@ if(isset($_POST['archiveClass'])) {
         echo '<textarea name="classnotes" cols="50" rows="5" 
             >'.$class->classnotes.'</textarea><br><br>';
         echo '<input type="number" name="numregistered" value="'.$class->numregistered.'"><br>';
+        echo '<label for="date2">Date 2</label><br>';
+        echo '<input type="date" name="date2" value="'.$class->date2.'"><br>';
+        echo '<label for="date3">Date 3</label><br>';
+        echo '<input type="date" name="date3" value="'.$class->date3.'"><br>';
+        echo '<label for="date4">Date 4</label><br>';
+        echo '<input type="date" name="date4" value="'.$class->date4.'"><br>';
+        echo '<label for="date5">Date 5</label><br>';
+        echo '<input type="date" name="date5" value="'.$class->date5.'"><br>';
+        echo '<label for="date6">Date 6</label><br>';
+        echo '<input type="date" name="date6" value="'.$class->date6.'"><br>';
+        echo '<label for="date7">Date 7</label><br>';
+        echo '<input type="date" name="date7" value="'.$class->date7.'"><br>';
+        echo '<label for="date8">Date 8</label><br>';
+        echo '<input type="date" name="date8" value="'.$class->date8.'"><br>';
+        echo '<label for="date9">Date 9</label><br>';
+        echo '<input type="date" name="date9" value="'.$class->date9.'"><br>';
         echo '<input type="hidden" name="id" value="'.$class->id.'">';
         echo '<button type="submit" name="submitUpdate">Update the Class</button><br>';
         echo '</form>';
@@ -259,7 +275,22 @@ if(isset($_POST['archiveClass'])) {
             echo '<input type="number" name="classlimit" value="30"><br>';
             echo '<p> Notes</p><br>';
             echo '<textarea name="classnotes" cols="50" rows="5"></textarea><br><br>';
-
+            echo '<label for="date2">Date 2</label><br>';
+            echo '<input type="date2" name="date2" ><br>';
+            echo '<label for="date3">Date 3</label><br>';
+            echo '<input type="date3" name="date3" ><br>';
+            echo '<label for="date4">Date 4</label><br>';
+            echo '<input type="date4" name="date4" ><br>';
+            echo '<label for="date5">Date 5</label><br>';
+            echo '<input type="date5" name="date5" ><br>';
+            echo '<label for="date6">Date 6</label><br>';
+            echo '<input type="date6" name="date6" ><br>';
+            echo '<label for="date7">Date 7</label><br>';
+            echo '<input type="date7" name="date7" ><br>';
+            echo '<label for="date8">Date 8</label><br>';
+            echo '<input type="date8" name="date8" ><br>';
+            echo '<label for="date9">Date 9</label><br>';
+            echo '<input type="date9" name="date9" ><br>';
             echo '<button type="submit" name="submitAdd">Add the Class</button><br>';
             echo '</form>';
             echo '</div>';

@@ -297,7 +297,7 @@ if ($rowCount > 0) {
                 <th>Delete?</th>
      
                 <th>Class Name</th>
-                <th>Class Date</th>
+                <th>Start Date</th>
                 <th>Class Time</th>
                 <th>Date Registered</th>     
                 <th>Registered By</th>       

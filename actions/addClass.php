@@ -45,6 +45,14 @@ if (isset($_POST['submitAdd'])) {
        $clregemailID = "clregemail".$ca['id'];
        $clnumregID = "clnumreg".$ca['id'];
        $cllimitID = "cllimit".$ca['id'];
+       $cldate2ID = "cldate2".$ca['id'];
+       $cldate3ID = "cldate3".$ca['id'];
+       $cldate4ID = "cldate4".$ca['id'];
+       $cldate5ID = "cldate5".$ca['id'];
+       $cldate6ID = "cldate6".$ca['id'];
+       $cldate7ID = "cldate7".$ca['id'];
+       $cldate8ID = "cldate8".$ca['id'];
+       $cldate9ID = "cldate9".$ca['id'];
 
     $class->classname = $_POST["$clnamID"];
     $class->classlevel = $_POST["$cllevelID"];
@@ -55,6 +63,30 @@ if (isset($_POST['submitAdd'])) {
     $class->room = $_POST["$clroomID"];
     $class->date = $_POST["$cldateID"];
     $class->time = $_POST["$cltimeID"];
+
+
+    $class->date2 = $_POST["$cldate2ID"];
+   
+    $class->date3 = $_POST["$cldate3ID"];
+   
+    $class->date4 = $_POST["$cldate4ID"];
+
+
+    $class->date5 = $_POST["$cldate5ID"];
+   
+    $class->date5 = '0001-01-01';
+    
+    $class->date6 = $_POST["$cldate6ID"];
+
+    $class->date7 = $_POST["$cldate7ID"];
+   
+    $class->date7 = '0001-01-01';
+    
+
+    $class->date8 = $_POST["$cldate8ID"];
+    $class->date9 = $_POST["$cldate9ID"];
+    
+    
     $class->numregistered = 0;
     $class->create();
     break;

@@ -190,7 +190,7 @@ $db = $database->connect();
                echo '</div>';
 
                echo '<div class="form-item">';
-               echo '<h4 class="form-item-title">Class Date</h4>'; 
+               echo '<h4 class="form-item-title">Start Date</h4>'; 
                echo $class['date'];
                echo '</div>';
 

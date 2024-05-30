@@ -376,7 +376,7 @@ if ($rowCount > 0) {
             <tr>
                 <th>ID</th>
                 <th>Class Name</th>
-                <th>Class Date</th>
+                <th>Start Date</th>
                 <th>Class Time</th>
                 <th>Date Registered</th>  
                 <th>Registered By</th>           
@@ -457,7 +457,7 @@ if ($rowCount > 0) {
            <tr>
                <th>ID</th>
                <th>Class Name</th>
-               <th>Class Date</th>
+               <th>Start Date</th>
                <th>Class Time</th>
                <th>Date Registered</th>    
                <th>Registered By</th>       

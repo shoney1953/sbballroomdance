@@ -62,6 +62,14 @@ class PDF extends FPDF
                 'classid' => $classid,
                 'classname' => $classname,
                 'classdate' => $classdate,
+                'classdate2' => $classdate2,
+                'classdate3' => $classdate3,
+                'classdate4' => $classdate4,
+                'classdate5' => $classdate5,
+                'classdate6' => $classdate6,
+                'classdate7' => $classdate7,
+                'classdate8' => $classdate8,
+                'classdate9' => $classdate9,
                 'classtime' => date('h:i:s A', strtotime($classtime)),
                 'userid' => $userid,
                 'email' => $email,
@@ -75,8 +83,8 @@ class PDF extends FPDF
     $pdf = new PDF();
     $pdf->AliasNbPages();
     $pdf->SetTextColor(26, 22, 22);
-    $pdf->AddPage('P');
-    $pdf->SetFont('Arial', '', 12);
+    $pdf->AddPage('L');
+    $pdf->SetFont('Arial', '', 10);
 
 if ($rowCount > 0) {
     $regCount = 0;
@@ -92,7 +100,7 @@ if ($rowCount > 0) {
                      .$reg['classdate'].' '
                      .$reg['classtime'].' ';
 
-            $pdf->SetFont('Arial','B',12);
+            $pdf->SetFont('Arial','B',10);
             $pdf->Cell(0, 5, $class_string, 0, 1);
             $pdf->Ln(3);
             $pdf->SetFont('Arial','B',10);
@@ -100,14 +108,24 @@ if ($rowCount > 0) {
             $pdf->Cell(30,8,"LAST ",1,0,"L");  
             $pdf->Cell(50,8," ",1,0,"L"); 
             $pdf->Cell(10,8," ",1,0,"L"); 
-           
-            $pdf->Cell(80,8,"DATES       ATTENDED",1,1,"L");
+            $pdf->Cell(110,8,"DATES ATTENDED",1,1,"L");  
+          
+            // $pdf->Cell(80,8,"DATES       ATTENDED",1,1,"L");
 
             $pdf->Cell(25,8,"NAME",1,0,"L"); 
             $pdf->Cell(30,8,"NAME",1,0,"L");  
             $pdf->Cell(50,8,"EMAIL",1,0,"L"); 
             $pdf->Cell(10,8,"MEM",1,0,"L"); 
-            $pdf->Cell(80,8," ",1,1,"L");
+            $pdf->Cell(12,8,substr($reg['classdate'],5,5),1,0,"L"); 
+            $pdf->Cell(12,8,substr($reg['classdate2'],5,5),1,0,"L"); 
+            $pdf->Cell(12,8,substr($reg['classdate3'],5,5),1,0,"L"); 
+            $pdf->Cell(12,8,substr($reg['classdate4'],5,5),1,0,"L"); 
+            $pdf->Cell(12,8,substr($reg['classdate5'],5,5),1,0,"L"); 
+            $pdf->Cell(12,8,substr($reg['classdate6'],5,5),1,0,"L"); 
+            $pdf->Cell(12,8,substr($reg['classdate7'],5,5),1,0,"L"); 
+            $pdf->Cell(12,8,substr($reg['classdate8'],5,5),1,0,"L"); 
+            $pdf->Cell(12,8,substr($reg['classdate8'],5,5),1,1,"L"); 
+           
           
         }
         if ($reg['classid'] !== $prevClass) {
@@ -123,29 +141,38 @@ if ($rowCount > 0) {
             $class_string = ' '.$reg['classname'].'  '
             .$reg['classdate'].' '
             .$reg['classtime'].' ';
-            $pdf->SetFont('Arial','BU',12);
+            $pdf->SetFont('Arial','BU',10);
             $pdf->Ln(3);
-            $pdf->AddPage('P');
+            $pdf->AddPage('L');
             $pdf->Cell(0, 15, $class_string, 0, 1);
-            $pdf->SetFont('Arial', 'B', 12); 
+            $pdf->SetFont('Arial', 'B', 10); 
 
             $pdf->Cell(25,8,"FIRST ",1,0,"L"); 
             $pdf->Cell(30,8,"LAST ",1,0,"L");  
             $pdf->Cell(50,8," ",1,0,"L"); 
-            $pdf->Cell(10,8," ",1,0,"L");       
-            $pdf->Cell(80,8,"DATES       ATTENDED",1,1,"L");
+            $pdf->Cell(10,8," ",1,0,"L");   
+            $pdf->Cell(20,8,$reg['classdate'],1,0,"L"); 
+            $pdf->Cell(20,8,$reg['classdate2'],1,0,"L"); 
+            $pdf->Cell(20,8,$reg['classdate3'],1,0,"L"); 
+            $pdf->Cell(20,8,$reg['classdate4'],1,0,"L"); 
+            $pdf->Cell(20,8,$reg['classdate5'],1,0,"L"); 
+            $pdf->Cell(20,8,$reg['classdate6'],1,0,"L"); 
+            $pdf->Cell(20,8,$reg['classdate7'],1,0,"L"); 
+            $pdf->Cell(20,8,$reg['classdate8'],1,0,"L"); 
+            $pdf->Cell(20,8,$reg['classdate9'],1,1,"L");     
+            // $pdf->Cell(80,8,"DATES       ATTENDED",1,1,"L");
 
             $pdf->Cell(25,8,"NAME",1,0,"L"); 
             $pdf->Cell(30,8,"NAME",1,0,"L");  
             $pdf->Cell(50,8,"EMAIL",1,0,"L"); 
             $pdf->Cell(10,8,"MEM",1,0,"L"); 
-            $pdf->Cell(80,8," ",1,1,"L");
+
 
         
          }
 
         $regCount++;
-        $pdf->SetFont('Arial','',12);
+        $pdf->SetFont('Arial','',10);
         $pdf->Cell(25,8,$reg['firstname'],1,0,"L"); 
         $pdf->Cell(30,8,$reg['lastname'],1,0,"L"); 
         $pdf->SetFont('Arial','',10); 
@@ -158,68 +185,131 @@ if ($rowCount > 0) {
             $nonMemReg++; 
         }
 
-        $pdf->SetFont('Arial','',12); 
-        $pdf->Cell(80,8," ",1,1,"L");
+        $pdf->SetFont('Arial','',10); 
+        $pdf->Cell(12,8," ",1,0,"L");
+        $pdf->Cell(12,8," ",1,0,"L");
+        $pdf->Cell(12,8," ",1,0,"L");
+        $pdf->Cell(12,8," ",1,0,"L");
+        $pdf->Cell(12,8," ",1,0,"L");
+        $pdf->Cell(12,8," ",1,0,"L");
+        $pdf->Cell(12,8," ",1,0,"L");
+        $pdf->Cell(12,8," ",1,0,"L");
+        $pdf->Cell(12,8," ",1,1,"L");
+
       
        
 
     }
     /* 6 blank lines at the end */
-    $pdf->SetFont('Arial','',12);
+    $pdf->SetFont('Arial','',10);
     $pdf->Cell(25,8,' ',1,0,"L"); 
     $pdf->Cell(30,8,' ',1,0,"L"); 
     $pdf->SetFont('Arial','',10); 
     $pdf->Cell(50,8,' ',1,0,"L"); 
     $pdf->Cell(10,8,' ',1,0,"L"); 
-    $pdf->SetFont('Arial','',12); 
-    $pdf->Cell(80,8," ",1,1,"L");
-    $pdf->SetFont('Arial','',12);
+    $pdf->SetFont('Arial','',10); 
+    // $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',10);
     $pdf->Cell(25,8,' ',1,0,"L"); 
     $pdf->Cell(30,8,' ',1,0,"L"); 
     $pdf->SetFont('Arial','',10); 
     $pdf->Cell(50,8,' ',1,0,"L"); 
     $pdf->Cell(10,8,' ',1,0,"L"); 
-    $pdf->SetFont('Arial','',12); 
-    $pdf->Cell(80,8," ",1,1,"L");
-    $pdf->SetFont('Arial','',12);
+    $pdf->SetFont('Arial','',10); 
+    // $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',10);
     $pdf->Cell(25,8,' ',1,0,"L"); 
     $pdf->Cell(30,8,' ',1,0,"L"); 
     $pdf->SetFont('Arial','',10); 
     $pdf->Cell(50,8,' ',1,0,"L"); 
     $pdf->Cell(10,8,' ',1,0,"L"); 
-    $pdf->SetFont('Arial','',12); 
-    $pdf->Cell(80,8," ",1,1,"L");
-    $pdf->SetFont('Arial','',12);
+    $pdf->SetFont('Arial','',10); 
+    // $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',10);
     $pdf->Cell(25,8,' ',1,0,"L"); 
     $pdf->Cell(30,8,' ',1,0,"L"); 
     $pdf->SetFont('Arial','',10); 
     $pdf->Cell(50,8,' ',1,0,"L"); 
     $pdf->Cell(10,8,' ',1,0,"L"); 
-    $pdf->SetFont('Arial','',12); 
-    $pdf->Cell(80,8," ",1,1,"L");
-    $pdf->SetFont('Arial','',12);
+    $pdf->SetFont('Arial','',10); 
+    // $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',10);
     $pdf->Cell(25,8,' ',1,0,"L"); 
     $pdf->Cell(30,8,' ',1,0,"L"); 
     $pdf->SetFont('Arial','',10); 
     $pdf->Cell(50,8,' ',1,0,"L"); 
     $pdf->Cell(10,8,' ',1,0,"L"); 
-    $pdf->SetFont('Arial','',12); 
-    $pdf->Cell(80,8," ",1,1,"L");
-    $pdf->SetFont('Arial','',12);
+    $pdf->SetFont('Arial','',10); 
+    // $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',10);
     $pdf->Cell(25,8,' ',1,0,"L"); 
     $pdf->Cell(30,8,' ',1,0,"L"); 
     $pdf->SetFont('Arial','',10); 
     $pdf->Cell(50,8,' ',1,0,"L"); 
     $pdf->Cell(10,8,' ',1,0,"L"); 
-    $pdf->SetFont('Arial','',12); 
-    $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->SetFont('Arial','',10); 
+    // $pdf->Cell(80,8," ",1,1,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,0,"L");
+    $pdf->Cell(12,8," ",1,1,"L");
     /* */
     $pdf->SetFont('Arial','B',10);
     $pdf->Ln(5);
     $pdf->Cell(0, 5, "Total Registrations for this Class:  ".$regCount, 0, 1); 
     $pdf->Cell(0, 5, "Total Member Registrations:  ".$memReg, 0, 1);
     $pdf->Cell(0, 5, "Total Non Member Registrations:  ".$nonMemReg, 0, 1);
-    $pdf->SetFont('Arial', '', 12);
+    $pdf->SetFont('Arial', '', 10);
     $regCount == 0;
     $memReg == 0;
     $nonMemReg == 0;

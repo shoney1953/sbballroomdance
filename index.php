@@ -109,7 +109,15 @@ if ($rowCount > 0) {
             "registrationemail" => $registrationemail,
             "room" => $room,
             "classnotes" => $classnotes,
-            'numregistered' => $numregistered
+            'numregistered' => $numregistered,
+            'date2' => $date2,
+            'date3' => $date3,
+            'date4' => $date4,
+            'date5' => $date5,
+            'date6' => $date6,
+            'date7' => $date7,
+            'date8' => $date8,
+            'date9' => $date9
         );
         array_push($classes, $class_item);
         $class_month = substr($row['date'], 5, 2);
@@ -685,13 +693,13 @@ if (isset($_SESSION['username'])) {
             <tr>
                 
                 <th>Start Date</th>
+                <th>Click for Details</th>
                 <th>Time    </th>
                 <th>Class    </th>
                 <th>Level    </th>
                 <th>Room    </th>
                 <th>Registration Email    </th>
-                <th>Instructors    </th>
-                <th>Notes</th>
+
                 <th>Class Limit    </th>
                 <th># Reg </th>
                
@@ -705,16 +713,18 @@ if (isset($_SESSION['username'])) {
                  echo "<tr>";
                  $hr = 'classMem.php?id=';
                  $hr .= $class["id"];
-        
+                 $ad = 'class.php?id=';
+                 $ad .= $class["id"];
                     
                     echo "<td>". $class['date']."</td>";
+                    echo '<td><a href="'.$ad.'">'.$class["id"].'</a></td>';
                     echo "<td>".$class['time']."</td>";
                     echo "<td>".$class['classname']."</td>";
                     echo "<td>".$class['classlevel']."</td>";
                     echo "<td>".$class['room']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
                     echo "<td>".$class['instructors']."</td>";
-                    echo "<td>".$class['classnotes']."</td>";
+
                     echo "<td>".$class['classlimit']."</td>";
                     echo '<td><a href="'.$hr.'">'.$class["numregistered"].'</a></td>';
                     // echo "<td>".$class['numregistered']."</td>";

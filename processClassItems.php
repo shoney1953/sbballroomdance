@@ -76,6 +76,14 @@ if ($reportClass) {
        $clnotesID = "clnotes".$class['id'];
        $clroomID = "clroom".$class['id'];
        $cldateID = "cldate".$class['id'];
+       $cldate2ID = "cldate2".$class['id'];
+       $cldate3ID = "cldate3".$class['id'];
+       $cldate4ID = "cldate4".$class['id'];
+       $cldate5ID = "cldate5".$class['id'];
+       $cldate6ID = "cldate6".$class['id'];
+       $cldate7ID = "cldate7".$class['id'];
+       $cldate8ID = "cldate8".$class['id'];
+       $cldate9ID = "cldate9".$class['id'];
        $cltimeID = "cltime".$class['id'];
        $clinstructorsID = "clinstructors".$class['id'];
        $clregemailID = "clregemail".$class['id'];
@@ -125,21 +133,6 @@ if ($reportClass) {
           echo " </select>";
           echo '</div>';
           echo '<div class="form-item">';
-          echo "<h4 class='form-item-title'>Class Room</h4>";
-          echo "<input type='text' name='".$clroomID."' value='".$class['room']."' 
-              title='Enter the Room Where the Class will Occur'>";
-          echo '</div>';
-          echo '<div class="form-item">';
-          echo "<h4 class='form-item-title'>Class Date</h4>";
-          echo "<input type='date' name='".$cldateID."' value='".$class['date']."' 
-              title='Select the Start Date of the Class' >";  
-          echo '</div>';
-          echo '<div class="form-item">';
-          echo "<h4 class='form-item-title'>Class Time</h4>";   
-          echo "<input type='time' name='".$cltimeID."' value='".$class['time2']."' 
-              title='Select the Start Time of the Class' >";
-          echo '</div>';
-          echo '<div class="form-item">';
           echo "<h4 class='form-item-title'>Class Instructors</h4>";
           echo "<input type='text' name='".$clinstructorsID."' value='".$class['instructors']."' 
           title='Enter the Instructor(s) Name(s)' >";
@@ -149,6 +142,17 @@ if ($reportClass) {
           echo "<input type='email' name='".$clregemailID."' value='".$class['registrationemail']."' 
           title='Enter the Registration Email' >";
           echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Time</h4>";   
+          echo "<input type='time' name='".$cltimeID."' value='".$class['time2']."' 
+              title='Select the Start Time of the Class' >";
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Room</h4>";
+          echo "<input type='text' name='".$clroomID."' value='".$class['room']."' 
+              title='Enter the Room Where the Class will Occur'>";
+          echo '</div>';
+
           echo '<div class="form-item">';
           echo "<h4 class='form-item-title'>Class Limit</h4>";
           echo "<input type='number' class='number-small' name='".$cllimitID."' 
@@ -163,7 +167,51 @@ if ($reportClass) {
           echo "<h4 class='form-item-title'>Class Notes</h4>";
           echo "<textarea title='Enter Notes About the Class' name='".$clnotesID."' cols='100' rows='3' >".$class['classnotes']."</textarea>";
           echo '</div>';
-
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Start Date</h4>";
+          echo "<input type='date' name='".$cldateID."' value='".$class['date']."' 
+              title='Select the Start Date of the Class' >";  
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 2</h4>";
+          echo "<input type='date' name='".$cldate2ID."' value='".$class['date2']."' 
+              title='Select the Date 2 of the Class' >";  
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 3</h4>";
+          echo "<input type='date' name='".$cldate3ID."' value='".$class['date3']."' 
+              title='Select the Date 3 of the Class' >";  
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 4</h4>";
+          echo "<input type='date' name='".$cldate4ID."' value='".$class['date4']."' 
+              title='Select the Date 4 of the Class' >";  
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 5</h4>";
+          echo "<input type='date' name='".$cldate5ID."' value='".$class['date5']."' 
+              title='Select the Date 5 of the Class' >";  
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 6</h4>";
+          echo "<input type='date' name='".$cldate6ID."' value='".$class['date6']."' 
+              title='Select the Date 6 of the Class' >";  
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 7</h4>";
+          echo "<input type='date' name='".$cldate7ID."' value='".$class['date7']."' 
+              title='Select the Date 7 of the Class' >";  
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 8</h4>";
+          echo "<input type='date' name='".$cldate8ID."' value='".$class['date8']."' 
+              title='Select the Date 8 of the Class' >";  
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 9</h4>";
+          echo "<input type='date' name='".$cldate9ID."' value='".$class['date9']."' 
+              title='Select the Date 9 of the Class' >";  
+          echo '</div>';
           echo "<input type='hidden' name='".$clidID."' value='".$class['id']."'>";
           echo '</div>';
       }
@@ -285,6 +333,14 @@ echo '</form>';
        $clnumregID = "clnumreg".$class['id'];
        $cllimitID = "cllimit".$class['id'];
        $clidID = "clid".$class['id'];
+       $cldate2ID = "cldate2".$class['id'];
+       $cldate3ID = "cldate3".$class['id'];
+       $cldate4ID = "cldate4".$class['id'];
+       $cldate5ID = "cldate5".$class['id'];
+       $cldate6ID = "cldate6".$class['id'];
+       $cldate7ID = "cldate7".$class['id'];
+       $cldate8ID = "cldate8".$class['id'];
+       $cldate9ID = "cldate9".$class['id'];
           echo '<div class="form-item">';
           echo "<h4 class='form-item-title'>Duplicate?</h4>";
           echo "<input type='checkbox' name='".$clSelectChk."'>"; 
@@ -327,21 +383,6 @@ echo '</form>';
           echo " </select>";
           echo '</div>';
           echo '<div class="form-item">';
-          echo "<h4 class='form-item-title'>Class Room</h4>";
-          echo "<input type='text' name='".$clroomID."' value='".$class['room']."' 
-              title='Enter the Room Where the Class will Occur'>";
-          echo '</div>';
-          echo '<div class="form-item">';
-          echo "<h4 class='form-item-title'>Class Date</h4>";
-          echo "<input type='date' name='".$cldateID."' value='".$class['date']."' 
-              title='Select the Start Date of the Class' >";    
-          echo '</div>';
-          echo '<div class="form-item">';
-          echo "<h4 class='form-item-title'>Class Time</h4>"; 
-          echo "<input type='time' name='".$cltimeID."' value='".$class['time2']."' 
-              title='Select the Start Time of the Class' >";
-          echo '</div>';
-          echo '<div class="form-item">';
           echo "<h4 class='form-item-title'>Class Instructor(s)</h4>";
  
           echo "<input type='text' name='".$clinstructorsID."' value='".$class['instructors']."' 
@@ -353,6 +394,18 @@ echo '</form>';
           title='Enter the Registration Email' >";
           echo '</div>';
           echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Time</h4>"; 
+          echo "<input type='time' name='".$cltimeID."' value='".$class['time2']."' 
+              title='Select the Start Time of the Class' >";
+        echo '</div>';
+
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Class Room</h4>";
+          echo "<input type='text' name='".$clroomID."' value='".$class['room']."' 
+              title='Enter the Room Where the Class will Occur'>";
+          echo '</div>';
+
+          echo '<div class="form-item">';
           echo "<h4 class='form-item-title'>Class Limit</h4>";
           echo "<input type='number' class='number-small' name='".$cllimitID."' 
                 value='".$class['classlimit']."' title='Enter the Class Limit'>";
@@ -361,12 +414,57 @@ echo '</form>';
           echo "<h4 class='form-item-title'>Class #Registered</h4>";
           echo "<input type='number' class='number-small' name='".$clnumregID."' 
                 value='".$class['numregistered']."' title='Update the Number Registered'>";
-                echo '</div>';
-                echo '<div class="form-item">';
-                echo "<h4 class='form-item-title'>Class Notes</h4>";
+          echo '</div>';
+            echo '<div class="form-item">';
+            echo "<h4 class='form-item-title'>Class Notes</h4>";
           echo "<textarea title='Enter Notes About the Class' name='".$clnotesID."' cols='100' rows='3' >".$class['classnotes']."</textarea>";
           echo '</div>';
-
+     
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Start Date</h4>";
+          echo "<input type='date' name='".$cldateID."' value='".$class['date']."' 
+              title='Select the Start Date of the Class' >";    
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 2</h4>";
+          echo "<input type='date' name='".$cldate2ID."' value='".$class['date2']."' 
+              title='Select the Date 2 of the Class' >";    
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 3</h4>";
+          echo "<input type='date' name='".$cldate3ID."' value='".$class['date3']."' 
+              title='Select the Date 3 of the Class' >";    
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 4</h4>";
+          echo "<input type='date' name='".$cldate4ID."' value='".$class['date4']."' 
+              title='Select the Date 4 of the Class' >";    
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 5</h4>";
+          echo "<input type='date' name='".$cldate5ID."' value='".$class['date5']."' 
+              title='Select the Date 5 of the Class' >";    
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 6</h4>";
+          echo "<input type='date' name='".$cldate6ID."' value='".$class['date6']."' 
+              title='Select the Date 6 of the Class' >";    
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 7</h4>";
+          echo "<input type='date' name='".$cldate7ID."' value='".$class['date7']."' 
+              title='Select the Date 7 of the Class' >";    
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 8</h4>";
+          echo "<input type='date' name='".$cldate8ID."' value='".$class['date8']."' 
+              title='Select the Date 8 of the Class' >";    
+          echo '</div>';
+          echo '<div class="form-item">';
+          echo "<h4 class='form-item-title'>Date 9</h4>";
+          echo "<input type='date' name='".$cldate9ID."' value='".$class['date9']."' 
+              title='Select the Date 9 of the Class' >";    
+          echo '</div>';
           echo "<input type='hidden' name='".$clidID."' value='".$class['id']."'>";
           
           echo '</div>';
