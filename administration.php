@@ -378,6 +378,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
      if ($_SESSION['role'] === 'INSTRUCTOR') {
         echo '<li><a title="Return to Home Page" href="index.php">Back to Home</a></li>';
         echo '<li><a title="Class Related Functions" href="#classes">Maintain Classes</a></li>';
+        echo '<li><a title="List Historical Data" href="archives.php">Archives</a></li>';
         echo '</ul>';
         echo '</div>';
      }
@@ -544,10 +545,10 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     }
    
     echo '</form>';
-       echo '<br>';
-        echo '</div>';
+    echo '<br>';
+    echo '</div>';
 
-        echo '</section>';
+    echo '</section>';
     echo '</div>';
    
    ?>

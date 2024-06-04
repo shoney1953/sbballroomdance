@@ -459,23 +459,13 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
                       echo "<button type='submit' name='submitSummaryRep'>Summary Report</button>";   
                       echo "</form>";
                       echo "</div>";
-                      
                       echo "<div class='form-grid-div'>";
                       echo "<form method='POST' action='actions/reportClassArchive.php'>"; 
                       echo "<h2 class='section-header'>Report Classes</h2>";
                       echo "<input type='checkbox' name='reportClass'>";
                       echo "<label for='reportClass'>Report on all or one Archived Class </label><br> "; 
                       echo "<input type='text' class='text-small' name='classId' >"; 
-                      echo "<label for='classId'><em> &larr; Specify Class ID from Table below to Report on One Class. </em> </label>";
-                        echo "</form>";
-                        echo "</div> ";
-
-                        echo "<div class='form-grid-div'>";
-                        echo "<form method='POST' action='actions/archEmail.php'>"; 
-                        echo "<h2 class='section-header'>Email Registrants from a previous class.</h2>";
-                        echo "<input type='text' class='text-small' name='classId'>"; 
-                        echo "<label for='classId'><em> &larr; Specify Class ID from Table below to create email. </em> </label>";
-                        echo '<br><button type="submit" name="submitArchEmail">  Generate Email</button>';   
+                      echo "<label for='classId'><em> &larr; Specify Class ID from Table below to  Report on One Class. </em> </label>";
                         echo "</form>";
                         echo "</div> ";
                         echo "</div>";
