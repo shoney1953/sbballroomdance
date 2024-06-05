@@ -31,7 +31,7 @@ $userArchive = new UserArchive($db);
 $toCC2 = 'dancedirector@sbballroomdance.com';
 $toCC3 = 'webmaster@sbballroomdance.com';
 $toCC4 = 'tucsonviv6228@gmail.com';
-$toCC5 = 'richardschroeder50@gmail.com';
+$toCC5 = '';
 $fromCC = "peggyalbrecht@gmail.com";
 
 if (isset($_POST['submitAddUser'])) {
