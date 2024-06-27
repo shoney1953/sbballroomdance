@@ -375,7 +375,7 @@ if (isset($_SESSION['username'])) {
             <p><em>Always check the Activites Calendar because we do have 
             cancellations.. and also for DJ information.</em> </p>
             <br>
-            <br><h3>As of January 1 2024, we have a completely new schedule for our Activities.</h3>
+            <br><h3 style="color: red">As of  July 2024, we have a completely new schedule for our Activities.</h3>
             <a style="font-weight: bold"
         href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix" target="_blank">
          Click Here to See the Activities Calendar for times and dates.
@@ -398,19 +398,21 @@ if (isset($_SESSION['username'])) {
             <tbody>
                 <tr>
                     <td>   </td>
-                    <td>Monday</td>
-                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></li></td>
-                    <td>4 - 5pm</td>
+                    <td>1st & 2nd Wednesday</td>
+    
+                    <td> <a title="click for map" href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Mariposa Room at DesertView</a></td>
+                    <td>4:30 - 5:30pm</td>
                     <td>Class</td>
-                    <td>Typically First and Third Mondays</td>
+                    <td>Typically First and Second Wednesdays</td>
                 </tr>
                 <tr>
                     <td>   </td>
-                    <td>Friday</td>
-                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></li></td>
-                    <td>4 - 5:30pm</td>
+                    <td>4th Wednesday</td>
+         
+                    <td> <a title="click for map" href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Mariposa Room at DesertView</a></td>
+                    <td>4:30 - 5:30pm</td>
                     <td>Practice Party</td>
-                    <td>Typically Fourth or Fifth Friday</td>
+                    <td>Typically Fourth  Wednesday</td>
                 </tr>
                 <tr>
             <td colspan=6> </td>        
@@ -433,7 +435,7 @@ if (isset($_SESSION['username'])) {
                 <tr>
                     <td>   </td>
                     <td>Sunday</td>
-                    <td><a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">MountainView Ballroom</a> </td>
+                    <td><a title="click for map" href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">MountainView Ballroom</a> </td>
                     <td>3 - 5pm</td>
                     <td>Class(es)</td>
                     <td>Monthly classes are held twice a week for the entire month.</td>
@@ -441,7 +443,7 @@ if (isset($_SESSION['username'])) {
                 <tr>
                     <td>   </td>
                     <td>Tuesday</td>
-                    <td><a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">MountainView Ballroom</a> </td>
+                    <td><a title="click for map" href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">MountainView Ballroom</a> </td>
                     <td>5 - 7pm</td>
                     <td>Class(es)</td>
                     <td>Monthly classes are held twice a week for the entire month.</td>
@@ -452,7 +454,7 @@ if (isset($_SESSION['username'])) {
             </tbody>
             <thead>
                 <tr>
-                    <th colspan=6>For Everyone - Open Practice</th>
+                    <th colspan=6>For Everyone - Open Practice, ETC</th>
                 </tr>   
                 <tr>
                     <th> </th>
@@ -467,43 +469,36 @@ if (isset($_SESSION['username'])) {
                 <tr>
                     <td>   </td>
                     <td>Monday</td>
-                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
-                    <td>5 - 6pm</td>
+                    <td> <a title="click for map" href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
+                    <td>4 - 6pm</td>
                     <td>Open Practice </td>
-                    <td>When there is a Novice Class</td>
+       
                 
                 </tr>
+
                 <tr>
                     <td>   </td>
-                    <td>Monday</td>
-                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
+                    <td>3rd and 5th Wednesdays</td>
+                    <td> <a title="click for map" href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Mariposa Room at DesertView</a></td>
                     <td>4 - 6pm</td>
                     <td>Open Practice </td>
-                    <td>When there is a not Novice Class</td>
-               
-                </tr>
-                <tr>
-                    <td>   </td>
-                    <td>Wednesday</td>
-                    <td> <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Mariposa Room at DesertView</a></td>
-                    <td>4 - 6pm</td>
-                    <td>Open Practice </td>
+                    <td>When there is not a novice class or party</td>
                     <td> </td>
                 
                 </tr>
                 <tr>
                     <td>   </td>
                     <td>Friday</td>
-                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
+                    <td> <a title="click for map" href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
                     <td>4 - 6pm</td>
                     <td>Open Practice </td>
-                    <td>When there is a not a Novice Party</td>
+
                     
                 </tr>
                 <tr>
                     <td>   </td>
                     <td>Saturday</td>
-                    <td> <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
+                    <td> <a title="click for map" href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
                     <td>10 - 12am</td>
                     <td>Western Partner Pattern Review</td>
                     <td> </td>
@@ -525,31 +520,31 @@ if (isset($_SESSION['username'])) {
         <h4>Click on the Email to correspond with one of our Board Members</h4><br>
         <ul>
             <li class="li-none li-large">Rich Adinolfi, President 
-                   &rarr; <a href="mailto:adinolfir@outlook.com?subject=SBDC Info">
+                   &rarr; <a title="click to email" href="mailto:adinolfir@outlook.com?subject=SBDC Info">
                        Email Rich</a></li>
             <li class="li-none li-large">Nan Kartsonis, Vice-President 
-                &rarr;  <a href="mailto:nkartsonis@me.com?subject=SBDC Info">
+                &rarr;  <a title="click to email" href="mailto:nkartsonis@me.com?subject=SBDC Info">
                 Email Nan</a></li>
             <li class="li-none li-large">Roger Shamburg, Treasurer 
-                  &rarr; <a href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
+                  &rarr; <a title="click to email" href="mailto:shamburgrog23@gmail.com?subject=SBDC Info">
                   Email Roger</a></li>
             <li class="li-none li-large">Peggy Albrecht, Secretary 
-                  &rarr; <a href="mailto:peggyalbrecht@gmail.com?subject=SBDC Info">
+                  &rarr; <a title="click to email" href="mailto:peggyalbrecht@gmail.com?subject=SBDC Info">
                   Email Peggy</a></li>
             <!-- <li class="li-none li-large">Peggy Albrect, Secretary 
                   &rarr; <a href="mailto:peggeyalbrect@gmail.com?subject=SBDC Info">
                   Email Peggy</a></li> -->
             <li class="li-none li-large">Dale & Ann Pizzitola, Directors of Dance Instruction    
-                &rarr; <a href="mailto:annzabinski@gmail.com?subject=SBDC Info">
+                &rarr; <a title="click to email" href="mailto:annzabinski@gmail.com?subject=SBDC Info">
                 Email Ann & Dale</a></li>
            <li class="li-none li-large">Vivian Herman, Volunteer Coordinator  
-                &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">
+                &rarr; <a title="click to email" href="mailto:tucsonviv6228@gmail.com?subject=SBDC Info">
                 Email Vivian</a></li>
             <li class="li-none li-large">Rick Baumgartner, DJ Coordinator   
-                &rarr; <a href="mailto:rb@zedargroup.com?subject=SBDC Info">
+                &rarr; <a title="click to email" href="mailto:rb@zedargroup.com?subject=SBDC Info">
                 Email Rick</a></li>
             <li class="li-none li-large">Sheila Honey, Web Master    
-                &rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
+                &rarr; <a title="click to email" href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
                 Email Sheila</a></li>
   
         </ul>
