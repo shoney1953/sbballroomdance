@@ -34,7 +34,7 @@ $regId1 = 0;
 $regId2 = 0;
 $create_successful = 0;
 $result = 0;
-
+ 
 if (isset($_POST['submitRegClass'])) {
     echo '<h1> We are processing your request - Please wait</h1>';
     $regFirstName1 = htmlentities($_POST['regFirstName1']);
@@ -44,7 +44,8 @@ if (isset($_POST['submitRegClass'])) {
 
              $regId1 = $user->id;
         }
-    if (isset($_POST['regFirstName2'])) {
+    $regEmail2 = '';
+    if (isset($_POST['regFirstName2']) || isset($_POST['regEmail2'])) {
 
         $regFirstName2 = htmlentities($_POST['regFirstName2']);
         $regLastName2 = htmlentities($_POST['regLastName2']);
@@ -117,6 +118,7 @@ if (isset($_POST['submitRegClass'])) {
                 $classReg->create();  
                 $danceClass->addCount($classId);
                 if ($_SESSION['role'] != 'visitor') {
+                if ($regEmail2 != '') {
                 if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
                 
                     $classReg->firstname = $regFirstName2;
@@ -138,6 +140,7 @@ if (isset($_POST['submitRegClass'])) {
 
                      } // end regemail2
                     }
+                }
                 }
             } // end if classid
         } // end foreach

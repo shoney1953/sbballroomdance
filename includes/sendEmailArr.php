@@ -25,7 +25,7 @@ function sendEmailArray(
 )
 {
   
-    $mailHost       = 'chi120.greengeeks.net' ;                  //Set the SMTP server to send through
+    $mailHost       = 'chi210.greengeeks.net' ;                  //Set the SMTP server to send through
     $mailUsername   = 'sbdcmailer@sbballroomdance.com';                     //SMTP username
     $mailPassword   = $_SESSION['mailpwd'];
     $mailPort       = "587"; 
