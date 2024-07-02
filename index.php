@@ -143,6 +143,7 @@ if ($rowCount > 0) {
 
 $_SESSION['classes'] = $classes;
 $_SESSION['upcoming_classes'] = $upcomingClasses;
+$_SESSION['allClasses'] = $upcomingClasses;
 
 if (isset($_SESSION['username'])) {
     if (isset($_SESSION['role'])) {
