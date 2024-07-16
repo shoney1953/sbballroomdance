@@ -66,6 +66,7 @@ if ($reportEvent) {
        $evcostID = "evcost".$event['id'];
        $evnumregID = "evnumreg".$event['id'];
        $evrendID = "evrend".$event['id'];
+       $evropenID = "evropen".$event['id'];
        $evformID = "evform".$event['id'];
        $evidID = "evid".$event['id'];
        $evoeID = "evoe".$event['id'];
@@ -141,6 +142,12 @@ if ($reportEvent) {
       echo "<h4 class='form-item-title'>Event Date</h4>";
       echo "<input type='date' name='".$evdateID."' value='".$event['eventdate']."' 
       title='Select the Date of the Event' >";
+      echo '</div>';
+
+      echo "<div class='form-item'>";
+      echo "<h4 class='form-item-title'>Registration Opens</h4>";
+      echo "<input type='date' name='".$evropenID."' value='".$event['eventregopen']."' 
+      title='Select the Registration Opening Date' >";
       echo '</div>';
 
       echo "<div class='form-item'>";
@@ -256,6 +263,7 @@ echo '</form>';
     echo '<th>Type</th>';
     echo '<th>Room</th>';
     echo '<th>Date</th>';
+    echo '<th>Registration Opens</th>';
     echo '<th>Registration Ends</th>';
     echo '<th>DJ</th>';
     echo '<th>ORG Email</th>';
@@ -276,6 +284,7 @@ echo '</form>';
           echo "<td>".$event['eventtype']."</td>";
           echo "<td>".$event['eventdesc']."</td>";
           echo "<td>".$event['eventdate']."</td>";
+          echo "<td>".$event['eventregopen']."</td>";
           echo "<td>".$event['eventregend']."</td>";
           echo "<td>".$event['eventdj']."</td>";
           echo "<td>".$event['orgemail']."</td>";
@@ -361,6 +370,11 @@ echo '</form>';
           echo "<h4 class='form-item-title'>Event Date</h4>";
           echo "<td><input type='date' name='eventdate' value='".$event['eventdate']."' 
               title='Select the Date of the Event' ></td>";
+          echo '</div>';
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Registration Opens</h4>";
+          echo "<td><input type='date' name='eventregopen' value='".$event['eventregopen']."' 
+              title='Select Registration Opening Date' ></td>";
           echo '</div>';
           echo "<div class='form-item'>";
           echo "<h4 class='form-item-title'>Registration Ends</h4>";

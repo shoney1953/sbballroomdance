@@ -16,6 +16,7 @@ class Event {
     public $eventnumregistered;
     public $eventregend;
     public $orgemail;
+    public $eventregopen;
 
     // Constructor with DB
     public function __construct($db) {
@@ -78,7 +79,9 @@ class Event {
           $this->eventdate = $row['eventdate'];
           $this->eventdesc = $row['eventdesc'];
           $this->eventform = $row['eventform'];
+          $this->eventregopen = $row['eventregopen'];
           $this->eventregend = $row['eventregend'];
+          $this->eventregopen = $row['eventregopen'];
           $this->eventdj = $row['eventdj'];
           $this->orgemail = $row['orgemail'];
           $this->eventnumregistered = $row['eventnumregistered'];
@@ -97,6 +100,7 @@ class Event {
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           eventregend = :eventregend, orgemail= :orgemail,
+          eventregopen = :eventregopen,
           eventnumregistered = :eventnumregistered';
 
           // Prepare statement
@@ -110,6 +114,7 @@ class Event {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+          $this->eventregopen = htmlspecialchars(strip_tags($this->eventregopen));
           $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
           $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
           $this->orgemail = htmlspecialchars(strip_tags($this->orgemail));
@@ -124,6 +129,7 @@ class Event {
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
           $stmt->bindParam(':eventregend', $this->eventregend);
+          $stmt->bindParam(':eventregopen', $this->eventregopen);
           $stmt->bindParam(':eventdj', $this->eventdj);
           $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
@@ -148,6 +154,7 @@ class Event {
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           eventregend = :eventregend, orgemail = :orgemail,
+          eventregopen = :eventregopen,
           eventnumregistered = :eventnumregistered
             WHERE id = :id ';
    
@@ -165,6 +172,7 @@ class Event {
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
           $this->orgemail = htmlspecialchars(strip_tags($this->orgemail));
           $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
+          $this->eventregopen = htmlspecialchars(strip_tags($this->eventregopen));
           $this->eventnumregistered = htmlspecialchars(strip_tags($this->eventnumregistered));
           $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
 
@@ -178,6 +186,8 @@ class Event {
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
           $stmt->bindParam(':eventregend', $this->eventregend);
+
+          $stmt->bindParam(':eventregopen', $this->eventregopen);    
           $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
           $stmt->bindParam(':id', $this->id);

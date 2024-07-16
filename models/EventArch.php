@@ -15,6 +15,7 @@ class EventArch {
     public $eventcost;
     public $eventform;
     public $eventnumregistered;
+    public $eventregopen;
     public $eventregend;
     public $orgemail;
 
@@ -128,6 +129,7 @@ class EventArch {
           $this->eventdesc = $row['eventdesc'];
           $this->eventform = $row['eventform'];
           $this->eventregend = $row['eventregend'];
+          $this->eventregopen = $row['eventregopen'];
           $this->orgemail = $row['orgemail'];
           $this->eventdj = $row['eventdj'];
           $this->eventnumregistered = $row['eventnumregistered'];
@@ -140,7 +142,8 @@ class EventArch {
           ' SET eventname = :eventname, eventtype = :eventtype, 
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
-          previd = :previd, eventregend = :eventregend,  orgemail= :orgemail,
+          previd = :previd, eventregend = :eventregend,   eventregopen = :eventregopen,
+          orgemail= :orgemail,
           eventnumregistered = :eventnumregistered';
 
           // Prepare statement
@@ -158,7 +161,7 @@ class EventArch {
           $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
           
           $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
-          
+          $this->eventregopen = htmlspecialchars(strip_tags($this->eventregopen));
           $this->eventnumregistered = htmlspecialchars(strip_tags($this->eventnumregistered));
 
           // Bind data
@@ -170,7 +173,7 @@ class EventArch {
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventregend', $this->eventregend);
-          
+          $stmt->bindParam(':eventregopen', $this->eventregopen);
           $stmt->bindParam(':eventform', $this->eventform);
           $stmt->bindParam(':eventdj', $this->eventdj);
           $stmt->bindParam(':previd', $this->previd);
@@ -195,7 +198,8 @@ class EventArch {
           ' SET eventname = :eventname, eventtype = :eventtype, 
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
-          previd = :previd, eventregend = :eventregend, orgemail = :orgemail,
+          previd = :previd, eventregend = :eventregend, eventregopen = :eventregopen,
+          orgemail = :orgemail,
           eventnumregistered = :eventnumregistered
             WHERE id = :id ';
    
@@ -213,6 +217,7 @@ class EventArch {
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
           $this->orgemail = htmlspecialchars(strip_tags($this->orgemail));
           $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
+          $this->eventregopen = htmlspecialchars(strip_tags($this->eventregopen));
           $this->eventnumregistered = htmlspecialchars(strip_tags($this->eventnumregistered));
           $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
 
@@ -227,6 +232,7 @@ class EventArch {
           $stmt->bindParam(':eventform', $this->eventform);
           $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventregend', $this->eventregend);
+          $stmt->bindParam(':eventregopen', $this->eventregopen);
           $stmt->bindParam(':previd', $this->previd);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
           $stmt->bindParam(':id', $this->id);

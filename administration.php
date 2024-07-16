@@ -65,6 +65,7 @@ if ($rowCount > 0) {
             'eventtype' => $eventtype,
             'eventdate' => $eventdate,
             'eventregend' => $eventregend,
+            'eventregopen' => $eventregopen,
             'eventcost' => $eventcost,
             'eventform' => $eventform,
             'orgemail' => $orgemail,

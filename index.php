@@ -63,6 +63,7 @@ if ($rowCount > 0) {
             'eventdesc' => $eventdesc,
             'eventroom' => $eventroom,
             'eventregend' => $eventregend,
+            'eventregopen' => $eventregopen,
             'eventnumregistered' => $eventnumregistered
         );
         array_push($events, $event_item);
@@ -597,6 +598,7 @@ if (isset($_SESSION['username'])) {
                 }
                 ?>
                 <th>Date of Event    </th>
+                <th>Registration Opens</th>
                 <th>Register By</th>
                 <th>Name    </th>
                 <th>Type    </th>
@@ -628,6 +630,7 @@ if (isset($_SESSION['username'])) {
                     echo "</td>";
                     }
                     echo "<td>".$event['eventdate']."</td>";
+                    echo "<td>".$event['eventregopen']."</td>";
                     echo "<td>".$event['eventregend']."</td>";
                     echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";

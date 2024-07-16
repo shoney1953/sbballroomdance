@@ -30,6 +30,7 @@ $event = new Event($db);
     $event->eventform = '';
     $event->eventroom = $_POST['eventroom'];
     $event->eventdate = $_POST['eventdate'];
+    $event->eventregopen = $_POST['eventregopen'];
     $event->eventregend = $_POST['eventregend'];
     $event->eventcost = $_POST['eventcost'];
     $event->orgemail = $_POST['orgemail'];

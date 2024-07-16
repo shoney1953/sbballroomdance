@@ -151,7 +151,9 @@ $compareDate = $currentDate->format('Y-m-d');
             
         foreach ($upcomingEvents as $event) {
    
-           if ($compareDate <= $event['eventregend']) {
+           if (($compareDate <= $event['eventregend']) &&
+             ($compareDate >= $event['eventregopen']))
+            {
              echo '<div class="form-container">'; 
              echo '<div class="form-grid">';
 
@@ -169,6 +171,10 @@ $compareDate = $currentDate->format('Y-m-d');
                echo '<div class="form-item">';
                echo '<h4 class="form-item-title">Event Date</h4>';
                echo $event['eventdate'];
+               echo '</div>';
+               echo '<div class="form-item">';
+               echo '<h4 class="form-item-title">Registration Opens</h4>';
+               echo $event['eventregopen'];
                echo '</div>';
                echo '<div class="form-item">';
                echo '<h4 class="form-item-title">Registration Ends</h4>';

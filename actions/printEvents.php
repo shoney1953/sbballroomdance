@@ -67,7 +67,12 @@ if (isset($_POST['submitPrintEvents'])) {
     $pdf->Cell(50,8,$event['eventtype'],1,0,"L"); 
     $pdf->Cell(50,8,$event['eventroom'],1,0,"L"); 
     $pdf->Cell(50,8,$event['eventcost'],1,1,"L"); 
- 
+    $pdf->Cell(25,8," ",0,0,"L"); 
+    $pdf->Cell(40,8,"REG OPENS:",1,0,"L"); 
+    $pdf->Cell(200,8,$event['eventregopen'],1,1,"L");
+    $pdf->Cell(25,8," ",0,0,"L"); 
+    $pdf->Cell(40,8,"REG CLOSES:",1,0,"L"); 
+    $pdf->Cell(200,8,$event['eventregend'],1,1,"L");
     $pdf->Cell(25,8," ",0,0,"L"); 
     $pdf->Cell(20,8,"DJ:",1,0,"L"); 
     $pdf->Cell(220,8,$event['eventdj'],1,1,"L");

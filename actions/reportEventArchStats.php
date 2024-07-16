@@ -65,6 +65,7 @@ if (isset($_POST['submitEventStatsRep'])) {
                 'eventdate' => $eventdate,
                 'eventcost' => $eventcost,
                 'eventnumregistered' => $eventnumregistered,
+                'eventregopen' => $eventregopen,
                 'eventregend' => $eventregend
             );
             array_push($eventArr, $event_item);
