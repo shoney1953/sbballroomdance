@@ -350,9 +350,9 @@ if ($rowCount > 0) {
                } 
             } else {
                 if ($user->partnerId > 0) {
-                 
+                    $pdf->SetTextColor(255 , 0, 0);         
                     $pdf->Cell(18,8,"NO",1,0,"L"); 
-             
+                    $pdf->SetTextColor(0 , 0, 0);
                    } else {
                     $pdf->Cell(18,8,"YES",1,0,"L"); 
                     $numDwop++;
@@ -367,11 +367,17 @@ if ($rowCount > 0) {
                 ($reg['eventtype'] === 'Meeting')
                )
             {
+                $pdf->SetTextColor(255 , 0, 0);   
                 $pdf->Cell(18,8,"NO",1,0,"L");
+                $pdf->SetTextColor(0 , 0, 0);
                 $pdf->Cell(18,8,"UNK",1,1,"L"); 
+
              } else {
+                $pdf->SetTextColor(255 , 0, 0); 
                 $pdf->Cell(18,8,"NO",1,0,"L");
+                $pdf->SetTextColor(0 , 0, 0);
                 $pdf->Cell(18,8,"UNK",1,0,"L"); 
+
              }
 
             $nonMemReg++; 
