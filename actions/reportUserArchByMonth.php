@@ -19,6 +19,7 @@ $dateMonth = 0;
 $prevMonth = 0;
 $countPerYear = 0;
 $countPerMonth = 0;
+$compDuration = 0;
 
 class PDF extends FPDF
 {
@@ -102,6 +103,13 @@ if ($userCount > 0) {
 
       $dateYear = substr($usr['datearchived'],0,4);
       $dateMonth = substr($usr['datearchived'],5,2);
+      $orgYear = substr($usr['memberorigcreated'],0,4);
+
+      if ($orgYear === ' ') {
+        $duration = 'UNK';
+      } else {
+        $duration = $dateYear - $orgYear;
+      }
     $iter++;
     if ($iter === 1) {
       $prevYear = $dateYear;
@@ -115,8 +123,9 @@ if ($userCount > 0) {
       $pdf->SetFont('Arial','B',12);
       $pdf->Cell(5,10,"MONTH:  ".$dateMonth,0,1,"l");
         $prevMonth = $dateMonth;
-        $pdf->Cell(38,5,"ARCHIVED",1,0,"L");
-        $pdf->Cell(38,5,"CREATED",1,0,"L");
+        $pdf->Cell(25,5,"ARCHIVED",1,0,"L");
+        $pdf->Cell(25,5,"CREATED",1,0,"L");
+        $pdf->Cell(15,5,"DUR",1,0,"L");
         $pdf->Cell(40,5,"FIRST NAME",1,0,"L");
         $pdf->Cell(40,5,"LAST NAME",1,0,"L");
         $pdf->Cell(70,5,"EMAIL",1,0,"L");
@@ -159,9 +168,9 @@ if ($userCount > 0) {
         $pdf->Ln(2);
         $pdf->Cell(5,10,"MONTH  ".$dateMonth,0,1,"l");
         $prevMonth = $dateMonth;
-        $pdf->Cell(38,5,"ARCHIVED",1,0,"L");
-        $pdf->Cell(38,5,"CREATED",1,0,"L");
-
+        $pdf->Cell(25,5,"ARCHIVED",1,0,"L");
+        $pdf->Cell(25,5,"CREATED",1,0,"L");
+        $pdf->Cell(15,5,"DUR",1,0,"L");
         $pdf->Cell(40,5,"FIRST NAME",1,0,"L");
         $pdf->Cell(40,5,"LAST NAME",1,0,"L");
         $pdf->Cell(70,5,"EMAIL",1,0,"L");
@@ -178,9 +187,9 @@ if ($userCount > 0) {
         $pdf->SetFont('Arial', '', 10);
 
          // $pdf->Cell(0, 5, $user_string1, 0, 1);
-         $pdf->Cell(38,5,$usr['datearchived'],1,0,"L");
-         $pdf->Cell(38,5,$usr['memberorigcreated'],1,0,"L");
-
+         $pdf->Cell(25,5,substr($usr['datearchived'],0,10),1,0,"L");
+         $pdf->Cell(25,5,substr($usr['memberorigcreated'],0,10),1,0,"L");
+         $pdf->Cell(15,5,substr($duration,0,10),1,0,"L");
          $pdf->Cell(40,5,$usr['firstname'],1,0,"L");
          $pdf->Cell(40,5,$usr['lastname'],1,0,"L");
          $pdf->Cell(70,5,$usr['email'],1,0,"L");
