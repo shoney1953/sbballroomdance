@@ -72,6 +72,7 @@ if (isset($_POST['submitUserRep'])) {
                 'hoa' => $hoa,
                 'email' => $email,
                 'created' => $created,
+                'memberorigcreated' => $memberorigcreated,
                 'datearchived' => $dateArchived,
                 'streetaddress' => $streetaddress
 
@@ -178,7 +179,7 @@ if ($userCount > 0) {
 
          // $pdf->Cell(0, 5, $user_string1, 0, 1);
          $pdf->Cell(38,5,$usr['datearchived'],1,0,"L");
-         $pdf->Cell(38,5,$usr['created'],1,0,"L");
+         $pdf->Cell(38,5,$usr['memberorigcreated'],1,0,"L");
 
          $pdf->Cell(40,5,$usr['firstname'],1,0,"L");
          $pdf->Cell(40,5,$usr['lastname'],1,0,"L");
