@@ -63,7 +63,7 @@ class UserArchive {
     }
     public function readByArchived() {
       // Create query
-      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY dateArchived DESC, lastname, firstname ';
+      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY dateArchived DESC, memberorigcreated DESC, lastname, firstname ';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
