@@ -61,6 +61,18 @@ class UserArchive {
 
       return $stmt;
     }
+    public function readByArchived() {
+      // Create query
+      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY dateArchived DESC, lastname, firstname ';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
     public function readLike($search) {
       // Create query
       $query = 'SELECT * FROM ' . $this->table . ' WHERE lastname LIKE :search1

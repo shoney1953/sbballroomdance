@@ -266,7 +266,13 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
         echo '<button type="submit" name="submitUserRep">  Report Archived Members</button>';   
 
         echo '</form>';   
-        echo '</div> ';    
+        echo '</div> ';  
+        echo '<div class="form-grid-div">';
+        echo '<form name="reportUserArchive" method="POST" action="actions/reportUserArchByMonth.php">'; 
+        echo '<button type="submit" name="submitUserRep">  Report Archived Members by Month</button>';   
+
+        echo '</form>';   
+        echo '</div> ';   
         echo '<form target="_blank" method="POST" action="actions/searchUserArchive.php" >';
         echo '<input type="text"  name="search" ><br>';
         echo '<button type="submit" name="searchUser">Search Archived Members</button>'; 
