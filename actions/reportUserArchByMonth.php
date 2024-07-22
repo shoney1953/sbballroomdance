@@ -105,7 +105,7 @@ if ($userCount > 0) {
       $dateMonth = substr($usr['datearchived'],5,2);
       $orgYear = substr($usr['memberorigcreated'],0,4);
 
-      if ($orgYear === NULL) {
+      if (strlen($orgYear) === 0) {
         $duration = 'UNK';
       } else {
         $duration = $dateYear - $orgYear;
