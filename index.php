@@ -386,7 +386,7 @@ if (isset($_SESSION['username'])) {
         <table>
             <thead>
                 <tr>
-                    <th colspan=6>For Novice Dancers</th>
+                    <th style="color:white" colspan=6>For Novice Dancers</th>
                 </tr>  
                 <tr>
                     <th> </th>
@@ -422,7 +422,7 @@ if (isset($_SESSION['username'])) {
             </tbody>
             <thead>
                 <tr>
-                    <th colspan=6>For Beginner and Intermediate Dancers</th>
+                    <th style="color:white" colspan=6>For Beginner and Intermediate Dancers</th>
                 </tr>   
                 <tr>
                     <th> </th>
@@ -456,7 +456,7 @@ if (isset($_SESSION['username'])) {
             </tbody>
             <thead>
                 <tr>
-                    <th colspan=6>For Everyone - Open Practice, ETC</th>
+                    <th style="color:white" colspan=6>For Everyone - Open Practice, ETC</th>
                 </tr>   
                 <tr>
                     <th> </th>
