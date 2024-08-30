@@ -371,11 +371,17 @@ font-weight: bolder;
 }
 .sponsorImage {
   width: 100%;
+
 }
 
 .sponsorLogo-Div {
   display: flex;
   justify-content: center;
+  background-color: gray;
+
+}
+.sponsorLogo-Div h1{
+  color: white;
 }
 .sponsorLogo {
   width: 600px;
@@ -724,6 +730,18 @@ td input[type="select"] {
   justify-content: left;
   font-size: 85%;
 }
+.form-grid6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  grid-auto-rows: minmax(100px, auto);
+  /* border: 1px solid rgb(91, 2, 129);  */
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: left;
+  font-size: 85%;
+}
 .form-head-small h3 {
   font-size: 75%;
 }
@@ -977,6 +995,17 @@ iframe {
     justify-content: left;
     font-size: 75%;
   }
+  .form-grid6 {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left;
+    font-size: 75%;
+  }
   .form-grid-div {
     text-align: left;
     align-items: left;
@@ -1199,6 +1228,17 @@ iframe {
   .form-grid4 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left;
+    font-size: 75%;
+  }
+  .form-grid6 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 2px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
@@ -1455,6 +1495,17 @@ iframe {
   .form-grid4 {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+    gap: 2px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left;
+    font-size: 80%;
+  }
+  .form-grid6 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 2px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
