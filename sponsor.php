@@ -101,6 +101,10 @@
         <a href="https://pisapain.com/">Pain Institute Website</a><br>
        <img  class="sponsorImage" src="img/PainInst.png" alt="Pain Institute info">
       </div>
+      <div class="sponsorCard">
+       
+       <img  class="sponsorImage" src="img/desertlife.png" alt="Desert Life Pharmacy info">
+      </div>
       </div>
       
                <br><br><br> 
