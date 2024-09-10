@@ -15,7 +15,7 @@
             <li><a href="index.php">Back to Home</a></li>
             <li><a href="#major">Major Sponsors</a></li>
             <li><a href="#danceparty">Dance Party Sponsors</a></li>
-            <li><a href="#noviceparty">Novice Party Sponsors</a></li>
+            <li><a href="#novicelesson">Novice Lesson Sponsors</a></li>
         </ul>
         </div>
     </nav>
@@ -56,7 +56,7 @@
        <img  class="sponsorImage" src="img/CLUBPILATES.png" alt="Club Pilates info">
       </div>
       <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/Danswear.png" alt="Club Pilates info">
+       <img  class="sponsorImage" src="img/Danswear.png" alt="Dance West info">
       </div>
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/xfinity.png" alt="Xfinity info">
@@ -72,7 +72,7 @@
       </div> -->
      
       </div>
-      <div id="noviceparty" class="sponsorLogo-Div">
+      <div id="novicelesson" class="sponsorLogo-Div">
       <h1>Novice Party Sponsors</h1>
       </div>
       <div class="form-grid6"> 
@@ -90,16 +90,16 @@
        <img  class="sponsorImage" src="img/OroValleyDental.png" alt="Oro Valley Dental info">
       </div>
       <div class="sponsorCard">
-        <a href="https://www.harntrust.com/wendy-harn">Wendy Harn Website</a><br>
-       <img  class="sponsorImage" src="img/WendyHarn.png" alt="Wendy Harn info">
+       
+       <img  class="sponsorImage" src="img/harn.png" alt="Wendy Harn info">
       </div>
       <div class="sponsorCard">
-        <a href="https://absolutelyartgallery.com/">Absolutely Art Website</a><br>
-       <img  class="sponsorImage" src="img/AbsolutelyArt.png" alt="Absolutely Art info">
+        
+       <img  class="sponsorImage" src="img/absolutelyart.png" alt="Absolutely Art info">
       </div>
       <div class="sponsorCard">
-        <a href="https://pisapain.com/">Pain Institute Website</a><br>
-       <img  class="sponsorImage" src="img/PainInst.png" alt="Pain Institute info">
+       
+       <img  class="sponsorImage" src="img/paininst.png" alt="Pain Institute info">
       </div>
       <div class="sponsorCard">
        
