@@ -80,7 +80,7 @@
        <img  class="sponsorImage" src="img/Agnew.png" alt="Jean Agnew info">
       </div>
       <div class="sponsorCard">
-        <a href="https://www.leahkarisolutions.com/">Leah Kari website</a><br>
+       
        <img  class="sponsorImage" src="img/leahkari.png" alt="Leah Kari info">
       </div>
       <div class="sponsorCard">
