@@ -274,12 +274,14 @@ if (isset($_SESSION['username'])) {
               
               echo ' <li><a title="List of SaddleBrooke Ballroom Dance Club Members" href="#directory">
               Member Directory</a></li>';
+              echo '<li><a title="Volunteer Nomination Form" href="#nominationform">Volunteer Nomination Form</a></li>';
               echo '<li><a title="List of Volunteer Activites" href="#">Volunteer &dtrif;</a>';
               echo '<ul >';
                   echo '<li><a href="#djinfo">DJ Info</a></li>';
                   echo '<li><a href="#instructorinfo">Instructor Info</a></li>';
                   echo '<li><a href="#othervolunteer">Other Opportunities</a></li>';
               echo '</ul>';
+
             }
         }
 
@@ -305,6 +307,7 @@ if (isset($_SESSION['username'])) {
         }
     }
     echo '<li><a title="New Membership Benefits" href="benefits.php">Special Member Benefits</a></li>';
+
     echo '<li><a title="Frequently Asked Questions" href="faq.php">FAQs</a></li>';
     echo '<li><a title="Additional Options" href="#">More ... &dtrif;</a>';
     echo '<ul>';
@@ -1113,6 +1116,17 @@ DJ Documents</a><br>
 
 ?>
     </section>
+    <br><br> 
+    <div>
+    <section id="nominationform" class="content">
+    <h1>Volunteer Nomination Form</h1><br>
+ 
+   <ul>
+    <li class="li-none"><a  href="https://drive.google.com/file/d/1Mr3NHDtOXQiHQbhaA_5kheREf5UuRF4G/view?usp=sharing">Click to download Volunteer Nomination form</a></li>
+   </ul>
+
+    </section>
+   <br>
    </div>
 <?php
   require 'footer.php';
