@@ -133,6 +133,7 @@ if ($rowCount > 0) {
      <ul>
         <li><a href="index.php">Back to Home</a></li>
         <li><a href="#yourregistrations">Your Registrations</a></li>
+        <li><a href="#membership">Membership Status</a></li>
     </ul>
     </div>
 </nav> 
@@ -283,7 +284,7 @@ if ($rowCount > 0) {
        <br>
        <section id="yourregistrations" class="content">
        
-    <div class="form-grid3">
+    <div class="form-grid2">
     <div class="form-grid-div">
 
  
@@ -325,11 +326,15 @@ if ($rowCount > 0) {
             ?> 
         </tbody>
         </table>
+    
+
         <button type='submit' name="submitDeleteReg">Delete Your Class Registrations</button>    
         </form>
     </div>
+    </div>
 
 
+    <div class="form-grid2">
 
     <div class="form-grid-div">
  
@@ -371,7 +376,7 @@ if ($rowCount > 0) {
                     }
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
                     echo "<td>".$eventRegistration['registeredby']."</td>";
-                    echo '<input type="hidden" name="$eventid" value="'.$eventRegistration['eventid'].'">';
+                    echo '<input type="hidden" name="eventid" value="'.$eventRegistration['eventid'].'">';
                   
                     
           
@@ -387,9 +392,10 @@ if ($rowCount > 0) {
         
     </form>
     </div>
-
+    </div>
     <?php
-  
+    echo '<section id="membership" class="content">';
+    echo '<div class="form-grid3">';
     echo "<div class='form-grid-div'>";
 
     echo '<table>';
@@ -420,7 +426,7 @@ if ($rowCount > 0) {
     echo '</div>';
     echo '<br><br>';
     echo '</div>';
-   
+    echo '</div>';
     ?>
         </section>
     <footer >

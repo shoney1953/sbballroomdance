@@ -41,7 +41,7 @@ var_dump($_POST);
     if (isset($_POST["$delId"])) {
     
         $eventReg->id = $reg['id'];
-        $eventid = $_POST['$eventid'];
+        $eventid = $_POST['eventid'];
 
         if ($reg['orgemail'] != null) {
             $toCC2 = $reg['orgemail'];
