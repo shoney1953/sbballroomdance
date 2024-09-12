@@ -265,6 +265,7 @@ class Event {
 
           $this->eventnumregistered = $row['eventnumregistered'];
           $this->eventnumregistered--;
+
           $this->id = $id;
           // do the update
           $query = 'UPDATE ' . $this->table . 
@@ -278,8 +279,7 @@ class Event {
 
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
           $stmt->bindParam(':id', $this->id);
-
-          // Execute query
+      
           if($stmt->execute()) {
           return true;
           }

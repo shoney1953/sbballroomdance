@@ -308,8 +308,7 @@ if ($rowCount > 0) {
             <?php 
  
             foreach ($classRegs as $classRegistration) {
-                $delID = "del".$classRegistration['id'];
-        
+                $delID = "del".$classRegistration['id'];     
                   echo "<tr>";
                     echo "<td><input type='checkbox' title='Check to Delete Class Registration' 
                     name='".$delID."'></td>";
@@ -357,6 +356,7 @@ if ($rowCount > 0) {
             foreach ($eventRegs as $eventRegistration) {
                 $eventName = 'NONE';
                 $delID = "del".$eventRegistration['id'];
+              
                   echo "<tr>";
                   echo "<td><input type='checkbox' 
                        title='Check to Delete Event Registration' 
@@ -371,7 +371,10 @@ if ($rowCount > 0) {
                     }
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
                     echo "<td>".$eventRegistration['registeredby']."</td>";
-             
+                    echo '<input type="hidden" name="$eventid" value="'.$eventRegistration['eventid'].'">';
+                  
+                    
+          
                   echo "</tr>";
             }
          

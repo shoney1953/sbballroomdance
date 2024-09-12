@@ -14,6 +14,7 @@ $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $event = new Event($db);
 $regSelected = [];
+$eventid = 0;
 $regAll = '';
 $emailBody = "Your Event Registration has been removed:<br>";
 $emailSubject = 'SBDC Event Registration Removed';
@@ -33,14 +34,15 @@ $regId1 = 0;
 $regId2 = 0;
 $create_successful = 0;
 $result = 0;
-   
+var_dump($_POST);
     foreach ($regs as $reg) {
        $delId = 'del'.$reg['id'];
 
     if (isset($_POST["$delId"])) {
     
         $eventReg->id = $reg['id'];
-        $eventid = $_POST['eventid'];
+        $eventid = $_POST['$eventid'];
+
         if ($reg['orgemail'] != null) {
             $toCC2 = $reg['orgemail'];
         }
@@ -76,6 +78,7 @@ $result = 0;
 
   
            $eventReg->delete();
+           var_dump($eventid);
            $event->decrementCount($eventid);
        }
     }
