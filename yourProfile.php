@@ -276,11 +276,7 @@ if ($rowCount > 0) {
         <button type='submit' name='SubmitPassChange'>Change Your Password</button>
         </form>
         </div>
-     
-        
-    
-       
-   
+
        </div>
        <br><br>
        

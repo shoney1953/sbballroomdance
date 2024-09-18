@@ -853,6 +853,8 @@ if (isset($_SESSION['username'])) {
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/06-14-2024-SBDC-Summer-in-the-Desert-Party">Summer in the Desert 06 14 2024</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Red-White-and-Blue-dance-July-2024">Red White & Blue 07 19 2024
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-August-Fiesta-Party-2024">Fiesta Dance August 2024
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-September-Dance-2024">September Dance 09 13 2024
+       
     
         
        </a></li>
