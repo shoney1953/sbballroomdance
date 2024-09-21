@@ -30,7 +30,8 @@ $userArchive = new UserArchive($db);
 
 $toCC2 = 'dancedirector@sbballroomdance.com';
 $toCC3 = 'webmaster@sbballroomdance.com';
-$toCC4 = 'tucsonviv6228@gmail.com';
+// $toCC4 = 'tucsonviv6228@gmail.com'; Change back 10/18/2024
+$toCC4 = 'richardschroeder50@gmail.com';
 $toCC5 = '';
 $fromCC = "peggyalbrecht@gmail.com";
 
