@@ -406,7 +406,7 @@ if (isset($_SESSION['username'])) {
                     <td>1st & 2nd Wednesday</td>
     
                     <td> <a title="click for map" href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Mariposa Room at DesertView</a></td>
-                    <td>4:30 - 5:30pm</td>
+                    <td>4:00 - 5:30pm</td>
                     <td>Class</td>
                     <td>Typically First and Second Wednesdays</td>
                 </tr>
@@ -415,7 +415,7 @@ if (isset($_SESSION['username'])) {
                     <td>4th Wednesday</td>
          
                     <td> <a title="click for map" href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Mariposa Room at DesertView</a></td>
-                    <td>4:30 - 5:30pm</td>
+                    <td>4:00 - 5:30pm</td>
                     <td>Practice Party</td>
                     <td>Typically Fourth  Wednesday</td>
                 </tr>
