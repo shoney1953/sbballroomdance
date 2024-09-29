@@ -505,7 +505,7 @@ if (isset($_SESSION['username'])) {
                     <td>Saturday</td>
                     <td> <a title="click for map" href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
                     <td>10 - 11am</td>
-                    <td>Western Partner Pattern Review</td>
+                    <td>Western Partner Pattern Review or Other Activities</td>
                     <td> </td>
                     
                 </tr>
