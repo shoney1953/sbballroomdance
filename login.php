@@ -31,8 +31,8 @@ date_default_timezone_set("America/Phoenix");
    <br><br><br><h1>If you are a member, please use the SBDC member log in. If not, please log in as a visitor.</h1>
    <br<h2>If you are a member and having trouble logging on 
                 <a href="faq.php">Click to See Our Frequently Asked Questions</a>, or 
-                please contact <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
-                webmaster@sbballroomdance.com</a>.
+                please contact <a href="mailto:sheila_honey_5@hotmail.com?subject=SBDC Login Info">
+                Webmaster</a>.
             </h2><br>
         
         <div class="form-grid3">

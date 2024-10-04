@@ -28,8 +28,8 @@ $db = $database->connect();
 $user = new User($db);
 $userArchive = new UserArchive($db);
 
-$toCC2 = 'dancedirector@sbballroomdance.com';
-$toCC3 = 'webmaster@sbballroomdance.com';
+$toCC2 = 'annzabinski@gmail.com';
+$toCC3 = 'sheila_honey_5@hotmail.com';
 // 
 
 // $toCC4 = 'tucsonviv6228@gmail.com'; Change back 10/18/2024
@@ -123,7 +123,7 @@ if (isset($_POST['submitAddUser'])) {
        }
 
        $replyTopic = "Welcome";
-       $replyEmail = 'webmaster@sbballroomdance.com';
+       $replyEmail = 'sheila_honey_5@hotmail.com';
        $actLink
            = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
        Click to view Activities Calendar</a><br>";

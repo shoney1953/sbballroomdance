@@ -549,7 +549,7 @@ if (isset($_SESSION['username'])) {
                 &rarr; <a title="click to email" href="mailto:rb@zedargroup.com?subject=SBDC Info">
                 Email Rick</a></li>
             <li class="li-none li-large">Sheila Honey, Web Master    
-                &rarr; <a title="click to email" href="mailto:webmaster@sbballroomdance.com?subject=SBDC Info">
+                &rarr; <a title="click to email" href="mailto:sheila_honey_5@hotmail.com?subject=SBDC Web Info">
                 Email Sheila</a></li>
   
         </ul>
@@ -765,7 +765,7 @@ if (isset($_SESSION['username'])) {
                 &rarr; <a href="mailto:peggyalbrecht@gmail.com?subject=SBDC Contact Info">
                 Peggy Albrecht</a></li>';
             echo '<li class="li-none li-large">Questions about Classes   
-                &rarr; <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Contact Info">
+                &rarr; <a href="mailto:annzabinski@gmail.com?subject=SBDC Contact Info">
                 Ann and Dale Pizzitola</a></li>';
             echo '<li class="li-none li-large">Questions about Volunteering   
                 &rarr; <a href="mailto:tucsonviv6228@gmail.com?subject=SBDC Contact Info">
@@ -774,7 +774,7 @@ if (isset($_SESSION['username'])) {
                 &rarr; <a href="mailto:rb@zedargroup.com?subject=SBDC Contact Info">
                 Rick Baumgartner</a></li>';
             echo '<li class="li-none li-large">Questions about the Website   
-                &rarr; <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Contact Info">
+                &rarr; <a href="mailto:sheila_honey_5@hotmail.com?subject=SBDC Contact Info">
                 Sheila Honey</a></li>';
             echo '<li class="li-none li-large">Registering for or questions about events or classes   
                 &rarr; <a href="mailto:countmein@sbballroomdance.com?subject=SBDC Contact Info">
@@ -949,8 +949,8 @@ if (isset($_SESSION['username'])) {
         <p><a href="faq.php">Click to see Frequently Asked Questions</a></p>
         <br>
         <p>Contact one of the board members or webmaster
-        <a href="mailto:webmaster@sbballroomdance.com?subject=SBDC Website Help">
-                webmaster@sbballroomdance.com</a> listed in the about section or
+        <a href="mailto:sheila_honey_5@hotmail.com?subject=SBDC Website Help">
+                Webmaster</a> listed in the about section or
             read the introduction to the website PDF below.<br>
             <a href="https://drive.google.com/file/d/1wbiW8gOqQ-rM9dpyz7p9qIBHKX_2WvDQ/view?usp=sharing">
                 Click for the Member's Guide to the Website
@@ -1000,8 +1000,8 @@ DJ Documents</a><br>
                appreciative of anything you can share with them. </p>
         <p>If you'd like to become an instructor.. even for an hour class,
           please contact our Dance Instruction Director for more information 
-           <a href="mailto:dancedirector@sbballroomdance.com?subject=SBDC Dance Instruction Info">
-                dancedirector@sbballroomdance.com</a></p><br><br>
+           <a href="mailto:annzabinski@gmail.com?subject=SBDC Dance Instruction Info">
+           Dance Directors</a></p><br><br>
 
      
    </section>
