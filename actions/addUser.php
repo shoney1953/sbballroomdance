@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../includes/sendEmail.php';
+require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/User.php';
 require_once '../models/UserArchive.php';
@@ -28,14 +29,14 @@ $db = $database->connect();
 $user = new User($db);
 $userArchive = new UserArchive($db);
 
-$toCC2 = 'annzabinski@gmail.com';
-$toCC3 = 'sheila_honey_5@hotmail.com';
+$toCC2 = $danceDirector;
+$toCC3 = $webmaster;
 // 
 
-// $toCC4 = 'tucsonviv6228@gmail.com'; Change back 10/18/2024
+// $toCC4 = $volunteerDirector; Change back 10/18/2024
 $toCC4 = 'richardschroeder50@gmail.com';
 $toCC5 = '';
-$fromCC = "peggyalbrecht@gmail.com";
+$fromCC = $secretary;
 
 if (isset($_POST['submitAddUser'])) {
 
