@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../includes/sendEmail.php';
+require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/User.php';
 require_once '../models/PwdReset.php';
@@ -18,7 +19,7 @@ $url = null;
 $expirationDate = null;
 $emailBody = null;
 
-$fromCC = 'webmaster@sbballroomdance.com';
+$fromCC = $webmaster;
 
 if (isset($_POST['SubmitResetPwd'])) {
   
@@ -61,7 +62,7 @@ if (isset($_POST['SubmitResetPwd'])) {
   $toCC4 = null;
   $toCC5 = null;
   $replyTopic = "Forgotten Password";
-  $replyEmail = 'webmaster@sbballroomdance.com';
+  $replyEmail = $webmaster;
   $emailBody = "<p>We received a request to reset your password on the SaddleBrooke Ballroom Dance Club site. Please ignore this email if you did not make the request.</p><br>";
   $emailBody .= "<p>Please click the following link to reset your password:</p><br>";
   $emailBody .= "<a href=".$url.">".$url."</a><br>";

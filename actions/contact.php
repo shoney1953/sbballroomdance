@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../includes/sendEmail.php';
+require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/Contact.php';
 date_default_timezone_set("America/Phoenix");
@@ -28,12 +29,12 @@ if (isset($_POST['submit'])) {
     $contact->email = filter_var($contact->email, FILTER_SANITIZE_EMAIL);  
     $contact->create();
     $fromEmailName = 'SBDC Ballroom Dance Club';
-    $toCC2 = 'peggyalbrecht@gmail.com';
+    $toCC2 = $secretary;
     $toCC3 = '';
     $toCC4 = '';
     $toCC5 = '';
     $toName = $contact->firstname.' '.$contact->lastname; 
-    $replyEmail = 'sheila_honey_5@hotmail.com';
+    $replyEmail = $webmaster;
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
     Click to view Activities Calendar</a><br>";
     if ($existingUser === 'NO') {
@@ -44,7 +45,7 @@ if (isset($_POST['submit'])) {
         $replyTopic = "Message from Member"; 
     }
 
-    $replyEmail = 'sheila_honey_5@hotmail.com';
+    $replyEmail = $webmaster;
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
     Click to view Activities Calendar</a><br>";
 
@@ -57,14 +58,14 @@ if (isset($_POST['submit'])) {
         $emailBody = "<br>$toName </b>, thanks for being a member of our club<br>
         We'll try to get back to you to answer your concern as soon as possible.<br>
         If you need website help please refer to help section 
-        of the website or email sheila_honey_5@hotmail.com<br>
+        of the website or email ".$webmaster."<br>
         The PDF with an introduction to the website is also attached.<br>
         The link to the activites calendar is provided below for your 
         convenience.<br>";
     }
     $emailBody .= "<br> <b> Message:</b><br>$contact->message<br>";
     $emailBody .= "<br>$actLink";
-    $fromCC = 'sheila_honey_5@hotmail.com';
+    $fromCC = $webmaster;
   
     "<br><br>Thanks!
     <br>SBDC Ballroom Dance Club";

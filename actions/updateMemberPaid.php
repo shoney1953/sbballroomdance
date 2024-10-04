@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once '../includes/sendEmail.php';
+require_once '../includes/siteemails.php';
+
 require_once '../config/Database.php';
 require_once '../models/User.php';
 require_once '../models/MemberPaid.php';
@@ -50,7 +52,7 @@ if (isset($_POST['updateMemPaid'])) {
             $user->id = $memStat['userid'];
             $user->read_single();
             $userEmail = $user->email;
-            sendThanks($memStat,$userEmail);
+            sendThanks($memStat,$userEmail,$secretary,$danceDirector,$webmaster);
           
         }
        
@@ -61,14 +63,14 @@ if (isset($_POST['updateMemPaid'])) {
 header($redirect);
 exit; 
 }
-function sendThanks($memStat,$userEmail) {
+function sendThanks($memStat,$userEmail,$secretary,$danceDirector,$webmaster) {
 
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toName = $memStat['firstname']." ".$memStat['lastname'] ;
     $mailSubject = 'Thanks for Renewing your membership at SBDC Ballroom Dance Club!';
-    $fromCC = "peggyalbrecht@gmail.com";
-    $toCC2 = 'annzabinski@gmail.com';
-    $toCC3 = "webmaster@sbballroomdance.com";
+    $fromCC = $secretary;
+    $toCC2 = $danceDirector;
+    $toCC3 = $webmaster;
     $toCC4 = '';
     $toCC5 = null;
 

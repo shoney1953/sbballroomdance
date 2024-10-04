@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../includes/sendEmail.php';
+require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
@@ -9,8 +10,8 @@ date_default_timezone_set("America/Phoenix");
 
 $events = $_SESSION['upcoming_events'];
 
-$fromCC = 'webmaster@sbballroomdance.com';
-$replyEmail = 'sbbdcschedule@gmail.com';
+$fromCC = $webmaster;
+$replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";
 $replyTopic = "SBDC Event Registration";
@@ -96,7 +97,7 @@ if (isset($_POST['submitEventReg'])) {
                                   Check the form for specific costs.<br>";
                    
                             $emailBody .= $coststr;
-                            $toCC2 = 'shamburgrog23@gmail.com';
+                            $toCC2 = $treasurer;
                             if (!$event['eventform']) {
                                 $emailBody .= '<br>The signup form with meal choices and specific costs
                                 is not currently available, but
@@ -124,7 +125,7 @@ if (isset($_POST['submitEventReg'])) {
                           Check the form for specific costs.<br>";
            
                     $emailBody .= $coststr;
-                    $toCC2 = 'shamburgrog23@gmail.com';
+                    $toCC2 = $treasurer;
                     if (!$event['eventform']) {
                         $emailBody .= '<br>The signup form with meal choices and specific costs
                         is not currently available, but

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../includes/sendEmail.php';
+require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/ClassRegistration.php';
 require_once '../models/DanceClass.php';
@@ -19,8 +20,8 @@ $emailSubject = 'SBDC Class Registration Removed';
 $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
-$fromCC = 'webmaster@sbballroomdance.com';
-$replyEmail = 'webmaster@sbballroomdance.com';
+$fromCC = $webmaster;
+$replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = '';
 $toCC3 = '';

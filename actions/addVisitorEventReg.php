@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../includes/sendEmail.php';
+require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
@@ -33,8 +34,8 @@ $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
 $result = 0;
-$fromCC = 'sheila_honey_5@hotmail.com';
-$replyEmail = 'peggyalbrecht@gmail.com';
+$fromCC = $webmaster;
+$replyEmail = $secretary;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = ''; 
 $toCC3 = '';
@@ -103,7 +104,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
         .$fmt->formatCurrency($event->eventcost, 'USD')."<br>
             Check the form for specific costs. <br>Non-member cost will be slightly higher.";
         $emailBody .= $coststr;
-        $toCC2 = 'shamburgrog23@gmail.com';
+        $toCC2 = $treasurer;
         if ($event->eventform) {
 
             $actLink= "<a href='".$event->eventform."'>
@@ -111,7 +112,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
             $emailBody .= 'There is a form to submit registration details and payment.<br>';
             $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
                 on the website to open the form. Or<br>$actLink";
-            $toCC2 = 'shamburgrog23@gmail.com';
+            $toCC2 = $treasurer;
         }
     }
     $emailBody .= '<br>We hope you enjoy the event and consider joining our club.';
@@ -201,7 +202,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
         .$fmt->formatCurrency($event->eventcost, 'USD')."<br>
             Check the form for specific costs. <br>Non-member cost will be slightly higher.";
         $emailBody .= $coststr;
-        $toCC2 = 'shamburgrog23@gmail.com';
+        $toCC2 = $treasurer;
         if ($event->eventform) {
 
             $actLink= "<a href='".$event->eventform."'>
@@ -209,7 +210,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
             $emailBody .= 'There is a form to submit registration details and payment.<br>';
             $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
                 on the website to open the form. Or<br>$actLink";
-            $toCC2 = 'shamburgrog23@gmail.com';
+            $toCC2 = $treasurer;
         }
     }
     $emailBody .= '<br>We hope you enjoy the event and consider joining our club.';

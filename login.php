@@ -1,6 +1,6 @@
 <?php
   session_start();
-
+  require_once 'includes/siteemails.php';
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4><br>';
     unset($_GET['error']);
@@ -30,9 +30,11 @@ date_default_timezone_set("America/Phoenix");
     <section id="login" class="content">
    <br><br><br><h1>If you are a member, please use the SBDC member log in. If not, please log in as a visitor.</h1>
    <br<h2>If you are a member and having trouble logging on 
-                <a href="faq.php">Click to See Our Frequently Asked Questions</a>, or 
-                please contact <a href="mailto:sheila_honey_5@hotmail.com?subject=SBDC Login Info">
-                Webmaster</a>.
+             <?php
+                echo '<a href="faq.php">Click to See Our Frequently Asked Questions</a>, or 
+                please contact <a href="mailto:'.$webmaster.'?subject=SBDC Login Info">
+                Webmaster</a>.';
+                ?>
             </h2><br>
         
         <div class="form-grid3">

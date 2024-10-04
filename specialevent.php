@@ -51,9 +51,9 @@
     <h4>Susan & Jerry Wilson<br>
     Click below to email.</h4>
     <h3>
-    <a href="mailto:adinolfir@outlook.com?subject=SBDC Info">
+    <a href="mailto:susan.wilson@cruiseplanners.com?subject=SBDC Cruise Info">
     susan.wilson@cruiseplanners.com</a> / 
-    <a href="mailto:adinolfir@outlook.com?subject=SBDC Info">
+    <a href="mailto:jerry.wilson@cruiseplanners.com?subject=SBDC Cruise Info">
     jerry.wilson@cruiseplanners.com</a>
     
 <br>

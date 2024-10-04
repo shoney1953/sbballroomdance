@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../includes/sendEmailArr.php';
+require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/ClassRegistrationArch.php';
 require_once '../models/DanceClassArch.php';
@@ -33,12 +34,12 @@ $emailSubject = 'A Message About Your Previous SBDC Ballroom Dance Class';
 $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
-$fromCC = 'webmaster@sbballroomdance.com';
-$replyEmail = 'annzabinski@gmail.com';
+$fromCC = $webmaster;
+$replyEmail = $danceDirector;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $regEmail1 = [];
 $toCC2 = ''; 
-$toCC3 = 'annzabinski@gmail.com';
+$toCC3 = $danceDirector;
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
