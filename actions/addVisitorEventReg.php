@@ -195,8 +195,9 @@ if (isset($_POST['submitAddVisitorReg'])) {
     "<br>Room:    ".$event->eventroom.
     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
                     
-
+    
     if ($event->eventcost > 0) {
+
         $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
         $coststr =  "<br> Member Event Cost is approximately: "
         .$fmt->formatCurrency($event->eventcost, 'USD')."<br>

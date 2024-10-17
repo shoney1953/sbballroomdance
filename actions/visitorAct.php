@@ -23,6 +23,7 @@ $visitorLast = '';
     $visitorNotes = htmlentities($_POST['notes']); 
     $user->email = filter_var($visitorEmail, FILTER_SANITIZE_EMAIL); 
     $visitor->email = filter_var($visitorEmail, FILTER_SANITIZE_EMAIL); 
+
     $visitor->firstname = $visitorFirst;
     $visitor->lastname = $visitorLast; 
     $visitor->notes = $visitorNotes;
@@ -47,6 +48,7 @@ $visitorLast = '';
         $_SESSION['visitorfirstname'] = $visitor->firstname;
         $_SESSION['visitorlastname'] = $visitor->lastname;
         $_SESSION['username'] = $visitor->email;
+
         $_SESSION['useremail'] = $visitor->email;
         $_SESSION['role'] = "visitor";
         if ($visitor->read_ByEmail($visitorEmail)) {
