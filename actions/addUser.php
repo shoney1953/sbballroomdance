@@ -33,8 +33,8 @@ $toCC2 = $danceDirector;
 $toCC3 = $webmaster;
 // 
 
-// $toCC4 = $volunteerDirector; Change back 10/18/2024
-$toCC4 = 'richardschroeder50@gmail.com';
+$toCC4 = $volunteerDirector; 
+// $toCC4 = 'richardschroeder50@gmail.com';
 $toCC5 = '';
 $fromCC = $secretary;
 
