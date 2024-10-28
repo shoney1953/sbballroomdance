@@ -801,6 +801,7 @@ if (isset($_SESSION['username'])) {
        <div class="form-grid-div">
        <h4>2024</h4>
        <ul>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2024-Pictures">2024 Combined Photos</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/01-12-2024-SBDC-Winter-wonderland-dance">Winter Wonderland Dance 01 12 2024</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-16-2024-Valentines-Dance">Valentines Dance 02 16 2024</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-BBQ-Picnic-April-13-2024">BBQ Picnic Social 04 13 2024</a></li>
@@ -829,6 +830,7 @@ if (isset($_SESSION['username'])) {
        <div class="form-grid-div">
        <h4>2023</h4>
        <ul>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2023-Photos">2023 Combined Photos</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/2023-01-20-Dine-Dance">January Dine and Dance 01 2023</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/2023-02-15-Sweetheart-Dance/">February Sweetheart Dance 02 15 2023</a></li> 
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/04-20-2023-Dinner-Dance/">Dinner Dance 04 20 2023</a></li>
@@ -848,6 +850,7 @@ if (isset($_SESSION['username'])) {
        <div class="form-grid-div">
        <h4>2022</h4>
        <ul>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2022-Photos">2022 Combined Photos</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/03-22-2022-March-Dinner-Dance">March Dinner Dance 03 22 2022</a></li> 
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/04-29-2022-SBDC-dinner-dance">April Dinner Dance 04 29 2022</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/2022-09-02-Dine-and-Dance/">Dine and Dance 09 02 2022</a></li>
@@ -861,6 +864,7 @@ if (isset($_SESSION['username'])) {
         <div class="form-grid-div">
        <h4>2021</h4>
        <ul>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2021-Photos">2021 Combined Photos</a></li> 
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Holiday-Party-12-14-2021">Holiday Party 12 14 2021</a></li> 
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-TGIF-10-19-2021">TGIF 11 19 2021</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Sbdc-halloween-party-10-30-2021">Halloween Party 10 30 2021</a></li>
@@ -869,6 +873,8 @@ if (isset($_SESSION['username'])) {
         <div class="form-grid-div">
            <h4>2020</h4>
            <ul>
+           
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2020-Photos">2020 Combined photos</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/03-08-2020-March-Brunch-Dance">March Brunch Dance 03 08 2020</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-15-2020-Sweetheart-Dance">Sweetheart Dance 02 15 2020</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Masquerade-ball-01-11-2020-SBDC">Masquerade Dance 01 11 2020</a></li>
