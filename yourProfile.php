@@ -23,9 +23,14 @@ if (isset($_GET['error'])) {
 }
 
 $classRegs = [];
+$pclassRegs = [];
 $eventRegs = [];
+$peventRegs = [];
+
 $numEvents = 0;
+$pnumEvents = 0;
 $numClasses = 0;
+$pnumClasses = 0;
 $database = new Database();
 $db = $database->connect();
 $userid = $_SESSION['userid'];
@@ -40,6 +45,7 @@ if ($user->partnerId !== 0) {
 
 /* get class registrations */
 $classReg = new ClassRegistration($db);
+
 $result = $classReg->read_ByUserid($_SESSION['userid']);
 
 $rowCount = $result->rowCount();
@@ -66,6 +72,36 @@ if ($rowCount > 0) {
     }
 } 
 $_SESSION['classregistrations'] = $classRegs;
+
+if ($user->partnerId > 0) {
+$pclassReg = new ClassRegistration($db);
+$presult = $classReg->read_ByUserid($partner->id);
+$prowCount = $result->rowCount();
+$pnumClasses = $rowCount;
+if ($prowCount > 0) {
+  
+    while ($row = $presult->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $reg_item = array(
+            'id' => $id,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'classid' => $classid,
+            'classname' => $classname,
+            'classtime' => date('h:i:s A', strtotime($classtime)),
+            'classdate' => $classdate,
+            'email' => $email,
+            'registeredby' => $registeredby,
+            "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
+        );
+        array_push($pclassRegs, $reg_item);
+        array_push($_SESSION['classregistrations'], $reg_item);
+
+    }
+} 
+
+}
+/* */
 $eventReg = new EventRegistration($db);
 $result = $eventReg->read_ByUserid($_SESSION['userid']);
 
@@ -95,6 +131,40 @@ if ($rowCount > 0) {
     }
 } 
 $_SESSION['eventregistrations'] = $eventRegs;
+
+if ($user->partnerId > 0) {
+    $peventReg = new EventRegistration($db);
+$presult = $peventReg->read_ByUserid($user->partnerId);
+
+$prowCount = $presult->rowCount();
+$pnumClasses = $prowCount;
+
+if ($prowCount > 0) {
+
+    while ($row = $presult->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $reg_item = array(
+            'id' => $id,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'eventid' => $eventid,
+            'eventname' => $eventname,
+            'eventtype' => $eventtype,
+            'eventdate' => $eventdate,
+            'orgemail' => $orgemail,
+            'email' => $email,
+            'paid' => $paid,
+            'registeredby' => $registeredby,
+            "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
+        );
+        array_push($peventRegs, $reg_item);
+        array_push($_SESSION['eventregistrations'], $reg_item);
+
+    }
+    
+} 
+
+}
 $eventReg = new MemberPaid($db);
 $yearsPaid = [];
 $result = $eventReg->read_byUserid($_SESSION['userid']);
@@ -281,6 +351,7 @@ if ($rowCount > 0) {
        <br><br>
        
        <section id="classregistrations" class="content">
+       <h2>Class Registrations</h2>
        
     <div class="form-grid2">
     <div class="form-grid-div">
@@ -327,10 +398,59 @@ if ($rowCount > 0) {
         <button type='submit' name="submitDeleteReg">Delete Your Class Registrations</button>    
         </form>
     </div>
+    <?php
+    if ($user->partnerId > 0) {
+    echo '<div class="form-grid-div">';
+
+        echo "<table>";
+        echo "<thead>";  
+            echo "<tr>";
+                echo "<th colspan='6' style='text-align: center;color: darkviolet'>Your Partners Class Registrations</th>";
+            echo "</tr>";
+            echo "<tr>";
+             
+                echo "<th>Delete?</th>";
+     
+                echo "<th>Class Name</th>";
+                echo "<th>Start Date</th>";
+                echo "<th>Class Time</th>";
+                echo "<th>Date Registered</th>";     
+                echo "<th>Registered By</th>";       
+            echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
+        echo '<form method="POST" action="actions/deleteClassReg.php">';
+      
+ 
+            foreach ($pclassRegs as $classRegistration) {
+                $delID = "del".$classRegistration['id'];     
+                  echo "<tr>";
+                    echo "<td><input type='checkbox' title='Check to Delete Class Registration' 
+                    name='".$delID."'></td>";
+       
+                    echo "<td>".$classRegistration['classname']."</td>";
+                    echo "<td>".$classRegistration['classdate']."</td>";  
+                    echo "<td>".$classRegistration['classtime']."</td>";         
+                    echo "<td>".$classRegistration['dateregistered']."</td>";
+                    echo "<td>".$classRegistration['registeredby']."</td>";
+             
+                  echo "</tr>";
+            }
+         
+           
+        echo "</tbody>";
+        echo "</table>";
+    
+        echo "<button type='submit' name='submitDeleteReg'>Delete Your Partners Class Registrations</button>";    
+        echo "</form>";
+    echo "</div>";
+        }
+     ?> 
     </div>
        </section>
 
     <section id="eventregistrations" class="content">
+        <h2>Event Registrations</h2>
     <div class="form-grid2">
 
     <div class="form-grid-div">
@@ -389,6 +509,65 @@ if ($rowCount > 0) {
         
     </form>
     </div>
+    <?php
+     if ($user->partnerId > 0) {
+    echo '<div class="form-grid-div">';
+ 
+
+    echo '<form method="POST" action="actions/deleteEventReg.php">';  
+        echo "<table>";
+            echo "<thead>";
+            echo "<tr>";
+                echo '<th colspan="6" style="text-align: center;color: darkviolet">Your Partners Event Registrations</th>';
+            echo '</tr>';
+            echo '<tr>';
+                echo '<th>Delete?</th>';
+      
+                echo '<th>Event Name</th>';
+                echo '<th>Event Date</th>';
+                echo '<th>Paid</th>';
+                echo '<th>Date Registered</th>';   
+                echo '<th>Registered By</th> ';        
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+        
+    
+            foreach ($peventRegs as $eventRegistration) {
+                $eventName = 'NONE';
+                $delID = "del".$eventRegistration['id'];
+              
+                  echo "<tr>";
+                  echo "<td><input type='checkbox' 
+                       title='Check to Delete Event Registration' 
+                       name='".$delID."'> </td>";
+ 
+                    echo "<td>".$eventRegistration['eventname']."</td>";
+                    echo "<td>".$eventRegistration['eventdate']."</td>";  
+                    if ($eventRegistration['paid'] == true ) {
+                      echo "<td>&#10004;</td>"; 
+                    } else {
+                        echo "<td>&times;</td>"; 
+                    }
+                    echo "<td>".$eventRegistration['dateregistered']."</td>";
+                    echo "<td>".$eventRegistration['registeredby']."</td>";
+                    echo '<input type="hidden" name="eventid" value="'.$eventRegistration['eventid'].'">';
+                  
+                    
+          
+                  echo "</tr>";
+            }
+       
+       
+        echo '</div>';
+            echo '</tbody>';
+        echo '</table>';
+        echo '<button type="submit" name="submitDeleteReg">Delete Your Partners Event Registrations</button> ';  
+        
+    echo '</form>';
+    echo '</div>';
+     }
+    ?>
     </div>
     </section>
     <?php
