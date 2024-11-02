@@ -6,5 +6,5 @@ $secretary = 'peggyalbrecht@gmail.com';
 $treasurer = 'shamburgrog23@gmail.com';
 $danceDirector = 'annzabinski@gmail.com';
 $djDirector = 'rb@zedargroup.com';
-$volunteerDirector = 'tucsonviv6228@gmail.com?';
+$volunteerDirector = 'tucsonviv6228@gmail.com';
 ?>
