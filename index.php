@@ -275,7 +275,7 @@ if (isset($_SESSION['username'])) {
               
               echo ' <li><a title="List of SaddleBrooke Ballroom Dance Club Members" href="#directory">
               Member Directory</a></li>';
-              echo '<li><a title="Volunteer Nomination Form" href="#nominationform">Volunteer Nomination Form</a></li>';
+             
               echo '<li><a title="List of Volunteer Activites" href="#">Volunteer &dtrif;</a>';
               echo '<ul >';
                   echo '<li><a href="#djinfo">DJ Info</a></li>';
@@ -1093,7 +1093,7 @@ DJ Documents</a><br>
 ?>
     </section>
     <br><br> 
-    <div>
+    <!-- <div>
     <section id="nominationform" class="content">
     <h1>Volunteer Nomination Form</h1><br>
  
@@ -1103,7 +1103,7 @@ DJ Documents</a><br>
 
     </section>
    <br>
-   </div>
+   </div> -->
 <?php
   require 'footer.php';
 ?>

@@ -43,7 +43,7 @@ class DanceClassArch {
 
       return $stmt;
     }
-   
+
 
     // Get Single Danceclass
     public function read_single() {
