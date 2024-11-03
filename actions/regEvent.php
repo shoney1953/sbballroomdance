@@ -35,6 +35,8 @@ $toCC4 = '';
 $toCC5 = '';
 
 $id_int = 0;
+$currentDate = new DateTime();
+
 
 if (isset($_POST['submitEventReg'])) {
   
@@ -75,6 +77,7 @@ if (isset($_POST['submitEventReg'])) {
         $eventNum = (int)substr($chkboxID,2);
 
             if ($event['id'] == $eventNum) {
+               
                 $eventId = $event['id'];
                 $emailBody .= "<br><strong> Event: ".$event['eventname'].
                 "<br>Type:    ".$event['eventtype'].
@@ -115,6 +118,18 @@ if (isset($_POST['submitEventReg'])) {
                          }
                     } else {
                         $emailBody .= "You have chosen not to attend dinner.<br>";
+                        if ($event['eventdate'] > '2025-01-01') {
+                         $emailBody .= "As of 2025, there is now a charge of $5 per person for the dance only.";
+                         $emailBody .= "Please submit your fee prior to the dance as indicated on the form.";
+                         if ($event['eventform']) {
+                            $actLink= "<a href='".$event['eventform']."'>
+                            Click to view event Form</a><br>";
+                           $emailBody .= 'There is a signup form to submit registration details and payment.<br>';
+                           $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
+                            on the website to open the form. Or<br>$actLink";
+                           }
+                        }
+                        
                     }
                 }
                 if ($event['eventtype'] === 'Dinner Dance') {
@@ -198,7 +213,7 @@ if (isset($_POST['submitEventReg'])) {
             } // end if eventid            
        } //end isset
       } // end foreach
-        
+
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
       
         $regName1 = $regFirstName1.' '.$regLastName1;
