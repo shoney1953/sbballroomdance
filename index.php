@@ -332,8 +332,8 @@ if (isset($_SESSION['username'])) {
         <!-- <img class="motto-img2" 
             src="img/SBDC LOGO.png" alt="logo">  -->
             <br><br>
-            <h1><img class="motto-img2" 
-            src="img/SBDC LOGO.png" alt="logo"></h1>
+            <!-- <h1><img class="motto-img2" 
+            src="img/SBDC LOGO.png" alt="logo"></h1> -->
             <h1 > Welcome to the SaddleBrooke Ballroom Dance Club Website        </h1>
 
 
