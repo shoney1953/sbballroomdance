@@ -143,7 +143,8 @@ hr {
   /* background-image: url("../img/painterly\ flowers.jpg");  */
   /* background-image: url("../img/background\ collage.jpg");   */
   /* background-image: url("../img/springback2.jpg");   */
-   background-image: url("../img/bluecollage1920.jpg");  
+   /* background-image: url("../img/bluecollage1920.jpg");   */
+   background-image: url("../img/decembercollage800.jpg"); 
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -914,7 +915,8 @@ iframe {
     /* background-image: url("../img/monsoon.jpg"); */
     /* background-image: url("../img/background\ collage.jpg");  */
     /* background-image: url("../img/springback2.jpg");   */
-     background-image: url("../img/bluecollage1920.jpg");  
+     /* background-image: url("../img/bluecollage1920.jpg");   */
+       background-image: url("../img/decembercollage800.jpg");  
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom center;
