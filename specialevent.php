@@ -30,7 +30,7 @@
 
    
     <h3>
-     To date (April 2024), approximately 40 SaddleBrooke Ballroom Dance Club members have booked staterooms on this cruise.  
+     To date (December 2024), approximately 54 SaddleBrooke Ballroom Dance Club members have booked staterooms on this cruise.  
     Club members interested in joining the fun and going on the cruise can access detailed information using the links below or Contact Susan or Jerry at Cruise Planners.  
     </h3>
     <h3>
