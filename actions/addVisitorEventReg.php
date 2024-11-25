@@ -41,7 +41,7 @@ $toCC2 = '';
 $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
-$mailAttachment = '../img/SBDC Membership Form 2024.pdf'; 
+$mailAttachment = '../img/SBDC Membership Form 2025.pdf'; 
 $replyTopic = "SBDC Event Registration";
 $emailSubject = "The SBDC administrator has registered you as a Visitor for an Event";
 

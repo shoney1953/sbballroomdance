@@ -95,7 +95,7 @@ if (isset($_POST['submitEventReg'])) {
                         $emailBody .= "You have chosen to attend dinner.<br>";
                         if ($event['eventcost'] > 0) {
                             $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-                            $coststr =  "Member Event Cost is approximately: "
+                            $coststr =  "Member Event Cost for the meal is approximately: "
                                   .$fmt->formatCurrency($event['eventcost'], 'USD')."<br>
                                   Check the form for specific costs.<br>";
                    

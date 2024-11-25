@@ -16,7 +16,8 @@ $visitorFirst = '';
 $visitorLast = '';
 
    if(isset($_POST['SubmitVisitorLogIN'])) {
-
+    unset($_SESSION['username']);
+    $_SESSION['username'] = $_POST['email'];
     $visitorEmail = htmlentities($_POST['email']);
     $visitorFirst = htmlentities($_POST['firstname']);
     $visitorLast = htmlentities($_POST['lastname']); 
@@ -34,7 +35,7 @@ $visitorLast = '';
     }
  
     if ($existingUser === 'NO') {
-        unset($_SESSION['username']);
+      
         unset($_SESSION['role']);
         unset($_SESSION['userid']);
         unset($_SESSION['useremail']);
