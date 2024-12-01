@@ -280,6 +280,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'numlogins' => $numlogins,
                 'directorylist' => $directorylist,
                 'fulltime' => $fulltime,
+                'regformlink' => $regformlink,
                 'robodjnumlogins' => $robodjnumlogins,
                 'robodjlastlogin' => $robodjlastlogin
             );

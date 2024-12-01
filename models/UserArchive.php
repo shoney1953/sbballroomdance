@@ -29,6 +29,7 @@ class UserArchive {
     public $robodjnumlogins;
     public $robodjlastlogin;
     public $memberorigcreated;
+    public $regformlink;
 
     // Constructor with DB
     public function __construct($db) {
@@ -138,6 +139,7 @@ class UserArchive {
          $this->robodjnumlogins = $row['robodjnumlogins'];
          $this->robodjlastlogin = $row['robodjlastlogin'];
          $this->memberorigcreated = $row['memberorigcreated'];
+         $this->regformlink = $row['regformlink'];
 
     }
     public function getUserName($user, $email) {
@@ -185,6 +187,7 @@ class UserArchive {
       $this->robodjnumlogins = $row['robodjnumlogins'];
       $this->robodjlastlogin = $row['robodjlastlogin'];
       $this->memberorigcreated = $row['memberorigcreated'];
+      $this->regformlink = $row['regformlink'];
         return true;
       }
      return false;
@@ -201,7 +204,7 @@ class UserArchive {
           partnerid = :partnerid, streetaddress = :streetaddress,
           directorylist = :directorylist, fulltime = :fulltime,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
-          memberorigcreated = :memberorigcreated,
+          memberorigcreated = :memberorigcreated, regformlink = :regformlink,
           robodjnumlogins = :robodjnumlogins, robodjlastlogin = :robodjlastlogin,
           phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
 
@@ -222,6 +225,7 @@ class UserArchive {
           $this->notes = htmlspecialchars(strip_tags($this->notes));
           $this->phone1 = htmlspecialchars(strip_tags($this->phone1));
           $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
+          $this->regformlink = htmlspecialchars(strip_tags($this->regformlink));
           $this->zip = htmlspecialchars(strip_tags($this->zip));
           $this->directorylist = $this->directorylist;
           $this->fulltime = $this->fulltime;
@@ -250,6 +254,7 @@ class UserArchive {
           $stmt->bindParam(':robodjnumlogins', $this->robodjnumlogins);
           $stmt->bindParam(':robodjlastlogin', $this->robodjlastlogin);
           $stmt->bindParam(':memberorigcreated', $this->memberorigcreated);
+          $stmt->bindParam(':regformlink', $this->regformlink);
 
           // Execute query
           if ($stmt->execute()) {
@@ -271,7 +276,7 @@ class UserArchive {
           username = :username, partnerid = :partnerid, 
           streetaddress = :streetaddress,
           directorylist = :directorylist,
-          fulltime = :fulltime,
+          fulltime = :fulltime, regformlink = :regformlink,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
           phone1 = :phone1, phone2 = :phone2, notes = :notes
           WHERE id = :id';
@@ -294,6 +299,7 @@ class UserArchive {
           $this->phone1 = htmlspecialchars(strip_tags($this->phone1));
           $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
           $this->zip = htmlspecialchars(strip_tags($this->zip));
+          $this->regformlink = htmlspecialchars(strip_tags($this->regformlink));
           $this->directorylist = $this->directorylist;
           $this->fulltime = $this->fulltime;
       
@@ -315,6 +321,7 @@ class UserArchive {
           $stmt->bindParam(':notes', $this->notes);
           $stmt->bindParam(':directorylist', $this->directorylist);
           $stmt->bindParam(':fulltime', $this->fulltime);
+          $stmt->bindParam(':regformlink', $this->regformlink);
 
           // Execute query
           if($stmt->execute()) {

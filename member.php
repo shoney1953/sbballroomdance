@@ -314,14 +314,22 @@ if ($rowCount > 0) {
             echo '</tbody>';
             echo '<thead>';
             echo '<tr>';
+            echo '<th>Membership Form</th>';
             echo '<th>ROBO DJ Num Logins</td>';
             echo '<th>ROBO DJ Last Login</th>';
+           
             echo '</tr>';
 
             echo '</thead>';
             echo '<tbody>';
             echo '<tr>';
-            echo "<td>$user->robodjnumlogins</td>";
+            if ($user->regformlink) {
+                echo '<td><a href="'.$user->regformlink.'">VIEW REGISTRATION FORM</a></td>';  
+            } else {
+                echo '<td>No Form Link</td>';
+            }
+            
+            echo "<td>$user->robodjlastlogin</td>";
             echo "<td>$user->robodjlastlogin</td>";
             echo '</tr>';
             echo '</tbody>';

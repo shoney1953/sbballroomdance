@@ -25,7 +25,7 @@ $db = $database->connect();
 $user = new User($db);
 
 if (isset($_POST['submitUpdateUser'])) {
-
+  var_dump('submitupdateuser');
     foreach ($users as $usr) {
       $upChk = "up".$usr['id'];
       $usrSelChk ="userSel".$usr['id'];
@@ -51,7 +51,8 @@ if (isset($_POST['submitUpdateUser'])) {
       $rpwdID = "rpwd".$usr['id'];
       $rpwd2ID = "rpwd2".$usr['id'];
       $fullID = "full".$usr['id'];
- 
+      $regFormID = "regform".$usr['id'];
+
    if (isset($_POST["$usrSelChk"])) {
     $user->id = $_POST["$idID"];
     $user->firstname = $_POST["$fnamID"];
@@ -73,7 +74,8 @@ if (isset($_POST['submitUpdateUser'])) {
     $user->email = $_POST["$emailID"];
     $user->directorylist = $_POST["$dlistID"];
     $user->fulltime = $_POST["$fullID"];
-  
+    $user->regformlink = $_POST["$regFormID"];
+
     $user->role = $_POST["$roleID"];
     
     if ($_POST["$nemailID"] != $_POST["$emailID"]) {  

@@ -127,6 +127,7 @@ if (isset($_POST['submitArchiveUser'])) {
         $userArc->numlogins = $user->numlogins;
         $userArc->robodjnumlogins = $user->robodjnumlogins;
         $userArc->robodjlastlogin = $user->robodjlastlogin;
+        $userArc->regformlink = $user->regformlink;
         $userArc->memberorigcreated = $user->created;
         $userArc->create();
 

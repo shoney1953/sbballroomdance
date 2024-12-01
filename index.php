@@ -586,6 +586,8 @@ if (isset($_SESSION['username'])) {
             echo '<h4><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Please Login to Register</a></h4>';
         }
         ?>
+       
+
         <div class="form-grid-div">
         <form target="_blank" method="POST" action="actions/printEvents.php"> 
         <button type="submit" name="submitPrintEvents">Print Upcoming Events</button>  
@@ -595,8 +597,17 @@ if (isset($_SESSION['username'])) {
         
         <table>
             <thead>
-            <tr>
-                <?php
+            <?php
+            $first_value = reset($upcomingEvents); // First element's value
+            //  var_dump($first_value);
+            $first_event_year = substr($first_value['eventdate'], 0, 4);
+            // var_dump($first_event_year);
+            echo '<tr>';
+            echo '<th colspan="12">'.$first_event_year.'</th>';
+            echo '</tr>';
+            echo '<tr>';
+               
+
                 if (isset($_SESSION['username'])) {
                     echo '<th>Report?</th>';
                 }
@@ -610,17 +621,49 @@ if (isset($_SESSION['username'])) {
                 <th>Room</th> 
                 <th>DJ</th>            
                 <th>Cost</th>
-             
                 <th>Form/Flyer</th>
                 <th># Reg </th>
 
             </tr>
             </thead>
-            <tbody>
+         
             <?php 
             $eventNumber = 0;
             foreach ($upcomingEvents as $event) {
                  $eventNumber++;
+                 $event_year = substr($event['eventdate'], 0, 4);
+             
+                 if ($event_year > $first_event_year) {
+                    echo '<thead>';
+                    echo '<tr>';
+                    echo '<th colspan="12">'.$event_year.'</th>';
+                    echo '</tr>';
+                    echo '<tr>'; 
+                    echo '</thead>' ;
+                    $first_event_year = $event_year;
+                    echo '<tr>';
+                    if (isset($_SESSION['username'])) {
+                        echo '<th>Report?</th>';
+                    }
+                    
+                    echo '<th>Date of Event    </th>';
+                    echo '<th>Registration Opens</th>';
+                    echo '<th>Register By</th>';
+                    echo '<th>Name    </th>';
+                    echo '<th>Type    </th>';
+                    echo '<th>Description</th>'; 
+                    echo '<th>Room</th> ';
+                    echo '<th>DJ</th>';            
+                    echo '<th>Cost</th>';
+                    echo '<th>Form/Flyer</th>';
+                    echo '<th># Reg </th>';
+    
+                echo '</tr>';
+                 }
+                 
+
+                    
+                 echo '<tbody>';
                  $hr = 'eventMem.php?id=';
                  $hr .= $event["id"];
                   echo "<tr>";
@@ -726,7 +769,7 @@ if (isset($_SESSION['username'])) {
                     echo "<td>".$class['classlevel']."</td>";
                     echo "<td>".$class['room']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
-                    echo "<td>".$class['instructors']."</td>";
+               
 
                     echo "<td>".$class['classlimit']."</td>";
                     echo '<td><a href="'.$hr.'">'.$class["numregistered"].'</a></td>';

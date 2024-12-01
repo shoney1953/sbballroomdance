@@ -29,6 +29,7 @@ class User {
     public $fulltime;
     public $robodjnumlogins;
     public $robodjlastlogin;
+    public $regformlink;
 
     // Constructor with DB
     public function __construct($db) {
@@ -177,6 +178,7 @@ class User {
           $this->fulltime = $row['fulltime'];
           $this->robodjnumlogins = $row['robodjnumlogins'];
           $this->robodjlastlogin = $row['robodjlastlogin'];
+          $this->regformlink = $row['regformlink'];
           return true;
           }
         
@@ -251,6 +253,7 @@ class User {
       $this->fulltime = $row['fulltime'];
       $this->robodjnumlogins = $row['robodjnumlogins'];
       $this->robodjlastlogin = $row['robodjlastlogin'];
+      $this->regformlink = $row['regformlink'];
   
         return true;
       }
@@ -381,7 +384,7 @@ class User {
           streetaddress = :streetaddress, role = :role,
           directorylist = :directorylist, fulltime = :fulltime,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
-          phone1 = :phone1, phone2 = :phone2, notes = :notes
+          phone1 = :phone1, phone2 = :phone2, notes = :notes, regformlink = :regformlink
           WHERE id = :id';
    
 
@@ -403,6 +406,8 @@ class User {
           $this->zip = htmlspecialchars(strip_tags($this->zip));
           $this->directorylist = htmlspecialchars(strip_tags($this->directorylist));
           $this->fulltime = htmlspecialchars(strip_tags($this->fulltime));
+          // $this->regformlink = htmlspecialchars(strip_tags($this->regformlink));
+          var_dump($this->regformlink);
       
 
           // Bind data
@@ -423,6 +428,7 @@ class User {
           $stmt->bindParam(':role', $this->role);
           $stmt->bindParam(':directorylist', $this->directorylist);
           $stmt->bindParam(':fulltime', $this->fulltime);
+          $stmt->bindParam(':regformlink', $this->regformlink);
 
           // Execute query
           if($stmt->execute()) {

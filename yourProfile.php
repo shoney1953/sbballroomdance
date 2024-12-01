@@ -167,9 +167,11 @@ if ($prowCount > 0) {
 }
 $eventReg = new MemberPaid($db);
 $yearsPaid = [];
+
 $result = $eventReg->read_byUserid($_SESSION['userid']);
 
 $rowCount = $result->rowCount();
+
 
 if ($rowCount > 0) {
 
@@ -601,9 +603,30 @@ if ($rowCount > 0) {
     echo '</table>';
   
     echo '</div>';
+
+    echo "<div class='form-grid-div'>";
+
+    echo '<table>';
+    echo '<thead>';
+    echo '<tr>';
+    echo '<th colspan=1 style="text-align: center;color: darkviolet">Membership Form</th>';
+    echo '</tr>';
+    echo "<tr>";
+    echo "<td>FORM</td>";
+ 
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    echo "<tr>";
+    echo '<td><a href="'.$user->regformlink.'">VIEW REGISTRATION FORM</a></td>';
+    echo "</tr>";
+    echo "</tbody>";
+    echo "</table>";
+    echo "</div>";
+    echo '</div>';
+
+    echo '</div>';
     echo '<br><br>';
-    echo '</div>';
-    echo '</div>';
     ?>
         </section>
     <footer >

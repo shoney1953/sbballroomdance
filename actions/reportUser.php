@@ -11,6 +11,8 @@ $partner = new User($db);
 $userArr = [];
 $numHOA1 = 0;
 $numHOA2 = 0;
+$numWOform = 0;
+$numWform = 0;
 
 
 class PDF extends FPDF
@@ -65,6 +67,7 @@ if (isset($_POST['submitUserRep'])) {
                 'hoa' => $hoa,
                 'email' => $email,
                 'fulltime' => $fulltime,
+                'regformlink' => $regformlink,
                 'streetaddress' => $streetaddress
 
             );
@@ -73,6 +76,11 @@ if (isset($_POST['submitUserRep'])) {
             }
             if ($usr_item['hoa'] === '2') {
                $numHOA2++;
+           }
+           if ($usr_item['regformlink']) {
+            $numWform++;
+           } else {
+            $numWOform++;
            }
             array_push($userArr, $usr_item);
         }
@@ -114,6 +122,8 @@ if ($userCount > 0) {
     $pdf->Cell(0, 5, "Total Members HOA1:  ".$numHOA1, 0, 1);
     $pdf->Cell(0, 5, "Total Members HOA2:  ".$numHOA2, 0, 1);
     $pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
+    $pdf->Cell(0, 5, "Total Members without Registration Form:  ".$numWOform, 0, 1);
+    $pdf->Cell(0, 5, "Total Members with Registration Form:  ".$numWform, 0, 1);
   
     $pdf->SetFont('Arial', '', 14);
 } else {
