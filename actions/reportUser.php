@@ -118,10 +118,12 @@ if ($userCount > 0) {
 
     }
     $pdf->SetFont('Arial','B', 14);
+    $pdf->Ln(4);
+    $pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
     $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Members HOA1:  ".$numHOA1, 0, 1);
     $pdf->Cell(0, 5, "Total Members HOA2:  ".$numHOA2, 0, 1);
-    $pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
+    $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Members without Registration Form:  ".$numWOform, 0, 1);
     $pdf->Cell(0, 5, "Total Members with Registration Form:  ".$numWform, 0, 1);
   
