@@ -10,6 +10,7 @@ $user = new User($db);
 $partner = new User($db);
 $userArr = [];
 $neverLoggedOn = 0;
+$robodjlogins = 0;
 
 
 class PDF extends FPDF
@@ -69,6 +70,9 @@ if (isset($_POST['submitUsageRep'])) {
             if ($usr_item['numlogins'] < 1) {
                 $neverLoggedOn++;
             }
+            if ($usr_item['robodjnumlogins'] > 0) {
+                $robodjlogins++;
+            }
         }
     }
 
@@ -105,8 +109,9 @@ if ($userCount > 0) {
     }
     $pdf->SetFont('Arial','B', 10);
     $pdf->Ln(2);
-    $pdf->Cell(0, 5, "Num Members Never Logged on:  ".$neverLoggedOn, 0, 1);
     $pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
+    $pdf->Cell(0, 5, "Num Members Never Logged on:  ".$neverLoggedOn, 0, 1);
+    $pdf->Cell(0, 5, "Num Members Logged into ROBODJ:  ".$robodjlogins, 0, 1);
   
     $pdf->SetFont('Arial', '', 10);
 } else {
