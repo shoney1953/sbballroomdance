@@ -101,8 +101,8 @@ if ($reportClass) {
                 title='Enter the Name of the Class'>";
           echo '</div>';
           echo '<div class="form-item">';
-                echo "<h4 class='form-item-title'>Class Level</h4>";
-          echo "<select  title='Select the Level of Class' name = '".$cllevelID."'> ";
+           echo "<h4 class='form-item-title'>Class Level</h4>";
+           echo "<select  title='Select the Level of Class' name = '".$cllevelID."'> ";
    
              if ($class['classlevel'] == 'Novice') {
               echo '<option value = "Novice" selected>Novice </option>';
