@@ -570,6 +570,7 @@ if (isset($_SESSION['username'])) {
 
       <br>
         <h1 class="section-header">Upcoming Events</h1>
+        <h4>Please note that from 2025 on, for Dance Parties, we will be charging a minimal fee of $5 per person to attend the dance only to help offset our costs.</h4>
         <div class="form-grid2">
         <?php
 
