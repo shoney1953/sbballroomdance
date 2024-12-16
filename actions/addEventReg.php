@@ -118,8 +118,11 @@ if (isset($_POST['submitAddReg'])) {
                     if (($event->eventtype === 'Dine and Dance') || ($event->eventtype === 'Dance Party') ){
                         if (isset($_POST["$attDin"])) {
                             $emailBody .= "<br>You have chosen to attend dinner before the dance.";
+
                         } else {
-                            $emailBody .= "<br>You have chosen not to attend dinner before the dance.";
+                            $emailBody .= "<br>You have chosen NOT to attend dinner before the dance.";
+                            $emailBody .= "<br>As of 2025, there is now a charge of $5 per person for the dance only.";
+                            $emailBody .= "<br>Please submit your fee prior to the dance as indicated on the form.";
                         }
                     }
                    

@@ -117,10 +117,10 @@ if (isset($_POST['submitEventReg'])) {
                             }
                          }
                     } else {
-                        $emailBody .= "You have chosen not to attend dinner.<br>";
-                        if ($event['eventdate'] > '2025-01-01') {
-                         $emailBody .= "As of 2025, there is now a charge of $5 per person for the dance only.";
-                         $emailBody .= "Please submit your fee prior to the dance as indicated on the form.";
+                        $emailBody .= "You have chosen not to attend dinner before the dance.<br>";
+                   
+                         $emailBody .= "As of 2025, there is now a charge of $5 per person for the dance only.<br>";
+                         $emailBody .= "Please submit your fee prior to the dance as indicated on the form.<br>";
                          if ($event['eventform']) {
                             $actLink= "<a href='".$event['eventform']."'>
                             Click to view event Form</a><br>";
@@ -128,7 +128,7 @@ if (isset($_POST['submitEventReg'])) {
                            $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
                             on the website to open the form. Or<br>$actLink";
                            }
-                        }
+                        
                         
                     }
                 }
