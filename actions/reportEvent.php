@@ -151,6 +151,7 @@ if ($rowCount > 0) {
          
             }
             if ($reg['eventtype'] === 'Dance Party') {
+                $pdf->Cell(18,8,"DWOP",1,0,"L"); 
                 if ($event->eventcost > 0) {
                     $pdf->Cell(14,8,"PAID",1,0,"L");
                 }
@@ -281,7 +282,7 @@ if ($rowCount > 0) {
                     $pdf->Cell(14,8,"PAID",1,0,"L");
                 }
 
-                $pdf->Cell(22,8,"DINNER?",1,0,"L");
+                $pdf->Cell(22,8,"DINNER?",1,1,"L");
                }
             if ($reg['eventtype'] === 'Dinner Dance') {
                 $pdf->Cell(18,8,"DWOP",1,0,"L");
@@ -404,18 +405,7 @@ if ($rowCount > 0) {
             }
 
       }
-     
-  }
-
-      if ($reg['eventtype'] === 'Dine and Dance') {
-        if ($reg['ddattenddinner'] === '1') {
-            $pdf->Cell(22,8,"YES",1,0,"L");
-        } else {
-            $pdf->Cell(22,8,"NO ",1,0,"L");
-        } 
-     
-    }
-    if ($reg['eventtype'] === 'Dance Party') {
+      if ($reg['eventtype'] === 'Dance Party') {
         if ($reg['ddattenddinner'] === '1') {
             $pdf->Cell(22,8,"YES",1,1,"L");
         } else {
@@ -423,6 +413,18 @@ if ($rowCount > 0) {
         } 
      
     }
+  }
+
+
+    //   if ($reg['eventtype'] === 'Dine and Dance') {
+    //     if ($reg['ddattenddinner'] === '1') {
+    //         $pdf->Cell(22,8,"YES",1,0,"L");
+    //     } else {
+    //         $pdf->Cell(22,8,"NO ",1,0,"L");
+    //     } 
+     
+    // }
+   
         
         // $pdf->Cell(70,8,$reg['message'],1,1,"L"); 
 
