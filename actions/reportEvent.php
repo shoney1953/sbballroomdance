@@ -142,30 +142,31 @@ if ($rowCount > 0) {
           
             } 
             
-            if ($reg['eventtype'] === 'Dance Party') {
+            if ($reg['eventtype'] === 'Dinner Dance')
+            {
                 $pdf->Cell(18,8,"DWOP",1,0,"L");  
                 if ($event->eventcost > 0) {
-                    $pdf->Cell(14,8,"PAID",1,0,"L");
+                    $pdf->Cell(14,8,"PAID",1,1,"L");
                 }
          
             }
-           
-      
-            if ($reg['eventtype'] === 'Dine and Dance') {
-                $pdf->Cell(18,8,"DWOP",1,0,"L");  
-                $pdf->Cell(22,8,"DINNER?",1,0,"L");
-
-            }
-            if ($reg['eventtype'] === 'Dinner Dance') {
-                $pdf->Cell(18,8,"DWOP",1,0,"L"); 
-                $pdf->Cell(14,8,"PAID",1,1,"L");
-            }
-           
             if ($reg['eventtype'] === 'Dance Party') {
-
+                if ($event->eventcost > 0) {
+                    $pdf->Cell(14,8,"PAID",1,0,"L");
+                }
                 $pdf->Cell(22,8,"DINNER?",1,1,"L");
 
             }
+           
+      
+            // if ($reg['eventtype'] === 'Dine and Dance') {
+            //     $pdf->Cell(18,8,"DWOP",1,0,"L");  
+            //     $pdf->Cell(22,8,"DINNER?",1,0,"L");
+
+            // }
+
+           
+
 
             // $pdf->Cell(70,8,"MESSAGE",1,1,"L");    
           
@@ -208,11 +209,11 @@ if ($rowCount > 0) {
                $pdf->Cell(22,8,"DINNER?",1,1,"L");
            }
      
-           if ($reg['eventtype'] === 'Dine and Dance') {
-               $pdf->Cell(18,8,"DWOP",1,1,"L"); 
-               $pdf->Cell(22,8,"DINNER?",1,0,"L");
+        //    if ($reg['eventtype'] === 'Dine and Dance') {
+        //        $pdf->Cell(18,8,"DWOP",1,1,"L"); 
+        //        $pdf->Cell(22,8,"DINNER?",1,0,"L");
 
-           }
+        //    }
            if ($reg['eventtype'] === 'Dinner Dance') {
             $pdf->Cell(18,8,"DWOP",1,1,"L"); 
                $pdf->Cell(14,8,"PAID",1,1,"L");
@@ -284,38 +285,30 @@ if ($rowCount > 0) {
                }
             if ($reg['eventtype'] === 'Dinner Dance') {
                 $pdf->Cell(18,8,"DWOP",1,0,"L");
-             $pdf->Cell(14,8,"PAID",1,1,"L");
+                $pdf->Cell(14,8,"PAID",1,1,"L");
             }
-            if ($reg['eventtype'] === 'Dine and Dance') {
-             $pdf->Cell(22,8,"DINNER?",1,1,"L");
+            // if ($reg['eventtype'] === 'Dine and Dance') {
+            //  $pdf->Cell(22,8,"DINNER?",1,1,"L");
 
-            }
+            // }
             // $pdf->Cell(70,8,"MESSAGE",1,1,"L");      
     
          }
-         $paid = 'Not Paid';
 
+      
         if ($reg['paid'] == true) {
-            if ($reg['eventtype'] === 'Dinner Dance') {
-                $paidNum++;
-            } else {
-     
-          if ($reg['ddattenddinner'] == true) {
-            $paidNum++;
-            $paid = 'Paid';
-            } else {
-                 $paid = 'NA';
-         }
-        }
+            if (($reg['eventtype'] === 'Dinner Dance') ||
+                ($reg['eventtype'] === 'Dance Party'))
+            {
+                $paidNum++;   
+            } 
           
         }
         if ($reg['ddattenddinner'] == true) {
             $attDinner++;
-      
         }
         if ($reg['ddattenddance'] == true) {
             $attDance++;
- 
         }
         if ($reg['eventtype'] === 'Dance Party') {
 
@@ -324,7 +317,7 @@ if ($rowCount > 0) {
                     $init_dinner = 0;
                     $pdf->Cell(100,8,' ',0,1,"L");       
             }
-        }
+        } 
     }
         $user->id = $reg['userid'];
     
@@ -335,7 +328,7 @@ if ($rowCount > 0) {
             $pdf->Cell(18,8,"YES",1,0,"L"); 
             $memReg++;
             $user->id = $reg['userid'];
-            $user->read_single();  {
+            $user->read_single();  
             if (($reg['eventtype'] === 'Novice Practice Dance') ||
                 ($reg['eventtype'] === 'Social') ||
                 ($reg['eventtype'] === 'TGIF') ||
@@ -357,8 +350,8 @@ if ($rowCount > 0) {
                     $pdf->Cell(18,8,"YES",1,0,"L"); 
                     $numDwop++;
                    } 
-            }
-            }
+            
+           } 
         } else {
            
             if (($reg['eventtype'] === 'Novice Practice Dance') ||
@@ -385,7 +378,8 @@ if ($rowCount > 0) {
         } 
         $user->id = $reg['userid'];
         $user->read_single();
-        if ($reg['eventtype'] === 'Dinner Dance') {
+        if ($reg['eventtype'] === 'Dinner Dance') 
+            {
             if ($event->eventcost > 0) {
                 if ($reg['paid'] === '1') {
                     $pdf->Cell(14,8,"YES",1,1,"L");
@@ -397,26 +391,22 @@ if ($rowCount > 0) {
             }
 
       }
-      if ($reg['eventtype'] === 'Dance Party') {
-        if ($event->eventcost > 0) {
-        if ($reg['paid'] === '1') {
-            if ($reg['ddattenddinner'] === '1') {
-              $pdf->Cell(14,8,"YES",1,0,"L");
-            } else {
-              $pdf->Cell(14,8,"N/A ",1,0,"L");
-             } 
-        } else {
-            if ($reg['ddattenddinner'] === '1') {
-                $pdf->SetTextColor(255 , 0, 0);
-                $pdf->Cell(14,8,"NO",1,0,"L");
-                $pdf->SetTextColor(0 , 0, 0);
-              } else {
-                $pdf->Cell(14,8,"N/A ",1,0,"L");
-               } 
+      if ($reg['eventtype'] === 'Dance Party')
+            {
+            if ($event->eventcost > 0) {
+                if ($reg['paid'] === '1') {
+                    $pdf->Cell(14,8,"YES",1,0,"L");
+                } else {
+                    $pdf->SetTextColor(255 , 0, 0);
+                    $pdf->Cell(14,8,"NO ",1,0,"L");
+                    $pdf->SetTextColor(0 , 0, 0);
+                } 
+            }
+
+      }
      
-        } 
-    }
   }
+
       if ($reg['eventtype'] === 'Dine and Dance') {
         if ($reg['ddattenddinner'] === '1') {
             $pdf->Cell(22,8,"YES",1,0,"L");
@@ -479,7 +469,7 @@ if ($rowCount > 0) {
 }
 $today = date("m-d-Y");
 $pdf->Output("I", "EventRegistrationReport.".$today.".PDF");
-}
+
 
 
 
