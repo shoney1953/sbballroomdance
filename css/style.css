@@ -784,17 +784,17 @@ button {
   cursor: pointer;
 }
 .button-small {
-  width: 15%;
+  width: 5%;
   border-radius: 50%;
 }
 .button-small:link, .button-small:visited {
-  width: 15%;
+  width: 5%;
   border-radius: 50%;
   background-color: darkviolet;
   color: white;
 }
 .button-small:hover, .button-small:active {
-  width: 15%;
+  width: 5%;
   border-radius: 50%;
   color: darkviolet;
   background-color: white;
