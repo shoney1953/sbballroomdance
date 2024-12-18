@@ -36,6 +36,7 @@ echo '<div class="container-section ">';
     echo '<br><br><h1>Class Details</h1>';
 
         echo '<table>';
+            echo '<thead>';
             echo '<tr>';
             echo '<th>Name    </th>';
             echo '<th>Level    </th>';
@@ -43,19 +44,16 @@ echo '<div class="container-section ">';
             echo '<th>Registration Email </th>';
             echo '<th>Time    </th>';
             echo '<th>Room    </th>';
-
-
-
             echo '<th>Notes</th>';
-   
             echo '<th>Class Limit    </th>';
             echo '<th># Reg </th>';
-           
             echo '</tr>';
-     
+            echo '</thead>';
+            echo '</tbody>';
             $classNumber = 0;
             foreach($allClasses as $class) {
                  if ($class["id"] === $_GET['id']) {
+
                   echo "<tr>";              
             
                   echo "<td>".$class['classname']."</td>";
@@ -65,14 +63,18 @@ echo '<div class="container-section ">';
                   echo "<td>".$class['time']."</td>";
                   echo "<td>".$class['room']."</td>";
 
-
-
-
                   echo "<td>".$class['classnotes']."</td>";
 
                   echo "<td>".$class['classlimit']."</td>";
-                  echo "<td>".$class['numregistered']."</td>";
+                  $hr = 'classMem.php?id=';
+                 $hr .= $class["id"];
+
+                 echo '<td><a href="'.$hr.'">'.$class["numregistered"].'</a></td>';
+        
+                //   echo "<td>".$class['numregistered']."</td>";
                   echo "</tr>";
+                  echo "<tbody>";
+                  echo "<thead>";
                   echo "<tr>";  
                   echo '<th>Start Date</th>';
                   echo '<th>Date 2</th>';
@@ -84,6 +86,8 @@ echo '<div class="container-section ">';
                   echo '<th>Date 8</th>';
                   echo '<th>Date 9</th>';
                   echo "</tr>";
+                  echo "</thead>";
+                  echo "<tbody>";
                   echo "<tr>";              
        
                   echo "<td>".$class['date']."</td>";
@@ -96,6 +100,7 @@ echo '<div class="container-section ">';
                   echo "<td>".$class['date8']."</td>";
                   echo "<td>".$class['date9']."</td>";
                   echo "</tr>";
+                  echo "</tbody>";
                  }
                   
               }

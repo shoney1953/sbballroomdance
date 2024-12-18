@@ -442,7 +442,7 @@ font-weight: bolder;
   margin-bottom: 20px;
 }
 table {
-  width: 100%;
+  width: 90%;
 }
 table,
 th,
@@ -473,7 +473,7 @@ thead tr {
 
 }
 table {
-  width: 100%;
+  width: 90%;
   border-spacing: 5px;
   table-layout: auto;
   align-items: left;
@@ -1061,7 +1061,7 @@ iframe {
     margin: 2px 2px;
   }
   table {
-    width: 100%;
+    width: 90%;
     border-spacing: 3px;
     table-layout: auto;
     align-items: left;
@@ -1296,7 +1296,7 @@ iframe {
     margin: 1px 1px;
   }
   table {
-    width: 100%;
+    width: 80%;
     border-spacing: 3px;
     table-layout: auto;
     align-items: left;
@@ -1570,7 +1570,7 @@ iframe {
   }
 
   table {
-    width: 100%;
+    width: 90%;
     border-spacing: 2px;
     table-layout: auto;
     align-items: left;
@@ -1727,7 +1727,7 @@ iframe {
     justify-content: left;
     background-color: rgba(252, 237, 237, 0.2);
     /* background-color: rgba(190, 197, 186, 0.9) */
-    );
+    ;
   }
   table {
     width: 60%;

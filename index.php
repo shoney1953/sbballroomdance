@@ -604,7 +604,7 @@ if (isset($_SESSION['username'])) {
             $first_event_year = substr($first_value['eventdate'], 0, 4);
             // var_dump($first_event_year);
             echo '<tr>';
-            echo '<th colspan="12">'.$first_event_year.'</th>';
+            echo '<th colspan="12"><em>'.$first_event_year.'</em></th>';
             echo '</tr>';
             echo '<tr>';
                
@@ -613,9 +613,9 @@ if (isset($_SESSION['username'])) {
                     echo '<th>Report?</th>';
                 }
                 ?>
-                <th>Date of Event    </th>
-                <th>Registration Opens</th>
-                <th>Register By</th>
+                <th>Event</th>
+                <th>Registration</th>
+                <th>Registration</th>
                 <th>Name    </th>
                 <th>Type    </th>
                 <th>Description</th> 
@@ -626,6 +626,24 @@ if (isset($_SESSION['username'])) {
                 <th># Reg </th>
 
             </tr>
+            <tr>
+            <?php
+             if (isset($_SESSION['username'])) {
+               echo '<th></th>';
+             }
+            ?>
+                <th>Date</th>
+                <th>Opens</th>
+                <th>Ends</th>
+                <th></th>
+                <th></th>
+                <th></th> 
+                <th></th> 
+                <th></th>            
+                <th></th>
+                <th></th>
+                <th></th>
+             </tr>
             </thead>
          
             <?php 
@@ -635,21 +653,22 @@ if (isset($_SESSION['username'])) {
                  $event_year = substr($event['eventdate'], 0, 4);
              
                  if ($event_year > $first_event_year) {
+                    echo '</tbody>';
                     echo '<thead>';
                     echo '<tr>';
-                    echo '<th colspan="12">'.$event_year.'</th>';
+                    echo '<th colspan="12"><em>'.$event_year.'</em></th>';
                     echo '</tr>';
                     echo '<tr>'; 
-                    echo '</thead>' ;
+         
                     $first_event_year = $event_year;
                     echo '<tr>';
                     if (isset($_SESSION['username'])) {
                         echo '<th>Report?</th>';
                     }
                     
-                    echo '<th>Date of Event    </th>';
-                    echo '<th>Registration Opens</th>';
-                    echo '<th>Register By</th>';
+                    echo '<th>Event</th>';
+                    echo '<th>Registration</th>';
+                    echo '<th>Registration</th>';
                     echo '<th>Name    </th>';
                     echo '<th>Type    </th>';
                     echo '<th>Description</th>'; 
@@ -660,6 +679,25 @@ if (isset($_SESSION['username'])) {
                     echo '<th># Reg </th>';
     
                 echo '</tr>';
+                echo '<tr>';
+                if (isset($_SESSION['username'])) {
+                    echo '<th></th>';
+                }
+                
+                echo '<th>Date</th>';
+                echo '<th>Opens</th>';
+                echo '<th>Ends</th>';
+                echo '<th></th>';
+                echo '<th></th>';
+                echo '<th></th>'; 
+                echo '<th></th> ';
+                echo '<th></th>';            
+                echo '<th></th>';
+                echo '<th></th>';
+                echo '<th></th>';
+
+            echo '</tr>';
+            echo '</thead>' ;
                 echo '<tbody>';
                  }
                  
@@ -678,9 +716,9 @@ if (isset($_SESSION['username'])) {
                     echo '</form>';
                     echo "</td>";
                     }
-                    echo "<td>".$event['eventdate']."</td>";
-                    echo "<td>".$event['eventregopen']."</td>";
-                    echo "<td>".$event['eventregend']."</td>";
+                    echo "<td>".substr($event['eventdate'],5,5)."</td>";
+                    echo "<td>".substr($event['eventregopen'],5,5)."</td>";
+                    echo "<td>".substr($event['eventregend'],5,5)."</td>";
                     echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";
                     echo "<td>".$event['eventdesc']."</td>"; 
@@ -739,16 +777,29 @@ if (isset($_SESSION['username'])) {
         <table>
             <thead>
             <tr>
-                
-                <th>Start Date</th>
-                <th>Click for Details</th>
-                <th>Time    </th>
+            <th>Click for </th>
+                <th>Start</th>
+                <th>Start</th>
                 <th>Class    </th>
+                <th>Class</th>
+                <th></th>
+                <th>Registration</th>
+
+                <th>Class</th>
+                <th></th>
+               
+            </tr>
+            <tr>
+            <th>Details</th>               
+                <th>Date</th>
+
+                <th>Time    </th>
+                <th>Name    </th>
                 <th>Level    </th>
                 <th>Room    </th>
-                <th>Registration Email    </th>
+                <th>Email    </th>
 
-                <th>Class Limit    </th>
+                <th>Limit</th>
                 <th># Reg </th>
                
             </tr>
@@ -763,9 +814,9 @@ if (isset($_SESSION['username'])) {
                  $hr .= $class["id"];
                  $ad = 'class.php?id=';
                  $ad .= $class["id"];
-                    
+                 echo '<td><a href="'.$ad.'">'.$class["id"].'</a></td>';
                     echo "<td>". $class['date']."</td>";
-                    echo '<td><a href="'.$ad.'">'.$class["id"].'</a></td>';
+
                     echo "<td>".$class['time']."</td>";
                     echo "<td>".$class['classname']."</td>";
                     echo "<td>".$class['classlevel']."</td>";
