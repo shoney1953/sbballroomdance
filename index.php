@@ -660,11 +660,12 @@ if (isset($_SESSION['username'])) {
                     echo '<th># Reg </th>';
     
                 echo '</tr>';
+                echo '<tbody>';
                  }
                  
 
                     
-                 echo '<tbody>';
+        
                  $hr = 'eventMem.php?id=';
                  $hr .= $event["id"];
                   echo "<tr>";
