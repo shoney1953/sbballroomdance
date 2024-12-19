@@ -251,6 +251,7 @@ hr {
   margin-bottom: 2px;
   margin-top: 2px;
   text-align: center;
+  overflow-x: auto;
   color: rgb(28, 1, 39);
   align-items: center;
   justify-content: center;
@@ -443,9 +444,11 @@ font-weight: bolder;
 }
 table {
   width: 90%;
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 table,
-th,
+/* th, */
 td {
 
   border: 1px solid black;
