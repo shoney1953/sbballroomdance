@@ -314,8 +314,8 @@ hr {
   display: block;
 }
 .form-container {
-  max-width: 100%;
-  width: 100%;
+  max-width: 90%;
+  width: 90%;
   border: 2px solid rgb(55, 30, 66);
   border-radius: 4px;
   background:  var(--lg); 
@@ -446,6 +446,7 @@ table {
   width: 90%;
   border: 1px solid black;
   border-collapse: collapse;
+  border-radius: 4px;
 }
 table,
 /* th, */
