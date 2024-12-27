@@ -240,7 +240,7 @@ if ($rowCount > 0) {
             <div class="form-item">
             <h4 class="form-item-title">Directory List: </h4>
              <input type='number' name='directorylist' min='0' max='1' value='<?php echo $user->directorylist ?>'>
-             <br><label style='font: smaller;color: darkviolet' for='directorylist'><em>1 to list, 0 to Remove</em></label>
+             <br><label style='font: smaller' for='directorylist'><em>1 to list, 0 to Remove</em></label>
             </div>
        
            
@@ -263,8 +263,7 @@ if ($rowCount > 0) {
             </div>
             <div class="form-item">
             <h4 class="form-item-title">Fulltime Resident: </h4>
-             <!-- <input type='number' name='fulltime' min='0' max='1' value='<?php echo $user->fulltime ?>'> -->
-             <!-- <br><label style='font: smaller;color: darkviolet' for='fulltime'><em>1 Yes, 0 Gone for the Summer</em></label> -->
+
              <select name = 'fulltime' value='<?php echo $user->fulltime ?>'>
             <?php
                 if ($user->fulltime == '1') {
@@ -361,7 +360,7 @@ if ($rowCount > 0) {
         <table>
         <thead>  
             <tr>
-                <th colspan='6' style='text-align: center;color: darkviolet'>Your Class Registrations</th>
+                <th colspan='6' style='text-align: center'>Your Class Registrations</th>
             </tr>
             <tr>
              
@@ -407,7 +406,7 @@ if ($rowCount > 0) {
         echo "<table>";
         echo "<thead>";  
             echo "<tr>";
-                echo "<th colspan='6' style='text-align: center;color: darkviolet'>Your Partners Class Registrations</th>";
+                echo "<th colspan='6' style='text-align: center'>Your Partners Class Registrations</th>";
             echo "</tr>";
             echo "<tr>";
              
@@ -462,7 +461,7 @@ if ($rowCount > 0) {
         <table>
             <thead>
             <tr>
-                <th colspan="6" style="text-align: center;color: darkviolet">Your Event Registrations</th>
+                <th colspan="6" style="text-align: center">Your Event Registrations</th>
             </tr>
             <tr>
                 <th>Delete?</th>
@@ -520,7 +519,7 @@ if ($rowCount > 0) {
         echo "<table>";
             echo "<thead>";
             echo "<tr>";
-                echo '<th colspan="6" style="text-align: center;color: darkviolet">Your Partners Event Registrations</th>';
+                echo '<th colspan="6" style="text-align: center">Your Partners Event Registrations</th>';
             echo '</tr>';
             echo '<tr>';
                 echo '<th>Delete?</th>';
@@ -580,7 +579,7 @@ if ($rowCount > 0) {
     echo '<table>';
     echo '<thead>';
     echo '<tr>';
-    echo '<th colspan=2 style="text-align: center;color: darkviolet">Membership Status</th>';
+    echo '<th colspan=2 style="text-align: center">Membership Status</th>';
     echo '</tr>';
     echo "<tr>";
     echo "<td>YEAR</td>";
@@ -609,7 +608,7 @@ if ($rowCount > 0) {
     echo '<table>';
     echo '<thead>';
     echo '<tr>';
-    echo '<th colspan=1 style="text-align: center;color: darkviolet">Membership Form</th>';
+    echo '<th colspan=1 style="text-align: center">Membership Form</th>';
     echo '</tr>';
     echo "<tr>";
     echo "<td>FORM</td>";

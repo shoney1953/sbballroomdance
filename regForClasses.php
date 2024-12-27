@@ -228,6 +228,8 @@ $db = $database->connect();
         ?>
     </section>
     </div>
-    
+<?php
+  require 'footer.php';
+?>   
 </body>
 </html>

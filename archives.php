@@ -233,7 +233,8 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
      
      <ul>
         <?php
-            if ($_SESSION['role'] === 'SUPERADMIN') {
+           echo "<li><a href='index.php'>Back to Home</a></li> ";
+            if ($_SESSION['role'] === 'SUPERADMIN') {  
                 echo "<li><a href='administration.php'>Back to Administration</a></li> ";
                 echo "<li><a href='#usersarchived'>Archived Members</a></li>";
                 echo "<li><a href='#eventsarchived'>Archived Events</a></li>";
@@ -255,8 +256,7 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
     <?php
 
     if ($_SESSION['role'] === 'SUPERADMIN') {
-        echo '<div class="container-section ">  <br><br>';
-       
+        echo '<div class="container-section "> ';      
         echo '<section id="usersarchived" class="content">';
         echo ' <h3 class="section-header">Archived Member List</h3> ';
         echo '<form name="reportUserArchive" method="POST" action="actions/reportUserArchive.php">'; 

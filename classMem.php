@@ -148,12 +148,10 @@ echo '<div class="container-section ">';
                 echo '<br><br>';
             }
             echo '</section>'; 
+            require 'footer.php';
             echo '</div>'; 
  ?> 
 
-     <footer >
-    <?php
-    require 'footer.php';
-   ?>
+
 </body>
 </html>

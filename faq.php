@@ -32,8 +32,8 @@
          <span class="faq-title">Why should I become a member?</span>
         <div class="dropdown-content">
         <p>The main reason to become a member is to be able to take all the monthly classes for no charge. If you've ever taken 
-          Dance classes at a studio, you should realized that having free classes is a great bargain for the minium price of membership. 
-          Members also often receive reduced prices for dinner dances. We are a very social group, so another great reason to join is to 
+          Dance classes at a studio, you should realized that having free classes is a great bargain for the minimum price of membership. 
+          Members also receive reduced prices for dinner dances and dance parties. We are a very social group, so another great reason to join is to 
           meet new friends!
         </p>
         </div> 
@@ -42,8 +42,9 @@
       <span class="faq-title">How do I become a member?</span>
         <div class="dropdown-content">
         <p>Simply print the form below and send it in along with dues to the treasurer. Their address is on the form. After they receive the form and enter your information, you'll be a member!
+          You'll receive an email with login instructions once your information is entered into the system.
         </p>
-        <p>Membership is limited to residents of SaddleBrooke HOA 1 and HOA 2 due to rules of the HOA's.</p>
+        <p><em>Due to rules of the HOAs, Membership is limited to residents of SaddleBrooke HOA 1 and HOA 2.</em></p>
         <h4><a  
             href='img/SBDC Membership Form 2025.pdf' target='_blank'>
             Click for Membership Form</a></h4>
@@ -169,13 +170,13 @@
         <p>Dance Parties are dances where food may or may not be served. The food will be served prior to the dance usually at 4:30pm.
           The dance will normally start at 6pm once the food is cleared if food was served. 
         </p>
-        <p>There may be a cost involved
-          and if there is, it will be indicated on the event. Normally if payment is required for the event, a form will be associated with the event that will be submitted
-          to the treasurer with the check. The treasurer's address will be indicated on the form.
+        <p>There is a cost involved. If not attending dinner, it will be $5 per person for members and $10 per person for non-members. If attending dinner, the cost and meal selections
+          will be indicated on the form as will the treasurer's name and address. In either case, the payment (and meal selections) should be submitted prior to the event. 
+          You can print the form from the website event list (see the View/Print tab); or often the forms are available at classes or included in the weekly update email.
         </p>
-        <p>We will need to know if you plan to partake of the meal, or just attend the dance so that the correct number of tables can be set up in the ballroom.
+        <p>We will need to know if you plan to partake of the meal, or just attend the dance so that the correct number of tables can be set up in the ballroom. That will be indicated on the form.
         <p>
-        You can register by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Dine and Dance Info">
+        You can also register by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Dine and Dance Info">
                        countmein@sbballroomdance.com</a> or on the website.
         </p>
         </div> 
@@ -189,11 +190,11 @@
          Click Here to See the Activities Calendar for times and dates.
         </a>
         </p>
-        <p> We try to have a DJ at most of them - especially Fridays and Sundays, so that you can practice what you've been learning in the various classes. You can request music for various dances, and
+        <p> We try to have a DJ at most of them - especially Fridays and Mondays, so that you can practice what you've been learning in the various classes. You can request music for various dances, and
           the DJs will play them if they have the music.
         </p>
         <p>
-          Often on Tuesdays when no Novice Class is being held, the room will be available without a DJ, so you could feel free to bring your own music and practice.
+          Often on Wednesdays when no Novice Class is being held, the room will be available without a DJ, so you could feel free to bring your own music and practice.
         </p>
         <p>They are designated as <em><strong>Open</strong></em> because they are open to all SaddleBrooke Residents.</p>
         </div> 
@@ -219,7 +220,7 @@
       <span class="faq-title">What is ROBO DJ?</span>
         <div class="dropdown-content">
         <p>Robo DJ is a website designed to provide music for SBDC members. There are categories of music, and a facility to create a random playlist that includes various type of music. 
-          You will need to login with your regular SBDC userid and password.
+          You will need access to WIFI and to login with your regular SBDC userid and password.
           </p>
         <p>
          More information is provided in the ROBO DJ guide<a target="_blank" href="https://drive.google.com/file/d/1lRa1Sr_RIpyj-yLF_9qeZgdC7QGZ5q-X/view?usp=sharing"> Click to read the guide</a>
@@ -232,7 +233,7 @@
         <div class="dropdown-content">
         
         <p>
-         <a target="_blank" href="https://sbdcrobodj.com/">Click to access the Robo DJ Website</a>
+         <a target="_blank" href="https://sbdcrobodj.com/">Click to access the Robo DJ Website</a> Or it is available via the menu on the website under the Volunteer tab.
         </p>
 
         </div> 

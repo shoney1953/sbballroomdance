@@ -205,7 +205,7 @@ if ($rowCount > 0) {
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
-            echo '<th colspan="4" style="color: darkviolet;text-align:center">Membership Data</th>';
+            echo '<th colspan="4" style="text-align:center">Membership Data</th>';
             echo '</tr>';
             echo '<tr>';
             echo '<th>First Name</td>';
@@ -343,7 +343,7 @@ if ($rowCount > 0) {
     echo '<table>';
     echo '<thead>';
     echo '<tr>';
-    echo '<th colspan="2" style="color: darkviolet;text-align:center">Membership Status</th>';
+    echo '<th colspan="2" style="text-align:center">Membership Status</th>';
     echo '</tr>';
     echo '<tr>';
     echo "<th>YEAR</th>";
@@ -379,7 +379,7 @@ if ($rowCount > 0) {
         <table>
             <thead>
             <tr>
-            <th colspan="6" style="color: darkviolet;text-align:center">Active Classes</th>
+            <th colspan="6" style="text-align:center">Active Classes</th>
             </tr>
             <tr>
                 <th>ID</th>
@@ -421,7 +421,7 @@ if ($rowCount > 0) {
         <table>
         <thead>
             <tr>
-            <th colspan="5" style="color: darkviolet;text-align:center">Active Events</th>
+            <th colspan="5" style="text-align:center">Active Events</th>
             </tr>
             <tr>
                 <th>ID</th>
@@ -460,7 +460,7 @@ if ($rowCount > 0) {
        <table>
        <thead>
             <tr>
-            <th colspan="6" style="color: darkviolet;text-align:center">Past Class Registrations</th>'
+            <th colspan="6" style="text-align:center">Past Class Registrations</th>'
             </tr>
            <tr>
                <th>ID</th>
@@ -500,7 +500,7 @@ if ($rowCount > 0) {
    <table>
    <thead>
             <tr>
-            <th colspan="6" style="color: darkviolet;text-align:center">Past Event Registrations</th>'
+            <th colspan="6" style="text-align:center">Past Event Registrations</th>'
             </tr> 
 
            <tr>

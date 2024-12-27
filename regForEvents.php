@@ -144,9 +144,10 @@ $compareDate = $currentDate->format('Y-m-d');
             
             echo '<h4 class="form-title"><em>
               To Register -- Please select One or More of the Events Listed along with associated information. <br>Then click on the Submit Registration(s) Button.</em></h4><br>
-              <p class="small-p">Please note if the event is a Dinner Dance or a Dance Party, there will be a form (click on VIEW) to select meal choices and determine the cost. 
+              <p>Please note if the event is a Dinner Dance or a Dance Party, there will be a form (click on VIEW/PRINT) to select meal choices and determine the cost. 
               This should be printed and sent to the treasurer along with payment.
               Their address will appear on the form. If no form exists yet for the event, you will receive an email with the form when it becomes available.
+              As of 2025, for Dance Parties, there will be a minimum charge of $5 per person to attend the dance portion only. Please submit this with the form prior to the date registration ends.
               </p><br>';
             
         foreach ($upcomingEvents as $event) {
@@ -215,7 +216,7 @@ $compareDate = $currentDate->format('Y-m-d');
     
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Event Form or Flyer</h4>';
-                echo '<a href="'.$event['eventform'].'">VIEW</a>';
+                echo '<a href="'.$event['eventform'].'">VIEW/PRINT</a>';
                 echo '</div>';
                 } 
      
@@ -243,6 +244,8 @@ $compareDate = $currentDate->format('Y-m-d');
         ?>
     </section>
     </div>
-    
+<?php
+  require 'footer.php';
+?>   
 </body>
 </html>

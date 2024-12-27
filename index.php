@@ -345,7 +345,7 @@ if (isset($_SESSION['username'])) {
          
             <p>We are a primarily social club that provides dance lessons,
                  and opportunities to dance and socialize.</p><br>
-            <p>We are comprised of around 200 members from both SaddleBrooke HOA 1 and HOA 2.</p><br>
+            <p>We are comprised of around 250 members from both SaddleBrooke HOA 1 and HOA 2.</p><br>
             <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
                are also part of our repetoire. </p><br><br>
             <p>Scroll down or click one of the tabs above for more information</p><br>
@@ -367,9 +367,9 @@ if (isset($_SESSION['username'])) {
             music for Ballroom Dance, Western and Western Partner Dance, Line Dance, and Latin Dances.</p>
        <br><strong> <p> We will help you get started if you've never stepped foot on the dance floor. We now are featuring Novice classes twice 
             a month, with a Novice Practice party once a month to help you feel more comfortable about joining dinner dances and other events.
-            The classes are normally on Wednesdays in the Mariposa room, and the Novice Parties are on Fridays in the Vermilion room in the 
-            same time slots as our open practice. Check the Activities calendar or send a note to <a href="mailto:countmein@sbballroomdance.com?subject=Novice Dancing Info">
-                       countmein@sbballroomdance.com</a> for
+            The Novice classes and the Novice Parties are on Wednesdays in the Mariposa room in the same time slots as our open practice. 
+            Check the Activities calendar or send a note to <a href="mailto:countmein@sbballroomdance.com?subject=Novice Dancing Info">
+            countmein@sbballroomdance.com</a> for
             more information.</p></strong>
 
         <br><p>Our members can go to any class we provide free. Prospective members may attend one class free to see if they like it. </p>
@@ -381,7 +381,7 @@ if (isset($_SESSION['username'])) {
             <p><em>Always check the Activites Calendar because we do have 
             cancellations.. and also for DJ information.</em> </p>
             <br>
-            <br><h3 style="color: red">As of  July 2024, we have a completely new schedule for our Activities.</h3>
+            <!-- <br><h3 style="color: red">As of  July 2024, we have a completely new schedule for our Activities.</h3> -->
             <a style="font-weight: bold"
         href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix" target="_blank">
          Click Here to See the Activities Calendar for times and dates.
@@ -390,7 +390,7 @@ if (isset($_SESSION['username'])) {
         <table>
             <thead>
                 <tr>
-                    <th style="color:white" colspan=6>For Novice Dancers</th>
+                    <th  colspan=6><em>For Novice Dancers</em></th>
                 </tr>  
                 <tr>
                     <th> </th>
@@ -426,7 +426,7 @@ if (isset($_SESSION['username'])) {
             </tbody>
             <thead>
                 <tr>
-                    <th style="color:white" colspan=6>For Beginner and Intermediate Dancers</th>
+                    <th  colspan=6><em>For Beginner and Intermediate Dancers</em></th>
                 </tr>   
                 <tr>
                     <th> </th>
@@ -460,7 +460,7 @@ if (isset($_SESSION['username'])) {
             </tbody>
             <thead>
                 <tr>
-                    <th style="color:white" colspan=6>For Everyone - Open Practice, ETC</th>
+                    <th  colspan=6><em>For Everyone - Open Practice, ETC</em></th>
                 </tr>   
                 <tr>
                     <th> </th>
@@ -478,6 +478,7 @@ if (isset($_SESSION['username'])) {
                     <td> <a title="click for map" href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
                     <td>4 - 6pm</td>
                     <td>Open Practice </td>
+                    <td></td>
        
                 
                 </tr>
@@ -498,7 +499,7 @@ if (isset($_SESSION['username'])) {
                     <td> <a title="click for map" href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Vermilion Room HOA 1</a></td>
                     <td>4 - 6pm</td>
                     <td>Open Practice </td>
-
+                    <td></td>
                     
                 </tr>
                 <tr>
@@ -656,7 +657,7 @@ if (isset($_SESSION['username'])) {
                     echo '</tbody>';
                     echo '<thead>';
                     echo '<tr>';
-                    echo '<th colspan="12"><em>'.$event_year.'</em></th>';
+                    echo '<th  colspan="12"  ><em>'.$event_year.'</em></th>';
                     echo '</tr>';
                     echo '<tr>'; 
          
@@ -727,7 +728,7 @@ if (isset($_SESSION['username'])) {
   
                     echo "<td>".$event['eventcost']."</td>";
                     if ($event['eventform']) {
-                        echo '<td><a href="'.$event['eventform'].'">VIEW</a></td>';
+                        echo '<td><a href="'.$event['eventform'].'">VIEW/PRINT</a></td>';
                     } else {
                             echo "<td> </td>"; 
                     }
@@ -775,7 +776,15 @@ if (isset($_SESSION['username'])) {
         </div>
 
         <table>
-            <thead>
+        <thead>
+            <?php
+                $first_class_value = reset($upcomingClasses); // First element's value
+                $first_class_year = substr($first_class_value['date'], 0, 4);
+                echo '<tr>';
+                echo '<th  colspan="12"  ><em>'.$first_class_year.'</em></th>';
+                echo '</tr>';
+            ?>
+
             <tr>
             <th>Click for </th>
                 <th>Start</th>
@@ -785,7 +794,7 @@ if (isset($_SESSION['username'])) {
                 <th></th>
                 <th>Registration</th>
 
-                <th>Class</th>
+                <!-- <th>Class</th> -->
                 <th></th>
                
             </tr>
@@ -799,7 +808,7 @@ if (isset($_SESSION['username'])) {
                 <th>Room    </th>
                 <th>Email    </th>
 
-                <th>Limit</th>
+                <!-- <th>Limit</th> -->
                 <th># Reg </th>
                
             </tr>
@@ -807,7 +816,51 @@ if (isset($_SESSION['username'])) {
             <tbody>
             <?php 
             $classNumber = 0;
+            $first_class_value = reset($upcomingClasses); // First element's value
+     
+            $first_class_year = substr($first_class_value['date'], 0, 4);
+         
             foreach ($upcomingClasses as $class) {
+     
+                $class_year = substr($class['date'],0,4);
+                if ($class_year > $first_class_year) {
+                    echo '</tbody>';
+                    echo '<thead>';
+                    echo '<tr>';
+                    echo '<th  colspan="12"  ><em>'.$class_year.'</em></th>';
+                    echo '</tr>';
+                    echo '<tr>'; 
+         
+                    $first_class_year = $class_year;
+                    echo "<thead>";
+                    echo "<tr>";
+                    echo "<th>Click for </th>";
+                        echo "<th>Start</th>";
+                        echo "<th>Start</th>";
+                        echo "<th>Class    </th>";
+                        echo "<th>Class</th>";
+                        echo "<th></th>";
+                        echo "<th>Registration</th>";
+    
+                        echo "<th></th>";
+                       
+                    echo "</tr>";
+                    echo "<tr>";
+                    echo "<th>Details</th>";               
+                        echo "<th>Date</th>";
+        
+                        echo "<th>Time    </th>";
+                        echo "<th>Name    </th>";
+                        echo "<th>Level    </th>";
+                        echo "<th>Room    </th>";
+                        echo "<th>Email    </th>";
+        
+                        echo "<th># Reg </th>";
+                       
+                    echo "</tr>";
+                    echo "</thead>";
+                    echo "<tbody>";
+                }
                  $classNumber++;
                  echo "<tr>";
                  $hr = 'classMem.php?id=';
@@ -815,7 +868,7 @@ if (isset($_SESSION['username'])) {
                  $ad = 'class.php?id=';
                  $ad .= $class["id"];
                  echo '<td><a href="'.$ad.'">'.$class["id"].'</a></td>';
-                    echo "<td>". $class['date']."</td>";
+                    echo "<td>". substr($class['date'],5,5)."</td>";
 
                     echo "<td>".$class['time']."</td>";
                     echo "<td>".$class['classname']."</td>";
@@ -824,7 +877,7 @@ if (isset($_SESSION['username'])) {
                     echo "<td>".$class['registrationemail']."</td>";
                
 
-                    echo "<td>".$class['classlimit']."</td>";
+                    // echo "<td>".$class['classlimit']."</td>";
                     echo '<td><a href="'.$hr.'">'.$class["numregistered"].'</a></td>';
                     // echo "<td>".$class['numregistered']."</td>";
          
@@ -891,13 +944,13 @@ if (isset($_SESSION['username'])) {
        <h1 class="section-header">Pictures from Past Events</h1>
        <h4>All Events</h4>
        <ul>
-       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Photos">Combination of All Event Photos</a></li>
+       <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-Photos">Combination of All Event Photos</a></em></li>
        </ul>
        <div class="form-grid3">
        <div class="form-grid-div">
        <h4>2024</h4>
        <ul>
-       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2024-Pictures">2024 Combined Photos</a></li>
+       <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2024-Pictures">2024 Combined Photos</a></em></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/01-12-2024-SBDC-Winter-wonderland-dance">Winter Wonderland Dance 01 12 2024</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-16-2024-Valentines-Dance">Valentines Dance 02 16 2024</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-BBQ-Picnic-April-13-2024">BBQ Picnic Social 04 13 2024</a></li>
@@ -930,7 +983,7 @@ if (isset($_SESSION['username'])) {
        <div class="form-grid-div">
        <h4>2023</h4>
        <ul>
-       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2023-Photos">2023 Combined Photos</a></li>
+       <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2023-Photos">2023 Combined Photos</a></em></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/2023-01-20-Dine-Dance">January Dine and Dance 01 2023</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/2023-02-15-Sweetheart-Dance/">February Sweetheart Dance 02 15 2023</a></li> 
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/04-20-2023-Dinner-Dance/">Dinner Dance 04 20 2023</a></li>
@@ -950,7 +1003,7 @@ if (isset($_SESSION['username'])) {
        <div class="form-grid-div">
        <h4>2022</h4>
        <ul>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2022-Photos">2022 Combined Photos</a></li>
+           <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2022-Photos">2022 Combined Photos</a></em></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/03-22-2022-March-Dinner-Dance">March Dinner Dance 03 22 2022</a></li> 
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/04-29-2022-SBDC-dinner-dance">April Dinner Dance 04 29 2022</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/2022-09-02-Dine-and-Dance/">Dine and Dance 09 02 2022</a></li>
@@ -964,7 +1017,7 @@ if (isset($_SESSION['username'])) {
         <div class="form-grid-div">
        <h4>2021</h4>
        <ul>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2021-Photos">2021 Combined Photos</a></li> 
+           <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2021-Photos">2021 Combined Photos</a></em></li> 
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Holiday-Party-12-14-2021">Holiday Party 12 14 2021</a></li> 
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-TGIF-10-19-2021">TGIF 11 19 2021</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Sbdc-halloween-party-10-30-2021">Halloween Party 10 30 2021</a></li>
@@ -974,7 +1027,7 @@ if (isset($_SESSION['username'])) {
            <h4>2020</h4>
            <ul>
            
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2020-Photos">2020 Combined photos</a></li>
+           <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2020-Photos">2020 Combined photos</a></em></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/03-08-2020-March-Brunch-Dance">March Brunch Dance 03 08 2020</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-15-2020-Sweetheart-Dance">Sweetheart Dance 02 15 2020</a></li>
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/Masquerade-ball-01-11-2020-SBDC">Masquerade Dance 01 11 2020</a></li>
@@ -1037,13 +1090,13 @@ if (isset($_SESSION['username'])) {
            We even have some pre-made song lists to facilitate
            DJ duties. See below for all the documents we've put together. </p><br>
         <p>
-            Check out the Automated DJ APP that can be used where WIFI is available
+            Also, Check out the Automated DJ APP (ROBO DJ) that can be used where WIFI is available
         </p><br>
        <a  target="_blank"
 href="https://drive.google.com/drive/folders/1LjnghlW8uftZHNxDG1YN4hbkq5AU2f7f?usp=sharing">
 DJ Documents</a><br>
-        <a  target="_blank" href="https://sbdcrobodj.com/">Robo DJ App</a><br>
-           <a target="_blank" href="https://drive.google.com/file/d/1lRa1Sr_RIpyj-yLF_9qeZgdC7QGZ5q-X/view?usp=sharing"><em>Click for Robo DJ Guide</em></a><br>
+        <a  target="_blank" href="https://sbdcrobodj.com/">Go to ROBO DJ App</a><br>
+           <a target="_blank" href="https://drive.google.com/file/d/1lRa1Sr_RIpyj-yLF_9qeZgdC7QGZ5q-X/view?usp=sharing"><em>Click for ROBO DJ Guide</em></a><br>
         <a  target="_blank" href="https://zedar.com?x=82351 "
         >DJ Equipment Checkout App</a><br>
         <a target="_blank" href="https://drive.google.com/file/d/1y6GRdngzNWCgx-xSKYwk2wtc-8qK8eGC/view?usp=sharing">DJ Policy</a><br>

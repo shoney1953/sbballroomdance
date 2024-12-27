@@ -30,6 +30,7 @@ if (!isset($_SESSION['username'])) {
 </nav>
 
 <?php
+   echo "<div class='container'>";
 if (isset($_GET['id'])) {
 echo '<div class="container-section ">';
     echo '<section id="classes" class="content">';
@@ -49,11 +50,11 @@ echo '<div class="container-section ">';
             echo '<th># Reg </th>';
             echo '</tr>';
             echo '</thead>';
-            echo '</tbody>';
+          
             $classNumber = 0;
             foreach($allClasses as $class) {
                  if ($class["id"] === $_GET['id']) {
-
+                    echo '<tbody>';
                   echo "<tr>";              
             
                   echo "<td>".$class['classname']."</td>";
@@ -73,7 +74,8 @@ echo '<div class="container-section ">';
         
                 //   echo "<td>".$class['numregistered']."</td>";
                   echo "</tr>";
-                  echo "<tbody>";
+                  echo "</tbody>";
+            
                   echo "<thead>";
                   echo "<tr>";  
                   echo '<th>Start Date</th>';
@@ -101,29 +103,24 @@ echo '<div class="container-section ">';
                   echo "<td>".$class['date9']."</td>";
                   echo "</tr>";
                   echo "</tbody>";
+           
                  }
                   
               }
-        
-          
-
-             
-              
-         
+ 
             echo '</table>';
             echo '<br>';
 
-               
-             
+ 
                 echo '<br><br>';
-            }
-            echo '</section>'; 
+        
             echo '</div>'; 
- ?> 
+            echo '</section>'; 
+        }
+        require 'footer.php';
+        echo "</div>";
 
-     <footer >
-    <?php
-    require 'footer.php';
-   ?>
+ 
+?>
 </body>
 </html>

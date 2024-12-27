@@ -403,7 +403,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     <br>
     <br>
     <br>
-    <h1 style="text-align: center; margin-top: 40px; color:white">Administrative Functions for SaddleBrooke Ballroom Dance Club</h1>
+  
     <br>
     </div>
 
@@ -411,6 +411,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     echo '<div class="container-section ">';
     echo '<section  class="content">';
     echo '<br>';
+    echo '<h1>Administrative Functions for SaddleBrooke Ballroom Dance Club</h1>';
     echo '<h4><a href="https://drive.google.com/file/d/1R7kQMmGTbadaz_0ekPAIQXOrYvo0Mut8/view?usp=sharing">Click for Administrators Guide</a></h4>';
     echo '<br>';
     echo '</div>';
@@ -763,7 +764,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<table>';
         echo '<thead>';
         echo '<tr>';
-        echo '<th colspan="14" style="color: darkviolet;text-align:center">Member List</th>';
+        echo '<th colspan="14" style="text-align:center">Member List</th>';
         echo '</tr>';
         echo '<tr>';
                 echo '<th>Update</th>';
@@ -835,8 +836,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<div class="form-grid-div">';  
         echo '<form target="_blank" method="POST" action="actions/reportPaid.php">'; 
         echo '<h4>Report Membership</h4>';
-        echo '<input type="checkbox" name="reportPaid">';
-        echo '<label for="reportUsers">Report Membership</label><br>';    
+        echo '<input type="checkbox" name="reportPaid"><br>';
+        // echo '<label for="reportUsers">Report Membership</label><br>';    
         echo '<label for="year" >Reporting Year</label><br>';
         echo '<input type="number" min=2022 maxlength=4 name="year" 
              value="'.$thisYear.'"><br>';
@@ -853,7 +854,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Year</th>'; 
                 echo '<th>ID</th>'; 
                 echo '<th>Userid</th>'; 
-                echo '<th>Paid UP?</th>';
+                echo '<th>PAID?</th>';
                 echo '<th>Mark Paid</th>';
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
@@ -871,7 +872,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         if ($memStat['paid'] == true ) {
                             echo "<td><em>&#10004;</em></td>"; 
                           } else {
-                              echo "<em><td><em>&times;</em></td>"; 
+                              echo "<td><em>&times;</em></td>"; 
                           }   
                         $ckboxId = "pd".$memStat['id'];
                         echo "<td>";
@@ -899,7 +900,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Year</th>'; 
                 echo '<th>ID</th>'; 
                 echo '<th>Userid</th>'; 
-                echo '<th>Paid UP?</th>';
+                echo '<th>PAID?</th>';
                 echo '<th>Mark Paid</th>';
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
@@ -917,7 +918,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         if ($memStat['paid'] == true ) {
                             echo "<td><em>&#10004;</em></td>"; 
                           } else {
-                              echo "<em><td><em>&times;</em></td>"; 
+                              echo "<td><em>&times;</em></td>"; 
                           }   
                         $ckboxId = "pd".$memStat['id'];
                         echo "<td>";
@@ -951,68 +952,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     }
     if ($_SESSION['role'] != 'INSTRUCTOR') {
  
-        // echo '<div class="container-section ">';
-        // echo '<br><br>';
-        // echo '<section id="contacts" class="content">';
-        //      echo '<h3 class="section-header">Contacts</h3>';  
-        //      echo '<div class="form-grid3">';
-          
-        //      echo '<form method="POST" action="actions/maintainContact.php">';
-        //      echo '<div class="form-grid-div">';
-        //      echo '<h4>Maintain Contacts</h4>';
-        //      echo '<input type="checkbox" name="deleteContact">';
-        //      echo '<label for="deleteContact">Delete a Range of Contacts</label><br>';
-        //      echo '<input type="date"  name="delContactBefore" >';
-        //      echo '<label for="delContactBefore"><em> &larr; Specify a Date 
-        //          to delete contacts before: </em></label><br>';
-        //      echo '<button type="submit" name="submitContact">Delete Contacts</button> ';
-        //      echo '</div>';
-        //      echo '</form>';
-        //      echo '<div class="form-grid-div">';
-        //      echo '<h4>Report Contacts</h4>';
-        //      echo '<form target="_blank" method="POST" action="actions/reportContact.php">';  
-        //      echo '<button type="submit" name="reportContact">Report Contacts</button> ';
-           
-        //      echo '</div>';     
-        //      echo '</form>';
-        //      echo '</div>';   
-        //      echo '<br>';
-        //     echo '<table>';
-        //     echo '<thead>';
-        //         echo '<tr>';
-        //             echo '<th>Date Contacted</th> '; 
-        //             echo '<th>First Name</th>';
-        //             echo '<th>Last Name    </th>';
-        //             echo '<th>Email</th>';
-        //             echo '<th>Message</th> ';
-        //             echo '<th>Favorite Dance Style</th>';
-        //             echo '<th>Dance Experience</th> ';       
-                 
-        //         echo '</tr>';
-        //     echo '</thead>';
-        //     echo '<tbody>';
-        
-        //         foreach($contacts as $contact) {
-             
-        //               echo "<tr>";
-        //                 echo "<td>".$contact['contactdate']."</td>";
-        //                 echo "<td>".$contact['firstname']."</td>";               
-        //                 echo "<td>".$contact['lastname']."</td>";
-        //                 echo "<td>".$contact['email']."</td>";
-        //                 echo "<td>".$contact['message']."</td>"; 
-        //                 echo "<td>".$contact['danceFavorite']."</td>"; 
-        //                 echo "<td>".$contact['danceExperience']."</td>";             
-        //               echo "</tr>";
-        //           }
-             
-        //     echo '</tbody>';
-        //     echo '</table>';
-        //     echo '<br>';
-       
-            
-        
-        // echo '</section>';
-        // echo '</div>';
+
         echo '<div class="container-section ">';
         echo '<br><br>';
         echo '<section id="visitors" class="content">';
