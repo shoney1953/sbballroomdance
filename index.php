@@ -368,7 +368,10 @@ if (isset($_SESSION['username'])) {
        <br><strong> <p> We will help you get started if you've never stepped foot on the dance floor. We now are featuring Novice classes twice 
             a month, with a Novice Practice party once a month to help you feel more comfortable about joining dinner dances and other events.
             The Novice classes and the Novice Parties are on Wednesdays in the Mariposa room in the same time slots as our open practice. 
-            Check the Activities calendar or send a note to <a href="mailto:countmein@sbballroomdance.com?subject=Novice Dancing Info">
+            Check the <a style="font-weight: bold"
+        href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix" target="_blank">
+         Activities Calendar
+        </a>or send a note to <a href="mailto:countmein@sbballroomdance.com?subject=Novice Dancing Info">
             countmein@sbballroomdance.com</a> for
             more information.</p></strong>
 
