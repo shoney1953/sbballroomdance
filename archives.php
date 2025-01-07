@@ -112,6 +112,8 @@ if ($rowCount > 0) {
             'userid' => $userid,
             'email' => $email,
             'paid' => $paid,
+            'cornhole' => $cornhole,
+            'softball' => $softball,
             'ddattenddinner' => $ddattenddinner,
             'ddattenddance' => $ddattenddance,
             'registeredby' => $registeredby,

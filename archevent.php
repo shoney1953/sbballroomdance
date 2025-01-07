@@ -94,7 +94,11 @@ echo '<div class="container-section ">';
                             echo '<th>Attend<br>Dinner?</th>';
                             echo '<th>Attend<br>Dance?</th>';
                         }
-                       
+                        if ($event['eventtype'] === 'BBQ Picnic') {
+                            echo '<th>Attend<br>Meal?</th>';
+                            echo '<th>Attend<br>Cornhole?</th>';
+                            echo '<th>Attend<br>Softball?</th>';
+                        }
                        
                         echo '<th>Message</th>';
                         echo '<th>Date Reg</th> '; 
@@ -133,6 +137,25 @@ echo '<div class="container-section ">';
                                 } 
                         
                                 }
+                                if ($event['eventtype'] === 'BBQ Picnic') {
+                                    if ($eventRegistration['ddattenddinner'] == true ) {
+                                        echo "<td>&#10004;</td>"; 
+                                    } else {
+                                        echo "<td>&times;</td>"; 
+                                    } 
+                                    if ($eventRegistration['cornhole'] == true ) {
+                                        echo "<td>&#10004;</td>"; 
+                                    } else {
+                                        echo "<td>&times;</td>"; 
+                                    } 
+                                    if ($eventRegistration['softball'] == true ) {
+                                        echo "<td>&#10004;</td>"; 
+                                    } else {
+                                        echo "<td>&times;</td>"; 
+                                    }
+                            
+                                }
+
                             echo "<td>".$eventRegistration['message']."</td>";         
                             echo "<td>".$eventRegistration['dateregistered']."</td>";
                             echo "<td>".$eventRegistration['registeredby']."</td>";
