@@ -436,6 +436,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         $arChk = "ar".$event['id'];
         $drChk = "dr".$event['id'];
         $urChk = "ur".$event['id'];
+        $cvChk = "cv".$event['id'];
  
         $mbSrch = "srch".$event['id'];
         $class_month = substr($event['eventdate'], 5, 2);
@@ -474,6 +475,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<div class="form-item">';
         echo '<h4 class="form-item-title">Report?</h4>';
         echo "<input type='checkbox' title='Only select 1 event for Report' name='".$rpChk."'>";
+        echo '</div>';
+
+        echo '<div class="form-item">';
+        echo '<h4 class="form-item-title">Create CSV?</h4>';
+        echo "<input type='checkbox' title='Only select 1 event for Create CSV' name='".$cvChk."'>";
         echo '</div>';
 
        echo '<div class="form-item">';
@@ -577,6 +583,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 $arChk = "ar".$class['id'];
                 $drChk = "dr".$class['id'];
                 $urChk = "ur".$class['id'];
+       
          
                 $mbSrch = "srch".$class['id'];
                 $class_month = substr($class['date'], 5, 2);
@@ -603,6 +610,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo "<h4 class='form-item-title'>Report?</h4>";
                 echo "<input type='checkbox' title='Only select 1 event for Report' name='".$rpChk."'>";
                 echo "</div>";
+
                 echo "<div class='form-item'>";
                 echo "<h4 class='form-item-title'>Create CSV file?</h4>";
                 echo "<input type='checkbox' title='Only select 1 event for Report' name='".$cvChk."'>";

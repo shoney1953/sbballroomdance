@@ -43,6 +43,7 @@ $addReg = false;
 $processReg = false;
 $processEvent = false;
 $reportEvent = false;
+$csvEvent = false;
 $updateEvent = false;
 $deleteEvent = false;
 $emailEvent = false;
@@ -57,6 +58,7 @@ $dlChk = false;
 $emChk = false;
 $dpChk = false;
 $aeChk = false;
+$cvChk = false;
 $event_count = 0;
 
 if (isset($_POST['submitEventProcess'])) {
@@ -75,6 +77,7 @@ if (isset($_POST['submitEventProcess'])) {
         $updateEvent = false;
         $deleteEvent = false;
         $emailEvent = false;
+        $csvEvent = false;
         $duplicateEvent = false;
         $archiveEvent = false;
         $rpChk = "rp".$event['id'];
@@ -86,11 +89,19 @@ if (isset($_POST['submitEventProcess'])) {
         $arChk = "ar".$event['id'];
         $drChk = "dr".$event['id'];
         $urChk = "ur".$event['id'];
+        $cvChk = "cv".$event['id'];
         $mbSrch = "srch".$event['id'];
    //  event check boxes 
 
     if (isset($_POST["$rpChk"])) {
         $reportEvent = true;
+        $processEvent = true;
+    
+        break;
+       
+    }
+    if (isset($_POST["$cvChk"])) {
+        $csvEvent = true;
         $processEvent = true;
     
         break;

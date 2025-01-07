@@ -18,6 +18,23 @@ if ($reportEvent) {
      
   }
 }
+if ($csvEvent) {
+
+  foreach ($allEvents as $event) {
+    $cvChk = 'cv'.$event['id'];
+
+    if (isset($_POST["$cvChk"])) {
+      // unset($_POST["$rpChk"]);
+      echo "<h4>Generated CSV file for  ".$event['eventname']."  ".$event['eventdate']."</h4>";
+      echo "<form  name='csvEventForm'   method='POST' action='csvEvent.php'> ";
+      echo "<input type='hidden' name='eventId' value='".$event['id']."'>"; 
+      echo '<script language="JavaScript">document.csvEventForm.submit();</script></form>';
+      unset($_POST["$rpChk"]);
+      break;
+    }
+     
+  }
+}
   if ($emailEvent) {
  
 
