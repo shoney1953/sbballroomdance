@@ -16,6 +16,8 @@ $memReg = 0;
 $nonMemReg = 0;
 $attDance = 0;
 $attDinner = 0;
+$playCornhole = 0;
+$playSoftball = 0;
 $dwop = 0;
 $numDwop = 0;
 $init_dinner = 1;
@@ -91,6 +93,8 @@ class PDF extends FPDF
                 'paid' => $paid,
                 'ddattenddinner' => $ddattenddinner,
                 'ddattenddance' => $ddattenddance,
+                'cornhole' => $cornhole,
+                'softball' => $softball,
                 'message' => $message,
                 'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
             );
@@ -132,11 +136,17 @@ if ($rowCount > 0) {
             $pdf->Cell(45,8,"LAST NAME",1,0,"L");  
             $pdf->Cell(70,8,"EMAIL",1,0,"L"); 
             $pdf->Cell(18,8,"MEM",1,0,"L"); 
+
+            if ($reg['eventtype'] === 'BBQ Picnic') {
+                  $pdf->Cell(22,8,"Cornhole",1,0,"L");                 
+                  $pdf->Cell(22,8,"Softball",1,0,"L"); 
+                  $pdf->Cell(22,8,"Meal?",1,1,"L");
+            }
+
             if (($reg['eventtype'] === 'Novice Practice Dance') ||
-            ($reg['eventtype'] === 'Social') ||
+            ($reg['eventtype'] === 'Social') ||            
             ($reg['eventtype'] === 'TGIF') ||
-            ($reg['eventtype'] === 'Meeting')
-              )
+            ($reg['eventtype'] === 'Meeting'))
             {        
                 $pdf->Cell(18,8,"DWOP",1,1,"L"); 
           
@@ -159,17 +169,6 @@ if ($rowCount > 0) {
 
             }
            
-      
-            // if ($reg['eventtype'] === 'Dine and Dance') {
-            //     $pdf->Cell(18,8,"DWOP",1,0,"L");  
-            //     $pdf->Cell(22,8,"DINNER?",1,0,"L");
-
-            // }
-
-           
-
-
-            // $pdf->Cell(70,8,"MESSAGE",1,1,"L");    
           
     
         }
@@ -192,7 +191,12 @@ if ($rowCount > 0) {
            $pdf->Cell(45,8,"LAST NAME",1,0,"L");  
            $pdf->Cell(70,8,"EMAIL",1,0,"L"); 
            $pdf->Cell(18,8,"MEM",1,0,"L"); 
-           if (($reg['eventtype'] === 'Novice Practice Dance') ||
+        if ($reg['eventtype'] === 'BBQ Picnic') {
+            $pdf->Cell(22,8,"Cornhole",1,0,"L");                 
+            $pdf->Cell(22,8,"Softball",1,0,"L"); 
+            $pdf->Cell(22,8,"Meal?",1,1,"L");
+        }
+        if (($reg['eventtype'] === 'Novice Practice Dance') ||
            ($reg['eventtype'] === 'Social') ||
            ($reg['eventtype'] === 'TGIF') ||
            ($reg['eventtype'] === 'Meeting')
@@ -268,6 +272,7 @@ if ($rowCount > 0) {
             $pdf->Cell(18,8,"MEM",1,0,"L");
             if (($reg['eventtype'] === 'Novice Practice Dance') ||
             ($reg['eventtype'] === 'Social') ||
+        
             ($reg['eventtype'] === 'TGIF') ||
             ($reg['eventtype'] === 'Meeting')
            )
@@ -311,6 +316,12 @@ if ($rowCount > 0) {
         if ($reg['ddattenddance'] == true) {
             $attDance++;
         }
+        if ($reg['cornhole'] == true) {
+            $playCornhole++;
+        }
+        if ($reg['softball'] == true) {
+            $playSoftball++;
+        }
         if ($reg['eventtype'] === 'Dance Party') {
 
             if ($init_dinner === 1) {
@@ -330,8 +341,27 @@ if ($rowCount > 0) {
             $memReg++;
             $user->id = $reg['userid'];
             $user->read_single();  
+            if ($reg['eventtype'] === 'BBQ Picnic') {
+                if ($reg['cornhole'] === '1') {
+                    $pdf->Cell(22,8,"YES",1,0,"L");
+                } else {
+                    $pdf->Cell(22,8,"NO ",1,0,"L");
+                } 
+                if ($reg['softball'] === '1') {
+                    $pdf->Cell(22,8,"YES",1,0,"L");
+                } else {
+                    $pdf->Cell(22,8,"NO ",1,0,"L");
+                } 
+                if ($reg['ddattenddinner'] === '1') {
+                    $pdf->Cell(22,8,"YES",1,1,"L");
+                } else {
+                    $pdf->Cell(22,8,"NO ",1,1,"L");
+                } 
+
+            }
             if (($reg['eventtype'] === 'Novice Practice Dance') ||
                 ($reg['eventtype'] === 'Social') ||
+
                 ($reg['eventtype'] === 'TGIF') ||
                 ($reg['eventtype'] === 'Meeting')
                )
@@ -342,7 +372,8 @@ if ($rowCount > 0) {
                 $pdf->Cell(18,8,"YES",1,1,"L"); 
                 $numDwop++;
                } 
-            } else {
+            } else if (!($reg['eventtype'] === 'Novice Practice Dance') &&
+                       !($reg['eventtype'] === 'BBQ Picnic') ) {
                 if ($user->partnerId > 0) {
                     
                     $pdf->Cell(18,8,"NO",1,0,"L"); 
@@ -357,6 +388,7 @@ if ($rowCount > 0) {
            
             if (($reg['eventtype'] === 'Novice Practice Dance') ||
                 ($reg['eventtype'] === 'Social') ||
+    
                 ($reg['eventtype'] === 'TGIF') ||
                 ($reg['eventtype'] === 'Meeting')
                )
@@ -373,7 +405,7 @@ if ($rowCount > 0) {
                 $pdf->Cell(18,8,"UNK",1,0,"L"); 
 
              }
-
+            
             $nonMemReg++; 
             $dwop = "NO";
         } 
@@ -416,18 +448,6 @@ if ($rowCount > 0) {
   }
 
 
-    //   if ($reg['eventtype'] === 'Dine and Dance') {
-    //     if ($reg['ddattenddinner'] === '1') {
-    //         $pdf->Cell(22,8,"YES",1,0,"L");
-    //     } else {
-    //         $pdf->Cell(22,8,"NO ",1,0,"L");
-    //     } 
-     
-    // }
-   
-        
-        // $pdf->Cell(70,8,$reg['message'],1,1,"L"); 
-
 
     }
     $pdf->addPage('L');
@@ -463,6 +483,15 @@ if ($rowCount > 0) {
         $pdf->Cell(100, 8, "Attending Dance (if Dance Party):  ".$attDance, 1, 1);
         $pdf->Cell(20, 8, $attDance, 1, 1);
         }
+        if ($reg['eventtype'] === 'BBQ Picnic') {
+            $pdf->Cell(100, 8, "Playing Cornhole:  ".$playCornhole, 1, 1);
+  
+            $pdf->Cell(100, 8, "Playing Softball:  ".$playSoftball, 1, 1);
+
+            $pdf->Cell(100, 8, "Attending Meal:  ".$attDinner, 1, 1);
+  
+
+            }
     $pdf->SetFont('Arial', '', 14);
 } else {
     $pdf->SetFont('Arial','B', 16);

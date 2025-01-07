@@ -604,9 +604,9 @@ if (isset($_SESSION['username'])) {
             <thead>
             <?php
             $first_value = reset($upcomingEvents); // First element's value
-            //  var_dump($first_value);
+         
             $first_event_year = substr($first_value['eventdate'], 0, 4);
-            // var_dump($first_event_year);
+
             echo '<tr>';
             echo '<th colspan="12"><em>'.$first_event_year.'</em></th>';
             echo '</tr>';

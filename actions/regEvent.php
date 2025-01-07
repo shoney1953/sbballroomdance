@@ -68,6 +68,8 @@ if (isset($_POST['submitEventReg'])) {
     foreach ($events as $event) {
         $chkboxID = "ev".$event['id'];
         $chkboxID2 = "dd".$event['id'];
+        $chkboxID3 = "ch".$event['id'];
+        $chkboxID4 = "sb".$event['id'];
         $messID = "mess".$event['id'];
         $message = '';
         if (isset($_POST["$messID"])) {            
@@ -89,6 +91,19 @@ if (isset($_POST['submitEventReg'])) {
                 }
                 else {        
                         $toCC2 = '';                    
+                }
+                if ($event['eventtype'] === 'BBQ Picnic') {
+                    if (isset($_POST["$chkboxID2"])) {
+                        $emailBody .= "You have chosen to attend dinner.<br>";
+                    }
+                    if (isset($_POST["$chkboxID3"])) {
+                        $emailBody .= "You have chosen to play cornhole.<br>";
+                    }
+                    if (isset($_POST["$chkboxID4"])) {
+                        $emailBody .= "You have chosen to play softball.<br>";
+                    }
+                    $emailBody .= "If your choices differ from your partner's, please contact the event coordinator or reply to this email.<br>";
+                
                 }
                 if ($event['eventtype'] === 'Dance Party') {
                     if (isset($_POST["$chkboxID2"])) {
@@ -180,6 +195,16 @@ if (isset($_POST['submitEventReg'])) {
                     $eventReg->ddattenddinner = 1;
                 } else {
                     $eventReg->ddattenddinner = 0;
+                }
+                if (isset($_POST["$chkboxID3"])) {
+                    $eventReg->cornhole = 1;
+                } else {
+                    $eventReg->cornhole = 0;
+                }
+                if (isset($_POST["$chkboxID4"])) {
+                    $eventReg->softball = 1;
+                } else {
+                    $eventReg->softball = 0;
                 }
          
                 $eventReg->message = $message;

@@ -407,7 +407,7 @@ class User {
           $this->directorylist = htmlspecialchars(strip_tags($this->directorylist));
           $this->fulltime = htmlspecialchars(strip_tags($this->fulltime));
           // $this->regformlink = htmlspecialchars(strip_tags($this->regformlink));
-          var_dump($this->regformlink);
+        
       
 
           // Bind data

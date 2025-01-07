@@ -212,6 +212,27 @@ $compareDate = $currentDate->format('Y-m-d');
                   echo '</div> ';
   
                     } 
+                  if ($event['eventtype'] === 'BBQ Picnic') {
+
+                      $chkboxID2 = "dd".$event['id'];
+              
+                      echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title">Attend Meal?</h4>';
+                      echo "<input type='checkbox' name='$chkboxID2'>";
+                      echo '</div> ';
+                      $chkboxID3 = "ch".$event['id'];
+              
+                      echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title">Play Cornhole?</h4>';
+                      echo "<input type='checkbox' name='$chkboxID3'>";
+                      echo '</div> ';
+                      $chkboxID4 = "sb".$event['id'];
+              
+                      echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title">Play Softball?</h4>';
+                      echo "<input type='checkbox' name='$chkboxID4'>";
+                      echo '</div> ';
+                        } 
                if ($event['eventform']) {
     
                 echo '<div class="form-item">';

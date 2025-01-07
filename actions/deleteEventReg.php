@@ -35,7 +35,7 @@ $regId1 = 0;
 $regId2 = 0;
 $create_successful = 0;
 $result = 0;
-var_dump($_POST);
+
     foreach ($regs as $reg) {
        $delId = 'del'.$reg['id'];
 
@@ -79,7 +79,7 @@ var_dump($_POST);
 
   
            $eventReg->delete();
-           var_dump($eventid);
+     
            $event->decrementCount($eventid);
        }
     }

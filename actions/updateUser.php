@@ -25,7 +25,7 @@ $db = $database->connect();
 $user = new User($db);
 
 if (isset($_POST['submitUpdateUser'])) {
-  var_dump('submitupdateuser');
+ 
     foreach ($users as $usr) {
       $upChk = "up".$usr['id'];
       $usrSelChk ="userSel".$usr['id'];

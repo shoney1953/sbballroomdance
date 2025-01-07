@@ -167,6 +167,8 @@ if (isset($_POST['submitEventProcess'])) {
               'ddattenddance' => $ddattenddance,
               'registeredby' => $registeredby,
               'dateregistered' => $dateregistered,
+              'cornhole' => $cornhole,
+              'softball' => $softball,
               'message' => $message,
               'paid' => $paid,
               'userid' => $userid
@@ -193,6 +195,8 @@ if (isset($_POST['submitEventProcess'])) {
                   'ddattenddinner' => $ddattenddinner,
                   'ddattenddance' => $ddattenddance,
                   'registeredby' => $registeredby,
+                  'cornhole' => $cornhole,
+                  'softball' => $softball,
                   'dateregistered' => $dateregistered,
                   'message' => $message,
                   'paid' => $paid,

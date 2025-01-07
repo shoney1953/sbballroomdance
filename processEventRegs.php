@@ -281,7 +281,7 @@ if ($addReg) {
     
     
         foreach ($regs as $reg) {
-  
+         
             $updID = "upd".$reg['id'];
             $fnamID = "fnam".$reg['id'];
             $lnamID = "lnam".$reg['id'];
@@ -290,6 +290,10 @@ if ($addReg) {
             $messID = "mess".$reg['id'];
             $paidID = "paid".$reg['id'];
             $dddinID = "dddin".$reg['id'];
+            $chID = "ch".$reg['id'];
+            $sbID = "sb".$reg['id'];
+
+
             echo '<div class="form-container">';
             echo '<div class="form-grid">';
             echo '<div class="form-item">';
@@ -312,6 +316,47 @@ if ($addReg) {
             echo '<h4 class="form-item-title">User ID</h4>';
             echo "<input type='text'  title='Registrant User Id' name='".$useridID."' value='".$reg['userid']."'>";
             echo '</div>'; // end of form item
+            if ($event['eventtype'] === 'BBQ Picnic') {
+                $ad = 0;
+                if ($reg['ddattenddinner']) {
+                    $ad = $reg['ddattenddinner'];
+                }
+                else {
+                    $ad = 0;
+                }
+
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Attend Dinner?</h4>';
+                echo "<input type='number'  title='Enter 1 for Attend dinner' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+                echo '</div>'; // end of form item
+                $ch = 0;
+                if ($reg['cornhole']) {
+                    $ch = $reg['cornhole'];
+                }
+                else {
+                    $ch = 0;
+                }
+                
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Play Cornhole?</h4>';
+                echo "<input type='number'  title='Enter 1 for Play Cornhole' name='".$chID."' min='0' max='1' value='".$ch."'>";
+                echo '</div>'; // end of form item
+
+                $sb = 0;
+                if ($reg['softball']) {
+                    $sb = $reg['softball'];
+                }
+                else {
+                    $sb = 0;
+                }
+    
+          
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Play Softball?</h4>';
+                echo "<input type='number'  title='Enter 1 for Play Softball' name='".$sbID."' min='0' max='1' value='".$sb."'>";
+                echo '</div>'; // end of form item
+            }
+         
             if ($event['eventtype'] === 'Dance Party') {
                 $ad = 0;
                 if ($reg['ddattenddinner']) {

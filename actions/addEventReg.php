@@ -59,6 +59,8 @@ if (isset($_POST['submitAddReg'])) {
          $usrID = "us".$usr['id'];
          $attDin = "datt".$usr['id']; 
          $pdDinn = "dpaid".$usr['id'];
+         $playCornhole = "ch".$usr['id'];
+         $playSoftball = "sb".$usr['id'];
    
             if (isset($_POST["$usrID"])) {
                    
@@ -72,9 +74,17 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->userid = $usr['id'];
                     $eventReg->paid = 0;
                     $eventReg->registeredby = $_SESSION['username'];
-                    
-                    
-                    
+                    if ($event->eventtype === 'BBQ Picnic') {
+                        if (isset($_POST["$attDin"])) {
+                            $eventReg->ddattenddinner = 1;
+                        }
+                        if (isset($_POST["$playCornhole"])) {
+                            $eventReg->cornhole = 1;
+                        }
+                        if (isset($_POST["$playSoftball"])) {
+                            $eventReg->softball = 1;
+                        }
+                    }
                     if ($event->eventtype === 'Dine and Dance') {
                     
                         if (isset($_POST["$attDin"])) {

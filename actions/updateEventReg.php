@@ -43,6 +43,8 @@ if (isset($_POST['submitUpdateReg'])) {
         $messID = "mess".$reg['id'];
         $paidID = "paid".$reg['id'];
         $dddinID = "dddin".$reg['id'];
+        $chID = "ch".$reg['id'];
+        $sbID = "sb".$reg['id'];
     
         if (isset($_POST["$updID"])) {
 
@@ -65,6 +67,22 @@ if (isset($_POST['submitUpdateReg'])) {
             } else {
                 $eventReg->ddattenddinner = $reg['ddattenddinner'];
             }
+            if (isset($_POST["$chID"])) {
+                $eventReg->cornhole = $_POST["$chID"];
+             } else {
+                 $eventReg->cornhole = $reg['cornhole'];
+             }
+             if (isset($_POST["$sbID"])) {
+                $eventReg->softball = $_POST["$sbID"];
+             } else {
+                 $eventReg->softball = $reg['softball'];
+             }
+             if (isset($_POST["$messID"])) {
+                $eventReg->message = $_POST["$messID"];
+             }
+             else {
+                $eventReg->message = $reg['message'];
+             }
             $eventReg->ddattenddance = $reg['ddattenddance'];
             $eventReg->dateregistered = $reg['dateregistered'];
 

@@ -129,6 +129,11 @@ if ($reportEvent) {
       } else {
         echo "<option value = 'Social'>Social</option>";
       }
+      if ($event['eventtype'] == 'BBQ Picnic') {
+        echo "<option value = 'BBQ Picnic' selected>BBQ Picnic </option>";
+    } else {
+      echo "<option value = 'BBQ Picnic'>BBQ Picnic</option>";
+    }
       echo " </select>";
       echo '</div>';
 
@@ -359,6 +364,11 @@ echo '</form>';
           } else {
             echo "<option value = 'Social'>Social</option>";
           }
+          if ($event['eventtype'] == 'BBQ Picnic') {
+            echo "<option value = 'BBQ Picnic' selected>BBQ Picnic </option>";
+        } else {
+          echo "<option value = 'BBQ Picnic'>BBQ Picnic</option>";
+        }
           echo " </select>";
           echo '</div>';
           echo "<div class='form-item'>";
