@@ -6,6 +6,7 @@ require_once 'models/DanceClass.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/User.php';
 require_once 'includes/siteemails.php';
+require_once 'stripe/stripe-php-16.4.0/init.php';
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
 
 $_SESSION['upcoming_eventnumber'] = 0;

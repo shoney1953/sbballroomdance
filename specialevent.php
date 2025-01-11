@@ -36,7 +36,9 @@
     <h3>
     <ul>
 
-          <li class="li-none"><a href="https://www.cruiseplannersandmore.com/cs/1730907">Click to see the Dance Cruise details</a></li>
+         
+          <li class="li-none"><a href=" https://www.cruiseplannersandmore.com/pages/saddlebrooke-ballroom-dance-club-s-new-year-s-eve-cruise-39546">SaddleBrooke Ballroom Dance Club Cruise Info - password Cruise2025</a></li>
+          <li class="li-none"><a href="https://www.cruiseplannersandmore.com/cs/1730907">Click to see the Cruise details</a></li>
           <li class="li-none"><a href="https://drive.google.com/file/d/1CdylqdIm9iyPfJzIVxQPlXckC8kjUyxn/view?usp=sharing">Click to download the Military Benefits.</a></li>
    
           
