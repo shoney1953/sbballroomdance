@@ -954,6 +954,16 @@ if (isset($_SESSION['username'])) {
        <div class="form-grid-div">
        <h4>2024</h4>
        <ul>
+       <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2025-Photos">2025 Combined Photos</a></em></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Team-Match-01-11-2025">Team Match 01 11 2025</a></li>
+       </ul>
+       </div>
+       </div>
+
+       <div class="form-grid3">
+       <div class="form-grid-div">
+       <h4>2024</h4>
+       <ul>
        <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2024-Pictures">2024 Combined Photos</a></em></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/01-12-2024-SBDC-Winter-wonderland-dance">Winter Wonderland Dance 01 12 2024</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/02-16-2024-Valentines-Dance">Valentines Dance 02 16 2024</a></li>
