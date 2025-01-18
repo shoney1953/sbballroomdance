@@ -223,17 +223,15 @@ echo '<div class="container-section ">';
                                 } else {
                                     echo "<td>&times;</td>"; 
                                 } 
-                                if ($event['eventcost'] > 0) {
-                                    if ($eventRegistration['ddattenddinner'] == true ) {  
+                             
+                                   
                                     if ($eventRegistration['paid'] == true ) {
                                         echo "<td>&#10004;</td>"; 
                                     } else {
                                         echo "<td>&times;</td>"; 
                                     } 
-                                } else {
-                                    echo "<td>N/A</td>"; 
-                                }
-                                }
+                               
+                                
                             }
                             if ($event['eventtype'] === 'Dinner Dance') {
                                 if ($event['eventcost'] > 0) {

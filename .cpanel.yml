@@ -22,10 +22,14 @@ deployment:
     - /bin/cp footer.php $DEPLOYPATH
     - /bin/cp forgotPassword.php $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp joinonline.php $DEPLOYPATH
+    - /bin/cp joincancel.php $DEPLOYPATH
+    - /bin/cp joinsuccess.php $DEPLOYPATH
     - /bin/cp joinUsNow.php $DEPLOYPATH
     - /bin/cp login.php $DEPLOYPATH
     - /bin/cp logout.php $DEPLOYPATH
     - /bin/cp member.php $DEPLOYPATH
+    - /bin/cp payments.php $DEPLOYPATH
     - /bin/cp processClassItems.php $DEPLOYPATH
     - /bin/cp processClassRegs.php $DEPLOYPATH
     - /bin/cp processEventItems.php $DEPLOYPATH
@@ -46,3 +50,4 @@ deployment:
     - /bin/cp -R includes $DEPLOYPATH
     - /bin/cp -R js $DEPLOYPATH
     - /bin/cp -R models $DEPLOYPATH
+    - /bin/cp -R vendor $DEPLOYPATH

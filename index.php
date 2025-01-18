@@ -6,7 +6,7 @@ require_once 'models/DanceClass.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/User.php';
 require_once 'includes/siteemails.php';
-// require_once 'stripe/stripe-php-16.4.0/init.php';
+
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
 
 $_SESSION['upcoming_eventnumber'] = 0;
@@ -977,18 +977,10 @@ if (isset($_SESSION['username'])) {
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-October-17-2024-Black-and-White-Dance-with-Chuck-Moses">October Dance 10 17 2024
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Brunch-Dance-11-16-2024">November Brunch Dance 11 16 2024
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Holiday-Gala-12-13-2024">December Holiday Gala 12 13 2024
-       
-       
-       
-       
-    
+
         
        </a></li>
-       
-       
-       
-       
-      
+
        </ul>
        </div>
     

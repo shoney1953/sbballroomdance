@@ -408,6 +408,35 @@ public function readLike($eventid, $search) {
 
           return false;
     }
+    public function updateBBQEventReg() {
+      // Create query
+      $query = 'UPDATE ' . $this->table . 
+ 
+      ' SET cornhole = :cornhole, softball = :softball, ddattenddinner = :ddattenddinner 
+          WHERE id = :id';
+
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Bind data
+      $stmt->bindParam(':id', $this->id);
+
+      $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
+      $stmt->bindParam(':cornhole', $this->cornhole);
+      $stmt->bindParam(':softball', $this->softball);
+
+
+      // Execute query
+      if($stmt->execute()) {
+        return true;
+      }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+}
     public function deleteUserid($userid) {
         
       // Create query

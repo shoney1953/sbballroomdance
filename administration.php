@@ -390,6 +390,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<li><a title="Add, Update, Report on Members" href="#users">Maintain Members</a></li>';
             echo '<li><a title="List Members Status" href="#membership">Membership</a></li>';
             echo '<li><a title="List Historical Data" href="archives.php">Archives</a></li>';
+            echo '<li><a title="Set Up Payment Options" href="payments.php">Payments</a></li>';
             echo '</ul>';
             echo '</div>';
         }

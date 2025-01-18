@@ -277,7 +277,7 @@ public function read_ByEmail($email) {
       return false;
     }
 
-    // Updateregistered Danceevent
+    // Updateregistered 
     public function update() {
           // Create query
           $query = 'UPDATE ' . $this->table . 
@@ -332,6 +332,7 @@ public function read_ByEmail($email) {
 
           return false;
     }
+   
     public function deleteEventid($eventid) {
         
       // Create query

@@ -121,6 +121,9 @@ if ($rowCount > 0) {
             'eventtype' => $eventtype,
             'eventdate' => $eventdate,
             'orgemail' => $orgemail,
+            'ddattenddinner' => $ddattenddinner,
+            'cornhole' => $cornhole,
+            'softball' => $softball,
             'email' => $email,
             'paid' => $paid,
             'registeredby' => $registeredby,
@@ -152,6 +155,9 @@ if ($prowCount > 0) {
             'eventtype' => $eventtype,
             'eventdate' => $eventdate,
             'orgemail' => $orgemail,
+            'cornhole' => $cornhole,
+            'softball' => $softball,
+            'ddattenddinner' => $ddattenddinner,
             'email' => $email,
             'paid' => $paid,
             'registeredby' => $registeredby,
@@ -569,6 +575,221 @@ if ($rowCount > 0) {
     echo '</div>';
      }
     ?>
+    <div class="form-grid-div">
+ 
+
+ <form method='POST' action="actions/updateBBQEventReg.php">  
+     <table>
+         <thead>
+         <tr>
+             <th colspan="6" style="text-align: center">Modify Your Event Registrations</th>
+         </tr>
+         <tr>
+             <th>Update?</th>
+             <th>Event Name</th>
+             <th>Event Type</th>
+             <th>Event Date</th>
+             <th>Date Registered</th>   
+             <th>Registered By</th>         
+         </tr>
+         </thead>
+         <tbody>
+         <?php 
+ 
+         foreach ($eventRegs as $reg) {
+            if ($reg['eventtype'] == 'BBQ Picnic') {
+                $updID = "upd".$reg['id'];
+                $chID = "ch".$reg['id'];
+                $sbID = "sb".$reg['id'];
+                $updID = "upd".$reg['id'];
+                $dddinID = "dddin".$reg['id'];
+           
+               echo "<tr>";
+               echo "<td><input type='checkbox' 
+                    title='Check to Update Event Registration' 
+                    name='".$updID."'> </td>";
+
+                 echo "<td>".$reg['eventname']."</td>";
+                 echo "<td>".$reg['eventtype']."</td>";
+                 echo "<td>".$reg['eventdate']."</td>";  
+                 echo "<td>".$reg['dateregistered']."</td>";
+                 echo "<td>".$reg['registeredby']."</td>";
+                 echo '<input type="hidden" name="id" value="'.$reg['id'].'">';
+
+       
+               echo "</tr>";
+               echo "<tr>";
+               if ($reg['eventtype'] === 'BBQ Picnic') {
+                $ad = 0;
+                if ($reg['ddattenddinner']) {
+                    $ad = $reg['ddattenddinner'];
+                }
+                else {
+                    $ad = 0;
+                }
+                echo '<td>';
+                echo '<div class="form-grid">';
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Attend Dinner?</h4>';
+                echo "<input type='number'  title='Enter 1 for Attend dinner' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+                echo '</div>'; // end of form item
+                echo '</td>';
+                
+                $ch = 0;
+                if ($reg['cornhole']) {
+                    $ch = $reg['cornhole'];
+                }
+                else {
+                    $ch = 0;
+                }
+                echo '<td>';
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Play Cornhole?</h4>';
+                echo "<input type='number'  title='Enter 1 for Play Cornhole' name='".$chID."' min='0' max='1' value='".$ch."'>";
+                echo '</div>'; // end of form item
+                echo '</td>';
+
+                $sb = 0;
+                if ($reg['softball']) {
+                    $sb = $reg['softball'];
+                }
+                else {
+                    $sb = 0;
+                }
+    
+               echo '<td>';
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Play Softball?</h4>';
+                echo "<input type='number'  title='Enter 1 for Play Softball' name='".$sbID."' min='0' max='1' value='".$sb."'>";
+                echo '</div>'; // end of form item
+                echo '</div>'; // end of form grid
+                echo "</tr>";
+                echo '</td>';
+            }
+            
+            }
+          }
+      
+         ?> 
+   
+     </div>
+         </tbody>
+     </table>
+     <button type='submit' name="submitUpdateReg">Update Your Event Registrations</button>   
+     
+ </form>
+ </div>
+ <?php
+ if ($user->partnerId > 0) {
+    echo '<div class="form-grid-div">';
+
+    echo "<form method='POST' action='actions/updateBBQEventReg.php'>"; 
+        echo '<table>';
+           echo  '<thead>';
+            echo '<tr>';
+            echo '<th colspan="6" style="text-align: center">Modify Your Partners Event Registrations</th>';
+            echo '</tr>';
+            echo '<tr>';
+                echo '<th>Update?</th>';
+                echo '<th>Event Name</th>';
+                echo '<th>Event Type</th>';
+                echo '<th>Event Date</th>';
+                echo '<th>Date Registered</th>';   
+                echo '<th>Registered By</th>';         
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+
+            foreach ($peventRegs as $reg) {
+               if ($reg['eventtype'] == 'BBQ Picnic') {
+                   $updID = "upd".$reg['id'];
+                   $chID = "ch".$reg['id'];
+                   $sbID = "sb".$reg['id'];
+                   $updID = "upd".$reg['id'];
+                   $dddinID = "dddin".$reg['id'];
+              
+                  echo "<tr>";
+                  echo "<td><input type='checkbox' 
+                       title='Check to Update Event Registration' 
+                       name='".$updID."'> </td>";
+   
+                    echo "<td>".$reg['eventname']."</td>";
+                    echo "<td>".$reg['eventtype']."</td>";
+                    echo "<td>".$reg['eventdate']."</td>";  
+                    echo "<td>".$reg['dateregistered']."</td>";
+                    echo "<td>".$reg['registeredby']."</td>";
+                    echo '<input type="hidden" name="id" value="'.$reg['id'].'">';
+   
+          
+                  echo "</tr>";
+                  echo "<tr>";
+            
+                   $ad = 0;
+                   if ($reg['ddattenddinner']) {
+                       $ad = $reg['ddattenddinner'];
+                   }
+                   else {
+                       $ad = 0;
+                   }
+                   echo '<td>';
+                   echo '<div class="form-grid">';
+                   echo '<div class="form-item">';
+                   echo '<h4 class="form-item-title">Attend Dinner?</h4>';
+                   echo "<input type='number'  title='Enter 1 for Attend dinner' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+                   echo '</div>'; // end of form item
+                   echo '</td>';
+                   
+                   $ch = 0;
+                   if ($reg['cornhole']) {
+                       $ch = $reg['cornhole'];
+                   }
+                   else {
+                       $ch = 0;
+                   }
+                   echo '<td>';
+                   echo '<div class="form-item">';
+                   echo '<h4 class="form-item-title">Play Cornhole?</h4>';
+                   echo "<input type='number'  title='Enter 1 for Play Cornhole' name='".$chID."' min='0' max='1' value='".$ch."'>";
+                   echo '</div>'; // end of form item
+                   echo '</td>';
+   
+                   $sb = 0;
+                   if ($reg['softball']) {
+                       $sb = $reg['softball'];
+                   }
+                   else {
+                       $sb = 0;
+                   }
+       
+                  echo '<td>';
+                   echo '<div class="form-item">';
+                   echo '<h4 class="form-item-title">Play Softball?</h4>';
+                   echo "<input type='number'  title='Enter 1 for Play Softball' name='".$sbID."' min='0' max='1' value='".$sb."'>";
+                   echo '</div>'; // end of form item
+                   echo '</div>'; // end of form grid
+                   echo "</tr>";
+                   echo '</td>';
+               
+              
+               } // if bbq
+             } // foreach
+             } // for eventreg
+         
+     
+      
+        echo '</div>';
+        echo '</tbody>';
+        echo '</table>';
+        echo "<button type='submit' name='submitUpdateReg'>Update Your Partners Registrations</button>";   
+        
+    echo '</form>';
+    echo '</div>';
+    echo '</div>';
+
+    ?>
+
+
+
     </div>
     </section>
     <?php

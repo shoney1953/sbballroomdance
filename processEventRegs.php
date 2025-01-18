@@ -283,6 +283,8 @@ if ($addReg) {
         foreach ($regs as $reg) {
          
             $updID = "upd".$reg['id'];
+            $chID = "ch".$reg['id'];
+            $sbID = "sb".$reg['id'];
             $fnamID = "fnam".$reg['id'];
             $lnamID = "lnam".$reg['id'];
             $emailID = "email".$reg['id'];
@@ -290,8 +292,7 @@ if ($addReg) {
             $messID = "mess".$reg['id'];
             $paidID = "paid".$reg['id'];
             $dddinID = "dddin".$reg['id'];
-            $chID = "ch".$reg['id'];
-            $sbID = "sb".$reg['id'];
+
 
 
             echo '<div class="form-container">';
