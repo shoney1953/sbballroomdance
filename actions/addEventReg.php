@@ -106,8 +106,7 @@ if (isset($_POST['submitAddReg'])) {
                         }
                       
                     }
-              
-     
+                                                                                
   
                  $result = $eventReg->checkDuplicate($regEmail1, $eventReg->eventid);
 
@@ -125,6 +124,18 @@ if (isset($_POST['submitAddReg'])) {
                     "<br>Room:    ".$event->eventroom.
                     "<br>Cost:    ".$fmt->formatCurrency($event->eventcost, 'USD').
                     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
+                    if ($event->eventtype === 'BBQ Picnic') {
+                        if (isset($_POST["$attDin"])) {
+                            $emailBody .= "<br>You have chosen to attend the meal.";
+                        }
+                        if (isset($_POST["$playCornhole"])) {
+                            $emailBody .= "<br>You have chosen to play Cornhole.";
+                        }
+                        if (isset($_POST["$playSoftball"])) {
+                            $emailBody .= "<br>You have chosen to play Softball.";
+                        }
+                        $emailBody .= "<br>You may go to Your Profile on the Website to change any of these options.";
+                    }
                     if (($event->eventtype === 'Dine and Dance') || ($event->eventtype === 'Dance Party') ){
                         if (isset($_POST["$attDin"])) {
                             $emailBody .= "<br>You have chosen to attend dinner before the dance.";

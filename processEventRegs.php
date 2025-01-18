@@ -57,6 +57,11 @@ if ($addReg) {
         echo '<th>Attend<br>Dinner?</th>';
         echo '<th>Paid?</th>';
     }
+    if ($event['eventtype'] === 'BBQ Picnic'){
+        echo '<th>Attend<br>Dinner?</th>';
+        echo '<th>Cornhole?</th>';
+        echo '<th>Softball?</th>';
+    }
     if ($event['eventtype'] === 'Dinner Dance'){
   
         echo '<th>Paid?</th>';
@@ -74,6 +79,8 @@ if ($addReg) {
         $usrID = "us".$usr['id'];
         $attDin = "datt".$usr['id'];
         $pdDinn = "dpaid".$usr['id'];
+        $ch = "ch".$usr['id'];
+        $sb = "sb".$usr['id'];
         echo '<tr>';
         echo "<td><input  title='Select to Add Registrations' type='checkbox'name='".$usrID."'></td>";
         if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party') ){
@@ -83,7 +90,11 @@ if ($addReg) {
         if ($event['eventtype'] === 'Dinner Dance'){
             echo "<td><input title='Select to indicate Registrant has Paid' type='checkbox' name='".$pdDinn."'></td>";
         }
- 
+        if ($event['eventtype'] === 'BBQ Picnic')  {
+            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='".$attDin."'></td>";
+            echo "<td><input title='Select to indicate Registrant will play Cornhole' type='checkbox' name='".$ch."'></td>";
+            echo "<td><input title='Select to indicate Registrant will play Softball' type='checkbox' name='".$sb."'></td>";
+        }
         echo "<td >".$usr['firstname']."</td>";
         echo "<td>".$usr['lastname']."</td>";
         echo "<td>".$usr['email']."</td>";
