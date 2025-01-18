@@ -65,7 +65,7 @@ date_default_timezone_set("America/Phoenix");
    <h3>Members enjoy the benefits of attending any of our classes at no cost!
    They also receive reduced prices for our dinner dances!</h3>
    <h3>We would love to have you join us! It's easy.</h3>
-   <button ><em><a href="joinonline.php">JOIN ONLINE NOW!</a></em></button>
+   <!-- <button ><em><a href="joinonline.php">JOIN ONLINE NOW!</a></em></button> -->
 
   <h3>OR, Just click on the form below, print it and then fill it in and send it along with member dues to the treasurer of our club (name and address is on the form).</h3>
   <h1><a  
