@@ -58,6 +58,7 @@ class MemberPaid {
 
       return $stmt;
     }
+   
 
     // Get Single record
     public function read_single() {

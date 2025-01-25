@@ -7,6 +7,7 @@ session_start();
 
   $memberProducts = $_SESSION['memberproducts'];
   $current_year = date('Y');
+  $next_year = date('Y+1');
   $searchIndividual = $current_year." Individual Membership";
   $searchCouple = $current_year." Couple Membership";
   $indProductID = '';

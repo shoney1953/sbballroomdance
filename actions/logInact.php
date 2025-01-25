@@ -3,12 +3,22 @@ session_start();
 
 require_once '../config/Database.php';
 require_once '../models/User.php';
+require_once '../models/MemberPaid.php';
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
 $pass2 = '';
 $isValid = false;
-
+$current_year = date('Y');
+$nextYear = date('Y', strtotime('+1 year'));
+$thisYear = date("Y"); 
+$current_month = date('m');
+$current_year = date('Y');
+$currentDate = new DateTime();
+$compareDate = $currentDate->format('Y-m-d');
+$yearsPaid = [];
+$_SESSION['renewThisYear'] = 0;
+$_SESSION['renewNextYear'] = 0;
 
    if(isset($_POST['SubmitLogIN'])) {
 
@@ -31,6 +41,47 @@ $isValid = false;
             $user->numlogins++;
     
             $user->updateLogin();
+            $eventReg = new MemberPaid($db);
+            $yearsPaid = [];
+            
+            // get the payment records for this member
+            $result = $eventReg->read_byUserid($_SESSION['userid']);
+            
+            $rowCount = $result->rowCount();    
+            if ($rowCount === 0) {
+                $_SESSION['renewThisYear'] = 1;
+            }
+         if ($rowCount > 0) {
+
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+            $paid_item = array(
+                'id' => $id,
+                'paid' => $paid,
+                'year' => $year
+
+            );
+            array_push($yearsPaid, $paid_item);
+
+             }
+            foreach($yearsPaid as $paid_item) {
+                if ($paid_item['year'] === $current_year) {
+                    if ($paid_item['paid'] != 1) {
+                   
+                         $_SESSION['renewThisYear'] = 1;
+                    }
+                }
+                if ($paid_item['year'] > $current_year) {
+                    if ($current_month > 11) {
+                        if ($paid_item['paid'] != 1) {
+                   
+                            $_SESSION['renewNextYear'] = 1;
+                       }  
+                    }
+
+                }
+            }
+        } 
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect);
             exit;   

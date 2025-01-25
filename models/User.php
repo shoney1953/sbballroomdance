@@ -135,6 +135,22 @@ class User {
 
       return $stmt;
     }
+    public function getLastUserid() {
+      // Create query
+      $query = 'SELECT LAST_INSERT_ID() ';
+
+
+      // Prepare statement
+     
+      $stmt = $this->conn->prepare($query);
+
+
+      // Execute query
+      $stmt->execute();
+      var_dump($stmt);
+      return $stmt;
+
+    }
     // Get Single Danceclass
     public function read_single() {
         
@@ -495,7 +511,34 @@ public function updateLogin() {
   return false;
 }
 
+public function updatePartnerID() {
+  // Create query
 
+  $query = 'UPDATE ' . $this->table . 
+  ' SET partnerid = :partnerId, notes = :notes WHERE id = :id';
+
+  // Prepare statement
+  $stmt = $this->conn->prepare($query);
+
+  // Clean data
+  $this->id = $this->id;
+  $this->partnerId = $this->partnerId;
+
+  // Bind data
+  $stmt->bindParam(':id', $this->id);
+  $stmt->bindParam(':partnerId', $this->partnerId);
+  $stmt->bindParam(':notes', $this->notes);
+
+  // Execute query
+  if($stmt->execute()) {
+    return true;
+  }
+
+  // Print error if something goes wrong
+  printf("Error: %s.\n", $stmt->error);
+
+  return false;
+}
 
     // Delete Danceclass
     public function delete() {

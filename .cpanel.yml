@@ -37,6 +37,7 @@ deployment:
     - /bin/cp processUserItems.php $DEPLOYPATH
     - /bin/cp regForClasses.php $DEPLOYPATH
     - /bin/cp regForEvents.php $DEPLOYPATH
+    - /bin/cp renewNow.php $DEPLOYPATH
     - /bin/cp resources.php $DEPLOYPATH
     - /bin/cp secrets.php $DEPLOYPATH
     - /bin/cp signup.php $DEPLOYPATH

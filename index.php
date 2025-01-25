@@ -270,6 +270,9 @@ if (isset($_SESSION['username'])) {
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
         if (isset($_SESSION['role'])) {
             echo ' <li><a  title="Logout from the Website" style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
+            // if (($_SESSION['renewThisYear'] === 1) || ($_SESSION['renewNextYear'] === 1)) {
+            //     echo '<li><a title="Renew Your Membership" style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew Now</a></li>';
+            // }
         }
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {
@@ -950,9 +953,17 @@ if (isset($_SESSION['username'])) {
        <ul>
        <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-Photos">Combination of All Event Photos</a></em></li>
        </ul>
+      <br>
+        
+       <h4>SBDC CLASS VIDEOS</h4>
+       <ul>
+           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SaddleBrooke-Ballroom-Dance-Club-Videos">Class Videos</a></li>    
+       </ul>
+       
+      
        <div class="form-grid3">
        <div class="form-grid-div">
-       <h4>2024</h4>
+       <h4>2025</h4>
        <ul>
        <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2025-Photos">2025 Combined Photos</a></em></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Team-Match-01-11-2025">Team Match 01 11 2025</a></li>
