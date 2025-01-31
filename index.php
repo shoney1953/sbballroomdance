@@ -370,8 +370,8 @@ if (isset($_SESSION['username'])) {
         <p> We don't just do Ballroom dance - at our dances/practices, we play 
             music for Ballroom Dance, Western and Western Partner Dance, Line Dance, and Latin Dances.</p>
        <br><strong> <p> We will help you get started if you've never stepped foot on the dance floor. We now are featuring Novice classes twice 
-            a month, with a Novice Practice party once a month to help you feel more comfortable about joining dinner dances and other events.
-            The Novice classes and the Novice Parties are on Wednesdays in the Mariposa room in the same time slots as our open practice. 
+            a month, with a Novice Review Session once a month to help you feel more comfortable about joining dinner dances and other events.
+            The Novice classes and the Novice Review Sessions are on Wednesdays in the Mariposa room in the same time slots as our open practice. 
             Check the <a style="font-weight: bold"
         href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix" target="_blank">
          Activities Calendar
@@ -424,7 +424,7 @@ if (isset($_SESSION['username'])) {
          
                     <td> <a title="click for map" href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Mariposa Room at DesertView</a></td>
                     <td>4 - 5pm</td>
-                    <td>Practice Party</td>
+                    <td>Novice Review Session</td>
                     <td>Typically Fourth  Wednesday</td>
                 </tr>
                 <tr>
@@ -496,7 +496,7 @@ if (isset($_SESSION['username'])) {
                     <td> <a title="click for map" href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Mariposa Room at DesertView</a></td>
                     <td>4 - 6pm</td>
                     <td>Open Practice </td>
-                    <td>When there is not a novice class or party</td>
+                    <td>When there is not a novice class or review session</td>
                     <td> </td>
                 
                 </tr>
