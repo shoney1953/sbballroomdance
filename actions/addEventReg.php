@@ -97,7 +97,8 @@ if (isset($_POST['submitAddReg'])) {
                     if (isset($_POST["$pdDinn"])) {
                         $eventReg->paid = 1;
                     }
-                    if (($event->eventtype === 'Dance Party') || ($event->eventtype === 'Dinner Dance')) {
+                    if (($event->eventtype === 'Dance Party') || ($event->eventtype === 'Dinner Dance')
+                         || $event->eventtype === 'BBQ Picnic') {
                         if (isset($_POST["$attDin"])) {
                             $eventReg->ddattenddinner = 1;
                            
@@ -111,7 +112,7 @@ if (isset($_POST['submitAddReg'])) {
                  $result = $eventReg->checkDuplicate($regEmail1, $eventReg->eventid);
 
                  if (!$result) {
- 
+             
                     $eventReg->create();
                     $event->addCount($eventReg->eventid);
                     $event->id = $eventReg->eventid;

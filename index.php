@@ -614,16 +614,16 @@ if (isset($_SESSION['username'])) {
             echo '<tr>';
             echo '<th colspan="12"><em>'.$first_event_year.'</em></th>';
             echo '</tr>';
+   
             echo '<tr>';
-               
-
+     
                 if (isset($_SESSION['username'])) {
                     echo '<th>Report?</th>';
                 }
-                ?>
-                <th>Event</th>
-                <th>Registration</th>
-                <th>Registration</th>
+            ?>
+                <th>Event<br>Date</th>
+                <th>Reg<br>Opens</th>
+                <th>Reg<br>Ends</th>
                 <th>Name    </th>
                 <th>Type    </th>
                 <th>Description</th> 
@@ -633,24 +633,6 @@ if (isset($_SESSION['username'])) {
                 <th>Form/Flyer</th>
                 <th># Reg </th>
 
-            </tr>
-            <tr>
-            <?php
-             if (isset($_SESSION['username'])) {
-               echo '<th></th>';
-             }
-            ?>
-                <th>Date</th>
-                <th>Opens</th>
-                <th>Ends</th>
-                <th></th>
-                <th></th>
-                <th></th> 
-                <th></th> 
-                <th></th>            
-                <th></th>
-                <th></th>
-                <th></th>
              </tr>
             </thead>
          
