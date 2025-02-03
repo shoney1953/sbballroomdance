@@ -378,6 +378,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
 
      }
      if ($_SESSION['role'] === 'INSTRUCTOR') {
+   
         echo '<li><a title="Return to Home Page" href="index.php">Back to Home</a></li>';
         echo '<li><a title="Class Related Functions" href="#classes">Maintain Classes</a></li>';
         echo '<li><a title="List Historical Data" href="archives.php">Archives</a></li>';
@@ -390,7 +391,15 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<li><a title="Add, Update, Report on Members" href="#users">Maintain Members</a></li>';
             echo '<li><a title="List Members Status" href="#membership">Membership</a></li>';
             echo '<li><a title="List Historical Data" href="archives.php">Archives</a></li>';
-            echo '<li><a title="Set Up Payment Options" href="payments.php">Payments</a></li>';
+            
+
+            if (isset($_SESSION['testmode'])) {
+                if($_SESSION['testmode'] === 'YES') {
+                    echo '<li><a title="Set Up Payment Options" href="payments.php">Payments</a></li>';
+                }
+            }
+
+         
             echo '</ul>';
             echo '</div>';
         }
@@ -417,6 +426,25 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
     echo '<br>';
     echo '</div>';
     echo '</div>';
+    if (($_SESSION['role'] == 'ADMIN') || 
+        ($_SESSION['role'] == 'SUPERADMIN') ) {
+
+        echo '<div class="container-section ">';
+        echo '<br>';
+        echo '<section id="testmode" class="content">';
+        echo '<form method="POST" action="actions/setTestMode.php">';
+        // echo '<h4 class="form-title form-division">Set Test Mode On</h4>';
+        echo '<div class="form-grid">';
+        echo '<div class="form-item">';
+        echo '<h4 class="form-item-title">Check on to see test functions.</h4>';
+        echo "<input type='checkbox' title='Click to see Test Functions' name='testmode'><br>";
+        echo '<button type="submit" name="submitTestMode">Set Test Mode</button>'; 
+        echo '</div>';
+        echo '</div>';
+        echo '</form>';
+        echo '</section>';
+        echo '</div>';
+    }
 
     if ($_SESSION['role'] != 'INSTRUCTOR') {
 

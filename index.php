@@ -270,9 +270,15 @@ if (isset($_SESSION['username'])) {
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
         if (isset($_SESSION['role'])) {
             echo ' <li><a  title="Logout from the Website" style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
-            // if (($_SESSION['renewThisYear'] === 1) || ($_SESSION['renewNextYear'] === 1)) {
-            //     echo '<li><a title="Renew Your Membership" style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew Now</a></li>';
-            // }
+            if (isset($_SESSION['testmode'])) {
+                if ($_SESSION['testmode'] == 'YES') {
+                    if (($_SESSION['renewThisYear'] === 1) || ($_SESSION['renewNextYear'] === 1)) {
+                        echo '<li><a title="Renew Your Membership" style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew Now</a></li>';
+                    }
+
+            }
+
+        }
         }
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {
