@@ -955,6 +955,8 @@ if (isset($_SESSION['username'])) {
        <ul>
        <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2025-Photos">2025 Combined Photos</a></em></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Team-Match-01-11-2025">Team Match 01 11 2025</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-01-24-2025-Celebrate-Dance">Celebrate Dance 01 24 2025</a></li>
+       
        </ul>
        </div>
        </div>
