@@ -103,6 +103,7 @@ if (isset($_POST['submitEventReg'])) {
                         $emailBody .= "You have chosen to play softball.<br>";
                     }
                     $emailBody .= "If your choices differ from your partner's, please contact the event coordinator or reply to this email.<br>";
+                    $emailBody .= "You may also change your or your partner's choices via your profile.<br>";
                 
                 }
                 if ($event['eventtype'] === 'Dance Party') {

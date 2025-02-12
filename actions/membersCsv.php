@@ -37,7 +37,7 @@ if ($rowCount > 0) {
           'email' => $email,
           'phone' => $phone,
           'streetaddress' => $streetaddress,
-          'datejoined' => $datejoined,
+          'datejoined' => substr($datejoined,0,10),
           'paid' => $paid,
           'year' => $year
 

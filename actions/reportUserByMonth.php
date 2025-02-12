@@ -114,7 +114,7 @@ if ($userCount > 0) {
       $pdf->Cell(5,10,"MONTH:  ".$dateMonth,0,1,"l");
         $prevMonth = $dateMonth;
 
-        $pdf->Cell(38,5,"CREATED",1,0,"L");
+        $pdf->Cell(25,5,"CREATED",1,0,"L");
         $pdf->Cell(40,5,"FIRST NAME",1,0,"L");
         $pdf->Cell(40,5,"LAST NAME",1,0,"L");
         $pdf->Cell(70,5,"EMAIL",1,0,"L");
@@ -158,7 +158,7 @@ if ($userCount > 0) {
         $pdf->Cell(5,10,"MONTH  ".$dateMonth,0,1,"l");
         $prevMonth = $dateMonth;
 
-        $pdf->Cell(38,5,"CREATED",1,0,"L");
+        $pdf->Cell(25,5,"CREATED",1,0,"L");
         $pdf->Cell(40,5,"FIRST NAME",1,0,"L");
         $pdf->Cell(40,5,"LAST NAME",1,0,"L");
         $pdf->Cell(70,5,"EMAIL",1,0,"L");
@@ -175,7 +175,7 @@ if ($userCount > 0) {
         $pdf->SetFont('Arial', '', 10);
 
          // $pdf->Cell(0, 5, $user_string1, 0, 1);
-         $pdf->Cell(38,5,$usr['created'],1,0,"L");
+         $pdf->Cell(25,5,substr($usr['created'],0,10),1,0,"L");
          $pdf->Cell(40,5,$usr['firstname'],1,0,"L");
          $pdf->Cell(40,5,$usr['lastname'],1,0,"L");
          $pdf->Cell(70,5,$usr['email'],1,0,"L");
