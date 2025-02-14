@@ -193,7 +193,7 @@ hr {
   position: relative;
   margin-bottom: 10px;
   z-index: -2;
-  animation-duration: 20s;
+  animation-duration: 30s;
   animation: change 40s infinite ease-in-out;
 }
 .hero::before {
@@ -220,6 +220,10 @@ hr {
   {
       background-image: url("../img/carousel1.jpg");
   }
+  5%
+  {
+      background-image: url("../img/carousel11.jpg");
+  }
   10%
   {
       background-image: url("../img/carousel6.jpg");
@@ -243,6 +247,10 @@ hr {
   60%
   {
       background-image: url("../img/carousel3.jpg");
+  }
+  65%
+  {
+      background-image: url("../img/carousel12.jpg");
   }
   70%
   {
