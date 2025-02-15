@@ -119,7 +119,7 @@ if (isset($_POST['submitAddUser'])) {
        $fromEmailName = 'SBDC Ballroom Dance Club';
        $toName = $user->firstname.' '.$user->lastname; 
        if ($formerUser === 'yes') {
-        $mailSubject = 'Thanks for Returning to us at SBDC Ballroom Dance Club!';
+        $mailSubject = 'Thanks '.$to for Returning to us at SBDC Ballroom Dance Club!';
        } else {
         $mailSubject = 'Thanks for Joining us at SBDC Ballroom Dance Club!';
        }

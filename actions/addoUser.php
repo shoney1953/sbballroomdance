@@ -107,9 +107,9 @@ $fromCC = '';
        $toName = $user->firstname.' '.$user->lastname; 
        $member1Full = $toName;
        if ($formerUser === 'yes') {
-        $mailSubject = 'Thanks for Returning to us Online at SaddleBrooke Ballroom Dance Club!';
+        $mailSubject = 'Thanks '.$toName.' for Returning to us Online at SaddleBrooke Ballroom Dance Club!';
        } else {
-        $mailSubject = 'Thanks for Joining us Online at the SaddleBrooke Ballroom Dance Club!';
+        $mailSubject = 'Thanks '.$toName.' for Joining us Online at the SaddleBrooke Ballroom Dance Club!';
        }
 
        $replyTopic = "Welcome";
@@ -288,9 +288,9 @@ $fromCC = '';
     $toName = $user->firstname.' '.$user->lastname; 
     $member2Full = $toName;
     if ($formerUser === 'yes') {
-     $mailSubject = 'Thanks for Returning to us Online at SaddleBrooke Ballroom Dance Club!';
+     $mailSubject = "Thanks".$toName." for Returning to us Online at SaddleBrooke Ballroom Dance Club!";
     } else {
-     $mailSubject = 'Thanks for Joining us Online at the SaddleBrooke Ballroom Dance Club!';
+     $mailSubject = "Thanks".$toName." for Joining us Online at the SaddleBrooke Ballroom Dance Club!";
     }
 
     $replyTopic = "Welcome";

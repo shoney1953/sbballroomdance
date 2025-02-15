@@ -14,6 +14,12 @@ header('Content-Type: application/json');
 // See your keys here: https://dashboard.stripe.com/apikeys
 $stripe = new \Stripe\StripeClient('sk_test_51IVzJTL8mOGPmzyGuvJjZymxynpVAmNHkWGOT42oYyGMEMG3hf94zkJ8bvbUgHVEwGH5wJxWKRd6PkZBnYwd9ChL003mJKdQxN');
 $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
+if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
+  $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
+}
+if ($_SERVER['SERVER_NAME'] === 'localhost') {    
+  $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';   
+}
 $memberProducts = $_SESSION['memberproducts'];
 $_SESSTION['potentialMem1'] = [];
 $_SESSTION['potentialMem2'] = [];
