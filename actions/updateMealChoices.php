@@ -29,7 +29,7 @@ $mealChoices = $_SESSION['mealChoices'];
 
 
 if (isset($_POST['updateMealChoices'])) {
-    if (isset($_POST['dinnerdanceid'])) {
+    if (isset($_POST['eventid'])) {
        foreach($mealChoices as $mealchoice)  {
         $chkboxID = "mc".$mealchoice['id'];
         $mchoiceNM = "mcname".$mealchoice['id'];

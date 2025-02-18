@@ -54,7 +54,7 @@ if (isset($_POST['submitEvent'])) {
             $event->id = $eventId;
             if ($event->read_single()) {
                
-                   $result = $dinnermealchoices->read_DinnerDanceId($eventId);
+                   $result = $dinnermealchoices->read_EventId($eventId);
                     $rowCount = $result->rowCount();
        
                     $num_mealchoices = $rowCount;
@@ -68,7 +68,7 @@ if (isset($_POST['submitEvent'])) {
                                  'mealchoice' => $mealchoice,
                                  'memberprice' => $memberprice,
                                  'guestprice' => $guestprice,
-                                 'dinnerdanceid' => $dinnerdanceid,
+                                 'eventid' => $eventid,
 
                              );
                                 array_push($mealChoices, $meal_item);
@@ -226,7 +226,7 @@ if (isset($_POST['archiveEvent'])) {
                           }
         
                     echo '</table><br>'; 
-                    echo '<input type=hidden name="dinnerdanceid" value="'.$event->id.'">';
+                    echo '<input type=hidden name="eventid" value="'.$event->id.'">';
 
                     echo '<button type="submit" name="updateMealChoices">UPDATE MEAL CHOICES</button>'; 
                     } 
@@ -313,7 +313,7 @@ if (isset($_POST['archiveEvent'])) {
         
                     echo '</table><br>'; 
 
-                        echo '<input type=hidden name="dinnerdanceid" value="'.$event->id.'">';
+                        echo '<input type=hidden name="eventid" value="'.$event->id.'">';
 
                         echo '<button type="submit" name="addMealChoices">ADD MEAL CHOICES</button>'; 
                 

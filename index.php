@@ -635,11 +635,12 @@ if (isset($_SESSION['username'])) {
                 <th>Description</th> 
                 <th>Room</th> 
                 <th>DJ</th>            
-                <th>Cost</th>
-                <th>Form/Flyer</th>
-                <th># Reg </th>
+                <th>Min<br>Cost</th>
+                <th>Form/<br>Flyer</th>
+                <th># <br>Reg </th>
 
              </tr>
+
             </thead>
          
             <?php 
@@ -662,37 +663,20 @@ if (isset($_SESSION['username'])) {
                         echo '<th>Report?</th>';
                     }
                     
-                    echo '<th>Event</th>';
-                    echo '<th>Registration</th>';
-                    echo '<th>Registration</th>';
+                    echo '<th>Event<br>Date</th>';
+                    echo '<th>Reg<br>Opens</th>';
+                    echo '<th>Reg<br>Ends</th>';
                     echo '<th>Name    </th>';
                     echo '<th>Type    </th>';
                     echo '<th>Description</th>'; 
                     echo '<th>Room</th> ';
                     echo '<th>DJ</th>';            
-                    echo '<th>Cost</th>';
-                    echo '<th>Form/Flyer</th>';
+                    echo '<th>Min<br>Cost</th>';
+                    echo '<th>Form/<br>Flyer</th>';
                     echo '<th># Reg </th>';
     
                 echo '</tr>';
-                echo '<tr>';
-                if (isset($_SESSION['username'])) {
-                    echo '<th></th>';
-                }
-                
-                echo '<th>Date</th>';
-                echo '<th>Opens</th>';
-                echo '<th>Ends</th>';
-                echo '<th></th>';
-                echo '<th></th>';
-                echo '<th></th>'; 
-                echo '<th></th> ';
-                echo '<th></th>';            
-                echo '<th></th>';
-                echo '<th></th>';
-                echo '<th></th>';
-
-            echo '</tr>';
+              
             echo '</thead>' ;
                 echo '<tbody>';
                  }

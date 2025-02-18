@@ -33,13 +33,20 @@ $event = new Event($db);
     $event->eventregopen = $_POST['eventregopen'];
     $event->eventregend = $_POST['eventregend'];
     $event->eventcost = $_POST['eventcost'];
+  
+    if ($event->eventtype = 'Dance Party') {
+        if ($event->eventcost  === '0') {
+            $event->eventcost = '5';
+        }
+    }
+ 
     $event->orgemail = $_POST['orgemail'];
     $event->eventnumregistered = 0;
     $event->create();
 
 
     $redirect = "Location: ".$_SESSION['adminurl']."#events";
-header($redirect);
-exit;
+     header($redirect);
+     exit;
 
 ?>

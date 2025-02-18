@@ -110,8 +110,8 @@ echo '<div class="container-section ">';
                   echo "</tr>";
                   echo '</table>';
                   echo '<br>';
-            //       if ($event['eventtype'] === 'Dinner Dance') {
-            //         $result = $dinnermealchoices->read_DinnerDanceId($event['id']);
+            //       if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype] === 'Dance Party') {
+            //         $result = $dinnermealchoices->read_EventId($event['id']);
             //         $rowCount = $result->rowCount();
        
             //         $num_mealchoices = $rowCount;
@@ -125,7 +125,7 @@ echo '<div class="container-section ">';
             //                      'mealchoice' => $mealchoice,
             //                      'memberprice' => $memberprice,
             //                      'guestprice' => $guestprice,
-            //                      'dinnerdanceid' => $dinnerdanceid,
+            //                      'eventid' => $eventid,
 
             //                  );
             //                     array_push($mealChoices, $meal_item);

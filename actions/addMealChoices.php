@@ -26,7 +26,7 @@ $dinnerdancechoice = new DinnerMealChoices($db);
     $dinnerdancechoice->mealchoice = $_POST['mealchoice1'];
     $dinnerdancechoice->memberprice = $_POST['memberPrice1'];
     $dinnerdancechoice->guestprice = $_POST['guestPrice1'];
-    $dinnerdancechoice->dinnerdanceid = $_POST['dinnerdanceid'];
+    $dinnerdancechoice->eventid = $_POST['eventid'];
     $dinnerdancechoice->create();
 
   }
@@ -34,7 +34,7 @@ $dinnerdancechoice = new DinnerMealChoices($db);
     $dinnerdancechoice->mealchoice = $_POST['mealchoice2'];
     $dinnerdancechoice->memberprice = $_POST['memberPrice2'];
     $dinnerdancechoice->guestprice = $_POST['guestPrice2'];
-    $dinnerdancechoice->dinnerdanceid = $_POST['dinnerdanceid'];
+    $dinnerdancechoice->eventid = $_POST['eventid'];
     $dinnerdancechoice->create();
 
   }
@@ -42,7 +42,7 @@ $dinnerdancechoice = new DinnerMealChoices($db);
     $dinnerdancechoice->mealchoice = $_POST['mealchoice3'];
     $dinnerdancechoice->memberprice = $_POST['memberPrice3'];
     $dinnerdancechoice->guestprice = $_POST['guestPrice3'];
-    $dinnerdancechoice->dinnerdanceid = $_POST['dinnerdanceid'];
+    $dinnerdancechoice->eventid = $_POST['eventid'];
     $dinnerdancechoice->create();
 
   }
@@ -50,7 +50,7 @@ $dinnerdancechoice = new DinnerMealChoices($db);
     $dinnerdancechoice->mealchoice = $_POST['mealchoice4'];
     $dinnerdancechoice->memberprice = $_POST['memberPrice4'];
     $dinnerdancechoice->guestprice = $_POST['guestPrice4'];
-    $dinnerdancechoice->dinnerdanceid = $_POST['dinnerdanceid'];
+    $dinnerdancechoice->eventid = $_POST['eventid'];
     $dinnerdancechoice->create();
 
   }
