@@ -191,7 +191,7 @@ if ($csvEvent) {
       echo '</div>';
 
       echo "<div class='form-item'>";
-      echo "<h4 class='form-item-title'>Event Cost</h4>";
+      echo "<h4 class='form-item-title'>Event Minimum Cost</h4>";
       echo "<input type='text' class='text-small' name='".$evcostID."' value='".$event['eventcost']."' 
       title='Enter the Event Cost if any' >";
       echo '</div>';
@@ -419,7 +419,7 @@ echo '</form>';
               title='Enter the Organizers Email' >";
           echo '</div>';
           echo "<div class='form-item'>";
-          echo "<h4 class='form-item-title'>Event Cost</h4>";
+          echo "<h4 class='form-item-title'>Event Minimum Cost</h4>";
           echo "<input type='text' class='text-small' name='eventcost' value='".$event['eventcost']."' 
               title='Enter the Event Cost if any' >";
           echo '</div>';
