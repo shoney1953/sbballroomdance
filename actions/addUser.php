@@ -37,7 +37,7 @@ $toCC4 = $volunteerDirector;
 
 // $toCC4 = 'richardschroeder50@gmail.com';
 $toCC5 = '';
-$fromCC = $secretary;
+$fromCC = $ggWebmaster;
 
 if (isset($_POST['submitAddUser'])) {
 
@@ -147,7 +147,7 @@ if (isset($_POST['submitAddUser'])) {
        help you learn a few steps of the most common dances, and help you practice with other Novices. 
        You will also receive emails about these actvities. You can register for these on the website.</li>";
        $emailBody .= "<li><strong>Dance Classes</strong> - Classes are normally held at the MountainView Ballroom
-       at the MountainView clubhouse on all the Sundays from 3pm to 5pm and Tuesdays from 4pm to 6pm of each month.
+       at the MountainView clubhouse on all the Sundays from 3pm to 5pm and Tuesdays from 5pm to 7pm of each month.
        Emails will go out regarding the content, format, instructors and dates; registration is also available on the website.</li>";
        $emailBody .= "<li><strong>Dance Parties</strong> - These are provided on most months during the year.
        They include a dance with a no host bar in the MountainView Ballroom, and may or not have some food served. 
@@ -158,9 +158,9 @@ if (isset($_POST['submitAddUser'])) {
        exclusively for members, so you can bring friends. Often a DJ provides requested music. If no DJ is
        specified, you may bring your own music. Currently we have 3 different slots:
          <ul>
-         <li>Fourth Monday of each month 4 - 6pm in the HOA1 Vermilion Room</li>
-         <li>Friday  4 - 6pm in the HOA1 Vermilion Room (Used once a month for Novice Parties)</li>
-         <li>Wednesday from 4pm to 6pm in the Mariposa Room at DesertView</li>
+         <li>Available Mondays 4 - 6pm in the HOA1 Vermilion Room</li>
+         <li>Friday  4 - 6pm in the HOA1 Vermilion Room </li>
+         <li>Wednesday from 5pm to 6pm in the Mariposa Room at DesertView</li>
          </ul></li><br>";
        
        $emailBody .= "<li>Your name, email, phone and address will be listed in our directory by default unless

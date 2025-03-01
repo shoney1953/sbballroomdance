@@ -146,9 +146,9 @@ $fromCC = '';
        exclusively for members, so you can bring friends. Often a DJ provides requested music. If no DJ is
        specified, you may bring your own music. Currently we have 3 different slots:
          <ul>
-         <li>Fourth Monday of each month 4 - 6pm in the HOA1 Vermilion Room</li>
-         <li>Friday  4 - 6pm in the HOA1 Vermilion Room (Used once a month for Novice Parties)</li>
-         <li>Wednesday from 4pm to 6pm in the Mariposa Room at DesertView</li>
+         <li>Available Mondays  4 - 6pm in the HOA1 Vermilion Room</li>
+         <li>Friday  4 - 6pm in the HOA1 Vermilion Room </li>
+         <li>Wednesday from 5pm to 6pm in the Mariposa Room at DesertView</li>
          </ul></li><br>";
        
        $emailBody .= "<li>Your name, email, phone and address will be listed in our directory by default unless
