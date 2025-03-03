@@ -143,7 +143,7 @@ if (isset($_POST['submitAddUser'])) {
  
        $emailBody .= "We hope you will participate in and enjoy the following club activities: <br><ul>";
        $emailBody .= "<li><strong>Novice Events</strong> - For anyone that has little dance experience, we have a new 
-       program of Novice events: Novice classes twice a month, and then a Novice practice party. These are designed to
+       program of Novice events: Novice classes twice a month, and then a Novice review session. These are designed to
        help you learn a few steps of the most common dances, and help you practice with other Novices. 
        You will also receive emails about these actvities. You can register for these on the website.</li>";
        $emailBody .= "<li><strong>Dance Classes</strong> - Classes are normally held at the MountainView Ballroom

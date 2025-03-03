@@ -131,7 +131,7 @@ $fromCC = '';
  
        $emailBody .= "Thanks for signing up and paying your dues online! We hope you will participate in and enjoy the following club activities: <br><ul>";
        $emailBody .= "<li><strong>Novice Events</strong> - For anyone that has little dance experience, we have a new 
-       program of Novice events: Novice classes twice a month, and then a Novice practice party. These are designed to
+       program of Novice events: Novice classes twice a month, and then a Novice review session. These are designed to
        help you learn a few steps of the most common dances, and help you practice with other Novices. 
        You will also receive emails about these actvities. You can register for these on the website.</li>";
        $emailBody .= "<li><strong>Dance Classes</strong> - Classes are normally held at the MountainView Ballroom
@@ -146,9 +146,9 @@ $fromCC = '';
        exclusively for members, so you can bring friends. Often a DJ provides requested music. If no DJ is
        specified, you may bring your own music. Currently we have 3 different slots:
          <ul>
-         <li>Available Mondays  4 - 6pm in the HOA1 Vermilion Room</li>
-         <li>Friday  4 - 6pm in the HOA1 Vermilion Room </li>
-         <li>Wednesday from 5pm to 6pm in the Mariposa Room at DesertView</li>
+         <li>Available Mondays 4 - 6pm in the HOA1 Vermilion Room</li>
+         <li>Fridays 4 - 6pm in the HOA1 Vermilion Room </li>
+         <li>Wednesdays from 5pm to 6pm in the Mariposa Room at DesertView</li>
          </ul></li><br>";
        
        $emailBody .= "<li>Your name, email, phone and address will be listed in our directory by default unless
