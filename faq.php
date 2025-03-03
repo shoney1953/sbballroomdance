@@ -104,7 +104,8 @@
       <span class="faq-title">What are Novice Classes?</span>
         <div class="dropdown-content">
         <p>Novice Classes are self-contained classes that are designed for students that have never danced or haven't danced in a long while. They will provide an introduction to a couple of dances.  
-           Visitors are welcome at these classes. You can see which dances will be taught by checking the events list on the website.
+           Visitors are welcome at these classes. You can see which dances will be taught by checking the events list on the website. There are usually 2 novice classes covering different dances plus 
+           one Novice Review Session per month. We welcome non-members to our Novice classes.
         </p>
         <p>
           You sign up each of these classes individually either by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Novice Classes Info">
