@@ -43,7 +43,7 @@ $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = '../img/SBDC Membership Form 2025.pdf'; 
 $replyTopic = "SBDC Event Registration";
-$emailSubject = "The SBDC administrator has registered you as a Visitor for an Event";
+
 
 if (isset($_POST['submitAddVisitorReg'])) {
 
@@ -91,6 +91,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $event->id = $eventReg->eventid;
     $event->read_single();
     $emailBody .= '<br>************************************';
+    $emailSubject = "The SBDC administrator has registered you as a Visitor for ".$event->eventname."";
     $emailBody .= "<br> <strong>Event: ".$event->eventname.
     "<br>Type:    ".$event->eventtype.
     "<br>DJ  :    ".$event->eventdj.

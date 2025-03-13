@@ -271,7 +271,7 @@ public function readLike($eventid, $search) {
   // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
   $query = 'SELECT 
   id, eventid, firstname, lastname, email, dateregistered, registeredby,
-  userid, paid, "message", ddattenddinner, ddattenddance,
+  userid, paid, message, ddattenddinner, ddattenddance,
   cornhole, softball
 
   FROM ' . $this->table . ' 

@@ -147,7 +147,7 @@ class User {
 
       // Execute query
       $stmt->execute();
-      var_dump($stmt);
+  
       return $stmt;
 
     }

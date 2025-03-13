@@ -455,12 +455,13 @@ if ($rowCount > 0) {
         </tbody>
         </table>
     </div>
+ 
     <div class="form-grid-div">
-   
+   <br>
        <table>
        <thead>
             <tr>
-            <th colspan="6" style="text-align:center">Past Class Registrations</th>'
+            <th colspan="6" style="text-align:center">Past Class Registrations</th>
             </tr>
            <tr>
                <th>ID</th>
@@ -497,10 +498,11 @@ if ($rowCount > 0) {
    </div>
 
    <div class="form-grid-div">
+    <br>
    <table>
    <thead>
             <tr>
-            <th colspan="6" style="text-align:center">Past Event Registrations</th>'
+            <th colspan="6" style="text-align:center">Past Event Registrations</th>
             </tr> 
 
            <tr>

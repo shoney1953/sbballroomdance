@@ -303,7 +303,7 @@ if ($addReg) {
             $messID = "mess".$reg['id'];
             $paidID = "paid".$reg['id'];
             $dddinID = "dddin".$reg['id'];
-
+        
 
 
             echo '<div class="form-container">';
@@ -411,6 +411,7 @@ if ($addReg) {
             } // end if dinner dance
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Message</h4>';
+       
             echo "<textarea  title='Optionally enter a message for this registration' name='".$messID."' rows='2' cols='40'>".$reg['message']."</textarea>";
             echo '</div>'; // end of form item
             echo '</div>'; // end of form grid

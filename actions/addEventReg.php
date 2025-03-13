@@ -48,10 +48,11 @@ $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
 $replyTopic = "SBDC Event Registration";
-$emailSubject = "The SBDC administrator has registered you for selected SBDC Events";
+
 
 if (isset($_POST['submitAddReg'])) {        
     if (isset($_POST['eventid'])) {
+       
         $event->id = $_POST['eventid'];
         $event->read_single();
      
@@ -61,8 +62,10 @@ if (isset($_POST['submitAddReg'])) {
          $pdDinn = "dpaid".$usr['id'];
          $playCornhole = "ch".$usr['id'];
          $playSoftball = "sb".$usr['id'];
+      
    
             if (isset($_POST["$usrID"])) {
+               
                    
                     $eventReg->eventid = $_POST['eventid'];
                     $eventReg->firstname = $usr['firstname'];
@@ -70,10 +73,14 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->lastname = $usr['lastname'];
                     $regLastName1 = $eventReg->lastname;
                     $eventReg->email = $usr['email'];
+                 
                     $regEmail1 = $eventReg->email;
                     $eventReg->userid = $usr['id'];
                     $eventReg->paid = 0;
                     $eventReg->registeredby = $_SESSION['username'];
+                    if (isset($_POST["$mess"])) {
+
+                    }
                     if ($event->eventtype === 'BBQ Picnic') {
                         if (isset($_POST["$attDin"])) {
                             $eventReg->ddattenddinner = 1;
@@ -117,7 +124,7 @@ if (isset($_POST['submitAddReg'])) {
                     $event->addCount($eventReg->eventid);
                     $event->id = $eventReg->eventid;
                     $event->read_single();
-
+                    $emailSubject = 'The SBDC administrator has registered you for '.$event->eventname.'!';
                     $emailBody .= '<br>************************************';
                     $emailBody .= "<br> <strong>Event: ".$event->eventname.
                     "<br>Type:    ".$event->eventtype.

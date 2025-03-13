@@ -186,6 +186,7 @@ if (isset($_POST['submitEventProcess'])) {
            
           );
           array_push( $regs, $reg_item);
+          
     
       }
    
