@@ -7,6 +7,7 @@ require_once '../models/Event.php';
 require_once '../models/User.php';
 require_once '../includes/CreateCSV.php';
 
+
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
@@ -20,16 +21,7 @@ $eventType = '';
 $_SESSION['csvEvent'] = [];
 $csvEvent = [];
 $number = 0;
-$title_array = 
-[
-'#',  
-'First Name',
-'Last Name', 
-'Email',
-'Member' 
 
-];
-  array_push($csvEvent, $title_array);
 
 
 
@@ -51,7 +43,53 @@ $title_array =
     $num_reg = $rowCount;
     $member = '';
     if ($rowCount > 0) {
+        if ($eventType === 'BBQ Picnic') {
+            $title_array = 
+            [
+            '#',  
+            'First Name',
+            'Last Name', 
+            'Email',
+            'Member',
+            'Cornhole',
+            'Softball'
+
+            ];
+            array_push($csvEvent, $title_array);
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+                if ($user->getUserName($email)) {
+                  $member = "YES"; 
+                  } else {
+                  $member = "NO";
+                   }
+                   $number++;
+                $reg_item = array(
+                    'number' => $number,
+                    'firstname' => $firstname,
+                    'lastname' => $lastname,
+                    'email' => $email,
+                    'member' => $member,
+                    'cornhole' => $cornhole,
+                    'softball' => $softball
+
     
+                );
+            
+                array_push($csvEvent, $reg_item);
+            }
+        } else {
+            $title_array = 
+            [
+            '#',  
+            'First Name',
+            'Last Name', 
+            'Email',
+            'Member'
+
+            ];
+            array_push($csvEvent, $title_array);
+
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
             if ($user->getUserName($email)) {
@@ -68,8 +106,10 @@ $title_array =
                 'member' => $member
 
             );
+        
             array_push($csvEvent, $reg_item);
         }
+    }
     }
 
 
@@ -77,7 +117,10 @@ $title_array =
 
 $today = date("m-d-Y");
 $fileName = $eventName." ".$eventType." ".$today.'.csv';
+
 writeToCsv($csvEvent, $fileName);
+
+
 
 
 
