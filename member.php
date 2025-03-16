@@ -421,14 +421,15 @@ if ($rowCount > 0) {
         <table>
         <thead>
             <tr>
-            <th colspan="5" style="text-align:center">Active Events</th>
+            <th colspan="6" style="text-align:center">Active Events</th>
             </tr>
             <tr>
                 <th>ID</th>
                 <th>Event Name</th>
                 <th>Event Date</th>
                 <th>Paid</th>
-                <th>Date Registered</th>          
+                <th>Date Registered</th>   
+                <th>Registered By</th>        
             </tr>
         </thead>
         <tbody>
@@ -447,6 +448,7 @@ if ($rowCount > 0) {
                         echo "<td>&times;</td>"; 
                     }
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
+                    echo "<td>".$eventRegistration['registeredby']."</td>";
              
                   echo "</tr>";
             }
