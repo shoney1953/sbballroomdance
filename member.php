@@ -386,8 +386,8 @@ if ($rowCount > 0) {
                 <th>Class Name</th>
                 <th>Start Date</th>
                 <th>Class Time</th>
-                <th>Date Registered</th>  
-                <th>Registered By</th>           
+                <th>Date <br>Registered</th>  
+                <th>Registered <br> By</th>           
             </tr>
            </thead>
            <tbody>
@@ -402,7 +402,7 @@ if ($rowCount > 0) {
                     echo "<td>".$classRegistration['classname']."</td>";
                     echo "<td>".$classRegistration['classdate']."</td>";  
                     echo "<td>".$classRegistration['classtime']."</td>";         
-                    echo "<td>".$classRegistration['dateregistered']."</td>";
+                    echo "<td>".substr($classRegistration['dateregistered'],0,10)."</td>";
                     echo "<td>".$classRegistration['registeredby']."</td>";
              
                   echo "</tr>";
@@ -428,8 +428,8 @@ if ($rowCount > 0) {
                 <th>Event Name</th>
                 <th>Event Date</th>
                 <th>Paid</th>
-                <th>Date Registered</th>   
-                <th>Registered By</th>        
+                <th>Date <br>Registered</th>   
+                <th>Registered <br> By</th>        
             </tr>
         </thead>
         <tbody>
@@ -447,7 +447,7 @@ if ($rowCount > 0) {
                     } else {
                         echo "<td>&times;</td>"; 
                     }
-                    echo "<td>".$eventRegistration['dateregistered']."</td>";
+                    echo "<td>".substr($eventRegistration['dateregistered'],0,10)."</td>";
                     echo "<td>".$eventRegistration['registeredby']."</td>";
              
                   echo "</tr>";
@@ -470,8 +470,8 @@ if ($rowCount > 0) {
                <th>Class Name</th>
                <th>Start Date</th>
                <th>Class Time</th>
-               <th>Date Registered</th>    
-               <th>Registered By</th>       
+               <th>Date <br> Registered</th>    
+               <th>Registered <br> By</th>       
            </tr>
        </thead>
        <tbody>
@@ -485,7 +485,7 @@ if ($rowCount > 0) {
                    echo "<td>".$classRegistration['classname']."</td>";
                    echo "<td>".$classRegistration['classdate']."</td>";  
                    echo "<td>".$classRegistration['classtime']."</td>";         
-                   echo "<td>".$classRegistration['dateregistered']."</td>";
+                   echo "<td>".substr($classRegistration['dateregistered'],0,10)."</td>";
                    echo "<td>".$classRegistration['registeredby']."</td>";
             
                  echo "</tr>";
@@ -512,8 +512,8 @@ if ($rowCount > 0) {
                <th>Event Name</th>
                <th>Event Date</th>
                <th>Paid</th>
-               <th>Date Registered</th>  
-               <th>Registered By</th>          
+               <th>Date <br> Registered</th>  
+               <th>Registered <br> By</th>          
            </tr>
    </thead>
    <tbody>
@@ -531,7 +531,7 @@ if ($rowCount > 0) {
                    } else {
                        echo "<td>&times;</td>"; 
                    }
-                   echo "<td>".$eventRegistration['dateregistered']."</td>";
+                   echo "<td>".substr($eventRegistration['dateregistered'],0,10)."</td>";
                    echo "<td>".$eventRegistration['registeredby']."</td>";
             
                  echo "</tr>";
