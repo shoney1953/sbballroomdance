@@ -8,7 +8,7 @@ deployment:
     - /bin/cp archclass.php $DEPLOYPATH
     - /bin/cp archevent.php $DEPLOYPATH
     - /bin/cp archmember.php $DEPLOYPATH
-    - /bin/cp benefits.php $DEPLOYPATH
+
     - /bin/cp checkout.html $DEPLOYPATH
     - /bin/cp class.php $DEPLOYPATH
     - /bin/cp classEmail.php $DEPLOYPATH

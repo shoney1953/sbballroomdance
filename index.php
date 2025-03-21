@@ -317,7 +317,7 @@ if (isset($_SESSION['username'])) {
             echo '<li><a title="Information on Joining the Club" style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
         }
     }
-    // echo '<li><a title="New Membership Benefits" href="benefits.php">Special Member Benefits</a></li>';
+   
 
     echo '<li><a title="Frequently Asked Questions" href="faq.php">FAQs</a></li>';
     echo '<li><a title="Additional Options" href="#">More ... &dtrif;</a>';
