@@ -388,7 +388,7 @@ if ($rowCount > 0) {
            
             if (($reg['eventtype'] === 'Novice Practice Dance') ||
                 ($reg['eventtype'] === 'Social') ||
-    
+                (!($reg['eventtype'] === 'BBQ Picnic')) ||
                 ($reg['eventtype'] === 'TGIF') ||
                 ($reg['eventtype'] === 'Meeting')
                )
@@ -398,13 +398,37 @@ if ($rowCount > 0) {
                 $pdf->SetTextColor(0 , 0, 0);
                 $pdf->Cell(18,8,"UNK",1,1,"L"); 
 
-             } else {
-                $pdf->SetTextColor(255 , 0, 0); 
-                $pdf->Cell(18,8,"NO",1,0,"L");
-                $pdf->SetTextColor(0 , 0, 0);
-                $pdf->Cell(18,8,"UNK",1,0,"L"); 
+             } else { 
+                if (!($reg['eventtype'] === 'BBQ Picnic')) {
+                    $pdf->SetTextColor(255 , 0, 0); 
+                    $pdf->Cell(18,8,"NO",1,0,"L");
+                    $pdf->SetTextColor(0 , 0, 0);
+                    $pdf->Cell(18,8,"UNK",1,0,"L"); 
+                }
+
 
              }
+             if ($reg['eventtype'] === 'BBQ Picnic') {
+                $pdf->SetTextColor(255 , 0, 0);   
+                $pdf->Cell(18,8,"NO",1,0,"L");
+                $pdf->SetTextColor(0 , 0, 0);
+                if ($reg['cornhole'] === '1') {
+                    $pdf->Cell(22,8,"YES",1,0,"L");
+                } else {
+                    $pdf->Cell(22,8,"NO ",1,0,"L");
+                } 
+                if ($reg['softball'] === '1') {
+                    $pdf->Cell(22,8,"YES",1,0,"L");
+                } else {
+                    $pdf->Cell(22,8,"NO ",1,0,"L");
+                } 
+                if ($reg['ddattenddinner'] === '1') {
+                    $pdf->Cell(22,8,"YES",1,1,"L");
+                } else {
+                    $pdf->Cell(22,8,"NO ",1,1,"L");
+                } 
+
+            }
             
             $nonMemReg++; 
             $dwop = "NO";
