@@ -933,7 +933,9 @@ if (isset($_SESSION['username'])) {
        <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2025-Photos">2025 Combined Photos</a></em></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Team-Match-01-11-2025">Team Match 01 11 2025</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-01-24-2025-Celebrate-Dance">Celebrate Dance 01 24 2025</a></li>
-       <li class="li-none"><a href=" https://sheilahoney.smugmug.com/SBDC-Valentines-02-13-2025">Valentines 02 13 2025</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Valentines-02-13-2025">Valentines 02 13 2025</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-BBQ-Picnic-03-29-2025">Annual BBQ Picnic 2025</a></li>
+       
       
        </ul>
        </div>
