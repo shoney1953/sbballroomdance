@@ -35,6 +35,7 @@ $toCC4 = '';
 $toCC5 = '';
 
 $id_int = 0;
+$num_registered = 0;
 $currentDate = new DateTime();
 
 
@@ -76,10 +77,11 @@ if (isset($_POST['submitEventReg'])) {
             $message = $_POST["$messID"];
         }
        if (isset($_POST["$chkboxID"])) {
+      
         $eventNum = (int)substr($chkboxID,2);
 
             if ($event['id'] == $eventNum) {
-               
+                $num_registered++;
                 $eventId = $event['id'];
                 $emailBody .= "<br><strong> Event: ".$event['eventname'].
                 "<br>Type:    ".$event['eventtype'].
@@ -239,7 +241,10 @@ if (isset($_POST['submitEventReg'])) {
             } // end if eventid            
        } //end isset
       } // end foreach
-
+    if ($num_registered === 0) {
+        $emailSubject = "Your event registration was invalid!";
+        $emailBody = "You did not select any events to register for. Please return to the website to register for events and be sure to check a box for the event for which you would like to register.<br>"; 
+    }
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
       
         $regName1 = $regFirstName1.' '.$regLastName1;
