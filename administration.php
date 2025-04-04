@@ -39,16 +39,14 @@ $dlChk = '';
 $emChk = '';
 $dpChk = '';
 $arChk = '';
-
-$database = new Database();
-$db = $database->connect();
-// refresh events
-
 if (!isset($_SESSION['username'])) {
     $redirect = "Location: ".$_SESSION['homeurl'];
     header($redirect);
 }
- 
+$database = new Database();
+$db = $database->connect();
+// refresh events
+
 $event = new Event($db);
 $result = $event->read();
 

@@ -69,6 +69,7 @@ $preface = '';
             $preface = "Class: ".$reg_item['classname'].
             "\n Beginning Date: ".$reg_item['classdate']."\n\r"
             ;
+            $emailSubject = 'A Message About Your SBDC Ballroom Dance Class: '.$reg_item['classname'];
             if ($reg_item['email'] != '') {
                 $regEmail1[] = array('email' => $reg_item['email'],
                 'name' => $reg_item['firstname'].' '.$reg_item['lastname']);
