@@ -388,7 +388,6 @@ if ($rowCount > 0) {
            
             if (($reg['eventtype'] === 'Novice Practice Dance') ||
                 ($reg['eventtype'] === 'Social') ||
-                (!($reg['eventtype'] === 'BBQ Picnic')) ||
                 ($reg['eventtype'] === 'TGIF') ||
                 ($reg['eventtype'] === 'Meeting')
                )
@@ -399,12 +398,13 @@ if ($rowCount > 0) {
                 $pdf->Cell(18,8,"UNK",1,1,"L"); 
 
              } else { 
-                if (!($reg['eventtype'] === 'BBQ Picnic')) {
+                if (!($reg['eventtype'] === 'BBQ Picnic'))
+                 {
                     $pdf->SetTextColor(255 , 0, 0); 
                     $pdf->Cell(18,8,"NO",1,0,"L");
                     $pdf->SetTextColor(0 , 0, 0);
                     $pdf->Cell(18,8,"UNK",1,0,"L"); 
-                }
+                } 
 
 
              }
