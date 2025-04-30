@@ -88,7 +88,7 @@ if (isset($_POST['submitEventEmail'])) {
       $replaceArr  = array("\r\n", "\n", "\r");
       $htmlEmail = str_replace($replaceArr, "<br>", $emailBody);
       
-     
+    
         sendEmailArray(
             $regEmail1,  
             $fromCC,

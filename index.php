@@ -1,5 +1,7 @@
 <?php 
+
 session_start();
+
 require_once 'config/Database.php';
 require_once 'models/Event.php';
 require_once 'models/DanceClass.php';
@@ -533,25 +535,25 @@ if (isset($_SESSION['username'])) {
         <h4>Click on the Email to correspond with one of our Board Members</h4><br>
         <ul>
             <?php
-            echo '<li class="li-none li-large">Rich Adinolfi, President 
+            echo '<li class="li-none li-large">Ann Pizzitola, President 
                    &rarr; <a title="click to email" href="mailto:'.$president.'?subject=SBDC Info">
-                       Email Rich</a></li>';
-            echo '<li class="li-none li-large">Nan Kartsonis, Vice-President 
+                       Email Ann</a></li>';
+            echo '<li class="li-none li-large">Lynne Pendlebury, Vice-President 
                 &rarr;  <a title="click to email" href="mailto:'.$vicePresident.'?subject=SBDC Info">
-                Email Nan</a></li>';
-            echo '<li class="li-none li-large">Roger Shamburg, Treasurer 
+                Email Lynne</a></li>';
+            echo '<li class="li-none li-large">Linda Shamburg, Treasurer 
                   &rarr; <a title="click to email" href="mailto:'.$treasurer.'?subject=SBDC Info">
-                  Email Roger</a></li>';
-            echo '<li class="li-none li-large">Peggy Albrecht, Secretary 
+                  Email Linda</a></li>';
+            echo '<li class="li-none li-large">Pat Knepler, Secretary 
                   &rarr; <a title="click to email" href="mailto:'.$secretary.'?subject=SBDC Info">
-                  Email Peggy</a></li>';
+                  Email Pat</a></li>';
         
-            echo '<li class="li-none li-large">Dale & Ann Pizzitola, Directors of Dance Instruction    
+            echo '<li class="li-none li-large">Dale Pizzitola, Director of Dance Instruction    
                 &rarr; <a title="click to email" href="mailto:'.$danceDirector.'?subject=SBDC Info">
-                Email Ann & Dale</a></li>';
-           echo '<li class="li-none li-large">Vivian Herman, Volunteer Coordinator  
+                Email Dale</a></li>';
+           echo '<li class="li-none li-large">Valerie Green, Volunteer Coordinator  
                 &rarr; <a title="click to email" href="mailto:'.$volunteerDirector.'?subject=SBDC Info">
-                Email Vivian</a></li>';
+                Email Valerie</a></li>';
             echo '<li class="li-none li-large">Rick Baumgartner, DJ Coordinator   
                 &rarr; <a title="click to email" href="mailto:'.$djDirector.'?subject=SBDC Info">
                 Email Rick</a></li>';
@@ -876,22 +878,22 @@ if (isset($_SESSION['username'])) {
         echo '<ul>';
             echo '<li class="li-none li-large">President
                    &rarr; <a href="mailto:'.$president.'?subject=SBDC Contact Info">
-                       Rich Adinolfi</a></li>';
+                       Ann Pizzitola</a></li>';
             echo '<li class="li-none li-large">Vice President  
                 &rarr;  <a href="mailto:'.$vicePresident.'?subject=SBDC Info">
-                Nan Kartsonis</a></li>';
+                Lynne Pendlebury</a></li>';
             echo '<li class="li-none li-large">Questions about costs of events or membership 
                   &rarr; <a href="mailto:'.$treasurer.'?subject=SBDC Contact Info">
-                  Roger Shamburg</a></li>';
+                  Linda Shamburg</a></li>';
             echo '<li class="li-none li-large">General Questions    
                 &rarr; <a href="mailto:'.$secretary.'?subject=SBDC Contact Info">
-                Peggy Albrecht</a></li>';
+                Pat Knepler</a></li>';
             echo '<li class="li-none li-large">Questions about Classes   
                 &rarr; <a href="mailto:'.$danceDirector.'?subject=SBDC Contact Info">
-                Ann and Dale Pizzitola</a></li>';
+                Dale Pizzitola</a></li>';
             echo '<li class="li-none li-large">Questions about Volunteering   
                 &rarr; <a href="mailto:'.$volunteerDirector.'?subject=SBDC Contact Info">
-                Vivian Herman</a></li>';
+                Valerie Green</a></li>';
            echo '<li class="li-none li-large">Questions about Music or DJing 
                 &rarr; <a href="mailto:'.$djDirector.'?subject=SBDC Contact Info">
                 Rick Baumgartner</a></li>';
@@ -1138,7 +1140,7 @@ DJ Documents</a><br>
          </ul><br>
          <?php
         echo '<p>If you think <strong>any </strong> of these opportunities sound interesting, please contact our Director of Volunteers, 
-        <a href="mailto:'.$volunteerDirector.'?subject=SBDC Volunteer Info">Vivian Herman</a>';
+        <a href="mailto:'.$volunteerDirector.'?subject=SBDC Volunteer Info">Valerie Green</a>';
         ?>
        </p><br><br>
 

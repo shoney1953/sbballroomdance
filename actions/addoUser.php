@@ -15,18 +15,21 @@ $user = new User($db);
 $userArchive = new UserArchive($db);
 $member1ID = 0;
 $member2ID = 0;
-// $toCC2 = $danceDirector;
-$toCC3 = $webmaster;
-// 
 
-// $toCC4 = $volunteerDirector; 
-$toCC2 = '';
+$toCC3 = $webmaster; 
+// $toCC2 = '';
+// $toCC4 = '';
+// $toCC5 = '';
 
-// $toCC4 = 'richardschroeder50@gmail.com';
-$toCC4 = '';
-$toCC5 = '';
-// $fromCC = $secretary;
 $fromCC = '';
+
+
+$toCC2 = $president;
+$toCC4 = $vicePresident;
+$toCC5 = $volunteerDirector; 
+
+// $fromCC = $secretary; // leave commented
+
 
 
 
@@ -170,16 +173,8 @@ $fromCC = '';
    $webLink<br>";
 
    $emailBody .= "We hope to see you soon!<br>";
+   require '../includes/emailSignature.php';
 
-
-     $emailBody .= "----------------------------<br>";
-     $emailBody .= "<em>SaddleBrooke Ballroom Dance Club Board Members</em><br>";
-     $emailBody .= "Rich Adinolfi, President<br>";
-     $emailBody .= "Nan Kartsonis, Vice President<br>"; 
-     $emailBody .= "Roger Shamburg, Treasurer<br>";
-     $emailBody .= "Peggy Albrecht, Secretary<br>";
-     $emailBody .= "Ann and Dale Pizzitola, Directors of Dance Instruction <br>";
-     $emailBody .= "Vivian Herman, Director of Volunteers<br>";
 
 
         sendEmail(
@@ -351,16 +346,8 @@ Once you logon to the website, you can register for most classes and events from
 $webLink<br>";
 
 $emailBody .= "We hope to see you soon!<br>";
+require '../includes/emailSignature.php';
 
-
-  $emailBody .= "----------------------------<br>";
-  $emailBody .= "<em>SaddleBrooke Ballroom Dance Club Board Members</em><br>";
-  $emailBody .= "Rich Adinolfi, President<br>";
-  $emailBody .= "Nan Kartsonis, Vice President<br>"; 
-  $emailBody .= "Roger Shamburg, Treasurer<br>";
-  $emailBody .= "Peggy Albrecht, Secretary<br>";
-  $emailBody .= "Ann and Dale Pizzitola, Directors of Dance Instruction <br>";
-  $emailBody .= "Vivian Herman, Director of Volunteers<br>";
 
 
      sendEmail(

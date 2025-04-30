@@ -2,7 +2,7 @@
 session_start();
 require_once '../includes/sendEmail.php';
 require_once '../includes/siteemails.php';
-
+  
 require_once '../config/Database.php';
 require_once '../models/User.php';
 require_once '../models/MemberPaid.php';
@@ -52,7 +52,7 @@ if (isset($_POST['updateMemPaid'])) {
             $user->id = $memStat['userid'];
             $user->read_single();
             $userEmail = $user->email;
-            sendThanks($memStat,$userEmail,$secretary,$danceDirector,$webmaster);
+            sendThanks($memStat,$userEmail,$secretary,$president,$webmaster);
           
         }
        
@@ -63,13 +63,13 @@ if (isset($_POST['updateMemPaid'])) {
 header($redirect);
 exit; 
 }
-function sendThanks($memStat,$userEmail,$secretary,$danceDirector,$webmaster) {
+function sendThanks($memStat,$userEmail,$secretary,$president,$webmaster) {
 
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toName = $memStat['firstname']." ".$memStat['lastname'] ;
     $mailSubject = 'Thanks for Renewing your membership at SBDC Ballroom Dance Club!';
     $fromCC = $secretary;
-    $toCC2 = $danceDirector;
+    $toCC2 = $president;
     $toCC3 = $webmaster;
     $toCC4 = '';
     $toCC5 = null;
@@ -87,22 +87,11 @@ function sendThanks($memStat,$userEmail,$secretary,$danceDirector,$webmaster) {
        to the SaddleBrooke Ballroom Dance Club.<br><br>";
        $emailBody .= "Thanks for renewing your membership. We hope you'll 
        continue to enjoy our activites.<br>";
-       $emailBody .= "Just as a reminder please check the link to our 
-         activity calendar:<br> $actLink";
+       $emailBody .= "Just as a reminder please click the link to our 
+         activity calendar to view the latest updates to events and classes:<br> $actLink";
        $emailBody .= "Our Website address is https://sbballroomdance.com.<br><br>";
        $emailBody .= "<br>We hope to see you soon!<br>";
-
-
-       $emailBody .= "----------------------------<br>";
-       $emailBody .= "<em>SaddleBrooke Ballroom Dance Club Board Members</em><br>";
-       $emailBody .= "Rich Adinolfi, President<br>";
-       $emailBody .= "Nan Kartsonis, Vice President<br>"; 
-       $emailBody .= "Roger Shamburg, Treasurer<br>";
-       $emailBody .= "Peggy Albrecht, Secretary<br>";
-    //    $emailBody .= "Peggy Albrect, Secretary<br>";
-       $emailBody .= "Ann & Dale Pizzitola, Directors of Dance Instruction<br>";
-       $emailBody .= "Vivian Herman, Volunteer Coordinator<br>";
-
+       require '../includes/emailSignature.php';
 
        sendEmail(
         $userEmail, 

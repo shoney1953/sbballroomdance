@@ -28,7 +28,7 @@
        <div class="list-box">
         <p>Music for Practice</p>
        <ul>
-          <li class="li-none"><a href="https://sbdcrobodj.com/login.php">SBDC ROBO DJ Website</a></li>
+          <li class="li-none"><a href="https://sbdcrobodj.com">SBDC ROBO DJ Website</a></li>
 
        </ul>
        </div>

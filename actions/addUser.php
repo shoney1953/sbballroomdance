@@ -29,14 +29,14 @@ $db = $database->connect();
 $user = new User($db);
 $userArchive = new UserArchive($db);
 
-$toCC2 = $danceDirector;
+$toCC2 = $president;
 $toCC3 = $webmaster;
 // 
 
 $toCC4 = $volunteerDirector; 
 
 // $toCC4 = 'richardschroeder50@gmail.com';
-$toCC5 = '';
+$toCC5 = $vicePresident;
 $fromCC = $ggWebmaster;
 
 if (isset($_POST['submitAddUser'])) {
@@ -182,17 +182,9 @@ if (isset($_POST['submitAddUser'])) {
    $webLink<br>";
 
    $emailBody .= "We hope to see you soon!<br>";
+   require '../includes/emailSignature.php';
 
 
-     $emailBody .= "----------------------------<br>";
-     $emailBody .= "<em>SaddleBrooke Ballroom Dance Club Board Members</em><br>";
-     $emailBody .= "Rich Adinolfi, President<br>";
-     $emailBody .= "Nan Kartsonis, Vice President<br>"; 
-     $emailBody .= "Roger Shamburg, Treasurer<br>";
-     $emailBody .= "Peggy Albrecht, Secretary<br>";
-    //  $emailBody .= "Peggy Albrect, Secretary<br>";
-     $emailBody .= "Ann and Dale Pizzitola, Directors of Dance Instruction <br>";
-     $emailBody .= "Vivian Herman, Director of Volunteers<br>";
 
 
         sendEmail(

@@ -29,17 +29,31 @@ function sendEmailArray(
     $mailUsername   = 'sbdcmailer@sbballroomdance.com';                     //SMTP username
     $mailPassword   = $_SESSION['mailpwd'];
     $mailPort       = "587"; 
+    // $mailPort       = "465"; 
     $mail = new PHPMailer(true);
+    if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+    $mail->SMTPOptions = [
+        'ssl' => [
+          'verify_peer' => false,
+          'verify_peer_name' => false,
+          'allow_self_signed' => true
+        ]
+      ];
+    }
+   
     try {
         //Server settings
-        /* $mail->SMTPDebug = SMTP::DEBUG_SERVER;   */                   //Enable verbose debug output
+        //  $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = $mailHost;                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
         $mail->Username   = $mailUsername;                     //SMTP username
         $mail->Password   = $mailPassword   ;                           //SMTP password
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-        $mail->Port       = $mailPort;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;   
+        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         //Enable implicit TLS encryption
+        $mail->Port       = $mailPort;   
+        // $mail->SMTPDebug = true;  
+        $mail->SMTPAutoTLS = false;                                 //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Recipients
         $mail->setFrom($mailUsername, $fromEmailName);

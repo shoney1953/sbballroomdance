@@ -39,8 +39,18 @@ function sendEmail($toEmail,
         $mail->Username   = $mailUsername;                     //SMTP username
         $mail->Password   = $mailPassword   ;                           //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-        $mail->Port       = $mailPort;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
+        // $mail->SMTPSecure = 'tls';   
+        $mail->Port       = $mailPort;     
+        // $mail->SMTPDebug = true;                               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+        $mail->SMTPOptions = [
+            'ssl' => [
+              'verify_peer' => false,
+              'verify_peer_name' => false,
+              'allow_self_signed' => true
+            ]
+          ];
+        }
         //Recipients
         $mail->setFrom($mailUsername, $fromEmailName);
        
