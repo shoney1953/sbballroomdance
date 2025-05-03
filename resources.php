@@ -23,7 +23,7 @@
     <div class="content">
     <br><br>
     <h1>Resources</h1>
-    <div class="form-grid3">
+    <div class="form-grid4">
     <div class="form-grid-div">
        <div class="list-box">
         <p>Music for Practice</p>

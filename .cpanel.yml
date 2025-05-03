@@ -39,6 +39,17 @@ deployment:
     - /bin/cp regForEvents.php $DEPLOYPATH
     - /bin/cp renewNow.php $DEPLOYPATH
     - /bin/cp resources.php $DEPLOYPATH
+    - /bin/cp SBDCAbout.php $DEPLOYPATH
+    - /bin/cp SBDCBoard.php $DEPLOYPATH
+    - /bin/cp SBDCClasses.php $DEPLOYPATH
+    - /bin/cp SBDCContact.php $DEPLOYPATH
+    - /bin/cp SBDCDJInfo.php $DEPLOYPATH
+    - /bin/cp SBDCEvents.php $DEPLOYPATH
+    - /bin/cp SBDCHelp.php $DEPLOYPATH
+    - /bin/cp SBDCInstructor.php $DEPLOYPATH
+    - /bin/cp SBDCMemberDir.php $DEPLOYPATH
+    - /bin/cp SBDCOtherVol.php $DEPLOYPATH
+    - /bin/cp SBDCPictures.php $DEPLOYPATH
     - /bin/cp secrets.php $DEPLOYPATH
     - /bin/cp signup.php $DEPLOYPATH
     - /bin/cp specialevent.php $DEPLOYPATH

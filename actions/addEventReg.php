@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../includes/sendEmail.php';
+require_once '../includes/sendEmail.php';
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
@@ -40,7 +41,7 @@ $id_int = 0;
 $result = 0;
 $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 $fromCC = 'sheila_honey_5@hotmail.com';
-$replyEmail = 'peggyalbrecht@gmail.com';
+$replyEmail = '';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = '';
 $toCC3 = '';
