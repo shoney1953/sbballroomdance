@@ -29,7 +29,7 @@ require_once 'includes/siteemails.php';
     <section id="contact" class="content">
     <br>
     <?php
-    if (isset($_SESSION['username'])) { 
+
         echo '<h1 class="section-header">To correspond with one of the board members or directors, Just click on any of the names below: </h1>';
 
         echo '<ul>';
@@ -63,7 +63,7 @@ require_once 'includes/siteemails.php';
   
         echo '</ul>';
         echo '<br><br>';
-    }
+    
     
     ?>
     </section>
