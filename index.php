@@ -244,7 +244,7 @@ if (isset($_SESSION['username'])) {
         href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix" target="_blank">
          Activities Calendar
         </a></li>
-       
+            <li><a title="Pictures from various activities and class videos" href="SBDCPictures.php">Photos</a></li>
             <li><a title="List of Upcoming Events" href="SBDCEvents.php">Upcoming Events</a></li>
 
             <li><a title="List of Upcoming Classes" href="SBDCClasses.php">Upcoming Classes</a></li>
@@ -315,7 +315,6 @@ if (isset($_SESSION['username'])) {
     echo '<ul>';
     echo '<li><a title="How to Contact Us" href="SBDCContact.php">Contact Us</a></li>';
     echo '<li><a title="Where to find Help" href="SBDCHelp.php">Help</a></li>';
-    echo '<li><a title="Pictures from various activities and class videos" href="SBDCPictures.php">Picture Gallery</a></li>';
     echo '<li><a title="Various Sources of More information" href="resources.php">Resources</a></li>';
     echo '<li><a title="Sponsors for the SaddleBrooke Ballroom Dance Club" href="sponsor.php">Sponsors</a></li>';
     echo '</ul>';

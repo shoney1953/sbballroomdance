@@ -26,9 +26,9 @@ $sess = session_start();
    <section id="pictures" class="content">
    <br>  
        <h4 class="section-header">Links to Pictures from Past Events</h4>
-       <h4>All Events</h4>
+
        <ul>
-       <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-Photos">Combination of All Event Photos</a></em></li>
+       <br><li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-Photos">Combination of All Event Photos</a></em></li>
        </ul>
       <br>
         
@@ -37,7 +37,6 @@ $sess = session_start();
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SaddleBrooke-Ballroom-Dance-Club-Videos">Class Videos</a></li>    
        </ul>
        
-      
        <div class="form-grid4">
        <div class="form-grid-div">
        <h4>2025</h4>
