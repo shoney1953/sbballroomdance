@@ -274,8 +274,7 @@ if (isset($_SESSION['username'])) {
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {
               
-              echo ' <li><a title="List of SaddleBrooke Ballroom Dance Club Members" href="SBDCMemberDir">
-              Member Directory</a></li>';
+              echo ' <li><a title="List of SaddleBrooke Ballroom Dance Club Members" href="SBDCMemberDirectory.php">Member Directory</a></li>';
              
               echo '<li><a title="List of Volunteer Activites" href="#">Volunteer &dtrif;</a>';
               echo '<ul >';
