@@ -47,7 +47,7 @@ deployment:
     - /bin/cp SBDCEvents.php $DEPLOYPATH
     - /bin/cp SBDCHelp.php $DEPLOYPATH
     - /bin/cp SBDCInstructor.php $DEPLOYPATH
-    - /bin/cp SBDCMemberDir.php $DEPLOYPATH
+    - /bin/cp SBDCMemberDirectory.php $DEPLOYPATH
     - /bin/cp SBDCOtherVol.php $DEPLOYPATH
     - /bin/cp SBDCPictures.php $DEPLOYPATH
     - /bin/cp secrets.php $DEPLOYPATH

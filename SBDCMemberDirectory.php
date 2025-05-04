@@ -20,7 +20,6 @@ $directory = $_SESSION['directory']
      
      <ul>
         <li><a href="index.php">Back to Home</a></li>
-
     </ul>
      </div>
 </nav>  
