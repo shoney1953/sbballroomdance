@@ -193,11 +193,24 @@ $db = $database->connect();
                echo '<h4 class="form-item-title">Start Date</h4>'; 
                echo $class['date'];
                echo '</div>';
-
-               echo '<div class="form-item">';
-               echo '<h4 class="form-item-title">Class Level</h4>'; 
-               echo $class['classlevel'];
-               echo '</div>';
+              if ($class['classlevel'] === 'Novice') {
+                echo '<div class="form-item table-novice">';
+                echo '<h4 class="form-item-title">Class Level</h4>'; 
+                echo $class['classlevel'];
+                echo '</div>';
+              } elseif (($class['classlevel'] === 'Intermediate')) {
+                echo '<div class="form-item table-intermediate">';
+                echo '<h4 class="form-item-title">Class Level</h4>'; 
+                echo $class['classlevel'];
+                echo '</div>';
+              }
+              else {
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Class Level</h4>'; 
+                echo $class['classlevel'];
+                echo '</div>';
+              }
+        
 
                echo '<div class="form-item">';
                echo '<h4 class="form-item-title">Class Instructors</h4>'; 

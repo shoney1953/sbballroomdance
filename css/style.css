@@ -42,6 +42,8 @@
   --black3: rgb(84, 84, 84);
   --hover: #7c0a10;
   --purple-contrast3: rgb(95,82,134);
+  --table-novice: rgb(68, 146, 120);
+  --table-intermediate: rgb(69, 38, 225);
 }
 * {
   box-sizing: border-box;
@@ -440,12 +442,12 @@ font-weight: bolder;
   }
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   gap: 2px;
   /* grid-auto-rows: minmax(50px, auto); */
   grid-auto-rows: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom:  5px;
   justify-content: left; 
   padding: 4px;
 }
@@ -632,6 +634,14 @@ input[type="email"] {
   /* border-radius: 2px; */
   box-sizing: border-box;
 }
+.table-novice {
+  color: var(--table-novice);
+  font-weight: bold;
+}
+.table-intermediate {
+  color: var(--table-intermediate);
+  font-weight: bold;
+}
 select {
   width: 100%;
     max-width: 100%;
@@ -806,7 +816,7 @@ td input[type="select"] {
   text-align: left;
   align-items: left;
   justify-content: left;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .form-grid-div p {
   text-align: left;
@@ -817,7 +827,7 @@ td input[type="select"] {
 .form-grid1 {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 10px;
+  gap: 5px;
   grid-auto-rows: minmax(100px, auto);
 
   border-radius: 5px;
@@ -832,8 +842,8 @@ td input[type="select"] {
   /* border: 1px dashed rgb(91, 2, 129); */
 
   border-radius: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   justify-content: left;
   font-size: 85%;
 }
@@ -844,8 +854,8 @@ td input[type="select"] {
   grid-auto-rows: minmax(100px, auto);
   /* border: 1px solid rgb(91, 2, 129);  */
   border-radius: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   justify-content: left;
   font-size: 85%;
 }
@@ -856,8 +866,8 @@ td input[type="select"] {
   grid-auto-rows: minmax(100px, auto);
   /* border: 1px solid rgb(91, 2, 129);  */
   border-radius: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   justify-content: left;
   font-size: 85%;
 }
@@ -1125,8 +1135,8 @@ iframe {
     gap: 8px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left;
     font-size: 75%;
   }
@@ -1136,8 +1146,8 @@ iframe {
     gap: 2px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left;
     font-size: 75%;
   }
@@ -1147,8 +1157,8 @@ iframe {
     gap: 2px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left;
     font-size: 75%;
   }
@@ -1346,8 +1356,8 @@ iframe {
     gap: 2px;
     /* grid-auto-rows: minmax(100px, auto); */
     grid-auto-rows: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left; 
   }
   .form-item {
@@ -1373,8 +1383,8 @@ iframe {
     gap: 8px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left;
     font-size: 75%;
   }
@@ -1384,8 +1394,8 @@ iframe {
     gap: 2px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left;
     font-size: 75%;
   }
@@ -1395,8 +1405,8 @@ iframe {
     gap: 2px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left;
     font-size: 75%;
   }
@@ -1537,8 +1547,8 @@ iframe {
     gap: 1px;
     /* grid-auto-rows: minmax(100px, auto); */
     grid-auto-rows: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left; 
   }
   .form-item {
@@ -1646,8 +1656,8 @@ iframe {
     gap: 4px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left;
     font-size: 100%;
   }
@@ -1657,8 +1667,8 @@ iframe {
     gap: 2px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left;
     font-size: 80%;
   }
@@ -1668,8 +1678,8 @@ iframe {
     gap: 2px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     justify-content: left;
     font-size: 80%;
   }

@@ -155,7 +155,15 @@ $upcomingClasses = $_SESSION['upcoming_classes']
 
                     echo "<td>".$class['time']."</td>";
                     echo "<td>".$class['classname']."</td>";
-                    echo "<td>".$class['classlevel']."</td>";
+                    if ($class['classlevel'] === 'Novice') {
+                        echo "<td class='table-novice'>".$class['classlevel']."</td>"; 
+                    
+                    } elseif ($class['classlevel'] === 'Intermediate') {
+                        echo "<td class='table-intermediate'>".$class['classlevel']."</td>";
+                    } else {
+                        echo "<td>".$class['classlevel']."</td>"; 
+                    }
+                   
                     echo "<td>".$class['room']."</td>";
                     echo "<td>".$class['registrationemail']."</td>";
                

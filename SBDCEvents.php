@@ -77,9 +77,9 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo '<th>Report?</th>';
                 }
             ?>
-                <th>Event<br>Date</th>
+                <th>Event<br>Dates</th>
                 <th>Reg<br>Opens</th>
-                <th>Reg<br>Ends</th>
+                <th>Reg<br>Closes</th>
                 <th>Name    </th>
                 <th>Type    </th>
                 <th>Description</th> 
@@ -115,7 +115,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     
                     echo '<th>Event<br>Date</th>';
                     echo '<th>Reg<br>Opens</th>';
-                    echo '<th>Reg<br>Ends</th>';
+                    echo '<th>Reg<br>Closes</th>';
                     echo '<th>Name    </th>';
                     echo '<th>Type    </th>';
                     echo '<th>Description</th>'; 

@@ -56,7 +56,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
    
     
     } 
-    $event = new EventArch($db);
+$event = new EventArch($db);
 $result = $event->read();
 
 $rowCount = $result->rowCount();
@@ -475,6 +475,7 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
                       echo "<label for='reportClass'>Report on all or one Archived Class </label><br> "; 
                       echo "<input type='text' class='text-small' name='classId' >"; 
                       echo "<label for='classId'><em> &larr; Specify Class ID from Table below to Report on One Class. </em> </label>";
+                    
                         echo "</form>";
                         echo "</div> ";
 

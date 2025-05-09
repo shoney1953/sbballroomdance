@@ -185,9 +185,10 @@ if ($rowCount > 0) {
     <div class="container">
      
      <ul>
-        <li><a href="archives.php">Back to Archives</a></li>
-        <li><a href="administration.php">Back to Administration</a></li>
         <li><a href="index.php">Back to Home</a></li>
+        <li><a href="SBDCAAMembers.php">Back to Archived Members</a></li>
+        <li><a href="administration.php">Back to Administration</a></li>
+       
 
     </ul>
      </div>
