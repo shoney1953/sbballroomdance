@@ -292,6 +292,7 @@ if (isset($_SESSION['username'])) {
         if (isset($_SESSION['role'])) {
             if (($_SESSION['role'] == 'ADMIN') ||
              ($_SESSION['role'] == 'SUPERADMIN') ||
+              ($_SESSION['role'] == 'DJ') ||
              ($_SESSION['role'] == 'INSTRUCTOR')
              ) {
                 echo '<li><a title="Club Administrative Functions" href="administration.php">Administration</a></li>';

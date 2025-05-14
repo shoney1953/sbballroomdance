@@ -151,6 +151,11 @@ $_SESSION['userurl'] = $_SERVER['REQUEST_URI'];
               } else {
                   echo '<option value = "INSTRUCTOR">Can Maintain Classes</option>';
               }
+              if ($usr['role'] === "DJ") {
+                  echo '<option value = "DJ" selected>Can Email and Report on Events</option>';
+              } else {
+                  echo '<option value = "DJ">Can Email and Report on Events</option>';
+              }
               echo '</select>';
             echo '</div>';
            

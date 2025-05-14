@@ -121,13 +121,18 @@ if ($rowCount > 0) {
     <link rel="stylesheet" href="css/style.css">
     <title>SBDC Ballroom Dance - Event Administration</title>
 </head>
-<>
+
 <nav class="nav">
     <div class="container"> 
      <ul> 
         <li><a title="Return to Home Page" href="index.php">Back to Home</a></li>    
-        <li><a title="Return to Home Page" href="administration.php">Back to Administration</a></li>
-        <li><a title="List Historical Data" href="SBDCAAEvents.php">Archived Events</a></li>
+        <li><a title="Return to Administration Page" href="administration.php">Back to Administration</a></li>
+        <?php
+          if ($_SESSION['role'] != 'DJ') {
+           echo '<li><a title="List Historical Data" href="SBDCAAEvents.php">Archived Events</a></li>';
+          }
+        ?>
+       
       </ul>
     </div>
 
@@ -186,7 +191,6 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '</div>';
 
    echo '<div class="form-grid">';
-
     echo '<div class="form-item">';
     echo '<h4 class="form-item-title">Report?</h4>';
     echo "<input type='checkbox' title='Only select 1 event for Report' name='".$rpChk."'>";
@@ -201,7 +205,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '<h4 class="form-item-title">Email?</h4>';
    echo "<input type='checkbox' title='Only select 1 event for Email' name='".$emChk."'>";
    echo '</div>';
-
+  if ($_SESSION['role'] != 'DJ') {
    echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Duplicate?</h4>';
    echo "<input type='checkbox' title='Only select 1 event to Duplicate' name='".$dpChk."'>";
@@ -216,7 +220,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '<h4 class="form-item-title">Delete?</h4>';
    echo "<input type='checkbox' title='Select to Delete Event(s)' name='".$dlChk."'>";
    echo '</div>';
-
+  }
    if ($_SESSION['role'] === 'SUPERADMIN') {
     echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Archive?</h4>';
@@ -226,7 +230,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
 
     echo '</div>';  
     if ($compareDate <= $event['eventdate']) {
-
+    if ($_SESSION['role'] != 'DJ') {
  
     echo '<div class="form-grid">';
      echo '<div class="form-item">';
@@ -255,6 +259,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
     echo '</div>';
     
      echo '</div>'; 
+    }
     } else {
 
         // echo '<h4 class="form-title">Registration Options Not Available for Past Events</h4>';

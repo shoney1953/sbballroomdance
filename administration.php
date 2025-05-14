@@ -136,6 +136,7 @@ if ($rowCount > 0) {
   
      <ul> 
         <?php
+           
     if (($_SESSION['role'] === 'ADMIN') ||
         ($_SESSION['role'] === 'SUPERADMIN')) 
        {
@@ -160,6 +161,11 @@ if ($rowCount > 0) {
              Booking Reports</a></li>';
 
      }
+      if ($_SESSION['role'] === 'DJ') {
+                echo '<li><a title="Return to Home Page" href="index.php">Back to Home</a></li>';
+                echo '<li><a title="DJ Information" href="SBDCDJInfo.php">DJ Information</a></li>';
+                echo '<li><a title="Email Events" href="SBDCAEvents.php">Maintain Events</a></li>'; 
+            }
      if ($_SESSION['role'] === 'INSTRUCTOR') {
    
         echo '<li><a title="Return to Home Page" href="index.php">Back to Home</a></li>';
