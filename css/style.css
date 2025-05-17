@@ -938,6 +938,26 @@ button:link {
   color: var(--black3);
   background-color: var(--white3);
 }
+.button-large {
+  width: 50%%;
+  
+}
+.button-large:hover {
+  width: 55%;
+  color: var(--black3);
+  background-color: var(--white3);
+}
+
+.button-large:link, .button-large:visited {
+  width: 50%;
+
+  color: var(--white3);
+}
+.button-large:hover, .button-large:active {
+  width: 50%;
+  color: var(--black3);
+  background-color: var(--white3);
+}
 button:link,
 button:visited {
   /* background-color: darkviolet; */

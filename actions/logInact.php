@@ -17,8 +17,16 @@ $current_year = date('Y');
 $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
 $yearsPaid = [];
+$nextYearNotThere = 0;
+
 $_SESSION['renewThisYear'] = 0;
 $_SESSION['renewNextYear'] = 0;
+if (isset($_SESSION['renewalmonth'])) {
+   $renewalMonth = $_SESSION['renewalmonth'];
+
+} else {
+   $renewalMonth = 11;
+}
 
    if(isset($_POST['SubmitLogIN'])) {
 
@@ -64,15 +72,21 @@ $_SESSION['renewNextYear'] = 0;
             array_push($yearsPaid, $paid_item);
 
              }
+
             foreach($yearsPaid as $paid_item) {
+                if ($paid_item['year'] === $nextYear)  {
+                    $nextYearNotThere = 1;
+                }
                 if ($paid_item['year'] === $current_year) {
                     if ($paid_item['paid'] != 1) {
                    
                          $_SESSION['renewThisYear'] = 1;
                     }
                 }
-                if ($paid_item['year'] > $current_year) {
-                    if ($current_month > 11) {
+                if ($paid_item['year'] === $nextYear) {
+                    $cm = settype($current_month, "integer");
+                    $rm = settype($renewalMonth, "integer");
+                    if ($cm >= $rm) {
                         if ($paid_item['paid'] != 1) {
                    
                             $_SESSION['renewNextYear'] = 1;
@@ -81,7 +95,20 @@ $_SESSION['renewNextYear'] = 0;
 
                 }
             }
+   
+            if ($nextYearNotThere === 0) {
+                $cm = settype($current_month, "integer");
+                $rm = settype($renewalMonth, "integer");
+
+
+                 if ($cm >= $rm) {
+                       
+                            $_SESSION['renewNextYear'] = 1;
+                    }
+
+            }
         } 
+
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect);
             exit;   

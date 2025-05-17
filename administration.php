@@ -181,7 +181,7 @@ if ($rowCount > 0) {
             // echo '<li><a title="Add, Update, Report on Members" href="#users">Maintain Members</a></li>';
             // echo '<li><a title="List Members Status" href="#membership">Membership</a></li>';
             // echo '<li><a title="List Historical Data" href="archives.php">Archives</a></li>';
-            
+             echo '<li><a title="Maintain Club Options" href="SBDCAOptions.php">Options</a></li>';
 
             if (isset($_SESSION['testmode'])) {
                 if($_SESSION['testmode'] === 'YES') {
@@ -212,22 +212,43 @@ if ($rowCount > 0) {
     if (($_SESSION['role'] == 'ADMIN') || 
         ($_SESSION['role'] == 'SUPERADMIN') ) {
 
-        echo '<div class="container-section ">';
+   
         echo '<br>';
         echo '<section id="testmode" class="content">';
-        echo '<form method="POST" action="actions/setTestMode.php">';
+        echo '<div class="form-grid2">';
+    
         // echo '<h4 class="form-title form-division">Set Test Mode On</h4>';
-        echo '<div class="form-grid">';
+   
+        echo '<form method="POST" action="actions/setTestMode.php">';
         echo '<div class="form-item">';
         echo '<h4 class="form-item-title">Check on to see test functions.</h4>';
         echo "<input type='checkbox' title='Click to see Test Functions' name='testmode'><br>";
-        echo '<button type="submit" name="submitTestMode">Set Test Mode</button>'; 
+
+        echo '<button   type="submit" name="submitTestMode">Set Test Mode</button>'; 
         echo '</div>';
-        echo '</div>';
+
         echo '</form>';
-        echo '</section>';
+
+
+     
+        echo '<form method="POST" action="actions/setRenewalMonth.php">';
+        echo '<div class="form-item">';
+        echo '<h4 class="form-item-title">Check on to set Renewal Month.</h4>';
+        echo "<input type='number' name='renewmonth'  min='1' max='12' value='11' >";
+
+        echo '<button  type="submit" name="submitRenewalMonth">Set Renewal Month</button>'; 
         echo '</div>';
+
+        echo '</form>';
+         echo '</div>';
+        echo '</section>';
+
     }
+        
+
+      
+
+    
 
    
    ?>

@@ -114,6 +114,7 @@ class MemberPaid {
     // Create record
 
     public function create() {
+
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET userid = :userid, year = :year, 
@@ -151,13 +152,13 @@ class MemberPaid {
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
-
+  
             // Bind data
         $stmt->bindParam('userid', $this->userid);
         $stmt->bindParam(':year', $this->year);
         $stmt->bindParam(':paid', $this->paid);
         $stmt->bindParam(':id', $this->id);
-
+          
           // Execute query
           if($stmt->execute()) {
             return true;

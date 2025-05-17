@@ -8,11 +8,12 @@ $renewalYear = '';
 $database = new Database();
 $db = $database->connect();
 $member = new MemberPaid($db);
-$partner = new MemberPaid($db);
-$_SESSION['renewThisYear'] = 0;
-$_SESSION['renewNextYear'] = 0;
+$partner = $noRenewalYear = 0;new MemberPaid($db);
+$noRenewalYear = 0;
 $current_year = date('Y');
-$next_year = date('Y+1');
+
+$next_year = date('Y', strtotime('+1 year'));
+
 
 if ($_SESSION['renewThisYear'] === 1) {
   $renewalYear = $current_year;
@@ -20,6 +21,7 @@ if ($_SESSION['renewThisYear'] === 1) {
 if ($_SESSION['renewNextYear'] === 1) {
   $renewalYear = $next_year;
 }
+
 $yearsPaid = [];
 
 $result = $member->read_byUserid($_SESSION['userid']);
@@ -46,17 +48,39 @@ if ($rowCount > 0) {
 if (count($yearsPaid) == 0) {
     $member->userid = $_SESSION['userid'];
     $member->year = $renewalYear;
-    $member->paid = 1;
+    $member->paid = 1;   
     $member->create();
+    $_SESSION['renewThisYear'] = 0;
+    $_SESSION['renewNextYear'] = 0;
 }
 if (count($yearsPaid) > 0) {
-  $member->userid = $_SESSION['userid'];
-  $member->year = $renewalYear;
-  $member->paid = 1;
-  $member->update();
+
+  foreach ($yearsPaid as $yp) {
+
+    if ($renewalYear === $yp['year']) {
+        $member->userid = $_SESSION['userid'];
+        $member->year = $renewalYear;
+        $member->paid = 1;
+        $member->id = $yp['id'];
+ 
+        $member->update();
+        $_SESSION['renewThisYear'] = 0;
+        $_SESSION['renewNextYear'] = 0;
+       $noRenewalYear = 1;
+    }
+  }
+   if ($noRenewalYear === 0) {
+     $member->userid = $_SESSION['userid'];
+    $member->year = $renewalYear;
+    $member->paid = 1;   
+    $member->create();
+    $_SESSION['renewThisYear'] = 0;
+    $_SESSION['renewNextYear'] = 0;
+   }
 }
 // renew partner
 if ($_SESSION['renewboth'] === 1) {
+    $noRenewalYear = 0;
       $yearsPaid = [];
 
     $result = $partner->read_byUserid($_SESSION['partnerid']);
@@ -75,6 +99,7 @@ if ($_SESSION['renewboth'] === 1) {
 
             );
             array_push($yearsPaid, $paid_item);
+        
 
         }
     } 
@@ -87,11 +112,26 @@ if ($_SESSION['renewboth'] === 1) {
         $partner->create();
     }
     if (count($yearsPaid) > 0) {
-      $partner->userid = $_SESSION['partneridS'];
-      $partner->year = $renewalYear;
-      $partner->paid = 1;
-      $partnerS>update();
+
+      foreach ($yearsPaid as $yp) {
+          if ($renewalYear === $yp['year']) {
+            $partner->userid = $_SESSION['partneridS'];
+            $partner->year = $renewalYear;
+            $partner->paid = 1;
+            $partner->id = $yp['id'];
+            $partner->update();
+            $noRenewalYear = 1;
+          }
     }
+       if ($noRenewalYear === 0) {
+        $partner->userid = $_SESSION['partnerid'];
+        $partner->year = $renewalYear;
+        $partner->paid = 1;
+        $partner->create();
+    $_SESSION['renewThisYear'] = 0;
+    $_SESSION['renewNextYear'] = 0;
+   }
+}
 }
 ?>
 <!DOCTYPE html>
@@ -110,6 +150,10 @@ if ($_SESSION['renewboth'] === 1) {
         <div class="container">
         
         <ul>
+            
+            <li><a href="yourProfile.php">
+            <img title="Click to see or update your information or registrations" src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
+            <br>Your Profile</a></li>
             <li><a href="index.php">Back to Home</a></li>
         </ul>
         </div>
