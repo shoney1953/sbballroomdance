@@ -5,11 +5,13 @@ $_SESSION['successurl'] = $_SERVER['REQUEST_URI'];
 require_once 'config/Database.php';
 require_once 'models/MemberPaid.php';
 $renewalYear = '';
+
 $database = new Database();
 $db = $database->connect();
-$member = new MemberPaid($db);
-$partner = $noRenewalYear = 0;new MemberPaid($db);
+$member  = new MemberPaid($db);
+$partner = new MemberPaid($db);
 $noRenewalYear = 0;
+
 $current_year = date('Y');
 
 $next_year = date('Y', strtotime('+1 year'));
@@ -17,11 +19,12 @@ $next_year = date('Y', strtotime('+1 year'));
 
 if ($_SESSION['renewThisYear'] === 1) {
   $renewalYear = $current_year;
+
 }
 if ($_SESSION['renewNextYear'] === 1) {
   $renewalYear = $next_year;
+ 
 }
-
 $yearsPaid = [];
 
 $result = $member->read_byUserid($_SESSION['userid']);
@@ -43,19 +46,11 @@ if ($rowCount > 0) {
 
     }
 } 
-
-
-if (count($yearsPaid) == 0) {
-    $member->userid = $_SESSION['userid'];
-    $member->year = $renewalYear;
-    $member->paid = 1;   
-    $member->create();
-    $_SESSION['renewThisYear'] = 0;
-    $_SESSION['renewNextYear'] = 0;
-}
-if (count($yearsPaid) > 0) {
+$noRenewalYear = 0;
+if ($rowCount > 0) {
 
   foreach ($yearsPaid as $yp) {
+
 
     if ($renewalYear === $yp['year']) {
         $member->userid = $_SESSION['userid'];
@@ -69,6 +64,7 @@ if (count($yearsPaid) > 0) {
        $noRenewalYear = 1;
     }
   }
+
    if ($noRenewalYear === 0) {
      $member->userid = $_SESSION['userid'];
     $member->year = $renewalYear;
@@ -77,6 +73,15 @@ if (count($yearsPaid) > 0) {
     $_SESSION['renewThisYear'] = 0;
     $_SESSION['renewNextYear'] = 0;
    }
+} else {
+  
+    $member->userid = $_SESSION['userid'];
+    $member->year = $renewalYear;
+    $member->paid = 1;   
+    $member->create();
+    $_SESSION['renewThisYear'] = 0;
+    $_SESSION['renewNextYear'] = 0;
+
 }
 // renew partner
 if ($_SESSION['renewboth'] === 1) {
@@ -105,13 +110,7 @@ if ($_SESSION['renewboth'] === 1) {
     } 
 
 
-    if (count($yearsPaid) == 0) {
-        $partner->userid = $_SESSION['partnerid'];
-        $partner->year = $renewalYear;
-        $partner->paid = 1;
-        $partner->create();
-    }
-    if (count($yearsPaid) > 0) {
+    if ($rowCount > 0) {
 
       foreach ($yearsPaid as $yp) {
           if ($renewalYear === $yp['year']) {
@@ -131,6 +130,13 @@ if ($_SESSION['renewboth'] === 1) {
     $_SESSION['renewThisYear'] = 0;
     $_SESSION['renewNextYear'] = 0;
    }
+} else {
+   
+        $partner->userid = $_SESSION['partnerid'];
+        $partner->year = $renewalYear;
+        $partner->paid = 1;
+        $partner->create();
+    
 }
 }
 ?>

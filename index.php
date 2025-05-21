@@ -7,6 +7,7 @@ require_once 'models/Event.php';
 require_once 'models/DanceClass.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/User.php';
+require_once 'models/Options.php';
 require_once 'includes/siteemails.php';
 
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
@@ -39,7 +40,9 @@ $upcomingEvents = [];
 $directory = [];
 $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
+  $current_year = date('Y');
 
+  $next_year = date('Y', strtotime('+1 year'));
 // require 'includes/db.php';
 $database = new Database();
 $db = $database->connect();
@@ -195,7 +198,33 @@ if (isset($_SESSION['username'])) {
 }
 }
 }
+/* get options */
+$option_item = [];
+$allOptions = [];
+$options = new Options($db);
+$result = $options->read();
 
+$rowCount = $result->rowCount();
+
+$num_options = $rowCount;
+
+$_SESSION['allOptions'] = [];
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+ 
+        $option_item = array(
+            'id' => $id,
+            'year' => $year,
+            'renewalmonth' => $renewalmonth,
+            'discountmonth' => $discountmonth   
+        );
+        array_push($allOptions, $option_item);
+
+    }
+    $_SESSION['allOptions'] = $allOptions;
+} 
 
 // $conn->close();
 ?>
@@ -261,15 +290,13 @@ if (isset($_SESSION['username'])) {
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
         if (isset($_SESSION['role'])) {
             echo ' <li><a  title="Logout from the Website" style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
-            if (isset($_SESSION['testmode'])) {
-                if ($_SESSION['testmode'] == 'YES') {
-                    if (($_SESSION['renewThisYear'] === 1) || ($_SESSION['renewNextYear'] === 1)) {
-                        echo '<li><a title="Renew Your Membership" style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew Now</a></li>';
-                    }
-
+        
+         if ($_SESSION['renewThisYear'] === 1)  {
+                        echo '<li><a class="menu-blink" title="Renew Your Membership"  style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew For '.$current_year.'</a></li>';  
             }
-
-        }
+        if ($_SESSION['renewNextYear'] === 1) {
+                        echo '<li><a class="menu-blink" title="Renew Your Membership"  style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew For '.$next_year.'</a></li>';  
+            }
         }
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {
@@ -300,8 +327,8 @@ if (isset($_SESSION['username'])) {
         }
      else {
 
-        echo '<li><a title="Login as a Member or Visitor" style="color: red;font-weight: bold;font-size: medium" href="login.php"> Login</a></li>';
-        echo '<li><a title="Information on Joining the Club" style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
+        echo '<li><a  title="Login as a Member or Visitor" style="color: red;font-weight: bold;font-size: medium" href="login.php"> Login</a></li>';
+        echo '<li><a class="menu-blink" title="Information on Joining the Club" style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
     }
     if (isset($_SESSION['role'])) {
         if ($_SESSION['role'] == 'visitor') {

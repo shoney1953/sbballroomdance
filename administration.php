@@ -176,16 +176,11 @@ if ($rowCount > 0) {
      }
         
         if ($_SESSION['role'] === 'SUPERADMIN') {
-            
-            // echo '<li><a title="Add, Update, Report on Members" href="SBDCAMembers.php">Maintain Members</a></li>';
-            // echo '<li><a title="Add, Update, Report on Members" href="#users">Maintain Members</a></li>';
-            // echo '<li><a title="List Members Status" href="#membership">Membership</a></li>';
-            // echo '<li><a title="List Historical Data" href="archives.php">Archives</a></li>';
-             echo '<li><a title="Maintain Club Options" href="SBDCAOptions.php">Options</a></li>';
-
+             
+        
             if (isset($_SESSION['testmode'])) {
                 if($_SESSION['testmode'] === 'YES') {
-                    echo '<li><a title="Set Up Payment Options" href="payments.php">Payments</a></li>';
+                    echo '<li><a title="Set Up Payment Options" href="payments.php">Payment Options</a></li>';
                 }
             }
 
@@ -230,17 +225,7 @@ if ($rowCount > 0) {
         echo '</form>';
 
 
-     
-        echo '<form method="POST" action="actions/setRenewalMonth.php">';
-        echo '<div class="form-item">';
-        echo '<h4 class="form-item-title">Check on to set Renewal Month.</h4>';
-        echo "<input type='number' name='renewmonth'  min='1' max='12' value='11' >";
 
-        echo '<button  type="submit" name="submitRenewalMonth">Set Renewal Month</button>'; 
-        echo '</div>';
-
-        echo '</form>';
-         echo '</div>';
         echo '</section>';
 
     }

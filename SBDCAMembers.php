@@ -150,6 +150,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         <li><a title="Return to Home Page" href="administration.php">Back to Administration</a></li>
         <li><a title="Add, Update, Report on Members" href="#users">Maintain Members</a></li>
         <li><a title="List Members Status" href="#membership">Maintain Membership Payments</a></li>
+        <li><a title="Maintain Club Membership Options" href="SBDCAOptions.php">Membership Options</a></li>
         <li><a title="List Historical Data" href="SBDCAAMembers.php">Archived Members</a></li>
       </ul>
     </div>

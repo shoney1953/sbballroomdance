@@ -9,8 +9,16 @@ session_start();
   $current_year = date('Y');
 
   $next_year = date('Y', strtotime('+1 year'));
-  $searchIndividual = $current_year." Individual Membership";
-  $searchCouple = $current_year." Couple Membership";
+  $current_month = date('m');
+  if ((int)$current_month >= $_SESSION['discountmonth']) {
+  $searchIndividual = $next_year." Individual Membership";
+  $searchCouple = $next_year." Couple Membership";
+  $searchIndividualDisc = $current_year." Discount Individual Membership";
+  $searchCoupleDisc = $current_year." Discount Couple Membership";
+  } else {
+      $searchIndividual = $current_year." Individual Membership";
+      $searchCouple = $current_year." Couple Membership";
+  }
   $indProductID = '';
   $coupleProductID = '';
   $indPriceID = '';
@@ -54,6 +62,14 @@ session_start();
   
            echo '<th colspan=3>If you enter two members you will be charged for the couple membership, otherwise the individual price</th>'; 
            echo '</tr>';
+          if ((int)$current_month >= $_SESSION['discountmonth']) {
+           echo '<tr>';
+           echo '<th colspan=3><em>Since we are in the discount part of the membership year, you may select to pay the discount rate for just this year: '.$current_year.'
+           or pay the full price and become a member for the current year and next year: '.$next_year.'</em></th>'; 
+           echo '</tr>';
+
+          }
+
 
            echo '<tr>';
   
@@ -84,6 +100,14 @@ session_start();
               $coupleProductID = $product['productid'];
               $couplePriceID = $product['priceid'];
              }
+              if ($product['name'] == $searchIndividualDisc) {
+              $indProductDiscID = $product['productid'];
+              $indPriceDiscID = $product['priceid'];
+             }
+             if ($product['name'] == $searchCoupleDisc) {
+              $coupleProductDiscID = $product['productid'];
+              $couplePriceDiscID = $product['priceid'];
+             }
          
          }
          echo '</tbody>';
@@ -95,11 +119,29 @@ session_start();
 
 ?>
     <br>
+
+  
+     <?php
+       if ((int)$current_month >= $_SESSION['discountmonth']) {
+
+         echo '<div class="form-grid6">';
+    
+         echo '<div class="form-grid-div">';
+          echo '<h4>Discount Membership Option</h4>';
+          echo '<div class="form-item">';
+          echo '<h4 class="form-item-title">Join for just '.$current_year.'?</h4>';
+          echo '<input type="checkbox" name="discyear"   title="Check to indicate you want to join for only the remainder of the current year">';
+          echo '</div> ';
+          echo '</div> ';
+              
+          echo '</div> ';
+
+       }
+     ?>
     <div class="form-grid2">
 
     <div class="form-grid-div">
-     <h4>Member One -- Will be used for Billing</h4>
-  
+    <h4>Member One Information will be used for billing</h4>
     <div class="form-item">
     <h4 class='form-item-title'>First Name</h4>
     <input type='text' name='firstname1' placeholder='member one first name' 
@@ -229,6 +271,11 @@ session_start();
      echo '<input type="hidden" name="coupleprodid" value="'.$coupleProductID.'">';
      echo '<input type="hidden" name="indpriceid" value="'.$indPriceID.'">';
      echo '<input type="hidden" name="couplepriceid" value="'.$couplePriceID.'">';
+     /* Discount prices */
+     echo '<input type="hidden" name="indproddiscid" value="'.$indProductDiscID.'">';
+     echo '<input type="hidden" name="coupleproddiscid" value="'.$coupleProductDiscID.'">';
+     echo '<input type="hidden" name="indpricediscid" value="'.$indPriceDiscID.'">';
+     echo '<input type="hidden" name="couplepricediscid" value="'.$couplePriceDiscID.'">';
      ?>
     </div>
     <button type="submit" name="submitMembership">Enter Membership Information</button><br>

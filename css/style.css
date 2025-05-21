@@ -320,6 +320,22 @@ hr {
 .profile {
   background-image: var(--lg3);
 }
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+.menu-blink {
+  
+  font-weight: bold;
+  font-size: medium;
+  animation: blinker 1s linear infinite;
+  color: red;
+}
 .list-box {
   text-align: left;
   align-items: left;

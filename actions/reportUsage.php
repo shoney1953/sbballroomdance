@@ -87,9 +87,9 @@ if ($userCount > 0) {
     $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
     $pdf->Cell(30,5,"LAST NAME",1,0,"L");
     $pdf->Cell(20,5,"LOGINS",1,0,"L");
-    $pdf->Cell(45,5,"LAST LOGIN",1,0,"L");
-    $pdf->Cell(45,5,"ROBODJ LOGINS",1,0,"L");
-    $pdf->Cell(45,5,"ROBODJ LAST LOGIN",1,1,"L");
+    $pdf->Cell(35,5,"LAST LOGIN",1,0,"L");
+    $pdf->Cell(35,5,"ROBODJ LOGINS",1,0,"L");
+    $pdf->Cell(40,5,"ROBODJ LAST LOGIN",1,1,"L");
 
 
     $pdf->SetFont('Arial', '', 10);
@@ -100,10 +100,10 @@ if ($userCount > 0) {
          $pdf->Cell(30,5,$usr['firstname'],1,0,"L");
          $pdf->Cell(30,5,$usr['lastname'],1,0,"L");
          $pdf->Cell(20,5,$usr['numlogins'],1,0,"L");
-         $pdf->Cell(45,5,$usr['lastLogin'],1,0,"L");
+         $pdf->Cell(35,5,substr($usr['lastLogin'],0,10),1,0,"L");
 
-         $pdf->Cell(45,5,$usr['robodjnumlogins'],1,0,"L");
-         $pdf->Cell(45,5,$usr['robodjlastlogin'],1,1,"L");
+         $pdf->Cell(35,5,$usr['robodjnumlogins'],1,0,"L");
+         $pdf->Cell(40,5,substr($usr['robodjlastlogin'],0,10),1,1,"L");
         
 
     }

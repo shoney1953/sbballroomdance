@@ -18,7 +18,15 @@ $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
 $yearsPaid = [];
 $nextYearNotThere = 0;
+$allOptions = $_SESSION['allOptions'];
+foreach($allOptions as $option) {
+    if ($current_year === $option['year']) {
+        $_SESSION['renewalmonth'] = $option['renewalmonth'];
+        $_SESSION['discountmonth'] = $option['discountmonth'];
 
+        break;
+    }
+}
 $_SESSION['renewThisYear'] = 0;
 $_SESSION['renewNextYear'] = 0;
 if (isset($_SESSION['renewalmonth'])) {
@@ -84,9 +92,11 @@ if (isset($_SESSION['renewalmonth'])) {
                     }
                 }
                 if ($paid_item['year'] === $nextYear) {
-                    $cm = settype($current_month, "integer");
-                    $rm = settype($renewalMonth, "integer");
-                    if ($cm >= $rm) {
+
+              
+                 
+                    if ((int)$current_month >= $_SESSION['renewalmonth']) {
+           
                         if ($paid_item['paid'] != 1) {
                    
                             $_SESSION['renewNextYear'] = 1;
@@ -97,11 +107,10 @@ if (isset($_SESSION['renewalmonth'])) {
             }
    
             if ($nextYearNotThere === 0) {
-                $cm = settype($current_month, "integer");
-                $rm = settype($renewalMonth, "integer");
 
 
-                 if ($cm >= $rm) {
+
+                if ((int)$current_month >= $_SESSION['renewalmonth']) {
                        
                             $_SESSION['renewNextYear'] = 1;
                     }

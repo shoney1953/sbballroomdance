@@ -40,11 +40,11 @@ $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $regEmail1 = [];
 $toCC2 = ''; 
-$toCC3 = '';
+$toCC3 = 'sbbdcschedule@gmail.com';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
-$replyTopic = "Message from SBDC";
+$replyTopic = "Message All from SBDC";
 $rowCount = 0;
 $regEmail1 = [];
 

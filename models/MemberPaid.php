@@ -144,6 +144,7 @@ class MemberPaid {
 
     public function update() {
           // Create query
+     
           $query = 'UPDATE ' . $this->table . 
           ' SET userid = :userid, year = :year, 
             paid = :paid

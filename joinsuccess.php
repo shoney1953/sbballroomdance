@@ -34,6 +34,7 @@ $_SESSION['successurl'] = $_SERVER['REQUEST_URI'];
         $passdefault = 'test1234'; 
 
             echo "<form method='POST' name='hiddenForm1' id ='hiddenForm1' action='actions/addoUser.php'>";
+            
             echo "<input type='hidden' name='firstname1' value='".$potentialMember1['firstname']."'>";
             echo "<input type='hidden' name='lastname1' value='".$potentialMember1['lastname']."'>";
             echo "<input type='hidden' name='email1' value='".$potentialMember1['email']."'>";

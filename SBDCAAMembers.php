@@ -239,6 +239,7 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
             if ($_SESSION['role'] === 'SUPERADMIN') {  
                 echo "<li><a href='SBDCAMembers.php'>Back to Members</a></li> ";
                 echo "<li><a href='administration.php'>Back to Administration</a></li> ";
+            
 
             }
 

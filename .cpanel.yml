@@ -34,10 +34,12 @@ deployment:
     - /bin/cp processClassRegs.php $DEPLOYPATH
     - /bin/cp processEventItems.php $DEPLOYPATH
     - /bin/cp processEventRegs.php $DEPLOYPATH
+    - /bin/cp processOptionItems.php $DEPLOYPATH
     - /bin/cp processUserItems.php $DEPLOYPATH
     - /bin/cp regForClasses.php $DEPLOYPATH
     - /bin/cp regForEvents.php $DEPLOYPATH
     - /bin/cp renewNow.php $DEPLOYPATH
+    - /bin/cp renewNowO.php $DEPLOYPATH
     - /bin/cp resources.php $DEPLOYPATH
     - /bin/cp SBDCAAClasses.php $DEPLOYPATH
     - /bin/cp SBDCAAEvents.php $DEPLOYPATH
@@ -47,6 +49,7 @@ deployment:
     - /bin/cp SBDCAClasses.php $DEPLOYPATH
     - /bin/cp SBDCAEvents.php $DEPLOYPATH
     - /bin/cp SBDCAMembers.php $DEPLOYPATH
+    - /bin/cp SBDCAOptions.php $DEPLOYPATH
     - /bin/cp SBDCAVisitors.php $DEPLOYPATH
     - /bin/cp SBDCBoard.php $DEPLOYPATH
     - /bin/cp SBDCClasses.php $DEPLOYPATH

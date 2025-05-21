@@ -20,6 +20,7 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost') {
 if ($_SERVER['SERVER_NAME'] === 'localhost') {    
   $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';   
 }
+$_SESSION['partialyearmem'] = 0;
 $memberProducts = $_SESSION['memberproducts'];
 $_SESSTION['potentialMem1'] = [];
 $_SESSTION['potentialMem2'] = [];
@@ -32,10 +33,14 @@ $chargeProductID = '';
 $chargePriceID = '';
 
 if (isset($_POST['submitMembership'])) {
-  
-  $chargeProductID = $_POST['indprodid'];
-  $chargePriceID = trim($_POST['indpriceid']);
-  
+  if (isset($_POST['discyear'])) {
+      $chargeProductID = $_POST['indproddiscid'];
+       $chargePriceID = trim($_POST['indpricediscid']);
+       $_SESSION['partialyearmem'] = 1;
+    } else {
+      $chargeProductID = $_POST['indprodid'];
+      $chargePriceID = trim($_POST['indpriceid']);
+  }
 
   if (isset($_POST['firstname1'])) {
     $potentialMem1['firstname'] = $_POST['firstname1'];
@@ -67,14 +72,19 @@ if (isset($_POST['submitMembership'])) {
   if (isset($_POST['fulltime1'])) {
     $potentialMem1['fulltime'] = $_POST['fulltime1'];
   }
+  //
   // 2nd member specified
+  //
   if (isset($_POST['addmem2'])) {
    if (isset($_POST['firstname2'])) {
     if ($_POST['firstname2'] !== ' ') {
-
-    $chargeProductID = $_POST['coupleprodid'];
-    $chargePriceID = trim($_POST['couplepriceid']);
-    
+    if (isset($_POST['discyear'])) {
+        $chargeProductID = $_POST['coupleproddiscid'];
+        $chargePriceID = trim($_POST['couplepricediscid']);
+    } else {
+          $chargeProductID = $_POST['coupleprodid'];
+        $chargePriceID = trim($_POST['couplepriceid']);
+    }
      $potentialMem2['firstname'] = $_POST['firstname2'];
    
     if (isset($_POST['lastname2'])) {
