@@ -18,6 +18,7 @@ $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
 $yearsPaid = [];
 $nextYearNotThere = 0;
+$thisYearNotThere = 0;
 $allOptions = $_SESSION['allOptions'];
 foreach($allOptions as $option) {
     if ($current_year === $option['year']) {
@@ -86,6 +87,7 @@ if (isset($_SESSION['renewalmonth'])) {
                     $nextYearNotThere = 1;
                 }
                 if ($paid_item['year'] === $current_year) {
+                     $thisYearNotThere = 1;
                     if ($paid_item['paid'] != 1) {
                    
                          $_SESSION['renewThisYear'] = 1;
@@ -105,17 +107,19 @@ if (isset($_SESSION['renewalmonth'])) {
 
                 }
             }
-   
-            if ($nextYearNotThere === 0) {
-
-
-
+            if ($thisYearNotThere === 0) {
+                 $_SESSION['renewNextYear'] = 0;
+                 $_SESSION['renewThisYear'] = 1;
+            } else {
+              if ($nextYearNotThere === 0) {
                 if ((int)$current_month >= $_SESSION['renewalmonth']) {
                        
                             $_SESSION['renewNextYear'] = 1;
                     }
 
+              }
             }
+
         } 
 
             $redirect = "Location: ".$_SESSION['homeurl'];

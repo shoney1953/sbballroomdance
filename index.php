@@ -12,7 +12,7 @@ require_once 'includes/siteemails.php';
 
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
 
-$_SESSION['upcoming_eventnumber'] = 0;
+
 if (isset($_GET['error'])) {
     echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
     Please Validate Input</h4><br>';
@@ -25,7 +25,8 @@ if (isset($_GET['error'])) {
 } else {
     $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
 }
-
+$_SESSION['upcoming_eventnumber'] = 0;
+$option_item = [];
 
 $_SESSION['user'] = null;
 
@@ -43,10 +44,43 @@ $compareDate = $currentDate->format('Y-m-d');
   $current_year = date('Y');
 
   $next_year = date('Y', strtotime('+1 year'));
+  $current_year = date('Y');
 // require 'includes/db.php';
 $database = new Database();
 $db = $database->connect();
+$allOptions = [];
+$options = new Options($db);
+$result = $options->read();
 
+$rowCount = $result->rowCount();
+
+$num_options = $rowCount;
+
+$_SESSION['allOptions'] = [];
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+ 
+        $option_item = array(
+            'id' => $id,
+            'year' => $year,
+            'renewalmonth' => $renewalmonth,
+            'discountmonth' => $discountmonth   
+        );
+        array_push($allOptions, $option_item);
+
+    }
+    $_SESSION['allOptions'] = $allOptions;
+} 
+foreach($allOptions as $option) {
+    if ($current_year === $option['year']) {
+        $_SESSION['renewalmonth'] = $option['renewalmonth'];
+        $_SESSION['discountmonth'] = $option['discountmonth'];
+
+        break;
+    }
+}
 // get events
 $event = new Event($db);
 $result = $event->read();

@@ -36,6 +36,9 @@ deployment:
     - /bin/cp processEventRegs.php $DEPLOYPATH
     - /bin/cp processOptionItems.php $DEPLOYPATH
     - /bin/cp processUserItems.php $DEPLOYPATH
+    - /bin/cp profileClasses.php $DEPLOYPATH
+    - /bin/cp profileEvents.php $DEPLOYPATH
+    - /bin/cp profileMem.php $DEPLOYPATH
     - /bin/cp regForClasses.php $DEPLOYPATH
     - /bin/cp regForEvents.php $DEPLOYPATH
     - /bin/cp renewNow.php $DEPLOYPATH

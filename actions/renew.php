@@ -12,7 +12,7 @@ require_once '../models/PaymentCustomer.php';
 header('Content-Type: application/json');
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
-$stripe = new \Stripe\StripeClient('sk_test_51IVzJTL8mOGPmzyGuvJjZymxynpVAmNHkWGOT42oYyGMEMG3hf94zkJ8bvbUgHVEwGH5wJxWKRd6PkZBnYwd9ChL003mJKdQxN');
+$stripe = new \Stripe\StripeClient($stripeSecretKey);
 $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
 $memberProducts = $_SESSION['memberproducts'];
 

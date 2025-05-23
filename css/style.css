@@ -321,7 +321,7 @@ hr {
   background-image: var(--lg3);
 }
 .blink_me {
-  animation: blinker 1s linear infinite;
+  animation: blinker 10s linear infinite;
 }
 
 @keyframes blinker {

@@ -170,12 +170,13 @@ if ($_SESSION['renewboth'] === 1) {
     <div class="container-section ">
       <h1>You have successfully renewed your membership to  the Saddlebrooke Ballroom Dance Club!</h1>
       <h3>Your payment has been successfully processed, and should show SaddleBrooke Ballroom Dance Club on your statement</h3>
-      <h3>You can see your payment status in Your Profile</h3>     
+      <h3>Click on Your Profile in the menu above to see your payment status.</h3>     
      
        
               <br><br><br>
     </div>
 
     </section>
+    
 </body>
 </html>

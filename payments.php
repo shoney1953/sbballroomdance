@@ -7,11 +7,7 @@ require_once 'models/PaymentCustomer.php';
 require_once 'models/PaymentProduct.php';
 $_SESSION['paymenturl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
-// \Stripe\Stripe::setApiKey($stripeSecretKey);
-// header('Content-Type: application/json');
-// Set your secret key. Remember to switch to your live secret key in production.
-// See your keys here: https://dashboard.stripe.com/apikeys
-// $stripe = new \Stripe\StripeClient('sk_test_51IVzJTL8mOGPmzyGuvJjZymxynpVAmNHkWGOT42oYyGMEMG3hf94zkJ8bvbUgHVEwGH5wJxWKRd6PkZBnYwd9ChL003mJKdQxN');
+
 
 $database = new Database();
 $db = $database->connect();
