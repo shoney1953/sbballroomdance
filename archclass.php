@@ -36,7 +36,6 @@ if (isset($_GET['id'])) {
 echo '<div class="container-section ">';
     echo '<section id="classes" class="content">';
     echo '<br><br><h1>Selected Classes</h1>';
-
         echo '<table>';
             echo '<tr>';
             echo '<th>ID   </th>';   
