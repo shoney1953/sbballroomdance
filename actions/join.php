@@ -3,6 +3,7 @@ session_start();
 
 require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
+require_once '../models/User.php';
 require_once '../models/PaymentProduct.php';
 require_once '../models/PaymentCustomer.php';
 
@@ -29,8 +30,10 @@ $potentialMem2 = [];
 $database = new Database();
 $db = $database->connect();
 $paymentcustomer = new PaymentCustomer($db);
+$user = new User($db);
 $chargeProductID = '';
-
+$_SESSION['addmem2'] = 'NO';
+$_SESSION['memsameadd'] = 'NO';
 if (isset($_POST['submitMembership'])) {
   if (isset($_POST['discyear'])) {
       $chargeProductID = $_POST['indproddiscid'];
@@ -151,7 +154,62 @@ if (isset($_POST['submitMembership'])) {
    }
    $_SESSION['potentialMember1'] = $potentialMem1;
    $_SESSION['potentialMember2'] = $potentialMem2;
+    $user->email = $potentialMem1['email'];
+    $user->username = $potentialMem1['email'];
 
+    if (filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
+    } else {
+       if (isset($_POST['mem2sameaddr'])) {
+            $_SESSION['memsameaddr'] = "YES";
+       }
+       if (isset($_POST['addmem2'])) {
+            $_SESSION['addmem2'] = 'YES';
+       }
+        $redirect = "Location: ".$_SESSION['joinonlineurl'].'?error=MEMBER 1 Email Invalid';
+        header($redirect);
+        exit;
+    }
+
+    if ($user->validate_user($user->username)) {
+       if (isset($_POST['mem2sameaddr'])) {
+            $_SESSION['memsameaddr'] = "YES";
+       }
+       if (isset($_POST['addmem2'])) {
+            $_SESSION['addmem2'] = 'YES';
+       }
+      
+      $redirect = "Location: ".$_SESSION['joinonlineurl'].'?error=MEMBER 1 Email Exists';
+        header($redirect);
+        exit;  
+    } 
+    if (isset($_POST['mem2sameaddr'])) {
+       $user->email = $potentialMem2['email'];
+        $user->username = $potentialMem2['email'];
+        if (filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
+        } else {
+            if (isset($_POST['mem2sameaddr'])) {
+                  $_SESSION['memsameaddr'] = "YES";
+            }
+            if (isset($_POST['addmem2'])) {
+                  $_SESSION['addmem2'] = 'YES';
+            }
+            $redirect = "Location: ".$_SESSION['joinonlineurl'].'?error=MEMBER 2 Email Invalid';
+            header($redirect);
+            exit;
+        }
+
+        if ($user->validate_user($user->username)) {
+            if (isset($_POST['mem2sameaddr'])) {
+                  $_SESSION['memsameaddr'] = "YES";
+            }
+            if (isset($_POST['addmem2'])) {
+                  $_SESSION['addmem2'] = 'YES';
+            }
+          $redirect = "Location: ".$_SESSION['joinonlineurl'].'?error=MEMBER 2 Email Exists';
+            header($redirect);
+            exit;  
+        } 
+    }
 
 $searchemail = $potentialMem1['email'];
 $qstring = 'email: "'.$searchemail.'"';

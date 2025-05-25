@@ -3,19 +3,25 @@ session_start();
   require_once 'config/Database.php';
   require_once 'models/PaymentCustomer.php';
   require_once 'models/PaymentProduct.php';
-   $_SESSION['errorurl'] = $_SERVER['REQUEST_URI']; 
+  $err_switch = 0;
   if (isset($_GET['error'])) {
-    echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
-    Please Validate Input</h4><br>';
-
+    echo '<div class="container">';
+    echo '<br><br><br><h3 style="color: red;text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h3><br>';
+    echo '</div>';
+    $err_switch = 1;
     unset($_GET['error']);
-} elseif (isset($_GET['success'])) {
-    echo '<br><h4 style="text-align: center"> '.$_GET['success'].'</h4><br>';
-
-    unset($_GET['success']);
-} else {
-   
+} 
+$potentialmember1 = [];
+$potentialmember2 = [];
+if (isset($_SESSION['potentialMember1'])) {
+  $potentialmember1 = $_SESSION['potentialMember1']; 
 }
+if (isset($_SESSION['potentialMember2'])) {
+  $potentialmember2 = $_SESSION['potentialMember2']; 
+}
+
+
+$_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI']; 
 
   $memberProducts = $_SESSION['memberproducts'];
   $current_year = date('Y');
@@ -133,57 +139,135 @@ session_start();
 
     <div class="form-item">
     <h4 class='form-item-title'>First Name</h4>
-    <input type='text' name='firstname1' placeholder='member one first name' 
-             title='Enter the first members first name' required>
+    <?php
+    if ($err_switch === 1) {
+     
+      echo "<input type='text' name='firstname1' title='Enter the first members first name' value=".$potentialmember1['firstname']."  required>";
+    } else {
+      echo "<input type='text' name='firstname1' placeholder='member one first name' 
+             title='Enter the first members first name' required>";
+    } 
+    ?>
+
     </div>
     <div class="form-item">
     <h4 class='form-item-title'>Last Name</h4>
-    <input type='text' name='lastname1' placeholder='member one last name' 
-             title='Enter the first members last name' required>
+    <?php
+    if ($err_switch === 1) {
+       echo "<input type='text' name='lastname1'  title='Enter the first members last name' value=".$potentialmember1['lastname']." required>";
+    } else {
+          echo "<input type='text' name='lastname1' placeholder='member one last name' 
+             title='Enter the first members last name' required>";
+    }
+     ?>
     </div>
     <div class="form-item">
     <h4 class='form-item-title'>Email</h4>
-    <input type='email' name='email1' placeholder='member one email -- must be unique' 
-             title='Enter the first members email' required>
+    <?php
+        if ($err_switch === 1) {
+             echo "<input type='email' name='email1' title='Enter the first members email' value=".$potentialmember1['email']." required>";
+        } else {
+          echo "<input type='email' name='email1' placeholder='member one email -- must be unique' 
+             title='Enter the first members email' required>";
+        }
+    ?>
     </div>
     <div class="form-item">
       <h4 class="form-item-title">Primary Phone</h4>
-      <input type="text" pattern="\d{1,10}"  maxlength="10" name="phone1"><br>
-   
+       <?php
+        if ($err_switch === 1) {
+          echo "<input type='text' pattern='\d{1,10}'  maxlength='10' name='phone1' value=".$potentialmember1['phone1']."><br>"; 
+        } else {
+          echo "<input type='text' pattern='\d{1,10}'  maxlength='10' name='phone1'><br>";
+        }
+      ?>
       </div> 
 
       <div class="form-item">
       <h4 class="form-item-title">Street Address</h4>
-      <input type="text" name="streetaddress1" required >
+      <?php
+        if ($err_switch === 1) {
+           echo "<input type='text' name='streetaddress1' required value=".$potentialmember1['streetaddress']." >";
+        } else {
+          echo '<input type="text" name="streetaddress1" required >';
+        }
+      ?>
       </div> 
 
       <div class="form-item">
       <h4 class="form-item-title">City</h4>
-      <input type="text" name="city1" required >
+      <?php
+        if ($err_switch === 1) {
+          echo "<input type='text' name='city1' value=".$potentialmember1['city']." required >";
+        } else {
+          echo '<input type="text" name="city1" required >';
+        }
+     
+      ?>
       </div>
 
       <div class="form-item">
       <h4 class="form-item-title">State</h4>
-      <input type="text" name="state1" maxlength="2" required>
+      <?php
+        if ($err_switch === 1) {
+           echo "<input type='text' name='state1' maxlength='2' value=".$potentialmember1['state']." required>";
+        } else {
+          echo '<input type="text" name="state1" maxlength="2" required>';
+        }
+     
+      ?>
       </div>
 
       <div class="form-item">
       <h4 class="form-item-title">Zip</h4>
-      <input type="text" name="zip1" maxlength="10" required>
+      <?php
+        if ($err_switch === 1) {
+            echo "<input type='text' name='zip1' maxlength='10' value=".$potentialmember1['zip']." required>";
+        } else {
+          echo '<input type="text" name="zip1" maxlength="10" required>';
+        }
+   
+      ?>
       </div>
 
       <div class="form-item">
       <h4 class="form-item-title">HOA</h4>
       <select name = "hoa1">
-      <option value = "1">HOA 1</option>
-      <option value = "2">HOA 2</option>
+      <?php
+      if ($err_switch === 1) { 
+        if ($potentialmember1['hoa'] === 1) {
+           echo '<option value = "1" selected>HOA 1</option>';
+             echo '<option value = "2">HOA 2</option>';
+        } else {
+          echo '<option value = "2" selected>HOA 2</option>';
+           echo '<option value = "1">HOA 1</option>';
+        }
+
+      } else {
+        echo '<option value = "1">HOA 1</option>';
+        echo '<option value = "2">HOA 2</option>';
+      }
+     ?>
       </select>
       </div>
       <div class="form-item">
       <h4 class="form-item-title">Fulltime</h4>
       <select name = "fulltime1">
-      <option value = "1">Fulltime</option>
-      <option value = "0">Gone for the Summer</option>
+      <?php
+        if ($err_switch === 1) { 
+          if ($potentialmember1['fulltime'] === 1) {
+            echo '<option value = "1" selected>Fulltime</option>';
+             echo '<option value = "0">Gone for the Summer</option>';
+          } else {
+            echo '<option value = "0" selected>Gone for the Summer</option>';
+            echo '<option value = "1">Fulltime</option>';
+          }
+        } else {
+          echo '<option value = "1">Fulltime</option>';
+          echo '<option value = "0">Gone for the Summer</option>';
+        }
+
+      ?>
       </select>
       </div>
 
@@ -192,64 +276,209 @@ session_start();
       <h4>Member Two</h4>
       <div class="form-item">
       <h4 class="form-item-title">Add Member2</h4>
-      <input type='checkbox' name='addmem2'   title='Check to indicate you are adding a second member'>
+      <?php 
+      if ($err_switch === 1) {
+        if (isset($_SESSION['addmem2'])) {
+          if ($_SESSION['addmem2'] === 'YES') {
+            echo "<input type='checkbox' name='addmem2' checked  title='Check to indicate you are adding a second member'>";
+          }  else {
+            echo "<input type='checkbox' name='addmem2'   title='Check to indicate you are adding a second member'>";
+          }
+        } 
+         else {
+          echo "<input type='checkbox' name='addmem2'   title='Check to indicate you are adding a second member'>";
+        }
+      } else {
+       echo "<input type='checkbox' name='addmem2'   title='Check to indicate you are adding a second member'>";
+      }
+       ?>
+
       </div> 
 
     <div class="form-item">
     <h4 class='form-item-title'>First Name</h4>
-    <input type='text' name='firstname2' placeholder='member two first name' 
-             title='Enter the second members first name' >
+    <?php
+    if ($potentialmember2) {
+      if ($err_switch === 1) {
+      echo "<input type='text' name='firstname2' title='Enter the second members first name' value=".$potentialmember2['firstname']." >";
+      } 
+    }
+     else {
+          echo "<input type='text' name='firstname2' placeholder='member two first name' 
+             title='Enter the second members first name' >";
+    }
+  
+    ?>
     </div>
     <div class="form-item">
     <h4 class='form-item-title'>Last Name</h4>
-    <input type='text' name='lastname2' placeholder='member two last name' 
-             title='Enter the second members last name'>
+    <?php
+    if ($potentialmember2) {
+        if ($err_switch === 1) {
+        echo "<input type='text' name='lastname2'  
+                title='Enter the second members last name' value=".$potentialmember2['lastname'].">";
+        } 
+    }
+    else {
+    echo "<input type='text' name='lastname2' placeholder='member two last name' 
+             title='Enter the second members last name'>";
+    }
+    ?>
     </div>
     <div class="form-item">
     <h4 class='form-item-title'>Email</h4>
-    <input type='email' name='email2' placeholder='member two email -- must be unique' 
-             title='Enter the second members email' >
+    <?php
+    if ($potentialmember2) {
+        if ($err_switch === 1) {
+            echo "<input type='email' name='email2' 
+                title='Enter the second members email' value=".$potentialmember2['email']." >";
+        } 
+    }
+     else {
+      echo "<input type='email' name='email2' placeholder='member two email -- must be unique' 
+             title='Enter the second members email' >";
+    }
+ 
+    ?>
     </div>
     <div class="form-item">
       <h4 class="form-item-title">Primary Phone</h4>
-       <input type="text" pattern="\d{1,10}"  maxlength="10" name="phone2"><br>
+      <?php
+      if ($potentialmember2) {
+        if ($err_switch === 1) {
+          echo "<input type='text' pattern='\d{1,10}''  maxlength='10' name='phone2' value=".$potentialmember2['phone1']."><br>";
+        } 
+      }
+       else {
+        echo '<input type="text" pattern="\d{1,10}"  maxlength="10" name="phone2"><br>';
+      }
+       ?>
       </div> 
       <div class="form-item">
       <h4 class="form-item-title">Same Address</h4>
-      <td><input type='checkbox' name='mem2sameaddr'   title='Check to indicate same address for member 2'></td>
+        <?php 
+      if ($err_switch === 1) {
+        if (isset($_SESSION['memsameaddr'] )) {
+          if ($_SESSION['memsameaddr'] === 'YES') {
+            
+            echo "<input type='checkbox' name='mem2sameaddr' checked  title='Check to indicate same address for member 2'>";
+          } 
+          else {
+              echo "<input type='checkbox' name='mem2sameaddr'   title='Check to indicate same address for member 2'>";
+            }
+         }   else {
+          echo "<input type='checkbox' name='mem2sameaddr'   title='Check to indicate same address for member 2'>";
+        }
+        
+
+      } else {
+         echo "<input type='checkbox' name='mem2sameaddr'   title='Check to indicate same address for member 2'>";
+      }
+       ?>
       </div> 
       <div class="form-item">
       <h4 class="form-item-title">Street Address</h4>
-      <input type="text" name="streetaddress2"  >
+      <?php
+      if ($potentialmember2) {
+         if ($err_switch === 1) {
+           echo "<input type='text' name='streetaddress2' value=".$potentialmember2['streetaddress']."  >";
+      } 
+      }
+      else {
+          echo '<input type="text" name="streetaddress2"  >';
+      }
+      ?>
       </div> 
 
       <div class="form-item">
       <h4 class="form-item-title">City</h4>
-      <input type="text" name="city2" >
+            <?php
+        if ($potentialmember2) {
+          if ($err_switch === 1) {
+            echo "<input type='text' name='city2' value=".$potentialmember2['city']."  >";
+          }
+        }
+         else {
+          echo '<input type="text" name="city2"  >';
+        }
+     
+      ?>
+
       </div>
 
       <div class="form-item">
       <h4 class="form-item-title">State</h4>
-      <input type="text" name="state2" maxlength="2" >
+        <?php
+        if ($potentialmember2) {
+            if ($err_switch === 1) {
+              echo "<input type='text' name='state2' maxlength='2' value=".$potentialmember2['state']." >";
+            } 
+        }  else {
+          echo '<input type="text" name="state2" maxlength="2" >';
+        }
+     
+      ?>
+ 
       </div>
 
       <div class="form-item">
       <h4 class="form-item-title">Zip</h4>
-      <input type="text" name="zip2" maxlength="10" >
+        <?php
+        if ($potentialmember2) {
+            if ($err_switch === 1) {
+                echo "<input type='text' name='zip2' maxlength='10' value=".$potentialmember2['zip']." >";
+            } 
+        }  else {
+          echo '<input type="text" name="zip2" maxlength="10" >';
+        }
+   
+      ?>
+
       </div>
 
       <div class="form-item">
       <h4 class="form-item-title">HOA</h4>
-      <select name = "hoa2">
-      <option value = "1">HOA 1</option>
-      <option value = "2">HOA 2</option>
+       <select name = "hoa2">
+      <?php
+      if ($potentialmember2) {
+        if ($err_switch === 1) { 
+          if ($potentialmember2['hoa'] === 1) {
+              echo '<option value = "1" selected>HOA 1</option>';
+              echo '<option value = "2">HOA 2</option>';
+            }  else {
+              echo '<option value = "2" selected>HOA 2</option>';
+              echo '<option value = "1">HOA 1</option>';
+            }
+        } 
+       } else {
+          echo '<option value = "1">HOA 1</option>';
+          echo '<option value = "2">HOA 2</option>';
+        }
+     ?>
+
       </select>
       </div>
       <div class="form-item">
       <h4 class="form-item-title">Fulltime</h4>
       <select name = "fulltime2">
-      <option value = "1">Fulltime</option>
-      <option value = "0">Gone for the Summer</option>
+        <?php
+        if ($potentialmember2) {
+            if ($err_switch === 1) { 
+              if ($potentialmember2['fulltime'] === 1) {
+                echo '<option value = "1" selected>Fulltime</option>';
+                echo '<option value = "0">Gone for the Summer</option>';
+              } else {
+                echo '<option value = "0" selected>Gone for the Summer</option>';
+                echo '<option value = "1">Fulltime</option>';
+              }
+            }
+        } else {
+          echo '<option value = "1">Fulltime</option>';
+          echo '<option value = "0">Gone for the Summer</option>';
+        }
+
+      ?>
+
       </select>
       </div>
     </div>
