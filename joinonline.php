@@ -3,7 +3,19 @@ session_start();
   require_once 'config/Database.php';
   require_once 'models/PaymentCustomer.php';
   require_once 'models/PaymentProduct.php';
-  
+   $_SESSION['errorurl'] = $_SERVER['REQUEST_URI']; 
+  if (isset($_GET['error'])) {
+    echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. 
+    Please Validate Input</h4><br>';
+
+    unset($_GET['error']);
+} elseif (isset($_GET['success'])) {
+    echo '<br><h4 style="text-align: center"> '.$_GET['success'].'</h4><br>';
+
+    unset($_GET['success']);
+} else {
+   
+}
 
   $memberProducts = $_SESSION['memberproducts'];
   $current_year = date('Y');
@@ -100,14 +112,7 @@ session_start();
               $coupleProductID = $product['productid'];
               $couplePriceID = $product['priceid'];
              }
-            //   if ($product['name'] == $searchIndividualDisc) {
-            //   $indProductDiscID = $product['productid'];
-            //   $indPriceDiscID = $product['priceid'];
-            //  }
-            //  if ($product['name'] == $searchCoupleDisc) {
-            //   $coupleProductDiscID = $product['productid'];
-            //   $couplePriceDiscID = $product['priceid'];
-            //  }
+
          
          }
          echo '</tbody>';
@@ -120,28 +125,12 @@ session_start();
 ?>
     <br>
 
-  
-     <!-- <?php
-       if ((int)$current_month >= $_SESSION['discountmonth']) {
 
-         echo '<div class="form-grid6">';
-    
-         echo '<div class="form-grid-div">';
-          echo '<h4>Discount Membership Option</h4>';
-          echo '<div class="form-item">';
-          echo '<h4 class="form-item-title">Join for just '.$current_year.'?</h4>';
-          echo '<input type="checkbox" name="discyear"   title="Check to indicate you want to join for only the remainder of the current year">';
-          echo '</div> ';
-          echo '</div> ';
-              
-          echo '</div> ';
-
-       }
-     ?> -->
     <div class="form-grid2">
 
     <div class="form-grid-div">
     <h4>Member One Information will be used for billing</h4>
+
     <div class="form-item">
     <h4 class='form-item-title'>First Name</h4>
     <input type='text' name='firstname1' placeholder='member one first name' 
@@ -159,8 +148,8 @@ session_start();
     </div>
     <div class="form-item">
       <h4 class="form-item-title">Primary Phone</h4>
-      <input type="tel" name="phone1" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
-      <small>Format: 123-456-7890</small>
+      <input type="text" pattern="\d{1,10}"  maxlength="10" name="phone1"><br>
+   
       </div> 
 
       <div class="form-item">
@@ -200,11 +189,12 @@ session_start();
 
     </div>
     <div class="form-grid-div">
-    <h4>Member Two</h4>
-    <div class="form-item">
+      <h4>Member Two</h4>
+      <div class="form-item">
       <h4 class="form-item-title">Add Member2</h4>
-      <td><input type='checkbox' name='addmem2'   title='Check to indicate you are adding a second member'></td>
+      <input type='checkbox' name='addmem2'   title='Check to indicate you are adding a second member'>
       </div> 
+
     <div class="form-item">
     <h4 class='form-item-title'>First Name</h4>
     <input type='text' name='firstname2' placeholder='member two first name' 
@@ -222,8 +212,7 @@ session_start();
     </div>
     <div class="form-item">
       <h4 class="form-item-title">Primary Phone</h4>
-      <input type="tel" name="phone2" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
-      <small>Format: 123-456-7890</small>
+       <input type="text" pattern="\d{1,10}"  maxlength="10" name="phone2"><br>
       </div> 
       <div class="form-item">
       <h4 class="form-item-title">Same Address</h4>

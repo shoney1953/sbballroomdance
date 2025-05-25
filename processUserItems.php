@@ -99,17 +99,17 @@ $_SESSION['userurl'] = $_SERVER['REQUEST_URI'];
         echo '</div>';
           echo '<div class="form-item">';
           echo '<h4 class="form-item-title">Primary Phone</h4>'; 
-          echo "<input type='tel'  name='".$phone1ID."'
-          pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
-          value='".$usr['phone1']."'><br>
-             <small> Format: 123-456-7890</small>";
+          echo "<input type='tel'  pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' name='".$phone1ID."'
+        
+          value='".$usr['phone1']."'><br>";
+           
           echo '</div>';
           echo '<div class="form-item">';
           echo '<h4 class="form-item-title">Secondary Phone</h4>'; 
-          echo "<input type='tel'  name='".$phone2ID."'
-             pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
-             value='".$usr['phone2']."'><br>
-                <small> Format: 123-456-7890</small>";
+          echo "<input type='tel'  pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' name='".$phone2ID."'
+           
+             value='".$usr['phone2']."'><br>";
+           
            echo '</div>';
     
            echo '<div class="form-item">';

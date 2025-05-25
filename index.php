@@ -8,6 +8,7 @@ require_once 'models/DanceClass.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/User.php';
 require_once 'models/Options.php';
+require_once 'models/Keys.php';
 require_once 'includes/siteemails.php';
 
 $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
@@ -77,6 +78,39 @@ foreach($allOptions as $option) {
     if ($current_year === $option['year']) {
         $_SESSION['renewalmonth'] = $option['renewalmonth'];
         $_SESSION['discountmonth'] = $option['discountmonth'];
+
+        break;
+    }
+}
+$allKeys = [];
+$keys = new Keys($db);
+$result = $keys->read();
+
+$rowCount = $result->rowCount();
+
+$num_options = $rowCount;
+
+$_SESSION['allKeys'] = [];
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+ 
+        $key_item = array(
+            'id' => $id,
+            'year' => $year,
+            'testkey' => $testkey,
+            'prodkey' => $prodkey   
+        );
+        array_push($allKeys, $key_item);
+
+    }
+    $_SESSION['allKeys'] = $allKeys;
+} 
+foreach($allKeys as $key) {
+    if ($current_year === $key['year']) {
+        $_SESSION['testkey'] = $key['testkey'];
+        $_SESSION['prodkey'] = $key['prodkey'];
 
         break;
     }

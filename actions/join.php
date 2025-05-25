@@ -2,23 +2,24 @@
 session_start();
 
 require_once '../vendor/autoload.php';
-require_once '../config/secrets.php';
 require_once '../config/Database.php';
-
 require_once '../models/PaymentProduct.php';
 require_once '../models/PaymentCustomer.php';
 
+
+$YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
+if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
+  $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
+   $stripeSecretKey = $_SESSION['prodkey'] ;
+}
+if ($_SERVER['SERVER_NAME'] === 'localhost') {    
+  $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';  
+  $stripeSecretKey = $_SESSION['testkey'] ;
+}
 \Stripe\Stripe::setApiKey($stripeSecretKey);
 header('Content-Type: application/json');
 
 $stripe = new \Stripe\StripeClient($stripeSecretKey);
-$YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
-if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
-  $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
-}
-if ($_SERVER['SERVER_NAME'] === 'localhost') {    
-  $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';   
-}
 $_SESSION['partialyearmem'] = 0;
 $memberProducts = $_SESSION['memberproducts'];
 $_SESSTION['potentialMem1'] = [];
@@ -29,7 +30,6 @@ $database = new Database();
 $db = $database->connect();
 $paymentcustomer = new PaymentCustomer($db);
 $chargeProductID = '';
-$chargePriceID = '';
 
 if (isset($_POST['submitMembership'])) {
   if (isset($_POST['discyear'])) {
@@ -71,10 +71,14 @@ if (isset($_POST['submitMembership'])) {
   if (isset($_POST['fulltime1'])) {
     $potentialMem1['fulltime'] = $_POST['fulltime1'];
   }
+  if (isset($_POST['directorylist1'])) {
+      $potentialMem1['directorylist'] = $_POST['directorylist1'];
+    }
   //
   // 2nd member specified
   //
   if (isset($_POST['addmem2'])) {
+    
    if (isset($_POST['firstname2'])) {
     if ($_POST['firstname2'] !== ' ') {
     if (isset($_POST['discyear'])) {
@@ -96,7 +100,12 @@ if (isset($_POST['submitMembership'])) {
     if (isset($_POST['phone2'])) {
       $potentialMem2['phone1'] = $_POST['phone2'];
     }
-    if (isset($_POST['mem2sameadd'])) {
+      if (isset($_POST['directorylist2'])) {
+      $potentialMem2['directorylist'] = $_POST['directorylist2'];
+    }
+
+    if (isset($_POST['mem2sameaddr'])) {
+ 
         if (isset($_POST['streetaddress1'])) {
           $potentialMem2['streetaddress'] = $_POST['streetaddress1'];
         } 
@@ -116,6 +125,7 @@ if (isset($_POST['submitMembership'])) {
           $potentialMem2['fulltime'] = $_POST['fulltime1'];
         }
      } else {
+    
       if (isset($_POST['streetaddress2'])) {
         $potentialMem2['streetaddress'] = $_POST['streetaddress2'];
       } 
@@ -141,7 +151,7 @@ if (isset($_POST['submitMembership'])) {
    }
    $_SESSION['potentialMember1'] = $potentialMem1;
    $_SESSION['potentialMember2'] = $potentialMem2;
-//  $qstring =  "email:\'".$potentialMem1['email']."\' '";
+
 
 $searchemail = $potentialMem1['email'];
 $qstring = 'email: "'.$searchemail.'"';

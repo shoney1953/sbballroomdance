@@ -1,10 +1,18 @@
 <?php
 session_start();
 require_once '../vendor/autoload.php';
-require_once '../config/secrets.php';
+
 require_once '../config/Database.php';
 
 require_once '../models/PaymentProduct.php';
+if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
+ 
+   $stripeSecretKey = $_SESSION['prodkey'] ;
+}
+if ($_SERVER['SERVER_NAME'] === 'localhost') {    
+
+  $stripeSecretKey = $_SESSION['testkey'] ;
+}
 
 \Stripe\Stripe::setApiKey($stripeSecretKey);
 header('Content-Type: application/json');

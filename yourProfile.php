@@ -308,13 +308,14 @@ if ($rowCount > 0) {
             </div>
             <div class="form-item">
             <h4 class="form-item-title">Primary Phone: </h4>
+            <!-- <input type='tel'  name='phone1'  value='<?php echo $user->phone1 ?>'><br> -->
             <input type='tel'  name='phone1' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' value='<?php echo $user->phone1 ?>'><br>
-             <small> Format: 123-456-7890</small>
+           
             </div>
             <div class="form-item">
             <h4 class="form-item-title">Secondary Phone: </h4>
-            <input type='tel'  name='phone2' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' value='<?php echo $user->phone2 ?>'><br>
-             <small> Format: 123-456-7890</small>
+            <input type='tel'  name='phone2'  pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' value='<?php echo $user->phone2 ?>'><br>
+            
             </div>
             <div class="form-item">
             <h4 class="form-item-title">Street Address: </h4>

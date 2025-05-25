@@ -44,7 +44,13 @@ $toCC5 = $volunteerDirector;
     $user->city = $_POST['city1'];
     $user->state = $_POST['state1'];
     $user->zip = $_POST['zip1'];
-    $user->phone1 = $_POST['phone11'];
+    $reformatphone = substr($_POST['phone11'],0,3);
+    $reformatphone .= '-';
+    $reformatphone .= substr($_POST['phone11'],3,3);
+     $reformatphone .= '-';
+     $reformatphone .= substr($_POST['phone11'],6,4);
+
+    $user->phone1 = $reformatphone;
 
 
        $passHash = password_hash($user->password, PASSWORD_DEFAULT);
@@ -58,11 +64,12 @@ $toCC5 = $volunteerDirector;
        $user->city = htmlentities($_POST['city1']); 
        $user->state = htmlentities($_POST['state1']); 
        $user->zip = htmlentities($_POST['zip1']); 
+
   
        $user->phone1 = htmlentities($_POST['phone11']);
 
        $user->fulltime = htmlentities($_POST['fulltime1']);
-       $user->directorylist = 1;
+    //    $user->directorylist = 1;
        $formerUser = "no";
        if ($userArchive->getUserName($user->username, $user->email)) {
           $formerUser = "yes";
@@ -107,7 +114,7 @@ $toCC5 = $volunteerDirector;
             $toCC4,
             $toCC5
         );
-    
+
     $user->create();
     $member1ID = $db->lastInsertId();
 
@@ -138,6 +145,7 @@ $toCC5 = $volunteerDirector;
 
     // ---------------------- MEMBER 2
     if (isset($_POST['firstname2'])) {
+
     $user->firstname = $_POST['firstname2'];
     $user->lastname = $_POST['lastname2'];
     $user->username = $_POST['username2'];
@@ -145,14 +153,8 @@ $toCC5 = $volunteerDirector;
     $pass2 = $_POST['initPass22'];
     $user->email = $_POST['email2'];
     $user->role = $_POST['role2'];
-    $user->streetAddress = $_POST['streetaddress2'];
-    $user->city = $_POST['city2'];
-    $user->state = $_POST['state2'];
-    $user->zip = $_POST['zip2'];
     $user->phone1 = $_POST['phone12'];
-    
   
-
     $passHash = password_hash($user->password, PASSWORD_DEFAULT);
     $user->password = $passHash;
     $user->firstname = htmlentities($_POST['firstname2']);
@@ -164,11 +166,16 @@ $toCC5 = $volunteerDirector;
     $user->city = htmlentities($_POST['city2']); 
     $user->state = htmlentities($_POST['state2']); 
     $user->zip = htmlentities($_POST['zip2']); 
-
-    $user->phone1 = htmlentities($_POST['phone12']);
+    $reformatphone = substr($_POST['phone12'],0,3);
+    $reformatphone .= '-';
+    $reformatphone .= substr($_POST['phone12'],3,3);
+     $reformatphone .= '-';
+     $reformatphone .= substr($_POST['phone12'],6,4);
+     $user->directorylist = $_POST['directorylist2'];
+    $user->phone1 = $reformatphone;
 
     $user->fulltime = htmlentities($_POST['fulltime2']);
-    $user->directorylist = 1;
+    // $user->directorylist = 1;
     $formerUser = "no";
     if ($userArchive->getUserName($user->username, $user->email)) {
        $formerUser = "yes";
