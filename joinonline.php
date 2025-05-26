@@ -5,8 +5,8 @@ session_start();
   require_once 'models/PaymentProduct.php';
   $err_switch = 0;
   if (isset($_GET['error'])) {
-    echo '<div class="container">';
-    echo '<br><br><br><h3 style="color: red;text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h3><br>';
+    echo '<div class="container-error">';
+    echo '<br><br><br><h3 class="error"> ERROR:  '.$_GET['error'].'.<br> Please Reenter Data or Check to see if you are already a member.</h3><br>';
     echo '</div>';
     $err_switch = 1;
     unset($_GET['error']);
@@ -83,14 +83,12 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
            echo '<tr>';
           //  echo '<th colspan=3><em>Since we are in the discount part of the membership year, you may select to pay the discount rate for just this year: '.$current_year.'
           //  or pay the full price and become a member for the current year and next year: '.$next_year.'</em></th>'; 
-           echo '<th colspan=3><em>Since we are in the discount part of the membership year, you will become a member for the remainder of '.$current_year.' as well as next year '.$next_year.'</em></th>'; 
+           echo '<th colspan=3><em>Since we are in the discount part of the membership year, you will become a member(s) for the remainder of '.$current_year.' as well as next year '.$next_year.'</em></th>'; 
            echo '</tr>';
 
           }
 
-
            echo '<tr>';
-  
            echo '<th>Membership Level</th>'; 
            echo '<th>Description</th>';   
            echo '<th>Price</th>';
@@ -100,7 +98,6 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
            echo '<tbody>';
          
            foreach ($memberProducts as $product) {
-  
 
               $mlidID = "mlid".$product['productid'];
              
@@ -118,15 +115,12 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
               $coupleProductID = $product['productid'];
               $couplePriceID = $product['priceid'];
              }
-
          
          }
          echo '</tbody>';
          echo '</table>';  
          echo '</tbody>';
          echo '</table>';  
-
-
 
 ?>
     <br>
@@ -138,7 +132,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
     <h4>Member One Information will be used for billing</h4>
 
     <div class="form-item">
-    <h4 class='form-item-title'>First Name</h4>
+    <h4 class='form-item-title'>Member 1 First Name</h4>
     <?php
     if ($err_switch === 1) {
      
@@ -151,7 +145,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
 
     </div>
     <div class="form-item">
-    <h4 class='form-item-title'>Last Name</h4>
+    <h4 class='form-item-title'>Member 1 Last Name </h4>
     <?php
     if ($err_switch === 1) {
        echo "<input type='text' name='lastname1'  title='Enter the first members last name' value=".$potentialmember1['lastname']." required>";
@@ -162,7 +156,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
      ?>
     </div>
     <div class="form-item">
-    <h4 class='form-item-title'>Email</h4>
+    <h4 class='form-item-title'>Member 1 Email</h4>
     <?php
         if ($err_switch === 1) {
              echo "<input type='email' name='email1' title='Enter the first members email' value=".$potentialmember1['email']." required>";
@@ -173,18 +167,18 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
     ?>
     </div>
     <div class="form-item">
-      <h4 class="form-item-title">Primary Phone</h4>
+      <h4 class="form-item-title">Member 1 Primary Phone</h4>
        <?php
         if ($err_switch === 1) {
           echo "<input type='text' pattern='\d{1,10}'  maxlength='10' name='phone1' value=".$potentialmember1['phone1']."><br>"; 
         } else {
-          echo "<input type='text' pattern='\d{1,10}'  maxlength='10' name='phone1'><br>";
+          echo "<input type='text' pattern='\d{1,10}'  maxlength='10' placeholder='9 digits no dashes' name='phone1'><br>";
         }
       ?>
       </div> 
 
       <div class="form-item">
-      <h4 class="form-item-title">Street Address</h4>
+      <h4 class="form-item-title">Member 1 SaddleBrooke Street Address</h4>
       <?php
         if ($err_switch === 1) {
            echo "<input type='text' name='streetaddress1' required value=".$potentialmember1['streetaddress']." >";
@@ -195,43 +189,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
       </div> 
 
       <div class="form-item">
-      <h4 class="form-item-title">City</h4>
-      <?php
-        if ($err_switch === 1) {
-          echo "<input type='text' name='city1' value=".$potentialmember1['city']." required >";
-        } else {
-          echo '<input type="text" name="city1" required >';
-        }
-     
-      ?>
-      </div>
-
-      <div class="form-item">
-      <h4 class="form-item-title">State</h4>
-      <?php
-        if ($err_switch === 1) {
-           echo "<input type='text' name='state1' maxlength='2' value=".$potentialmember1['state']." required>";
-        } else {
-          echo '<input type="text" name="state1" maxlength="2" required>';
-        }
-     
-      ?>
-      </div>
-
-      <div class="form-item">
-      <h4 class="form-item-title">Zip</h4>
-      <?php
-        if ($err_switch === 1) {
-            echo "<input type='text' name='zip1' maxlength='10' value=".$potentialmember1['zip']." required>";
-        } else {
-          echo '<input type="text" name="zip1" maxlength="10" required>';
-        }
-   
-      ?>
-      </div>
-
-      <div class="form-item">
-      <h4 class="form-item-title">HOA</h4>
+      <h4 class="form-item-title">Which HOA?</h4>
       <select name = "hoa1">
       <?php
       if ($err_switch === 1) { 
@@ -251,7 +209,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
       </select>
       </div>
       <div class="form-item">
-      <h4 class="form-item-title">Fulltime</h4>
+      <h4 class="form-item-title">Member 1 Fulltime?</h4>
       <select name = "fulltime1">
       <?php
         if ($err_switch === 1) { 
@@ -296,12 +254,16 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
       </div> 
 
     <div class="form-item">
-    <h4 class='form-item-title'>First Name</h4>
+    <h4 class='form-item-title'>Member 2 First Name</h4>
     <?php
     if ($potentialmember2) {
       if ($err_switch === 1) {
       echo "<input type='text' name='firstname2' title='Enter the second members first name' value=".$potentialmember2['firstname']." >";
       } 
+       else {
+          echo "<input type='text' name='firstname2' placeholder='member two first name' 
+             title='Enter the second members first name' >";
+       }
     }
      else {
           echo "<input type='text' name='firstname2' placeholder='member two first name' 
@@ -311,13 +273,17 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
     ?>
     </div>
     <div class="form-item">
-    <h4 class='form-item-title'>Last Name</h4>
+    <h4 class='form-item-title'>Member 2 Last Name</h4>
     <?php
     if ($potentialmember2) {
         if ($err_switch === 1) {
         echo "<input type='text' name='lastname2'  
                 title='Enter the second members last name' value=".$potentialmember2['lastname'].">";
         } 
+         else {
+          echo "<input type='text' name='lastname2' placeholder='member two last name' 
+             title='Enter the second members last name'>";
+    }
     }
     else {
     echo "<input type='text' name='lastname2' placeholder='member two last name' 
@@ -326,13 +292,17 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
     ?>
     </div>
     <div class="form-item">
-    <h4 class='form-item-title'>Email</h4>
+    <h4 class='form-item-title'>Member 2 Email</h4>
     <?php
     if ($potentialmember2) {
         if ($err_switch === 1) {
             echo "<input type='email' name='email2' 
                 title='Enter the second members email' value=".$potentialmember2['email']." >";
         } 
+             else {
+            echo "<input type='email' name='email2' placeholder='member two email -- must be unique' 
+             title='Enter the second members email' >";
+    }
     }
      else {
       echo "<input type='email' name='email2' placeholder='member two email -- must be unique' 
@@ -342,15 +312,18 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
     ?>
     </div>
     <div class="form-item">
-      <h4 class="form-item-title">Primary Phone</h4>
+      <h4 class="form-item-title">Member 2 Primary Phone</h4>
       <?php
       if ($potentialmember2) {
         if ($err_switch === 1) {
           echo "<input type='text' pattern='\d{1,10}''  maxlength='10' name='phone2' value=".$potentialmember2['phone1']."><br>";
         } 
+        else {
+        echo '<input type="text" pattern="\d{1,10}"  maxlength="10" placeholder="9 digits no dashes" name="phone2"><br>';
+          }
       }
        else {
-        echo '<input type="text" pattern="\d{1,10}"  maxlength="10" name="phone2"><br>';
+        echo '<input type="text" pattern="\d{1,10}"  maxlength="10" placeholder="9 digits no dashes" name="phone2"><br>';
       }
        ?>
       </div> 
@@ -377,89 +350,59 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
        ?>
       </div> 
       <div class="form-item">
-      <h4 class="form-item-title">Street Address</h4>
+      <h4 class="form-item-title">Member 2 SaddleBrooke Street Address</h4>
       <?php
       if ($potentialmember2) {
          if ($err_switch === 1) {
            echo "<input type='text' name='streetaddress2' value=".$potentialmember2['streetaddress']."  >";
-      } 
+         } 
+               else {
+          echo '<input type="text" name="streetaddress2"  >';
       }
+        }
       else {
           echo '<input type="text" name="streetaddress2"  >';
       }
       ?>
       </div> 
-
-      <div class="form-item">
-      <h4 class="form-item-title">City</h4>
-            <?php
-        if ($potentialmember2) {
-          if ($err_switch === 1) {
-            echo "<input type='text' name='city2' value=".$potentialmember2['city']."  >";
-          }
-        }
-         else {
-          echo '<input type="text" name="city2"  >';
-        }
-     
-      ?>
-
-      </div>
-
-      <div class="form-item">
-      <h4 class="form-item-title">State</h4>
-        <?php
-        if ($potentialmember2) {
-            if ($err_switch === 1) {
-              echo "<input type='text' name='state2' maxlength='2' value=".$potentialmember2['state']." >";
-            } 
-        }  else {
-          echo '<input type="text" name="state2" maxlength="2" >';
-        }
-     
-      ?>
- 
-      </div>
-
-      <div class="form-item">
-      <h4 class="form-item-title">Zip</h4>
-        <?php
-        if ($potentialmember2) {
-            if ($err_switch === 1) {
-                echo "<input type='text' name='zip2' maxlength='10' value=".$potentialmember2['zip']." >";
-            } 
-        }  else {
-          echo '<input type="text" name="zip2" maxlength="10" >';
-        }
-   
-      ?>
-
-      </div>
-
-      <div class="form-item">
-      <h4 class="form-item-title">HOA</h4>
-       <select name = "hoa2">
       <?php
+
+    ?>
+      <div class="form-item">
+      <h4 class="form-item-title">Which HOA?</h4>
+      <select name = "hoa2">
+      <?php
+
       if ($potentialmember2) {
-        if ($err_switch === 1) { 
-          if ($potentialmember2['hoa'] === 1) {
-              echo '<option value = "1" selected>HOA 1</option>';
-              echo '<option value = "2">HOA 2</option>';
-            }  else {
-              echo '<option value = "2" selected>HOA 2</option>';
-              echo '<option value = "1">HOA 1</option>';
-            }
-        } 
-       } else {
+
+      if ($err_switch === 1) { 
+        if ($potentialmember2['hoa'] === 1) {
+           echo '<option value = "1" selected>HOA 1</option>';
+             echo '<option value = "2">HOA 2</option>';
+          } else {
+            echo '<option value = "2" selected>HOA 2</option>';
+            echo '<option value = "1">HOA 1</option>';
+          }
+        
+        } else {
+          var_dump($err_switch);
+          var_dump('no err switch set');
           echo '<option value = "1">HOA 1</option>';
           echo '<option value = "2">HOA 2</option>';
-        }
+         }
+      } else {
+        var_dump('no pot2');
+        echo '<option value = "1">HOA 1</option>';
+        echo '<option value = "2">HOA 2</option>';
+      }
+    
      ?>
+
 
       </select>
       </div>
       <div class="form-item">
-      <h4 class="form-item-title">Fulltime</h4>
+      <h4 class="form-item-title">Member 2 Fulltime?</h4>
       <select name = "fulltime2">
         <?php
         if ($potentialmember2) {
@@ -471,7 +414,10 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
                 echo '<option value = "0" selected>Gone for the Summer</option>';
                 echo '<option value = "1">Fulltime</option>';
               }
-            }
+            } else {
+          echo '<option value = "1">Fulltime</option>';
+          echo '<option value = "0">Gone for the Summer</option>';
+        }
         } else {
           echo '<option value = "1">Fulltime</option>';
           echo '<option value = "0">Gone for the Summer</option>';
@@ -484,11 +430,18 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
     </div>
     </div>
     <?php
+     echo '<input type="hidden"  name="city1"   value="Tucson" >';
+      echo '<input type="hidden" name="state1"  value="AZ" >';
+      echo '<input type="hidden" name="zip1"    value="85739">';
 
-     echo '<input type="hidden" name="indprodid" value="'.$indProductID.'">';
-     echo '<input type="hidden" name="coupleprodid" value="'.$coupleProductID.'">';
-     echo '<input type="hidden" name="indpriceid" value="'.$indPriceID.'">';
-     echo '<input type="hidden" name="couplepriceid" value="'.$couplePriceID.'">';
+      echo '<input type="hidden" name="city2"   value="Tucson"  >';
+     echo '<input type="hidden"  name="state2"  value="AZ">';    
+     echo '<input type="hidden"  name="zip2"    value="85739" >';   
+ 
+     echo '<input type="hidden"  name="indprodid" value="'.$indProductID.'">';
+     echo '<input type="hidden"  name="coupleprodid" value="'.$coupleProductID.'">';
+     echo '<input type="hidden"  name="indpriceid" value="'.$indPriceID.'">';
+     echo '<input type="hidden"  name="couplepriceid" value="'.$couplePriceID.'">';
      /* Discount prices */
     //  echo '<input type="hidden" name="indproddiscid" value="'.$indProductDiscID.'">';
     //  echo '<input type="hidden" name="coupleproddiscid" value="'.$coupleProductDiscID.'">';

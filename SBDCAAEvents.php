@@ -279,7 +279,7 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
              echo "<th>ORG Email</th>";             
              echo "<th>Room</th>";
              echo "<th>Cost</th>";
-             echo "<th># Reg </th>";
+             echo "<th># Attending</th>";
          echo "</tr>";
         echo "</thead>";
         echo "<tbody>";

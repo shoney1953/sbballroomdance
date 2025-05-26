@@ -47,7 +47,7 @@ $db = $database->connect();
             echo '<h4> This process generates an email to confirm your registration, so it takes a while. Please be patient.<br>
             You may want to authorize sbdcmailer@sbballroomdance.com so the emails do not end up in the 
             spam/junk folder.</h4>';
-           
+        
             
             echo '<form method="POST"  action="actions/regClass.php" target="_blank">';
             if (isset($_SESSION['role'])) {
@@ -169,7 +169,7 @@ $db = $database->connect();
  
 
         echo '<h4 class="form-title"><em>
-        To Register -- Please select One or More of the Classes Listed along with associated information. <br>Then click on the Submit Registration(s) Button.</em></h4>';
+        To Register -- Please select One or More of the Classes listed. <br>Then scroll to the bottom and click on the Submit Registration(s) Button.</em></h4>';
           
              
         foreach ($upcomingClasses as $class) {

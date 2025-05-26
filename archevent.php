@@ -55,7 +55,7 @@ echo '<div class="container-section ">';
                 echo '<th>ORG Email</th>';        
                 echo '<th>Room</th>';
                 echo '<th>Cost</th>';
-                echo '<th># Reg </th>';
+                echo '<th># Attending</th>';
             echo '</tr>';
      
             $eventNumber = 0;

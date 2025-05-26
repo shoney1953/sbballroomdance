@@ -169,7 +169,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '</form>'    ;   
             echo '</div> ';   
             echo '</div> ';  
-            echo '<div class="form-grid4">';
+            echo '<div class="form-grid6">';
             echo '<div class="form-grid-div">';
             echo '<form target="_blank" method="POST" action="actions/reportUser.php">'; 
             echo '<button type="submit" name="submitUserRep">Report Members</button>';   

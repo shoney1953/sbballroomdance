@@ -72,60 +72,61 @@ if (isset($_POST['submitAddUser'])) {
        
             echo '<div class="form-container">';
             echo '<form method="POST" action="addUser.php">';
-            echo '<h4 class="form-title">Add Member</h4>';
+            echo '<h4 class="form-title">Enter Member Information then click on the Add Member button</h4>';
+            echo '<h4 class="form-title">Note: City, State, Zip and passwords are all defaulted</h4>';
             echo '<div class="form-grid">';
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">First Name</h4>';
-            echo "<input type='text' name='firstname' required>";
+            echo "<input type='text' title='Member First Name' name='firstname' required>";
             echo '</div>';
  
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Last Name</h4>';
-            echo "<input type='text' name='lastname' required>";
+            echo "<input type='text' title='Member Last Name' name='lastname' required>";
             echo '</div>';
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Email</h4>';
-            echo "<input type='email' name='email' required><br><small>Must Not be a Duplicate</small>";
+            echo "<input type='email' name='email' title='Member Email if none exists use firstname@xxxxx.com' placeholder='Must not be a duplicate' required><br>";
             echo '</div>';
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">User Name</h4>';
-            echo "<input type='text' name='username' value='".$userdefault."' required >";
+            echo "<input type='text' name='username' title='Capital letter of first name, then the rest of first name, followed by Capital letter of last name' value='".$userdefault."' required >";
             echo '</div>'; 
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Primary Phone</h4>';
-            echo '<input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" name="phone1" ><br>';
+            echo '<input type="tel" title="Member primary phone with dashes" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" name="phone1" ><br>';
       
             echo '</div>'; 
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Secondary Phone</h4>';
-            echo '<input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" name="phone2" ><br>';
+            echo '<input type="tel" title="Member secondary phone with dashes" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" name="phone2" ><br>';
           
             echo '</div>'; 
 
             echo '<div class="form-item">';
-            echo '<h4 class="form-item-title">Street Address</h4>';
-            echo '<input type="text" name="streetaddress" required >';
+            echo '<h4 class="form-item-title">SaddleBrooke Street Address</h4>';
+            echo '<input type="text" title="Member street address" name="streetaddress" required >';
             echo '</div>'; 
 
-            echo '<div class="form-item">';
-            echo '<h4 class="form-item-title">City</h4>';
-            echo '<input type="text" name="city" required >';
-            echo '</div>'; 
+            // echo '<div class="form-item">';
+            // echo '<h4 class="form-item-title">City</h4>';
+            echo '<input type="hidden"  name="city" value="Tucson" >';
+            // echo '</div>'; 
 
-            echo '<div class="form-item">';
-            echo '<h4 class="form-item-title">State</h4>';
-            echo '<input type="text" name="state" maxlength="2" required>';
-            echo '</div>'; 
+            // echo '<div class="form-item">';
+            // echo '<h4 class="form-item-title">State</h4>';
+            echo '<input type="hidden"  name="state" value="AZ" >';
+            // echo '</div>'; 
 
-            echo '<div class="form-item">';
-            echo '<h4 class="form-item-title">Zip</h4>';
-            echo '<input type="text" name="zip" maxlength="10" required>';
-            echo '</div>'; 
+            // echo '<div class="form-item">';
+            // echo '<h4 class="form-item-title">Zip</h4>';
+            echo '<input type="hidden"name="zip"  value="85739">';
+            // echo '</div>'; 
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">HOA</h4>';
@@ -153,19 +154,19 @@ if (isset($_POST['submitAddUser'])) {
             echo '</select>';
             echo '</div>';
 
-            echo '<div class="form-item">';
-            echo '<h4 class="form-item-title">Initial Password<br><small><em>Defaulted</em></small></h4>';
-            echo "<td><input type='password' name='initPass' minlength='8' value='".$passdefault."' required></td>";
-            echo '</div>'; 
+            // echo '<div class="form-item">';
+            // echo '<h4 class="form-item-title">Initial Password<br><small><em>Defaulted</em></small></h4>';
+            echo "<td><input type='hidden' name='initPass' minlength='8' value='".$passdefault."' required></td>";
+            // echo '</div>'; 
+
+            // echo '<div class="form-item">';
+            // echo '<h4 class="form-item-title">Retype Password<br><small><em>Defaulted</em></small></h4>';
+            echo "<td><input type='hidden' name='initPass2' minlength='8' value='".$passdefault."' required></td>";
+            // echo '</div>'; 
 
             echo '<div class="form-item">';
-            echo '<h4 class="form-item-title">Retype Password<br><small><em>Defaulted</em></small></h4>';
-            echo "<td><input type='password' name='initPass2' minlength='8' value='".$passdefault."' required></td>";
-            echo '</div>'; 
-
-            echo '<div class="form-item">';
-            echo '<h4 class="form-item-title">Notes<br><small><em>Usually Partner name if there is one.</em></small></h4>';
-            echo '<textarea name="notes" cols="50" rows="3"></textarea>';
+            echo '<h4 class="form-item-title">Notes<br></h4>';
+            echo '<textarea name="notes" cols="50" rows="3" placeholder="Usually Partners name if there is one"></textarea>';
             echo '</div>'; 
          
             echo '</div>'; // end form-grid

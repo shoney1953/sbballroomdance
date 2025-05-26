@@ -173,7 +173,7 @@
         </p>
         <p>There is a cost involved. If not attending dinner, it will be $5 per person for members and $10 per person for non-members. If attending dinner, the cost and meal selections
           will be indicated on the form as will the treasurer's name and address. In either case, the payment (and meal selections) should be submitted prior to the event. 
-          You can print the form from the website event list (see the View/Print tab); or often the forms are available at classes or included in the weekly update email.
+          You can print the form from the website event list (see the Print tab); or often the forms are available at classes or included in the weekly update email.
         </p>
         <p>We will need to know if you plan to partake of the meal, or just attend the dance so that the correct number of tables can be set up in the ballroom. That will be indicated on the form.
         <p>

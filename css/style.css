@@ -336,6 +336,21 @@ hr {
   animation: blinker 1s linear infinite;
   color: red;
 }
+.error {
+  font-weight: bold;
+  font-size: medium;
+  color: red;
+}
+.container-error {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  border-radius: 5px;
+  list-style: none;
+  margin: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 10px;
+}
 .list-box {
   text-align: left;
   align-items: left;
@@ -459,13 +474,13 @@ font-weight: bolder;
 .form-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 2px;
+  gap: 1px;
   /* grid-auto-rows: minmax(50px, auto); */
   grid-auto-rows: auto;
-  margin-top: 5px;
-  margin-bottom:  5px;
+  margin-top: 1px;
+  margin-bottom:  1px;
   justify-content: left; 
-  padding: 4px;
+  padding: 1px;
 }
 .form-item {
   text-align: left;
@@ -474,7 +489,7 @@ font-weight: bolder;
   max-width: 100%;
   /* margin-left: 4px;
   margin-right: 4px; */
-  padding: 2px 2px;
+  padding: 1px 1px;
   /* border: 1px solid rgba(55, 55, 55, .5);
   border-radius: 2px; */
 }
@@ -820,19 +835,20 @@ td input[type="select"] {
 .form-grid2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
+  gap: 1px;
   grid-auto-rows: minmax(100px, auto);
   /* border: 1px dashed rgb(91, 2, 129); */
-  border-radius: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  border-radius: 1px;
+  margin-top: 2px;
+  margin-bottom: 2px;
   justify-content: left;
 }
 .form-grid-div {
   text-align: left;
   align-items: left;
   justify-content: left;
-  margin-left: 10px;
+  margin-left: 5px;
+  margin-bottom: 2px;
 }
 .form-grid-div p {
   text-align: left;
@@ -843,7 +859,7 @@ td input[type="select"] {
 .form-grid1 {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 5px;
+  gap: 2px;
   grid-auto-rows: minmax(100px, auto);
 
   border-radius: 5px;
@@ -853,7 +869,7 @@ td input[type="select"] {
 .form-grid3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: 2px;
   grid-auto-rows: minmax(100px, auto);
   /* border: 1px dashed rgb(91, 2, 129); */
 
@@ -869,21 +885,21 @@ td input[type="select"] {
   gap: 2px;
   grid-auto-rows: minmax(100px, auto);
   /* border: 1px solid rgb(91, 2, 129);  */
-  border-radius: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  border-radius: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
   justify-content: left;
   font-size: 85%;
 }
 .form-grid6 {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 2px;
+  gap: 1px;
   grid-auto-rows: minmax(100px, auto);
   /* border: 1px solid rgb(91, 2, 129);  */
-  border-radius: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  border-radius: 1px;
+  margin-top: 1px;
+  margin-bottom: 1px;
   justify-content: left;
   font-size: 85%;
 }
@@ -1160,7 +1176,7 @@ iframe {
   .form-grid2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
+    gap: 2px;
     grid-auto-rows: minmax(100px, auto);
     justify-content: left;
   }
@@ -1168,33 +1184,33 @@ iframe {
   .form-grid3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 2px;
     grid-auto-rows: minmax(100px, auto);
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     justify-content: left;
     font-size: 75%;
   }
   .form-grid4 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
+    gap: 1px;
     grid-auto-rows: minmax(100px, auto);
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     justify-content: left;
     font-size: 75%;
   }
   .form-grid6 {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 2px;
+    gap: 1px;
     grid-auto-rows: minmax(100px, auto);
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     justify-content: left;
     font-size: 75%;
   }
@@ -1202,7 +1218,8 @@ iframe {
     text-align: left;
     align-items: left;
     justify-content: left;
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-bottom: 2px;
     font-size: 100%;
   }
 
@@ -1389,11 +1406,11 @@ iframe {
   .form-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
+    gap: 1px;
     /* grid-auto-rows: minmax(100px, auto); */
     grid-auto-rows: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     justify-content: left; 
   }
   .form-item {
@@ -1416,33 +1433,33 @@ iframe {
   .form-grid3 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 1px;
     grid-auto-rows: minmax(100px, auto);
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     justify-content: left;
     font-size: 75%;
   }
   .form-grid4 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
+    gap: 1px;
     grid-auto-rows: minmax(100px, auto);
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     justify-content: left;
     font-size: 75%;
   }
   .form-grid6 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
+    gap: 1px;
     grid-auto-rows: minmax(100px, auto);
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     justify-content: left;
     font-size: 75%;
   }
@@ -1450,7 +1467,8 @@ iframe {
     text-align: left;
     align-items: left;
     justify-content: left;
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-bottom: 2px;
     font-size: 80%;
   }
 
@@ -1583,8 +1601,8 @@ iframe {
     gap: 1px;
     /* grid-auto-rows: minmax(100px, auto); */
     grid-auto-rows: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 1px;
+    margin-bottom: 1x;
     justify-content: left; 
   }
   .form-item {
@@ -1689,33 +1707,33 @@ iframe {
   .form-grid3 {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 4px;
+    gap: 1px;
     grid-auto-rows: minmax(100px, auto);
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     justify-content: left;
     font-size: 100%;
   }
   .form-grid4 {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 2px;
+    gap: 1px;
     grid-auto-rows: minmax(100px, auto);
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     justify-content: left;
     font-size: 80%;
   }
   .form-grid6 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
+    gap: 1px;
     grid-auto-rows: minmax(100px, auto);
-    border-radius: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     justify-content: left;
     font-size: 80%;
   }
@@ -1723,7 +1741,8 @@ iframe {
     text-align: left;
     align-items: left;
     justify-content: left;
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-bottom: 2px;
     font-size: 80%;
   }
 

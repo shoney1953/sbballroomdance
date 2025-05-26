@@ -106,10 +106,6 @@ echo '<form method="POST" action="actions/processOptions.php">';
    echo '<div class="form-item">';
    echo "<h4 class='form-title'>ID: ".$option['id']."</h4>";
    echo '</div>';
-   echo '</div>';
-
-   echo '<div class="form-grid6">';
-
 
    echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Duplicate?</h4>';

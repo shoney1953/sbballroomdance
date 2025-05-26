@@ -47,7 +47,7 @@ echo '<div class="container-section ">';
             echo '<th>Room    </th>';
             echo '<th>Notes</th>';
             echo '<th>Class Limit    </th>';
-            echo '<th># Reg </th>';
+            echo '<th># Attending</th>';
             echo '</tr>';
             echo '</thead>';
           

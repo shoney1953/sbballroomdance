@@ -33,8 +33,9 @@ $upcomingEvents = $_SESSION['upcoming_events'];
     <section id="events" class="content">
 
       <br>
-        <h1 class="section-header">Upcoming Events</h1>
-        <h4>Please note that from 2025 on, for Dance Parties, we will be charging a minimum fee of $5 per member and $10 per non-member to attend the dance only to help offset our costs.</h4>
+        <h1 class="section-header">List of Upcoming Events</h1>
+        <h4>To Register for events, click the Register for Events Button Below. You must be logged in as a Visitor or Member to register.</h4>
+     
         <div class="form-grid2">
         <?php
 
@@ -87,7 +88,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                 <th>DJ</th>            
                 <th>Min<br>Cost</th>
                 <th>Form/<br>Flyer</th>
-                <th># <br>Reg </th>
+                <th># <br>Attending</th>
 
              </tr>
 
@@ -123,7 +124,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo '<th>DJ</th>';            
                     echo '<th>Min<br>Cost</th>';
                     echo '<th>Form/<br>Flyer</th>';
-                    echo '<th># Reg </th>';
+                    echo '<th># Attending</th>';
     
                 echo '</tr>';
               
@@ -155,7 +156,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
   
                     echo "<td>".$event['eventcost']."</td>";
                     if ($event['eventform']) {
-                        echo '<td><a href="'.$event['eventform'].'">VIEW/PRINT</a></td>';
+                        echo '<td><a href="'.$event['eventform'].'">PRINT</a></td>';
                     } else {
                             echo "<td> </td>"; 
                     }

@@ -131,9 +131,9 @@ if ($prowCount > 0) {
     <div class="container">     
      <ul>
         <li><a href="index.php">Back to Home</a></li>
-        <li><a href="#classregistrations">Your Class Registrations</a></li>
-        <li><a href="#eventregistrations">Your Event Registrations</a></li>
-        <li><a href="#membership">Membership Status</a></li>
+
+        <li><a href="yourProfile">Back to Your Profile</a></li>
+     
     </ul>
     </div>
 </nav> 

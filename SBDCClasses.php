@@ -33,7 +33,8 @@ $upcomingClasses = $_SESSION['upcoming_classes']
     <section id="classes" class="content">
    
       <br>
-        <h1 class="section-header">Ongoing and Upcoming Classes</h1>
+        <h1 class="section-header">List of Ongoing and Upcoming Classes</h1>
+        <h4>To Register for classes, click the Register for Classes Button Below. You must be logged in as a Visitor or Member to register.</h4>
         <div class="form-grid2">
         <?php
 
@@ -78,7 +79,7 @@ $upcomingClasses = $_SESSION['upcoming_classes']
                 <th>Registration</th>
 
                 <!-- <th>Class</th> -->
-                <th></th>
+                <th>Number</th>
                
             </tr>
             <tr>
@@ -92,7 +93,7 @@ $upcomingClasses = $_SESSION['upcoming_classes']
                 <th>Email    </th>
 
                 <!-- <th>Limit</th> -->
-                <th># Reg </th>
+                <th>Attending</th>
                
             </tr>
             </thead>
@@ -125,7 +126,7 @@ $upcomingClasses = $_SESSION['upcoming_classes']
                         echo "<th></th>";
                         echo "<th>Registration</th>";
     
-                        echo "<th></th>";
+                        echo "<th>Number</th>";
                        
                     echo "</tr>";
                     echo "<tr>";
@@ -138,7 +139,7 @@ $upcomingClasses = $_SESSION['upcoming_classes']
                         echo "<th>Room    </th>";
                         echo "<th>Email    </th>";
         
-                        echo "<th># Reg </th>";
+                        echo "<th>Attending</th>";
                        
                     echo "</tr>";
                     echo "</thead>";
