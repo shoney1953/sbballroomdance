@@ -19,7 +19,7 @@
         </ul>
         </div>
     </nav>
-    <section id="joinSuccessful" class="content">
+    <section id="joinCancel" class="content">
     <br><br><br>
     <div class="container-section ">
       <h1>Sorry you cancelled your attempt at joining our club on line.</h1>

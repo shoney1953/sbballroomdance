@@ -3,7 +3,7 @@ class PaymentProduct {
     // DB stuff
     private $conn;
     private $table = 'paymentproducts';
-
+    private $id;
     public $productid;
     public $description;
     public $price;
@@ -35,26 +35,32 @@ class PaymentProduct {
     // Get Single Danceclass
     public function read_single($productid) {
          $this->productid = $productid;
+   
           // Create query
-          $query = 'SELECT * FROM ' . $this->table . ' WHERE paymentid = ? LIMIT 0,1'; 
+          $query = 'SELECT * FROM ' . $this->table . ' WHERE productid = :productid LIMIT 0,1'; 
   
           // Prepare statement
           $stmt = $this->conn->prepare($query);
 
           // Bind ID
-          $stmt->bindParam(1, $this->productid);
+          $stmt->bindParam(':productid', $productid);
 
           // Execute query
           $stmt->execute();
 
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    
           // Set properties
+          if ($row) {
+          // Set properties
+          $this->id = $row['id'];
           $this->description = $row['description'];
           $this->name = $row['name'];
           $this->price = $row['price'];
           $this->priceid = $row['priceid'];
- 
+          return true;
+          }
+          return false;
 
 
     }

@@ -11,6 +11,10 @@ session_start();
     $err_switch = 1;
     unset($_GET['error']);
 } 
+  if (isset($_GET['resubmit'])) {
+    $err_switch = 1;
+    unset($_GET['resubmit']);
+} 
 $potentialmember1 = [];
 $potentialmember2 = [];
 if (isset($_SESSION['potentialMember1'])) {
@@ -68,7 +72,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
  
 
    <h1>Join Our Club Today</h1>
-   <h2>Enter Your Information and Click to Charge</h2>
+   <h2>Enter Your Information and Click to Submit Membership Information to Join</h2>
    
   <?php
    echo '<div class="form-container">';
@@ -212,9 +216,10 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
       <h4 class="form-item-title">Member 1 Fulltime?</h4>
       <select name = "fulltime1">
       <?php
+ 
         if ($err_switch === 1) { 
           if ($potentialmember1['fulltime'] === 1) {
-            echo '<option value = "1" selected>Fulltime</option>';
+             echo '<option value = "1" selected>Fulltime</option>';
              echo '<option value = "0">Gone for the Summer</option>';
           } else {
             echo '<option value = "0" selected>Gone for the Summer</option>';
@@ -385,13 +390,13 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
           }
         
         } else {
-          var_dump($err_switch);
-          var_dump('no err switch set');
+ 
+    
           echo '<option value = "1">HOA 1</option>';
           echo '<option value = "2">HOA 2</option>';
          }
       } else {
-        var_dump('no pot2');
+ 
         echo '<option value = "1">HOA 1</option>';
         echo '<option value = "2">HOA 2</option>';
       }
@@ -449,7 +454,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
     //  echo '<input type="hidden" name="couplepricediscid" value="'.$couplePriceDiscID.'">';
      ?>
     </div>
-    <button type="submit" name="submitMembership">Enter Membership Information</button><br>
+    <button type="submit" name="submitMembership">Submit Membership Information</button><br>
         </form>
 
    

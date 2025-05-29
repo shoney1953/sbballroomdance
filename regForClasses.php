@@ -175,11 +175,11 @@ $db = $database->connect();
         foreach ($upcomingClasses as $class) {
              echo '<div class="form-container">';
             
-             echo '<div class="form-grid">';
+             echo '<div class="form-grid6">';
 
 
              echo '<div class="form-item">';
-             echo '<h4 class="form-item-title">Select To Register</h4>'; 
+             echo '<h4 class="form-item-title-emp">Click To Register</h4>'; 
                $chkboxID = "cb".$class['id'];
                echo "<input type='checkbox' name='".$chkboxID."'>";
               echo '</div>';

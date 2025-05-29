@@ -12,7 +12,7 @@ $sess = session_start();
     <title>SBDC Ballroom Dance - Photos from Events</title>
 </head>
 <body>
-<div class="profile">
+<div class="content">
 <nav class="nav">
     <div class="container">
      
@@ -22,7 +22,8 @@ $sess = session_start();
     </ul>
      </div>
 </nav>  
-<div class="container-section ">
+
+
    <section id="pictures" class="content">
    <br>  
        <h4 class="section-header">Links to Pictures from Past Events</h4>
@@ -37,7 +38,7 @@ $sess = session_start();
            <li class="li-none"><a href="https://sheilahoney.smugmug.com/SaddleBrooke-Ballroom-Dance-Club-Videos">Class Videos</a></li>    
        </ul>
        
-       <div class="form-grid4">
+       <div class="form-grid6">
        <div class="form-grid-div">
        <h4>2025</h4>
        <ul>
@@ -49,9 +50,7 @@ $sess = session_start();
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-BBQ-Picnic-03-29-2025">Annual BBQ Picnic 03 29 2025</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-04-17-2025-Senior-Prom-Dance">Senior Prom Dance 04 17 2025</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-05-16-2025-Spring-Fling-Dance">Spring Fling 05 16 2025</a></li>
-      
-       
-       
+ 
       
        </ul>
        </div>
@@ -67,21 +66,16 @@ $sess = session_start();
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Mama-Mia-Dance-Party-4-19-2024">Mama Mia Dance Party 04 19 2024</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Groovy-Nights-5-17-2024">Groovy Nights 05 17 2024</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/06-14-2024-SBDC-Summer-in-the-Desert-Party">Summer in the Desert 06 14 2024</a></li>
-       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Red-White-and-Blue-dance-July-2024">Red White & Blue 07 19 2024
-       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-August-Fiesta-Party-2024">Fiesta Dance August 2024
-       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-September-Dance-2024">September Dance 09 13 2024
-       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-October-17-2024-Black-and-White-Dance-with-Chuck-Moses">October Dance 10 17 2024
-       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Brunch-Dance-11-16-2024">November Brunch Dance 11 16 2024
-       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Holiday-Gala-12-13-2024">December Holiday Gala 12 13 2024
-
-        
-       </a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Red-White-and-Blue-dance-July-2024">Red White & Blue 07 19 2024</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-August-Fiesta-Party-2024">Fiesta Dance August 2024</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-September-Dance-2024">September Dance 09 13 2024</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-October-17-2024-Black-and-White-Dance-with-Chuck-Moses">October Dance 10 17 2024</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Brunch-Dance-11-16-2024">November Brunch Dance 11 16 2024</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Holiday-Gala-12-13-2024">December Holiday Gala 12 13 2024</a></li>
 
        </ul>
        </div>
-    
-      
-    
+ 
        <div class="form-grid-div">
        <h4>2023</h4>
        <ul>
@@ -97,9 +91,7 @@ $sess = session_start();
        <!-- <li class="li-none">
         <a href="https://sheilahoney.smugmug.com/frame/slideshow?key=pbjK5H&speed=5&transition=fade&autoStart=1&captions=0&navigation=0&playButton=1&randomize=1&transitionSpeed=3&clickable=1"
         target="_blank">test slideshow</a></li> -->
-       
-       
-     
+
        </ul>
        </div>
        <div class="form-grid-div">
@@ -136,34 +128,12 @@ $sess = session_start();
            </ul>
        </div>
     
-
-
-     
-       <div class="form-grid-div">
-        <br>
-       <h4>SBDC CLASS VIDEOS</h4>
-       <ul>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SaddleBrooke-Ballroom-Dance-Club-Videos">Class Videos</a></li>    
-       </ul>
-       <br>
-      </div>
-      <div class="form-grid-div">
-        <br>
-       <h4>SBDC Open Practice Photos</h4>
-       <ul>
-           <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Open-Practice-Photos/">Random Photos from Open Practice</a></li>    
-       </ul>
-       <br>
        
-       </ul>
-       <br>
-      </div>
-    </div>
    </section>
    </div>
 
 </div>
-
+</div>
 
 <?php
   include 'footer.php';

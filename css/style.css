@@ -442,13 +442,15 @@ hr {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
 .form-container {
   max-width: 90%;
   width: 90%;
   border: 2px solid rgb(55, 30, 66);
   border-radius: 4px;
   background:  var(--lg3); 
-  margin: 10px;
+  margin: 5px;
+  padding: 2px;
   box-shadow: 2px 2px 2px 1px rgba(33, 24, 37, 0.2);
 }
 .form-title {
@@ -468,6 +470,12 @@ font-weight: bolder;
 .form-item-title {
   /* color: darkviolet; */
   color: var(--formdivision-color3);
+  text-align: left;
+  font-size: small;
+  }
+.form-item-title-emp {
+  color: red;
+  font:bolder
   text-align: left;
   font-size: small;
   }
@@ -1025,6 +1033,11 @@ button a:active {
   /* color: darkviolet; */
   color: var(--button-background3);
   color: var(--black3);
+}
+.li-large2 {
+  font-size: larger;
+  color: var(--darkgreen-color3);
+
 }
 .li-none {
   list-style: none;

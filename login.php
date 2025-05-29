@@ -2,7 +2,9 @@
   session_start();
   require_once 'includes/siteemails.php';
 if (isset($_GET['error'])) {
-    echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4><br>';
+    echo '<div class="container-error">';
+    echo '<br><br><br><h3 class="error"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h3><br>';
+    echo '</div>';
     unset($_GET['error']);
 } 
 $_SESSION['loginurl'] = $_SERVER['REQUEST_URI']; 
@@ -37,7 +39,7 @@ date_default_timezone_set("America/Phoenix");
                 ?>
             </h2><br>
         
-        <div class="form-grid3">
+        <div class="form-grid6">
         <div class="form-grid-div">
         <h1 class="section-header">SBDC MEMBERS Please Log in here</h1>
         <h4>HINT: <br>Your User Name will be <em>either</em> your email <em>or</em> your first name and last initial 

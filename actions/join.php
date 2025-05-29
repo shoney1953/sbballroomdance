@@ -5,22 +5,22 @@ require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
 require_once '../models/User.php';
 require_once '../models/PaymentProduct.php';
-require_once '../models/PaymentCustomer.php';
 
 
-$YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
-if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
-  $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
-   $stripeSecretKey = $_SESSION['prodkey'] ;
-}
-if ($_SERVER['SERVER_NAME'] === 'localhost') {    
-  $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';  
-  $stripeSecretKey = $_SESSION['testkey'] ;
-}
-\Stripe\Stripe::setApiKey($stripeSecretKey);
-header('Content-Type: application/json');
 
-$stripe = new \Stripe\StripeClient($stripeSecretKey);
+// $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
+// if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
+//   $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
+//    $stripeSecretKey = $_SESSION['prodkey'] ;
+// }
+// if ($_SERVER['SERVER_NAME'] === 'localhost') {    
+//   $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';  
+//   $stripeSecretKey = $_SESSION['testkey'] ;
+// }
+// \Stripe\Stripe::setApiKey($stripeSecretKey);
+// // header('Content-Type: application/json');
+
+// $stripe = new \Stripe\StripeClient($stripeSecretKey);
 $_SESSION['partialyearmem'] = 0;
 $memberProducts = $_SESSION['memberproducts'];
 $_SESSTION['potentialMem1'] = [];
@@ -29,7 +29,8 @@ $potentialMem1 = [];
 $potentialMem2 = [];
 $database = new Database();
 $db = $database->connect();
-$paymentcustomer = new PaymentCustomer($db);
+
+$paymentproduct = new PaymentProduct($db);
 $user = new User($db);
 $chargeProductID = '';
 $_SESSION['addmem2'] = 'NO';
@@ -43,7 +44,8 @@ if (isset($_POST['submitMembership'])) {
       $chargeProductID = $_POST['indprodid'];
       $chargePriceID = trim($_POST['indpriceid']);
   }
-
+   $_SESSION['chargeProductID'] = $chargeProductID;
+   $_SESSION['chargePriceID'] = $chargePriceID;
   if (isset($_POST['firstname1'])) {
     $potentialMem1['firstname'] = $_POST['firstname1'];
   }
@@ -72,6 +74,7 @@ if (isset($_POST['submitMembership'])) {
     $potentialMem1['hoa'] = $_POST['hoa1'];
   }
   if (isset($_POST['fulltime1'])) {
+
     $potentialMem1['fulltime'] = $_POST['fulltime1'];
   }
   if (isset($_POST['directorylist1'])) {
@@ -81,7 +84,7 @@ if (isset($_POST['submitMembership'])) {
   // 2nd member specified
   //
   if (isset($_POST['addmem2'])) {
-    
+    $_SESSION['addmem2'] =  'YES' ;
    if (isset($_POST['firstname2'])) {
     if ($_POST['firstname2'] !== ' ') {
     if (isset($_POST['discyear'])) {
@@ -91,6 +94,8 @@ if (isset($_POST['submitMembership'])) {
           $chargeProductID = $_POST['coupleprodid'];
         $chargePriceID = trim($_POST['couplepriceid']);
     }
+       $_SESSION['chargeProductID'] = $chargeProductID;
+       $_SESSION['chargePriceID'] = $chargePriceID;
      $potentialMem2['firstname'] = $_POST['firstname2'];
    
     if (isset($_POST['lastname2'])) {
@@ -108,7 +113,7 @@ if (isset($_POST['submitMembership'])) {
     }
 
     if (isset($_POST['mem2sameaddr'])) {
- 
+        $_SESSION['memsameaddr'] = 'YES';
         if (isset($_POST['streetaddress1'])) {
           $potentialMem2['streetaddress'] = $_POST['streetaddress1'];
         } 
@@ -210,57 +215,120 @@ if (isset($_POST['submitMembership'])) {
             exit;  
         } 
     }
+  }
 
-$searchemail = $potentialMem1['email'];
-$qstring = 'email: "'.$searchemail.'"';
-
-$customer = $stripe->customers->search([
-  'query' => $qstring,
-]);
-$cnt = count($customer);
-
-// if stripe customer not found, create one
-
-if (count($customer) == 0) {
-  $fullname = $potentialMem1['firstname']||' '||$potentialMem1['lastname'];
-
-  $customer = $stripe->customers->create([
-    'name' => $fullname,
-    'email' => $potentialMem1['email'],
-    'phone' => $potentialMem1['phone1'],
-    'address' => [
-      'line1' => $potentialMem1['streetaddress'],
-      'city' => $potentialMem1['city'],
-      'state' => $potentialMem1['state'],
-      'postal_code' => $potentialMem1['zip'],
-    ]
-  ]);
-  // create in our database to correspond
-  $paymentcustomer->customerid = $customer->id;
-  $paymentcustomer->email = $customer->email;
-  $paymentcustomer->firstname = $potentialMem1['firstname'];
-  $paymentcustomer->lastname = $potentialMem1['lastname'];
-  $paymentcustomer->userid = 0;
-  $paymentcustomer->create();
-
-}
-
-
-$checkout_session = \Stripe\Checkout\Session::create([
-   # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-  'line_items' => [[
-    'price' => $chargePriceID,
-    'quantity' => 1,
-  ]],
-  'customer' => $customer->id,
-  'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '/joinsuccess.php',
-  'cancel_url' => $YOUR_DOMAIN . '/joincancel.php',
-]);  
-
-header("HTTP/1.1 303 See Other");
-header("Location: " . $checkout_session->url);
-
-  } // end of submitted if
-
+$formatphone = '';
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>SBDC Sign Up Confirmation</title>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+        
+        <ul>
+            <li><a href="../index.php">Back to Home</a></li>
+            <li><a href="../joinonline.php">Back to Join Online</a></li>
+        </ul>
+        </div>
+    </nav>
+  <div class="content">
+    <br><br><br>
+  
+      <h4>Please confirm the information submitted.</h4><br>
+      <h4>Click the CONFIRM button to proceed, or the GO BACK button to modify information.</h4><br>
+      <?php
+
+        $paymentproduct->read_single($chargeProductID);
+       $fprice = number_format(($paymentproduct->price/100),2);
+
+         echo "<h4>You will be charged: $".$fprice." for ".$paymentproduct->name."</h4><br>";
+        echo  '<div class="form-grid4">';
+         echo '<div class="form-grid-div">';
+         echo "</div>";
+        echo '<div class="form-grid-div">';
+        echo '<h4>Member 1 Information</h4>';
+        echo '<ul>';
+        echo "<li>First Name: ".$potentialMem1['firstname']."</li>";
+        echo "<li>Last Name: ".$potentialMem1['lastname']."</li>";
+        echo "<li>Email: ".$potentialMem1['email']."</li>";
+        $formatphone = substr($potentialMem1['phone1'],0,3);
+        $formatphone .= "-";
+        $formatphone .= substr($potentialMem1['phone1'],3,3);
+        $formatphone .= "-";
+        $formatphone .= substr($potentialMem1['phone1'],6,4);
+        echo "<li>Phone: ".$formatphone."</li>";
+        echo "<li>Street Address: ".$potentialMem1['streetaddress']."</li>";
+        echo "<li>HOA: ".$potentialMem1['hoa']."</li>";
+        if ($potentialMem1['fulltime'] == 1) {
+              echo "<li>Fulltime: Yes</li>";
+            } else {
+              echo "<li>Fulltime: No</li>";
+            }
+
+
+        echo '</ul>';
+        echo "</div>";
+        if (isset($_POST['addmem2'])) {
+ 
+           echo '<div class="form-grid-div">';
+            echo '<h4>Member 2 Information</h4>';
+            echo '<ul>';
+            echo "<li>First Name: ".$potentialMem2['firstname']."</li>";
+            echo "<li>Last Name: ".$potentialMem2['lastname']."</li>";
+            echo "<li>Email: ".$potentialMem2['email']."</li>";
+            $formatphone = substr($potentialMem2['phone1'],0,3);
+            $formatphone .= "-";
+            $formatphone .= substr($potentialMem2['phone1'],3,3);
+            $formatphone .= "-";
+            $formatphone .= substr($potentialMem2['phone1'],6,4);
+            echo "<li>Phone: ".$formatphone."</li>";
+            echo "<li>Street Address: ".$potentialMem2['streetaddress']."</li>";
+            echo "<li>HOA: ".$potentialMem2['hoa']."</li>";
+            if ($potentialMem2['fulltime'] == 1) {
+              echo "<li>Fulltime: Yes</li>";
+            } else {
+              echo "<li>Fulltime: No</li>";
+            }
+            echo '</ul>';
+            echo '</div>';
+        }
+         echo "</div>";
+         echo '<div class="form-grid4">';
+        echo '<div class="form-grid-div">';
+               echo "</div>";
+        echo '<div class="form-grid-div">';
+        echo '<form method="POST" action="joinconfirm.php">';
+        echo '<div class="form-item">';
+        echo '<br><button   type="submit" name="submitJoinConfirm">CONFIRM AND PROCEED</button>'; 
+        echo '</div>';
+        echo "</div>";
+        echo '</form>';
+        echo '<div class="form-grid-div">';
+
+         echo '<br><button><a  title="Return and Resubmit Info" href="../joinonline.php?resubmit=resubmit">Return and Correct Information</a></button>';
+          echo "</div>";
+      
+
+      ?>
+      
+  
+
+      </div>
+    <footer >
+
+    <?php
+  require '../footer.php';
+?>
+    
+</div> 
+
+</footer>
+</body>
+</html>

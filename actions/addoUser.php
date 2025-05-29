@@ -66,7 +66,7 @@ $toCC5 = $volunteerDirector;
        $user->zip = htmlentities($_POST['zip1']); 
 
   
-       $user->phone1 = htmlentities($_POST['phone11']);
+
 
        $user->fulltime = htmlentities($_POST['fulltime1']);
     //    $user->directorylist = 1;
@@ -153,7 +153,7 @@ $toCC5 = $volunteerDirector;
     $pass2 = $_POST['initPass22'];
     $user->email = $_POST['email2'];
     $user->role = $_POST['role2'];
-    $user->phone1 = $_POST['phone12'];
+
   
     $passHash = password_hash($user->password, PASSWORD_DEFAULT);
     $user->password = $passHash;
@@ -171,11 +171,12 @@ $toCC5 = $volunteerDirector;
     $reformatphone .= substr($_POST['phone12'],3,3);
      $reformatphone .= '-';
      $reformatphone .= substr($_POST['phone12'],6,4);
-     $user->directorylist = $_POST['directorylist2'];
+
     $user->phone1 = $reformatphone;
 
     $user->fulltime = htmlentities($_POST['fulltime2']);
     // $user->directorylist = 1;
+    $user->directorylist = $_POST['directorylist2'];
     $formerUser = "no";
     if ($userArchive->getUserName($user->username, $user->email)) {
        $formerUser = "yes";

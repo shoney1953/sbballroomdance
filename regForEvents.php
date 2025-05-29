@@ -22,6 +22,7 @@ $compareDate = $currentDate->format('Y-m-d');
     <title>Register for Events</title>
 </head>
 <body>
+
     <nav class="nav">
         <div class="container">
         
@@ -159,7 +160,7 @@ $compareDate = $currentDate->format('Y-m-d');
              echo '<div class="form-grid">';
 
              echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Select?</h4>';
+                echo '<h4 class="form-item-title-emp">Click to Register</h4>';
                $chkboxID = "ev".$event['id'];
                echo "<input type='checkbox' name='$chkboxID'>";
               echo '</div>';
@@ -242,7 +243,7 @@ $compareDate = $currentDate->format('Y-m-d');
                 } 
      
             echo '<div class="form-item">';
-            echo '<h4 class="form-item-title">Event Message</h4>';
+            echo '<h4 class="form-item-title">Message to Event Coordinator</h4>';
             $messID = "mess".$event['id'];
             echo "<textarea name='$messID' cols='35' rows='1'></textarea>";
             // echo '</div>';
