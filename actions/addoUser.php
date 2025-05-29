@@ -52,7 +52,7 @@ $toCC5 = $volunteerDirector;
 
     $user->phone1 = $reformatphone;
 
-
+  
        $passHash = password_hash($user->password, PASSWORD_DEFAULT);
        $user->password = $passHash;
        $user->firstname = htmlentities($_POST['firstname1']);
@@ -64,10 +64,8 @@ $toCC5 = $volunteerDirector;
        $user->city = htmlentities($_POST['city1']); 
        $user->state = htmlentities($_POST['state1']); 
        $user->zip = htmlentities($_POST['zip1']); 
-
+       $user->directorylist = ($_POST['directorylist1']);
   
-
-
        $user->fulltime = htmlentities($_POST['fulltime1']);
     //    $user->directorylist = 1;
        $formerUser = "no";

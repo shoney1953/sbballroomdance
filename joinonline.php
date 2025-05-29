@@ -15,14 +15,24 @@ session_start();
     $err_switch = 1;
     unset($_GET['resubmit']);
 } 
+if ($err_switch != 1) {
+  $_SESSION['potentialMember1'] = [];
+  $_SESSION['potentialMember2'] = [];
+  $_SESSION['memsameaddr'] = '';
+}
 $potentialmember1 = [];
 $potentialmember2 = [];
-if (isset($_SESSION['potentialMember1'])) {
-  $potentialmember1 = $_SESSION['potentialMember1']; 
+if ($err_switch == 1) {
+  if (isset($_SESSION['potentialMember1'])) {
+    $potentialmember1 = $_SESSION['potentialMember1']; 
+
+  }
+  if (isset($_SESSION['potentialMember2'])) {
+    $potentialmember2 = $_SESSION['potentialMember2']; 
+  }
 }
-if (isset($_SESSION['potentialMember2'])) {
-  $potentialmember2 = $_SESSION['potentialMember2']; 
-}
+
+
 
 
 $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI']; 
@@ -71,10 +81,11 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
     <div class="container-section ">
  
 
-   <h1>Join Our Club Today</h1>
-   <h2>Enter Your Information and Click to Submit Membership Information to Join</h2>
+
+   <h1>To Join, enter your (and your partner's) information, and click the button to submit membership information.</h1>
    
   <?php
+
    echo '<div class="form-container">';
            echo '<form method="POST" action="actions/join.php">';
            echo '<table>' ;
@@ -180,12 +191,37 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
         }
       ?>
       </div> 
+       <div class="form-item">
+      <h4 class="form-item-title">Member 1 Directory List?</h4>
+      <select name = "directorylist1">
+      <?php
+ 
+        if ($err_switch === 1) { 
+          if ($potentialmember1['directorylist'] == 1) {
+             echo '<option value = "1" selected>List in Directory</option>';
+             echo '<option value = "0">Omit from Directory</option>';
+          } else {
+            echo '<option value = "0" selected>Omit from Directory</option>';
+            echo '<option value = "1">List in Directory</option>';
+          }
+         } else {
+          echo '<option value = "1">List in Directory</option>';
+          echo '<option value = "0">Omit from Directory</option>';
+         }
 
+      ?>
+      </select>
+      </div>
       <div class="form-item">
       <h4 class="form-item-title">Member 1 SaddleBrooke Street Address</h4>
       <?php
-        if ($err_switch === 1) {
-           echo "<input type='text' name='streetaddress1' required value=".$potentialmember1['streetaddress']." >";
+      $sta = '';
+   
+
+        if ($err_switch == 1) {
+          //  echo "<input type='text' name='streetaddress1' required value=".$potentialmember1['streetaddress']." >";
+          $sta = $potentialmember1['streetaddress'];
+          echo '<input type="text" name="streetaddress1" required value="'.$sta.'" >';
         } else {
           echo '<input type="text" name="streetaddress1" required >';
         }
@@ -233,6 +269,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
       ?>
       </select>
       </div>
+
 
     </div>
     <div class="form-grid-div">
@@ -332,6 +369,37 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
       }
        ?>
       </div> 
+
+      <div class="form-item">
+      <h4 class="form-item-title">Member 2 Directory List?</h4>
+      <select name = "directorylist2">
+      <?php
+
+       if ($potentialmember2) {
+       
+        if ($err_switch === 1) { 
+          if ($potentialmember2['directorylist'] == 1) {
+             echo '<option value = "1" selected>List in Directory</option>';
+             echo '<option value = "0">Omit from Directory</option>';
+          } else {
+            echo '<option value = "0" selected>Omit from Directory</option>';
+            echo '<option value = "1">List in Directory</option>';
+          }
+        }  else {
+            echo '<option value = "1">List in Directory</option>';
+            echo '<option value = "0">Omit from Directory</option>'; 
+        }
+        } else {
+              echo '<option value = "1">List in Directory</option>';
+              echo '<option value = "0">Omit from Directory</option>';
+           
+        }
+
+         
+
+      ?>
+      </select>
+      </select>
       <div class="form-item">
       <h4 class="form-item-title">Same Address</h4>
         <?php 
@@ -358,8 +426,10 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
       <h4 class="form-item-title">Member 2 SaddleBrooke Street Address</h4>
       <?php
       if ($potentialmember2) {
+        $sta2 = '';
+        $sta2 = $potentialmember2['streetaddress'];
          if ($err_switch === 1) {
-           echo "<input type='text' name='streetaddress2' value=".$potentialmember2['streetaddress']."  >";
+           echo '<input type="text" name="streetaddress2" value="'.$sta2.'"  >';
          } 
                else {
           echo '<input type="text" name="streetaddress2"  >';
@@ -432,7 +502,10 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
 
       </select>
       </div>
+      
+      </div>
     </div>
+   
     </div>
     <?php
      echo '<input type="hidden"  name="city1"   value="Tucson" >';

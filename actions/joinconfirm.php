@@ -23,138 +23,16 @@ header('Content-Type: application/json');
 $stripe = new \Stripe\StripeClient($stripeSecretKey);
 $_SESSION['partialyearmem'] = 0;
 $memberProducts = $_SESSION['memberproducts'];
-$_SESSTION['potentialMem1'] = [];
-$_SESSTION['potentialMem2'] = [];
 $potentialMem1 = $_SESSION['potentialMember1'];
 $potentialMem2 = $_SESSION['potentialMember2'];
+
 $database = new Database();
 $db = $database->connect();
 $paymentcustomer = new PaymentCustomer($db);
 $chargeProductID = $_SESSION['chargeProductID'];
 $chargePriceID = $_SESSION['chargePriceID'];
-// $_SESSION['addmem2'] = 'NO';
-// $_SESSION['memsameadd'] = 'NO';
+
 if (isset($_POST['submitJoinConfirm'])) {
-//   if (isset($_POST['discyear'])) {
-//       $chargeProductID = $_POST['indproddiscid'];
-//        $chargePriceID = trim($_POST['indpricediscid']);
-//        $_SESSION['partialyearmem'] = 1;
-//     } else {
-//       $chargeProductID = $_POST['indprodid'];
-//       $chargePriceID = trim($_POST['indpriceid']);
-//   }
-
-//   if (isset($_POST['firstname1'])) {
-//     $potentialMem1['firstname'] = $_POST['firstname1'];
-//   }
-//   if (isset($_POST['lastname1'])) {
-//     $potentialMem1['lastname'] = $_POST['lastname1'];
-//   }
-//   if (isset($_POST['email1'])) {
-//     $potentialMem1['email'] = $_POST['email1'];
-//   }  
-//   if (isset($_POST['phone1'])) {
-//     $potentialMem1['phone1'] = $_POST['phone1'];
-//   }
-//   if (isset($_POST['streetaddress1'])) {
-//     $potentialMem1['streetaddress'] = $_POST['streetaddress1'];
-//   } 
-//   if (isset($_POST['state1'])) {
-//     $potentialMem1['state'] = $_POST['state1'];
-//   }
-//   if (isset($_POST['city1'])) {
-//     $potentialMem1['city'] = $_POST['city1'];
-//   } 
-//   if (isset($_POST['zip1'])) {
-//     $potentialMem1['zip'] = $_POST['zip1'];
-//   }
-//   if (isset($_POST['hoa1'])) {
-//     $potentialMem1['hoa'] = $_POST['hoa1'];
-//   }
-//   if (isset($_POST['fulltime1'])) {
-//     $potentialMem1['fulltime'] = $_POST['fulltime1'];
-//   }
-//   if (isset($_POST['directorylist1'])) {
-//       $potentialMem1['directorylist'] = $_POST['directorylist1'];
-//     }
-//   //
-//   // 2nd member specified
-//   //
-//   if (isset($_POST['addmem2'])) {
-    
-//    if (isset($_POST['firstname2'])) {
-//     if ($_POST['firstname2'] !== ' ') {
-//     if (isset($_POST['discyear'])) {
-//         $chargeProductID = $_POST['coupleproddiscid'];
-//         $chargePriceID = trim($_POST['couplepricediscid']);
-//     } else {
-//           $chargeProductID = $_POST['coupleprodid'];
-//         $chargePriceID = trim($_POST['couplepriceid']);
-//     }
-//      $potentialMem2['firstname'] = $_POST['firstname2'];
-   
-//     if (isset($_POST['lastname2'])) {
-//       $potentialMem2['lastname'] = $_POST['lastname2'];
-    
-//     }
-//     if (isset($_POST['email2'])) {
-//       $potentialMem2['email'] = $_POST['email2'];
-//     }  
-//     if (isset($_POST['phone2'])) {
-//       $potentialMem2['phone1'] = $_POST['phone2'];
-//     }
-//       if (isset($_POST['directorylist2'])) {
-//       $potentialMem2['directorylist'] = $_POST['directorylist2'];
-//     }
-
-//     if (isset($_POST['mem2sameaddr'])) {
- 
-//         if (isset($_POST['streetaddress1'])) {
-//           $potentialMem2['streetaddress'] = $_POST['streetaddress1'];
-//         } 
-//         if (isset($_POST['state1'])) {
-//           $potentialMem2['state'] = $_POST['state1'];
-//         }
-//         if (isset($_POST['city1'])) {
-//           $potentialMem2['city'] = $_POST['city1'];
-//         } 
-//         if (isset($_POST['zip1'])) {
-//           $potentialMem2['zip'] = $_POST['zip1'];
-//         }
-//         if (isset($_POST['hoa1'])) {
-//           $potentialMem2['hoa'] = $_POST['hoa1'];
-//         }
-//         if (isset($_POST['fulltime1'])) {
-//           $potentialMem2['fulltime'] = $_POST['fulltime1'];
-//         }
-//      } else {
-    
-//       if (isset($_POST['streetaddress2'])) {
-//         $potentialMem2['streetaddress'] = $_POST['streetaddress2'];
-//       } 
-//       if (isset($_POST['state2'])) {
-//         $potentialMem2['state'] = $_POST['state2'];
-//       }
-//       if (isset($_POST['city2'])) {
-//         $potentialMem2['city'] = $_POST['city2'];
-//       } 
-//       if (isset($_POST['zip2'])) {
-//         $potentialMem2['zip'] = $_POST['zip2'];
-//       }
-//       if (isset($_POST['hoa2'])) {
-//         $potentialMem2['hoa'] = $_POST['hoa2'];
-//       }
-//       if (isset($_POST['fulltime2'])) {
-//         $potentialMem2['fulltime'] = $_POST['fulltime2'];
-//       }
-//     }
-//   }
-//      }
-//   //     
-//    }
-//    $_SESSION['potentialMember1'] = $potentialMem1;
-//    $_SESSION['potentialMember2'] = $potentialMem2;
-
 
 $searchemail = $potentialMem1['email'];
 $qstring = 'email: "'.$searchemail.'"';

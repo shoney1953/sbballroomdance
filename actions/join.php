@@ -35,7 +35,9 @@ $user = new User($db);
 $chargeProductID = '';
 $_SESSION['addmem2'] = 'NO';
 $_SESSION['memsameadd'] = 'NO';
+
 if (isset($_POST['submitMembership'])) {
+
   if (isset($_POST['discyear'])) {
       $chargeProductID = $_POST['indproddiscid'];
        $chargePriceID = trim($_POST['indpricediscid']);
@@ -77,13 +79,16 @@ if (isset($_POST['submitMembership'])) {
 
     $potentialMem1['fulltime'] = $_POST['fulltime1'];
   }
+
   if (isset($_POST['directorylist1'])) {
       $potentialMem1['directorylist'] = $_POST['directorylist1'];
     }
   //
   // 2nd member specified
   //
+  
   if (isset($_POST['addmem2'])) {
+
     $_SESSION['addmem2'] =  'YES' ;
    if (isset($_POST['firstname2'])) {
     if ($_POST['firstname2'] !== ' ') {
@@ -108,8 +113,10 @@ if (isset($_POST['submitMembership'])) {
     if (isset($_POST['phone2'])) {
       $potentialMem2['phone1'] = $_POST['phone2'];
     }
+
       if (isset($_POST['directorylist2'])) {
       $potentialMem2['directorylist'] = $_POST['directorylist2'];
+ 
     }
 
     if (isset($_POST['mem2sameaddr'])) {
@@ -159,6 +166,7 @@ if (isset($_POST['submitMembership'])) {
    }
    $_SESSION['potentialMember1'] = $potentialMem1;
    $_SESSION['potentialMember2'] = $potentialMem2;
+
     $user->email = $potentialMem1['email'];
     $user->username = $potentialMem1['email'];
 
@@ -188,6 +196,7 @@ if (isset($_POST['submitMembership'])) {
         exit;  
     } 
     if (isset($_POST['mem2sameaddr'])) {
+
        $user->email = $potentialMem2['email'];
         $user->username = $potentialMem2['email'];
         if (filter_var($user->email, FILTER_VALIDATE_EMAIL)) {
@@ -271,7 +280,11 @@ $formatphone = '';
             } else {
               echo "<li>Fulltime: No</li>";
             }
-
+        if ($potentialMem1['directorylist'] == 1) {
+              echo "<li>Directory List: Yes</li>";
+            } else {
+              echo "<li>Directory List: No</li>";
+            }
 
         echo '</ul>';
         echo "</div>";
@@ -295,6 +308,12 @@ $formatphone = '';
               echo "<li>Fulltime: Yes</li>";
             } else {
               echo "<li>Fulltime: No</li>";
+            }
+    
+            if ($potentialMem2['directorylist'] == 1) {
+              echo "<li>Directory List: Yes</li>";
+            } else {
+              echo "<li>Directory List: No</li>";
             }
             echo '</ul>';
             echo '</div>';

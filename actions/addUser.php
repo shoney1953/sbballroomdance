@@ -54,6 +54,9 @@ if (isset($_POST['submitAddUser'])) {
     $user->zip = $_POST['zip'];
     $user->phone1 = $_POST['phone1'];
     $user->phone2 = $_POST['phone2'];
+    $user->directorylist = $_POST['directorylist'];
+    
+
 
     
     $user->notes = $_POST['notes'];
@@ -103,7 +106,7 @@ if (isset($_POST['submitAddUser'])) {
        $user->phone1 = htmlentities($_POST['phone1']);
        $user->phone2 = htmlentities($_POST['phone2']);
        $user->fulltime = htmlentities($_POST['fulltime']);
-       $user->directorylist = 1;
+    //    $user->directorylist = 1;
        $formerUser = "no";
        if ($userArchive->getUserName($user->username, $user->email)) {
           $formerUser = "yes";
@@ -126,7 +129,7 @@ if (isset($_POST['submitAddUser'])) {
 
        $replyTopic = "Welcome";
        $replyEmail = 'sheila_honey_5@hotmail.com';
-/
+
    require '../includes/welcomeText.php';
    require '../includes/emailSignature.php';
 

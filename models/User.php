@@ -338,8 +338,7 @@ class User {
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
-       
-
+  
           // Clean data
           $this->firstname = htmlspecialchars(strip_tags($this->firstname));
           $this->lastname = htmlspecialchars(strip_tags($this->lastname));
@@ -355,7 +354,7 @@ class User {
           $this->phone1 = htmlspecialchars(strip_tags($this->phone1));
           $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
           $this->zip = htmlspecialchars(strip_tags($this->zip));
-          $this->directorylist = 1;
+          $this->directorylist = $this->directorylist;
           $this->fulltime = $this->fulltime;
 
 

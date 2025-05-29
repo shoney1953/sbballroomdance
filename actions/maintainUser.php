@@ -98,13 +98,13 @@ if (isset($_POST['submitAddUser'])) {
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Primary Phone</h4>';
-            echo '<input type="tel" title="Member primary phone with dashes" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" name="phone1" ><br>';
+            echo '<input type="tel" title="Member primary phone with dashes" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone1" ><br>';
       
             echo '</div>'; 
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Secondary Phone</h4>';
-            echo '<input type="tel" title="Member secondary phone with dashes" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" name="phone2" ><br>';
+            echo '<input type="tel" title="Member secondary phone with dashes" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone2" ><br>';
           
             echo '</div>'; 
 
@@ -142,7 +142,13 @@ if (isset($_POST['submitAddUser'])) {
             echo '<option value = "0">Gone for the Summer</option>';
             echo '</select>';
             echo '</div>';
-
+            echo '<div class="form-item">';
+            echo '<h4 class="form-item-title">Directory List?</h4>';
+            echo '<select name = "directorylist">';
+            echo '<option value = "1">Yes</option>';
+            echo '<option value = "0">Omit from Directory</option>';
+            echo '</select>';
+            echo '</div>';
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Role</h4>';
             echo "<select name = 'role'>";
