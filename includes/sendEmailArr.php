@@ -98,7 +98,6 @@ function sendEmailArray(
 
         $mail->send();
 
-        echo "Message has been sent<br>";
      
      
     } catch (Exception $e) {

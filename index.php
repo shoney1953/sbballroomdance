@@ -30,7 +30,7 @@ $_SESSION['upcoming_eventnumber'] = 0;
 $option_item = [];
 
 $_SESSION['user'] = null;
-
+$_SESSION['joiningonline'] = 'NO';
 $_SESSION['numupcomingclasses'] = 0;
 date_default_timezone_set("America/Phoenix");
 $num_classes = 0;
@@ -358,13 +358,15 @@ if ($rowCount > 0) {
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
         if (isset($_SESSION['role'])) {
             echo ' <li><a  title="Logout from the Website" style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
-        
+        if (isset($_SESSION['testmode'])) {
          if ($_SESSION['renewThisYear'] === 1)  {
                         echo '<li><a class="menu-blink" title="Renew Your Membership"  style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew For '.$current_year.'</a></li>';  
-            }
+            } else {
         if ($_SESSION['renewNextYear'] === 1) {
                         echo '<li><a class="menu-blink" title="Renew Your Membership"  style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew For '.$next_year.'</a></li>';  
             }
+          }
+        }
         }
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {

@@ -1,9 +1,254 @@
 <?php
 session_start();
+require_once 'includes/sendEmail.php';
+require_once 'includes/siteemails.php';
+require_once 'config/Database.php';
+require_once 'models/User.php';
+require_once 'models/UserArchive.php';
+require_once 'models/MemberPaid.php';
+date_default_timezone_set("America/Phoenix");
 $potentialMember1 = $_SESSION['potentialMember1'];
 $potentialMember2 = $_SESSION['potentialMember2'];
+$_SESSION['joiningonline'] = 'YES';
+$database = new Database();
+$db = $database->connect();
+$user = new User($db);
+$userArchive = new UserArchive($db);
+$member1ID = 0;
+$member2ID = 0;
+$nextYear = date('Y', strtotime('+1 year'));
+$current_month = date('m');
+$current_year = date('Y');
+
+$toCC3 = $webmaster; 
+// $toCC2 = '';
+// $toCC4 = '';
+// $toCC5 = '';
+
+$fromCC = '';
+
+
+$toCC2 = $president;
+$toCC4 = $vicePresident;
+$toCC5 = $volunteerDirector; 
+
+// $fromCC = $secretary; // leave commented
+        $userdefault1 = ucfirst($potentialMember1['firstname']).ucfirst(substr($potentialMember1['lastname'],0,1));
+        $roledefault = 'MEMBER';
+        $passdefault = 'test1234'; 
+    $user->firstname = $potentialMember1['firstname'];
+    $user->lastname = $potentialMember1['lastname'];
+    $user->username = $userdefault1;
+    $user->password = $passdefault;
+    $pass2 = $passdefault;
+    $passHash = password_hash($user->password, PASSWORD_DEFAULT);
+    $user->password = $passHash;
+    $user->email = $potentialMember1['email'];
+    $user->role = $roledefault;
+    $user->streetAddress = $potentialMember1['streetaddress'];
+    $user->city = $potentialMember1['city'];
+    $user->state = $potentialMember1['state'];
+    $user->zip = $potentialMember1['zip'];
+    $reformatphone = substr($potentialMember1['phone1'],0,3);
+    $reformatphone .= '-';
+    $reformatphone .= substr($potentialMember1['phone1'],3,3);
+     $reformatphone .= '-';
+     $reformatphone .= substr($potentialMember1['phone1'],6,4);
+
+    $user->phone1 = $reformatphone;
+
+
+       $user->directorylist = $potentialMember1['directorylist'];
+  
+       $user->fulltime = $potentialMember1['fulltime'];
+       $user->hoa = $potentialMember1['hoa'];
+
+       $formerUser = "no";
+       if ($userArchive->getUserName($user->username, $user->email)) {
+          $formerUser = "yes";
+          $userArchive->deleteUser($user->username, $user->email);
+       }
+       
+ 
+
+       $fromEmailName = 'SBDC Ballroom Dance Club';
+       $toName = $user->firstname.' '.$user->lastname; 
+       $member1Full = $toName;
+       if ($formerUser === 'yes') {
+        $mailSubject = 'Thanks '.$toName.' for Returning to us Online at SaddleBrooke Ballroom Dance Club!';
+       } else {
+        $mailSubject = 'Thanks '.$toName.' for Joining us Online at the SaddleBrooke Ballroom Dance Club!';
+       }
+
+       $replyTopic = "Welcome";
+       $replyEmail = $webmaster;
+
+   require 'includes/welcomeText.php';
+   require 'includes/emailSignature.php';
+
+
+
+        sendEmail(
+            $user->email, 
+            $toName, 
+            $fromCC,
+            $fromEmailName,
+            $emailBody,
+            $mailSubject,
+            $replyEmail,
+            $replyTopic,
+            $mailAttachment,
+            $toCC2,
+            $toCC3,
+            $toCC4,
+            $toCC5
+        );
+
+    $user->create();
+    $member1ID = $db->lastInsertId();
+
+    $memberPaid = new MemberPaid($db);
+    $memberPaid->userid = $member1ID;
+    $memberPaid->paid = 1; // mark paid
+    $memberPaid->year = date("Y");
+    $memberPaid->create();
+    // create a membership record for next year
+    //if in the discount period, they can do only the current year, or current plus next
+    if ((int)$current_month >= $_SESSION['discountmonth']) {
+      if ($_SESSION['partialyearmem'] === 1) {
+            $memberPaid->year = date('Y', strtotime('+1 year'));
+            $memberPaid->paid = 0; // mark not paid
+            $memberPaid->create();
+      } else {
+            $memberPaid->year = date('Y', strtotime('+1 year'));
+            $memberPaid->paid = 1; // mark paid
+            $memberPaid->create();
+      } 
+    } else {
+          $memberPaid->year = date('Y', strtotime('+1 year'));
+          $memberPaid->paid = 0; // mark not paid
+          $memberPaid->create();
+
+    }
+
+
+    // ---------------------- MEMBER 2
+    if (isset($potentialMember2['firstname'])) {
+        $userdefault = ucfirst($potentialMember2['firstname']).ucfirst(substr($potentialMember2['lastname'],0,1));
+        $roledefault = 'MEMBER';
+        $passdefault = 'test1234'; 
+    $user->firstname = $potentialMember2['firstname'];
+    $user->lastname = $potentialMember2['lastname'];
+    $user->username = $userdefault;
+    $user->password = $passdefault;
+    $pass2 = $passdefault;
+    $passHash = password_hash($user->password, PASSWORD_DEFAULT);
+    $user->password = $passHash;
+    $user->email = $potentialMember2['email'];
+    $user->role = $roledefault;
+    $user->email = $potentialMember2['email'];
+    $user->streetAddress = $potentialMember2['streetaddress'];
+    $user->city = $potentialMember2['city'];
+    $user->state = $potentialMember2['state'];
+    $user->zip = $potentialMember2['zip'];
+    $reformatphone = substr($potentialMember2['phone1'],0,3);
+    $reformatphone .= '-';
+    $reformatphone .= substr($potentialMember2['phone1'],3,3);
+     $reformatphone .= '-';
+     $reformatphone .= substr($potentialMember2['phone1'],6,4);
+
+    $user->phone1 = $reformatphone;
+
+    $user->fulltime = $potentialMember2['fulltime'];
+    // $user->directorylist = 1;
+    $user->directorylist = $potentialMember2['directorylist'];
+    $user->hoa = $potentialMember2['hoa'];
+ 
+    $formerUser = "no";
+    if ($userArchive->getUserName($user->username, $user->email)) {
+       $formerUser = "yes";
+       $userArchive->deleteUser($user->username, $user->email);
+    }
+    
+ 
+
+    $fromEmailName = 'SBDC Ballroom Dance Club';
+    $toName = $user->firstname.' '.$user->lastname; 
+    $member2Full = $toName;
+    if ($formerUser === 'yes') {
+     $mailSubject = "Thanks ".$toName." for Returning to us Online at SaddleBrooke Ballroom Dance Club!";
+    } else {
+     $mailSubject = "Thanks ".$toName." for Joining us Online at the SaddleBrooke Ballroom Dance Club!";
+    }
+
+    $replyTopic = "Welcome";
+    $replyEmail = $webmaster;
+
+require 'includes/welcomeText.php';
+require 'includes/emailSignature.php';
+
+
+
+     sendEmail(
+         $user->email, 
+         $toName, 
+         $fromCC,
+         $fromEmailName,
+         $emailBody,
+         $mailSubject,
+         $replyEmail,
+         $replyTopic,
+         $mailAttachment,
+         $toCC2,
+         $toCC3,
+         $toCC4,
+         $toCC5
+     );
+ 
+ $user->create();
+ $member2ID = $db->lastInsertId();
+
+ $memberPaid = new MemberPaid($db);
+ $memberPaid->userid = $member2ID;
+ $memberPaid->paid = 1; // mark paid
+ $memberPaid->year = date("Y");
+ $memberPaid->create();
+ // create a membership record for next year
+  //if in the discount period, they can do only the current year, or current plus next
+    if ((int)$current_month >= $_SESSION['discountmonth']) {
+      if ($_SESSION['partialyearmem'] === 1) {
+            $memberPaid->year = date('Y', strtotime('+1 year'));
+            $memberPaid->paid = 0; // mark not paid
+            $memberPaid->create();
+      } else {
+            $memberPaid->year = date('Y', strtotime('+1 year'));
+            $memberPaid->paid = 1; // mark paid
+            $memberPaid->create();
+      } 
+    } else {
+          $memberPaid->year = date('Y', strtotime('+1 year'));
+          $memberPaid->paid = 0; // mark not paid
+          $memberPaid->create();
+
+    }
+
+
+ // cross reference partners
+ $user->id = $member1ID;
+ $user->partnerId = $member2ID;
+ $user->notes = "Partner Name is: ".$member2Full."";
+ $user->updatePartnerID();
+
+ $user->id = $member2ID;
+ $user->partnerId = $member1ID;
+ $user->notes = "Partner Name is: ".$member1Full."";
+ $user->updatePartnerID();
+    }  
+
+
 
 $_SESSION['successurl'] = $_SERVER['REQUEST_URI'];
+$_SESSION['joiningonline'] = 'NO';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +259,10 @@ $_SESSION['successurl'] = $_SERVER['REQUEST_URI'];
     <link rel="stylesheet" href="css/style.css">     
     
 </script>
-    <title>Successful Membership</title>
+    <title>SBDC Successful Membership</title>
 </head>
 <body>
+    <div class="content">
     <nav class="nav">
         <div class="container">
         
@@ -27,84 +273,29 @@ $_SESSION['successurl'] = $_SERVER['REQUEST_URI'];
     </nav>
     <section id="joinSuccessful" class="content">
 
-    
-        <?php
 
-        $userdefault = ucfirst($potentialMember1['firstname']).ucfirst(substr($potentialMember1['lastname'],0,1));
-        $roledefault = 'MEMBER';
-        $passdefault = 'test1234'; 
-
-            echo "<form method='POST' name='hiddenForm1' id ='hiddenForm1' action='actions/addoUser.php'>";
-            
-            echo "<input type='hidden' name='firstname1' value='".$potentialMember1['firstname']."'>";
-            echo "<input type='hidden' name='lastname1' value='".$potentialMember1['lastname']."'>";
-            echo "<input type='hidden' name='email1' value='".$potentialMember1['email']."'>";
-            echo "<input type='hidden' name='username1' value='".$userdefault."'>";
-            echo "<input type='hidden' name='phone11' value='".$potentialMember1['phone1']."'>";
-            echo "<input type='hidden' name='streetaddress1' value='".$potentialMember1['streetaddress']."'>";
-            echo "<input type='hidden' name='city1' value='".$potentialMember1['city']."'>";
-            echo "<input type='hidden' name='state1' value='".$potentialMember1['state']."'>";
-            echo "<input type='hidden' name='zip1' value='".$potentialMember1['zip']."'>";
-            echo "<input type='hidden' name = 'hoa1' value='".$potentialMember1['hoa']."'>";
-             echo "<input type='hidden' name = 'directorylist1' value='".$potentialMember1['directorylist']."'>";
-            echo "<input type='hidden' name = 'fulltime1' value='".$potentialMember1['fulltime']."'>";
-            echo "<input type='hidden' name = 'role1' value='".$roledefault."'>";
-            echo "<input type='hidden' name='initPass1'  value='".$passdefault."' >";
-            echo "<input type='hidden' name='initPass21'  value='".$passdefault."'>";    
-       
-
-            if (count($potentialMember2) > 0) {
-          
-                $userdefault = ucfirst($potentialMember2['firstname']).ucfirst(substr($potentialMember2['lastname'],0,1));
-        
-                echo "<input type='hidden' name='firstname2' value='".$potentialMember2['firstname']."'>";
-                echo "<input type='hidden' name='lastname2' value='".$potentialMember2['lastname']."'>";
-                echo "<input type='hidden' name='email2' value='".$potentialMember2['email']."'>";
-                echo "<input type='hidden' name='username2' value='".$userdefault."'>";
-                echo "<input type='hidden' name='phone12' value='".$potentialMember2['phone1']."'>";
-                echo "<input type='hidden' name='streetaddress2' value='".$potentialMember2['streetaddress']."'>";
-                echo "<input type='hidden' name='city2' value='".$potentialMember2['city']."'>";
-                echo "<input type='hidden' name='state2' value='".$potentialMember2['state']."'>";
-                echo "<input type='hidden' name='zip2' value='".$potentialMember2['zip']."'>";
-                echo "<input type='hidden' name = 'hoa2' value='".$potentialMember2['hoa']."'>";
-                echo "<input type='hidden' name = 'fulltime2' value='".$potentialMember2['fulltime']."'>";
-                 echo "<input type='hidden' name = 'directorylist2' value='".$potentialMember2['directorylist']."'>";
-                echo "<input type='hidden' name = 'role2' value='".$roledefault."'>";
-                echo "<input type='hidden' name='initPass2'  value='".$passdefault."' >";
-                echo "<input type='hidden' name='initPass22'  value='".$passdefault."'>";
-   
-            }
-            echo "</form>";
-            echo "<script>";
-            echo 'function submitForm1() {
-                let form1 = document.getElementById("hiddenForm1");
-                form1.submit();
-             
-            }';
-            echo "</script>";
-  
-     
-       ?>
            <br><br><br>
     <div class="container-section ">
       <h1>You have successfully joined the Saddlebrooke Ballroom Dance Club!</h1>
-      <h3>Your payment has been successfully processed, and should show SaddleBrooke Ballroom Dance Club on your statement</h3>
+      <h2>We are excited to have you in the club!</h2>
 
-      <h3 style="color: red"><em>BUT THERE'S ONE MORE STEP REQUIRED: </em></h3>
-      <h3>You MUST click the button below to finish membership setup for yourself and your partner if you have one</h3>
-      
-      <h5>Your Password will initally be "test1234" and your userid will be the email you joined with or</h5>
-      <h5>Your first name with the first inital capitalized, followed by the first inital of your last name capitalized.</h5>
-      <h3>The process generates emails, and will take a few moments. Please be patient while we complete the setup.</h3>
+      <h3>Your payment has been successfully processed, and should show SaddleBrooke Ballroom on your statement</h3>
+    <?php
+      echo '<h3 style="color: red"><em>NOTE</em>: Your Password will initally be<em> "test1234".</em><h3>';
+      echo '<h3 style="color: red">Your userid will be the email you joined with: <em>"'.$potentialMember1['email'].'" or "'.$userdefault1.'" <em></h3>';
+      ?>
+     <h3>Please return to the home screen and login to begin enjoying the benefits of our club</h3>
+    
       <br>
-      <h3>You will be returned to the home page when the setup is complete.</h3>
-      <br>
-      <button><a href="#" onclick="submitForm1()">Click Me to Finish Signing Up! I'll go set your membership(s) for the website!</a>         
-        </button> 
+
        
               <br><br><br>
     </div>
 
     </section>
+    </div>
+    <?php
+  require 'footer.php';
+?>
 </body>
 </html>

@@ -40,7 +40,7 @@
     
    
   } // end of for each
-  echo '<button type="submit" name="submitUpdate">Update Event(s)</button><br>';
+  echo '<button type="submit" name="submitUpdate">Update Options</button><br>';
     echo '</form>';
    
   }

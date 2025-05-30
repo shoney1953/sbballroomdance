@@ -1,10 +1,16 @@
  <?php
+    
       $actLink
            = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
        Click to view Activities Calendar</a><br>";
        $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
-       $mailAttachment = "../img/Member Guide to Website Version 2.pdf"; 
+      if ($_SESSION['joiningonline'] === 'YES') {
+             $mailAttachment = "img/Member Guide to Website Version 2.pdf"; 
+      } else {
+              $mailAttachment = "../img/Member Guide to Website Version 2.pdf"; 
+      }
+       
  
        if ($formerUser === 'yes') {
         $emailBody = "<br>Welcome back <b> $toName </b> as a returning member 

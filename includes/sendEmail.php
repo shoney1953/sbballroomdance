@@ -2,7 +2,8 @@
 require 'PHPMailer.php';
 require 'SMTP.php';
 require 'Exception.php';
-require_once '../config/env.php';
+// require_once '../config/env.php';
+$_SESSION['mailpwd'] = '$2023mail4SBDC';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -91,7 +92,7 @@ function sendEmail($toEmail,
 
         $mail->send();
 
-        echo "Message has been sent<br>";
+     
      
      
     } catch (Exception $e) {
