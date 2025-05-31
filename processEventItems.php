@@ -29,7 +29,7 @@ if ($csvEvent) {
       echo "<form  name='csvEventForm'   method='POST' action='csvEvent.php'> ";
       echo "<input type='hidden' name='eventId' value='".$event['id']."'>"; 
       echo '<script language="JavaScript">document.csvEventForm.submit();</script></form>';
-      unset($_POST["$rpChk"]);
+      unset($_POST["$cvChk"]);
       break;
     }
      

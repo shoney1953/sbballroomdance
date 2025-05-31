@@ -4,21 +4,25 @@ session_start();
   require_once 'models/PaymentCustomer.php';
   require_once 'models/PaymentProduct.php';
   $err_switch = 0;
+
+if (isset($_GET['resubmit'])) {
+    $err_switch = 1;
+    unset($_GET['resubmit']);
+} 
+
   if (isset($_GET['error'])) {
+ 
     echo '<div class="container-error">';
     echo '<br><br><br><h3 class="error"> ERROR:  '.$_GET['error'].'.<br> Please Reenter Data or Check to see if you are already a member.</h3><br>';
     echo '</div>';
     $err_switch = 1;
     unset($_GET['error']);
-} 
-  if (isset($_GET['resubmit'])) {
-    $err_switch = 1;
-    unset($_GET['resubmit']);
-} 
+}  
 if ($err_switch != 1) {
   $_SESSION['potentialMember1'] = [];
   $_SESSION['potentialMember2'] = [];
   $_SESSION['memsameaddr'] = '';
+   $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI']; 
 }
 $potentialmember1 = [];
 $potentialmember2 = [];
@@ -32,10 +36,6 @@ if ($err_switch == 1) {
   }
 }
 
-
-
-
-$_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI']; 
 
   $memberProducts = $_SESSION['memberproducts'];
   $current_year = date('Y');
@@ -92,7 +92,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
            echo '<thead>';
            echo '<tr>';
   
-           echo '<th colspan=3>If you enter two members you will be charged for the couple membership, otherwise the individual price</th>'; 
+           echo '<th colspan=3>If you enter two members you will be charged for the couple membership, otherwise for the individual price.</th>'; 
            echo '</tr>';
           if ((int)$current_month >= $_SESSION['discountmonth']) {
            echo '<tr>';
@@ -141,7 +141,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
     <br>
 
 
-    <div class="form-grid2">
+    <div class="form-grid4">
 
     <div class="form-grid-div">
     <h4>Member One Information will be used for billing</h4>
@@ -221,16 +221,16 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
         if ($err_switch == 1) {
           //  echo "<input type='text' name='streetaddress1' required value=".$potentialmember1['streetaddress']." >";
           $sta = $potentialmember1['streetaddress'];
-          echo '<input type="text" name="streetaddress1" required value="'.$sta.'" >';
+          echo '<input type="text" id="streetaddress1" name="streetaddress1" required value="'.$sta.'" >';
         } else {
-          echo '<input type="text" name="streetaddress1" required >';
+          echo '<input type="text" id="streetaddress1" name="streetaddress1" required >';
         }
       ?>
       </div> 
 
       <div class="form-item">
       <h4 class="form-item-title">Which HOA?</h4>
-      <select name = "hoa1">
+      <select name = "hoa1" id="hoa1">
       <?php
       if ($err_switch === 1) { 
         if ($potentialmember1['hoa'] === 1) {
@@ -250,7 +250,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
       </div>
       <div class="form-item">
       <h4 class="form-item-title">Member 1 Fulltime?</h4>
-      <select name = "fulltime1">
+      <select name = "fulltime1" id="fulltime1">
       <?php
  
         if ($err_switch === 1) { 
@@ -272,9 +272,8 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
 
 
     </div>
-    <div class="form-grid-div">
-      <h4>Member Two</h4>
-      <div class="form-item">
+    <div class="form-grid-div"> 
+        <div class="form-item">
       <h4 class="form-item-title">Add Member2</h4>
       <?php 
       if ($err_switch === 1) {
@@ -286,14 +285,48 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
           }
         } 
          else {
-          echo "<input type='checkbox' name='addmem2'   title='Check to indicate you are adding a second member'>";
+          echo "<input type='checkbox' name='addmem2'  title='Check to indicate you are adding a second member' >";
         }
       } else {
        echo "<input type='checkbox' name='addmem2'   title='Check to indicate you are adding a second member'>";
       }
+
        ?>
 
       </div> 
+        <div class="form-item">
+      <h4 class="form-item-title">Same Address for Member 2</h4>
+        <?php 
+      if ($err_switch === 1) {
+        if (isset($_SESSION['memsameaddr'] )) {
+          if ($_SESSION['memsameaddr'] === 'YES') {
+            
+            echo "<input type='checkbox' id='mem2sameaddr' name='mem2sameaddr' checked  title='Check to indicate same address for member 2'>";
+          } 
+          else {
+              echo "<input type='checkbox' id='mem2sameaddr' name='mem2sameaddr'   title='Check to indicate same address for member 2' onchange='autofill()'>";
+            }
+         }   else {
+          echo "<input type='checkbox' id='mem2sameaddr' name='mem2sameaddr'   title='Check to indicate same address for member 2' onchange='autofill()'>";
+        }
+        
+
+      } else {
+         echo "<input type='checkbox' id='mem2sameaddr' name='mem2sameaddr'   title='Check to indicate same address for member 2' onchange='autofill()'>";
+      }
+                  echo "<script>
+            function autofill(){
+                  document.getElementById('streetaddress2').value=document.getElementById('streetaddress1').value;  
+                   document.getElementById('fulltime2').value=document.getElementById('fulltime1').value;   
+                   document.getElementById('hoa2').value=document.getElementById('hoa1').value;   
+              }
+            </script>";
+       ?>
+      </div> 
+    </div>
+        <div class="form-grid-div">
+      <h4>Member Two</h4>
+    
 
     <div class="form-item">
     <h4 class='form-item-title'>Member 2 First Name</h4>
@@ -399,29 +432,8 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
 
       ?>
       </select>
-      </select>
-      <div class="form-item">
-      <h4 class="form-item-title">Same Address</h4>
-        <?php 
-      if ($err_switch === 1) {
-        if (isset($_SESSION['memsameaddr'] )) {
-          if ($_SESSION['memsameaddr'] === 'YES') {
-            
-            echo "<input type='checkbox' name='mem2sameaddr' checked  title='Check to indicate same address for member 2'>";
-          } 
-          else {
-              echo "<input type='checkbox' name='mem2sameaddr'   title='Check to indicate same address for member 2'>";
-            }
-         }   else {
-          echo "<input type='checkbox' name='mem2sameaddr'   title='Check to indicate same address for member 2'>";
-        }
-        
 
-      } else {
-         echo "<input type='checkbox' name='mem2sameaddr'   title='Check to indicate same address for member 2'>";
-      }
-       ?>
-      </div> 
+    
       <div class="form-item">
       <h4 class="form-item-title">Member 2 SaddleBrooke Street Address</h4>
       <?php
@@ -429,14 +441,14 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
         $sta2 = '';
         $sta2 = $potentialmember2['streetaddress'];
          if ($err_switch === 1) {
-           echo '<input type="text" name="streetaddress2" value="'.$sta2.'"  >';
+           echo '<input type="text"    name="streetaddress2" value="'.$sta2.'"  >';
          } 
                else {
-          echo '<input type="text" name="streetaddress2"  >';
+          echo '<input type="text" id="streetaddress2" name="streetaddress2"  >';
       }
         }
       else {
-          echo '<input type="text" name="streetaddress2"  >';
+          echo '<input type="text" id="streetaddress2" name="streetaddress2"  >';
       }
       ?>
       </div> 
@@ -445,7 +457,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
     ?>
       <div class="form-item">
       <h4 class="form-item-title">Which HOA?</h4>
-      <select name = "hoa2">
+      <select name = "hoa2" id="hoa2">
       <?php
 
       if ($potentialmember2) {
@@ -478,7 +490,7 @@ $_SESSION['joinonlineurl'] = $_SERVER['REQUEST_URI'];
       </div>
       <div class="form-item">
       <h4 class="form-item-title">Member 2 Fulltime?</h4>
-      <select name = "fulltime2">
+      <select name = "fulltime2" id="fulltime2">
         <?php
         if ($potentialmember2) {
             if ($err_switch === 1) { 
