@@ -5,7 +5,12 @@ require_once '../config/Database.php';
 
 require_once '../models/Visitor.php';
 require_once '../models/VisitorsArch.php';
+if (isset($_SESSION['role'])) {
 
+} else {
+   header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 
 
 if (!isset($_SESSION['username']))

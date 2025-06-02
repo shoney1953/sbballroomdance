@@ -28,7 +28,7 @@ $database = new Database();
 $db = $database->connect();
 $user = new User($db);
 $userArchive = new UserArchive($db);
-
+$mailAttachment = '';
 $toCC2 = $president;
 $toCC3 = $webmaster;
 // 

@@ -7,6 +7,7 @@
   $upcomingEvents = $_SESSION['upcoming_events'];
   $eventNumber = $_SESSION['upcoming_eventnumber'];
 date_default_timezone_set("America/Phoenix");
+
 $database = new Database();
 $db = $database->connect();
 $currentDate = new DateTime();
@@ -148,7 +149,7 @@ $compareDate = $currentDate->format('Y-m-d');
               <p>Please note if the event is a Dinner Dance or a Dance Party, there will be a form (click on PRINT) to select meal choices and determine the cost. 
               This should be printed and sent to the treasurer along with payment.
               Their address will appear on the form. If no form exists yet for the event, you will receive an email with the form when it becomes available.
-              As of 2025, for Dance Parties, there will be a minimum charge of $5 per person to attend the dance portion only. Please submit this with the form prior to the date registration ends.
+              As of 2025, for Dance Parties, there will be a minimum charge of $5 per member or $10 per visitor to attend the dance portion only. Please submit this with the form prior to the date registration ends.
               </p><br>';
             
         foreach ($upcomingEvents as $event) {
@@ -252,10 +253,9 @@ $compareDate = $currentDate->format('Y-m-d');
             echo '</div>'; 
               }
         }
-           
-
+          
             echo '<button name="submitEventReg" type="submit">Submit Registration(s)</button><br>';
-    
+
             echo '</form>';
 
             echo '</div>'; 

@@ -6,6 +6,12 @@ require_once '../models/EventRegistration.php';
 require_once '../models/User.php';
 require_once '../models/DinnerMealChoices.php';
 date_default_timezone_set("America/Phoenix");
+if (isset($_SESSION['role'])) {
+
+} else {
+   header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI']; 
 $allEvents = $_SESSION['allEvents'] ;
 if (!isset($_SESSION['username']))

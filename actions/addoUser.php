@@ -18,7 +18,7 @@ $member2ID = 0;
 $nextYear = date('Y', strtotime('+1 year'));
 $current_month = date('m');
 $current_year = date('Y');
-
+$mailAttachment = '';
 $toCC3 = $webmaster; 
 // $toCC2 = '';
 // $toCC4 = '';

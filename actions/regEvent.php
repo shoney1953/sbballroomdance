@@ -137,7 +137,7 @@ if (isset($_POST['submitEventReg'])) {
                     } else {
                         $emailBody .= "You have chosen not to attend dinner before the dance.<br>";
                    
-                         $emailBody .= "As of 2025, there is now a charge of $5 per person for the dance only.<br>";
+                         $emailBody .= "As of 2025, there is now a charge of $5 per member or $10 per visitor for the dance only.<br>";
                          $emailBody .= "Please submit your fee prior to the dance as indicated on the form.<br>";
                          if ($event['eventform']) {
                             $actLink= "<a href='".$event['eventform']."'>

@@ -5,7 +5,12 @@ session_start();
 require_once '../config/Database.php';
 require_once '../models/DanceClass.php';
 require_once '../models/ClassRegistration.php';
+if (isset($_SESSION['role'])) {
 
+} else {
+   header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 
 if (!isset($_SESSION['username']))
 {

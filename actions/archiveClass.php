@@ -6,7 +6,12 @@ require_once '../models/ClassRegistration.php';
 require_once '../models/ClassRegistrationArch.php';
 require_once '../models/DanceClass.php';
 require_once '../models/DanceClassArch.php';
+if (isset($_SESSION['role'])) {
 
+} else {
+   header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 $allClasses = $_SESSION['allClasses'];
 
 

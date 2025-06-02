@@ -4,6 +4,7 @@
   require_once 'models/DanceClass.php';
   require_once 'models/ClassRegistration.php';
   require_once 'models/User.php';
+
   $classes = $_SESSION['classes'];
   $upcomingClasses = $_SESSION['upcoming_classes'];
   

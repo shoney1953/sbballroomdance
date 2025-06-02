@@ -5,6 +5,12 @@ require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
 
 require_once '../models/PaymentProduct.php';
+if (isset($_SESSION['role'])) {
+
+} else {
+   header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
  
    $stripeSecretKey = $_SESSION['prodkey'] ;

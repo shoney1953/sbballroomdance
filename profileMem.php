@@ -105,7 +105,7 @@ if ($rowCount > 0) {
     <div class="container">     
      <ul>
         <li><a href="index.php">Back to Home</a></li>
-        <li><a href="yourProfile">Back to Your Profile</a></li>
+        <li><a href="yourProfile.php">Back to Your Profile</a></li>
 
     </ul>
     </div>

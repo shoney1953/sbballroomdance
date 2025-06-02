@@ -3,13 +3,12 @@
       $actLink
            = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
        Click to view Activities Calendar</a><br>";
-       $webLink
+      $docLink = "<a href='https://drive.google.com/file/d/1P4FHXpaw0oUGfVpCkFnRAroipgOE53s9/view?usp=sharing'> 
+      Click to view Members Guide to the Website</a><br>";
+    
+      $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
-      if ($_SESSION['joiningonline'] === 'YES') {
-             $mailAttachment = "img/Member Guide to Website Version 2.pdf"; 
-      } else {
-              $mailAttachment = "../img/Member Guide to Website Version 2.pdf"; 
-      }
+
        
  
        if ($formerUser === 'yes') {
@@ -20,7 +19,7 @@
         $emailBody = "<br>Welcome <b> $toName </b>to the SaddleBrooke Ballroom Dance Club.<br><br>";
        }
  
-       $emailBody .= "Thanks for signing up and paying your dues online! We hope you will participate in and enjoy the following club activities: <br><ul>";
+       $emailBody .= "Thanks for becoming a member! We hope you will participate in and enjoy the following club activities: <br><ul>";
        $emailBody .= "<li><strong>Novice Events</strong> - For anyone that has little dance experience, we have a new 
        program of Novice events: Novice classes twice a month, and then a Novice review session. These are designed to
        help you learn a few steps of the most common dances, and help you practice with other Novices. 
@@ -51,7 +50,7 @@
      Calendar on the website to verify the schedule.<br>$actLink<br></strong>";
 
      $emailBody .= "
-   We have attached a PDF that is an guide to the website.
+   Here is a link to the member's guide to the website: <br> $docLink <br>. 
    The website shows Classes, Dances, and other events. Your login credentials will be either: 
     <b>your email
      <em>or</em>  

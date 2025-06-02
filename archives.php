@@ -8,7 +8,12 @@ require_once 'models/EventArch.php';
 require_once 'models/DanceClassArch.php';
 require_once 'models/UserArchive.php';
 require_once 'models/VisitorsArch.php';
+if (isset($_SESSION['role'])) {
+} else {
 
+     header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 $_SESSION['archiveurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 $database = new Database();

@@ -4,6 +4,12 @@ require_once '../config/Database.php';
 require_once '../models/Options.php';
 
 date_default_timezone_set("America/Phoenix");
+if (isset($_SESSION['role'])) {
+
+} else {
+   header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI']; 
 $allOptions = $_SESSION['allOptions'] ;
 if (!isset($_SESSION['username']))

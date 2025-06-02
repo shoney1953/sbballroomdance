@@ -9,6 +9,12 @@ require_once '../models/DanceClass.php';
 require_once '../models/Event.php';
 require_once '../models/User.php';
 require_once '../models/UserArchive.php';
+if (isset($_SESSION['role'])) {
+
+} else {
+   header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 
 if (!isset($_SESSION['username']))
 {

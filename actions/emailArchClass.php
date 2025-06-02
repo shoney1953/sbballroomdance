@@ -6,6 +6,12 @@ require_once '../config/Database.php';
 require_once '../models/ClassRegistrationArch.php';
 require_once '../models/DanceClassArch.php';
 date_default_timezone_set("America/Phoenix");
+if (isset($_SESSION['role'])) {
+
+} else {
+   header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 if (!isset($_SESSION['username']))
 {
     $redirect = "Location: ".$_SESSION['homeurl'];

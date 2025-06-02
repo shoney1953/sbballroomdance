@@ -35,7 +35,7 @@ date_default_timezone_set("America/Phoenix");
    if (isset($_SESSION['testmode'])){
    if ($_SESSION['testmode'] === 'YES') {
      echo '<h3>OR</h3>';
-     echo "<h3><a href='renewNowO.php'>Renew & Pay Online</a><h3>";
+     echo "<button><a href='renewNowO.php'>Renew & Pay Online</a></button>";
    }
    }
 

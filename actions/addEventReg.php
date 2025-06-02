@@ -6,7 +6,12 @@ require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
 require_once '../models/User.php';
+if (isset($_SESSION['role'])) {
 
+} else {
+   header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 date_default_timezone_set("America/Phoenix");
 if (!isset($_SESSION['username']))
 {
@@ -151,7 +156,7 @@ if (isset($_POST['submitAddReg'])) {
 
                         } else {
                             $emailBody .= "<br>You have chosen NOT to attend dinner before the dance.";
-                            $emailBody .= "<br>As of 2025, there is now a charge of $5 per person for the dance only.";
+                            $emailBody .= "<br>As of 2025, there is now a charge of $5 per member and $10 per visitor for the dance only.";
                             $emailBody .= "<br>Please submit your fee prior to the dance as indicated on the form.";
                         }
                     }

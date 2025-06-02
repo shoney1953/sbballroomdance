@@ -9,6 +9,12 @@ require_once 'models/Event.php';
 require_once 'models/DanceClass.php';
 require_once 'models/User.php';
 require_once 'models/MemberPaid.php';
+if (isset($_SESSION['role'])) {
+
+} else {
+   header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 $num_visitors = 0;

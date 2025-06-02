@@ -11,7 +11,7 @@ require_once 'models/Options.php';
 require_once 'models/Keys.php';
 require_once 'includes/siteemails.php';
 
-$_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
+// $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
 
 
 if (isset($_GET['error'])) {
@@ -25,6 +25,7 @@ if (isset($_GET['error'])) {
     unset($_GET['success']);
 } else {
     $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
+    // var_dump($_SESSION['homeurl']);
 }
 $_SESSION['upcoming_eventnumber'] = 0;
 $option_item = [];

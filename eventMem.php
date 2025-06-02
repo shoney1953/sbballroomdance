@@ -5,6 +5,7 @@ require_once 'models/DinnerMealChoices.php';
 require_once 'models/EventRegistration.php';
 $allEvents = $_SESSION['upcoming_events'];
 $eventRegistrations = [];
+
 $_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 if (!isset($_SESSION['username'])) {

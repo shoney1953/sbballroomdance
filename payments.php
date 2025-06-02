@@ -5,6 +5,12 @@ session_start();
 require_once 'config/Database.php';
 require_once 'models/PaymentCustomer.php';
 require_once 'models/PaymentProduct.php';
+if (isset($_SESSION['role'])) {
+
+} else {
+      header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
 $_SESSION['paymenturl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 

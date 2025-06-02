@@ -35,7 +35,7 @@ require_once 'includes/siteemails.php';
           echo '<a href="mailto:'.$webmaster.'?subject=SBDC Website Help">
                 Webmaster</a> listed in the about section or
             read the introduction to the website PDF below.<br>
-            <a href="https://drive.google.com/file/d/1wbiW8gOqQ-rM9dpyz7p9qIBHKX_2WvDQ/view?usp=sharing">
+            <a href="https://drive.google.com/file/d/1P4FHXpaw0oUGfVpCkFnRAroipgOE53s9/view?usp=sharing">
                 Click for the Member Guide to the Website'
                 ?>
             </a>
