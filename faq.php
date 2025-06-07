@@ -116,7 +116,7 @@
       <div class="dropdown">
       <span class="faq-title">What are Monthly Dance Classes?</span>
         <div class="dropdown-content">
-        <p>Monthly Dance classes are designed for members to concentrate on a single dance for a month. They normally meet twice a week for a full month. There are various levels from Novice to Intermediate.
+        <p>Monthly Dance classes are designed for members to concentrate on a single dance for a month. They normally meet twice a week for a full month. There are various levels from Beginner to Intermediate.
           Visitors may attend one class to see how they like it. 
         <p>
         You can sign up for the entire monthly class by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Monthly Dances Info">
@@ -168,7 +168,7 @@
       <div class="dropdown">
       <span class="faq-title">What are Dance Parties?</span>
         <div class="dropdown-content">
-        <p>Dance Parties are dances where food may or may not be served. The food will be served prior to the dance usually at 4:30pm.
+        <p>Dance Parties are dances where food may or may not be served. The food will be served prior to the dance usually at 5:00pm.
           The dance will normally start at 6pm once the food is cleared if food was served. 
         </p>
         <p>There is a cost involved. If not attending dinner, it will be $5 per person for members and $10 per person for non-members. If attending dinner, the cost and meal selections

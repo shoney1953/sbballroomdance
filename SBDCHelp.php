@@ -36,10 +36,17 @@ require_once 'includes/siteemails.php';
                 Webmaster</a> listed in the about section or
             read the introduction to the website PDF below.<br>
             <a href="https://drive.google.com/file/d/1P4FHXpaw0oUGfVpCkFnRAroipgOE53s9/view?usp=sharing">
-                Click for the Member Guide to the Website'
-                ?>
-            </a>
- 
+                Click for the Member Guide to the Website  </a>';
+        
+              if (isset($_SESSION['role'])) {
+               if ($_SESSION['role'] === 'INSTRUCTOR') {
+                        echo '<h4><a href=" https://drive.google.com/file/d/10C0c7Kyy96TC59KxG7W7khnSnOSTyCwa/view?usp=sharing">Click for Instructors Guide</a></h4>';
+                } 
+                if (($_SESSION['role'] === 'SUPERADMIN') | ($_SESSION['role'] === 'ADMIN')) {
+                    echo '<h4><a href="https://drive.google.com/file/d/1R7kQMmGTbadaz_0ekPAIQXOrYvo0Mut8/view?usp=sharing">Click for Administrators Guide</a></h4>';
+                }
+             }
+         ?>
         </p><br><br>
     </section>
    </div>

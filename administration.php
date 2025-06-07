@@ -209,7 +209,13 @@ if ($rowCount > 0) {
     echo '<br><br><br>';
     echo '<h1>Administrative Functions for SaddleBrooke Ballroom Dance Club</h1>';
     echo '<h3>Please Select a Menu Option Above</h3>';
-    echo '<h4><a href="https://drive.google.com/file/d/1R7kQMmGTbadaz_0ekPAIQXOrYvo0Mut8/view?usp=sharing">Click for Administrators Guide</a></h4>';
+   if ($_SESSION['role'] === 'INSTRUCTOR') {
+        echo '<h4><a href=" https://drive.google.com/file/d/10C0c7Kyy96TC59KxG7W7khnSnOSTyCwa/view?usp=sharing">Click for Instructors Guide</a></h4>';
+   } else {
+      echo '<h4><a href="https://drive.google.com/file/d/1R7kQMmGTbadaz_0ekPAIQXOrYvo0Mut8/view?usp=sharing">Click for Administrators Guide</a></h4>';
+   }
+    
+ 
     echo '<br>';
     echo '</div>';
     echo '</div>';
