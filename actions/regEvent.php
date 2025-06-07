@@ -244,6 +244,9 @@ if (isset($_POST['submitEventReg'])) {
     if ($num_registered === 0) {
         $emailSubject = "Your event registration was invalid!";
         $emailBody = "You did not select any events to register for. Please return to the website to register for events and be sure to check a box for the event for which you would like to register.<br>"; 
+            $redirect = "Location: ".$_SESSION['regeventurl'].'?error=No Events Selected';
+            header($redirect);
+            exit; 
     }
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
       

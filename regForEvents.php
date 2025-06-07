@@ -6,6 +6,8 @@
   $events =  $_SESSION['upcoming_events'] ;
   $upcomingEvents = $_SESSION['upcoming_events'];
   $eventNumber = $_SESSION['upcoming_eventnumber'];
+
+
 date_default_timezone_set("America/Phoenix");
 
 $database = new Database();
@@ -33,9 +35,20 @@ $compareDate = $currentDate->format('Y-m-d');
         </div>
     </nav>
     <br><br>
+
     <div class="container-section ">
     <section id="registerevent" class="content">  
-
+    <?php
+    
+  if (isset($_GET['error'])) {
+  
+    echo '<br><h4 class="error"> ERROR:  '.$_GET['error'].'. 
+    Please Check the box for at least 1 event and resubmit.</h4><br>';
+    unset($_GET['error']);
+  } else {
+      $_SESSION['regeventurl'] = $_SERVER['REQUEST_URI'];
+}
+    ?>
         <h1 class="section-header">Register for Upcoming Events</h1>
 
         <?php
@@ -50,7 +63,7 @@ $compareDate = $currentDate->format('Y-m-d');
             echo '<h4 class="form-title"> This process generates an email to confirm your registration, so it takes a while. Please be patient.<br>
             You may want to authorize sbdcmailer@sbballroomdance.com so that the automatic emails do not end up in the 
             spam/junk folder.</h4>';
-            echo '<form method="POST"  action="actions/regEvent.php" target="_blank">';
+            echo '<form method="POST"  action="actions/regEvent.php">';
             
             
 
