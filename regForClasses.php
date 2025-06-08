@@ -170,13 +170,13 @@ $db = $database->connect();
  
 
         echo '<h4 class="form-title"><em>
-        To Register -- Please select One or More of the Classes listed. <br>Then scroll to the bottom and click on the Submit Registration(s) Button.</em></h4>';
+        To Register -- Please select a class, click on Register, and then Submit Registration Or<br> Click on multiple classes and then scroll to the bottom and click on the Submit Registration(s) Button.</em></h4>';
           
              
         foreach ($upcomingClasses as $class) {
              echo '<div class="form-container">';
             
-             echo '<div class="form-grid6">';
+             echo '<div class="form-grid">';
 
 
              echo '<div class="form-item">';
@@ -222,8 +222,9 @@ $db = $database->connect();
                echo '<h4 class="form-item-title">Class Notes</h4>'; 
                echo $class['classnotes'];
                echo '</div>';
-
-      
+              echo '<div class="form-item">';
+              echo '<button name="submitRegClass" type="submit">Submit Registration</button><br>';
+              echo '</div>';
                echo '</div>';
                echo '</div>'; 
     
