@@ -43,7 +43,7 @@ require_once 'includes/siteemails.php';
                         echo '<h4><a href=" https://drive.google.com/file/d/10C0c7Kyy96TC59KxG7W7khnSnOSTyCwa/view?usp=sharing">Click for Instructors Guide</a></h4>';
                 } 
                 if (($_SESSION['role'] === 'SUPERADMIN') | ($_SESSION['role'] === 'ADMIN')) {
-                    echo '<h4><a href="https://drive.google.com/file/d/1R7kQMmGTbadaz_0ekPAIQXOrYvo0Mut8/view?usp=sharing">Click for Administrators Guide</a></h4>';
+                    echo '<h4><a href="https://drive.google.com/file/d/17-gspL4hcl7P23g0LOjY3RHRpFqqQ5KV/view?usp=sharing">Click for Administrators Guide</a></h4>';
                 }
              }
          ?>
