@@ -215,6 +215,11 @@ if (isset($_POST['submitEventReg'])) {
             
                 $eventReg->paid = 0;
                 $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
+                if ($result) {
+                        $redirect = "Location: ".$_SESSION['regeventurl'].'?error=Duplicate Registration Email1 Please check your profile.';
+                        header($redirect);
+                        exit; 
+                }
             if (!$result) {
                 $eventReg->create();
                 $eventInst->addCount($eventReg->eventid);
@@ -230,6 +235,12 @@ if (isset($_POST['submitEventReg'])) {
                     $eventReg->registeredby = $_SESSION['username'];
                     $eventReg->paid = 0;
                     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
+                    if ($result) {
+                        $redirect = "Location: ".$_SESSION['regeventurl'].'?error=Duplicate Registration Email2 Please check your profile.';
+                        header($redirect);
+                        exit; 
+                }
+     
                     if (!$result) {
 
                         $eventReg->create();
@@ -242,9 +253,8 @@ if (isset($_POST['submitEventReg'])) {
        } //end isset
       } // end foreach
     if ($num_registered === 0) {
-        $emailSubject = "Your event registration was invalid!";
-        $emailBody = "You did not select any events to register for. Please return to the website to register for events and be sure to check a box for the event for which you would like to register.<br>"; 
-            $redirect = "Location: ".$_SESSION['regeventurl'].'?error=No Events Selected';
+
+            $redirect = "Location: ".$_SESSION['regeventurl'].'?error=No Events Selected Please check at least 1 event and resubmit.';
             header($redirect);
             exit; 
     }

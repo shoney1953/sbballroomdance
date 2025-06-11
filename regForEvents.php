@@ -31,6 +31,15 @@ $compareDate = $currentDate->format('Y-m-d');
         
         <ul>
             <li><a href="index.php">Back to Home</a></li>
+            <?php
+             if (isset($_SESSION['role'])) {
+                if ($_SESSION['role'] != 'visitor') {
+                 echo ' <li><a href="yourProfile.php">
+                  <img title="Click to see or update your information or registrations" src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
+                  <br>Your Profile</a></li>';
+                }
+              }
+            ?>
         </ul>
         </div>
     </nav>
@@ -38,20 +47,18 @@ $compareDate = $currentDate->format('Y-m-d');
 
     <div class="container-section ">
     <section id="registerevent" class="content">  
+
+        <h1 class="section-header">Register for Upcoming Events</h1>
     <?php
     
-  if (isset($_GET['error'])) {
-  
-    echo '<br><h4 class="error"> ERROR:  '.$_GET['error'].'. 
-    Please Check the box for at least 1 event and resubmit.</h4><br>';
-    unset($_GET['error']);
-  } else {
-      $_SESSION['regeventurl'] = $_SERVER['REQUEST_URI'];
-}
-    ?>
-        <h1 class="section-header">Register for Upcoming Events</h1>
+        if (isset($_GET['error'])) {
+        
+          echo '<br><h4 class="error"> ERROR:  '.$_GET['error'].'</h4><br>';
+          unset($_GET['error']);
+        } else {
+            $_SESSION['regeventurl'] = $_SERVER['REQUEST_URI'];
+      }
 
-        <?php
    
         if ($eventNumber > 0) {
         $partner = new User($db);
@@ -262,6 +269,9 @@ $compareDate = $currentDate->format('Y-m-d');
             echo "<textarea name='$messID' cols='35' rows='1'></textarea>";
             // echo '</div>';
             echo '</div>';
+            echo '<div class="form-item">';
+            echo '<h4><button name="submitEventReg" type="submit">Submit Registration(s)</button></h4>';
+            echo '</div>'; 
             echo '</div>'; 
             echo '</div>'; 
               }

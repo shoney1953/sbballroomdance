@@ -14,7 +14,6 @@ $classReg = new ClassRegistration($db);
 $danceClass = new DanceClass($db);
 $user = new User($db);
 
-
 $regSelected = [];
 $regAll = '';
 $emailBody = "Thanks for registering for the following SBDC classes:<br>";
@@ -37,7 +36,7 @@ $create_successful = 0;
 $result = 0;
  
 if (isset($_POST['submitRegClass'])) {
-    echo '<h1> We are processing your request - Please wait</h1>';
+   
     $regFirstName1 = htmlentities($_POST['regFirstName1']);
     $regLastName1 = htmlentities($_POST['regLastName1']);
     $regEmail1 = htmlentities($_POST['regEmail1']);
@@ -76,7 +75,12 @@ if (isset($_POST['submitRegClass'])) {
         } //end isset
      } // end foreach
 
-  
+      if ($numRegClasses === 0) {
+       
+            $redirect = "Location: ".$_SESSION['regclassurl'].'?error=No Classes Selected Please Check at least 1 class and resubmit.';
+            header($redirect);
+            exit; 
+    }
      
     $emailSubject = "You have registered for selected Classes";
       
@@ -113,6 +117,11 @@ if (isset($_POST['submitRegClass'])) {
                     $classReg->userid = $regId1;
                 }
                 $result = $classReg->checkDuplicate($regEmail1, $classId);
+                 if ($result) {
+                        $redirect = "Location: ".$_SESSION['regclassurl'].'?error=Duplicate Registration Email1 Please check your profile.';
+                        header($redirect);
+                        exit; 
+                }
      
                 if (!$result) {
 
@@ -137,7 +146,11 @@ if (isset($_POST['submitRegClass'])) {
                         $classReg->create();
                         $danceClass->addCount($classId);
                     }
-                   
+                    if ($result) {
+                        $redirect = "Location: ".$_SESSION['regclassurl'].'?error=Duplicate Registration Email 2 Please check your profile.';
+                        header($redirect);
+                        exit; 
+                }
 
                      } // end regemail2
                     }

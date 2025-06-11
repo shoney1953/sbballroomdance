@@ -29,6 +29,15 @@ $db = $database->connect();
         
         <ul>
             <li><a href="index.php">Back to Home</a></li>
+            <?php
+             if (isset($_SESSION['role'])) {
+                if ($_SESSION['role'] != 'visitor') {
+              echo ' <li><a href="yourProfile.php">
+                  <img title="Click to see or update your information or registrations" src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
+                  <br>Your Profile</a></li>';
+                }
+              }
+            ?>
         </ul>
         </div>
     </nav>
@@ -37,7 +46,16 @@ $db = $database->connect();
     <section id="registerevent" class="content">  
 
         <h1 class="section-header">Register for Classes</h1>
-
+  <?php
+    
+  if (isset($_GET['error'])) {
+  
+    echo '<br><h4 class="error"> ERROR:  '.$_GET['error'].'</h4><br>';
+    unset($_GET['error']);
+  } else {
+      $_SESSION['regclassurl'] = $_SERVER['REQUEST_URI'];
+}
+    ?>
         <?php
    
         if ($classNumber > 0) {
@@ -50,7 +68,7 @@ $db = $database->connect();
             spam/junk folder.</h4>';
         
             
-            echo '<form method="POST"  action="actions/regClass.php" target="_blank">';
+            echo '<form method="POST"  action="actions/regClass.php">';
             if (isset($_SESSION['role'])) {
                 if ($_SESSION['role'] === 'visitor') {
                  echo '<div class="form-container">';
