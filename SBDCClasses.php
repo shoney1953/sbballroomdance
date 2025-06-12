@@ -41,10 +41,9 @@ $upcomingClasses = $_SESSION['upcoming_classes']
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
             if (isset($_SESSION['role'])) {
         echo '<div class="form-grid-div">';
-        echo '<button>';
-        echo '<a href="regForClasses.php">Register For Classes</a>';
-        echo '</button>';  
 
+        echo '<h1><a href="regForClasses.php">Click to Register For Classes</a><h1>';
+   
     
         echo '</div>';
             }

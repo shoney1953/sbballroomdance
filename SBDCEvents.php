@@ -42,9 +42,9 @@ $upcomingEvents = $_SESSION['upcoming_events'];
          if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
             if (isset($_SESSION['role'])) {
         echo '<div class="form-grid-div">';
-        echo '<button>';
-        echo '<a href="regForEvents.php">Register For Events</a>';
-        echo '</button>';  
+  
+        echo '<h1><a href="regForEvents.php">Click to Register For Events</a></h1>';
+   
     
         echo '</div>';
             }
