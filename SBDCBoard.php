@@ -64,7 +64,7 @@ require_once 'includes/siteemails.php';
         <ul>
 
        
-        <a href="https://drive.google.com/file/d/1oshvPWoc5ERLy7uD-gBuiS_c_n6hTcJE/view?usp=share_link">
+        <a href="https://drive.google.com/file/d/1w5YstWpE8sFMCrSLxKTxjg2qBsQ8ctyY/view?usp=sharing">
          Click Here To Read the Club By Laws.
         </a><br><br>
         </ul>
