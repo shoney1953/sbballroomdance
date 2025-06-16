@@ -1,6 +1,7 @@
 <?php
 session_start();
 echo session_id();
+echo session_save_path();
 require_once 'includes/sendEmail.php';
 require_once 'includes/siteemails.php';
 require_once 'config/Database.php';
