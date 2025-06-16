@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+echo session_id();
 require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
 
