@@ -22,6 +22,7 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
 
 $stripe = new \Stripe\StripeClient($stripeSecretKey);
 $_SESSION['partialyearmem'] = 0;
+$partialYear = $_SESSION['partialyearmem'];
 $memberProducts = $_SESSION['memberproducts'];
 $potentialMem1 = $_SESSION['potentialMember1'];
 $potentialMem2 = $_SESSION['potentialMember2'];
@@ -112,7 +113,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
   ]],
   'customer' => $customer->id,
   'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '/joinsuccess.php?id1='.$member1ID.'&id2='.$member2ID,
+  'success_url' => $YOUR_DOMAIN . '/joinsuccess.php?id1='.$member1ID.'&id2='.$member2ID.'&py='.$partialYear,
   'cancel_url' => $YOUR_DOMAIN . '/joincancel.php',
 ]);  
 

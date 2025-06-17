@@ -5,12 +5,16 @@ require_once 'includes/sendEmail.php';
 require_once 'includes/siteemails.php';
 require_once 'config/Database.php';
 require_once 'models/User.php';
+require_once 'models/Options.php';
 require_once 'models/TempOnlineMember.php';
 require_once 'models/UserArchive.php';
 require_once 'models/MemberPaid.php';
 date_default_timezone_set("America/Phoenix");
 
 $_SESSION['joiningonline'] = 'YES';
+$nextYear = date('Y', strtotime('+1 year'));
+$current_month = date('m');
+$current_year = date('Y');
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
@@ -19,7 +23,10 @@ $tempmember2 = new TempOnlineMember ($db);
 $userArchive = new UserArchive($db);
 $tempmember1ID = $_GET['id1'];
 $tempmember2ID = $_GET['id2'];
-
+$partialYearMem = $_GET['py'];
+unset($_GET['id1']);
+unset($_GET['id2']);
+unset($_GET['py']);
 $member1ID = 0;
 $member2ID = 0;
 $tempmember1->id = $tempmember1ID;
@@ -30,9 +37,40 @@ if ($tempmember2ID > 0) {
    $tempmember2->read_single(); 
 
 }
-$nextYear = date('Y', strtotime('+1 year'));
-$current_month = date('m');
-$current_year = date('Y');
+$allOptions = [];
+$options = new Options($db);
+$result = $options->read();
+
+$rowCount = $result->rowCount();
+
+$num_options = $rowCount;
+
+$_SESSION['allOptions'] = [];
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+ 
+        $option_item = array(
+            'id' => $id,
+            'year' => $year,
+            'renewalmonth' => $renewalmonth,
+            'discountmonth' => $discountmonth   
+        );
+        array_push($allOptions, $option_item);
+
+    }
+    $_SESSION['allOptions'] = $allOptions;
+} 
+foreach($allOptions as $option) {
+    if ($current_year === $option['year']) {
+        $_SESSION['renewalmonth'] = $option['renewalmonth'];
+        $_SESSION['discountmonth'] = $option['discountmonth'];
+
+        break;
+    }
+}
+
 $mailAttachment = '';
 $toCC3 = $webmaster; 
 // $toCC2 = '';
@@ -129,7 +167,7 @@ $toCC5 = $volunteerDirector;
     // create a membership record for next year
     //if in the discount period, they can do only the current year, or current plus next
     if ((int)$current_month >= $_SESSION['discountmonth']) {
-      if ($_SESSION['partialyearmem'] === 1) {
+      if ($partialYearMem === 1) {
             $memberPaid->year = date('Y', strtotime('+1 year'));
             $memberPaid->paid = 0; // mark not paid
             $memberPaid->create();
@@ -231,7 +269,7 @@ require 'includes/emailSignature.php';
  // create a membership record for next year
   //if in the discount period, they can do only the current year, or current plus next
     if ((int)$current_month >= $_SESSION['discountmonth']) {
-      if ($_SESSION['partialyearmem'] === 1) {
+      if ($partialYearMem === 1) {
             $memberPaid->year = date('Y', strtotime('+1 year'));
             $memberPaid->paid = 0; // mark not paid
             $memberPaid->create();

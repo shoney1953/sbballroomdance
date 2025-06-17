@@ -23,6 +23,7 @@ require_once '../models/PaymentProduct.php';
 
 // $stripe = new \Stripe\StripeClient($stripeSecretKey);
 $_SESSION['partialyearmem'] = 0;
+$py = $_SESSION['partialyearmem'];
 $memberProducts = $_SESSION['memberproducts'];
 $_SESSTION['potentialMem1'] = [];
 $_SESSTION['potentialMem2'] = [];
