@@ -1,7 +1,6 @@
 <?php
 session_start();
-echo session_id();
-echo session_save_path();
+
   require_once 'config/Database.php';
   require_once 'models/PaymentCustomer.php';
   require_once 'models/PaymentProduct.php';

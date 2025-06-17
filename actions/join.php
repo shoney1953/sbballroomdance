@@ -1,10 +1,10 @@
 <?php
 session_start();
-echo session_id();
-echo session_save_path();
+
 require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
 require_once '../models/User.php';
+require_once '../models/TempOnlineMember.php';
 require_once '../models/PaymentProduct.php';
 
 
@@ -33,6 +33,7 @@ $db = $database->connect();
 
 $paymentproduct = new PaymentProduct($db);
 $user = new User($db);
+$tempMember = new TempOnlineMember($db);
 $chargeProductID = '';
 $_SESSION['addmem2'] = 'NO';
 $_SESSION['memsameadd'] = 'NO';
@@ -51,6 +52,7 @@ if (isset($_POST['submitMembership'])) {
    $_SESSION['chargePriceID'] = $chargePriceID;
   if (isset($_POST['firstname1'])) {
     $potentialMem1['firstname'] = $_POST['firstname1'];
+    
   }
   if (isset($_POST['lastname1'])) {
     $potentialMem1['lastname'] = $_POST['lastname1'];

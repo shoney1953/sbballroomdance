@@ -25,7 +25,7 @@ if (isset($_GET['error'])) {
     unset($_GET['success']);
 } else {
     $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
-    // var_dump($_SESSION['homeurl']);
+   
 }
 $_SESSION['upcoming_eventnumber'] = 0;
 $option_item = [];

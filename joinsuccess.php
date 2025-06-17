@@ -1,23 +1,35 @@
 <?php
 session_start();
-echo session_id();
-echo session_save_path();
+
 require_once 'includes/sendEmail.php';
 require_once 'includes/siteemails.php';
 require_once 'config/Database.php';
 require_once 'models/User.php';
+require_once 'models/TempOnlineMember.php';
 require_once 'models/UserArchive.php';
 require_once 'models/MemberPaid.php';
 date_default_timezone_set("America/Phoenix");
-$potentialMember1 = $_SESSION['potentialMember1'];
-$potentialMember2 = $_SESSION['potentialMember2'];
+
 $_SESSION['joiningonline'] = 'YES';
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
+$tempmember1 = new TempOnlineMember ($db);
+$tempmember2 = new TempOnlineMember ($db);
 $userArchive = new UserArchive($db);
+$tempmember1ID = $_GET['id1'];
+$tempmember2ID = $_GET['id2'];
+
 $member1ID = 0;
 $member2ID = 0;
+$tempmember1->id = $tempmember1ID;
+$tempmember1->read_single();
+
+if ($tempmember2ID > 0) {
+   $tempmember2->id = $tempmember2ID;
+   $tempmember2->read_single(); 
+
+}
 $nextYear = date('Y', strtotime('+1 year'));
 $current_month = date('m');
 $current_year = date('Y');
@@ -35,35 +47,35 @@ $toCC4 = $vicePresident;
 $toCC5 = $volunteerDirector; 
 
 // $fromCC = $secretary; // leave commented
-        $userdefault1 = ucfirst($potentialMember1['firstname']).ucfirst(substr($potentialMember1['lastname'],0,1));
+        $userdefault1 = ucfirst($tempmember1->firstname).ucfirst(substr($tempmember1->lastname,0,1));
         $roledefault = 'MEMBER';
         $passdefault = 'test1234'; 
-    $user->firstname = $potentialMember1['firstname'];
-    $user->lastname = $potentialMember1['lastname'];
+    $user->firstname = $tempmember1->firstname;
+    $user->lastname = $tempmember1->lastname;
     $user->username = $userdefault1;
     $user->password = $passdefault;
     $pass2 = $passdefault;
     $passHash = password_hash($user->password, PASSWORD_DEFAULT);
     $user->password = $passHash;
-    $user->email = $potentialMember1['email'];
+    $user->email = $tempmember1->email;
     $user->role = $roledefault;
-    $user->streetAddress = $potentialMember1['streetaddress'];
-    $user->city = $potentialMember1['city'];
-    $user->state = $potentialMember1['state'];
-    $user->zip = $potentialMember1['zip'];
-    $reformatphone = substr($potentialMember1['phone1'],0,3);
+    $user->streetAddress = $tempmember1->streetAddress;
+    $user->city = $tempmember1->city;
+    $user->state = $tempmember1->state;
+    $user->zip = $tempmember1->zip;
+    $reformatphone = substr($tempmember1->phone,0,3);
     $reformatphone .= '-';
-    $reformatphone .= substr($potentialMember1['phone1'],3,3);
+    $reformatphone .= substr($tempmember1->phone,3,3);
      $reformatphone .= '-';
-     $reformatphone .= substr($potentialMember1['phone1'],6,4);
+     $reformatphone .= substr($tempmember1->phone,6,4);
 
     $user->phone1 = $reformatphone;
-
-
-       $user->directorylist = $potentialMember1['directorylist'];
   
-       $user->fulltime = $potentialMember1['fulltime'];
-       $user->hoa = $potentialMember1['hoa'];
+
+       $user->directorylist = $tempmember1->directorylist;
+  
+       $user->fulltime = $tempmember1->fulltime;
+       $user->hoa = $tempmember1->hoa;
 
        $formerUser = "no";
        if ($userArchive->getUserName($user->username, $user->email)) {
@@ -108,7 +120,7 @@ $toCC5 = $volunteerDirector;
 
     $user->create();
     $member1ID = $db->lastInsertId();
-
+   $tempmember1->delete();
     $memberPaid = new MemberPaid($db);
     $memberPaid->userid = $member1ID;
     $memberPaid->paid = 1; // mark paid
@@ -135,36 +147,37 @@ $toCC5 = $volunteerDirector;
 
 
     // ---------------------- MEMBER 2
-    if (isset($potentialMember2['firstname'])) {
-        $userdefault = ucfirst($potentialMember2['firstname']).ucfirst(substr($potentialMember2['lastname'],0,1));
+    if ($tempmember2ID !== 0) {
+    if (isset($tempmember2->firstname)) {
+        $userdefault = ucfirst($tempmember2->firstname).ucfirst(substr($tempmember2->lastname,0,1));
         $roledefault = 'MEMBER';
         $passdefault = 'test1234'; 
-    $user->firstname = $potentialMember2['firstname'];
-    $user->lastname = $potentialMember2['lastname'];
+    $user->firstname = $tempmember2->firstname;
+    $user->lastname = $tempmember2->lastname;
     $user->username = $userdefault;
     $user->password = $passdefault;
     $pass2 = $passdefault;
     $passHash = password_hash($user->password, PASSWORD_DEFAULT);
     $user->password = $passHash;
-    $user->email = $potentialMember2['email'];
+    $user->email = $tempmember2->email;
     $user->role = $roledefault;
-    $user->email = $potentialMember2['email'];
-    $user->streetAddress = $potentialMember2['streetaddress'];
-    $user->city = $potentialMember2['city'];
-    $user->state = $potentialMember2['state'];
-    $user->zip = $potentialMember2['zip'];
-    $reformatphone = substr($potentialMember2['phone1'],0,3);
+
+    $user->streetAddress = $tempmember2->streetAddress;
+    $user->city = $tempmember2->city;
+    $user->state = $tempmember2->state;
+    $user->zip = $tempmember2->zip;
+    $reformatphone = substr($tempmember2->phone,0,3);
     $reformatphone .= '-';
-    $reformatphone .= substr($potentialMember2['phone1'],3,3);
+    $reformatphone .= substr($tempmember2->phone,3,3);
      $reformatphone .= '-';
-     $reformatphone .= substr($potentialMember2['phone1'],6,4);
+     $reformatphone .= substr($tempmember2->phone,6,4);
 
     $user->phone1 = $reformatphone;
 
-    $user->fulltime = $potentialMember2['fulltime'];
+    $user->fulltime = $tempmember2->fulltime;
     // $user->directorylist = 1;
-    $user->directorylist = $potentialMember2['directorylist'];
-    $user->hoa = $potentialMember2['hoa'];
+    $user->directorylist = $tempmember2->directorylist;
+    $user->hoa = $tempmember2->hoa;
  
     $formerUser = "no";
     if ($userArchive->getUserName($user->username, $user->email)) {
@@ -245,9 +258,10 @@ require 'includes/emailSignature.php';
  $user->partnerId = $member1ID;
  $user->notes = "Partner Name is: ".$member1Full."";
  $user->updatePartnerID();
+  $tempmember2->delete();
     }  
-
-
+  
+}
 
 $_SESSION['successurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['joiningonline'] = 'NO';
@@ -284,7 +298,7 @@ $_SESSION['joiningonline'] = 'NO';
       <h3>Your payment has been successfully processed, and should show SaddleBrooke Ballroom on your statement</h3>
     <?php
       echo '<h3 style="color: red"><em>NOTE</em>: Your Password will initally be<em> "test1234".</em><h3>';
-      echo '<h3 style="color: red">Your userid will be the email you joined with: <em>"'.$potentialMember1['email'].'" or "'.$userdefault1.'" <em></h3>';
+      echo '<h3 style="color: red">Your userid will be the email you joined with: <em>"'.$tempmember1->email.'" or "'.$userdefault1.'" <em></h3>';
       ?>
      <h3>Please return to the home screen and login to begin enjoying the benefits of our club</h3>
     
