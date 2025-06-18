@@ -918,7 +918,6 @@ td input[type="select"] {
   grid-template-columns: repeat(6, 1fr);
   gap: 1px;
   grid-auto-rows: minmax(100px, auto);
-  /* border: 1px solid rgb(91, 2, 129);  */
   border-radius: 1px;
   margin-top: 1px;
   margin-bottom: 1px;

@@ -176,7 +176,7 @@ if (isset($_SESSION['renewalmonth'])) {
             unset($_SESSION['partnerid']);
         }
       
-     $redirect = "Location: ".$_SESSION['loginurl'].'?error=NoUser';
+     $redirect = "Location: ".$_SESSION['loginurl'].'?error=No User Name or Email Found';
      header($redirect);
      exit;  
     } 
