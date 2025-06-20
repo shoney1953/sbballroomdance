@@ -220,7 +220,13 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<button type="submit" name="submitCreateCsv">Create CSV file of members</button>';   
             echo '</form>'    ;          
             echo '</div> ';   
-            echo '</div>';
+         
+            echo '<div class="form-grid-div">';
+            echo '<form target="_blank" method="POST" action="actions/reportRoboDJUsage.php">'; 
+            echo '<button type="submit" name="submitRoboDJRep">Report Member Robo DJ Usage</button>';   
+            echo '</form>'    ;          
+            echo '</div> ';
+               echo '</div>';
         /* */
         echo '<div class="form-grid3">';
         echo '<form  method="POST" action="actions/searchUser.php" >';

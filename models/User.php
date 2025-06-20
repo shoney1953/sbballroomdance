@@ -98,6 +98,19 @@ class User {
 
       return $stmt;
     }
+    public function readByNumRoboDJLogins() {
+      // Create query
+      $query = 'SELECT * FROM ' . $this->table . ' ORDER BY robodjnumlogins DESC, lastname, firstname '; 
+
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
     public function readLike($search) {
       // Create query
       $query = 'SELECT * FROM ' . $this->table . ' WHERE lastname LIKE :search1
