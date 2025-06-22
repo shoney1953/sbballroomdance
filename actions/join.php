@@ -1,12 +1,11 @@
 <?php
 session_start();
-
+date_default_timezone_set("America/Phoenix");
 require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
 require_once '../models/User.php';
 require_once '../models/TempOnlineMember.php';
 require_once '../models/PaymentProduct.php';
-
 
 
 // $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
