@@ -23,14 +23,13 @@ date_default_timezone_set("America/Phoenix");
         </ul>
         </div>
     </nav>
-    <div class="container-section ">
+  
     <section id="login" class="content">
 
-   <br><br><h1>If you are a member, please use the SBDC member log in. If not, please log in as a visitor.</h1>
-   <h3>If you are a member and having trouble logging on     
+   <br><br><br><h4>If you are a member, please use the SBDC member log in. If not, please log in as a visitor.</h4>
+   <h4>If you are a member and having trouble logging on     
          <a href="faq.php">Click to See Our Frequently Asked Questions</a>, or 
-                please contact <a href="mailto:'.$webmaster.'?subject=SBDC Login Info">
-        Webmaster</a></h3>
+       <a href="mailto:'.$webmaster.'?subject=SBDC Login Info"> Click to contact Webmaster</a></h4>
         <?php
         if (isset($_GET['error'])) {
             echo '<div class="container-error">';
@@ -44,10 +43,10 @@ date_default_timezone_set("America/Phoenix");
           
         <div class="form-grid6">
         <div class="form-grid-div">
-        <h1 class="section-header">SBDC MEMBERS Please Log in here</h1>
+        <h4 class="section-header">SBDC MEMBERS Please Log in here</h4>
 
-        <h4>HINT: <br>Your User Name will be <em>either</em> your email <em>or</em> your first name and last initial 
-            with the first letter of your first name and first letter of your last name capitalized.</h4><br>
+        <p><em>Your User Name will be <em>either</em> your email <em>or</em> your first name and last initial 
+            with the first letter of your first name and first letter of your last name capitalized.</em></p>
             <form method="POST" action="actions/logInact.php">
                
 
@@ -89,7 +88,7 @@ date_default_timezone_set("America/Phoenix");
         <div class="form-grid-div">
         </div>
         <div class="form-grid-div">
-        <h1 class="section-header">Visitors Please Log in here.</h1>
+        <h4 class="section-header">Visitors Please Log in here.</h4>
             <form method="POST" action="actions/visitorAct.php">
                      
                 <label for="firstname">Visitor First Name</label><br>
@@ -111,7 +110,7 @@ date_default_timezone_set("America/Phoenix");
     </section>
     </div>
 
-    </div>
+
     <footer >
 
     <?php

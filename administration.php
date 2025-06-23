@@ -237,9 +237,14 @@ if ($rowCount > 0) {
         echo '<button   type="submit" name="submitTestMode">Set Test Mode</button>'; 
         echo '</div>';
 
-        echo '</form>';
+        // echo '</form>';
+        // echo '<div class="form-item">';
+        // // Get the server's default timezone
+        //   $timezone = date_default_timezone_get();
+        //   echo '<h4 class="form-item-title">Server Timezone is: '.$timezone.'</h4>';
+        // echo '</div>';
 
-
+    echo '</div>';
 
         echo '</section>';
 

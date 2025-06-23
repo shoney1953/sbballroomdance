@@ -84,7 +84,7 @@ date_default_timezone_set("America/Phoenix");
         </ul>
         </div>
     </nav>
-    <div class="container-section ">
+
     <section id="joinUs" class="content">
    <br><br><br>
    <h3>Join Our Club Today</h3>
@@ -116,7 +116,7 @@ date_default_timezone_set("America/Phoenix");
     <br><br>
    
     </section>
-    </div>
+
 
     <footer >
 
