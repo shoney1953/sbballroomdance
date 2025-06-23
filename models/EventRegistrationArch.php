@@ -144,7 +144,9 @@ public function read_ByUserid($userid) {
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
     WHERE
-      r.userid = :userid ';
+      r.userid = :userid 
+    ORDER BY 
+      c.eventdate DESC, r.eventid, r.lastname, r.firstname';
  
 
     // Prepare statement
@@ -175,7 +177,7 @@ public function read_ByEmail($email) {
     WHERE
       r.email = :email 
     ORDER BY 
-      c.eventdate, r.preveventid, r.lastname, r.firstname';
+      c.eventdate DESC, r.preveventid, r.lastname, r.firstname';
       
   
   

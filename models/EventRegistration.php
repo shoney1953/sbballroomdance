@@ -127,7 +127,7 @@ public function read_ByUserid($userid) {
     WHERE
       r.userid = :userid 
     ORDER BY 
-      c.eventdate, r.eventid, r.lastname, r.firstname';
+      c.eventdate DESC, r.eventid, r.lastname, r.firstname';
  
 
     // Prepare statement
@@ -158,7 +158,7 @@ public function read_ByEmail($email) {
     WHERE
       r.email = :email 
     ORDER BY 
-      c.eventdate, r.eventid, r.lastname, r.firstname';
+      c.eventdate DESC, r.eventid, r.lastname, r.firstname';
  
   
   

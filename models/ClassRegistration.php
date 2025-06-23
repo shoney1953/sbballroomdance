@@ -120,7 +120,8 @@ public function read_ByUserid($userid) {
   LEFT JOIN
     danceclasses c ON r.classid = c.id
   WHERE
-    r.userid = :userid ';
+    r.userid = :userid 
+  ORDER BY classdate DESC';
   
 
   // Prepare statement
@@ -150,7 +151,8 @@ public function read_ByEmail($email) {
   LEFT JOIN
     danceclasses c ON r.classid = c.id
   WHERE
-    r.email = :email ';
+    r.email = :email 
+  ORDER BY classdate DESC';
 
 
   // Prepare statement

@@ -312,7 +312,7 @@ if ($rowCount > 0) {
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-<div class="container-section">
+<!-- <div class="container-section"> -->
 <nav class="nav">
     <div class="container">
      <ul>
@@ -440,16 +440,16 @@ if ($rowCount > 0) {
             <p>Click one of the menu tabs above for more information</p><br>
 
         </div> 
-     
-    </div>
+<!--      
+    </div> -->
  
     
   
 
   
-    <br><br> 
-    <!-- <div>
-    <section id="nominationform" class="content">
+
+</div>
+    <!-- <section id="nominationform" class="content">
     <h1>Volunteer Nomination Form</h1><br>
  
    <ul>
@@ -458,7 +458,7 @@ if ($rowCount > 0) {
 
     </section>
    <br>
-   </div> -->
+   </div> --> 
 <?php
   require 'footer.php';
 ?>

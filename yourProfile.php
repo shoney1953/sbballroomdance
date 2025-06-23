@@ -245,7 +245,6 @@ if ($rowCount > 0) {
 </nav> 
 
 
-<div class="container-section" >
 <div class="content">
     <br><br>
     <h3>Member Profile</h3>
@@ -438,8 +437,8 @@ if ($rowCount > 0) {
         </form>
         </div>
 
-       </div>
-       <br><br>
+ 
+  
        
       
     <footer >

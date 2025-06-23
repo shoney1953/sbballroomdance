@@ -84,7 +84,8 @@ class ClassRegistrationArch {
       LEFT JOIN
         danceclassesarch c ON r.classid = c.id
       WHERE
-        r.email = :email ';
+        r.email = :email 
+      ORDER BY classdate DESC';
     
     
       // Prepare statement
@@ -111,7 +112,8 @@ class ClassRegistrationArch {
       LEFT JOIN
         danceclassesarch c ON r.classid = c.id
       WHERE
-        r.userid = :userid ';
+        r.userid = :userid 
+      ORDER BY classdate DESC';
       
     
       // Prepare statement
