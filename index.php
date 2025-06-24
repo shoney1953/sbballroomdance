@@ -422,7 +422,7 @@ if ($rowCount > 0) {
         </ul> 
 </div>
 </nav>
-</div>
+<!-- </div> -->
     <div class="hero">
         <div class="container">
         <!-- <img class="motto-img2" 
