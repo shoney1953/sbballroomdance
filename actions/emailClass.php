@@ -41,12 +41,14 @@ $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
 $fromCC = $webmaster;
+
 // $replyEmail = $danceDirector;
 $replyEmail = '';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $regEmail1 = [];
 $toCC2 = ''; 
 $toCC3 = $danceDirector;
+$toCC3 = '';
 
 $toCC4 = '';
 $toCC5 = '';
