@@ -41,11 +41,13 @@ $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
 $fromCC = $webmaster;
-$replyEmail = $danceDirector;
+// $replyEmail = $danceDirector;
+$replyEmail = '';
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $regEmail1 = [];
 $toCC2 = ''; 
 $toCC3 = $danceDirector;
+
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
@@ -91,21 +93,7 @@ $preface = '';
       $replaceArr  = array("\r\n", "\n", "\r");
       $htmlEmail = str_replace($replaceArr, "<br>", $emailBody);
 
-       
-     
-        // sendEmailArray(
-        //     $regEmail1,  
-        //     $fromCC,
-        //     $fromEmailName,
-        //     $htmlEmail,
-        //     $emailSubject,
-        //     $replyEmail,
-        //     $replyTopic,
-        //     $mailAttachment,
-        //     $toCC2,
-        //     $toCC3,
-        //     $toCC4
-        // );
+
         sendEmailArray(
             $regEmail1,  
             $fromCC,
