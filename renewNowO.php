@@ -3,10 +3,12 @@
   require_once 'config/Database.php';
   require_once 'models/PaymentCustomer.php';
   require_once 'models/PaymentProduct.php';
+
   $database = new Database();
   $db = $database->connect();
   $memberProducts = [];
 $product = new PaymentProduct($db);
+
 $result = $product->read();
 $rowCount = $result->rowCount();
 $num_products = $rowCount;

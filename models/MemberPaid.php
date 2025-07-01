@@ -127,7 +127,7 @@ class MemberPaid {
           $stmt->bindParam(':userid', $this->userid);
           $stmt->bindParam(':year', $this->year);
           $stmt->bindParam(':paid', $this->paid);
-         
+  
           // Execute query
           if($stmt->execute()) {
             return true;

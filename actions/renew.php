@@ -2,8 +2,8 @@
 session_start();
 
 require_once '../vendor/autoload.php';
-require_once '../config/secrets.php';
 require_once '../config/Database.php';
+require_once '../models/TempOnlineRenewal.php';
 require_once '../models/PaymentProduct.php';
 require_once '../models/PaymentCustomer.php';
 
@@ -26,7 +26,9 @@ $memberProducts = $_SESSION['memberproducts'];
 
 $database = new Database();
 $db = $database->connect();
+$tempOnlineRenewal = new TempOnlineRenewal($db);
 $paymentcustomer = new PaymentCustomer($db);
+
 $chargeProductID = '';
 $chargePriceID = '';
 $searchemail = $_SESSION['useremail'];
@@ -69,8 +71,18 @@ if (isset($_POST['submitRenewal'])) {
     $_SESSION['renewboth'] = 0;
   }
 
- 
+$tempOnlineRenewal->userid = $_SESSION['userid']; 
+if (isset($_SESSION['partnerid'])) {
+  $tempOnlineRenewal->partnerid = $_SESSION['partnerid'];
+} else {
+   $tempOnlineRenewal->partnerid = 0;
+}
+$tempOnlineRenewal->renewthisyear = $_SESSION['renewThisYear']; 
+$tempOnlineRenewal->renewnextyear = $_SESSION['renewNextYear']; 
+$tempOnlineRenewal->renewboth = $_SESSION['renewboth'];
 
+$tempOnlineRenewal->create();
+$renewID = $db->lastInsertId();
 $checkout_session = \Stripe\Checkout\Session::create([
    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
   'line_items' => [[
@@ -79,7 +91,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
   ]],
   'customer' => $customer->id,
   'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '/renewsuccess.php',
+  'success_url' => $YOUR_DOMAIN . '/renewsuccess.php?renewalid='.$renewID,
   'cancel_url' => $YOUR_DOMAIN . '/renewcancel.php',
 ]);  
 

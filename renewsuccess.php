@@ -4,12 +4,21 @@ session_start();
 $_SESSION['successurl'] = $_SERVER['REQUEST_URI'];
 require_once 'config/Database.php';
 require_once 'models/MemberPaid.php';
+require_once 'models/TempOnlineRenewal.php';
 $renewalYear = '';
 
 $database = new Database();
 $db = $database->connect();
 $member  = new MemberPaid($db);
 $partner = new MemberPaid($db);
+$tempOnlineRenewal = new TempOnlineRenewal($db);
+$tempID = $_GET['renewalid'];
+$tempOnlineRenewal->id = $_GET['renewalid'];
+
+unset($_GET['renewalid']);
+$tempOnlineRenewal->read_single();
+
+
 $noRenewalYear = 0;
 
 $current_year = date('Y');
@@ -17,17 +26,18 @@ $current_year = date('Y');
 $next_year = date('Y', strtotime('+1 year'));
 
 
-if ($_SESSION['renewThisYear'] === 1) {
+if ($tempOnlineRenewal->renewthisyear === '1') {
   $renewalYear = $current_year;
 
 }
-if ($_SESSION['renewNextYear'] === 1) {
+if ($tempOnlineRenewal->renewnextyear === '1') {
   $renewalYear = $next_year;
  
 }
+
 $yearsPaid = [];
 
-$result = $member->read_byUserid($_SESSION['userid']);
+$result = $member->read_byUserid($tempOnlineRenewal->userid);
 
 $rowCount = $result->rowCount();
 
@@ -53,42 +63,41 @@ if ($rowCount > 0) {
 
 
     if ($renewalYear === $yp['year']) {
-        $member->userid = $_SESSION['userid'];
+        $member->userid = $tempOnlineRenewal->userid;
         $member->year = $renewalYear;
         $member->paid = 1;
         $member->id = $yp['id'];
  
         $member->update();
-        $_SESSION['renewThisYear'] = 0;
-        $_SESSION['renewNextYear'] = 0;
+
        $noRenewalYear = 1;
     }
   }
 
    if ($noRenewalYear === 0) {
-     $member->userid = $_SESSION['userid'];
+     $member->userid = $tempOnlineRenewal->userid;
     $member->year = $renewalYear;
     $member->paid = 1;   
+ 
     $member->create();
-    $_SESSION['renewThisYear'] = 0;
-    $_SESSION['renewNextYear'] = 0;
+
    }
 } else {
   
-    $member->userid = $_SESSION['userid'];
+    $member->userid = $tempOnlineRenewal->userid;
     $member->year = $renewalYear;
     $member->paid = 1;   
     $member->create();
-    $_SESSION['renewThisYear'] = 0;
-    $_SESSION['renewNextYear'] = 0;
+
 
 }
+
 // renew partner
-if ($_SESSION['renewboth'] === 1) {
+if ($tempOnlineRenewal->renewboth === '1') {
     $noRenewalYear = 0;
       $yearsPaid = [];
 
-    $result = $partner->read_byUserid($_SESSION['partnerid']);
+    $result = $partner->read_byUserid($tempOnlineRenewal->partnerid);
 
     $rowCount = $result->rowCount();
 
@@ -104,7 +113,6 @@ if ($_SESSION['renewboth'] === 1) {
 
             );
             array_push($yearsPaid, $paid_item);
-        
 
         }
     } 
@@ -114,7 +122,7 @@ if ($_SESSION['renewboth'] === 1) {
 
       foreach ($yearsPaid as $yp) {
           if ($renewalYear === $yp['year']) {
-            $partner->userid = $_SESSION['partneridS'];
+            $partner->userid = $tempOnlineRenewal->partnerid;
             $partner->year = $renewalYear;
             $partner->paid = 1;
             $partner->id = $yp['id'];
@@ -122,23 +130,29 @@ if ($_SESSION['renewboth'] === 1) {
             $noRenewalYear = 1;
           }
     }
+
        if ($noRenewalYear === 0) {
-        $partner->userid = $_SESSION['partnerid'];
+        $partner->userid = $tempOnlineRenewal->partnerid;
         $partner->year = $renewalYear;
         $partner->paid = 1;
         $partner->create();
-    $_SESSION['renewThisYear'] = 0;
-    $_SESSION['renewNextYear'] = 0;
+
    }
 } else {
    
-        $partner->userid = $_SESSION['partnerid'];
+        $partner->userid = $tempOnlineRenewal->partnerid;
         $partner->year = $renewalYear;
         $partner->paid = 1;
         $partner->create();
     
 }
+
 }
+$tempOnlineRenewal->id = $tempID;
+
+$tempOnlineRenewal->delete();
+    $_SESSION['renewThisYear'] = 0;
+    $_SESSION['renewNextYear'] = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
