@@ -13,6 +13,7 @@ $member  = new MemberPaid($db);
 $partner = new MemberPaid($db);
 $tempOnlineRenewal = new TempOnlineRenewal($db);
 $tempID = $_GET['renewalid'];
+
 $tempOnlineRenewal->id = $_GET['renewalid'];
 
 unset($_GET['renewalid']);
@@ -67,7 +68,7 @@ if ($rowCount > 0) {
         $member->year = $renewalYear;
         $member->paid = 1;
         $member->id = $yp['id'];
- 
+
         $member->update();
 
        $noRenewalYear = 1;
@@ -78,7 +79,7 @@ if ($rowCount > 0) {
      $member->userid = $tempOnlineRenewal->userid;
     $member->year = $renewalYear;
     $member->paid = 1;   
- 
+
     $member->create();
 
    }
@@ -86,7 +87,8 @@ if ($rowCount > 0) {
   
     $member->userid = $tempOnlineRenewal->userid;
     $member->year = $renewalYear;
-    $member->paid = 1;   
+    $member->paid = 1;  
+
     $member->create();
 
 
@@ -126,6 +128,7 @@ if ($tempOnlineRenewal->renewboth === '1') {
             $partner->year = $renewalYear;
             $partner->paid = 1;
             $partner->id = $yp['id'];
+
             $partner->update();
             $noRenewalYear = 1;
           }
@@ -135,6 +138,7 @@ if ($tempOnlineRenewal->renewboth === '1') {
         $partner->userid = $tempOnlineRenewal->partnerid;
         $partner->year = $renewalYear;
         $partner->paid = 1;
+
         $partner->create();
 
    }
@@ -143,6 +147,7 @@ if ($tempOnlineRenewal->renewboth === '1') {
         $partner->userid = $tempOnlineRenewal->partnerid;
         $partner->year = $renewalYear;
         $partner->paid = 1;
+
         $partner->create();
     
 }

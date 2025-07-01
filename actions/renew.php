@@ -10,6 +10,7 @@ require_once '../models/PaymentCustomer.php';
 header('Content-Type: application/json');
 // Set your secret key. Remember to switch to your live secret key in production.
 // See your keys here: https://dashboard.stripe.com/apikeys
+$YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
 if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
   $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
    $stripeSecretKey = $_SESSION['prodkey'] ;
