@@ -94,7 +94,7 @@ hr {
   align-items: left;
   padding: 20px 0;
   transition: all 0.3s ease-in-out;
-  background-color: rgba(65, 50, 50, 0.5);
+  background-color: rgba(13, 11, 11, 0.5);
     /* background-color: rgba(190, 197, 186, 0.5); */
   border-radius: 5px;
   max-width: 100%;
@@ -149,6 +149,7 @@ hr {
 .nav a {
   text-decoration: none;
   color: var(--white3);
+  font-weight: bold;
   padding: 7px 15px;
   transition: all 0.3s ease-in-out;
 }
