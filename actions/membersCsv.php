@@ -23,6 +23,7 @@ $title_array =
 'Phone', 
 'Address',
 'Date Joined', 
+'Joined Online',
 'Paid', 
 'Year'];
   array_push($csvMembers, $title_array);
@@ -38,6 +39,7 @@ if ($rowCount > 0) {
           'phone' => $phone,
           'streetaddress' => $streetaddress,
           'datejoined' => substr($datejoined,0,10),
+          'joinedonline' => $joinedonline,
           'paid' => $paid,
           'year' => $year
 
