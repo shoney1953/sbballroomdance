@@ -8,19 +8,6 @@ require_once '../models/TempOnlineMember.php';
 require_once '../models/PaymentProduct.php';
 
 
-// $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
-// if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
-//   $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
-//    $stripeSecretKey = $_SESSION['prodkey'] ;
-// }
-// if ($_SERVER['SERVER_NAME'] === 'localhost') {    
-//   $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';  
-//   $stripeSecretKey = $_SESSION['testkey'] ;
-// }
-// \Stripe\Stripe::setApiKey($stripeSecretKey);
-// // header('Content-Type: application/json');
-
-// $stripe = new \Stripe\StripeClient($stripeSecretKey);
 $_SESSION['partialyearmem'] = 0;
 $py = $_SESSION['partialyearmem'];
 $memberProducts = $_SESSION['memberproducts'];

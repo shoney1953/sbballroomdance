@@ -76,6 +76,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
               'lastLogin' => date('m d Y h:i:s A', strtotime($lastLogin)),
               'numlogins' => $numlogins,
               'directorylist' => $directorylist,
+              'joinedonline' => $joinedonline,
               'fulltime' => $fulltime,
               'regformlink' => $regformlink,
               'robodjnumlogins' => $robodjnumlogins,
@@ -104,6 +105,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
               'userid' => $userid,
               'year' => $year,
               'email' => $email,
+              'paidonline' => $paidonline,
               'paid' => $paid
 
           );
@@ -128,6 +130,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
               'userid' => $userid,
               'email' => $email,
               'year' => $year,
+              'paidonline' => $paidonline,
               'paid' => $paid
           );
           array_push($memberStatus1, $member_item);
@@ -240,7 +243,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<table>';
         echo '<thead>';
         echo '<tr>';
-        echo '<th colspan="14" style="text-align:center">Member List</th>';
+        echo '<th colspan="15" style="text-align:center">Member List</th>';
         echo '</tr>';
         echo '<tr>';
                 echo '<th>Update</th>';
@@ -257,6 +260,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>Address</th>';
                 echo '<th>Directory</th>';
                 echo '<th>Fulltime?</th>';
+                echo '<th>Joined Online?</th>';
            
   
                 echo '</tr>';
@@ -289,6 +293,11 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                             echo "<td>No</td>"; 
                         }
                         if ($user['fulltime']) {
+                            echo "<td>Yes</td>"; 
+                        } else {
+                            echo "<td>No</td>"; 
+                        }
+                       if ($user['joinedonline']) {
                             echo "<td>Yes</td>"; 
                         } else {
                             echo "<td>No</td>"; 
@@ -335,6 +344,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
                 echo '<th>Email</th>';
+                echo '<th>Paid Online</th>';
                 echo '</tr>';
         echo '</thead>'   ;
         echo '<tbody>';
@@ -357,6 +367,12 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         echo "<td>".$memStat['firstname']."</td>";               
                         echo "<td>".$memStat['lastname']."</td>";
                         echo "<td>".$memStat['email']."</td>";  
+       
+                        if ($memStat['paidonline'] == true ) {
+                            echo "<td><em>&#10004;</em></td>"; 
+                          } else {
+                              echo "<td><em>&times;</em></td>"; 
+                          }   
 
                  
                       echo "</tr>";
@@ -381,6 +397,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 echo '<th>First Name</th>';  
                 echo '<th>Last Name</th>';
                 echo '<th>Email</th>';
+                echo '<th>Paid Online</th>';
                 echo '</tr>';
          echo '</thead>'   ;
          echo '<tbody>'  ;
@@ -403,6 +420,12 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                         echo "<td>".$memStat['firstname']."</td>";               
                         echo "<td>".$memStat['lastname']."</td>"; 
                         echo "<td>".$memStat['email']."</td>";  
+                                               
+                        if ($memStat['paidonline'] == true ) {
+                            echo "<td><em>&#10004;</em></td>"; 
+                          } else {
+                              echo "<td><em>&times;</em></td>"; 
+                          }   
 
                  
                       echo "</tr>";

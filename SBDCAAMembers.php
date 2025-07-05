@@ -53,6 +53,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
               'memberorigcreated' => $memberorigcreated,
               'created' => $created,
               'streetAddress' => $streetaddress,
+              'joinedonline' => $joinedonline,
               'lastLogin' => $lastLogin
           );
           array_push($users, $user_item);
@@ -297,7 +298,7 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
                 // echo '<th>Address</th>';
                 echo '<th>Orig Created</th>';
                 echo '<th>Archived</th>';
-
+                echo '<th>Joined Online</th>';
                 echo '</tr>';
                 echo "</thead>";
                 echo "<tbody>";
@@ -319,6 +320,7 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
                         // echo "<td>".$user['streetAddress']."</td>"; 
                         echo "<td>".$user['memberorigcreated']."</td>"; 
                         echo "<td>".$user['created']."</td>"; 
+                        echo "<td>".$user['joinedonline']."</td>"; 
               
                        
                         

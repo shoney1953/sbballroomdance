@@ -192,7 +192,8 @@ if ($rowCount > 0) {
         $paid_item = array(
             'id' => $id,
             'paid' => $paid,
-            'year' => $year
+            'year' => $year,
+            'paidonline' => $paidonline
 
         );
         array_push($yearsPaid, $paid_item);
@@ -213,7 +214,8 @@ if ($rowCount > 0) {
         $paid_item = array(
             'id' => $id,
             'paid' => $paid,
-            'year' => $year
+            'year' => $year,
+            'paidonline' => $paidonline
 
         );
         array_push($pyearsPaid, $paid_item);

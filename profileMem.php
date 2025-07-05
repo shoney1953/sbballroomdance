@@ -60,7 +60,8 @@ if ($rowCount > 0) {
         $paid_item = array(
             'id' => $id,
             'paid' => $paid,
-            'year' => $year
+            'year' => $year,
+            'paidonline' => $paidonline
 
         );
         array_push($yearsPaid, $paid_item);
@@ -81,6 +82,7 @@ if ($rowCount > 0) {
         $paid_item = array(
             'id' => $id,
             'paid' => $paid,
+            'paidonline' => $paidonline,
             'year' => $year
 
         );
@@ -124,11 +126,12 @@ if ($rowCount > 0) {
     echo '<table>';
     echo '<thead>';
     echo '<tr>';
-    echo '<th colspan=2 style="text-align: center">Membership Status</th>';
+    echo '<th colspan=3 style="text-align: center">Membership Status</th>';
     echo '</tr>';
     echo "<tr>";
     echo "<td>YEAR</td>";
     echo "<td>PAID?</td>";
+    echo "<td>PAID ONLINE?</td>";
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
@@ -137,6 +140,11 @@ if ($rowCount > 0) {
         echo "<td>".$year['year']."</td>";
         
         if ($year['paid'] == true ) {
+            echo "<td>&#10004;</td>"; 
+          } else {
+              echo "<td>&times;</td>"; 
+          }  
+         if ($year['paidonline'] == true ) {
             echo "<td>&#10004;</td>"; 
           } else {
               echo "<td>&times;</td>"; 
@@ -153,11 +161,12 @@ if ($rowCount > 0) {
         echo '<table>';
         echo '<thead>';
         echo '<tr>';
-        echo '<th colspan=2 style="text-align: center">Partner Membership Status</th>';
+        echo '<th colspan=3 style="text-align: center">Partner Membership Status</th>';
         echo '</tr>';
         echo "<tr>";
         echo "<td>YEAR</td>";
         echo "<td>PAID?</td>";
+        echo "<td>PAID ONLINE?</td>";
         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
@@ -166,6 +175,11 @@ if ($rowCount > 0) {
             echo "<td>".$year['year']."</td>";
             
             if ($year['paid'] == true ) {
+                echo "<td>&#10004;</td>"; 
+            } else {
+                echo "<td>&times;</td>"; 
+            }  
+            if ($year['paidonline'] == true ) {
                 echo "<td>&#10004;</td>"; 
             } else {
                 echo "<td>&times;</td>"; 

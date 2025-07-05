@@ -30,6 +30,7 @@ class UserArchive {
     public $robodjlastlogin;
     public $memberorigcreated;
     public $regformlink;
+    public $joinedonline;
 
     // Constructor with DB
     public function __construct($db) {
@@ -140,6 +141,7 @@ class UserArchive {
          $this->robodjlastlogin = $row['robodjlastlogin'];
          $this->memberorigcreated = $row['memberorigcreated'];
          $this->regformlink = $row['regformlink'];
+         $this->joinedonline = $row['joinedonline'];
 
     }
     public function getUserName($user, $email) {
@@ -188,6 +190,7 @@ class UserArchive {
       $this->robodjlastlogin = $row['robodjlastlogin'];
       $this->memberorigcreated = $row['memberorigcreated'];
       $this->regformlink = $row['regformlink'];
+      $this->joinedonline = $row['joinedonline'];
         return true;
       }
      return false;
@@ -206,6 +209,7 @@ class UserArchive {
           city = :city, state = :state, zip = :zip, hoa = :hoa,
           memberorigcreated = :memberorigcreated, regformlink = :regformlink,
           robodjnumlogins = :robodjnumlogins, robodjlastlogin = :robodjlastlogin,
+          joinedonline = :joinedonline,
           phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
 
           // Prepare statement
@@ -255,6 +259,7 @@ class UserArchive {
           $stmt->bindParam(':robodjlastlogin', $this->robodjlastlogin);
           $stmt->bindParam(':memberorigcreated', $this->memberorigcreated);
           $stmt->bindParam(':regformlink', $this->regformlink);
+          $stmt->bindParam(':joinedonline', $this->joinedonline);
 
           // Execute query
           if ($stmt->execute()) {
@@ -278,7 +283,8 @@ class UserArchive {
           directorylist = :directorylist,
           fulltime = :fulltime, regformlink = :regformlink,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
-          phone1 = :phone1, phone2 = :phone2, notes = :notes
+          phone1 = :phone1, phone2 = :phone2, notes = :notes.
+          joinedonline = :joinedonline,
           WHERE id = :id';
    
 
@@ -322,6 +328,7 @@ class UserArchive {
           $stmt->bindParam(':directorylist', $this->directorylist);
           $stmt->bindParam(':fulltime', $this->fulltime);
           $stmt->bindParam(':regformlink', $this->regformlink);
+           $stmt->bindParam(':joinedonline', $this->joinedonline);
 
           // Execute query
           if($stmt->execute()) {

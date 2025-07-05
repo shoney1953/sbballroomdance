@@ -7,7 +7,7 @@ class MemberPaid {
     public $userid;
     public $year;
     public $paid;
-  
+    public $paidonline;
 
     // Constructor with DB
     public function __construct($db) {
@@ -19,7 +19,7 @@ class MemberPaid {
       // Create query
 
       // $query = 'SELECT * FROM ' . $this->table . ' ORDER BY userid';
-      $query = 'SELECT r.id, r.userid, r.year, r.paid,
+      $query = 'SELECT r.id, r.userid, r.year, r.paid, r.paidonline,
       u.firstname, u.lastname, u.id, u.email
       FROM ' . $this->table . ' r
       LEFT JOIN
@@ -39,7 +39,7 @@ class MemberPaid {
       // Create query
 
       // $query = 'SELECT * FROM ' . $this->table . ' ORDER BY userid';
-      $query = 'SELECT r.id, r.userid, r.year, r.paid,
+      $query = 'SELECT r.id, r.userid, r.year, r.paid, r.paidonline,
       u.firstname, u.lastname, u.email
       FROM ' . $this->table . ' r
       LEFT JOIN
@@ -63,7 +63,7 @@ class MemberPaid {
     // Get Single record
     public function read_single() {
           // Create query
-     $query = 'SELECT r.id, r.userid, r.year, r.paid
+     $query = 'SELECT r.id, r.userid, r.year, r.paid, r.paidonline,
            u.firstname, u.lastname, u.id, u.email
           FROM ' . $this->table . ' r
           LEFT JOIN
@@ -88,6 +88,7 @@ class MemberPaid {
           $this->userid = $row['userid'];
           $this->year = $row['year'];
           $this->paid = $row['paid'];
+          $this->paidonline = $row['paidonline'];
           $this->id = $row['id'];
          
 
@@ -118,7 +119,7 @@ class MemberPaid {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET userid = :userid, year = :year, 
-          paid = :paid';
+          paid = :paid, paidonline = :paidonline';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -127,7 +128,7 @@ class MemberPaid {
           $stmt->bindParam(':userid', $this->userid);
           $stmt->bindParam(':year', $this->year);
           $stmt->bindParam(':paid', $this->paid);
-  
+          $stmt->bindParam(':paidonline', $this->paidonline);
           // Execute query
           if($stmt->execute()) {
             return true;
@@ -144,10 +145,12 @@ class MemberPaid {
 
     public function update() {
           // Create query
-     
+
           $query = 'UPDATE ' . $this->table . 
-          ' SET userid = :userid, year = :year, 
-            paid = :paid
+          ' SET userid = :userid, 
+            year = :year, 
+            paid = :paid, 
+            paidonline = :paidonline
             WHERE id = :id ';
    
 
@@ -158,6 +161,7 @@ class MemberPaid {
         $stmt->bindParam('userid', $this->userid);
         $stmt->bindParam(':year', $this->year);
         $stmt->bindParam(':paid', $this->paid);
+        $stmt->bindParam(':paidonline', $this->paidonline);
         $stmt->bindParam(':id', $this->id);
           
           // Execute query

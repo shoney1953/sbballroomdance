@@ -278,6 +278,7 @@ if ($rowCount > 0) {
             echo '<th>HOA</td>';
             echo '<th>Directory</th>';
             echo '<th>Fulltime</th>';
+            echo '<th>Joined Online</th>';
             echo '<th colspan="2">Notes</th>';
  
             echo '</tr>';
@@ -288,6 +289,7 @@ if ($rowCount > 0) {
             echo "<td>$user->hoa</td>";
             echo "<td>$user->directorylist</td>";
             echo "<td>$user->fulltime</td>";
+            echo "<td>$user->joinedonline</td>";
             echo "<td colspan='2'>$user->notes</td>";
 
             echo '</tr>';
@@ -348,6 +350,7 @@ if ($rowCount > 0) {
     echo '<tr>';
     echo "<th>YEAR</th>";
     echo "<th>PAID?</th>";
+     echo "<th>PAID ONLINE?</th>";
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
@@ -360,6 +363,11 @@ if ($rowCount > 0) {
           } else {
               echo "<td>&times;</td>"; 
           }  
+        if ($year['paidonline'] == true ) {
+            echo "<td>&#10004;</td>"; 
+          } else {
+              echo "<td>&times;</td>"; 
+          } 
         echo "</tr>";
     }
     echo "</tbody>";

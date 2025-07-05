@@ -28,7 +28,7 @@ $fromCC = '';
 
 
 $toCC2 = $president;
-$toCC4 = $vicePresident;
+$toCC4 = $treasurer;
 $toCC5 = $volunteerDirector; 
 
 // $fromCC = $secretary; // leave commented
@@ -67,6 +67,7 @@ $toCC5 = $volunteerDirector;
        $user->directorylist = ($_POST['directorylist1']);
   
        $user->fulltime = htmlentities($_POST['fulltime1']);
+       $user->joinedonline = 1;
     //    $user->directorylist = 1;
        $formerUser = "no";
        if ($userArchive->getUserName($user->username, $user->email)) {
@@ -119,6 +120,7 @@ $toCC5 = $volunteerDirector;
     $memberPaid = new MemberPaid($db);
     $memberPaid->userid = $member1ID;
     $memberPaid->paid = 1; // mark paid
+    $memberPaid->paidonline = 1;
     $memberPaid->year = date("Y");
     $memberPaid->create();
     // create a membership record for next year
@@ -127,15 +129,18 @@ $toCC5 = $volunteerDirector;
       if ($_SESSION['partialyearmem'] === 1) {
             $memberPaid->year = date('Y', strtotime('+1 year'));
             $memberPaid->paid = 0; // mark not paid
+            $memberPaid->paidonline = 0;
             $memberPaid->create();
       } else {
             $memberPaid->year = date('Y', strtotime('+1 year'));
             $memberPaid->paid = 1; // mark paid
+            $memberPaid->paidonline = 1;
             $memberPaid->create();
       } 
     } else {
           $memberPaid->year = date('Y', strtotime('+1 year'));
           $memberPaid->paid = 0; // mark not paid
+          $memberPaid->paidonline = 0;
           $memberPaid->create();
 
     }
@@ -175,6 +180,7 @@ $toCC5 = $volunteerDirector;
     $user->fulltime = htmlentities($_POST['fulltime2']);
     // $user->directorylist = 1;
     $user->directorylist = $_POST['directorylist2'];
+    $user->joinedonline = 1;
     $formerUser = "no";
     if ($userArchive->getUserName($user->username, $user->email)) {
        $formerUser = "yes";
@@ -227,6 +233,7 @@ require '../includes/emailSignature.php';
  $memberPaid->userid = $member2ID;
  $memberPaid->paid = 1; // mark paid
  $memberPaid->year = date("Y");
+ $memberPaid->paidonline = 1;
  $memberPaid->create();
  // create a membership record for next year
   //if in the discount period, they can do only the current year, or current plus next
@@ -234,15 +241,18 @@ require '../includes/emailSignature.php';
       if ($_SESSION['partialyearmem'] === 1) {
             $memberPaid->year = date('Y', strtotime('+1 year'));
             $memberPaid->paid = 0; // mark not paid
+            $memberPaid->paidonline = 0;
             $memberPaid->create();
       } else {
             $memberPaid->year = date('Y', strtotime('+1 year'));
             $memberPaid->paid = 1; // mark paid
+            $memberPaid->paidonline = 1;
             $memberPaid->create();
       } 
     } else {
           $memberPaid->year = date('Y', strtotime('+1 year'));
           $memberPaid->paid = 0; // mark not paid
+          $memberPaid->paidonline = 0;
           $memberPaid->create();
 
     }

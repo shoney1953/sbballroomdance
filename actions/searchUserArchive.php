@@ -52,6 +52,7 @@ if (isset($_POST['searchUser'])) {
                     'hoa' => $hoa,
                     'passwordChanged' => $passwordChanged,
                     'streetAddress' => $streetaddress,
+                    'joinedonline' => $joinedonline,
                     'lastLogin' => $lastLogin
                 );
                 array_push( $users, $user_item);
@@ -96,6 +97,7 @@ if (isset($_POST['searchUser'])) {
                 echo '<th>Address</th>';
                 echo '<th>Last Login</th>';
                 echo '<th>PWD Changed</th>';
+                echo '<th>Joined Online</th>';
                 echo '</tr>';
                 
         
@@ -105,7 +107,6 @@ if (isset($_POST['searchUser'])) {
                
                     echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
              
-                        echo "<td>".$user['id']."</td>"; 
                         echo "<td>".$user['firstname']."</td>";               
                         echo "<td>".$user['lastname']."</td>";
                         echo "<td>".$user['username']."</td>";
@@ -115,8 +116,9 @@ if (isset($_POST['searchUser'])) {
                         echo "<td>".$user['phone1']."</td>";
                         echo "<td>".$user['hoa']."</td>";
                         echo "<td>".$user['streetAddress']."</td>"; 
-                        echo "<td>".$user['lastLogin']."</td>"; 
-                        echo "<td>".$user['passwordChanged']."</td>"; 
+                        echo "<td>".substr($user['lastLogin'],0,10)."</td>"; 
+                        echo "<td>".substr($user['passwordChanged'],0,10)."</td>"; 
+                         echo "<td>".$user['joinedonline']."</td>"; 
                        
                         
                       echo "</tr>";

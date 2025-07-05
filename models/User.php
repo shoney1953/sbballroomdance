@@ -30,6 +30,7 @@ class User {
     public $robodjnumlogins;
     public $robodjlastlogin;
     public $regformlink;
+    public $joinedonline;
 
     // Constructor with DB
     public function __construct($db) {
@@ -208,6 +209,7 @@ class User {
           $this->robodjnumlogins = $row['robodjnumlogins'];
           $this->robodjlastlogin = $row['robodjlastlogin'];
           $this->regformlink = $row['regformlink'];
+          $this->joinedonline = $row['joinedonline'];
           return true;
           }
         
@@ -283,6 +285,7 @@ class User {
       $this->robodjnumlogins = $row['robodjnumlogins'];
       $this->robodjlastlogin = $row['robodjlastlogin'];
       $this->regformlink = $row['regformlink'];
+      $this->joinedonline = $row['joinedonline'];
   
         return true;
       }
@@ -347,6 +350,7 @@ class User {
           partnerid = :partnerid, streetaddress = :streetaddress,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
           directorylist = :directorylist, fulltime = :fulltime,
+          joinedonline = :joinedonline,
           phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
 
           // Prepare statement
@@ -387,7 +391,8 @@ class User {
           $stmt->bindParam(':phone2', $this->phone2);
           $stmt->bindParam(':notes', $this->notes);
           $stmt->bindParam(':directorylist', $this->directorylist);
-           $stmt->bindParam(':fulltime', $this->fulltime);
+          $stmt->bindParam(':fulltime', $this->fulltime);
+          $stmt->bindParam(':joinedonline', $this->joinedonline);
 
 
           // Execute query
@@ -412,6 +417,7 @@ class User {
           streetaddress = :streetaddress, role = :role,
           directorylist = :directorylist, fulltime = :fulltime,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
+          joinedonline = :joinedonline,
           phone1 = :phone1, phone2 = :phone2, notes = :notes, regformlink = :regformlink
           WHERE id = :id';
    
@@ -457,6 +463,7 @@ class User {
           $stmt->bindParam(':directorylist', $this->directorylist);
           $stmt->bindParam(':fulltime', $this->fulltime);
           $stmt->bindParam(':regformlink', $this->regformlink);
+          $stmt->bindParam(':joinedonline', $this->joinedonline);
 
           // Execute query
           if($stmt->execute()) {

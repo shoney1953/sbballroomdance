@@ -11,6 +11,7 @@ $partner = new User($db);
 $userArr = [];
 $numHOA1 = 0;
 $numHOA2 = 0;
+$numJoinedOnline = 0;
 $numWOform = 0;
 $numWform = 0;
 
@@ -68,9 +69,13 @@ if (isset($_POST['submitUserRep'])) {
                 'email' => $email,
                 'fulltime' => $fulltime,
                 'regformlink' => $regformlink,
+                'joinedonline' => $joinedonline,
                 'streetaddress' => $streetaddress
 
             );
+            if ($usr_item['joinedonline'] === '1') {
+                $numJoinedOnline++;
+            }
             if ($usr_item['hoa'] === '1') {
                 $numHOA1++;
             }
@@ -94,14 +99,15 @@ if (isset($_POST['submitUserRep'])) {
 
 if ($userCount > 0) {
   
-    $pdf->SetFont('Arial','B',14);
+    $pdf->SetFont('Arial','B',12);
     $pdf->Cell(40,5,"FIRST NAME",1,0,"L");
     $pdf->Cell(40,5,"LAST NAME",1,0,"L");
     $pdf->Cell(70,5,"EMAIL",1,0,"L");
     $pdf->Cell(5,5,"H",1,0,"L");
     $pdf->Cell(5,5,"F",1,0,"L");
     $pdf->Cell(35,5,"PHONE",1,0,"L");
-    $pdf->Cell(70,5,"STREET ADDRESS",1,1,"L");
+    $pdf->Cell(60,5,"STREET ADDRESS",1,0,"L");
+     $pdf->Cell(15,5,"ON?",1,1,"L");
     $pdf->SetFont('Arial', '', 10);
     foreach ($userArr as $usr) {
 
@@ -113,13 +119,15 @@ if ($userCount > 0) {
          $pdf->Cell(5,5,$usr['hoa'],1,0,"L");
          $pdf->Cell(5,5,$usr['fulltime'],1,0,"L");
          $pdf->Cell(35,5,$usr['phone1'],1,0,"L");
-         $pdf->Cell(70,5,$usr['streetaddress'],1,1,"L");
+         $pdf->Cell(60,5,$usr['streetaddress'],1,0,"L");
+          $pdf->Cell(15,5,$usr['joinedonline'],1,1,"L");
 
 
     }
     $pdf->SetFont('Arial','B', 14);
     $pdf->Ln(4);
     $pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
+    $pdf->Cell(0, 5, "Total Members Joined Online:  ".$numJoinedOnline, 0, 1);
     $pdf->Ln(2);
     $pdf->Cell(0, 5, "Total Members HOA1:  ".$numHOA1, 0, 1);
     $pdf->Cell(0, 5, "Total Members HOA2:  ".$numHOA2, 0, 1);

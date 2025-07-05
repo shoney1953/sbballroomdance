@@ -12,6 +12,7 @@ $memArr = [];
 $memNotPaidArr = [];
 $memPaidArr = [];
 $totPaid = 0;
+$totPaidOnline = 0;
 $totNotPaid = 0;
 
 class PDF extends FPDF
@@ -63,6 +64,7 @@ if (isset($_POST['submitPaidRep'])) {
                 'lastname' => $lastname,
                 'email' => $email,
                 'year' => $year,
+                'paidonline' => $paidonline,
                 'paid' => $paid
    
             );
@@ -90,7 +92,8 @@ if ($memCount > 0) {
     $pdf->Cell(30,5,"FIRST NAME",1,0,"L");
     $pdf->Cell(30,5,"LAST NAME",1,0,"L");
     $pdf->Cell(60,5,"EMAIL",1,0,"L");
-    $pdf->Cell(20,5,"PAID",1,1,"L");
+    $pdf->Cell(20,5,"PAID",1,0,"L");
+    $pdf->Cell(25,5,"PAID ONLINE",1,1,"L");
     $pdf->SetFont('Arial', '', 10);
     foreach ($memPaidArr as $mem) {
 
@@ -101,10 +104,16 @@ if ($memCount > 0) {
          $pdf->Cell(30,5,$mem['lastname'],1,0,"L");
          $pdf->Cell(60,5,$mem['email'],1,0,"L");
          if ($mem['paid'] == 1) {
-            $pdf->Cell(20,5,"YES",1,1,"L");
+            $pdf->Cell(20,5,"YES",1,0,"L");
             $totPaid++;
          } else {
-            $pdf->Cell(20,5,"NO",1,1,"L");
+            $pdf->Cell(20,5,"NO",1,0,"L");
+         }
+        if ($mem['paidonline'] == 1) {
+            $pdf->Cell(25,5,"YES",1,1,"L");
+            $totPaidOnline++;
+         } else {
+            $pdf->Cell(25,5,"NO",1,1,"L");
          }
   
 
@@ -113,6 +122,7 @@ if ($memCount > 0) {
     $pdf->SetFont('Arial','B', 10);
     $pdf->Ln(2);
     $pdf->Cell(0, 8, "Total Members Paid:  ".$totPaid, 0, 1);
+    $pdf->Cell(0, 8, "Total Members Paid Online:  ".$totPaidOnline, 0, 1);
     $pdf->Cell(0, 8, "Total Members:  ".$memCount, 0, 1);
     $pdf->AddPage();
     $pdf->SetFont('Arial','B',10);
@@ -122,6 +132,7 @@ if ($memCount > 0) {
     $pdf->Cell(30,5,"LAST NAME",1,0,"L");
     $pdf->Cell(60,5,"EMAIL",1,0,"L");
     $pdf->Cell(20,5,"PAID",1,1,"L");
+
     $pdf->SetFont('Arial', '', 10);
     foreach ($memNotPaidArr as $mem) {
 
@@ -137,6 +148,7 @@ if ($memCount > 0) {
          } else {
             $pdf->Cell(20,5,"NO",1,1,"L");
          }
+
   
 
 

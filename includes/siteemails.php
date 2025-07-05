@@ -2,7 +2,7 @@
 $president = 'annzabinski@gmail.com';
 $vicePresident = 'LynnePendlebury@aol.com';
 $secretary = 'patknepler@gmail.com';
-$treasurer = '	shamburglinda64@gmail.com';
+$treasurer = 'shamburglinda64@gmail.com';
 $danceDirector = 'annzabinski@gmail.com';
 $djDirector = 'rb@zedargroup.com';
 $volunteerDirector = 'valeriegreen379@gmail.com';

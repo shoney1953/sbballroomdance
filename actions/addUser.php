@@ -55,7 +55,7 @@ if (isset($_POST['submitAddUser'])) {
     $user->phone1 = $_POST['phone1'];
     $user->phone2 = $_POST['phone2'];
     $user->directorylist = $_POST['directorylist'];
-    
+    $user->joinedonline = 0;
 
 
     
@@ -106,6 +106,7 @@ if (isset($_POST['submitAddUser'])) {
        $user->phone1 = htmlentities($_POST['phone1']);
        $user->phone2 = htmlentities($_POST['phone2']);
        $user->fulltime = htmlentities($_POST['fulltime']);
+       $user->joinedonline = 0;
     //    $user->directorylist = 1;
        $formerUser = "no";
        if ($userArchive->getUserName($user->username, $user->email)) {
@@ -158,10 +159,12 @@ if (isset($_POST['submitAddUser'])) {
     $memberPaid->userid = $db->lastInsertId();
     $memberPaid->paid = 1; // mark paid
     $memberPaid->year = date("Y");
+    $memberPaid->paidonline = 0;
     $memberPaid->create();
     // create a membership record for next year
     $memberPaid->year = date('Y', strtotime('+1 year'));
     $memberPaid->paid = 0; // mark not paid
+    $memberPaid->paidonline = 0;
     $memberPaid->create();
     
  

@@ -245,6 +245,7 @@ if ($rowCount > 0) {
             
             echo '<th>Created</td>';
             echo '<th>Date Archived</th>';
+            echo '<th>Joined Online</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -252,6 +253,7 @@ if ($rowCount > 0) {
             
             echo "<td>$user->memberorigcreated</td>";
             echo "<td>$user->dateArchived</td>";
+            echo "<td>$user->joinedonline</td>";
             echo '</tr>';
             echo '</tbody>';
             echo '<thead>';
@@ -348,6 +350,7 @@ if ($rowCount > 0) {
     echo '<tr>';
     echo "<th>YEAR</th>";
     echo "<th>PAID?</th>";
+    echo "<th>PAID ONLINE?</th>";
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
@@ -356,6 +359,11 @@ if ($rowCount > 0) {
         echo "<td>".$year['year']."</td>";
         
         if ($year['paid'] == true ) {
+            echo "<td>&#10004;</td>"; 
+          } else {
+              echo "<td>&times;</td>"; 
+          }  
+         if ($year['paidonline'] == true ) {
             echo "<td>&#10004;</td>"; 
           } else {
               echo "<td>&times;</td>"; 
