@@ -219,7 +219,7 @@ class User {
     $query = 'SELECT u.id as id, u.lastname as lastname, u.firstname as firstname, u.email as email, 
     u.phone1 as phone, u.hoa as hoa, u.created as datejoined, u.joinedonline as joinedonline,
     u.streetaddress as streetaddress,
-    p.paid as paid, p.year as year
+    p.paid as paid, p.year as year, p.paidonline as paidonline
     FROM ' . $this->table . ' u
    
     JOIN

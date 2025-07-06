@@ -25,7 +25,9 @@ $title_array =
 'Date Joined', 
 'Joined Online',
 'Paid', 
-'Year'];
+'Year',
+'Paid Online'
+];
   array_push($csvMembers, $title_array);
 if ($rowCount > 0) {
 
@@ -41,7 +43,8 @@ if ($rowCount > 0) {
           'datejoined' => substr($datejoined,0,10),
           'joinedonline' => $joinedonline,
           'paid' => $paid,
-          'year' => $year
+          'year' => $year,
+          'paidonline' => $paidonline
 
       );
       array_push($csvMembers, $csv_item);
