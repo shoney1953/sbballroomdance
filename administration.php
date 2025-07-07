@@ -185,13 +185,13 @@ if ($rowCount > 0) {
         if ($_SESSION['role'] === 'SUPERADMIN') {
              
         
-            if (isset($_SESSION['testmode'])) {
-                if($_SESSION['testmode'] === 'YES') {
+            // if (isset($_SESSION['testmode'])) {
+            //     if($_SESSION['testmode'] === 'YES') {
                     echo '<li><a title="Set Up Payment Options" href="payments.php">Payment Options</a></li>';
                     echo '<li><a target="_blank" title="Go to Stripe Dashboard" href="https://stripe.com/">Stripe Dashboard</a></li>';
                     
-                }
-            }
+            //     }
+            // }
 
          
             echo '</ul>';
@@ -229,13 +229,13 @@ if ($rowCount > 0) {
     
         // echo '<h4 class="form-title form-division">Set Test Mode On</h4>';
    
-        echo '<form method="POST" action="actions/setTestMode.php">';
-        echo '<div class="form-item">';
-        echo '<h4 class="form-item-title">Check on to see test functions.</h4>';
-        echo "<input type='checkbox' title='Click to see Test Functions' name='testmode'><br>";
+        // echo '<form method="POST" action="actions/setTestMode.php">';
+        // echo '<div class="form-item">';
+        // echo '<h4 class="form-item-title">Check on to see test functions.</h4>';
+        // echo "<input type='checkbox' title='Click to see Test Functions' name='testmode'><br>";
 
-        echo '<button   type="submit" name="submitTestMode">Set Test Mode</button>'; 
-        echo '</div>';
+        // echo '<button   type="submit" name="submitTestMode">Set Test Mode</button>'; 
+        // echo '</div>';
 
         // echo '</form>';
         // echo '<div class="form-item">';

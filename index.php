@@ -360,7 +360,7 @@ if ($rowCount > 0) {
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
         if (isset($_SESSION['role'])) {
             echo ' <li><a  title="Logout from the Website" style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
-        if (isset($_SESSION['testmode'])) {
+        // if (isset($_SESSION['testmode'])) {
          if ($_SESSION['renewThisYear'] === 1)  {
                         echo '<li><a class="menu-blink" title="Renew Your Membership"  style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew For '.$current_year.'</a></li>';  
             } else {
@@ -368,7 +368,7 @@ if ($rowCount > 0) {
                         echo '<li><a class="menu-blink" title="Renew Your Membership"  style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew For '.$next_year.'</a></li>';  
             }
           }
-        }
+        // }
         }
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {
