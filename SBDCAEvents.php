@@ -24,7 +24,7 @@ $allEvents = [];
 $eventRegistrations = [];
 $num_registrations = 0;
 $num_events = 0;
-
+$_POST = array(); // clear post array so check boxes do not remain checked
 $num_visitors = 0;
 $memberStatus1 = [];
 $memberStatus2 = [];

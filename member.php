@@ -164,7 +164,8 @@ if ($rowCount > 0) {
         $paid_item = array(
             'id' => $id,
             'paid' => $paid,
-            'year' => $year
+            'year' => $year,
+            'paidonline' => $paidonline
 
         );
         array_push($yearsPaid, $paid_item);
@@ -279,7 +280,7 @@ if ($rowCount > 0) {
             echo '<th>Directory</th>';
             echo '<th>Fulltime</th>';
             echo '<th>Joined Online</th>';
-            echo '<th colspan="2">Notes</th>';
+
  
             echo '</tr>';
             echo '</thead>';
@@ -290,8 +291,19 @@ if ($rowCount > 0) {
             echo "<td>$user->directorylist</td>";
             echo "<td>$user->fulltime</td>";
             echo "<td>$user->joinedonline</td>";
-            echo "<td colspan='2'>$user->notes</td>";
+ 
 
+            echo '</tr>';
+            echo '</tbody>';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th colspan="2">Notes</th>';
+            echo '</tr>';
+            echo '</thead>';
+
+            echo '<tbody>';
+            echo '<tr>';
+            echo "<td colspan='2'>$user->notes</td>";
             echo '</tr>';
             echo '</tbody>';
             echo '<thead>';
@@ -345,7 +357,7 @@ if ($rowCount > 0) {
     echo '<table>';
     echo '<thead>';
     echo '<tr>';
-    echo '<th colspan="2" style="text-align:center">Membership Status</th>';
+    echo '<th colspan="3" style="text-align:center">Membership Status</th>';
     echo '</tr>';
     echo '<tr>';
     echo "<th>YEAR</th>";

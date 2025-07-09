@@ -21,7 +21,7 @@ $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 $users = [];
 unset($_SESSION['process_users']);
 
-
+$_POST = array();
 $memberStatus1 = [];
 $memberStatus2 = [];
 $nextYear = date('Y', strtotime('+1 year'));

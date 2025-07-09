@@ -22,7 +22,7 @@ $allClasses = [];
 $classRegistrations = [];
 $num_registrations = 0;
 $num_classes = 0;
-
+$_POST = array();
 $nextYear = date('Y', strtotime('+1 year'));
 $thisYear = date("Y"); 
 $current_month = date('m');

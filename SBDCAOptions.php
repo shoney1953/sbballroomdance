@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])) {
 $_SESSION['optionurl'] = $_SERVER['REQUEST_URI']; 
 $upChk = '';
 $dpChk = '';
-
+$_POST = array();
 $database = new Database();
 $db = $database->connect();
 /* get options */
