@@ -98,7 +98,7 @@ date_default_timezone_set("America/Phoenix");
    }
   //  if (isset($_SESSION['testmode'])) {
   //   if ($_SESSION['testmode'] == 'YES') {
-      echo ' <button ><em><a href="joinonline.php">JOIN and PAY ONLINE NOW!</a></em></button>  ';
+      echo ' <button ><h1><em><a href="joinonline.php">JOIN and PAY ONLINE NOW!</a></em></h1></button>  ';
       echo '<h4><em>OR</em></h4>';
   //    }
   //  }
