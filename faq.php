@@ -26,21 +26,19 @@
 <div class="content-faq">
 
 
-   
-  
         <div class="dropdown">
          <span class="faq-title">Why should I become a member?</span>
-        <div class="dropdown-content">
+   
         <p>The main reason to become a member is to be able to take all the monthly classes for no charge. If you've ever taken 
           Dance classes at a studio, you should realized that having free classes is a great bargain for the minimum price of membership. 
           Members also receive reduced prices for dinner dances and dance parties. We are a very social group, so another great reason to join is to 
           meet new friends!
         </p>
-        </div> 
+   
       </div> 
       <div class="dropdown">
       <span class="faq-title">How do I become a member?</span>
-        <div class="dropdown-content">
+ 
         <p>Simply print the form below and send it in along with dues to the treasurer. Their address is on the form. After they receive the form and enter your information, you'll be a member!
           You'll receive an email with login instructions once your information is entered into the system.
         </p>
@@ -48,40 +46,40 @@
         <h4><a  
             href='img/SBDC Membership Form 2025.pdf' target='_blank'>
             Click for Membership Form</a></h4>
-        </div> 
+
       </div> 
       <div class="dropdown">
       <span class="faq-title">Can I join without a partner?</span>
-        <div class="dropdown-content">
+
         <p>Yes! We are doing our best to facilitate DOWOPS (as we now call them - Dancers Originally without Partners). We are setting aside special tables at dances to make it easy for singles to 
           dance with each other, and for other members to dance with them. We also try to make sure they have people to dance with at classes. 
         </p>
-        </div> 
+ 
       </div> 
 
       <div class="dropdown">
       <span class="faq-title">Why should I login to the website?</span>
-        <div class="dropdown-content">
+
         <p>We need your information either as a member or a visitor in order to register you for events or classes. Logging in will provide that information, as well as your partner's information if you have one. 
         </p>
         <p>
           Once you've logged on, you'll be able to see all events you have registered for in your profile. You'll also be able to easily register for classes or events along with your partner if you have one.
         </p>
       
-        </div> 
+ 
       </div> 
       <div class="dropdown">
       <span class="faq-title">How do I login?</span>
-        <div class="dropdown-content">
+    
         <p>In the top left of the home page in the navigation bar, there should be the word Logon in red.
          Click that and it will take you to the page to login. You may login as a member if you are one, or a visitor.
         </p>
       
-        </div> 
+
       </div> 
       <div class="dropdown">
       <span class="faq-title">What ID and Password do I use to login?</span>
-        <div class="dropdown-content">
+  
         <p>If you submitted your membership form and the information was entered, you should have received an email with your ID and password; check your Junk or Spam folders if you didn't receive a welcome email.
         </p>
         <p>
@@ -97,12 +95,12 @@
         <p>
           If you are not a member, simply use the visitor registration to login.
         </p>
-        </div> 
+     
       </div> 
 
       <div class="dropdown">
       <span class="faq-title">What are Novice Classes?</span>
-        <div class="dropdown-content">
+
         <p>Novice Classes are self-contained classes that are designed for students that have never danced or haven't danced in a long while. They will provide an introduction to a couple of dances.  
            Visitors are welcome at these classes. You can see which dances will be taught by checking the events list on the website. There are usually 2 novice classes covering different dances plus 
            one Novice Review Session per month. We welcome non-members to our Novice classes.
@@ -111,11 +109,11 @@
           You sign up each of these classes individually either by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Novice Classes Info">
                        countmein@sbballroomdance.com</a> or registering on the website.
         </p>
-        </div> 
+
       </div> 
       <div class="dropdown">
       <span class="faq-title">What are Monthly Dance Classes?</span>
-        <div class="dropdown-content">
+
         <p>Monthly Dance classes are designed for members to concentrate on a single dance for a month. They normally meet twice a week for a full month. There are various levels from Beginner to Intermediate.
           Visitors may attend one class to see how they like it. 
         <p>
@@ -123,7 +121,7 @@
                        countmein@sbballroomdance.com</a> or registering on the website.
         </p>
         </p>
-        </div> 
+
       </div> 
      
 
@@ -167,7 +165,7 @@
       <!-- </div>  -->
       <div class="dropdown">
       <span class="faq-title">What are Dance Parties?</span>
-        <div class="dropdown-content">
+  
         <p>Dance Parties are dances where food may or may not be served. The food will be served prior to the dance usually at 5:00pm.
           The dance will normally start at 6pm once the food is cleared if food was served. 
         </p>
@@ -180,11 +178,11 @@
         You can also register by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Dine and Dance Info">
                        countmein@sbballroomdance.com</a> or on the website.
         </p>
-        </div> 
+
       </div> 
       <div class="dropdown">
       <span class="faq-title">What Are Open Practices?</span>
-        <div class="dropdown-content">
+ 
         <p>Open Practices are rooms and times set aside for informal dance practice. They are indicated on the Activites Calendar. 
         <a style="font-weight: bold"
         href="https://calendar.google.com/calendar/embed?src=sbbdcschedule%40gmail.com&ctz=America%2FPhoenix" target="_blank">
@@ -198,11 +196,11 @@
           Often on Wednesdays when no Novice Class is being held, the room will be available without a DJ, so you could feel free to bring your own music and practice.
         </p>
         <p>They are designated as <em><strong>Open</strong></em> because they are open to all SaddleBrooke Residents.</p>
-        </div> 
+    
       </div> 
       <div class="dropdown">
       <span class="faq-title">Where are the Various Events Held?</span>
-        <div class="dropdown-content">
+
         <p>Here are links to maps for the various places our events are held: 
         </p>
         <ul>
@@ -215,11 +213,11 @@
             <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map.</a>
             </li>
         </ul>
-        </div> 
+ 
         </div>
         <div class="dropdown">
       <span class="faq-title">What is ROBO DJ?</span>
-        <div class="dropdown-content">
+    
         <p>Robo DJ is a website designed to provide music for SBDC members. There are categories of music, and a facility to create a random playlist that includes various type of music. 
           You will need access to WIFI and to login with your regular SBDC userid and password.
           </p>
@@ -227,17 +225,17 @@
          More information is provided in the ROBO DJ guide<a target="_blank" href="https://drive.google.com/file/d/1lRa1Sr_RIpyj-yLF_9qeZgdC7QGZ5q-X/view?usp=sharing"> Click to read the guide</a>
         </p>
 
-        </div> 
+ 
       </div> 
       <div class="dropdown">
       <span class="faq-title">How do I access ROBO DJ?</span>
-        <div class="dropdown-content">
+     
         
         <p>
          <a target="_blank" href="https://sbdcrobodj.com/">Click to access the Robo DJ Website</a> Or it is available via the menu on the website under the Volunteer tab.
         </p>
 
-        </div> 
+     
       </div> 
       </div> 
 
