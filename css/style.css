@@ -955,6 +955,9 @@ h2 a:active {
   font-weight: bold;
   font-size: large";
 }
+.button-round {
+  border-radius: 50%;
+}
 button {
   /* background-color: darkviolet; */
   background-color: var(--button-background3);

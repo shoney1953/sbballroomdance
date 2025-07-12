@@ -32,7 +32,7 @@ date_default_timezone_set("America/Phoenix");
 //    if (isset($_SESSION['testmode'])){
 //    if ($_SESSION['testmode'] === 'YES') {
  
-     echo "<button><h1><em><a href='renewNowO.php'>Renew & Pay Online</a></em></h1></button>";
+     echo "<button class='button-round'><h1><em><a href='renewNowO.php'>Renew & Pay Online</a></em></h1></button>";
          echo '<h3>OR</h3>';
 //    }
 //    }
