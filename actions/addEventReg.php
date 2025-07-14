@@ -164,9 +164,9 @@ if (isset($_POST['submitAddReg'])) {
 
                     if ($event->eventform) {
                         $actLink= "<a href='".$event->eventform."'>
-                        Click to view event Form</a><br>";
+                        Click here to open the event Form</a><br>";
                        $emailBody .= '<br>There is a flyer associated with the dance.<br>';
-                       $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
+                       $emailBody .= "Click on <em>PRINT</em> in the Form column of the event listing
                         on the website to open the form. Or<br>$actLink";
      
                     }

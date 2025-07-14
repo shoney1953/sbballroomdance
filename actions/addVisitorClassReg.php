@@ -50,7 +50,7 @@ $toCC2 = $danceDirector;
 $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
-$mailAttachment = '../img/SBDC Membership Form 2025.pdf'; 
+$mailAttachment = ''; 
 $replyTopic = "Class Registration";
 $emailSubject = "Your instructor has registered you for selected Classes";
 $actLink

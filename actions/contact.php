@@ -50,11 +50,11 @@ if (isset($_POST['submit'])) {
     Click to view Activities Calendar</a><br>";
 
     if ($existingUser === 'NO') {
-        $mailAttachment = '../img/SBDC Membership Form 2025.pdf'; 
+        $mailAttachment = ''; 
         $emailBody = "<br>We would love to have <b>you, $toName </b>, as a new member to our club.<br>
         Please see attached membership form if you are interested in joining.<br>";
     } else {
-        $mailAttachment = '../img/Member Guide to Website Version 2.pdf'; 
+        $mailAttachment = ''; 
         $emailBody = "<br>$toName </b>, thanks for being a member of our club<br>
         We'll try to get back to you to answer your concern as soon as possible.<br>
         If you need website help please refer to help section 

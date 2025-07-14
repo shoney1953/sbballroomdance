@@ -5,6 +5,7 @@
        Click to view Activities Calendar</a><br>";
       $docLink = "<a href='https://drive.google.com/file/d/1P4FHXpaw0oUGfVpCkFnRAroipgOE53s9/view?usp=sharing'> 
       Click to view Members Guide to the Website</a><br>";
+ 
     
       $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
@@ -61,4 +62,5 @@
    $webLink<br>";
 
    $emailBody .= "We hope to see you soon!<br>";
+
    ?>
