@@ -371,6 +371,8 @@ if (!isset($_POST['submitEventReg'])) {
                         $eventReg->mealchoice = $mealid2;
                        if ($dietaryRestriction2 !== '') {
                         $eventReg->dietaryrestriction = $dietaryRestriction2;
+                       } else {
+                        $eventReg->dietaryrestriction = '';
                        }
 
                     } //testmode
