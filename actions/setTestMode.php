@@ -18,13 +18,15 @@ if (!isset($_SESSION['username']))
 }
 
 if (isset($_POST['submitTestMode'])) { 
-  if (isset($_POST['testmode'])) {
+  if (isset($_POST['testmodeON'])) {
     $_SESSION['testmode'] = 'YES';
   }
-
+ if (isset($_POST['testmodeOFF'])) {
+    $_SESSION['testmode'] = 'NO';
+  }
   
 
 }
-$redirect = "Location: ".$_SESSION['homeurl'];
+$redirect = "Location: ".$_SESSION['adminurl'];
 header($redirect);  
 ?>

@@ -122,6 +122,9 @@ if ($rowCount > 0) {
             'ddattenddinner' => $ddattenddinner,
             'ddattenddance' => $ddattenddance,
             'registeredby' => $registeredby,
+            'mealchoice' => $mealchoice,
+            'dietaryrestriction' => $dietaryrestriction,
+            'paidonline' => $paidonline,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);

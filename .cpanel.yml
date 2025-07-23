@@ -3,6 +3,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/sbballro/public_html
     - /bin/cp _.sbballroomdance.com.pem.txt $DEPLOYPATH
+    - /bin/cp addEventReg.php $DEPLOYPATH
     - /bin/cp administration.php $DEPLOYPATH
     - /bin/cp archives.php $DEPLOYPATH
     - /bin/cp archclass.php $DEPLOYPATH
@@ -14,6 +15,7 @@ deployment:
     - /bin/cp classMem.php $DEPLOYPATH
     - /bin/cp create.php $DEPLOYPATH
     - /bin/cp createNewPassword.php $DEPLOYPATH
+    - /bin/cp deleteEventReg.php $DEPLOYPATH
     - /bin/cp event.php $DEPLOYPATH
     - /bin/cp eventMem.php $DEPLOYPATH
     - /bin/cp faq.php $DEPLOYPATH
@@ -68,6 +70,7 @@ deployment:
     - /bin/cp signup.php $DEPLOYPATH
     - /bin/cp specialevent.php $DEPLOYPATH
     - /bin/cp sponsor.php $DEPLOYPATH
+    - /bin/cp updateEventReg.php $DEPLOYPATH
     - /bin/cp yourProfile.php $DEPLOYPATH
     - /bin/cp -R actions $DEPLOYPATH
     - /bin/cp -R config $DEPLOYPATH

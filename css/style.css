@@ -221,11 +221,11 @@ hr {
 @keyframes change{
   0%
   {
-      background-image: url("../img/carousel1.jpg");
+      background-image: url("../img/carousel14.jpg");
   }
   5%
   {
-      background-image: url("../img/carousel11.jpg");
+      background-image: url("../img/carousel13.jpg");
   }
   10%
   {
@@ -241,7 +241,7 @@ hr {
   }
   40%
   {
-      background-image: url("../img/bw.jpg");
+      background-image: url("../img/carousel15.jpg");
   }
   50%
   {
@@ -271,6 +271,9 @@ hr {
   {
       background-image: url("../img/carousel5.jpg");
   }
+}
+.hidden {
+   display: none;
 }
 .content-left {
   margin: 10px 10px;
@@ -958,12 +961,17 @@ h2 a:active {
 .button-round {
   border-radius: 50%;
 }
+.button-round:hover,
+.button-round:active {
+  border-radius: 50%;
+}
 button {
   /* background-color: darkviolet; */
   background-color: var(--button-background3);
   width: 50%;
   color: var(--white3);
   margin-top: 5px;
+  margin-left: 10px;
   padding: 12px 20px;
   border-radius: 5px;
   margin-bottom: 10px;

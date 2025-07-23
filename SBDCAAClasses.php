@@ -1,13 +1,11 @@
 <?php
 session_start();
 require_once 'config/Database.php';
-
-require_once 'models/ClassRegistrationArch.php';
-require_once 'models/EventRegistrationArch.php';
-require_once 'models/EventArch.php';
 require_once 'models/DanceClassArch.php';
-require_once 'models/UserArchive.php';
-require_once 'models/VisitorsArch.php';
+require_once 'models/ClassRegistrationArch.php';
+
+
+
 if (isset($_SESSION['role'])) {
 
 } else {
@@ -20,142 +18,15 @@ $database = new Database();
 $db = $database->connect();
 $users = [];
 $allClasses = [];
-$visitors = [];
-$num_visitors = 0;
-$allEvents = [];
+
 $classRegistrations = [];
-$eventRegistrations = [];
+
 $num_registrations = 0;
-$num_events = 0;
+
 $num_classes = 0;
-if ($_SESSION['role'] === 'SUPERADMIN') {
-    $user = new Userarchive($db);
-    $result = $user->read();
-    
-    $rowCount = $result->rowCount();
-    $num_users = $rowCount;
-    if($rowCount > 0) {
-    
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            extract($row);
-            $user_item = array(
-                'id' => $id,
-                'firstname' => $firstname,
-                'lastname' => $lastname,
-                'username' => $username,
-                'role' => $role,
-                'email' => $email,
-                'phone1' => $phone1,
-                'password' => $password,
-                'partnerId' => $partnerid,
-                'hoa' => $hoa,
-                'passwordChanged' => $passwordChanged,
-                'memberorigcreated' => $memberorigcreated,
-                'created' => $created,
-                'streetAddress' => $streetaddress,
-                'lastLogin' => $lastLogin
-            );
-            array_push($users, $user_item);
-      
-        }
-   
-    
-    } 
-$event = new EventArch($db);
-$result = $event->read();
 
-$rowCount = $result->rowCount();
-$num_events = $rowCount;
-if ($rowCount > 0) {
 
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-        $event_item = array(
-            'id' => $id,
-            'previd' => $previd,
-            'eventname' => $eventname,
-            'eventtype' => $eventtype,
-            'eventdate' => $eventdate,
-            'eventcost' => $eventcost,
-            'eventform' => $eventform,
-            'orgemail' => $orgemail,
-            'eventdj' => $eventdj,
-            "eventdesc" => html_entity_decode($eventdesc),
-            "eventroom" => $eventroom,
-            'eventnumregistered' => $eventnumregistered
-        );
-        array_push($allEvents, $event_item);
-    
-    }
-  
 
-} 
-$_SESSION['allArchEvents'] = $allEvents;
-
- 
-/* get event registrations */
-
-$eventReg = new EventRegistrationArch($db);
-$result = $eventReg->read();
-
-$rowCount = $result->rowCount();
-$num_registrations = $rowCount;
-
-if ($rowCount > 0) {
-
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-        $reg_item = array(
-            'id' => $id,
-            'preveventid' => $preveventid,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'eventid' => $eventid,
-            'eventname' => $eventname,
-            'eventdate' => $eventdate,
-            'message' => $message,
-            'userid' => $userid,
-            'email' => $email,
-            'paid' => $paid,
-            'cornhole' => $cornhole,
-            'softball' => $softball,
-            'ddattenddinner' => $ddattenddinner,
-            'ddattenddance' => $ddattenddance,
-            'registeredby' => $registeredby,
-            'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
-        );
-        array_push($eventRegistrations, $reg_item);
-  
-    }
-}
-$_SESSION['archeventreg'] = $eventRegistrations;
-/* get archived visitors */
-$visitorArch = new VisitorArch($db);
-$result = $visitorArch->read();
-
-$rowCount = $result->rowCount();
-$num_visitors = $rowCount;
-
-if ($rowCount > 0) {
-
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-        $reg_item = array(
-            'id' => $id,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'email' => $email,
-            'logindate' => date('m d Y h:i:s A', strtotime($logindate)),
-            'notes' => $notes,
-            'numlogins' => $numlogins
-        );
-        array_push($visitors, $reg_item);
-  
-    }
-}
-
-  
-} // end of superadmin check
 if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR') ) {
  
     $class = new DanceClassArch($db);

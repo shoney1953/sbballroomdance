@@ -6,6 +6,7 @@ require_once 'models/ClassRegistration.php';
 require_once 'models/EventRegistration.php';
 require_once 'models/User.php';
 require_once 'models/MemberPaid.php';
+require_once 'models/DinnerMealChoices.php';
 date_default_timezone_set("America/Phoenix");
 
 if (isset($_GET['error'])) {
@@ -41,6 +42,7 @@ if ($user->partnerId !== 0) {
     $partner->id = $user->partnerId;
     $partner->read_single();
 }
+$mealChoice = new DinnerMealChoices($db);
 /* */
 $eventReg = new EventRegistration($db);
 $result = $eventReg->read_ByUserid($_SESSION['userid']);
@@ -66,7 +68,10 @@ if ($rowCount > 0) {
             'softball' => $softball,
             'email' => $email,
             'paid' => $paid,
+            'mealchoice' => $mealchoice,
+            'dietaryrestriction' => $dietaryrestriction,
             'registeredby' => $registeredby,
+            'paidonline' => $paidonline,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegs, $reg_item);
@@ -100,7 +105,10 @@ if ($prowCount > 0) {
             'ddattenddinner' => $ddattenddinner,
             'email' => $email,
             'paid' => $paid,
+            'mealchoice' => $mealchoice,
+            'dietaryrestriction' => $dietaryrestriction,
             'registeredby' => $registeredby,
+            'paidonline' => $paidonline,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($peventRegs, $reg_item);
@@ -131,6 +139,7 @@ if ($prowCount > 0) {
     <div class="container">     
      <ul>
         <li><a href="index.php">Back to Home</a></li>
+        <li><a href="SBDCEvents.php">Back to Events</a></li>
 
         <li><a href="yourProfile.php">Back to Your Profile</a></li>
      
@@ -158,7 +167,7 @@ if ($prowCount > 0) {
         <table>
             <thead>
             <tr>
-                <th colspan="6" style="text-align: center">Your Event Registrations</th>
+                <th colspan="7" style="text-align: center">Your Event Registrations</th>
             </tr>
             <tr>
                 <th>Delete?</th>
@@ -166,6 +175,7 @@ if ($prowCount > 0) {
                 <th>Event Name</th>
                 <th>Event Date</th>
                 <th>Paid</th>
+                <th>Online</th>
                 <th>Date Registered</th>   
                 <th>Registered By</th>         
             </tr>
@@ -189,6 +199,11 @@ if ($prowCount > 0) {
                     } else {
                         echo "<td>&times;</td>"; 
                     }
+                    if ($eventRegistration['paidonline'] == true ) {
+                      echo "<td>&#10004;</td>"; 
+                    } else {
+                        echo "<td>&times;</td>"; 
+                    }
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
                     echo "<td>".$eventRegistration['registeredby']."</td>";
                     echo '<input type="hidden" name="eventid" value="'.$eventRegistration['eventid'].'">';
@@ -196,6 +211,20 @@ if ($prowCount > 0) {
                     
           
                   echo "</tr>";
+                  if (($eventRegistration['mealchoice'] != NULL) && ($eventRegistration['mealchoice'] > 0) ) {
+                    $mealChoice->id = $eventRegistration['mealchoice'];
+                    $mealChoice->read_single();
+                    echo '<tr style="color: blue">';
+                    echo '<td> </td>';
+                    echo '<td><em>Meal Choice</em></td>';
+                    echo "<td><em>".$mealChoice->mealchoice."</em></td>";
+                    echo '<td><em>Price</em></td>';
+                    echo "<td><em>".number_format($mealChoice->memberprice/100,2)."</em></td>";
+                    echo '<td><em>Dietary Restriction</em></td>';
+                    echo "<td><em>".$eventRegistration['dietaryrestriction']."</em></td>";
+                    echo '</tr>';
+                    
+                  }
             }
          
             ?> 
@@ -216,7 +245,7 @@ if ($prowCount > 0) {
         echo "<table>";
             echo "<thead>";
             echo "<tr>";
-                echo '<th colspan="6" style="text-align: center">Your Partners Event Registrations</th>';
+            echo '<th colspan="7" style="text-align: center">Your Partners Event Registrations</th>';
             echo '</tr>';
             echo '<tr>';
                 echo '<th>Delete?</th>';
@@ -224,6 +253,7 @@ if ($prowCount > 0) {
                 echo '<th>Event Name</th>';
                 echo '<th>Event Date</th>';
                 echo '<th>Paid</th>';
+                echo '<th> Online</th>';
                 echo '<th>Date Registered</th>';   
                 echo '<th>Registered By</th> ';        
             echo '</tr>';
@@ -247,13 +277,30 @@ if ($prowCount > 0) {
                     } else {
                         echo "<td>&times;</td>"; 
                     }
+                    if ($eventRegistration['paidonline'] == true ) {
+                      echo "<td>&#10004;</td>"; 
+                    } else {
+                        echo "<td>&times;</td>";
+                    }
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
                     echo "<td>".$eventRegistration['registeredby']."</td>";
                     echo '<input type="hidden" name="eventid" value="'.$eventRegistration['eventid'].'">';
-                  
-                    
           
                   echo "</tr>";
+                   if (($eventRegistration['mealchoice'] != NULL) && ($eventRegistration['mealchoice'] > 0) ) {
+                    $mealChoice->id = $eventRegistration['mealchoice'];
+                    $mealChoice->read_single();
+                    echo '<tr style="color: blue">';
+                    echo '<td> </td>';
+                    echo '<td><em>Meal Choice</em></td>';
+                    echo "<td><em>".$mealChoice->mealchoice."</em></td>";
+                    echo '<td><em>Price</em></td>';
+                    echo "<td><em>".number_format($mealChoice->memberprice/100,2)."</em></td>";
+                    echo '<td><em>Dietary Restriction</em></td>';
+                    echo "<td><em>".$eventRegistration['dietaryrestriction']."</em></td>";
+                    echo '</tr>';
+                    
+                  }
             }
        
        

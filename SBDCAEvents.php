@@ -15,8 +15,8 @@ if (isset($_SESSION['role'])) {
    header("Location: https://www.sbballroomdance.com/");
      exit;
 }
-$_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
+$_SESSION['adminEventurl'] = $_SERVER['REQUEST_URI']; 
 
 
 $visitors = [];
@@ -109,6 +109,8 @@ if ($rowCount > 0) {
             'ddattenddance' => $ddattenddance,
             'ddattenddinner' => $ddattenddinner,
             'registeredby' => $registeredby,
+            'mealchoice' => $mealchoice,
+            'dietaryrestriction' => $dietaryrestriction,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);
@@ -127,7 +129,7 @@ if ($rowCount > 0) {
     <link rel="stylesheet" href="css/style.css">
     <title>SBDC Ballroom Dance - Event Administration</title>
 </head>
-
+<body>
 <nav class="nav">
     <div class="container"> 
      <ul> 
@@ -143,6 +145,7 @@ if ($rowCount > 0) {
     </div>
 
 </nav>
+
 <?php
 if ($_SESSION['role'] != 'INSTRUCTOR') {
 
@@ -164,6 +167,8 @@ echo '<form method="POST" action="actions/processEvents.php">';
     $drChk = "dr".$event['id'];
     $urChk = "ur".$event['id'];
     $cvChk = "cv".$event['id'];
+    $amChk = 'am'.$event['id'];
+    $umChk = 'um'.$event['id'];
 
     $mbSrch = "srch".$event['id'];
     $class_month = substr($event['eventdate'], 5, 2);
@@ -222,12 +227,28 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo "<input type='checkbox' title='Select to Update Event(s)' name='".$upChk."'>";   
    echo '</div>';
 
+
+    if ($compareDate <= $event['eventdate']) {
+     if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) { 
+
    echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Add Meal Options</h4>';
+   echo "<input type='checkbox' title='Select to Add Meal(s)' name='".$amChk."'>";
+   echo '</div>';
+
+   echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Update Meal Options</h4>';
+   echo "<input type='checkbox' title='Select to Update Meal(s)' name='".$umChk."'>";
+   echo '</div>';
+   }
+}
+
+  }
+   if ($_SESSION['role'] === 'SUPERADMIN') {
+       echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Delete?</h4>';
    echo "<input type='checkbox' title='Select to Delete Event(s)' name='".$dlChk."'>";
    echo '</div>';
-  }
-   if ($_SESSION['role'] === 'SUPERADMIN') {
     echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Archive?</h4>';
    echo "<input type='checkbox' title='Select to Archive Events' name='".$aeChk."'>";

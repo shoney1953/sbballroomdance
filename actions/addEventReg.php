@@ -1,9 +1,10 @@
 <?php
 session_start();
 require_once '../includes/sendEmail.php';
-require_once '../includes/sendEmail.php';
+require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
+require_once '../models/DinnerMealChoices.php';
 require_once '../models/Event.php';
 require_once '../models/User.php';
 if (isset($_SESSION['role'])) {
@@ -28,11 +29,14 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
+
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $event = new Event($db);
 $user = new User($db);
+$mChoices = new DinnerMealChoices($db);
+$mealchoices = [];
 $upcomingEvents = [];
 $upcomingEvents = $_SESSION['upcoming_events'] ;
 
@@ -44,11 +48,12 @@ $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
 $result = 0;
+
 $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 $fromCC = 'sheila_honey_5@hotmail.com';
-$replyEmail = '';
+$replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
-$toCC2 = '';
+$toCC2 = $webmaster;
 $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
@@ -61,7 +66,31 @@ if (isset($_POST['submitAddReg'])) {
        
         $event->id = $_POST['eventid'];
         $event->read_single();
-     
+        $mealChoices = [];
+         
+        $result = $mChoices->read_ByEventId($_POST['eventid']);
+
+        $rowCount = $result->rowCount();
+        $num_meals = $rowCount;
+
+        if ($rowCount > 0) {
+
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+                $meal_item = array(
+                    'id' => $id,
+                    'mealchoice' => $mealchoice,
+                    'eventid' => $eventid,
+                    'memberprice' => $memberprice,
+                    'guestprice' => $guestprice,
+                    'productid' => $productid,
+                    'priceid' => $priceid,
+                    'guestpriceid' => $guestpriceid
+
+                );
+                array_push($mealChoices, $meal_item);
+            } // while
+        }
         foreach($users as $usr) {
          $usrID = "us".$usr['id'];
          $attDin = "datt".$usr['id']; 
@@ -84,9 +113,7 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->userid = $usr['id'];
                     $eventReg->paid = 0;
                     $eventReg->registeredby = $_SESSION['username'];
-                    if (isset($_POST["$mess"])) {
 
-                    }
                     if ($event->eventtype === 'BBQ Picnic') {
                         if (isset($_POST["$attDin"])) {
                             $eventReg->ddattenddinner = 1;
@@ -110,8 +137,11 @@ if (isset($_POST['submitAddReg'])) {
                     if (isset($_POST["$pdDinn"])) {
                         $eventReg->paid = 1;
                     }
-                    if (($event->eventtype === 'Dance Party') || ($event->eventtype === 'Dinner Dance')
-                         || $event->eventtype === 'BBQ Picnic') {
+                    if ($event->eventtype === 'Dinner Dance') {
+                        $eventReg->ddattenddinner = 1;
+                    }
+                    if (($event->eventtype === 'Dance Party') || 
+                         $event->eventtype === 'BBQ Picnic') {
                         if (isset($_POST["$attDin"])) {
                             $eventReg->ddattenddinner = 1;
                            
@@ -123,11 +153,16 @@ if (isset($_POST['submitAddReg'])) {
                                                                                 
   
                  $result = $eventReg->checkDuplicate($regEmail1, $eventReg->eventid);
+  
+                 if ($result) {
+                    $redirect = "Location: ".$_SESSION['adminurl']."#events";
+                   header($redirect);
+                   exit;
+                 }
 
                  if (!$result) {
-             
-                    $eventReg->create();
-                    $event->addCount($eventReg->eventid);
+
+  
                     $event->id = $eventReg->eventid;
                     $event->read_single();
                     $emailSubject = 'The SBDC administrator has registered you for '.$event->eventname.'!';
@@ -160,14 +195,36 @@ if (isset($_POST['submitAddReg'])) {
                             $emailBody .= "<br>Please submit your fee prior to the dance as indicated on the form.";
                         }
                     }
+                   if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party')) {
+             
+                      if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+                         
+                         foreach ($mealChoices as $choice) {
+                             $mcID = "mc".$usr['id'].$choice['id'];
+                          
+                             if (isset($_POST["$mcID"])) {
+                          
+                                 $eventReg->mealchoice = $choice['id'];
+                             
+                                 $emailBody .= "<br>You have selected the meal ".$choice['mealchoice']." at a cost of ".number_format($choice['memberprice']/100,2).".";
+                             }
+                          } // foreach
+                        $drID = "dr".$usr['id'];
                    
+                        if (isset($_POST["$drID"])) {
+                           
+                            $eventReg->dietaryrestriction = $_POST["$drID"];
+                             $emailBody .= "<br>You have specified a dietary restriction of ".$_POST["$drID"].".";
+                        }
+                      } // testmode
+                   }  // eventtype
 
                     if ($event->eventform) {
                         $actLink= "<a href='".$event->eventform."'>
                         Click here to open the event Form</a><br>";
                        $emailBody .= '<br>There is a flyer associated with the dance.<br>';
                        $emailBody .= "Click on <em>PRINT</em> in the Form column of the event listing
-                        on the website to open the form. Or<br>$actLink";
+                        on the website to open the form.<br> Or<br>$actLink";
      
                     }
                   
@@ -176,6 +233,10 @@ if (isset($_POST['submitAddReg'])) {
                     $toCC2 = $event->orgemail;
                 }
                 $emailBody .= '<br>Note: You can also see these events from your profile on the website.';
+
+                $eventReg->create();
+                $event->addCount($eventReg->eventid);
+
                 if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
       
                     $regName1 = $regFirstName1.' '.$regLastName1;
@@ -207,7 +268,7 @@ if (isset($_POST['submitAddReg'])) {
 }
    
 
-$redirect = "Location: ".$_SESSION['adminurl']."#events";
+$redirect = "Location: ".$_SESSION['returnurl'];
 header($redirect);
 exit;
 

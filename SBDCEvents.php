@@ -81,13 +81,13 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                 <th>Event<br>Dates</th>
                 <th>Reg<br>Opens</th>
                 <th>Reg<br>Closes</th>
+                <th>Form</th>
                 <th>Name    </th>
                 <th>Type    </th>
                 <th>Description</th> 
                 <th>Room</th> 
                 <th>DJ</th>            
                 <th>Min<br>Cost</th>
-                <th>Form/<br>Flyer</th>
                 <th># <br>Attending</th>
 
              </tr>
@@ -117,13 +117,14 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo '<th>Event<br>Date</th>';
                     echo '<th>Reg<br>Opens</th>';
                     echo '<th>Reg<br>Closes</th>';
+                    echo '<th>Form</th>';
                     echo '<th>Name    </th>';
                     echo '<th>Type    </th>';
                     echo '<th>Description</th>'; 
                     echo '<th>Room</th> ';
                     echo '<th>DJ</th>';            
                     echo '<th>Min<br>Cost</th>';
-                    echo '<th>Form/<br>Flyer</th>';
+
                     echo '<th># Attending</th>';
     
                 echo '</tr>';
@@ -148,6 +149,11 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo "<td>".substr($event['eventdate'],5,5)."</td>";
                     echo "<td>".substr($event['eventregopen'],5,5)."</td>";
                     echo "<td>".substr($event['eventregend'],5,5)."</td>";
+                    if ($event['eventform']) {
+                        echo '<td><a href="'.$event['eventform'].'">PRINT</a></td>';
+                    } else {
+                            echo "<td> </td>"; 
+                    }
                     echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";
                     echo "<td>".$event['eventdesc']."</td>"; 
@@ -155,11 +161,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo "<td>".$event['eventdj']."</td>";            
   
                     echo "<td>".$event['eventcost']."</td>";
-                    if ($event['eventform']) {
-                        echo '<td><a href="'.$event['eventform'].'">PRINT</a></td>';
-                    } else {
-                            echo "<td> </td>"; 
-                    }
+
                     echo '<td><a href="'.$hr.'">'.$event["eventnumregistered"].'</a></td>';
                     // echo "<td>".$event['eventnumregistered']."</td>";
               

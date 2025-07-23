@@ -15,7 +15,7 @@ if (isset($_SESSION['role'])) {
    header("Location: https://www.sbballroomdance.com/");
      exit;
 }
-$_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
+
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 
 $users = [];

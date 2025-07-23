@@ -6,6 +6,7 @@ require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
 require_once '../models/User.php';
+require_once '../models/DinnerMealChoices.php';
 date_default_timezone_set("America/Phoenix");
 
 $events = $_SESSION['upcoming_events'];
@@ -20,8 +21,10 @@ $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $eventInst = new Event($db);
 $user = new User($db);
+$mealchoices = new DinnerMealChoices($db);
 $message = '';
 $result = 0;
+$danceCost = 0;
 $regSelected = [];
 $regAll = '';
 $emailBody = "Thanks for registering for the following SBDC event(s):<br>";
@@ -33,13 +36,35 @@ $toCC2 = '';
 $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
+$smealCHK1 = '';
+$mChoices = [];
+$meal1 = '';
+$mealprice1 = '';
+$mealid1 = 0;
+$mealproductid1 = '';
+$mealpriceid1 = '';
+$dietaryRestriction1 = '';
+$smealCHK2 = '';
 
+$meal2 = '';
+$mealprice2 = '';
+$mealid2 = 0;
+$mealproductid2 = '';
+$mealpriceid2 = '';
+$dietaryRestriction2 = '';
+$drID1 = '';
+$drID2 = '';
 $id_int = 0;
+
 $num_registered = 0;
 $currentDate = new DateTime();
 
+if (!isset($_POST['submitEventReg'])) {
 
-if (isset($_POST['submitEventReg'])) {
+     $redirect = "Location: ".$_SESSION['homeurl'];
+     header($redirect); 
+     exit;
+}
   
     $regFirstName1 = htmlentities($_POST['regFirstName1']);
     $regLastName1 = htmlentities($_POST['regLastName1']);
@@ -47,10 +72,10 @@ if (isset($_POST['submitEventReg'])) {
     $regEmail1 = filter_var($regEmail1, FILTER_SANITIZE_EMAIL); 
     if ($user->getUserName($regEmail1)) {    
         $regUserid1 = $user->id;
-   }
+       }
    if (isset($_POST['message'])) {
        $message = htmlentities($_POST['message']); 
-   }
+       }
    if (isset($_POST['regEmail2'])) {
     $regFirstName2 = htmlentities($_POST['regFirstName2']);
     $regLastName2 = htmlentities($_POST['regLastName2']);
@@ -66,7 +91,9 @@ if (isset($_POST['submitEventReg'])) {
 
     
     $emailSubject = "You have registered for SBDC event(s)";
+
     foreach ($events as $event) {
+
         $chkboxID = "ev".$event['id'];
         $chkboxID2 = "dd".$event['id'];
         $chkboxID3 = "ch".$event['id'];
@@ -79,8 +106,72 @@ if (isset($_POST['submitEventReg'])) {
        if (isset($_POST["$chkboxID"])) {
       
         $eventNum = (int)substr($chkboxID,2);
+// matches event
 
-            if ($event['id'] == $eventNum) {
+         if ($event['id'] == $eventNum) {
+
+          $eventId = $event['id'];
+
+           if (isset($_SESSION['testmode'])) {   
+              $drID1 = "dr1".$event['id'];
+              if (isset($_POST["$drID1"])) {
+                $dietaryRestriction1 = $_POST["$drID1"];
+              }
+               $drID2 = "dr2".$event['id'];
+              if (isset($_POST["$drID2"])) {
+             
+                $dietaryRestriction2 = $_POST["$drID2"];
+              }
+              
+              $result = $mealchoices->read_ByEventId($event['id']);
+
+                $rowCount = $result->rowCount();
+                $num_meals = $rowCount;
+                if ($rowCount > 0) {
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        $meal_item = array(
+                            'id' => $id,
+                            'mealchoice' => $mealchoice,
+                            'eventid' => $eventid,
+                            'memberprice' => $memberprice,
+                            'guestprice' => $guestprice,
+                            'productid' => $productid,
+                            'priceid' => $priceid,
+                            'guestpriceid' => $guestpriceid
+                        );
+                        array_push($mChoices, $meal_item);              
+                    } // while
+
+                      foreach ($mChoices as $choice) {
+  
+                         $smealCHK1 = 'sm1'.$choice['id'];
+
+                         if (isset($_POST["$smealCHK1"])) {
+                               
+                                  $mealid1 = $choice['id'];
+    
+                                  $meal1 = $choice['mealchoice'];
+                                  $mealprice1 = $choice['memberprice'];
+                                  $mealpriceid1 = $choice['priceid'];
+                            
+                               } //smeal1
+                         $smealCHK2 = 'sm2'.$choice['id'];
+
+                         if (isset($_POST["$smealCHK2"])) {    
+    
+                            
+                                  $mealid2 = $choice['id'];
+        
+                                  $meal2 = $choice['mealchoice'];
+                                  $mealprice2 = $choice['memberprice'];
+                                  $mealpriceid2 = $choice['priceid'];
+                       
+                               } //smeal2
+                      } // foreach choice
+                   
+                }  // rowCount
+            }  //testmode
                 $num_registered++;
                 $eventId = $event['id'];
                 $emailBody .= "<br><strong> Event: ".$event['eventname'].
@@ -94,7 +185,8 @@ if (isset($_POST['submitEventReg'])) {
                 else {        
                         $toCC2 = '';                    
                 }
-                if ($event['eventtype'] === 'BBQ Picnic') {
+                switch ($event['eventtype']) {
+                  case "BBQ Picnic":
                     if (isset($_POST["$chkboxID2"])) {
                         $emailBody .= "You have chosen to attend dinner.<br>";
                     }
@@ -106,61 +198,92 @@ if (isset($_POST['submitEventReg'])) {
                     }
                     $emailBody .= "If your choices differ from your partner's, please contact the event coordinator or reply to this email.<br>";
                     $emailBody .= "You may also change your or your partner's choices via your profile.<br>";
-                
-                }
-                if ($event['eventtype'] === 'Dance Party') {
-                    if (isset($_POST["$chkboxID2"])) {
-                        $emailBody .= "You have chosen to attend dinner.<br>";
-                        if ($event['eventcost'] > 0) {
-                            $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-                            $coststr =  "Member Event Cost for the meal is approximately: "
-                                  .$fmt->formatCurrency($event['eventcost'], 'USD')."<br>
-                                  Check the form for specific costs.<br>";
-                   
-                            $emailBody .= $coststr;
-                            $toCC2 = $treasurer;
-                            if (!$event['eventform']) {
-                                $emailBody .= '<br>The signup form with meal choices and specific costs
-                                is not currently available, but
-                                you will receive an email when it is. The email will have the signup form
-                                attached.<br>';
-                            }
-                            if ($event['eventform']) {
-                                $actLink= "<a href='".$event['eventform']."'>
-                                Click to view event Form</a><br>";
-                               $emailBody .= 'There is a signup form to submit registration details and payment.<br>';
-                               $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
-                                on the website to open the form. Or<br>$actLink";
+                    break;
+                  case "Dance Party":
+                         if (isset($_POST["$chkboxID2"])) {
+                                $emailBody .= "You have chosen to attend dinner.<br>";
+                                if ($_SESSION['testmode'] === 'YES') {
+                                    if ($meal1 !== '') {
+                                        $emailBody .= "You selected ".$meal1." at the cost of ".number_format($mealprice1/100,2)."";   
+                                        $danceCost = $danceCost + $mealprice1;    
+                                        if ($dietaryRestriction1 != '') {
+                                          $emailBody .= " with a dietary restrictions of ".$dietaryRestriction1.".<br>";
+                                       } else {
+                                          $emailBody .= ".<br>";
+                                       }
+                             
+                                    }
+
+                            
+                                    if ($meal2 !== '') {
+                                        $emailBody .= "You also selected ".$meal2." at the cost of ".number_format($mealprice2/100,2)."";    
+                                        $danceCost = $danceCost + $mealprice2;    
+                                      if ($dietaryRestriction2 != '') {
+                                          $emailBody .= " with a dietary restrictions of ".$dietaryRestriction2.".<br>";
+                                        } else {
+                                          $emailBody .= ".<br>";
+                                        }
+                                    }
              
-                            }
-                         }
-                    } else {
-                        $emailBody .= "You have chosen not to attend dinner before the dance.<br>";
-                   
-                         $emailBody .= "As of 2025, there is now a charge of $5 per member or $10 per visitor for the dance only.<br>";
+                                    $emailBody .= "Total Cost of the Dance will be ".number_format($danceCost/100,2).".<br><br>";   
+                                } // testmode
+
+                        } else {
+                            $emailBody .= "You have chosen not to attend dinner before the dance.<br>";
+                            $emailBody .= "As of 2025, there is now a minimum charge of $5 per member or $10 per visitor for the dance only.<br>";
+                            $emailBody .= "Cost of the Dance Only will be ".$event['eventcost'].".<br>";  
+                        }
                          $emailBody .= "Please submit your fee prior to the dance as indicated on the form.<br>";
-                         if ($event['eventform']) {
-                            $actLink= "<a href='".$event['eventform']."'>
-                            Click to view event Form</a><br>";
-                           $emailBody .= 'There is a signup form to submit registration details and payment.<br>';
-                           $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
-                            on the website to open the form. Or<br>$actLink";
-                           }
-                        
-                        
+                    break;
+                    case "Dinner Dance":
+
+                        if (isset($_SESSION['testmode']) &&($_SESSION['testmode'] === 'YES')) {
+                            if ($meal1 !== '') {
+                                $emailBody .= "You selected ".$meal1." at the cost of ".number_format($mealprice1/100,2).""; 
+                                $danceCost = $danceCost + $mealprice1;
+                                if ($dietaryRestriction1 !== '') {
+                                    $emailBody .= " with a dietary restiction of ".$dietaryRestriction1.".<br>";
+                                 } else {
+                                     $emailBody .= ".<br>";
+                                 }
+                             } 
+
+
+                            if ($meal2 !== '') {
+                                $emailBody .= "You also selected ".$meal2." at the cost of ".number_format($mealprice2/100,2).".<br>";    
+                                $danceCost = $danceCost + $mealprice2;    
+                                if ($dietaryRestriction2 !== '') {
+                                    $emailBody .= " with a dietary restiction of ".$dietaryRestriction2.".<br>";
+                                 } else {
+                                     $emailBody .= ".<br>";
+                                 }  
+                                } // meal2 
+
+                           $emailBody .= "<br>Cost of the Dance will be ".number_format($danceCost/100,2).".<br>";  
+                        }  //testmode
+
+                    break;
+                    default:
+                     $emailBody .= "Event type unknown!<br>";
+                    break;
+                    
+                } //switch end
+
+
+                 if ((!isset($_SESSION['testmode']))  || ($_SESSION['testmode'] !== 'YES')) {
+                    if ($event['eventcost'] > 0) {
+                        $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
+                        $coststr =  "Member Minimum Cost for the Dance is: "
+                            .$fmt->formatCurrency($event['eventcost'], 'USD')."<br>
+                            Check the form for specific costs.<br>";
+            
+                        $emailBody .= $coststr;
+                        // $toCC2 = $treasurer;
                     }
-                }
-                if ($event['eventtype'] === 'Dinner Dance') {
-                if ($event['eventcost'] > 0) {
-                    $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-                    $coststr =  "Member Event Cost is approximately: "
-                          .$fmt->formatCurrency($event['eventcost'], 'USD')."<br>
-                          Check the form for specific costs.<br>";
-           
-                    $emailBody .= $coststr;
-                    $toCC2 = $treasurer;
+                 }
+
                     if (!$event['eventform']) {
-                        $emailBody .= '<br>The signup form with meal choices and specific costs
+                        $emailBody .= '<br>The signup form specifying meal choices and associated costs
                         is not currently available, but
                         you will receive an email when it is. The email will have the signup form
                         attached.<br>';
@@ -169,12 +292,12 @@ if (isset($_POST['submitEventReg'])) {
                         $actLink= "<a href='".$event['eventform']."'>
                         Click to view event Form</a><br>";
                        $emailBody .= 'There is a signup form to submit registration details and payment.<br>';
-                       $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
-                        on the website to open the form. Or<br>$actLink";
+                       $emailBody .= "Click on <em>PRINT</em> in the Form column of the event listing
+                        on the website to open the form.<br> Or<br>$actLink";
     
                     }
-                 }
-                }
+                //  }
+                // }
                 if ($message) {
                     $emailBody .= '<br> MESSAGE from Registrant: <br>';
                     $emailBody .= $message;
@@ -209,21 +332,29 @@ if (isset($_POST['submitEventReg'])) {
                 } else {
                     $eventReg->softball = 0;
                 }
-         
+
+                if ($_SESSION['testmode'] === 'YES') {
+             
+                    $eventReg->mealchoice = $mealid1;
+                    if ($dietaryRestriction1 !== '') {
+                        $eventReg->dietaryrestriction = $dietaryRestriction1;
+                    }
+
+                } //testmode
                 $eventReg->message = $message;
-                
-            
+
                 $eventReg->paid = 0;
                 $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
                 if ($result) {
                         $redirect = "Location: ".$_SESSION['regeventurl'].'?error=Duplicate Registration Email1 Please check your profile.';
                         header($redirect);
                         exit; 
-                }
-            if (!$result) {
-                $eventReg->create();
-                $eventInst->addCount($eventReg->eventid);
-             }
+                } //endresult
+                if (!$result) {
+                
+                    $eventReg->create();
+                    $eventInst->addCount($eventReg->eventid);
+                }  //end no results
              if (isset($regFirstName2)) {
                        // do the insert(s)
                     $eventReg->firstname = $regFirstName2;
@@ -234,20 +365,28 @@ if (isset($_POST['submitEventReg'])) {
                     $eventReg->message = $message;
                     $eventReg->registeredby = $_SESSION['username'];
                     $eventReg->paid = 0;
+
+                    if ($_SESSION['testmode'] === 'YES') {
+                
+                        $eventReg->mealchoice = $mealid2;
+                       if ($dietaryRestriction2 !== '') {
+                        $eventReg->dietaryrestriction = $dietaryRestriction2;
+                       }
+
+                    } //testmode
                     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
+
                     if ($result) {
                         $redirect = "Location: ".$_SESSION['regeventurl'].'?error=Duplicate Registration Email2 Please check your profile.';
                         header($redirect);
                         exit; 
-                }
+                     }
      
                     if (!$result) {
-
                         $eventReg->create();
                         $eventInst->addCount($eventReg->eventid);
                     }
-                }
-             
+                }  //endfirstname2
 
             } // end if eventid            
        } //end isset
@@ -306,8 +445,6 @@ if (isset($_POST['submitEventReg'])) {
    $redirect = "Location: ".$_SESSION['homeurl'];
    header($redirect); 
    exit;
-}  else { 
-     $redirect = "Location: ".$_SESSION['homeurl'];
-     header($redirect); 
-     exit;
-} // end submit
+ 
+
+?>

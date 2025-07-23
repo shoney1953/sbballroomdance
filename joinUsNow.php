@@ -96,12 +96,10 @@ date_default_timezone_set("America/Phoenix");
      echo '<br><h4><em>NOTE: We are currently in the discount membership period of the year, so you will have the option of a discount rate for just the rest of '.$current_year.',<br>or
      paying the full price of membership and becoming a member for the rest of '.$current_year.' and the next full year '.$next_year.'.</em><br><br>';
    }
-  //  if (isset($_SESSION['testmode'])) {
-  //   if ($_SESSION['testmode'] == 'YES') {
+
       echo ' <button class="button-round" ><h1><em><a href="joinonline.php">JOIN and PAY ONLINE NOW!</a></em></h1></button>  ';
       echo '<h4><em>OR</em></h4>';
-  //    }
-  //  }
+
 
   
   ?>

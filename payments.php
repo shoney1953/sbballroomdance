@@ -40,6 +40,7 @@ if ($rowCount > 0) {
             'description' => $description,
             'name' => $name,
             'priceid' => $priceid,
+            'type' => $type,
             'price'=> $price
 
         );
@@ -110,12 +111,13 @@ if ($rowCount > 0) {
     <div class="form-grid2">
    
     <div class="form-grid-div">
-        <h2>Products</h2>
+        <h2>Online Payment Products</h2>
         <?php
            echo '<table>';
             echo '<thead>';
                 echo '<tr>';
                     echo '<th>Product ID</th> '; 
+                    echo '<th>Product Type</th> '; 
                     echo '<th>Product Name</th> '; 
                     echo '<th>Description</th> '; 
                     echo '<th>Price</th>';
@@ -129,6 +131,7 @@ if ($rowCount > 0) {
              
                       echo "<tr>";
                         echo "<td>".$product['productid']."</td>";
+                        echo "<td>".$product['type']."</td>";
                         echo "<td>".$product['name']."</td>";
                         echo "<td>".$product['description']."</td>";
                         $dollarPrice = $product['price']/100;
@@ -141,17 +144,17 @@ if ($rowCount > 0) {
             echo '<br>';
             echo '<div class="form-container">';
            echo '<form method="POST" action="actions/addPaymentProduct.php">';
-           echo "<h4 class='form-title'>Add a Payment Product</h4>";
+           echo "<h4 class='form-title'>Add a Membership Payment Product</h4>";
            echo '<div class="form-grid">';
            echo '<div class="form-item">';
-            echo "<h4 class='form-item-title'>Product Name</h4>";
-           echo "<input type='text' name='productname' placeholder='product name' 
-             title='Enter the Name of the Online Option to purchase' required >";
+            echo "<h4 class='form-item-title'>Name</h4>";
+           echo "<input type='text' name='productname' placeholder='membership name' 
+             title='Enter the Name format should be Year then Indivdual or Couple then Membership' required >";
              echo '</div><br>';
            echo '<div class="form-item">';
-            echo "<h4 class='form-item-title'>Product Description</h4>";
+            echo "<h4 class='form-item-title'>Description</h4>";
            echo "<input type='text' name='productdescription' placeholder='description' 
-             title='Enter the Description of an Online Payment Option' required >";
+             title='Enter the Description the membership product' required >";
              echo '</div><br>';
              echo '<div class="form-item">';
             echo "<h4 class='form-item-title'>Price in Cents</h4>";

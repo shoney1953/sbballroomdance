@@ -4,7 +4,7 @@ require_once 'config/Database.php';
 require_once 'models/DinnerMealChoices.php';
 $allEvents = $_SESSION['allEvents'];
 $eventRegistrations = $_SESSION['eventRegistrations'];
-$_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
+
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 if (!isset($_SESSION['username'])) {
     $redirect = "Location: ".$_SESSION['homeurl'];

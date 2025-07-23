@@ -80,6 +80,7 @@ if (isset($_POST['submitArchive'])) {
                 'ddattenddance' => $ddattenddance,
                 'mealchoice' => $mealchoice,
                 'dietaryrestriction' => $dietaryrestriction,
+                'paidonline' => $paidonline,
                 'registeredby' => $registeredby,
                 'dateregistered' => $dateregistered
             );
@@ -99,8 +100,8 @@ if (isset($_POST['submitArchive'])) {
             $eventRegArch->message = $reg_item['message'];
             $eventRegArch->ddattenddance = $reg_item['ddattenddance'];
             $eventRegArch->ddattenddinner = $reg_item['ddattenddinner'];
-            // $eventRegArch->mealchoice = $reg_item['mealchoice'];
-            $eventRegArch->mealchoice = 1;
+            $eventRegArch->mealchoice = $reg_item['mealchoice'];
+            $eventRegArch->paidonline = $reg_item['paidonline'];
             $eventRegArch->dietaryrestriction = $reg_item['dietaryrestriction'];
             $eventRegArch->create();
       

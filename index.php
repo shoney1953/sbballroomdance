@@ -360,15 +360,17 @@ if ($rowCount > 0) {
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
         if (isset($_SESSION['role'])) {
             echo ' <li><a  title="Logout from the Website" style="color: red;font-weight: bold;font-size: medium" href="logout.php">Logout</a></li>'; 
-        // if (isset($_SESSION['testmode'])) {
+   
+         if ($_SESSION['role'] != 'visitor') {
          if ($_SESSION['renewThisYear'] === 1)  {
                         echo '<li><a class="menu-blink" title="Renew Your Membership"  style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew For '.$current_year.'</a></li>';  
             } else {
         if ($_SESSION['renewNextYear'] === 1) {
                         echo '<li><a class="menu-blink" title="Renew Your Membership"  style="color: red;font-weight: bold;font-size: medium" href="renewNow.php"> Renew For '.$next_year.'</a></li>';  
             }
+           }
           }
-        // }
+    
         }
         if (isset($_SESSION['role'])) {
             if ($_SESSION['role'] != 'visitor') {
@@ -384,29 +386,28 @@ if ($rowCount > 0) {
 
             }
         }
-
-     
-       
+ 
     }
         if (isset($_SESSION['role'])) {
-            if (($_SESSION['role'] == 'ADMIN') ||
-             ($_SESSION['role'] == 'SUPERADMIN') ||
-              ($_SESSION['role'] == 'DJ') ||
-             ($_SESSION['role'] == 'INSTRUCTOR')
+            if (($_SESSION['role'] === 'ADMIN') ||
+                ($_SESSION['role'] === 'SUPERADMIN') ||
+                ($_SESSION['role'] === 'DJ') ||
+                ($_SESSION['role'] === 'INSTRUCTOR')
              ) {
                 echo '<li><a title="Club Administrative Functions" href="administration.php">Administration</a></li>';
             }
+        if ($_SESSION['role'] === 'visitor') {
+      
+            echo '<li><a class="menu-blink" title="Information on Joining the Club" style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
+             }
         }
      else {
-
         echo '<li><a  title="Login as a Member or Visitor" style="color: red;font-weight: bold;font-size: medium" href="login.php"> Login</a></li>';
         echo '<li><a class="menu-blink" title="Information on Joining the Club" style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
     }
-    if (isset($_SESSION['role'])) {
-        if ($_SESSION['role'] == 'visitor') {
-            echo '<li><a title="Information on Joining the Club" style="color: red;font-weight: bold;font-size: medium" href="joinUsNow.php"> Join Us Now</a></li>';
-        }
-    }
+ 
+
+    
    
     echo '<li><a title="Board Members" href="SBDCBoard.php">Board Members</a></li>';
     echo '<li><a title="Frequently Asked Questions" href="faq.php">FAQs</a></li>';

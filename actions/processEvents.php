@@ -37,6 +37,7 @@ $eventReg = new EventRegistration($db);
 $upcomingEvents = [];
 $upcomingEvents = $_SESSION['upcoming_events'] ;
 $user = new User($db);
+$mChoices = new DinnerMealChoices($db);
 $users = [];
 $regs = [];
 $_SESSION['regUsers'] = [];
@@ -55,6 +56,8 @@ $deleteEvent = false;
 $emailEvent = false;
 $archiveEvent = false;
 $duplicateEvent = false;
+$addMeals = false;
+$updateMeals = false;
 $urChk = false;
 $drChk = false;
 $arChk = false;
@@ -65,6 +68,8 @@ $emChk = false;
 $dpChk = false;
 $aeChk = false;
 $cvChk = false;
+$amChk = false;
+$umChk = false;
 $event_count = 0;
 
 if (isset($_POST['submitEventProcess'])) {
@@ -86,6 +91,8 @@ if (isset($_POST['submitEventProcess'])) {
         $csvEvent = false;
         $duplicateEvent = false;
         $archiveEvent = false;
+        $addMeals = false;
+        $updateMeals = false;
         $rpChk = "rp".$event['id'];
         $upChk = "up".$event['id'];
         $dlChk = "dl".$event['id'];
@@ -96,6 +103,8 @@ if (isset($_POST['submitEventProcess'])) {
         $drChk = "dr".$event['id'];
         $urChk = "ur".$event['id'];
         $cvChk = "cv".$event['id'];
+        $amChk = "am".$event['id'];
+        $umChk = "um".$event['id'];
         $mbSrch = "srch".$event['id'];
    //  event check boxes 
 
@@ -108,6 +117,19 @@ if (isset($_POST['submitEventProcess'])) {
     }
     if (isset($_POST["$cvChk"])) {
         $csvEvent = true;
+        $processEvent = true;
+        break;
+       
+    }
+    if (isset($_POST["$amChk"])) {
+        $addMeals = true;
+        $processEvent = true;
+    
+        break;
+       
+    }
+    if (isset($_POST["$umChk"])) {
+        $updateMeals = true;
         $processEvent = true;
     
         break;
@@ -188,6 +210,8 @@ if (isset($_POST['submitEventProcess'])) {
               'softball' => $softball,
               'message' => $message,
               'paid' => $paid,
+              'mealchoice' => $mealchoice,
+              'dietaryrestriction' => $dietaryrestriction,
               'userid' => $userid
            
           );
@@ -217,6 +241,8 @@ if (isset($_POST['submitEventProcess'])) {
                   'softball' => $softball,
                   'dateregistered' => $dateregistered,
                   'message' => $message,
+                  'mealchoice' => $mealchoice,
+                  'dietaryrestriction' => $dietaryrestriction,
                   'paid' => $paid,
                   'userid' => $userid
 

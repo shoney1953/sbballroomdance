@@ -7,7 +7,7 @@ require_once 'models/EventArch.php';
 
 $allEvents = $_SESSION['allArchEvents'];
 $eventRegistrations = $_SESSION['archeventreg'];
-$_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
+
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 if (!isset($_SESSION['username'])) {
     $redirect = "Location: ".$_SESSION['homeurl'];

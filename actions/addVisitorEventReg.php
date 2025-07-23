@@ -4,6 +4,7 @@ require_once '../includes/sendEmail.php';
 require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
+require_once '../models/DinnerMealChoices.php';
 require_once '../models/Event.php';
 require_once '../models/Visitor.php';
 if (isset($_SESSION['role'])) {
@@ -33,10 +34,12 @@ $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $event = new Event($db);
 $visitor = new Visitor($db);
+$mChoices = new DinnerMealChoices($db);
 $emailBody = "Thanks for registering for the following SBDC events:<br>";
 $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
+$mealChoices = [];
 $id_int = 0;
 $result = 0;
 $fromCC = $webmaster;
@@ -70,11 +73,18 @@ if (isset($_POST['submitAddVisitorReg'])) {
     }
    
     $eventReg->userid = 0;
+  
     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
+
+    if ($result) {
+        $redirect = "Location: ".$_SESSION['returnurl'];
+        header($redirect);
+        exit;
+    }
+
     if (!$result) {
 
-    $eventReg->create();
-    $event->addCount($eventReg->eventid);
+  
     /* assume not a member so add to visitor file */
     $visitor->email = filter_var($_POST['email1'], FILTER_SANITIZE_EMAIL); 
     $regEmail1 =  $visitor->email;
@@ -121,6 +131,56 @@ if (isset($_POST['submitAddVisitorReg'])) {
             $toCC2 = $treasurer;
         }
     }
+            echo '</tr>';
+       if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+       
+             if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party')) {
+
+              $result = $mChoices->read_ByEventId($event->id);
+
+                $rowCount = $result->rowCount();
+                $num_meals = $rowCount;
+
+                if ($rowCount > 0) {
+
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        $meal_item = array(
+                            'id' => $id,
+                            'mealchoice' => $mealchoice,
+                            'eventid' => $eventid,
+                            'memberprice' => $memberprice,
+                            'guestprice' => $guestprice,
+                            'productid' => $productid,
+                            'priceid' => $priceid,
+                            'guestpriceid' => $guestpriceid
+
+                        );
+                        array_push($mealChoices, $meal_item);
+                    } // while
+              
+                  
+                        foreach ($mealChoices as $choice) {
+                          $mcID = "mcVisitor1".$choice['id'];
+                          if (isset($_POST["$mcID"])) {
+                            $eventReg->mealchoice = $choice['id'];
+                            $emailBody .= "<br>You have selected ".$choice['mealchoice']." at a cost of ".number_format($choice['memberprice']/100,2).".";
+                          }
+                         } // foreach
+
+                       $drID = "drVisitor1";
+                       if (isset($_POST["$drID"])) {
+                        $eventReg->dietaryrestriction = $_POST["$drID"];
+                        $emailBody .= "<br>You have specified a dietary restriction of ".$_POST["$drID"];
+                       }
+                     
+                  
+                }   // row count 
+             } // eventtype
+   
+        }  // testmode
+    $eventReg->create();
+    $event->addCount($eventReg->eventid);
     $emailBody .= '<br>We hope you enjoy the event and consider joining our club.';
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
 
@@ -146,6 +206,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
         echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
    }                    
     }
+    
     /*      2nd visitor */
     $eventReg->eventid = $_POST['eventid'];
     if (isset($_POST['email2'])) {
@@ -170,10 +231,14 @@ if (isset($_POST['submitAddVisitorReg'])) {
    
     $eventReg->userid = 0;
     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
+    if ($result) {
+        $redirect = "Location: ".$_SESSION['returnurl'];
+        header($redirect);
+        exit;
+    }
     if (!$result) {
 
-    $eventReg->create();
-    $event->addCount($eventReg->eventid);
+   
     /* assume not a member so add to visitor file */
     $visitor->email = filter_var($_POST['email2'], FILTER_SANITIZE_EMAIL); 
     $regEmail1 =  $visitor->email;
@@ -219,6 +284,21 @@ if (isset($_POST['submitAddVisitorReg'])) {
                 on the website to open the form. Or<br>$actLink";
             $toCC2 = $treasurer;
         }
+         foreach ($mealChoices as $choice) {
+            $mcID = "mcVisitor2".$choice['id'];
+            if (isset($_POST["$mcID"])) {
+                    $eventReg->mealchoice = $choice['id'];
+                    $emailBody .= "<br>You have selected ".$choice['mealchoice']." at a cost of ".number_format($choice['memberprice']/100,2).".";
+                 }
+                } // foreach
+
+                $drID = "drVisitor2";
+                if (isset($_POST["$drID"])) {
+                $eventReg->dietaryrestriction = $_POST["$drID"];
+                $emailBody .= "<br>You have specified a dietary restriction of ".$_POST["$drID"];
+        }
+      $eventReg->create();
+      $event->addCount($eventReg->eventid);                
     }
     $emailBody .= '<br>We hope you enjoy the event and consider joining our club.';
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
@@ -250,7 +330,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
 }  
    
 
-$redirect = "Location: ".$_SESSION['adminurl']."#events";
+$redirect = "Location: ".$_SESSION['returnurl'];
 header($redirect);
 exit;
 

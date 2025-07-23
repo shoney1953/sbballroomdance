@@ -2,18 +2,28 @@
   session_start();
   require_once 'config/Database.php';
   require_once 'models/Event.php';
+  require_once 'models/DinnerMealChoices.php';
   require_once 'models/User.php';
-  $events =  $_SESSION['upcoming_events'] ;
-  $upcomingEvents = $_SESSION['upcoming_events'];
-  $eventNumber = $_SESSION['upcoming_eventnumber'];
-
-
+  if (isset($_SESSION['upcoming_events'])) {
+      $events =  $_SESSION['upcoming_events'] ;
+      $upcomingEvents = $_SESSION['upcoming_events'];
+  }
+  if (isset($_SESSION['upcoming_eventnumber'])) {
+    $eventNumber = $_SESSION['upcoming_eventnumber'];
+  }
+ if (!isset($_SESSION['role'])) {
+    $redirect = "Location: ".$_SESSION['homeurl'];
+    header($redirect); 
+   }
 date_default_timezone_set("America/Phoenix");
-
+$smealCHK1 = '';
+$smealCHK2 = '';
 $database = new Database();
 $db = $database->connect();
 $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
+$mealChoices = [];
+$mChoice = new DinnerMealChoices($db);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,19 +42,20 @@ $compareDate = $currentDate->format('Y-m-d');
         <ul>
             <li><a href="index.php">Back to Home</a></li>
             <?php
-             if (isset($_SESSION['role'])) {
+      
                 if ($_SESSION['role'] != 'visitor') {
                  echo ' <li><a href="yourProfile.php">
                   <img title="Click to see or update your information or registrations" src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
                   <br>Your Profile</a></li>';
                 }
-              }
+              
             ?>
         </ul>
         </div>
     </nav>
     <br><br>
 
+      
     <div class="container-section ">
     <section id="registerevent" class="content">  
 
@@ -59,26 +70,23 @@ $compareDate = $currentDate->format('Y-m-d');
             $_SESSION['regeventurl'] = $_SERVER['REQUEST_URI'];
       }
 
-   
+        echo '<div class="form-container">';
         if ($eventNumber > 0) {
         $partner = new User($db);
 
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
-     
-            
-            
+
             echo '<h4 class="form-title"> This process generates an email to confirm your registration, so it takes a while. Please be patient.<br>
             You may want to authorize sbdcmailer@sbballroomdance.com so that the automatic emails do not end up in the 
             spam/junk folder.</h4>';
             echo '<form method="POST"  action="actions/regEvent.php">';
-            
-            
 
-        if (isset($_SESSION['role'])) {
+        
           if ($_SESSION['role'] === 'visitor') {
-            echo '<div class="form-container">';
+          
             echo '<h4 class="form-title">Visitor Registration</h4>';
             echo '<div class="form-grid">';
+
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">First Name</h4>';
             if (isset($_SESSION['visitorfirstname'])) {
@@ -87,6 +95,7 @@ $compareDate = $currentDate->format('Y-m-d');
                     echo '<input type="text" name="regFirstName1" >';
             }
             echo '</div>';
+
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Last Name</h4>';
             if (isset($_SESSION['visitorlastname'])) {
@@ -95,6 +104,7 @@ $compareDate = $currentDate->format('Y-m-d');
                     echo '<input type="text" name="regLastName1" >';
             }
             echo '</div>';
+
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Email</h4>';
             if (isset($_SESSION['visitorlastname'])) {
@@ -103,8 +113,10 @@ $compareDate = $currentDate->format('Y-m-d');
                     echo '<input type="email" name="regEmail1" >';
             }
             echo '</div>';
+
             echo '</div>';
-            echo '</div>';
+            // echo '</div>';
+
           } //end visitor 
 
           if ($_SESSION['role'] != 'visitor') {
@@ -113,7 +125,7 @@ $compareDate = $currentDate->format('Y-m-d');
               $partner->id = $_SESSION['partnerid'];
               $partner->read_single();
              }
-            echo '<div class="form-container">'; 
+        
             echo '<h4 class="form-title">Member(s) Registration</h4>';
             echo '<div class="form-grid">';
             echo '<div class="form-item">';
@@ -160,12 +172,13 @@ $compareDate = $currentDate->format('Y-m-d');
            }
           }
          echo '</div>';
-         echo '</div>';
+   
           }
-
+            echo '</div>';
             
             echo '<h4 class="form-title"><em>
               To Register -- Please select One or More of the Events Listed along with associated information. <br>Then click on the Submit Registration(s) Button.</em></h4><br>
+
               <p>Please note if the event is a Dinner Dance or a Dance Party, there will be a form (click on PRINT) to select meal choices and determine the cost. 
               This should be printed and sent to the treasurer along with payment.
               Their address will appear on the form. If no form exists yet for the event, you will receive an email with the form when it becomes available.
@@ -181,12 +194,12 @@ $compareDate = $currentDate->format('Y-m-d');
              echo '<div class="form-grid">';
 
              echo '<div class="form-item">';
-                echo '<h4 class="form-item-title-emp">Click to Register</h4>';
-               $chkboxID = "ev".$event['id'];
-               echo "<input type='checkbox' name='$chkboxID'>";
+              echo '<h4 class="form-item-title-emp">Click to Register</h4>';
+               $chkboxID = "ev".$event['id'];        
+              echo "<input type='checkbox' id='$chkboxID'name='$chkboxID' onclick='displayMeals2(".$event['id'].")'>";
               echo '</div>';
 
-             echo '<div class="form-item">';
+               echo '<div class="form-item">';
                echo '<h4 class="form-item-title">Event Name</h4>';
                echo $event['eventname'];
                echo '</div>';
@@ -210,7 +223,7 @@ $compareDate = $currentDate->format('Y-m-d');
                echo '</div>';
 
                echo '<div class="form-item">';
-               echo '<h4 class="form-item-title">Event Cost</h4>';
+               echo '<h4 class="form-item-title">Event Dance Only Cost</h4>';
                echo $event['eventcost'];
                echo '</div>';
  
@@ -220,20 +233,9 @@ $compareDate = $currentDate->format('Y-m-d');
         
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Attend Dinner?</h4>';
-                echo "<input type='checkbox' name='$chkboxID2'>";
+                echo "<input type='checkbox' name='$chkboxID2' id='$chkboxID2' )'>";
                 echo '</div> ';
-
-                  } 
-                if ($event['eventtype'] === 'Dance Party') {
-
-                  $chkboxID2 = "dd".$event['id'];
-          
-                  echo '<div class="form-item">';
-                  echo '<h4 class="form-item-title">Attend Dinner?</h4>';
-                  echo "<input type='checkbox' name='$chkboxID2'>";
-                  echo '</div> ';
-  
-                    } 
+                } 
                   if ($event['eventtype'] === 'BBQ Picnic') {
 
                       $chkboxID2 = "dd".$event['id'];
@@ -254,20 +256,148 @@ $compareDate = $currentDate->format('Y-m-d');
                       echo '<h4 class="form-item-title">Play Softball?</h4>';
                       echo "<input type='checkbox' name='$chkboxID4'>";
                       echo '</div> ';
-                        } 
+                  } 
+                if ($event['eventtype'] === 'Dance Party') {
+
+                  $chkboxID2 = "dd".$event['id'];
+          
+                  echo '<div class="form-item">';
+                  echo '<h4 class="form-item-title">Attend Dinner?</h4>';
+                  echo "<input type='checkbox' id='$chkboxID2'name='$chkboxID2' onclick='displayMeals(".$event['id'].")'>";
+                  echo '</div> ';
+  
+                    } 
+
                if ($event['eventform']) {
     
                 echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Event Form or Flyer</h4>';
+                echo '<h4 class="form-item-title">Event Form</h4>';
                 echo '<a href="'.$event['eventform'].'">PRINT</a>';
                 echo '</div>';
                 } 
-     
+             
+            if (($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'Dinner Dance')) {
+              $mealChoices = [];
+              $mChoice->eventid = $event['id'];
+              $result = $mChoice->read_ByEventId($event['id']);
+
+                $rowCount = $result->rowCount();
+                $num_meals = $rowCount;
+
+                if ($rowCount > 0) {
+
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        $meal_item = array(
+                            'id' => $id,
+                            'mealchoice' => $mealchoice,
+                            'eventid' => $eventid,
+                            'memberprice' => $memberprice,
+                            'guestprice' => $guestprice,
+                            'productid' => $productid,
+                            'priceid' => $priceid,
+                            'guestpriceid' => $guestpriceid
+
+                        );
+                        array_push($mealChoices, $meal_item);
+                    }
+                   
+               
+                    if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) { 
+                      $mcfcD = 'mcfcD'.$event['id'];
+                      $mcfcP = 'mcfcP'.$event['id'];
+                      if ($event['eventtype'] === 'Dinner Dance') {
+                         echo "<div id='".$mcfcD."' class='form-container hidden'>";   
+                      } else {
+                         echo "<div id='".$mcfcP."' class='form-container hidden'>"; 
+                      }
+
+                      if ($_SESSION['role'] === 'visitor') {
+                            echo '<h4 class="form-item-title">Meal Selection</h4>';
+                      } else {
+                          echo "<h4 class='form-item-title'>Selection for ".$_SESSION['userfirstname']."</h4>";
+                      }
+
+                
+                    foreach ($mealChoices as $choice) {
+                      $price = '';
+                   
+                        if ($_SESSION['role'] === 'visitor') {
+                          $price = number_format($choice['guestprice']/100,2);
+                        }
+                        else {
+                          $price = number_format($choice['memberprice']/100,2);                   
+                        }
+
+                       echo '<div class="form-item">';
+                       $smealCHK1 = 'sm1'.$choice['id'];
+ 
+                      if (isset($_SESSION['partnerid'])) {
+                        if ($_SESSION['partnerid'] > 0) {
+                          echo '<h4 id="mem1mealchoice1" class="form-item-title">'.$choice['mealchoice'].' @ '.$price.'</h4>';
+                        }
+                          else {
+                           echo '<h4 class="form-item-title">'.$choice['mealchoice'].' @ '.$price.'</h4>';
+                        }
+                      }
+                        else {
+                           echo '<h4 class="form-item-title">'.$choice['mealchoice'].' @ '.$price.'</h4>';
+                       }
+
+                       echo "<input type='checkbox' id='".$smealCHK1."' name='".$smealCHK1."'  title='Check to select this meal option for Member 1'>";
+               
+                       echo '</div>';
+                    }
+                    echo '<div class="form-item">';
+                    echo '<h4 class="form-item-title">Dietary Restriction</h4>';
+                    $drID1 = "dr1".$event['id'];
+                    echo "<textarea name='$drID1' cols='10' rows='1'></textarea>";
+                    echo '</div>';
+                    echo '</div>'; 
+                    
+                    if (isset($_SESSION['partnerid'])) {
+                         if ($_SESSION['partnerid'] > 0) {
+                            $pcfcd = 'pcfcD'.$event['id'];
+                            $pcfcp = 'pcfcP'.$event['id'];
+                            if ($event['eventtype'] === 'Dinner Dance') {
+                                echo "<div  id='".$pcfcd."'  class='form-container hidden'>"; 
+                            } else {
+                                echo "<div  id='".$pcfcp."'  class='form-container hidden'>"; 
+                            }
+                              echo "<h4 class='form-item-title'>Selection for ".$partner->firstname."</h4>";
+                       
+                         foreach ($mealChoices as $choice) {
+                      
+                              $price = number_format($choice['memberprice']/100,2);
+                             
+                              echo '<div class="form-item">';
+                              $smealCHK2 = 'sm2'.$choice['id'];
+
+                            echo '<h4 class="form-item-title">'.$choice['mealchoice'].' @ '.$price.'</h4>';
+                            echo "<input type='checkbox' id='".$smealCHK2."' name='".$smealCHK2."'  title='Check to select this meal option for partner'>";
+                            echo '</div>';
+
+                    }
+                  
+                    echo '<div class="form-item">';
+                    echo '<h4 class="form-item-title">Dietary Restriction</h4>';
+                    $drID2 = "dr2".$event['id'];
+                    echo "<textarea name='$drID2' cols='10' rows='1'></textarea>";
+                    echo '</div>';
+                    }
+                      echo '</div>'; 
+                  }
+                
+                    //  echo '</div>'; 
+
+                  } //test mode
+                }
+            }
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Message to Event Coordinator</h4>';
             $messID = "mess".$event['id'];
             echo "<textarea name='$messID' cols='35' rows='1'></textarea>";
-            // echo '</div>';
+       
             echo '</div>';
             echo '<div class="form-item">';
             echo '<h4><button name="submitEventReg" type="submit">Submit Registration(s)</button></h4>';
@@ -283,10 +413,60 @@ $compareDate = $currentDate->format('Y-m-d');
 
             echo '</div>'; 
             echo '</div>'; 
+             echo '</div>'; 
         } 
       }
-    }
+    
         ?>
+                  <script>
+                  function displayMeals(eventid) {
+   
+                  membermealchoice = 'mcfcP'+eventid; 
+                  partnermealchoice = 'pcfcP'+eventid; 
+                  var cboxname = 'dd'+eventid;
+              
+                  // Select the element
+                  if (document.getElementById(cboxname).checked) {
+
+                    var element1 = document.getElementById(membermealchoice);
+                    element1.classList.remove('hidden');
+                    element2 = document.getElementById(partnermealchoice);
+          
+                    element2.classList.remove('hidden');
+                    }
+                    else {
+                      var element1 = document.getElementById(membermealchoice);
+                      element1.classList.add('hidden');
+                      element2 = document.getElementById(partnermealchoice);
+    
+                      element2.classList.add('hidden');
+                      }
+                  }
+                  </script>
+                  <script>
+                  function displayMeals2(eventid) {
+                  membermealchoice = 'mcfcD'+eventid; 
+                  partnermealchoice = 'pcfcD'+eventid; 
+                  var cboxname = 'ev'+eventid;
+              
+                  // Select the element
+                  if (document.getElementById(cboxname).checked) {
+
+                    var element1 = document.getElementById(membermealchoice);
+                    element1.classList.remove('hidden');
+                    element2 = document.getElementById(partnermealchoice);
+          
+                    element2.classList.remove('hidden');
+                    }
+                    else {
+                      var element1 = document.getElementById(membermealchoice);
+                      element1.classList.add('hidden');
+                      element2 = document.getElementById(partnermealchoice);
+    
+                      element2.classList.add('hidden');
+                      }
+                  }
+                  </script>
     </section>
     </div>
 <?php

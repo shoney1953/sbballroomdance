@@ -35,6 +35,38 @@ if ($csvEvent) {
      
   }
 }
+if ($addMeals) {
+
+  foreach ($allEvents as $event) {
+    $amChk = 'am'.$event['id'];
+
+    if (isset($_POST["$amChk"])) {
+ 
+      echo "<form  name='addMealsForm'   method='POST' action='addMeals.php'> ";
+      echo "<input type='hidden' name='eventid' value='".$event['id']."'>"; 
+      echo '<script language="JavaScript">document.addMealsForm.submit();</script></form>';
+      unset($_POST["$amChk"]);
+      break;
+    }
+     
+  }
+}
+if ($updateMeals) {
+
+  foreach ($allEvents as $event) {
+    $umChk = 'um'.$event['id'];
+
+    if (isset($_POST["$umChk"])) {
+ 
+      echo "<form  name='updateMealsForm'   method='POST' action='updateMeals.php'> ";
+      echo "<input type='hidden' name='eventid' value='".$event['id']."'>"; 
+      echo '<script language="JavaScript">document.updateMealsForm.submit();</script></form>';
+      unset($_POST["$umChk"]);
+      break;
+    }
+     
+  }
+}
   if ($emailEvent) {
  
 

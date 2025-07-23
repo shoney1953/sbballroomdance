@@ -9,7 +9,7 @@ require_once 'models/EventRegistrationArch.php';
 require_once 'models/UserArchive.php';
 require_once 'models/MemberPaid.php';
 date_default_timezone_set("America/Phoenix");
-$_SESSION['adminurl'] = $_SERVER['REQUEST_URI'];
+
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
 if (!isset($_SESSION['username'])) {
     $redirect = "Location: ".$_SESSION['homeurl'];
@@ -116,6 +116,9 @@ if ($rowCount > 0) {
             'email' => $email,
             'paid' => $paid,
             'registeredby' => $registeredby,
+            'mealchoice' => $mealchoice,
+            'dietaryrestriction' => $dietaryrestriction,
+            'paidonline' => $paidonline,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegs, $reg_item);
@@ -142,6 +145,9 @@ if ($rowCount > 0) {
             'email' => $email,
             'paid' => $paid,
             'registeredby' => $registeredby,
+            'mealchoice' => $mealchoice,
+            'dietaryrestriction' => $dietaryrestriction,
+            'paidonline' => $paidonline,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegsArch, $reg_item);

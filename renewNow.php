@@ -29,13 +29,11 @@ date_default_timezone_set("America/Phoenix");
    They also receive reduced prices for our dinner dances!</h3>
    <h3>We would love to have you continue with us! It's easy. </h3>
       <?php
-//    if (isset($_SESSION['testmode'])){
-//    if ($_SESSION['testmode'] === 'YES') {
+
  
      echo "<button class='button-round'><h1><em><a href='renewNowO.php'>Renew & Pay Online</a></em></h1></button>";
          echo '<h3>OR</h3>';
-//    }
-//    }
+
 
    ?>
    <h3>You can print the membership form and send it it with your check</h3>

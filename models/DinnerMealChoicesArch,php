@@ -10,6 +10,9 @@ class DinnerMealChoicesArch {
     public $guestprice;
     public $eventid;
     public $eventidarch;
+    public $priceid;
+    public $guestpriceid;
+    public $productid;
 
 
     // Constructor with DB
@@ -31,7 +34,7 @@ class DinnerMealChoicesArch {
 
       return $stmt;
     }
-    public function read_EventId($id) {
+    public function read_ByEventId($id) {
       // Create query
 
       $query = 'SELECT * FROM ' . $this->table . ' WHERE eventid < :id 
@@ -70,6 +73,10 @@ class DinnerMealChoicesArch {
           $this->guestprice = $row['guestprice'];
           $this->eventid = $row['eventid'];
           $this->eventidarch = $row['eventidarch'];
+          $this->productid = $row['productid'];
+          $this->priceid = $row['priceid'];
+          $this->guestpriceid = $row['guestpriceid'];
+
           return true;
           }
           return false;
@@ -80,6 +87,7 @@ class DinnerMealChoicesArch {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
           ' SET mealchoice = :mealchoice, memberprice = :memberprice, 
+          guestpriceid = :guestpriceid, priceid = :priceid, productid = :productid,
           guestprice = :guestprice, eventid = :eventid,
           eventidarch = :eventidarch';
 
@@ -99,6 +107,9 @@ class DinnerMealChoicesArch {
           $stmt->bindParam(':eventid', $this->eventid);
           $stmt->bindParam(':eventidarch', $this->eventidarch);
           $stmt->bindParam(':guestprice', $this->guestprice);
+          $stmt->bindParam(':guestpriceid', $this->guestpriceid);
+          $stmt->bindParam(':priceid', $this->priceid);
+          $stmt->bindParam(':productid', $this->productid);
         
 
           // Execute query
@@ -118,6 +129,7 @@ class DinnerMealChoicesArch {
           $query = 'UPDATE ' . $this->table . 
           ' SET mealchoice = :mealchoice, memberprice = :memberprice, 
           eventid = :eventid, guestprice = :guestprice,
+            guestpriceid = :guestpriceid, priceid = :priceid, productid = :productid,
           eventidarch = :eventidarch
             WHERE id = :id ';
    
@@ -139,7 +151,9 @@ class DinnerMealChoicesArch {
           $stmt->bindParam(':eventid', $this->eventid);
           $stmt->bindParam(':eventidarch', $this->eventidarch);
           $stmt->bindParam(':guestprice', $this->guestprice);
-
+          $stmt->bindParam(':guestpriceid', $this->guestpriceid);
+          $stmt->bindParam(':priceid', $this->priceid);
+          $stmt->bindParam(':productid', $this->productid);
           $stmt->bindParam(':id', $this->id);
 
           // Execute query

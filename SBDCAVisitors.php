@@ -1,14 +1,9 @@
 <?php
 session_start();
 require_once 'config/Database.php';
-require_once 'models/Contact.php';
+
 require_once 'models/Visitor.php';
-require_once 'models/ClassRegistration.php';
-require_once 'models/EventRegistration.php';
-require_once 'models/Event.php';
-require_once 'models/DanceClass.php';
-require_once 'models/User.php';
-require_once 'models/MemberPaid.php';
+
 if (isset($_SESSION['role'])) {
 
 } else {
