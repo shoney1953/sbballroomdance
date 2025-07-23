@@ -43,8 +43,8 @@ $upcomingEvents = $_SESSION['upcoming_events'];
             if (isset($_SESSION['role'])) {
         echo '<div class="form-grid-div">';
   
-        echo '<h1><a href="regForEvents.php">Click to Register For Events</a></h1>';
-   
+        // echo '<h1><a href="regForEvents.php">Click to Register For Events</a></h1>';
+        echo "<button><a href='regForEvents.php'><h4>Click to Register for Events</h4></a></button> ";
     
         echo '</div>';
             }

@@ -4,7 +4,7 @@
            = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
        Click to view Activities Calendar</a><br>";
       $docLink = "<a href='https://drive.google.com/file/d/1P4FHXpaw0oUGfVpCkFnRAroipgOE53s9/view?usp=sharing'> 
-      Click to view Members Guide to the Website</a><br>";
+      Click to view Members Guide to the Website.</a><br>";
  
     
       $webLink
@@ -20,8 +20,19 @@
         $emailBody = "<br>Welcome <b> $toName </b>to the SaddleBrooke Ballroom Dance Club.<br><br>";
        }
  
-       $emailBody .= "Thanks for becoming a member! We hope you will participate in and enjoy the following club activities: <br><ul>";
-       $emailBody .= "<li><strong>Novice Events</strong> - For anyone that has little dance experience, we have a new 
+       $emailBody .= "Thanks for becoming a member! We hope you will participate in and enjoy the club activities: <br><ul>";
+       $emailBody .= "
+        <br>Here is a link to the member's guide to the website: <br> $docLink <br> 
+        The website shows Classes, Dances, and other events. Your login credentials will be either: 
+          <b>your email
+          <em>or</em>  
+          your firstname and last initial with the first letter of your first name capitalized and your last initial capitalized</b>.
+        The initial password is <b>test1234</b>. You should change your password when you first logon from your profile.
+        Once you logon to the website, you can register for most classes and events from there. 
+        <br>
+        $webLink<br>";
+       $emailBody .= "<br>The following contains a list of some of the common activities: <br>
+       <li><strong>Novice Events</strong> - For anyone that has little dance experience, we have a new 
        program of Novice events: Novice classes twice a month, and then a Novice review session. These are designed to
        help you learn a few steps of the most common dances, and help you practice with other Novices. 
        You will also receive emails about these actvities. You can register for these on the website.</li>";
@@ -50,16 +61,7 @@
      $emailBody .= "</ul><strong>At Times we have have room changes or cancellations, so it is important to check the Activities
      Calendar on the website to verify the schedule.<br>$actLink<br></strong>";
 
-     $emailBody .= "
-   Here is a link to the member's guide to the website: <br> $docLink <br>. 
-   The website shows Classes, Dances, and other events. Your login credentials will be either: 
-    <b>your email
-     <em>or</em>  
-     your firstname and last initial with the first letter of your first name capitalized and your last initial capitalized</b>.
-   The initial password is <b>test1234</b>. You should change your password when you first logon from your profile.
-   Once you logon to the website, you can register for most classes and events from there. 
-   <br>
-   $webLink<br>";
+     
 
    $emailBody .= "We hope to see you soon!<br>";
 
