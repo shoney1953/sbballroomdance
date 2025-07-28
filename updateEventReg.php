@@ -2,7 +2,6 @@
 
      if ($updateReg) {
 
-            
             echo '<form method="POST" action="updateEventReg.php">';
             foreach ($upcomingEvents as $event) {
                 $eventNum = (int)substr($urChk,2);
@@ -155,6 +154,9 @@
             }
          
             if ($event['eventtype'] === 'Dance Party') {
+     
+                
+
                 $ad = 0;
                 if ($reg['ddattenddinner']) {
                     $ad = $reg['ddattenddinner'];
@@ -168,10 +170,11 @@
                 echo "<input title='Select to indicate Registrant will attend dinner' type='checkbox' 
                          id='".$dddinID."' name='".$dddinID."' onclick='displayMeals2U(".$reg['id'].")' min='0' max='1' value='".$ad."'>";
                 
-
-   
                 echo '</div>'; // end of form item
-
+                // echo '<div class="form-item">';  
+                // echo '<h4 class="form-item-title">Paid?</h4>';
+                // echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
+                // echo '</div>'; // end of form item
              if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
        
              if ($event['eventtype'] === 'Dance Party') {
@@ -210,30 +213,16 @@
 
                     } // nummeals
                     
-             } // eventtype
+             } // eventtype Dance Party
    
     
-                echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Paid?</h4>';
-                echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
-                echo '</div>'; // end of form item
-            } // end dance party
-
-     } // testmode         
+            } // testmode
             
-            // if ($event['eventtype'] === 'Dine and Dance') {
-            //     $ad = 0;
-            //     if ($reg['ddattenddinner']) {
-            //         $ad = $reg['ddattenddinner'];
-            //     }
-            //     else {
-            //         $ad = 0;
-            //     }
-            //     echo '<div class="form-item">';
-            //     echo '<h4 class="form-item-title">Attend Dinner?</h4>';
-            //     echo "<input type='number'  title='Enter 1 for Attend dinner' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
-            //     echo '</div>'; // end of form item
-            // } // end if dine and dance
+
+
+     } // dance party         
+            
+
 
 
             if ($event['eventtype'] === 'Dinner Dance') {
@@ -276,11 +265,12 @@
                     } //nummeals
 
              } // testmode         
-                echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Paid?</h4>';
-                echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
-                echo '</div>'; // end of form item
+
             } // end if dinner dance
+            echo '<div class="form-item">';
+            echo '<h4 class="form-item-title">Paid?</h4>';
+            echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
+            echo '</div>'; // end of form item
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Message</h4>';
             echo "<textarea  title='Optionally enter a message for this registration' name='".$messID."' rows='2' cols='40'>".$reg['message']."</textarea>";
