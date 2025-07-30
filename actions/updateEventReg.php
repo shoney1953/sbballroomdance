@@ -4,6 +4,7 @@ require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/DinnerMealChoices.php';
 date_default_timezone_set("America/Phoenix");
+var_dump('inside updateeventreg');
 if (!isset($_SESSION['username']))
 {
     $redirect = "Location: ".$_SESSION['homeurl'];
@@ -37,7 +38,7 @@ $drID = '';
 
 
 if (isset($_POST['submitUpdateReg'])) {
- 
+
 
     foreach ($regs as $reg) {
         $updID = "upd".$reg['id'];
@@ -53,7 +54,7 @@ if (isset($_POST['submitUpdateReg'])) {
         $drID = "dr".$reg['id'];
 
         if (isset($_POST["$updID"])) {
-
+    
             $eventReg->id = $reg['id'];
             $eventReg->firstname = $_POST["$fnamID"];
             $eventReg->lastname = $_POST["$lnamID"];
@@ -129,12 +130,13 @@ if (isset($_POST['submitUpdateReg'])) {
                     }
             $eventReg->update();
         }
-    }
+    } 
  
  
+
+}
     $redirect = "Location: ".$_SESSION['adminurl']."#events";
     header($redirect);
     exit;
-}
 }
 ?>
