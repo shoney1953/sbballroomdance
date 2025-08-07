@@ -61,7 +61,7 @@ $_SESSION['regtype'] = "manual";
     <form method="POST"  id="formelement" action="actions/regEvent.php">
     </div>
     <?php
-      require_once "regEventBody.php";
+      require_once "RegEventBody.php";
       ?>
     </div>
 <?php
