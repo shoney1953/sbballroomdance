@@ -2,7 +2,7 @@
 class TempOnlineEventReg  {
     // DB stuff
     private $conn;
-    private $table = 'tempOnlineEventReg';
+    private $table = 'temponlineeventreg';
     public $id;
     public $eventid;
     public $visitor;
