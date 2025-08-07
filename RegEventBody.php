@@ -352,13 +352,14 @@
                             echo '<h4 class="form-item-title">'.$choice['mealchoice'].' @ '.$price.'</h4>';
                             echo "<input type='checkbox' id='".$smealCHK2."' name='".$smealCHK2."'  title='Check to select this meal option for partner'>";
                             echo '</div>';
+                            
+                          
+                    }        
                             echo '<div class="form-item">';
                             echo '<h4 class="form-item-title">Dietary Restriction</h4>';
                             $drID2 = "dr2".$event['id'];
                             echo "<textarea name='$drID2' cols='10' rows='1'></textarea>";
-                            echo '</div>';
-                    }        
-                                      
+                            echo '</div>';            
 
                        echo '</div>'; 
                           
