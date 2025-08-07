@@ -14,6 +14,7 @@ $user = new User($db);
 $event = new Event($db);
 $mChoice = new DinnerMealChoices($db);
 $mealChoices = [];
+$mealCounts = [];
 $regArr = [];
 $memReg = 0;
 $nonMemReg = 0;
@@ -62,7 +63,7 @@ class PDF extends FPDF
                 $rowCount = $result->rowCount();
        
                 $num_meals = $rowCount;
-
+            
                 if ($rowCount > 0) {
 
                     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {

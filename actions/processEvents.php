@@ -353,7 +353,7 @@ $_SESSION['regUsers'] = $users;
 <?php
 
   if ($processReg) {
-
+ 
     require '../processEventRegs.php';
   }
   if ($processEvent) {

@@ -41,7 +41,8 @@ if ($rowCount > 0) {
             'name' => $name,
             'priceid' => $priceid,
             'type' => $type,
-            'price'=> $price
+            'price'=> $price,
+            'eventid' => $eventid
 
         );
         array_push($allProducts, $product_item);
@@ -117,13 +118,14 @@ if ($rowCount > 0) {
             echo '<thead>';
                 echo '<tr>';
                     echo '<th>Product ID</th> '; 
+                    echo '<th>Event ID</th> '; 
                     echo '<th>Product Type</th> '; 
                     echo '<th>Product Name</th> '; 
                     echo '<th>Description</th> '; 
                     echo '<th>Price</th>';
   
                   
-               echo '</tr>';
+                echo '</tr>';
               echo '</thead>'  ;
               echo '<tbody>';
         
@@ -131,6 +133,7 @@ if ($rowCount > 0) {
              
                       echo "<tr>";
                         echo "<td>".$product['productid']."</td>";
+                         echo "<td>".$product['eventid']."</td>";
                         echo "<td>".$product['type']."</td>";
                         echo "<td>".$product['name']."</td>";
                         echo "<td>".$product['description']."</td>";
@@ -162,6 +165,7 @@ if ($rowCount > 0) {
              title='Enter the Product Price in cents' required>";
              echo '</div><br>';
            echo '</div>';
+           echo "<input type='hidden' name='producteventid' value='0'>";
            echo '<button type="submit" name="submitAddProduct">Add the Product</button><br>';
            echo '</form>';
            echo '</div>';

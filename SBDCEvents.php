@@ -41,12 +41,17 @@ $upcomingEvents = $_SESSION['upcoming_events'];
 
          if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
             if (isset($_SESSION['role'])) {
-        echo '<div class="form-grid-div">';
-  
-        // echo '<h1><a href="regForEvents.php">Click to Register For Events</a></h1>';
-        echo "<button><a href='regForEvents.php'><h4>Click to Register for Events</h4></a></button> ";
+        if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+            echo '<div class="form-grid-div">';
+              echo "<button><a href='regForEventsOnline.php'><h4>Click to Register and Pay for Events Online</h4></a></button> ";
+              echo '</div>';
+        }
     
+        echo '<div class="form-grid-div">';
+        echo "<button><a href='regForEvents.php'><h4>Click to Register for Events</h4></a></button> ";
         echo '</div>';
+
+      
             }
         } else {
             echo '<h4><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Please Login as a Member or Visitor to Register</a></h4>';
@@ -54,12 +59,12 @@ $upcomingEvents = $_SESSION['upcoming_events'];
         ?>
        
 
-        <div class="form-grid-div">
+        <!-- <div class="form-grid-div">
         <form target="_blank" method="POST" action="actions/printEvents.php"> 
         <button type="submit" name="submitPrintEvents">Print Upcoming Events</button>  
         </form>
-        </div>
-        </div>
+        </div> -->
+        </div> <!-- end of form-grid2 -->
         
         <table>
             <thead>
@@ -69,7 +74,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
             $first_event_year = substr($first_value['eventdate'], 0, 4);
 
             echo '<tr>';
-            echo '<th colspan="12"><em>'.$first_event_year.'</em></th>';
+            echo '<th colspan="13"><em>'.$first_event_year.'</em></th>';
             echo '</tr>';
    
             echo '<tr>';
@@ -88,7 +93,8 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                 <th>Room</th> 
                 <th>DJ</th>            
                 <th>Min<br>Cost</th>
-                <th># <br>Attending</th>
+                <th>Min<br>Guest Cost</th>
+                <th># <br>Reg</th>
 
              </tr>
 
@@ -104,7 +110,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo '</tbody>';
                     echo '<thead>';
                     echo '<tr>';
-                    echo '<th  colspan="12"  ><em>'.$event_year.'</em></th>';
+                    echo '<th  colspan="13"  ><em>'.$event_year.'</em></th>';
                     echo '</tr>';
                     echo '<tr>'; 
          
@@ -116,7 +122,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     
                     echo '<th>Event<br>Date</th>';
                     echo '<th>Reg<br>Opens</th>';
-                    echo '<th>Reg<br>Closes</th>';
+                    echo '<th>Dance Only Reg<br>Closes</th>';
                     echo '<th>Form</th>';
                     echo '<th>Name    </th>';
                     echo '<th>Type    </th>';
@@ -124,8 +130,8 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo '<th>Room</th> ';
                     echo '<th>DJ</th>';            
                     echo '<th>Min<br>Cost</th>';
-
-                    echo '<th># Attending</th>';
+                    echo '<th>Min<br>Guest Cost</th>';
+                    echo '<th># Reg</th>';
     
                 echo '</tr>';
               
@@ -161,7 +167,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo "<td>".$event['eventdj']."</td>";            
   
                     echo "<td>".$event['eventcost']."</td>";
-
+                    echo "<td>".$event['eventguestcost']."</td>";
                     echo '<td><a href="'.$hr.'">'.$event["eventnumregistered"].'</a></td>';
                     // echo "<td>".$event['eventnumregistered']."</td>";
               

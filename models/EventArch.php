@@ -18,6 +18,10 @@ class EventArch {
     public $eventregopen;
     public $eventregend;
     public $orgemail;
+    public $eventproductid;
+    public $eventmempriceid;
+    public $eventguestcost;
+    public $eventguestpriceid;
 
     // Constructor with DB
     public function __construct($db) {
@@ -133,6 +137,10 @@ class EventArch {
           $this->orgemail = $row['orgemail'];
           $this->eventdj = $row['eventdj'];
           $this->eventnumregistered = $row['eventnumregistered'];
+          $this->eventproductid = $row['eventproductid'];
+          $this->eventmempriceid = $row['eventmempriceid'];
+          $this->eventguestpriceid = $row['eventguestpriceid'];
+          $this->eventguestcost = $row['eventguestcost'];
     }
 
     // Create Event
@@ -144,6 +152,10 @@ class EventArch {
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           previd = :previd, eventregend = :eventregend,   eventregopen = :eventregopen,
           orgemail= :orgemail,
+          eventproductid = :eventproductid,
+          eventmempriceid = :eventmempriceid,
+          eventguestpriceid = :eventguestpriceid,
+          eventguestcost = :eventguestcost,
           eventnumregistered = :eventnumregistered';
 
           // Prepare statement
@@ -178,6 +190,11 @@ class EventArch {
           $stmt->bindParam(':eventdj', $this->eventdj);
           $stmt->bindParam(':previd', $this->previd);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
+          $stmt->bindParam(':eventproductid', $this->eventproductid);
+          $stmt->bindParam(':eventmempriceid', $this->eventmempriceid);
+          $stmt->bindParam(':eventguestpriceid', $this->eventguestpriceid);
+          $stmt->bindParam(':eventguestcost', $this->eventguestcost);
+          
          
 
           // Execute query
@@ -200,6 +217,10 @@ class EventArch {
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           previd = :previd, eventregend = :eventregend, eventregopen = :eventregopen,
           orgemail = :orgemail,
+          eventproductid = :eventproductid,
+          eventmempriceid = :eventmempriceid,
+          eventguestpriceid = :eventguestpriceid,
+          eventguestcost = :eventguestcost,
           eventnumregistered = :eventnumregistered
             WHERE id = :id ';
    
@@ -236,6 +257,10 @@ class EventArch {
           $stmt->bindParam(':previd', $this->previd);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
           $stmt->bindParam(':id', $this->id);
+          $stmt->bindParam(':eventproductid', $this->eventproductid);
+          $stmt->bindParam(':eventmempriceid', $this->eventmempriceid);
+          $stmt->bindParam(':eventguestpriceid', $this->eventguestpriceid);
+          $stmt->bindParam(':eventguestcost', $this->eventguestcost);
 
           // Execute query
           if($stmt->execute()) {

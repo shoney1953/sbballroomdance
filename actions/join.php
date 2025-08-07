@@ -4,7 +4,6 @@ date_default_timezone_set("America/Phoenix");
 require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
 require_once '../models/User.php';
-require_once '../models/TempOnlineMember.php';
 require_once '../models/PaymentProduct.php';
 
 
@@ -20,7 +19,7 @@ $db = $database->connect();
 
 $paymentproduct = new PaymentProduct($db);
 $user = new User($db);
-$tempMember = new TempOnlineMember($db);
+
 $chargeProductID = '';
 $_SESSION['addmem2'] = 'NO';
 $_SESSION['memsameadd'] = 'NO';
@@ -244,7 +243,7 @@ $formatphone = '';
       <h4>Click the CONFIRM button to proceed, or the GO BACK button to modify information.</h4><br>
       <?php
 
-        $paymentproduct->read_single($chargeProductID);
+       $paymentproduct->read_single($chargeProductID);
        $fprice = number_format(($paymentproduct->price/100),2);
 
          echo "<h4>You will be charged: $".$fprice." for ".$paymentproduct->name."</h4><br>";
@@ -311,7 +310,7 @@ $formatphone = '';
          echo "</div>";
          echo '<div class="form-grid4">';
         echo '<div class="form-grid-div">';
-               echo "</div>";
+        echo "</div>";
         echo '<div class="form-grid-div">';
         echo '<form method="POST" action="joinconfirm.php">';
         echo '<div class="form-item">';

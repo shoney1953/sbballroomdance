@@ -26,7 +26,8 @@ if ($rowCount > 0) {
             'description' => $description,
             'name' => $name,
             'price' => $price,
-            'priceid' => $priceid
+            'priceid' => $priceid,
+            'eventid' => $eventid
 
         );
  

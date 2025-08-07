@@ -72,7 +72,11 @@ if ($rowCount > 0) {
             'eventdj' => $eventdj,
             "eventdesc" => html_entity_decode($eventdesc),
             "eventroom" => $eventroom,
-            'eventnumregistered' => $eventnumregistered
+            'eventnumregistered' => $eventnumregistered,
+            'eventproductid' => $eventproductid,
+            'eventmempriceid' => $eventmempriceid,
+            'eventguestpriceid' => $eventguestpriceid,
+            'eventguestcost' => $eventguestcost
         );
         array_push($allEvents, $event_item);
     

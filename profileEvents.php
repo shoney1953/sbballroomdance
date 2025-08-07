@@ -26,16 +26,20 @@ if (isset($_GET['error'])) {
 
 $eventRegs = [];
 $peventRegs = [];
-
+$currentDate = new DateTime();
+$compareDate = $currentDate->format('Y-m-d');
 $numEvents = 0;
 $pnumEvents = 0;
 $numClasses = 0;
 $pnumClasses = 0;
+
 $database = new Database();
 $db = $database->connect();
 $userid = $_SESSION['userid'];
 $user = new User($db);
 $partner = new User($db);
+$mChoices = new DinnerMealChoices($db);
+$mealchoices = [];
 $user->id = $_SESSION['userid'];
 $user->read_single();
 if ($user->partnerId !== 0) {
@@ -62,6 +66,7 @@ if ($rowCount > 0) {
             'eventname' => $eventname,
             'eventtype' => $eventtype,
             'eventdate' => $eventdate,
+            'eventregend' => $eventregend,
             'orgemail' => $orgemail,
             'ddattenddinner' => $ddattenddinner,
             'cornhole' => $cornhole,
@@ -99,6 +104,7 @@ if ($prowCount > 0) {
             'eventname' => $eventname,
             'eventtype' => $eventtype,
             'eventdate' => $eventdate,
+            'eventregend' => $eventregend,
             'orgemail' => $orgemail,
             'cornhole' => $cornhole,
             'softball' => $softball,
@@ -119,8 +125,6 @@ if ($prowCount > 0) {
 } 
 
 }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -168,6 +172,9 @@ if ($prowCount > 0) {
             <thead>
             <tr>
                 <th colspan="7" style="text-align: center">Your Event Registrations</th>
+              </tr> 
+            <tr>
+                <th colspan="7" style="text-align: center">If events have been paid for, please contact event administrator to delete.</th>
             </tr>
             <tr>
                 <th>Delete?</th>
@@ -188,9 +195,15 @@ if ($prowCount > 0) {
                 $delID = "del".$eventRegistration['id'];
               
                   echo "<tr>";
-                  echo "<td><input type='checkbox' 
-                       title='Check to Delete Event Registration' 
-                       name='".$delID."'> </td>";
+                  if ($eventRegistration['paid'] == true ) {
+                     echo "<td> </td>";
+                      
+                  } else {
+                   echo "<td><input type='checkbox' title='Check to Delete Event Registration' name='".$delID."'> </td>";
+                  }
+                  // echo "<td><input type='checkbox' 
+                  //      title='Check to Delete Event Registration' 
+                  //      name='".$delID."'> </td>";
  
                     echo "<td>".$eventRegistration['eventname']."</td>";
                     echo "<td>".$eventRegistration['eventdate']."</td>";  
@@ -211,6 +224,7 @@ if ($prowCount > 0) {
                     
           
                   echo "</tr>";
+                   if (isset($_SESSION['testmode']) && $_SESSION['testmode'] === 'YES') {
                   if (($eventRegistration['mealchoice'] != NULL) && ($eventRegistration['mealchoice'] > 0) ) {
                     $mealChoice->id = $eventRegistration['mealchoice'];
                     $mealChoice->read_single();
@@ -223,37 +237,39 @@ if ($prowCount > 0) {
                     echo '<td><em>Dietary Restriction</em></td>';
                     echo "<td><em>".$eventRegistration['dietaryrestriction']."</em></td>";
                     echo '</tr>';
-                    
-                  }
-            }
+                  } // meal choice not null and > 0
+                  } // testmode
+            }  // foreach $eventreg
          
             ?> 
        
         </div>
-            </tbody>
+        </tbody>
         </table>
-        <button type='submit' name="submitDeleteReg">Delete Your Event Registrations</button>   
-        
+        <button type='submit' name="submitDeleteReg">Delete Your Event Registrations</button>       
     </form>
     </div>
+
     <?php
      if ($user->partnerId > 0) {
-    echo '<div class="form-grid-div">';
- 
+        echo '<div class="form-grid-div">';
 
-    echo '<form method="POST" action="actions/deleteEventReg.php">';  
+        echo '<form method="POST" action="actions/deleteEventReg.php">';  
         echo "<table>";
             echo "<thead>";
             echo "<tr>";
             echo '<th colspan="7" style="text-align: center">Your Partners Event Registrations</th>';
             echo '</tr>';
             echo '<tr>';
+            echo '<th colspan="7" style="text-align: center">If events have been paid for, please contact event administrator to delete.</th>';
+            echo '</tr>';
+            echo '<tr>';
                 echo '<th>Delete?</th>';
-      
+
                 echo '<th>Event Name</th>';
                 echo '<th>Event Date</th>';
                 echo '<th>Paid</th>';
-                echo '<th> Online</th>';
+                echo '<th>Online</th>';
                 echo '<th>Date Registered</th>';   
                 echo '<th>Registered By</th> ';        
             echo '</tr>';
@@ -266,9 +282,15 @@ if ($prowCount > 0) {
                 $delID = "del".$eventRegistration['id'];
               
                   echo "<tr>";
-                  echo "<td><input type='checkbox' 
-                       title='Check to Delete Event Registration' 
-                       name='".$delID."'> </td>";
+                    if ($eventRegistration['paid'] == true ) {
+                     echo "<td> </td>";
+                      
+                  } else {
+                   echo "<td><input type='checkbox' title='Check to Delete Event Registration' name='".$delID."'> </td>";
+                  }
+                  // echo "<td><input type='checkbox' 
+                  //      title='Check to Delete Event Registration' 
+                  //      name='".$delID."'> </td>";
  
                     echo "<td>".$eventRegistration['eventname']."</td>";
                     echo "<td>".$eventRegistration['eventdate']."</td>";  
@@ -287,6 +309,7 @@ if ($prowCount > 0) {
                     echo '<input type="hidden" name="eventid" value="'.$eventRegistration['eventid'].'">';
           
                   echo "</tr>";
+                  if (isset($_SESSION['testmode']) && $_SESSION['testmode'] === 'YES') {
                    if (($eventRegistration['mealchoice'] != NULL) && ($eventRegistration['mealchoice'] > 0) ) {
                     $mealChoice->id = $eventRegistration['mealchoice'];
                     $mealChoice->read_single();
@@ -299,20 +322,290 @@ if ($prowCount > 0) {
                     echo '<td><em>Dietary Restriction</em></td>';
                     echo "<td><em>".$eventRegistration['dietaryrestriction']."</em></td>";
                     echo '</tr>';
-                    
+                   }
                   }
             }
        
        
         echo '</div>';
-            echo '</tbody>';
+        echo '</tbody>';
         echo '</table>';
         echo '<button type="submit" name="submitDeleteReg">Delete Your Partners Event Registrations</button> ';  
         
     echo '</form>';
     echo '</div>';
      }
-    ?>
+ if (isset($_SESSION['testmode']) && $_SESSION['testmode'] === 'YES') {
+    echo '<div class="form-grid-div">';
+     echo '<form method="POST" name="MemberUpdateEventMeals" action="actions/updateMealEventReg.php">';  
+     echo '<table>';
+         echo '<thead>';
+         echo '<tr>';
+         echo '<th colspan="5" style="text-align: center">Modify Your Dance Event Registrations</th>';
+         echo '</tr>';
+         echo '<tr>';
+         echo '<th colspan="5" style="text-align: center"><em>NOTE: Events whose cut off date is past today cannot be modified. Please contact the event coordinator to change</em></th>';
+         echo '</tr>';
+         echo '<tr>';
+             echo '<th>Update?</th>';
+             echo '<th>Event Name</th>';
+             echo '<th>Event Type</th>';
+             echo '<th>Event Date</th>';
+             echo '<th>Dance Only Reg Ends</th>';
+         echo '</tr>';
+         echo '</thead>';
+         echo '<tbody>';
+ 
+         foreach ($eventRegs as $reg) {
+             $mealChoices = [];
+         
+              $result = $mChoices->read_ByEventId($reg['eventid']);
+
+                $rowCount = $result->rowCount();
+                $num_meals = $rowCount;
+
+                if ($rowCount > 0) {
+
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        $meal_item = array(
+                            'id' => $id,
+                            'mealchoice' => $mealchoice,
+                            'eventid' => $eventid,
+                            'memberprice' => $memberprice,
+                            'guestprice' => $guestprice,
+                            'productid' => $productid,
+                            'priceid' => $priceid,
+                            'guestpriceid' => $guestpriceid
+
+                        );
+                        array_push($mealChoices, $meal_item);
+              } // while $row
+            } // rowcount
+            $eventdateTS = strtotime($reg['eventdate']);
+            $eventCutOff = $eventdateTS - 7;
+            $comparedateTS = strtotime($compareDate);
+            if ($comparedateTS <= $eventCutOff) {
+            if (($reg['eventtype'] == 'Dance Party') || ($reg['eventtype'] == 'Dinner Dance') ) {
+                if (($reg['eventtype'] == 'Dinner Dance') ||
+                  (($reg['eventtype'] == 'Dance Party') && !$reg['paid']) ||
+                  (($reg['eventtype'] == 'Dance Party') && $reg['paid'] && $reg['ddattenddinner'])) {
+
+                $updID = "upd".$reg['id'];
+                $chID = "ch".$reg['id'];
+                $sbID = "sb".$reg['id'];
+                $updID = "upd".$reg['id'];
+                $dddinID = "dddin".$reg['id'];
+                $drID = "dr".$reg['id'];
+           
+               echo "<tr>";
+               echo "<td>";
+             
+               echo "<input type='checkbox' title='Check to Update Event Registration' name='".$updID."'>";
+              
+               echo "</td>";
+
+                 echo "<td>".$reg['eventname']."</td>";
+                 echo "<td>".$reg['eventtype']."</td>";
+                 echo "<td>".$reg['eventdate']."</td>";  
+                 echo "<td>".substr($reg['eventregend'],0,10)."</td>";  
+
+                 echo '<input type="hidden" name="id" value="'.$reg['id'].'">';
+
+               echo "</tr>";
+               echo "<tr>";
+               if ($reg['eventtype'] === 'Dance Party')  {
+        
+                echo '<td>';
+                echo '<div class="form-grid1">';
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Attend Dinner?</h4>';
+                if ($reg['ddattenddinner']) {
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked>";
+                  } else {
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."'>";
+                  }
+            
+                echo '</div>'; // end of form item
+                echo '</div>'; // end of form grid1
+                echo '</td>';
+
+                 }  // dance party attend dinner  
+           
+
+            if ($reg['eventtype'] === 'Dinner Dance' || $reg['eventtype'] === 'Dance Party')  {
+
+                foreach ($mealChoices as $meal_item) {
+                
+                $mcID = "mc".$meal_item['id'].$reg['id'];
+
+                echo '<td>';
+                echo '<div class="form-grid1">';
+                echo '<div class="form-item">';
+                echo "<h4 class='form-item-title'>Select Meal Choice: ".$meal_item['mealchoice']."</h4>";
+                  if ($reg['mealchoice'] === $meal_item['id']) {
+                    echo "<input type='checkbox'  title='Check to select this meal' id='".$mcID."' name='".$mcID."' checked>";
+                  } else {
+                    echo "<input type='checkbox'  title='Uncheck to de-select this meal' id='".$mcID."' name='".$mcID."'>";
+                  }
+                 echo '</div>'; // end of form item
+                 echo '</div>'; // ebd form grid 1
+                 echo '</td>';
+                 } // foreach mealchoice
+                echo '<td>';
+                echo '<div class="form-grid1">';
+                 echo '<div class="form-item">';
+                       echo '<h4 class="form-item-title">Dietary Restriction</h4>';
+                 echo "<input type='text'  title='dietary restriction' id='".$drID."' name='".$drID."' value='".$reg['dietaryrestriction']."'>";
+                 echo '</div>'; // end of form item
+                 echo '</div>'; // ebd form grid 1
+                 echo '</td>';
+                 } // testmode
+                }
+            
+            } // for each peventreg
+        }
+           }
+       
+      
+        echo '</tbody>';
+        echo '</table>';
+        echo '<button type="submit" name="submitUpdateMealReg">Update Your  Event Registrations</button>';   
+        echo '</form>';
+        echo '</div>';
+
+ if ($user->partnerId > 0) {
+    echo '<div class="form-grid-div">';
+     echo '<form method="POST" name="PartnerUpdateEventMeals" action="actions/updateMealEventReg.php">';  
+     echo '<table>';
+         echo '<thead>';
+         echo '<tr>';
+         echo '<th colspan="5" style="text-align: center">Modify Your Partners Dance Event Registrations</th>';
+         echo '</tr>';
+         echo '<tr>';
+         echo '<th colspan="5" style="text-align: center"><em>NOTE: Events whose cut off date is past today cannot be modified. Please contact the event coordinator to change</em></th>';
+         echo '</tr>';
+         echo '<tr>';
+             echo '<th>Update?</th>';
+             echo '<th>Event Name</th>';
+             echo '<th>Event Type</th>';
+             echo '<th>Event Date</th>';
+             echo '<th>Dance Only Reg Ends</th>';
+
+         echo '</tr>';
+         echo '</thead>';
+         echo '<tbody>';
+ 
+         foreach ($peventRegs as $reg) {
+             $mealChoices = [];
+         
+              $result = $mChoices->read_ByEventId($reg['eventid']);
+
+                $rowCount = $result->rowCount();
+                $num_meals = $rowCount;
+                if ($rowCount > 0) {
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        $meal_item = array(
+                            'id' => $id,
+                            'mealchoice' => $mealchoice,
+                            'eventid' => $eventid,
+                            'memberprice' => $memberprice,
+                            'guestprice' => $guestprice,
+                            'productid' => $productid,
+                            'priceid' => $priceid,
+                            'guestpriceid' => $guestpriceid
+                        ); 
+                        array_push($mealChoices, $meal_item);
+              } // while
+            } // rowcount
+            $eventdateTS = strtotime($reg['eventdate']);
+            $eventCutOff = $eventdateTS - 7;
+            $comparedateTS = strtotime($compareDate);
+
+            if ($comparedateTS <= $eventCutOff) {
+            if (($reg['eventtype'] == 'Dance Party') || ($reg['eventtype'] == 'Dinner Dance') ) {
+                if (($reg['eventtype'] == 'Dinner Dance') ||
+                  (($reg['eventtype'] == 'Dance Party') && !$reg['paid']) ||
+                  (($reg['eventtype'] == 'Dance Party') && $reg['paid'] && $reg['ddattenddinner'])) {
+
+                $updID = "upd".$reg['id'];
+                $chID = "ch".$reg['id'];
+                $sbID = "sb".$reg['id'];
+                $updID = "upd".$reg['id'];
+                $dddinID = "dddin".$reg['id'];
+                $drID = "dr".$reg['id'];
+               echo "<tr>";
+                echo "<td>";
+               echo "<input type='checkbox' title='Check to Update Event Registration' name='".$updID."'>";
+
+                 echo "<td>".$reg['eventname']."</td>";
+                 echo "<td>".$reg['eventtype']."</td>";
+                 echo "<td>".$reg['eventdate']."</td>";  
+                 echo "<td>".substr($reg['eventregend'],0,10)."</td>";  
+
+                 echo '<input type="hidden" name="id" value="'.$reg['id'].'">';
+
+               echo "</tr>";
+               echo "<tr>";
+               if ($reg['eventtype'] === 'Dance Party')  {
+                echo '<td>';
+                echo '<div class="form-grid1">';
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Attend Dinner?</h4>';
+                if ($reg['ddattenddinner']) {
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked>";
+                  } else {
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."'>";
+                  }
+            
+                echo '</div>'; // end of form item
+                echo '</div>'; // end of form grid1
+                echo '</td>';
+               
+                 }  // dance party attend dinner  
+           
+            if ($reg['eventtype'] === 'Dinner Dance' || $reg['eventtype'] === 'Dance Party')  {
+           
+                foreach ($mealChoices as $meal_item) {
+                $mcID = "mc".$meal_item['id'].$reg['id'];
+                echo '<td>';
+                echo '<div class="form-grid1">';
+                echo '<div class="form-item">';
+                echo "<h4 class='form-item-title'>Select Meal Choice: ".$meal_item['mealchoice']."</h4>";
+                  if ($reg['mealchoice'] === $meal_item['id']) {
+                    echo "<input type='checkbox'  title='Check to select this meal' id='".$mcID."' name='".$mcID."' checked>";
+                  } else {
+                    echo "<input type='checkbox'  title='Uncheck to de-select this meal' id='".$mcID."' name='".$mcID."'>";
+                  }
+                 echo '</div>'; // end of form item
+                 echo '</div>'; // ebd form grid 1
+                 echo '</td>';
+                 } // foreach mealchoice
+                 echo '<td>';
+                 echo '<div class="form-grid1">';
+                 echo '<div class="form-item">';
+                  echo '<h4 class="form-item-title">Dietary Restriction</h4>';
+                 echo "<input type='text'  title='dietary restriction' id='".$drID."' name='".$drID."' value='".$reg['dietaryrestriction']."'>";
+                 echo '</div>'; // end of form item
+                 echo '</div>'; // ebd form grid 1
+                 echo '</td>';
+            
+                } // dance party dinner dance
+            }  // dinner dance dance party
+            } // for each peventreg
+           }
+        }   // $peventRegs
+      
+        echo '</tbody>';
+        echo '</table>';
+        echo '<button type="submit" name="submitUpdateMealReg">Update Your Partners Event Registrations</button>';   
+        echo '</form>';
+        echo '</div>';
+        } // yes partnerid
+ } 
+     ?>
+
     <div class="form-grid-div">
  
 
@@ -320,7 +613,7 @@ if ($prowCount > 0) {
      <table>
          <thead>
          <tr>
-             <th colspan="6" style="text-align: center">Modify Your Event Registrations</th>
+             <th colspan="6" style="text-align: center">Modify Your BBQ Event Registrations</th>
          </tr>
          <tr>
              <th>Update?</th>
@@ -358,47 +651,44 @@ if ($prowCount > 0) {
                echo "</tr>";
                echo "<tr>";
                if ($reg['eventtype'] === 'BBQ Picnic') {
-                $ad = 0;
-                if ($reg['ddattenddinner']) {
-                    $ad = $reg['ddattenddinner'];
-                }
-                else {
-                    $ad = 0;
-                }
+ 
                 echo '<td>';
-                echo '<div class="form-grid">';
+                echo '<div class="form-grid1">';
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Attend Dinner?</h4>';
-                echo "<input type='number'  title='Enter 1 for Attend dinner' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+                if ($reg['ddattenddinner']) {
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked>";
+                  } else {
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."'>";
+                  }
+   
                 echo '</div>'; // end of form item
+                echo '</div>'; // end of form grid
                 echo '</td>';
-                
-                $ch = 0;
-                if ($reg['cornhole']) {
-                    $ch = $reg['cornhole'];
-                }
-                else {
-                    $ch = 0;
-                }
+ 
                 echo '<td>';
+                     echo '<div class="form-grid1">';
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Play Cornhole?</h4>';
-                echo "<input type='number'  title='Enter 1 for Play Cornhole' name='".$chID."' min='0' max='1' value='".$ch."'>";
+                if ($reg['cornhole']) {
+                   echo "<input type='checkbox'  title='Enter 1 for Play Cornhole' name='".$chID."' checked>";
+                  } else {
+                      echo "<input type='checkbox'  title='Enter 1 for Play Cornhole' name='".$chID."' checked>";
+                  }
+         
                 echo '</div>'; // end of form item
+                   echo '</div>'; // end of form grid
                 echo '</td>';
 
-                $sb = 0;
-                if ($reg['softball']) {
-                    $sb = $reg['softball'];
-                }
-                else {
-                    $sb = 0;
-                }
-    
                echo '<td>';
+                echo '<div class="form-grid1">';
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Play Softball?</h4>';
-                echo "<input type='number'  title='Enter 1 for Play Softball' name='".$sbID."' min='0' max='1' value='".$sb."'>";
+                if ($reg['softball']) {
+                echo "<input type='checkbox'  title='Enter 1 for Play Softball' name='".$sbID."' checked>";
+                } else {
+                      echo "<input type='checkbox'  title='Enter 1 for Play Softball' name='".$sbID."' checked>";
+                }
                 echo '</div>'; // end of form item
                 echo '</div>'; // end of form grid
                 echo "</tr>";
@@ -413,19 +703,21 @@ if ($prowCount > 0) {
      </div>
          </tbody>
      </table>
-     <button type='submit' name="submitUpdateReg">Update Your Event Registrations</button>   
+    <button type='submit' name="submitUpdateBBQReg">Update Your BBQ Event Registration</button>   
      
  </form>
  </div>
- <?php
- if ($user->partnerId > 0) {
+
+
+     <?php
+      if ($user->partnerId > 0) {
     echo '<div class="form-grid-div">';
 
     echo "<form method='POST' action='actions/updateBBQEventReg.php'>"; 
         echo '<table>';
            echo  '<thead>';
             echo '<tr>';
-            echo '<th colspan="6" style="text-align: center">Modify Your Partners Event Registrations</th>';
+            echo '<th colspan="6" style="text-align: center">Modify Your Partners BBQ Event Registrations</th>';
             echo '</tr>';
             echo '<tr>';
                 echo '<th>Update?</th>';
@@ -462,47 +754,46 @@ if ($prowCount > 0) {
                   echo "</tr>";
                   echo "<tr>";
             
-                   $ad = 0;
-                   if ($reg['ddattenddinner']) {
-                       $ad = $reg['ddattenddinner'];
-                   }
-                   else {
-                       $ad = 0;
-                   }
+     
                    echo '<td>';
-                   echo '<div class="form-grid">';
+                   echo '<div class="form-grid1">';
                    echo '<div class="form-item">';
                    echo '<h4 class="form-item-title">Attend Dinner?</h4>';
-                   echo "<input type='number'  title='Enter 1 for Attend dinner' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+                    if ($reg['ddattenddinner']) {
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked>";
+                  } else {
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."'>";
+                  }
+        
                    echo '</div>'; // end of form item
+                    echo '</div>'; // end of form item
                    echo '</td>';
-                   
-                   $ch = 0;
-                   if ($reg['cornhole']) {
-                       $ch = $reg['cornhole'];
-                   }
-                   else {
-                       $ch = 0;
-                   }
+       
                    echo '<td>';
+                    echo '<div class="form-grid1">';
                    echo '<div class="form-item">';
                    echo '<h4 class="form-item-title">Play Cornhole?</h4>';
-                   echo "<input type='number'  title='Enter 1 for Play Cornhole' name='".$chID."' min='0' max='1' value='".$ch."'>";
+                  if ($reg['cornhole']) {
+                   echo "<input type='checkbox'  title='Enter 1 for Play Cornhole' name='".$chID."' checked>";
+                  } else {
+                      echo "<input type='checkbox'  title='Enter 1 for Play Cornhole' name='".$chID."'>";
+                  }
                    echo '</div>'; // end of form item
+                       echo '</div>'; // end of form item
                    echo '</td>';
    
-                   $sb = 0;
-                   if ($reg['softball']) {
-                       $sb = $reg['softball'];
-                   }
-                   else {
-                       $sb = 0;
-                   }
+
        
                   echo '<td>';
+                   echo '<div class="form-grid1">';
                    echo '<div class="form-item">';
                    echo '<h4 class="form-item-title">Play Softball?</h4>';
-                   echo "<input type='number'  title='Enter 1 for Play Softball' name='".$sbID."' min='0' max='1' value='".$sb."'>";
+                if ($reg['softball']) {
+                echo "<input type='checkbox'  title='Enter 1 for Play Softball' name='".$sbID."' checked>";
+                } else {
+                      echo "<input type='checkbox'  title='Enter 1 for Play Softball' name='".$sbID."'>";
+                }
+        
                    echo '</div>'; // end of form item
                    echo '</div>'; // end of form grid
                    echo "</tr>";
@@ -511,20 +802,20 @@ if ($prowCount > 0) {
               
                } // if bbq
              } // foreach
-             } // for eventreg
+         
          
      
       
         echo '</div>';
         echo '</tbody>';
         echo '</table>';
-        echo "<button type='submit' name='submitUpdateReg'>Update Your Partners Registrations</button>";   
+        echo "<button type='submit' name='submitUpdateBBQReg'>Update Your Partners BBQ Registration</button>";   
         
     echo '</form>';
     echo '</div>';
+        } // partnerid
     // echo '</div>';
-
-    ?>
+  ?>
 
 
 

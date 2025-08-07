@@ -40,8 +40,12 @@ deployment:
     - /bin/cp profileClasses.php $DEPLOYPATH
     - /bin/cp profileEvents.php $DEPLOYPATH
     - /bin/cp profileMem.php $DEPLOYPATH
+    - /bin/cp regEventBody.php $DEPLOYPATH
     - /bin/cp regForClasses.php $DEPLOYPATH
     - /bin/cp regForEvents.php $DEPLOYPATH
+    - /bin/cp regForEventsOnline.php $DEPLOYPATH
+    - /bin/cp regcancel.php $DEPLOYPATH
+    - /bin/cp regsuccess.php $DEPLOYPATH
     - /bin/cp renewcancel.php $DEPLOYPATH
     - /bin/cp renewNow.php $DEPLOYPATH
     - /bin/cp renewNowO.php $DEPLOYPATH

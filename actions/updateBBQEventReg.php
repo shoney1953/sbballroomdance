@@ -23,8 +23,7 @@ $messID = '';
 $paidID = '';
 $dddinID = '';
 
-if (isset($_POST['submitUpdateReg'])) {
- 
+if (isset($_POST['submitUpdateBBQReg'])) {
 
     foreach ($regs as $reg) {
         $updID = "upd".$reg['id'];
@@ -39,19 +38,19 @@ if (isset($_POST['submitUpdateReg'])) {
 
     
             if (isset($_POST["$dddinID"])) {
-               $eventReg->ddattenddinner = $_POST["$dddinID"];
+               $eventReg->ddattenddinner = 1;
             } else {
-                $eventReg->ddattenddinner = $reg['ddattenddinner'];
+                $eventReg->ddattenddinner = 0;
             }
             if (isset($_POST["$chID"])) {
-                $eventReg->cornhole = $_POST["$chID"];
+                $eventReg->cornhole = 1;
              } else {
-                 $eventReg->cornhole = $reg['cornhole'];
+                 $eventReg->cornhole = 0;
              }
              if (isset($_POST["$sbID"])) {
-                $eventReg->softball = $_POST["$sbID"];
+                $eventReg->softball = 1;
              } else {
-                 $eventReg->softball = $reg['softball'];
+                 $eventReg->softball = 0;
              }
 
             $eventReg->updateBBQEventReg();

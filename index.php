@@ -141,7 +141,11 @@ if ($rowCount > 0) {
             'eventroom' => $eventroom,
             'eventregend' => $eventregend,
             'eventregopen' => $eventregopen,
-            'eventnumregistered' => $eventnumregistered
+            'eventnumregistered' => $eventnumregistered,
+            'eventproductid' => $eventproductid,
+            'eventmempriceid' => $eventmempriceid,
+            'eventguestpriceid' => $eventguestpriceid,
+            'eventguestcost' => $eventguestcost
         );
         array_push($events, $event_item);
     

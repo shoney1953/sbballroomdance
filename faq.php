@@ -175,7 +175,7 @@
         </p>
         <p>We will need to know if you plan to partake of the meal, or just attend the dance so that the correct number of tables can be set up in the ballroom. That will be indicated on the form.
         <p>
-        You can also register by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Dine and Dance Info">
+        You can also register by emailing <a href="mailto:countmein@sbballroomdance.com?subject=SBDC FAQ Dance Party Info">
                        countmein@sbballroomdance.com</a> or on the website.
         </p>
 
@@ -206,10 +206,10 @@
         <ul>
             <li class="li-none">Vermilion Room in the HOA 1 clubhouse (Open Practice; Novice Classes & Novice Parties)
             <a href="https://goo.gl/maps/fVyiV4xrXSfR7wDK7">Click Here for Map</a></li>
-            <li class="li-none">MountainView Ballroom in the MountainView Clubhouse (Open Practice; Dine and Dance Dances; Dinner Dances)
+            <li class="li-none">MountainView Ballroom in the MountainView Clubhouse (Monthly Classes; Dance Parties; Dinner Dances)
             <a href="https://goo.gl/maps/GE1xE4H8uJL4RmxD8">Click Here for Map</a>
             </li>
-            <li class="li-none">Mariposa Room at DesertView (Monthly Dance Classes)
+            <li class="li-none">Mariposa Room at DesertView (Sometimes Monthly Dance Classes when the ballroom is unavailable)
             <a href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Click Here for Map.</a>
             </li>
         </ul>

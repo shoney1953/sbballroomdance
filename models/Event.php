@@ -17,6 +17,10 @@ class Event {
     public $eventregend;
     public $orgemail;
     public $eventregopen;
+    public $eventproductid;
+    public $eventmempriceid;
+    public $eventguestcost;
+    public $eventguestpriceid;
 
     // Constructor with DB
     public function __construct($db) {
@@ -85,6 +89,10 @@ class Event {
           $this->eventdj = $row['eventdj'];
           $this->orgemail = $row['orgemail'];
           $this->eventnumregistered = $row['eventnumregistered'];
+          $this->eventproductid = $row['eventproductid'];
+          $this->eventmempriceid = $row['eventmempriceid'];
+          $this->eventguestpriceid = $row['eventguestpriceid'];
+          $this->eventguestcost = $row['eventguestcost'];
           return true;
           }
           return false;
@@ -101,6 +109,10 @@ class Event {
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           eventregend = :eventregend, orgemail= :orgemail,
           eventregopen = :eventregopen,
+          eventproductid = :eventproductid,
+          eventmempriceid = :eventmempriceid,
+          eventguestpriceid = :eventguestpriceid,
+          eventguestcost = :eventguestcost,
           eventnumregistered = :eventnumregistered';
 
           // Prepare statement
@@ -133,8 +145,10 @@ class Event {
           $stmt->bindParam(':eventdj', $this->eventdj);
           $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
-         
-
+          $stmt->bindParam(':eventproductid', $this->eventproductid);
+          $stmt->bindParam(':eventmempriceid', $this->eventmempriceid);
+          $stmt->bindParam(':eventguestpriceid', $this->eventguestpriceid);
+          $stmt->bindParam(':eventguestcost', $this->eventguestcost);
           // Execute query
           if($stmt->execute()) {
             return true;
@@ -155,6 +169,10 @@ class Event {
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           eventregend = :eventregend, orgemail = :orgemail,
           eventregopen = :eventregopen,
+          eventproductid = :eventproductid,
+          eventmempriceid = :eventmempriceid,
+          eventguestpriceid = :eventguestpriceid,
+          eventguestcost = :eventguestcost,
           eventnumregistered = :eventnumregistered
             WHERE id = :id ';
    
@@ -191,6 +209,10 @@ class Event {
           $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
           $stmt->bindParam(':id', $this->id);
+          $stmt->bindParam(':eventproductid', $this->eventproductid);
+          $stmt->bindParam(':eventmempriceid', $this->eventmempriceid);
+          $stmt->bindParam(':eventguestpriceid', $this->eventguestpriceid);
+          $stmt->bindParam(':eventguestcost', $this->eventguestcost);
 
           // Execute query
           if($stmt->execute()) {

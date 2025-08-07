@@ -24,7 +24,7 @@ $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
 $mealChoices = [];
 $mChoice = new DinnerMealChoices($db);
-$_SESSION['regtype'] = "manual";
+$_SESSION['regtype'] = "online";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,19 +33,20 @@ $_SESSION['regtype'] = "manual";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Register for Events </title>
+    <title>Register for Events Online</title>
 </head>
 <body>
 
     <nav class="nav">
         <div class="container">
+        
         <ul>
             <li><a href="index.php">Back to Home</a></li>
             <?php
       
                 if ($_SESSION['role'] != 'visitor') {
                  echo ' <li><a href="yourProfile.php">
-                  <img title="Click to see or update your information or registrations" src="img/profile.png" alt="Your Profile" style="width:32px,height:32px">
+                  <img title="Click to see or update your information or registrations" src="img/profile.png" alt="Your Profile" style="width:32px;height:32px;">
                   <br>Your Profile</a></li>';
                 }
               
@@ -57,8 +58,8 @@ $_SESSION['regtype'] = "manual";
 
       
     <div class="container-section ">
-    <div id='formdiv'>
-    <form method="POST"  id="formelement" action="actions/regEvent.php">
+    <div id='formdiv'>";
+    <form method="POST"  id="formelement" action="actions/regEventOnline.php">
     </div>
     <?php
       require_once "regEventBody.php";

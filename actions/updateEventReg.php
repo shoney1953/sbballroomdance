@@ -4,7 +4,7 @@ require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/DinnerMealChoices.php';
 date_default_timezone_set("America/Phoenix");
-var_dump('inside updateeventreg');
+
 if (!isset($_SESSION['username']))
 {
     $redirect = "Location: ".$_SESSION['homeurl'];

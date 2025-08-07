@@ -2,7 +2,7 @@
 class PaymentProduct {
     // DB stuff
     private $conn;
-    private $table = 'paymentproducts';
+    private $table = 'paymentproductsarch';
     private $id;
     public $productid;
     public $description;
@@ -10,7 +10,11 @@ class PaymentProduct {
     public $name;
     public $priceid;
     public $type;
+    public $originalid;
+    public $datearchived;
     public $eventid;
+    public $archeventid;
+
 
     // Constructor with DB
     public function __construct($db) {
@@ -18,18 +22,6 @@ class PaymentProduct {
     }
 
     // Get Danceclasss
-    public function read_byEventid($eventid) {
-      // Create query
-      $query = 'SELECT * FROM ' . $this->table . 'WHERE eventid = :eventid '; 
-
-      // Prepare statement
-      $stmt = $this->conn->prepare($query);
-      $stmt->bindParam(':eventid', $eventid);
-      // Execute query
-      $stmt->execute();
-
-      return $stmt;
-    }
     public function read() {
       // Create query
       $query = 'SELECT * FROM ' . $this->table . ' ORDER BY type DESC, name';
@@ -42,6 +34,7 @@ class PaymentProduct {
 
       return $stmt;
     }
+
     // Get Single Danceclass
     public function read_byProductId ($productid) {
          $this->productid = $productid;
@@ -69,8 +62,8 @@ class PaymentProduct {
           $this->price = $row['price'];
           $this->priceid = $row['priceid'];
           $this->priceid = $row['type'];
-          $this->eventid = $row['eventid'];
-          $this->productid = $row['productid'];
+          $this->originalid = $row['originalid'];
+          $this->datearchived = $row['datearchived'];
           return true;
           }
           return false;
@@ -81,10 +74,9 @@ class PaymentProduct {
     
     public function create() {
           // Create query
-       
           $query = 'INSERT INTO ' . $this->table . 
           ' SET description = :description,  name = :name,
-          type = :type, eventid = :eventid,
+          type = :type, originalid = :originalid, archeventid = :archeventid,
           productid = :productid, price = :price, priceid = :priceid';
 
           // Prepare statement
@@ -106,8 +98,8 @@ class PaymentProduct {
           $stmt->bindParam(':priceid', $this->priceid);
           $stmt->bindParam(':productid', $this->productid);
           $stmt->bindParam(':type', $this->type);
-          $stmt->bindParam(':eventid', $this->eventid);
-
+          $stmt->bindParam(':originalid', $this->originalid);
+          $stmt->bindParam(':archeventid', $this->originalid);
           // Execute query
           if($stmt->execute()) {
             return true;
@@ -124,8 +116,8 @@ public function update() {
           // Create query
           $query = 'UPDATE ' . $this->table . 
           ' SET description = :description,  
-            name = :name,
-            type = :type, eventid = :eventid,
+            name = :name, originalid = :originalid,
+            type = :type, archeventid = :archeventid,
             price = :price, priceid = :priceid
             WHERE productid = :productid';
 
@@ -148,7 +140,8 @@ public function update() {
           $stmt->bindParam(':priceid', $this->priceid);
           $stmt->bindParam(':productid', $this->productid);
           $stmt->bindParam(':type', $this->type);
-          $stmt->bindParam(':eventid', $this->eventid);
+          $stmt->bindParam(':originalid', $this->originalid);
+          $stmt->bindParam(':archeventid', $this->originalid);
 
 
           // Execute query

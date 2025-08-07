@@ -69,6 +69,7 @@ if (isset($_POST['submitAddProduct'])) {
     ]);
    $product->productid = $newProduct->id;
    $product->priceid = $price->id;
+   $product->eventid = $_POST['eventid'];
    $product->create();
   }
 

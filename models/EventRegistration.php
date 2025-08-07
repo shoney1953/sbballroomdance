@@ -120,7 +120,7 @@ public function read_ByUserid($userid) {
     // Create query
     // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
-    c.orgemail as orgemail,
+    c.orgemail as orgemail, c.eventregend as eventregend, 
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby, r.cornhole, r.softball, 
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
@@ -449,6 +449,7 @@ public function readLike($eventid, $search) {
 
           return false;
     }
+    
     public function updateBBQEventReg() {
       // Create query
       $query = 'UPDATE ' . $this->table . 
@@ -478,7 +479,36 @@ public function readLike($eventid, $search) {
 
       return false;
 }
-    public function deleteUserid($userid) {
+public function updateMealEventReg() {
+      // Create query
+ 
+      $query = 'UPDATE ' . $this->table . 
+      ' SET mealchoice = :mealchoice, 
+            dietaryrestriction = :dietaryrestriction,
+            ddattenddinner = :ddattenddinner
+          WHERE id = :id';
+
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+    
+      // Bind data
+      $stmt->bindParam(':id', $this->id);
+
+      $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
+      $stmt->bindParam(':mealchoice', $this->mealchoice);
+      $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
+
+      // Execute query
+      if($stmt->execute()) {
+        return true;
+      }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+}public function deleteUserid($userid) {
         
       // Create query
       $query = 'DELETE FROM ' . $this->table . ' WHERE userid = :userid';

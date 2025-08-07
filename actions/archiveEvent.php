@@ -53,6 +53,10 @@ if (isset($_POST['submitArchive'])) {
       $eventArch->eventnumregistered = $ea['eventnumregistered'];
       $eventArch->eventcost = $ea['eventcost'];
       $eventArch->eventform = $ea['eventform'];
+      $eventArch->eventproductid = $ea['eventproductid'];
+      $eventArch->eventmempriceid = $ea['eventmempriceid'];
+      $eventArch->eventguestpriceid = $ea['eventguestpriceid'];
+      $eventArch->eventguestcost = $ea['eventguestcost'];
       $eventArch->create();
       $eventRegArch->eventid = $db->lastInsertId();
       $eventReg->eventid = $ea['id'];
@@ -84,7 +88,7 @@ if (isset($_POST['submitArchive'])) {
                 'registeredby' => $registeredby,
                 'dateregistered' => $dateregistered
             );
-          
+
             $eventRegArch->preveventid = $reg_item['eventid'];
             $eventRegArch->firstname = $reg_item['firstname'];
             $eventRegArch->lastname = $reg_item['lastname'];
@@ -100,7 +104,12 @@ if (isset($_POST['submitArchive'])) {
             $eventRegArch->message = $reg_item['message'];
             $eventRegArch->ddattenddance = $reg_item['ddattenddance'];
             $eventRegArch->ddattenddinner = $reg_item['ddattenddinner'];
-            $eventRegArch->mealchoice = $reg_item['mealchoice'];
+            if ($reg_item['mealchoice'] === NULL) {
+                 $eventRegArch->mealchoice = 0;
+            } else {
+    $eventRegArch->mealchoice = $reg_item['mealchoice'];
+            }
+        
             $eventRegArch->paidonline = $reg_item['paidonline'];
             $eventRegArch->dietaryrestriction = $reg_item['dietaryrestriction'];
             $eventRegArch->create();

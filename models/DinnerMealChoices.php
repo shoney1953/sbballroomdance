@@ -13,8 +13,6 @@ class DinnerMealChoices {
     public $guestpriceid;
     public $productid;
 
-
-
     // Constructor with DB
     public function __construct($db) {
       $this->conn = $db;
@@ -34,15 +32,16 @@ class DinnerMealChoices {
 
       return $stmt;
     }
-    public function read_ByEventId($id) {
+    public function read_ByEventId($eventid) {
       // Create query
 
-      $query = 'SELECT * FROM ' . $this->table . ' WHERE eventid = :id 
-      ORDER BY mealchoice';
+
+      $query = 'SELECT * FROM ' . $this->table .  ' WHERE eventid = :id ORDER BY id';
+      ' WHERE eventid = :id ORDER BY id';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
-      $stmt->bindParam(':id', $id);
+      $stmt->bindParam(':id', $eventid);
 
       // Execute query
       if($stmt->execute()) {

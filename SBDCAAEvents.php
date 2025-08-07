@@ -82,7 +82,11 @@ if ($rowCount > 0) {
             'eventdj' => $eventdj,
             "eventdesc" => html_entity_decode($eventdesc),
             "eventroom" => $eventroom,
-            'eventnumregistered' => $eventnumregistered
+            'eventnumregistered' => $eventnumregistered,
+            'eventproductid' => $eventproductid,
+            'eventmempriceid' => $eventmempriceid,
+            'eventguestpriceid' => $eventguestpriceid,
+            'eventguestcost' => $eventguestcost
         );
         array_push($allEvents, $event_item);
     
@@ -287,6 +291,7 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
              echo "<th>ORG Email</th>";             
              echo "<th>Room</th>";
              echo "<th>Cost</th>";
+             echo "<th>Guest Cost</th>";
              echo "<th># Attending</th>";
          echo "</tr>";
         echo "</thead>";
@@ -297,7 +302,6 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
               $hr = 'archevent.php?id=';
               $hr .= $event["id"];
          
-             
                echo "<tr>";
                echo '<td> <a href="'.$hr.'">'.$event["id"].'</a></td>';
                  // echo "<td>".$event['id']."</td>";
@@ -310,6 +314,7 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
                  echo "<td>".$event['orgemail']."</td>";           
                  echo "<td>".$event['eventroom']."</td>";
                  echo "<td>".$event['eventcost']."</td>";
+                 echo "<td>".$event['eventguestcost']."</td>";
                  echo "<td>".$event['eventnumregistered']."</td>";
                echo "</tr>";
            }

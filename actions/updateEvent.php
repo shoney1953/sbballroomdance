@@ -23,7 +23,7 @@ $eventRec = new Event($db);
 $allEvents = $_SESSION['allEvents'];
 
 if (isset($_POST['submitUpdate'])) {
-    
+
     foreach ($allEvents as $event) {
         $evSelectChk = "evselect".$event['id'];
     $evnamID = "evnam".$event['id'];
@@ -39,6 +39,10 @@ if (isset($_POST['submitUpdate'])) {
     $evropenID = "evropen".$event['id'];
     $evidID = "evid".$event['id'];
     $evoeID = "evoe".$event['id'];
+    $evprodID = "evprod".$event['id'];
+    $evgcostID = "evgcost".$event['id'];
+    $evgpriceID = "evgprice".$event['id'];
+    $evmpriceID = "evmprice".$event['id'];
         if (isset($_POST["$evSelectChk"])) {
 
             $eventRec->id = $event['id'];
@@ -54,6 +58,10 @@ if (isset($_POST['submitUpdate'])) {
             $eventRec->eventregopen = $_POST["$evropenID"];
             $eventRec->eventregend = $_POST["$evrendID"];
             $eventRec->eventnumregistered = $_POST["$evnumregID"];
+            $eventRec->eventguestcost = $_POST["$evgcostID"];
+            $eventRec->eventguestpriceid = $_POST["$evgpriceID"];
+            $eventRec->eventmempriceid = $_POST["$evmpriceID"];
+            $eventRec->eventproductid = $_POST["$evprodID"];
             $eventRec->update();
         }
     }

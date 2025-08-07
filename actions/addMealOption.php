@@ -5,6 +5,7 @@ require_once '../config/Database.php';
 require_once '../models/DinnerMealChoices.php';
 require_once '../models/PaymentProduct.php';
 require_once '../models/Event.php';
+
 $productDescription = '';
 if (isset($_SESSION['role'])) {
 
@@ -65,36 +66,38 @@ if (isset($_POST['submitAddMeals'])) {
     }
 
         $product->name = $productDescription;
-        $product->type = 'membership';
-    
-  $newProduct = $stripe->products->create(
+        $product->type = 'meal';
+  $eventid = (string)$_POST['eventId'];
+  $newProduct1 = $stripe->products->create(
     ['name' => $product->name,
-    'description' => $product->description]) ;
+    'description' => $product->description,
+     ['metadata' => ['eventid' => $eventid,
+                    'producttype' => 'meal']]]) ;
 
-
-  if ($newProduct) {
-    $product->productid = $newProduct->id; // using the id assigned from Stripe
-    $memberpriceID = $stripe->prices->create([
-        'product' => $newProduct->id,
+  if ($newProduct1) {
+    $product->productid = $newProduct1->id; // using the id assigned from Stripe
+    $memberpriceID1 = $stripe->prices->create([
+        'product' => $newProduct1->id,
          'unit_amount'=> $product->price,
          'currency' => 'usd',
     ]);
-    $guestpriceID = $stripe->prices->create([
-        'product' => $newProduct->id,
+    $guestpriceID1 = $stripe->prices->create([
+        'product' => $newProduct1->id,
          'unit_amount'=> $_POST['guestprice1'],
          'currency' => 'usd',
     ]);
     $mealChoices->mealchoice = $_POST['meal1'];
     $mealChoices->memberprice = $_POST['memberprice1'];
     $mealChoices->guestprice = $_POST['guestprice1'];
-    $mealChoices->priceid = $memberpriceID->id;
-    $mealChoices->guestpriceid = $guestpriceID->id;
-    $mealChoices->productid = $newProduct->id;
+    $mealChoices->priceid = $memberpriceID1->id;
+    $mealChoices->guestpriceid = $guestpriceID1->id;
+    $mealChoices->productid = $newProduct1->id;
     $mealChoices->eventid = $_POST['eventId'];
     $mealChoices->create();
 
-   $product->productid = $newProduct->id;
-   $product->priceid = $memberpriceID->id;
+   $product->productid = $newProduct1->id;
+   $product->priceid = $memberpriceID1->id;
+   $product->eventid = $_POST['eventId'];
    $product->create();
   }
 
@@ -111,22 +114,24 @@ if (isset($_POST['submitAddMeals'])) {
 
         $product->name = $productDescription;
     
-  $newProduct = $stripe->products->create(
+  $newProduct2 = $stripe->products->create(
     ['name' => $product->name,
-    'description' => $product->description]) ;
+    'description' => $product->description,
+    ['metadata' => ['eventid' => $eventid,
+                    'producttype' => 'meal']]]) ;
 
 
-  if ($newProduct) {
+  if ($newProduct2) {
     
-    $product->productid = $newProduct->id; // using the id assigned from Stripe
+    $product->productid = $newProduct2->id; // using the id assigned from Stripe
     $memberpriceID = $stripe->prices->create([
-        'product' => $newProduct->id,
+        'product' => $newProduct2->id,
          'unit_amount'=> $product->price,
          'currency' => 'usd',
     ]);
 
     $guestpriceID = $stripe->prices->create([
-        'product' => $newProduct->id,
+        'product' => $newProduct2->id,
          'unit_amount'=> $_POST['guestprice2'],
          'currency' => 'usd',
     ]);
@@ -135,12 +140,13 @@ if (isset($_POST['submitAddMeals'])) {
     $mealChoices->guestprice = $_POST['guestprice2'];
     $mealChoices->priceid = $memberpriceID->id;
     $mealChoices->guestpriceid = $guestpriceID->id;
-    $mealChoices->productid = $newProduct->id;
+    $mealChoices->productid = $newProduct2->id;
     $mealChoices->eventid = $_POST['eventId'];
     $mealChoices->create();
 
-   $product->productid = $newProduct->id;
-   $product->priceid = $memberpriceID->id;
+   $product->productid = $newProduct2->id;
+   $product->priceid = $memberpriceID2->id;
+   $product->eventid = $_POST['eventId'];
    $product->create();
   }
 
@@ -157,36 +163,39 @@ if (isset($_POST['submitAddMeals'])) {
 
     $product->name = $productDescription;
     
-  $newProduct = $stripe->products->create(
+  $newProduct3 = $stripe->products->create(
     ['name' => $product->name,
-    'description' => $product->description]) ;
+    'description' => $product->description,
+     ['metadata' => ['eventid' => $eventid,
+                    'producttype' => 'meal']]]) ;
 
 
-  if ($newProduct) {
-    $product->productid = $newProduct->id; // using the id assigned from Stripe
-    $memberpriceID = $stripe->prices->create([
-        'product' => $newProduct->id,
+  if ($newProduct3) {
+    $product->productid = $newProduct3->id; // using the id assigned from Stripe
+    $memberpriceID3 = $stripe->prices->create([
+        'product' => $newProduct3->id,
          'unit_amount'=> $product->price,
          'currency' => 'usd',
     ]);
 
 
-    $guestpriceID = $stripe->prices->create([
-        'product' => $newProduct->id,
+    $guestpriceID3 = $stripe->prices->create([
+        'product' => $newProduct3->id,
          'unit_amount'=> $_POST['guestprice3'],
          'currency' => 'usd',
     ]);
     $mealChoices->mealchoice = $_POST['meal3'];
     $mealChoices->memberprice = $_POST['memberprice3'];
     $mealChoices->guestprice = $_POST['guestprice3'];
-    $mealChoices->priceid = $memberpriceID->id;
-    $mealChoices->guestpriceid = $guestpriceID->id;
-    $mealChoices->productid = $newProduct->id;
+    $mealChoices->priceid = $memberpriceID3->id;
+    $mealChoices->guestpriceid = $guestpriceID3->id;
+    $mealChoices->productid = $newProduct3->id;
     $mealChoices->eventid = $_POST['eventId'];
     $mealChoices->create();
 
-   $product->productid = $newProduct->id;
-   $product->priceid = $memberpriceID->id;
+   $product->productid = $newProduct3->id;
+   $product->priceid = $memberpriceID3->id;
+    $product->eventid = $_POST['eventId'];
    $product->create();
   }
 

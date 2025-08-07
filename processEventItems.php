@@ -119,6 +119,10 @@ if ($updateMeals) {
        $evformID = "evform".$event['id'];
        $evidID = "evid".$event['id'];
        $evoeID = "evoe".$event['id'];
+       $evprodID = "evprod".$event['id'];
+       $evgcostID = "evgcost".$event['id'];
+       $evgpriceID = "evgprice".$event['id'];
+       $evmpriceID = "evmprice".$event['id'];
        echo '<div class="form-container">';
        echo '<div class="form-grid">';
 
@@ -205,7 +209,7 @@ if ($updateMeals) {
       echo '</div>';
 
       echo "<div class='form-item'>";
-      echo "<h4 class='form-item-title'>Registration End</h4>";
+      echo "<h4 class='form-item-title'>Dance Only Registration End</h4>";
       echo "<input type='date' name='".$evrendID."' value='".$event['eventregend']."' 
       title='Select the Registration Closing Date' >";
       echo '</div>';
@@ -225,9 +229,14 @@ if ($updateMeals) {
       echo "<div class='form-item'>";
       echo "<h4 class='form-item-title'>Event Minimum Cost</h4>";
       echo "<input type='text' class='text-small' name='".$evcostID."' value='".$event['eventcost']."' 
-      title='Enter the Event Cost if any' >";
+      title='Enter the Member Event Cost if any' >";
       echo '</div>';
 
+      echo "<div class='form-item'>";
+      echo "<h4 class='form-item-title'>Event Guest Minimum Cost</h4>";
+      echo "<input type='text' class='text-small' name='".$evgcostID."' value='".$event['eventguestcost']."' 
+      title='Enter the Guest Event Cost if any' >";
+      echo '</div>';
 
       echo "<div class='form-item'>";
       echo "<h4 class='form-item-title'>Event Num Registered</h4>";
@@ -239,6 +248,24 @@ if ($updateMeals) {
       echo "<h4 class='form-item-title'>Event Form</h4>";
       echo "<input type='text' class='text-large' name='".$evformID."' value='".$event['eventform']."' 
       title='Enter a link to the Event Form or Flyer'>";
+      echo '</div>';
+
+      echo "<div class='form-item'>";
+      echo "<h4 class='form-item-title'>Event Stripe Product ID</h4>";
+      echo "<input type='text' class='text-small' name='".$evprodID."' value='".$event['eventproductid']."' 
+      title='Enter the Stripe Product Id for the event' >";
+      echo '</div>';
+
+      echo "<div class='form-item'>";
+      echo "<h4 class='form-item-title'>Event Stripe Member Price ID</h4>";
+      echo "<input type='text' class='text-small' name='".$evmpriceID."' value='".$event['eventmempriceid']."' 
+      title='Enter the Member Stripe Product Id for the event' >";
+      echo '</div>';
+
+      echo "<div class='form-item'>";
+      echo "<h4 class='form-item-title'>Event Stripe Guest Price ID</h4>";
+      echo "<input type='text' class='text-small' name='".$evgpriceID."' value='".$event['eventguestpriceid']."' 
+      title='Enter the Guest Stripe Product Id for the event' >";
       echo '</div>';
 
       echo "<input type='hidden' name='".$evidID."' value='".$event['id']."'>"; 
@@ -267,7 +294,7 @@ if ($deleteEvent) {
   echo '<th>Type</th>';
   echo '<th>Room</th>';
   echo '<th>Date</th>';
-  echo '<th>Registration Ends</th>';
+  echo '<th>Dance Only Registration Ends</th>';
   echo '<th>DJ</th>';
   echo '<th>ORG email</th>';
   echo '</tr>';
@@ -318,7 +345,7 @@ echo '</form>';
     echo '<th>Room</th>';
     echo '<th>Date</th>';
     echo '<th>Registration Opens</th>';
-    echo '<th>Registration Ends</th>';
+    echo '<th>Dance Only Registration Ends</th>';
     echo '<th>DJ</th>';
     echo '<th>ORG Email</th>';
     echo '</tr>';
@@ -363,8 +390,10 @@ echo '</form>';
     echo '<div class="form-grid">';
     foreach ($allEvents as $event) {
       $dpChk = "dp".$event['id'];
+  
       if (isset($_POST["$dpChk"])) {
           echo "<div class='form-item'>";
+ 
           echo "<h4 class='form-item-title'>Event Name</h4>";
           echo "<input type='text' name='eventname' value='".$event['eventname']."' 
                 title='Enter the Name of the Event'>";
@@ -436,7 +465,7 @@ echo '</form>';
               title='Select Registration Opening Date' ></td>";
           echo '</div>';
           echo "<div class='form-item'>";
-          echo "<h4 class='form-item-title'>Registration Ends</h4>";
+          echo "<h4 class='form-item-title'>Dance Only Registration Ends</h4>";
           echo "<td><input type='date' name='eventregend' value='".$event['eventregend']."' 
               title='Select Registration Closing Date' ></td>";
           echo '</div>';
@@ -453,7 +482,12 @@ echo '</form>';
           echo "<div class='form-item'>";
           echo "<h4 class='form-item-title'>Event Minimum Cost</h4>";
           echo "<input type='text' class='text-small' name='eventcost' value='".$event['eventcost']."' 
-              title='Enter the Event Cost if any' >";
+              title='Enter the Member Minimum Cost if any' >";
+          echo '</div>';
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Event Guest Minimum Cost</h4>";
+          echo "<input type='text' class='text-small' name='eventguestcost' value='".$event['eventguestcost']."' 
+              title='Enter the Guest Minimum Cost if any' >";
           echo '</div>';
        
 

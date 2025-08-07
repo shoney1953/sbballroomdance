@@ -25,7 +25,7 @@ if ($addReg) {
         echo '<th>Event Type</th>';
         echo '<th>Event Date</th>';
         echo '<th>Registration Opens</th>';
-        echo '<th>Registration Closes</th>';
+        echo '<th>Dance Only Registration Closes</th>';
         echo '</tr>';
         echo '</thead>';
 
