@@ -40,7 +40,7 @@ deployment:
     - /bin/cp profileClasses.php $DEPLOYPATH
     - /bin/cp profileEvents.php $DEPLOYPATH
     - /bin/cp profileMem.php $DEPLOYPATH
-    - /bin/cp regEventBody.php $DEPLOYPATH
+    - /bin/cp RegEventBody.php $DEPLOYPATH
     - /bin/cp regForClasses.php $DEPLOYPATH
     - /bin/cp regForEvents.php $DEPLOYPATH
     - /bin/cp regForEventsOnline.php $DEPLOYPATH

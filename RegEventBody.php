@@ -333,9 +333,7 @@
                     echo "<textarea name='$drID1' cols='10' rows='1'></textarea>";
                     echo '</div>';
                     echo '</div>';
-                    
-                    if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {
-                
+                    if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {               
                             $pcfcd = 'pcfcD'.$event['id'];
                             $pcfcp = 'pcfcP'.$event['id'];
                             if ($event['eventtype'] === 'Dinner Dance') {
