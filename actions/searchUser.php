@@ -62,6 +62,7 @@ if (isset($_POST['searchUser'])) {
                     'directorylist' => $directorylist,
                     'numlogins' => $numlogins,
                     'regformlink' => $regformlink,
+                    'dietaryrestriction' => $dietaryrestriction,
                     'fulltime' => $fulltime
                 );
                 array_push( $users, $user_item);

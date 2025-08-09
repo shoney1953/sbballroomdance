@@ -478,6 +478,13 @@ font-weight: bolder;
   text-align: left;
   font-size: small;
   }
+.form-item-title-bold {
+  /* color: darkviolet; */
+  color: var(--formdivision-color3);
+  font:bold;
+  text-align: left;
+  font-size: small;
+  }
 .form-item-title-emp {
   color: red;
   font:bolder;

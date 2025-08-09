@@ -123,7 +123,8 @@ if ($addReg) {
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
+                            'mealdescription' => 'mealdescription',
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -149,7 +150,7 @@ if ($addReg) {
                           echo "<div class='form-item'>";
                           echo '<h4 class="form-item-title">Select?</h4>'; 
                           echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
-                             echo "<h5 class='form-item-title'>".$choice['mealchoice']."</h5>";
+                             echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
                          $price = number_format($choice['memberprice']/100,2);
                           echo "<h5 class='form-item-title'>".$price."</h5>";
                           echo "</div>";
@@ -236,7 +237,8 @@ if ($addReg) {
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
+                            'mealdescription' => $mealdescription,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -260,7 +262,7 @@ if ($addReg) {
                           echo "<div class='form-item'>";
                           echo '<h4 class="form-item-title">Select?</h4>'; 
                           echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
-                          echo "<h5 class='form-item-title'>".$choice['mealchoice']."</h5>";
+                          echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
                           $price = number_format($choice['guestprice']/100,2);
                           echo "<h5 class='form-item-title'>".$price."</h5>";
                           echo "</div>";
@@ -317,7 +319,7 @@ if ($addReg) {
                           echo "<div class='form-item'>";
                           echo '<h4 class="form-item-title">Select?</h4>'; 
                           echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
-                          echo "<h5 class='form-item-title'>".$choice['mealchoice']."</h5>";
+                          echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
                           $price = number_format($choice['guestprice']/100,2);
                           echo "<h5 class='form-item-title'>".$price."</h5>";
                           echo "</div>";

@@ -23,7 +23,7 @@
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -190,15 +190,15 @@
                           $mcID = "mc".$reg['id'].$choice['id'];
 
                           echo "<div class='form-item'>";
-                          echo '<h4 class="form-item-title">Select?</h4>';
-                      
+                          echo '<h4 class="form-item-title">Select '.$choice['mealname'].'</h4>';
+                            //    echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
                           if ($reg['mealchoice'] === $choice['id']) {
                                 echo "<input  title='Select This Meal' checked type='checkbox'name='".$mcID."'>";
                           } else {
                                echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
                           } 
          
-                          echo "<h5 class='form-item-title'>".$choice['mealchoice']."</h5>";
+                 
                          $price = number_format($choice['memberprice']/100,2);
                           echo "<h5 class='form-item-title'>".$price."</h5>";
                           echo "</div>"; // form item mc                    
@@ -247,7 +247,7 @@
                                echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
                           }
                        
-                             echo "<h5 class='form-item-title'>".$choice['mealchoice']."</h5>";
+                             echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
                          $price = number_format($choice['memberprice']/100,2);
                           echo "<h5 class='form-item-title'>".$price."</h5>";
                           echo "</div>"; // form item mc

@@ -269,7 +269,8 @@
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
+                            'mealdescription' => $mealdescription,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -311,26 +312,18 @@
                        echo '<div class="form-item">';
                        $smealCHK1 = 'sm1'.$choice['id'];
  
-                      // if (isset($_SESSION['partnerid'])) {
-                      //   if ($_SESSION['partnerid'] > 0) {
-                          echo '<h4 id="mem1mealchoice1" class="form-item-title">'.$choice['mealchoice'].' @ '.$price.'</h4>';
-                      //   }
-                      //     else {
-                      //      echo '<h4 class="form-item-title">'.$choice['mealchoice'].' @ '.$price.'</h4>';
-                      //   }
-                      // }
-                      //   else {
-                      //      echo '<h4 class="form-item-title">'.$choice['mealchoice'].' @ '.$price.'</h4>';
-                      //  }
+                          echo '<h4 id="mem1mealchoice1" class="form-item-title-bold">'.$choice['mealname'].' @ '.$price.'</h4>';
+                             echo "<input type='checkbox' id='".$smealCHK1."' name='".$smealCHK1."'  title='Check to select this meal option for Member 1'>";
+                          echo "<h5 class='form-item-title'><em>".$choice['mealdescription']."</em></h5>";
 
-                       echo "<input type='checkbox' id='".$smealCHK1."' name='".$smealCHK1."'  title='Check to select this meal option for Member 1'>";
+                    
                
                        echo '</div>';
                     }
                     echo '<div class="form-item">';
-                    echo '<h4 class="form-item-title">Dietary Restriction</h4>';
+                    echo '<h4 class="form-item-title-bold">Dietary Restriction</h4>';
                     $drID1 = "dr1".$event['id'];
-                    echo "<textarea name='$drID1' cols='10' rows='1'></textarea>";
+                    echo "<textarea name='$drID1' cols='10' rows='1'>".$_SESSION['dietaryrestriction']."</div></textarea>";
                     echo '</div>';
                     echo '</div>';
                     if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {               
@@ -349,16 +342,18 @@
                              
                            echo '<div class="form-item">';
                               $smealCHK2 = 'sm2'.$choice['id'];
-                            echo '<h4 class="form-item-title">'.$choice['mealchoice'].' @ '.$price.'</h4>';
+                            echo '<h4 class="form-item-title-bold">'.$choice['mealname'].' @ '.$price.'</h4>';
                             echo "<input type='checkbox' id='".$smealCHK2."' name='".$smealCHK2."'  title='Check to select this meal option for partner'>";
+                            echo "<h5 class='form-item-title'><em>".$choice['mealdescription']."</em></h5>";
+
                             echo '</div>';
                             
                           
                     }        
                             echo '<div class="form-item">';
-                            echo '<h4 class="form-item-title">Dietary Restriction</h4>';
+                            echo '<h4 class="form-item-title-bold">Dietary Restriction</h4>';
                             $drID2 = "dr2".$event['id'];
-                            echo "<textarea name='$drID2' cols='10' rows='1'></textarea>";
+                            echo "<textarea name='$drID2' cols='10' rows='1'>".$_SESSION['partnerdietaryrestriction']."</textarea>";
                             echo '</div>';            
 
                        echo '</div>'; 

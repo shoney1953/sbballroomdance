@@ -107,7 +107,7 @@ if (isset($_POST['submitArchive'])) {
             if ($reg_item['mealchoice'] === NULL) {
                  $eventRegArch->mealchoice = 0;
             } else {
-    $eventRegArch->mealchoice = $reg_item['mealchoice'];
+                $eventRegArch->mealchoice = $reg_item['mealchoice'];
             }
         
             $eventRegArch->paidonline = $reg_item['paidonline'];

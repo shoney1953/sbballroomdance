@@ -56,19 +56,23 @@ $product = new PaymentProduct($db);
 if (isset($_POST['submitAddMeals'])) {
 
      if (isset($_POST['meal1'])  && ($_POST['meal1']) !== '') {
-        $productDescription = $event->eventname;
-        $productDescription .= ' ';
-        $productDescription .= $_POST['meal1'];
-        $product->description = $productDescription;
-     }
+
+        $product->description = $_POST['mealdesc1'];
+        $productName = $event->eventname;
+        $productName .= ' ';
+        $productName .= $_POST['meal1'];
+        $product->name = $productName;
+     
+
     if (isset($_POST['memberprice1'])) {
         $product->price = $_POST['memberprice1'];
     }
 
-        $product->name = $productDescription;
-        $product->type = 'meal';
-  $eventid = (string)$_POST['eventId'];
-  $newProduct1 = $stripe->products->create(
+   $product->type = 'meal';
+
+    $eventid = (string)$_POST['eventId'];
+
+    $newProduct1 = $stripe->products->create(
     ['name' => $product->name,
     'description' => $product->description,
      ['metadata' => ['eventid' => $eventid,
@@ -86,7 +90,9 @@ if (isset($_POST['submitAddMeals'])) {
          'unit_amount'=> $_POST['guestprice1'],
          'currency' => 'usd',
     ]);
-    $mealChoices->mealchoice = $_POST['meal1'];
+
+    $mealChoices->mealname = $_POST['meal1'];
+    $mealChoices->mealdescription = $_POST['mealdesc1'];
     $mealChoices->memberprice = $_POST['memberprice1'];
     $mealChoices->guestprice = $_POST['guestprice1'];
     $mealChoices->priceid = $memberpriceID1->id;
@@ -100,26 +106,27 @@ if (isset($_POST['submitAddMeals'])) {
    $product->eventid = $_POST['eventId'];
    $product->create();
   }
-
+     } // end of meal choice 1
     if (isset($_POST['meal2'])  && ($_POST['meal2']) !== '') {
-        $productDescription = $event->eventname;
-        $productDescription .= ' ';
-        $productDescription .= $_POST['meal2'];
-        $product->description = $productDescription;
+
+  
+        $product->description = $_POST['mealdesc2'];
+        $productName = $event->eventname;
+        $productName .= ' ';
+        $productName .= $_POST['meal1'];
+        $product->name = $productName;
+    
     
     if (isset($_POST['memberprice2'])) {
-        $product->price = $_POST['memberprice2'];
-        echo $product->price;
+        $product->price = $_POST['memberprice2'];        
     }
 
-        $product->name = $productDescription;
-    
+       
   $newProduct2 = $stripe->products->create(
     ['name' => $product->name,
     'description' => $product->description,
     ['metadata' => ['eventid' => $eventid,
                     'producttype' => 'meal']]]) ;
-
 
   if ($newProduct2) {
     
@@ -135,7 +142,8 @@ if (isset($_POST['submitAddMeals'])) {
          'unit_amount'=> $_POST['guestprice2'],
          'currency' => 'usd',
     ]);
-    $mealChoices->mealchoice = $_POST['meal2'];
+    $mealChoices->mealname = $_POST['meal2'];
+    $mealChoices->mealdescription = $_POST['mealdesc2'];
     $mealChoices->memberprice = $_POST['memberprice2'];
     $mealChoices->guestprice = $_POST['guestprice2'];
     $mealChoices->priceid = $memberpriceID->id;
@@ -149,26 +157,26 @@ if (isset($_POST['submitAddMeals'])) {
    $product->eventid = $_POST['eventId'];
    $product->create();
   }
+    } // end of meal choice 2
 
    if (isset($_POST['meal3'])  && ($_POST['meal3']) !== '') {
  
-        $productDescription = $event->eventname;
-        $productDescription .= ' ';
-        $productDescription .= $_POST['meal3'];
-        $product->description = $productDescription;
-    
+        $product->description = $_POST['mealdesc3'];
+        $productName = $event->eventname;
+        $productName .= ' ';
+        $productName .= $_POST['meal1'];
+        $product->name = $productName;
+   
     if (isset($_POST['memberprice3'])) {
         $product->price = $_POST['memberprice3'];
     }
 
-    $product->name = $productDescription;
     
   $newProduct3 = $stripe->products->create(
     ['name' => $product->name,
     'description' => $product->description,
      ['metadata' => ['eventid' => $eventid,
                     'producttype' => 'meal']]]) ;
-
 
   if ($newProduct3) {
     $product->productid = $newProduct3->id; // using the id assigned from Stripe
@@ -178,13 +186,13 @@ if (isset($_POST['submitAddMeals'])) {
          'currency' => 'usd',
     ]);
 
-
     $guestpriceID3 = $stripe->prices->create([
         'product' => $newProduct3->id,
          'unit_amount'=> $_POST['guestprice3'],
          'currency' => 'usd',
     ]);
-    $mealChoices->mealchoice = $_POST['meal3'];
+    $mealChoices->mealname = $_POST['meal3'];
+    $mealChoices->mealdescription = $_POST['mealdesc3'];
     $mealChoices->memberprice = $_POST['memberprice3'];
     $mealChoices->guestprice = $_POST['guestprice3'];
     $mealChoices->priceid = $memberpriceID3->id;
@@ -197,13 +205,12 @@ if (isset($_POST['submitAddMeals'])) {
    $product->priceid = $memberpriceID3->id;
     $product->eventid = $_POST['eventId'];
    $product->create();
-  }
+  } // new product 3
 
-     }
+     } // end of mealchoice 3 
 
+} // end of submit
 
-}
-}
         $redirect = "Location: ".$_SESSION['adminEventurl'];
         header($redirect);
         exit;

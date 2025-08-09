@@ -5,7 +5,8 @@ class DinnerMealChoicesArch {
     private $table = 'dinnermealchoicesarch';
 
     public $id;
-    public $mealchoice;
+    public $mealname;
+    public $mealdescription;
     public $memberprice;
     public $guestprice;
     public $eventid;
@@ -38,7 +39,7 @@ class DinnerMealChoicesArch {
       // Create query
 
       $query = 'SELECT * FROM ' . $this->table . ' WHERE eventid < :id 
-      ORDER BY mealchoice';
+      ORDER BY mealname';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -68,7 +69,8 @@ class DinnerMealChoicesArch {
 
           // Set properties
           if ($row) {
-          $this->mealchoice = $row['mealchoice'];
+          $this->mealname = $row['mealname'];
+          $this->mealdescription = $row['mealdescription'];
           $this->memberprice = $row['memberprice'];
           $this->guestprice = $row['guestprice'];
           $this->eventid = $row['eventid'];
@@ -86,7 +88,7 @@ class DinnerMealChoicesArch {
     public function create() {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
-          ' SET mealchoice = :mealchoice, memberprice = :memberprice, 
+          ' SET mealname = :mealname, memberprice = :memberprice, mealdescription = :mealdescription,
           guestpriceid = :guestpriceid, priceid = :priceid, productid = :productid,
           guestprice = :guestprice, eventid = :eventid,
           eventidarch = :eventidarch';
@@ -95,14 +97,16 @@ class DinnerMealChoicesArch {
           $stmt = $this->conn->prepare($query);
 
           // Clean data
-          $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
+          $this->mealname = htmlspecialchars(strip_tags($this->mealname));
+          $this->mealdescription = htmlspecialchars(strip_tags($this->mealdescription));
           $this->memberprice = htmlspecialchars(strip_tags($this->memberprice));
           $this->guestprice = htmlspecialchars(strip_tags($this->guestprice));
           $this->eventid = htmlspecialchars(strip_tags($this->eventid));
           $this->eventidarch = htmlspecialchars(strip_tags($this->eventidarch));
         
           // Bind data
-          $stmt->bindParam(':mealchoice', $this->mealchoice);
+          $stmt->bindParam(':mealname', $this->mealname);
+          $stmt->bindParam(':mealdescription', $this->mealdescription);
           $stmt->bindParam(':memberprice', $this->memberprice);
           $stmt->bindParam(':eventid', $this->eventid);
           $stmt->bindParam(':eventidarch', $this->eventidarch);
@@ -127,10 +131,10 @@ class DinnerMealChoicesArch {
     public function update() {
           // Create query
           $query = 'UPDATE ' . $this->table . 
-          ' SET mealchoice = :mealchoice, memberprice = :memberprice, 
-          eventid = :eventid, guestprice = :guestprice,
-            guestpriceid = :guestpriceid, priceid = :priceid, productid = :productid,
-          eventidarch = :eventidarch
+          ' SET mealname = :mealname, memberprice = :memberprice, 
+                eventid = :eventid, guestprice = :guestprice, mealdescription = :mealdescription,
+                guestpriceid = :guestpriceid, priceid = :priceid, productid = :productid,
+                eventidarch = :eventidarch
             WHERE id = :id ';
    
 
@@ -138,7 +142,8 @@ class DinnerMealChoicesArch {
           $stmt = $this->conn->prepare($query);
 
           // Clean data
-          $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
+          $this->mealname = htmlspecialchars(strip_tags($this->mealname));
+          $this->mealdescription = htmlspecialchars(strip_tags($this->mealdescription));
           $this->memberprice = htmlspecialchars(strip_tags($this->memberprice));
           $this->guestprice = htmlspecialchars(strip_tags($this->guestprice));
           $this->eventid = htmlspecialchars(strip_tags($this->eventid));
@@ -146,7 +151,8 @@ class DinnerMealChoicesArch {
 
 
           // Bind data
-          $stmt->bindParam(':mealchoice', $this->mealchoice);
+          $stmt->bindParam(':mealname', $this->mealname);
+          $stmt->bindParam(':mealdescription', $this->mealdescription);
           $stmt->bindParam(':memberprice', $this->memberprice);
           $stmt->bindParam(':eventid', $this->eventid);
           $stmt->bindParam(':eventidarch', $this->eventidarch);

@@ -165,6 +165,10 @@ if ($user->partnerId !== 0) {
             <h4 class="form-item-title">Partner ID: </h4>
             <input type='number' name='partnerid' value='<?php echo $user->partnerId ?>'>
             </div>
+             <div class="form-item">
+            <h4 class="form-item-title">Dietary Restriction: </h4>
+            <textarea  name='dietaryrestriction' rows='2' cols='50'><?php echo $user->dietaryrestriction ?></textarea>
+            </div>
             <div class="form-item">
             <h4 class="form-item-title">Notes: </h4>
             <textarea  name='notes' rows='4' cols='50'><?php echo $user->notes ?></textarea>

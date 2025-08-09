@@ -33,14 +33,15 @@ if (isset($_POST['updateMealChoices'])) {
        foreach($mealChoices as $mealchoice)  {
         $chkboxID = "mc".$mealchoice['id'];
         $mchoiceNM = "mcname".$mealchoice['id'];
+        $mcdescNM = "mcdesc".$mealchoice['id'];
         $mPrice = "mprice".$mealchoice['id'];
         $gPrice = "gprice".$mealchoice['id'];
 
         if (isset($_POST[$chkboxID])) {
           
             $dinnermealchoices->id = (int)$mealchoice['id'];
-
-            $dinnermealchoices->mealchoice = $_POST[$mchoiceNM];
+            $dinnermealchoices->mealname = $_POST[$mchoiceNM];
+            $dinnermealchoices->mealdescription = $_POST[$mdescNM];
             $dinnermealchoices->guestprice = $_POST[$gPrice];
             $dinnermealchoices->memberprice = $_POST[$mPrice];
 

@@ -14,8 +14,7 @@ if (!isset($_SESSION['username'])) {
 }
 $database = new Database();
 $db = $database->connect();
-$dinnermealchoices = new DinnerMealChoices($db);
-$mealChoices = [];
+
 /* get event registrations */
 $eventReg = new EventRegistration($db);
 $result = $eventReg->read();
@@ -39,9 +38,12 @@ if ($rowCount > 0) {
             'userid' => $userid,
             'email' => $email,
             'paid' => $paid,
+              'paidonline' => $paidonline,
             'ddattenddance' => $ddattenddance,
             'ddattenddinner' => $ddattenddinner,
             'registeredby' => $registeredby,
+            'mealchoice' => $mealchoice,
+            'mealname' => $mealname,
             'dateregistered' => date('m d Y', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);
@@ -111,48 +113,7 @@ echo '<div class="container-section ">';
                   echo "</tr>";
                   echo '</table>';
                   echo '<br>';
-            //       if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype] === 'Dance Party') {
-            //         $result = $dinnermealchoices->read_EventId($event['id']);
-            //         $rowCount = $result->rowCount();
-       
-            //         $num_mealchoices = $rowCount;
-             
-            //             if ($rowCount > 0) {
-             
-            //                 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            //                     extract($row);
-            //                     $meal_item = array(
-            //                      'id' => $id,
-            //                      'mealchoice' => $mealchoice,
-            //                      'memberprice' => $memberprice,
-            //                      'guestprice' => $guestprice,
-            //                      'eventid' => $eventid,
-
-            //                  );
-            //                     array_push($mealChoices, $meal_item);
-             
-            //                 }
-            //                 echo '<br><br><table class="table_small">';
-            //                 echo '<h3>Meal Choices</h3>';
-            //                 echo '<tr>';
-            //                 echo '<th>Meal Choice</th>'; 
-            //                 echo '<th>Member Price</th>';
-            //                 echo '<th>Guest Price</th>';
-            //                  echo '</tr>';
-            //                 foreach ($mealChoices as $mealchoice) {
           
-            //                     echo '<tr>';
-            //                     echo "<td>".$mealchoice['mealchoice']."</td>";
-            //                     echo "<td>".$mealchoice['memberprice']."</td>";
-            //                     echo "<td>".$mealchoice['guestprice']."</td>";
-            //                     echo '</tr>';
-            //                  }
-            //                  echo '</table>';
-            //                  echo '<br>';
-            //     } 
-         
-            //   }
-
 
               echo '<h3>Registrations</h3>';
                 echo '<table>';
@@ -162,23 +123,25 @@ echo '<div class="container-section ">';
                         echo '<th>Last Name    </th>';
                         echo '<th>Email</th>';
                        
-                        if ($event['eventtype'] === 'Dine and Dance') {
-                            echo '<th>Attend<br>Dinner?</th>';
-                            echo '<th>Attend<br>Dance?</th>';
-                        }
+
                         if ($event['eventtype'] === 'Dance Party') {
                             echo '<th>Attend<br>Dinner?</th>';
                             echo '<th>Attend<br>Dance?</th>';
                             if ($event['eventcost'] > 0) {
                                 echo '<th>Paid?</th>';
+                                echo '<th>Online?</th>';
+                                echo  '<th>Meal Selected</th>';
                             }
                         }
                         if ($event['eventtype'] === 'Dinner Dance') {
 
                             if ($event['eventcost'] > 0) {
                                 echo '<th>Paid?</th>';
+                                echo '<th>Online?</th>';
+                                echo  '<th>Meal Selected</th>';
                             }
                         }
+
                         echo '<th>Reg Date</th>';
                         echo '<th>Reg By</th>';
                         echo '<th>Message</th>';
@@ -199,20 +162,7 @@ echo '<div class="container-section ">';
                             echo "<td>".$eventRegistration['email']."</td>"; 
                     
                          
-                            if ($event['eventtype'] === 'Dine and Dance') {
-                                if ($eventRegistration['ddattenddinner'] == true ) {
-                                    echo "<td>&#10004;</td>"; 
-                                } else {
-                                    echo "<td>&times;</td>"; 
-                                } 
-                      
-                                if ($eventRegistration['ddattenddance'] == true ) {
-                                    echo "<td>&#10004;</td>"; 
-                                } else {
-                                    echo "<td>&times;</td>"; 
-                                } 
-                            
-                            }
+
                             if ($event['eventtype'] === 'Dance Party') {
                                 if ($eventRegistration['ddattenddinner'] == true ) {
                                     echo "<td>&#10004;</td>"; 
@@ -231,6 +181,12 @@ echo '<div class="container-section ">';
                                     } else {
                                         echo "<td>&times;</td>"; 
                                     } 
+                                   if ($eventRegistration['paidonline'] == true ) {
+                                        echo "<td>&#10004;</td>"; 
+                                    } else {
+                                        echo "<td>&times;</td>"; 
+                                    } 
+                               
                                
                                 
                             }
@@ -242,9 +198,15 @@ echo '<div class="container-section ">';
                                     } else {
                                         echo "<td>&times;</td>"; 
                                     } 
+                                  if ($eventRegistration['paidonline'] == true ) {
+                                        echo "<td>&#10004;</td>"; 
+                                    } else {
+                                        echo "<td>&times;</td>"; 
+                                    } 
 
                                 }
                             }
+                            echo "<td>".$eventRegistration['mealname']."</td>";
                             echo "<td>".$eventRegistration['dateregistered']."</td>"; 
                             echo "<td>".$eventRegistration['registeredby']."</td>"; 
                             echo "<td>".$eventRegistration['message']."</td>"; 

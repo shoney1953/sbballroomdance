@@ -119,6 +119,7 @@ if ($rowCount > 0) {
             'paid' => $paid,
             'registeredby' => $registeredby,
             'mealchoice' => $mealchoice,
+            'mealname' => $mealname,
             'dietaryrestriction' => $dietaryrestriction,
             'paidonline' => $paidonline,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
@@ -447,13 +448,14 @@ if ($rowCount > 0) {
         <table>
         <thead>
             <tr>
-            <th colspan="6" style="text-align:center">Active Events</th>
+            <th colspan="7" style="text-align:center">Active Events</th>
             </tr>
             <tr>
                 <th>ID</th>
                 <th>Event Name</th>
                 <th>Event Date</th>
                 <th>Paid</th>
+                <th>Online</th>
                 <th>Date <br>Registered</th>   
                 <th>Registered <br> By</th>        
             </tr>
@@ -469,6 +471,11 @@ if ($rowCount > 0) {
                     echo "<td>".$eventRegistration['eventname']."</td>";
                     echo "<td>".$eventRegistration['eventdate']."</td>";  
                     if ($eventRegistration['paid'] == true ) {
+                      echo "<td>&#10004;</td>"; 
+                    } else {
+                        echo "<td>&times;</td>"; 
+                    }
+                    if ($eventRegistration['paidonline'] == true ) {
                       echo "<td>&#10004;</td>"; 
                     } else {
                         echo "<td>&times;</td>"; 
@@ -530,7 +537,7 @@ if ($rowCount > 0) {
    <table>
    <thead>
             <tr>
-            <th colspan="6" style="text-align:center">Past Event Registrations</th>
+            <th colspan="7" style="text-align:center">Past Event Registrations</th>
             </tr> 
 
            <tr>
@@ -538,6 +545,7 @@ if ($rowCount > 0) {
                <th>Event Name</th>
                <th>Event Date</th>
                <th>Paid</th>
+               <th>Online</th>
                <th>Date <br> Registered</th>  
                <th>Registered <br> By</th>          
            </tr>
@@ -553,6 +561,11 @@ if ($rowCount > 0) {
                    echo "<td>".$eventRegistration['eventname']."</td>";
                    echo "<td>".$eventRegistration['eventdate']."</td>";  
                    if ($eventRegistration['paid'] == true ) {
+                     echo "<td>&#10004;</td>"; 
+                   } else {
+                       echo "<td>&times;</td>"; 
+                   }
+                  if ($eventRegistration['paidonline'] == true ) {
                      echo "<td>&#10004;</td>"; 
                    } else {
                        echo "<td>&times;</td>"; 

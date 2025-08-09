@@ -48,8 +48,7 @@ $eventRegistration = new EventRegistration($db);
 $mealChoices = new DinnerMealChoices($db);
 $paymentProduct = new PaymentProduct($db);
 $rowCount = 0;
-
-
+$productName = '';
 if (isset($_POST['submitUpdateMeal'])) {
   $mChoices = $_SESSION['eventmealchoices'] ;
 
@@ -57,6 +56,7 @@ if (isset($_POST['submitUpdateMeal'])) {
    
           $upID = "up".$choice['id'];
           $mcID = "mc".$choice['id'];
+          $mdID = "md".$choice['id'];
           $mpID = "mp".$choice['id'];
           $gpID = "pp".$choice['id'];
           $prodID = "prod".$choice['id'];
@@ -74,25 +74,26 @@ if (isset($_POST['submitUpdateMeal'])) {
            
             $paymentProduct->read_byProductId($choice['productid']);
             
-
             $event->id = $choice['eventid'];
-             $event->read_single();
-             $productDescription = $event->eventname;
-             $productDescription .= ' ';
-             $productDescription .= $_POST["$mcID"];
-
+            $event->read_single();
+              $product->description = $_POST["$mdID"];
+              $productName = $event->eventname;
+              $productName .= ' ';
+              $productName .= $_POST["$mcID"];
+              $product->name = $productName;
+            
              $mealChoices->id = $choice['id'];
              $mealChoices->memberprice  = $_POST["$mpID"];
              $mealChoices->guestprice   = $_POST["$gpID"];
-             $mealChoices->mealchoice   = $_POST["$mcID"];
-
-             $paymentProduct->name = $productDescription;
-             $paymentProduct->description = $productDescription;
+             $mealChoices->mealname   = $_POST["$mcID"];
+            $mealChoices->mealdescription   = $_POST["$mdID"];
+             $paymentProduct->name =  $product->name;
+             $paymentProduct->description =  $product->description;
         
             $product = $stripe->products->update(
               $choice['productid'],
-              ['name' => $productDescription,
-               'description' => $productDescription]
+              ['name' =>  $paymentProduct->name,
+               'description' => $paymentProduct->description]
             );
             // to update we have to inactivate the old price id and make a new one
             $memberprice = $stripe->prices->update(

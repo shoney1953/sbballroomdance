@@ -52,6 +52,7 @@ if (isset($_POST['submitUpdateUser'])) {
       $rpwd2ID = "rpwd2".$usr['id'];
       $fullID = "full".$usr['id'];
       $regFormID = "regform".$usr['id'];
+      $dietrID = "dietr".$usr['id'];
 
    if (isset($_POST["$usrSelChk"])) {
     $user->id = $_POST["$idID"];
@@ -75,7 +76,7 @@ if (isset($_POST['submitUpdateUser'])) {
     $user->directorylist = $_POST["$dlistID"];
     $user->fulltime = $_POST["$fullID"];
     $user->regformlink = $_POST["$regFormID"];
-
+    $user->dietaryrestriction = $_POST["$dietrID"];
     $user->role = $_POST["$roleID"];
     
     if ($_POST["$nemailID"] != $_POST["$emailID"]) {  

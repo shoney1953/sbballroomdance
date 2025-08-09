@@ -79,6 +79,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
               'joinedonline' => $joinedonline,
               'fulltime' => $fulltime,
               'regformlink' => $regformlink,
+              'dietaryrestriction' => $dietaryrestriction,
               'robodjnumlogins' => $robodjnumlogins,
               'robodjlastlogin' => $robodjlastlogin
           );

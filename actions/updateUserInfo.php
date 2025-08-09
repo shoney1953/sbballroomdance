@@ -30,6 +30,8 @@ if (isset($_POST['submitUpdateUser'])) {
     $user->notes = $_POST['notes'];
     $user->partnerId = $_POST['partnerid'];
     $user->directorylist = $_POST['directorylist'];
+    $user->dietaryrestriction = $_POST['dietaryrestriction'];
+
     $user->fulltime = $_POST['fulltime'];
     
     $user->password = $_POST['password'];

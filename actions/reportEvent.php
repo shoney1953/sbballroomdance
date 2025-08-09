@@ -70,7 +70,7 @@ class PDF extends FPDF
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -125,6 +125,7 @@ class PDF extends FPDF
                 'softball' => $softball,
                 'message' => $message,
                 'mealchoice' => $mealchoice,
+                'mealname' => $mealname,
                 'dietaryrestriction' => $dietaryrestriction,
                 'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
             );
@@ -486,12 +487,10 @@ if ($rowCount > 0) {
     }
      if (($reg['eventtype'] === 'Dinner Dance') || ($reg['eventtype'] === 'Dance Party')) {
         if (($reg['mealchoice'] != NULL) && ($reg['mealchoice'] > 0)) {
-           foreach($mealChoices as $choice) {
-             if ($choice['id'] == $reg['mealchoice']) {
-                $pdf->Cell(50,8,$choice['mealchoice'],1,0,"L");
+
+                $pdf->Cell(50,8,$reg['mealname'],1,0,"L");
                 $pdf->Cell(50,8,$reg['dietaryrestriction'],1,1,"L");
-             }
-           }
+
         } else {
                 $pdf->Cell(50,8," ",1,0,"L");
                 $pdf->Cell(50,8," ",1,1,"L");

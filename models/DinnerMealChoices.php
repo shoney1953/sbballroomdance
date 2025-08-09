@@ -5,13 +5,14 @@ class DinnerMealChoices {
     private $table = 'dinnermealchoices';
 
     public $id;
-    public $mealchoice;
+    public $mealname;
     public $memberprice;
     public $guestprice;
     public $eventid;
     public $priceid;
     public $guestpriceid;
     public $productid;
+    public $mealdescription;
 
     // Constructor with DB
     public function __construct($db) {
@@ -73,14 +74,44 @@ class DinnerMealChoices {
 
           // Set properties
           if ($row) {
-          $this->mealchoice = $row['mealchoice'];
+          $this->mealname = $row['mealname'];
           $this->memberprice = $row['memberprice'];
           $this->guestprice = $row['guestprice'];
           $this->eventid = $row['eventid'];
           $this->productid = $row['productid'];
           $this->priceid = $row['priceid'];
           $this->guestpriceid = $row['guestpriceid'];
+          $this->mealdescription = $row['mealdescription'];
 
+          return true;
+          }
+          return false;
+    }
+ public function read_ByMealChoiceID($id) {
+          // Create query
+          $query = 'SELECT * FROM ' . $this->table . ' WHERE id = :id LIMIT 0,1'; 
+  
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+
+          // Bind ID
+          $stmt->bindParam(':id', $id);
+
+          // Execute query
+          $stmt->execute();
+
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          // Set properties
+          if ($row) {
+          $this->mealname = $row['mealname'];
+          $this->memberprice = $row['memberprice'];
+          $this->guestprice = $row['guestprice'];
+          $this->eventid = $row['eventid'];
+          $this->productid = $row['productid'];
+          $this->priceid = $row['priceid'];
+          $this->guestpriceid = $row['guestpriceid'];
+         $this->mealdescription = $row['mealdescription'];
 
           return true;
           }
@@ -91,7 +122,7 @@ class DinnerMealChoices {
     public function create() {
           // Create query
           $query = 'INSERT INTO ' . $this->table . 
-          ' SET mealchoice = :mealchoice, memberprice = :memberprice, 
+          ' SET mealname = :mealname, memberprice = :memberprice, mealdescription = :mealdescription,
           productid = :productid, priceid = :priceid, guestpriceid = :guestpriceid,
           guestprice = :guestprice, eventid = :eventid';
 
@@ -105,12 +136,13 @@ class DinnerMealChoices {
           $this->guestpriceid = htmlspecialchars(strip_tags($this->guestpriceid));
           $this->productid = htmlspecialchars(strip_tags($this->productid));
           $this->eventid = htmlspecialchars(strip_tags($this->eventid));
-     
+          $this->mealdescription = htmlspecialchars(strip_tags($this->mealdescription));
+          $this->mealname = htmlspecialchars(strip_tags($this->mealname));
           // Bind data
-          $stmt->bindParam(':mealchoice', $this->mealchoice);
+          $stmt->bindParam(':mealname', $this->mealname);
+          $stmt->bindParam(':mealdescription', $this->mealdescription);
           $stmt->bindParam(':memberprice', $this->memberprice);
           $stmt->bindParam(':eventid', $this->eventid);
-
           $stmt->bindParam(':guestprice', $this->guestprice);
           $stmt->bindParam(':guestpriceid', $this->guestpriceid);
           $stmt->bindParam(':priceid', $this->priceid);
@@ -132,8 +164,9 @@ class DinnerMealChoices {
           // Create query
 
           $query = 'UPDATE ' . $this->table . 
-          ' SET mealchoice    = :mealchoice, 
+          ' SET mealname    = :mealname, 
                 memberprice   = :memberprice, 
+                mealdescription  = :mealdescription, 
                 priceid       = :priceid,
                 guestpriceid  = :guestpriceid, 
                 guestprice    = :guestprice
@@ -143,18 +176,18 @@ class DinnerMealChoices {
           $stmt = $this->conn->prepare($query);
 
           // Clean data
-          $this->mealchoice = htmlspecialchars(strip_tags($this->mealchoice));
+          $this->mealname = htmlspecialchars(strip_tags($this->mealname));
           $this->memberprice = htmlspecialchars(strip_tags($this->memberprice));
           $this->guestprice = htmlspecialchars(strip_tags($this->guestprice));
-
+           $this->mealdescription = htmlspecialchars(strip_tags($this->mealdescription));
           // Bind data
           $stmt->bindParam(':id', $this->id);
-          $stmt->bindParam(':mealchoice', $this->mealchoice);
+          $stmt->bindParam(':mealname', $this->mealname);
           $stmt->bindParam(':memberprice', $this->memberprice);
           $stmt->bindParam(':guestprice', $this->guestprice);
            $stmt->bindParam(':priceid', $this->priceid);
           $stmt->bindParam(':guestpriceid', $this->guestpriceid);
-         
+            $stmt->bindParam(':mealdescription', $this->mealdescription);
   
           $stmt->bindParam(':id', $this->id);
 

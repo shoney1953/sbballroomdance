@@ -7,6 +7,7 @@ require_once '../models/MemberPaid.php';
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
+$partner = new User($db);
 $pass2 = '';
 $isValid = false;
 $current_year = date('Y');
@@ -55,6 +56,25 @@ if (isset($_SESSION['renewalmonth'])) {
             $_SESSION['userlastname'] = $user->lastname;
             $_SESSION['useremail'] = $user->email;
             $_SESSION['partnerid'] = $user->partnerId;
+            if ($user->partnerId > 0) {
+                $partner->id = $user->partnerId;
+                $partner->read_single();
+                $_SESSION['partnerdietaryrestriction'] = $partner->dietaryrestriction;
+                $_SESSION['partnername'] = $partner->username;
+                $_SESSION['partnerrole'] = $partner->role;
+                $_SESSION['partnerfirstname'] = $partner->firstname;
+                $_SESSION['partnerlastname'] = $partner->lastname;
+                $_SESSION['partneremail'] = $partner->email;
+            } else {
+                unset($_SESSION['partnerdietaryrestriction']);
+                unset($_SESSION['partnerfirstname']);
+                unset($_SESSION['partnerlastname']);
+                 unset($_SESSION['partnerrole']);
+                 unset($_SESSION['partnername']);
+                 unset($_SESSION['partneremail']);
+             
+            }
+            $_SESSION['dietaryrestriction'] = $user->dietaryrestriction;
             $user->numlogins++;
     
             $user->updateLogin();
@@ -148,6 +168,9 @@ if (isset($_SESSION['renewalmonth'])) {
             }
             if(isset($_SESSION['partnerid'])) {
                 unset($_SESSION['partnerid']);
+            }
+            if(isset($_SESSION['dietaryrestriction'])) {
+                unset($_SESSION['dietaryrestriction']);
             }
             $redirect = "Location: ".$_SESSION['loginurl'].'?error=InvalidPassword';
             header($redirect);

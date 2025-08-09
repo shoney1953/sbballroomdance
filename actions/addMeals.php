@@ -58,7 +58,8 @@ if ($rowCount > 0) {
         extract($row);
         $meal_item = array(
             'id' => $id,
-            'mealchoice' => $mealchoice,
+            'mealname' => $mealname,
+            'mealdescription' => $mealdescription,
             'eventid' => $eventid,
             'memberprice' => $memberprice,
             'guestprice' => $guestprice,
@@ -112,10 +113,14 @@ $event->read_single();
             echo "<div class='form-grid-div'>"
             ;
             echo "<div class='form-item'>";
-            echo "<h4 class='form-item-title'>Meal Choice 1</h4>";
-            echo "<input type='text' name='meal1' title='Enter Meal Choice 1 Descriptions' >";
+            echo "<h4 class='form-item-title'>Meal Name 1</h4>";
+            echo "<input type='text' name='meal1' title='Enter Meal 1 Name' >";
              echo '</div>';
-
+             echo "<div class='form-item'>";
+            echo "<h4 class='form-item-title'>Meal Description 1</h4>";
+            // echo "<input type='text' name='mealdesc1' title='Enter Meal 1 Description' >";
+             echo "<textarea title='Enter Meal 1 Description' name='mealdesc1' rows='2' cols='40'></textarea>";
+             echo '</div>';
               echo "<div class='form-item'>";
             echo "<h4 class='form-item-title'>Member Price in Pennies</h4>";
             echo "<input type='text' name='memberprice1' title='Enter member price for Meal Choice 1 in pennies' >";
@@ -129,9 +134,14 @@ $event->read_single();
    
               echo "<div class='form-grid-div'>";
               echo "<div class='form-item'>";
-            echo "<h4 class='form-item-title'>Meal Choice2</h4>";
-            echo "<input type='text' name='meal2' title='Enter Meal Choice 2 Descriptions' >";
+            echo "<h4 class='form-item-title'>Meal 2 Name</h4>";
+            echo "<input type='text' name='meal2' title='Enter Meal 2 Name' >";
               echo '</div>';
+            echo "<div class='form-item'>";
+            echo "<h4 class='form-item-title'>Meal Description 2</h4>";
+            // echo "<input type='text' name='mealdesc2' title='Enter Meal 2 Description' >";
+            echo "<textarea title='Enter Meal 2 Description' name='mealdesc2' rows='2' cols='40'></textarea>";
+             echo '</div>';
               echo "<div class='form-item'>";
             echo "<h4 class='form-item-title'>Member Price in Pennies</h4>";
             echo "<input type='text' name='memberprice2' title='Enter member price for Meal Choice 2 in pennies' >";
@@ -144,9 +154,14 @@ $event->read_single();
           
                  echo "<div class='form-grid-div'>";
             echo "<div class='form-item'>";
-            echo "<h4 class='form-item-title'>Meal Option 3</h4>";
-            echo "<input type='text' name='meal3' title='Enter Meal Choice 3 Description' >";
+            echo "<h4 class='form-item-title'>Meal 3 Name</h4>";
+            echo "<input type='text' name='meal3' title='Enter Meal 3 Name' >";
               echo '</div>';
+            echo "<div class='form-item'>";
+            echo "<h4 class='form-item-title'>Meal Description 3</h4>";
+            // echo "<input type='text' name='mealdesc3' title='Enter Meal 3  Description' >";
+            echo "<textarea title='Enter Meal 1 Description' name='mealdesc3' rows='2' cols='40'></textarea>";
+             echo '</div>';
               echo "<div class='form-item'>";
             echo "<h4 class='form-item-title'>Member Price in Pennies</h4>";
             echo "<input type='text' name='memberprice3' title='Enter member price for Meal Choice 3 in pennies' >";
@@ -164,7 +179,8 @@ $event->read_single();
             echo '<table>';
             echo '<thead>';
             echo '<tr>';
-            echo '<th>Meal Choice</th>';
+            echo '<th>Meal Name</th>';
+            echo '<th>Meal Description</th>';
             echo '<th>Member Price</th>';
             echo '<th>Guest Price</th>';
             echo '<th>Product ID</th>';
@@ -177,7 +193,8 @@ $event->read_single();
     
                foreach($mChoices as $choice) {
                    echo '<tr>';
-                     echo "<td>".$choice['mealchoice']."</td>";
+                     echo "<td>".$choice['mealname']."</td>";
+                      echo "<td>".$choice['mealdescription']."</td>";
                      echo "<td>".number_format($choice['memberprice']/100,2)."</td>";
                      echo "<td>".number_format($choice['guestprice']/100,2)."</td>";
                      echo "<td>".$choice['productid']."</td>";

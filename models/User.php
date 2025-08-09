@@ -31,6 +31,7 @@ class User {
     public $robodjlastlogin;
     public $regformlink;
     public $joinedonline;
+    public $dietaryrestriction;
 
     // Constructor with DB
     public function __construct($db) {
@@ -210,6 +211,7 @@ class User {
           $this->robodjlastlogin = $row['robodjlastlogin'];
           $this->regformlink = $row['regformlink'];
           $this->joinedonline = $row['joinedonline'];
+          $this->dietaryrestriction = $row['dietaryrestriction'];
           return true;
           }
         
@@ -286,6 +288,7 @@ class User {
       $this->robodjlastlogin = $row['robodjlastlogin'];
       $this->regformlink = $row['regformlink'];
       $this->joinedonline = $row['joinedonline'];
+      $this->dietaryrestriction = $row['dietaryrestriction'];
   
         return true;
       }
@@ -350,7 +353,7 @@ class User {
           partnerid = :partnerid, streetaddress = :streetaddress,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
           directorylist = :directorylist, fulltime = :fulltime,
-          joinedonline = :joinedonline,
+          joinedonline = :joinedonline, dietaryrestriction = :dietaryrestriction,
           phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
 
           // Prepare statement
@@ -365,6 +368,7 @@ class User {
           $this->hoa = $this->hoa;
           $this->partnerId = 0;
           $this->streetAddress = htmlspecialchars(strip_tags($this->streetAddress));
+          $this->dietaryrestriction = htmlspecialchars(strip_tags($this->dietaryrestriction));
           $this->city = htmlspecialchars(strip_tags($this->city));
           $this->state = htmlspecialchars(strip_tags($this->state));
           $this->notes = htmlspecialchars(strip_tags($this->notes));
@@ -393,7 +397,7 @@ class User {
           $stmt->bindParam(':directorylist', $this->directorylist);
           $stmt->bindParam(':fulltime', $this->fulltime);
           $stmt->bindParam(':joinedonline', $this->joinedonline);
-
+          $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
 
           // Execute query
           if ($stmt->execute()) {
@@ -417,7 +421,7 @@ class User {
           streetaddress = :streetaddress, role = :role,
           directorylist = :directorylist, fulltime = :fulltime,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
-          joinedonline = :joinedonline,
+          joinedonline = :joinedonline, dietaryrestriction = :dietaryrestriction,
           phone1 = :phone1, phone2 = :phone2, notes = :notes, regformlink = :regformlink
           WHERE id = :id';
    
@@ -439,11 +443,9 @@ class User {
           $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
           $this->zip = htmlspecialchars(strip_tags($this->zip));
           $this->directorylist = htmlspecialchars(strip_tags($this->directorylist));
+          $this->dietaryrestriction = htmlspecialchars(strip_tags($this->dietaryrestriction));
           $this->fulltime = htmlspecialchars(strip_tags($this->fulltime));
-          // $this->regformlink = htmlspecialchars(strip_tags($this->regformlink));
-        
-      
-
+   
           // Bind data
           $stmt->bindParam(':id', $this->id);
           $stmt->bindParam(':firstname', $this->firstname);
@@ -464,6 +466,7 @@ class User {
           $stmt->bindParam(':fulltime', $this->fulltime);
           $stmt->bindParam(':regformlink', $this->regformlink);
           $stmt->bindParam(':joinedonline', $this->joinedonline);
+          $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
 
           // Execute query
           if($stmt->execute()) {

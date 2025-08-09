@@ -71,7 +71,8 @@ if (isset($_POST['submitEvent'])) {
                                 extract($row);
                                 $meal_item = array(
                                  'id' => $id,
-                                 'mealchoice' => $mealchoice,
+                                 'mealname' => $mealname,
+                                 'mealdescription' => $mealdescription,
                                  'memberprice' => $memberprice,
                                  'guestprice' => $guestprice,
                                  'eventid' => $eventid,

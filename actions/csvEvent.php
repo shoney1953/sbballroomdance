@@ -22,9 +22,6 @@ $_SESSION['csvEvent'] = [];
 $csvEvent = [];
 $number = 0;
 
-
-
-
     if (isset($_POST['eventId'])) {
         if ($_POST['eventId'] !== '') {
             $event->id = htmlentities($_POST['eventId']);
@@ -85,7 +82,11 @@ $number = 0;
             'First Name',
             'Last Name', 
             'Email',
-            'Member'
+            'Member',
+            'Dinner',
+            'Paid',
+            'Meal',
+            'Restriction'
 
             ];
             array_push($csvEvent, $title_array);
@@ -103,7 +104,12 @@ $number = 0;
                 'firstname' => $firstname,
                 'lastname' => $lastname,
                 'email' => $email,
-                'member' => $member
+                'member' => $member,
+                'ddattenddinner' => $ddattenddinner,
+                'paid' => $paid,
+                'mealname' => $mealname,
+                'dietaryrestriction' => $dietaryrestriction
+
 
             );
         

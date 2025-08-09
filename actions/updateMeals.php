@@ -3,6 +3,7 @@ session_start();
 
 require_once '../config/Database.php';
 require_once '../models/Event.php';
+require_once '../models/EventRegistration.php';
 require_once '../models/DinnerMealChoices.php';
 require_once '../models/PaymentProduct.php';
 
@@ -45,6 +46,7 @@ $db = $database->connect();
 $event = new Event($db);
 $mealChoices = new DinnerMealChoices($db);
 $product = new PaymentProduct($db);
+$eventRegistration = new EventRegistration($db);
 if (isset($_POST['eventid'])) {
     $_SESSION['mealupdateeventid'] = $_POST['eventid'];
     $result = $mealChoices->read_ByEventId($_POST['eventid']);
@@ -65,7 +67,8 @@ if ($rowCount > 0) {
         extract($row);
         $meal_item = array(
             'id' => $id,
-            'mealchoice' => $mealchoice,
+            'mealname' => $mealname,
+            'mealdescription' => $mealdescription,
             'eventid' => $eventid,
             'memberprice' => $memberprice,
             'guestprice' => $guestprice,
@@ -129,9 +132,13 @@ $event->read_single();
           if ($num_meals > 0) {
 
                foreach($mChoices as $choice) {
-          
+           
+               $result = $eventRegistration->read_ByMealID($choice['id']);
+               $rowCount = $result->rowCount();
+
                 $upID = "up".$choice['id'];
                 $mcID = "mc".$choice['id'];
+                $mdID = "md".$choice['id'];
                 $mpID = "mp".$choice['id'];
                 $gpID = "pp".$choice['id'];
                 $prodID = "prod".$choice['id'];
@@ -146,14 +153,27 @@ $event->read_single();
                       echo "<input type='hidden' name='".$gpriceID."' value='".$choice['guestpriceid']."'>"; 
                       echo "<div class='form-item'>";
                       echo "<h4 class='form-item-title'>Update?</h4>";
-                      echo "<input type='checkbox' title='Select to Update Meal This Meal' name='".$upID."'>";
+                      if ($rowCount === 0) {
+                          echo "<input type='checkbox' title='Select to Update Meal This Meal' name='".$upID."'>";
+                      } else {
+                        echo '<h4 class="form-item-title">IN USE</h4>';
+                      }
+                  
                       echo '</div>';
-
                       echo "<div class='form-item'>";
-                      echo "<h4 class='form-item-title'>Meal Choice</h4>";
-                       echo "<input type='text' name='".$mcID."' title='Update Meal Choice 1 Description' value='".$choice['mealchoice']."'>";
+                      echo "<h4 class='form-item-title'>Number Registrations</h4>";
+                      echo "<h4 class='form-item-title'>".$rowCount."</h4>";
                       echo '</div>';
-
+                      echo "<div class='form-item'>";
+                      echo "<h4 class='form-item-title'>Meal Name</h4>";
+                       echo "<input type='text' name='".$mcID."' title='Update Meal Choice 1 Description' value='".$choice['mealname']."'>";
+                       
+                      echo '</div>';
+                      echo "<div class='form-item'>";
+                      echo "<h4 class='form-item-title'>Meal Description</h4>";
+                      //  echo "<input type='text' name='".$mdID."' title='Update Meal Choice 1 Description' value='".$choice['mealdescription']."'>";
+                        echo "<textarea  title='Update Meal Choice 1 Description' name='".$mdID."' rows='2' cols='50'>".$choice['mealdescription']."</textarea>";
+                      echo '</div>';
                       echo "<div class='form-item'>";
                       echo "<h4 class='form-item-title'>Member Price in Pennies</h4>";
                       echo "<input type='text' name='".$mpID."' title='Update Meal Choice 1 Description' value='".$choice['memberprice']."'>";

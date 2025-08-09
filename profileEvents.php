@@ -74,6 +74,7 @@ if ($rowCount > 0) {
             'email' => $email,
             'paid' => $paid,
             'mealchoice' => $mealchoice,
+            'mealname' => $mealname,
             'dietaryrestriction' => $dietaryrestriction,
             'registeredby' => $registeredby,
             'paidonline' => $paidonline,
@@ -112,6 +113,7 @@ if ($prowCount > 0) {
             'email' => $email,
             'paid' => $paid,
             'mealchoice' => $mealchoice,
+            'mealname' => $mealname,
             'dietaryrestriction' => $dietaryrestriction,
             'registeredby' => $registeredby,
             'paidonline' => $paidonline,
@@ -225,13 +227,14 @@ if ($prowCount > 0) {
           
                   echo "</tr>";
                    if (isset($_SESSION['testmode']) && $_SESSION['testmode'] === 'YES') {
+                    
                   if (($eventRegistration['mealchoice'] != NULL) && ($eventRegistration['mealchoice'] > 0) ) {
                     $mealChoice->id = $eventRegistration['mealchoice'];
                     $mealChoice->read_single();
                     echo '<tr style="color: blue">';
                     echo '<td> </td>';
                     echo '<td><em>Meal Choice</em></td>';
-                    echo "<td><em>".$mealChoice->mealchoice."</em></td>";
+                    echo "<td><em>".$mealChoice->mealname."</em></td>";
                     echo '<td><em>Price</em></td>';
                     echo "<td><em>".number_format($mealChoice->memberprice/100,2)."</em></td>";
                     echo '<td><em>Dietary Restriction</em></td>';
@@ -316,7 +319,7 @@ if ($prowCount > 0) {
                     echo '<tr style="color: blue">';
                     echo '<td> </td>';
                     echo '<td><em>Meal Choice</em></td>';
-                    echo "<td><em>".$mealChoice->mealchoice."</em></td>";
+                    echo "<td><em>".$mealChoice->mealname."</em></td>";
                     echo '<td><em>Price</em></td>';
                     echo "<td><em>".number_format($mealChoice->memberprice/100,2)."</em></td>";
                     echo '<td><em>Dietary Restriction</em></td>';
@@ -370,7 +373,7 @@ if ($prowCount > 0) {
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -442,7 +445,7 @@ if ($prowCount > 0) {
                 echo '<td>';
                 echo '<div class="form-grid1">';
                 echo '<div class="form-item">';
-                echo "<h4 class='form-item-title'>Select Meal Choice: ".$meal_item['mealchoice']."</h4>";
+                echo "<h4 class='form-item-title'>Select Meal Choice: ".$meal_item['mealname']."</h4>";
                   if ($reg['mealchoice'] === $meal_item['id']) {
                     echo "<input type='checkbox'  title='Check to select this meal' id='".$mcID."' name='".$mcID."' checked>";
                   } else {
@@ -508,7 +511,7 @@ if ($prowCount > 0) {
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -572,7 +575,7 @@ if ($prowCount > 0) {
                 echo '<td>';
                 echo '<div class="form-grid1">';
                 echo '<div class="form-item">';
-                echo "<h4 class='form-item-title'>Select Meal Choice: ".$meal_item['mealchoice']."</h4>";
+                echo "<h4 class='form-item-title'>Select Meal Choice: ".$meal_item['mealname']."</h4>";
                   if ($reg['mealchoice'] === $meal_item['id']) {
                     echo "<input type='checkbox'  title='Check to select this meal' id='".$mcID."' name='".$mcID."' checked>";
                   } else {

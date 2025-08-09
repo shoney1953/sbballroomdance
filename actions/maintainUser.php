@@ -175,7 +175,10 @@ if (isset($_POST['submitAddUser'])) {
             // echo '<h4 class="form-item-title">Retype Password<br><small><em>Defaulted</em></small></h4>';
             echo "<td><input type='hidden' name='initPass2' minlength='8' value='".$passdefault."' required></td>";
             // echo '</div>'; 
-
+            echo '<div class="form-item">';
+            echo '<h4 class="form-item-title">Dietary Restriction<br></h4>';
+            echo '<textarea name="dietaryrestriction" cols="50" rows="1" placeholder="Dietary restrictions if known"></textarea>';
+            echo '</div>'; 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Notes<br></h4>';
             echo '<textarea name="notes" cols="50" rows="3" placeholder="Usually Partners name if there is one"></textarea>';

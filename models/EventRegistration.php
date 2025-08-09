@@ -25,6 +25,7 @@ class EventRegistration {
     public $cornhole;
     public $softball;
     public $paidonline;
+    public $mealname;
 
 
     // Constructor with DB
@@ -40,11 +41,13 @@ class EventRegistration {
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
       r.registeredby, r.cornhole, r.softball, r.mealchoice,
       r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-      r.paidonline,
+      r.paidonline, m.mealname as mealname,
       r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
       FROM ' . $this->table . ' r
       LEFT JOIN
         events c ON r.eventid = c.id
+      LEFT JOIN
+         dinnermealchoices m on r.mealchoice = m.id
       ORDER BY
         c.eventdate, r.eventid, r.lastname, r.firstname, r.dateregistered';
 
@@ -67,11 +70,13 @@ class EventRegistration {
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
           r.registeredby, r.cornhole, r.softball, r.mealchoice,
           r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-          r.paidonline,
+          r.paidonline, m.mealname as mealname,
           r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
           FROM ' . $this->table . ' r
           LEFT JOIN
             events c ON r.eventid = c.id
+          LEFT JOIN
+            dinnermealchoices m on r.mealchoice = m.id
           WHERE
             r.id = ?
           LIMIT 0,1';
@@ -109,6 +114,7 @@ class EventRegistration {
           $this->cornhole = $row['cornhole'];
           $this->softball = $row['softball'];
           $this->paidonline = $row['paidonline'];
+          $this->mealname = $row['mealname'];
           return true;
           }
           return false;
@@ -124,11 +130,13 @@ public function read_ByUserid($userid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby, r.cornhole, r.softball, 
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.paidonline,
+    r.paidonline, m.mealname as mealname,
     r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
     FROM ' . $this->table . ' r
     LEFT JOIN
       events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
     WHERE
       r.userid = :userid 
     ORDER BY 
@@ -156,11 +164,13 @@ public function read_ByEmail($email) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, 
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.paidonline,
+    r.paidonline, m.mealname as mealname,
     r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
     LEFT JOIN
       events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
     WHERE
       r.email = :email 
     ORDER BY 
@@ -189,10 +199,12 @@ public function read_ByEmail($email) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.mealchoice, r.dietaryrestriction
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
     LEFT JOIN
       events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
     WHERE
       r.eventid = :eventid 
     ORDER BY 
@@ -220,16 +232,16 @@ public function read_ByEventIdDinner($eventid) {
   r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
   r.registeredby,  r.cornhole, r.softball, r.paidonline,
   r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-  r.mealchoice, r.dietaryrestriction
+  r.mealchoice, r.dietaryrestriction, m.mealname as mealname
   FROM ' . $this->table . ' r
   LEFT JOIN
     events c ON r.eventid = c.id
+  LEFT JOIN
+    dinnermealchoices m on r.mealchoice = m.id
   WHERE
     r.eventid = :eventid 
   ORDER BY 
     r.ddattenddinner, r.lastname, r.firstname';
-
-
 
   // Prepare statement
   $stmt = $this->conn->prepare($query);
@@ -251,16 +263,16 @@ public function read_ByMealID($mealid) {
   r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
   r.registeredby,  r.cornhole, r.softball, r.paidonline,
   r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-  r.mealchoice, r.dietaryrestriction
+  r.mealchoice, r.dietaryrestriction, m.mealname as mealname
   FROM ' . $this->table . ' r
   LEFT JOIN
     events c ON r.eventid = c.id
+  LEFT JOIN
+    dinnermealchoices m on r.mealchoice = m.id
   WHERE
     r.mealchoice = :mealid 
   ORDER BY 
     r.ddattenddinner DESC, r.lastname, r.firstname';
-
-
 
   // Prepare statement
   $stmt = $this->conn->prepare($query);

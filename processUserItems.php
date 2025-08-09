@@ -6,7 +6,7 @@ $_SESSION['userurl'] = $_SERVER['REQUEST_URI'];
     echo "<form method='POST' action='updateUser.php'>";
 
         foreach ($users as $usr) {
-
+  
             $upChk = "up".$usr['id'];
             $usrSelChk ="userSel".$usr['id'];
             $fnamID = "fnam".$usr['id'];
@@ -32,6 +32,7 @@ $_SESSION['userurl'] = $_SERVER['REQUEST_URI'];
             $rpwd2ID = "rpwd2".$usr['id'];
             $fullID = "full".$usr['id'];
             $regFormID = "regform".$usr['id'];
+            $dietrID = "dietr".$usr['id'];
             if (isset($_POST["$upChk"])) {
                 echo '<div class="form-container">';
                 echo "<h4 class='form-title'>".$usr['firstname']." ".$usr['lastname']." --   Member ID: ".$usr['id']."</h4>";
@@ -163,6 +164,10 @@ $_SESSION['userurl'] = $_SERVER['REQUEST_URI'];
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Registration Form Link</h4>'; 
             echo "<input type='text' name='".$regFormID."' value='".$usr['regformlink']."'>";
+            echo '</div>';
+            echo '<div class="form-item">';
+            echo '<h4 class="form-item-title">Dietary Restriction</h4>';
+            echo "<textarea  name='".$dietrID."' rows='2' cols='50'>".$usr['dietaryrestriction']."</textarea>"; 
             echo '</div>';
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Notes</h4>';

@@ -99,6 +99,7 @@ if (isset($_POST['submitAddUser'])) {
        $user->username = htmlentities($_POST['username']);
        $user->email = filter_var($user->email, FILTER_SANITIZE_EMAIL); 
        $user->streetAddress = htmlentities($_POST['streetaddress']); 
+       $user->dietaryrestriction = htmlentities($_POST['dietaryrestriction']); 
        $user->city = htmlentities($_POST['city']); 
        $user->state = htmlentities($_POST['state']); 
        $user->zip = htmlentities($_POST['zip']); 
