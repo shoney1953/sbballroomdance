@@ -323,7 +323,8 @@
                     echo '<div class="form-item">';
                     echo '<h4 class="form-item-title-bold">Dietary Restriction</h4>';
                     $drID1 = "dr1".$event['id'];
-                    echo "<textarea name='$drID1' cols='10' rows='1'>".$_SESSION['dietaryrestriction']."</div></textarea>";
+       
+                    echo "<textarea name='$drID1' cols='10' rows='1'>".$_SESSION['dietaryrestriction']."</textarea>";
                     echo '</div>';
                     echo '</div>';
                     if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {               
