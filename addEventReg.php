@@ -160,7 +160,7 @@ if ($addReg) {
                        $drID = "dr".$usr['id'];
                       echo "<div class='form-item'>";
                       echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
-                      echo "<input type='text' title='Enter Member Dietary Restrictions' name='".$drID."' >"; 
+                      echo "<input type='text' title='Enter Member Dietary Restrictions' name='".$drID."' value='".$usr['dietaryrestriction']."' >"; 
                       echo "</div>";
                          echo "</div>";
           

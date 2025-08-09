@@ -284,7 +284,9 @@ if ($addReg) {
                 'id' => $id,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
-                'email' => $email
+                'email' => $email,
+                 'partnerId' => $partnerid,
+                'dietaryrestriction' => $dietaryrestriction
 
             );
             array_push( $users, $user_item);
@@ -306,7 +308,8 @@ if ($addReg) {
                     'firstname' => $firstname,
                     'lastname' => $lastname,
                     'email' => $email,
-                    'partnerId' => $partnerid
+                    'partnerId' => $partnerid,
+                    'dietaryrestriction' => $dietaryrestriction
                     
                 );
                 array_push( $users, $user_item);

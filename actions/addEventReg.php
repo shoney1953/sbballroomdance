@@ -108,7 +108,7 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->lastname = $usr['lastname'];
                     $regLastName1 = $eventReg->lastname;
                     $eventReg->email = $usr['email'];
-                 
+                    $eventReg->dietaryrestriction = $usr['dietaryrestriction'];
                     $regEmail1 = $eventReg->email;
                     $eventReg->userid = $usr['id'];
                     $eventReg->paid = 0;
