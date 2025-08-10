@@ -385,8 +385,8 @@ if ($prowCount > 0) {
                         array_push($mealChoices, $meal_item);
               } // while $row
             } // rowcount
-            $eventdateTS = strtotime($reg['eventdate']);
-            $eventCutOff = $eventdateTS - 7;
+   
+            $eventCutOff = strtotime($reg['eventdate'].'-7 days');
             $comparedateTS = strtotime($compareDate);
             if ($comparedateTS <= $eventCutOff) {
             if (($reg['eventtype'] == 'Dance Party') || ($reg['eventtype'] == 'Dinner Dance') ) {
@@ -522,8 +522,8 @@ if ($prowCount > 0) {
                         array_push($mealChoices, $meal_item);
               } // while
             } // rowcount
-            $eventdateTS = strtotime($reg['eventdate']);
-            $eventCutOff = $eventdateTS - 7;
+
+             $eventCutOff = strtotime($reg['eventdate'].'-7 days');
             $comparedateTS = strtotime($compareDate);
 
             if ($comparedateTS <= $eventCutOff) {

@@ -65,8 +65,12 @@ if (isset($_GET['id'])) {
       echo '<h4>Selected Event</h4>';
     echo "<div class='form-grid'>"  ; 
     foreach($allEvents as $event) {
-        if ($event["id"] === $eventID) {  
- 
+     if ($event["id"] === $eventID) {  
+
+
+          $eventCutOff = strtotime($event['eventdate'].'-7 days');
+      
+      
     echo "<div class='form-item'>";
     echo "<h4 class='form-item-title'> Date: ".$event['eventdate']."</h4>";
     echo "</div>";
@@ -100,8 +104,12 @@ if (isset($_GET['id'])) {
     }
     if ($event['eventtype'] === 'Dance Party') {
     echo "<div class='form-item'>";
-    echo "<h4 class='form-item-title'> Last Day to Register for Dance Only: ".$event['eventregend']."</h4>";
+    echo "<h4 class='form-item-title'> Last Day to Register for Dinner: <br>".date("Y-m-d",$eventCutOff)."</h4>"; 
     echo "</div>";
+    echo "<div class='form-item'>";
+    echo "<h4 class='form-item-title'> Last Day to Register for Dance Only: <br>".$event['eventregend']."</h4>";
+    echo "</div>";
+
     } else if ($event['eventtype'] === 'Dinner Dance') {
       echo "<div class='form-item'>";
       echo "<h4 class='form-item-title'> Last Day to Register for Dinner Dance: ".$event['eventregend']."</h4>";
