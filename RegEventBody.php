@@ -313,8 +313,10 @@
                        $smealCHK1 = 'sm1'.$choice['id'];
                           // echo "<input type='checkbox' id='".$smealCHK1."' name='".$smealCHK1."'  title='Check to select this meal option for Member 1'>";
                           // echo '<h4 id="mem1mealchoice1" class="form-item-title-bold">'.$choice['mealname'].' @ '.$price.'</h4>';
-                           echo "<h4 class='form-item-title-bold'>".$choice['mealname']." @ ".$price."
+
+                           echo "<h4>
                                <input type='checkbox' id='".$smealCHK1."' name='".$smealCHK1."'  title='Check to select this meal option for Member'>
+                               ".$choice['mealname']." @ ".$price."
                             </h4>";
                           echo "<h5 class='form-item-title'><em>".$choice['mealdescription']."</em></h5>";
 
@@ -346,8 +348,9 @@
                            echo '<div class="form-item">';
                               $smealCHK2 = 'sm2'.$choice['id'];
                             // echo "<input type='checkbox' id='".$smealCHK2."' name='".$smealCHK2."'  title='Check to select this meal option for partner'>";
-                            echo "<h4 class='form-item-title-bold'>".$choice['mealname']." @ ".$price."
+                            echo "<h4>
                                <input type='checkbox' id='".$smealCHK2."' name='".$smealCHK2."'  title='Check to select this meal option for partner'>
+                               ".$choice['mealname']." @ ".$price."
                             </h4>";
                      
                             echo "<h5 class='form-item-title'><em>".$choice['mealdescription']."</em></h5>";

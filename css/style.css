@@ -481,7 +481,7 @@ font-weight: bolder;
 .form-item-title-bold {
   /* color: darkviolet; */
   color: var(--formdivision-color3);
-  font:bold;
+  font-weight: 900;
   text-align: left;
   font-size: small;
   }
