@@ -58,12 +58,6 @@ $upcomingEvents = $_SESSION['upcoming_events'];
         }
         ?>
        
-
-        <!-- <div class="form-grid-div">
-        <form target="_blank" method="POST" action="actions/printEvents.php"> 
-        <button type="submit" name="submitPrintEvents">Print Upcoming Events</button>  
-        </form>
-        </div> -->
         </div> <!-- end of form-grid2 -->
         
         <table>
@@ -83,13 +77,13 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo '<th>Report?</th>';
                 }
             ?>
+                <th>Name (Click for Details)</th>
+                <th>Description</th> 
                 <th>Event<br>Dates</th>
                 <th>Reg<br>Opens</th>
                 <th>Reg<br>Closes</th>
                 <th>Form</th>
-                <th>Name    </th>
                 <th>Type    </th>
-                <th>Description</th> 
                 <th>Room</th> 
                 <th>DJ</th>            
                 <th>Min<br>Cost</th>
@@ -119,14 +113,15 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     if (isset($_SESSION['username'])) {
                         echo '<th>Report?</th>';
                     }
-                    
+                    echo '<th>Name (Click for Details) </th>';
+                    echo '<th>Description</th>'; 
                     echo '<th>Event<br>Date</th>';
                     echo '<th>Reg<br>Opens</th>';
                     echo '<th>Dance Only Reg<br>Closes</th>';
                     echo '<th>Form</th>';
                     echo '<th>Name    </th>';
                     echo '<th>Type    </th>';
-                    echo '<th>Description</th>'; 
+
                     echo '<th>Room</th> ';
                     echo '<th>DJ</th>';            
                     echo '<th>Min<br>Cost</th>';
@@ -142,6 +137,8 @@ $upcomingEvents = $_SESSION['upcoming_events'];
         
                  $hr = 'eventMem.php?id=';
                  $hr .= $event["id"];
+                 $ed = 'eventDesc.php?id=';
+                 $ed .= $event["id"];
                   echo "<tr>";
                     if (isset($_SESSION['username'])) {
                     echo "<td>";
@@ -152,6 +149,9 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo '</form>';
                     echo "</td>";
                     }
+                    // echo "<td>".$event['eventname']."</td>";
+                    echo '<td><a href="'.$ed.'">'.$event["eventname"].'</a></td>';
+                    echo "<td>".$event['eventdesc']."</td>"; 
                     echo "<td>".substr($event['eventdate'],5,5)."</td>";
                     echo "<td>".substr($event['eventregopen'],5,5)."</td>";
                     echo "<td>".substr($event['eventregend'],5,5)."</td>";
@@ -160,9 +160,8 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     } else {
                             echo "<td> </td>"; 
                     }
-                    echo "<td>".$event['eventname']."</td>";
                     echo "<td>".$event['eventtype']."</td>";
-                    echo "<td>".$event['eventdesc']."</td>"; 
+
                     echo "<td>".$event['eventroom']."</td>";
                     echo "<td>".$event['eventdj']."</td>";            
   

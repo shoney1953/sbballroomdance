@@ -17,6 +17,7 @@ deployment:
     - /bin/cp createNewPassword.php $DEPLOYPATH
     - /bin/cp deleteEventReg.php $DEPLOYPATH
     - /bin/cp event.php $DEPLOYPATH
+    - /bin/cp eventDesc.php $DEPLOYPATH
     - /bin/cp eventMem.php $DEPLOYPATH
     - /bin/cp faq.php $DEPLOYPATH
     - /bin/cp favicon.ico $DEPLOYPATH

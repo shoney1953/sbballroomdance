@@ -311,9 +311,11 @@
 
                        echo '<div class="form-item">';
                        $smealCHK1 = 'sm1'.$choice['id'];
- 
-                          echo '<h4 id="mem1mealchoice1" class="form-item-title-bold">'.$choice['mealname'].' @ '.$price.'</h4>';
-                             echo "<input type='checkbox' id='".$smealCHK1."' name='".$smealCHK1."'  title='Check to select this meal option for Member 1'>";
+                          // echo "<input type='checkbox' id='".$smealCHK1."' name='".$smealCHK1."'  title='Check to select this meal option for Member 1'>";
+                          // echo '<h4 id="mem1mealchoice1" class="form-item-title-bold">'.$choice['mealname'].' @ '.$price.'</h4>';
+                           echo "<h4 class='form-item-title-bold'>".$choice['mealname']." @ ".$price."
+                               <input type='checkbox' id='".$smealCHK1."' name='".$smealCHK1."'  title='Check to select this meal option for Member'>
+                            </h4>";
                           echo "<h5 class='form-item-title'><em>".$choice['mealdescription']."</em></h5>";
 
                     
@@ -343,8 +345,11 @@
                              
                            echo '<div class="form-item">';
                               $smealCHK2 = 'sm2'.$choice['id'];
-                            echo '<h4 class="form-item-title-bold">'.$choice['mealname'].' @ '.$price.'</h4>';
-                            echo "<input type='checkbox' id='".$smealCHK2."' name='".$smealCHK2."'  title='Check to select this meal option for partner'>";
+                            // echo "<input type='checkbox' id='".$smealCHK2."' name='".$smealCHK2."'  title='Check to select this meal option for partner'>";
+                            echo "<h4 class='form-item-title-bold'>".$choice['mealname']." @ ".$price."
+                               <input type='checkbox' id='".$smealCHK2."' name='".$smealCHK2."'  title='Check to select this meal option for partner'>
+                            </h4>";
+                     
                             echo "<h5 class='form-item-title'><em>".$choice['mealdescription']."</em></h5>";
 
                             echo '</div>';
