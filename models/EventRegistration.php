@@ -417,7 +417,7 @@ public function readLike($eventid, $search) {
           ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance, 
           dietaryrestriction = :dietaryrestriction,
           eventid = :eventid  WHERE id = :id';
-   
+    
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);

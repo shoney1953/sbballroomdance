@@ -195,10 +195,27 @@
                echo '<h4 class="form-item-title">Registration Opens</h4>';
                echo $event['eventregopen'];
                echo '</div>';
-               echo '<div class="form-item">';
-               echo '<h4 class="form-item-title">Dance Only Registration Ends</h4>';
-               echo $event['eventregend'];
-               echo '</div>';
+               if ($event['eventtype'] === 'Dance Party') {
+                      $eventCutOff = strtotime($event['eventdate'].'-7 days');
+                      echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title">Dinner Registration Ends</h4>';
+                      echo date("Y-m-d",$eventCutOff);
+                      echo '</div>';
+                       echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title">Dance Only Registration Ends</h4>';
+                      echo $event['eventregend'];
+                      echo '</div>';
+                      
+                  
+
+               } else {
+                       echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title">Registration Ends</h4>';
+                      echo $event['eventregend'];
+                      echo '</div>';
+
+               }
+
 
                echo '<div class="form-item">';
                echo '<h4 class="form-item-title">Event Type</h4>';

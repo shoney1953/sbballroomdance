@@ -52,9 +52,9 @@ if (isset($_POST['submitUpdateReg'])) {
         $chID = "ch".$reg['id'];
         $sbID = "sb".$reg['id'];
         $drID = "dr".$reg['id'];
-
+        
         if (isset($_POST["$updID"])) {
-    
+   
             $eventReg->id = $reg['id'];
             $eventReg->firstname = $_POST["$fnamID"];
             $eventReg->lastname = $_POST["$lnamID"];
@@ -69,11 +69,14 @@ if (isset($_POST['submitUpdateReg'])) {
                 $eventReg->paid = $reg['paid'];
             }
             $eventReg->message = $_POST["$messID"];
+          
             if (isset($_POST["$dddinID"])) {
+     
                $eventReg->ddattenddinner = $_POST["$dddinID"];
             } else {
                 $eventReg->ddattenddinner = $reg['ddattenddinner'];
             }
+            
             if (isset($_POST["$chID"])) {
                 $eventReg->cornhole = $_POST["$chID"];
              } else {
@@ -106,7 +109,8 @@ if (isset($_POST['submitUpdateReg'])) {
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
+                            'mealdescription' => $mealdescription,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -128,6 +132,7 @@ if (isset($_POST['submitUpdateReg'])) {
                     if (isset($_POST["$drID"])) {
                         $eventReg->dietaryrestriction = $_POST["$drID"];
                     }
+ 
             $eventReg->update();
         }
     } 

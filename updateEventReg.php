@@ -124,6 +124,7 @@
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Attend Dinner?</h4>';
                 echo "<input type='number'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+       
                 echo '</div>'; // end of form item
                 $ch = 0;
                 if ($reg['cornhole']) {
@@ -164,11 +165,11 @@
                 else {
                     $ad = 0;
                 }
+          
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Attend Dinner?</h4>';
-     
-                echo "<input title='Select to indicate Registrant will attend dinner' type='checkbox' 
-                         id='".$dddinID."' name='".$dddinID."' onclick='displayMeals2U(".$reg['id'].")' min='0' max='1' value='".$ad."'>";
+                 echo "<input type='number'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+       
                 
                 echo '</div>'; // end of form item
                 // echo '<div class="form-item">';  
