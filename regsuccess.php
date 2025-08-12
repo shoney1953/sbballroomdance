@@ -62,14 +62,18 @@ $eventReg->ddattenddinner = $tempReg->ddattenddinner;
 $eventReg->ddattenddance = 1;
 $eventReg->mealchoice = $tempReg->mealchoice1;
 $eventReg->dietaryrestriction = $tempReg->dietaryrestriction1;
+
 if ($tempReg->ddattenddinner === '1') {
-    if ($tempReg->mealchoice2 !== 0) {
+
+    if ($tempReg->mealchoice1 !== '0') {
+      
+
         $emailBody .= "You have chosen ".$tempReg->mealdesc1;
             if ($tempReg->dietaryrestriction1 != '') {
             $emailBody .= " with a dietary restriction of ".$tempReg->dietaryrestriction1.".<br>";
             } else 
             {
-                $emailBody = ".<br>";
+                $emailBody .= ".<br>";
             }
     }
 } else {
@@ -96,18 +100,18 @@ $toCC2 = $eventReg->email;
 $eventReg->create();
 $event->addCount($eventReg->eventid);
     if ($tempReg->ddattenddinner === '1') {
-        if ($tempReg->mealchoice2 !== 0) {
+        if ($tempReg->mealchoice2 !== '0') {
             $emailBody .= "Your Partner ".$eventReg->firstname." ".$eventReg->lastname." has chosen ".$tempReg->mealdesc2;
                 if ($tempReg->dietaryrestriction2 != '') {
                 $emailBody .= " with a dietary restriction of ".$tempReg->dietaryrestriction2.".<br>";
                 } else 
                 {
-                    $emailBody = ".<br>";
+                    $emailBody .= ".<br>";
                 }
         }
     } 
 }
-  $emailBody .= "The total amount you paid online was : ".number_format($tempReg->totalcost/100,2).".<br>";
+  $emailBody .= "The total amount you paid online was : $".number_format($tempReg->totalcost/100,2).".<br>";
   if ($tempReg->message != '') {
     $emailBody .= "Your message to the event coordinator is : ".$tempReg->message.".<br>";
   }

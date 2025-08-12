@@ -103,7 +103,8 @@ if ($potentialReg2) {
     $totalCost = $totalCost + $priceObj2->unit_amount;
   }
  
-}
+};
+
 $tempReg->totalcost = $totalCost;
 $tempReg->create();
 $tempRegID = $db->lastInsertId();
@@ -159,4 +160,4 @@ header("Location: " . $checkout_session->url);
 
   } // end of submitted if
 
-?>
+ ?>
