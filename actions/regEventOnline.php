@@ -165,7 +165,7 @@ if (!isset($_POST['submitEventReg'])) {
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -184,7 +184,7 @@ if (!isset($_POST['submitEventReg'])) {
                           
                                   $mealid1 = $choice['id'];
                                   $potentialReg1['mealchoice'] =  $choice['id'];
-                                  $potentialReg1['mealdesc'] = $choice['mealchoice'];
+                                  $potentialReg1['mealdesc'] = $choice['mealname'];
                                   $potentialReg1['productid'] = $choice['productid'];
                                   $potentialReg1['memberprice'] =  $choice['memberprice'];
                                   $potentialReg1['guestprice'] =  $choice['guestprice'];
@@ -199,12 +199,12 @@ if (!isset($_POST['submitEventReg'])) {
 
                                   $mealid2 = $choice['id'];
 
-                                  $meal2 = $choice['mealchoice'];
+                                  $meal2 = $choice['mealname'];
                                   $mealprice2 = $choice['memberprice'];
                                   $potentialReg2['productid'] = $choice['productid'];
                                   $mealpriceid2 = $choice['priceid'];
                                   $potentialReg2['mealchoice'] =  $choice['id'];
-                                  $potentialReg2['mealdesc'] = $choice['mealchoice'];                       
+                                  $potentialReg2['mealdesc'] = $choice['mealname'];                       
                                   $potentialReg2['memberprice'] =  $choice['memberprice'];
                                   $potentialReg2['guestprice'] =  $choice['guestprice'];
                                   $potentialReg2['guestpriceid'] =  $choice['guestpriceid'];
