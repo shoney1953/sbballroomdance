@@ -241,7 +241,7 @@ public function read_ByEventIdDinner($eventid) {
   WHERE
     r.eventid = :eventid 
   ORDER BY 
-    r.ddattenddinner DESC, r.lastname, r.firstname';
+    r.ddattenddinner, r.lastname, r.firstname';
 
   // Prepare statement
   $stmt = $this->conn->prepare($query);
