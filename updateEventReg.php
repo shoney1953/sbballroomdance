@@ -24,6 +24,7 @@
                         $meal_item = array(
                             'id' => $id,
                             'mealname' => $mealname,
+                            'mealdescription' => $mealdescription,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,

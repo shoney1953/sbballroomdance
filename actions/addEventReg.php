@@ -36,7 +36,7 @@ $eventReg = new EventRegistration($db);
 $event = new Event($db);
 $user = new User($db);
 $mChoices = new DinnerMealChoices($db);
-$mealchoices = [];
+
 $upcomingEvents = [];
 $upcomingEvents = $_SESSION['upcoming_events'] ;
 
@@ -79,7 +79,8 @@ if (isset($_POST['submitAddReg'])) {
                 extract($row);
                 $meal_item = array(
                     'id' => $id,
-                    'mealchoice' => $mealchoice,
+                    'mealname' => $mealname,
+                    'mealdescription' => $mealdescription,
                     'eventid' => $eventid,
                     'memberprice' => $memberprice,
                     'guestprice' => $guestprice,
@@ -171,7 +172,7 @@ if (isset($_POST['submitAddReg'])) {
                     "<br>Type:    ".$event->eventtype.
                     "<br>DJ  :    ".$event->eventdj.
                     "<br>Room:    ".$event->eventroom.
-                    "<br>Cost:    ".$fmt->formatCurrency($event->eventcost, 'USD').
+                    "<br>Cost:    $".$fmt->formatCurrency($event->eventcost, 'USD').
                     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
                     if ($event->eventtype === 'BBQ Picnic') {
                         if (isset($_POST["$attDin"])) {
@@ -206,7 +207,7 @@ if (isset($_POST['submitAddReg'])) {
                           
                                  $eventReg->mealchoice = $choice['id'];
                              
-                                 $emailBody .= "<br>You have selected the meal ".$choice['mealchoice']." at a cost of ".number_format($choice['memberprice']/100,2).".";
+                                 $emailBody .= "<br>You have selected the meal ".$choice['mealname']." at a cost of ".number_format($choice['memberprice']/100,2).".";
                              }
                           } // foreach
                         $drID = "dr".$usr['id'];

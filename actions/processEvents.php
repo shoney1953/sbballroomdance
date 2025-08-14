@@ -346,6 +346,7 @@ $_SESSION['regUsers'] = $users;
         
         <ul>
             <li><a href="../administration.php">Back to Administration</a></li>
+            <li><a href="../index.php">Back to Home</a></li>
         </ul>
         </div>
 </nav>

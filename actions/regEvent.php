@@ -132,7 +132,8 @@ if (!isset($_POST['submitEventReg'])) {
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
+                            'mealdescription' => $mealdescription,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -148,22 +149,20 @@ if (!isset($_POST['submitEventReg'])) {
                          $smealCHK1 = 'sm1'.$choice['id'];
 
                          if (isset($_POST["$smealCHK1"])) {
-                               
+                          
                                   $mealid1 = $choice['id'];
     
-                                  $meal1 = $choice['mealchoice'];
+                                  $meal1 = $choice['mealname'];
                                   $mealprice1 = $choice['memberprice'];
                                   $mealpriceid1 = $choice['priceid'];
                             
                                } //smeal1
                          $smealCHK2 = 'sm2'.$choice['id'];
 
-                         if (isset($_POST["$smealCHK2"])) {    
-    
-                            
+                         if (isset($_POST["$smealCHK2"])) {   
+                             
                                   $mealid2 = $choice['id'];
-        
-                                  $meal2 = $choice['mealchoice'];
+                                  $meal2 = $choice['mealname'];
                                   $mealprice2 = $choice['memberprice'];
                                   $mealpriceid2 = $choice['priceid'];
                        
@@ -204,7 +203,7 @@ if (!isset($_POST['submitEventReg'])) {
                                 $emailBody .= "You have chosen to attend dinner.<br>";
                                 if ($_SESSION['testmode'] === 'YES') {
                                     if ($meal1 !== '') {
-                                        $emailBody .= "You selected ".$meal1." at the cost of ".number_format($mealprice1/100,2)."";   
+                                        $emailBody .= "You selected ".$meal1." at the cost of $".number_format($mealprice1/100,2)."";   
                                         $danceCost = $danceCost + $mealprice1;    
                                         if ($dietaryRestriction1 != '') {
                                           $emailBody .= " with a dietary restrictions of ".$dietaryRestriction1.".<br>";
@@ -216,7 +215,7 @@ if (!isset($_POST['submitEventReg'])) {
 
                             
                                     if ($meal2 !== '') {
-                                        $emailBody .= "You also selected ".$meal2." at the cost of ".number_format($mealprice2/100,2)."";    
+                                        $emailBody .= "You also selected ".$meal2." at the cost of $".number_format($mealprice2/100,2)."";    
                                         $danceCost = $danceCost + $mealprice2;    
                                       if ($dietaryRestriction2 != '') {
                                           $emailBody .= " with a dietary restrictions of ".$dietaryRestriction2.".<br>";
@@ -230,10 +229,14 @@ if (!isset($_POST['submitEventReg'])) {
 
                         } else {
                             $emailBody .= "You have chosen not to attend dinner before the dance.<br>";
-                            $emailBody .= "As of 2025, there is now a minimum charge of $5 per member or $10 per visitor for the dance only.<br>";
-                            $emailBody .= "Cost of the Dance Only will be ".$event['eventcost'].".<br>";  
+        
+                            $emailBody .= "Member Cost of the Dance Only will be $".number_format($event['eventcost']).".<br>";  
+                            $emailBody .= "Guest Cost of the Dance Only will be $".number_format($event['eventguestcost']).".<br>"; 
+                        }    
+                          $emailBody .= "Please submit your fee prior to the dance as indicated on the form.<br>";  
+                        if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+                           $emailBody .= "You may optionally choose to pay online. Simply go to your profile and click the pay button.<br>";
                         }
-                         $emailBody .= "Please submit your fee prior to the dance as indicated on the form.<br>";
                     break;
                     case "Dinner Dance":
 
@@ -260,6 +263,9 @@ if (!isset($_POST['submitEventReg'])) {
                                 } // meal2 
 
                            $emailBody .= "<br>Cost of the Dance will be ".number_format($danceCost/100,2).".<br>";  
+                         if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+                           $emailBody .= "You may optionally choose to pay online. Simply go to your profile and click the pay button.<br>";
+                           }
                         }  //testmode
 
                     break;

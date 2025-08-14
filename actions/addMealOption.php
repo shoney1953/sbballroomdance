@@ -113,7 +113,7 @@ if (isset($_POST['submitAddMeals'])) {
         $product->description = $_POST['mealdesc2'];
         $productName = $event->eventname;
         $productName .= ' ';
-        $productName .= $_POST['meal1'];
+        $productName .= $_POST['meal2'];
         $product->name = $productName;
     
     
@@ -164,7 +164,7 @@ if (isset($_POST['submitAddMeals'])) {
         $product->description = $_POST['mealdesc3'];
         $productName = $event->eventname;
         $productName .= ' ';
-        $productName .= $_POST['meal1'];
+        $productName .= $_POST['meal3'];
         $product->name = $productName;
    
     if (isset($_POST['memberprice3'])) {

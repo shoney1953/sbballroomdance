@@ -224,6 +224,43 @@ public function read_ByEmail($email) {
     return $stmt;
 
 }
+  public function read_ByEventIdUser($eventid, $userid) {
+
+    $query = 'SELECT 
+     id, eventid, userid, mealchoice, dietaryrestriction
+    FROM ' . $this->table . ' 
+    WHERE
+      (eventid = :eventid) AND (userid = :userid)
+      LIMIT 0,1';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+
+    $stmt->bindParam('eventid', $eventid);
+    $stmt->bindParam('userid', $userid);
+    // Execute query
+ 
+    $stmt->execute();
+
+
+       $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          // Set properties
+          if ($row) {
+          $this->id = $row['id'];
+          $this->eventid = $row['eventid'];
+          $this->userid = $row['userid'];
+          $this->mealchoice = $row['mealchoice'];
+          $this->dietaryrestriction = $row['dietaryrestriction'];
+     
+
+          return true;
+          }
+          return false;
+
+}
 public function read_ByEventIdDinner($eventid) {
       
 
@@ -479,6 +516,34 @@ public function readLike($eventid, $search) {
       $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
       $stmt->bindParam(':cornhole', $this->cornhole);
       $stmt->bindParam(':softball', $this->softball);
+
+
+      // Execute query
+      if($stmt->execute()) {
+        return true;
+      }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+}
+public function updatePaid() {
+      // Create query
+      $query = 'UPDATE ' . $this->table . 
+ 
+      ' SET paid = :paid, paidonline = :paidonline
+          WHERE id = :id';
+
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Bind data
+      $stmt->bindParam(':id', $this->id);
+
+      $stmt->bindParam(':paid', $this->paid);
+      $stmt->bindParam(':paidonline', $this->paidonline);
 
 
       // Execute query

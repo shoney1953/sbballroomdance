@@ -168,6 +168,7 @@ if ($rowCount > 0) {
         $paid_item = array(
             'id' => $id,
             'paid' => $paid,
+            'paidonline' => $paidonline,
             'year' => $year
 
         );
@@ -351,7 +352,7 @@ if ($rowCount > 0) {
     echo '<table>';
     echo '<thead>';
     echo '<tr>';
-    echo '<th colspan="2" style="text-align:center">Membership Status</th>';
+    echo '<th colspan="3" style="text-align:center">Membership Status</th>';
     echo '</tr>';
     echo '<tr>';
     echo "<th>YEAR</th>";
@@ -383,9 +384,6 @@ if ($rowCount > 0) {
   
      ?>
     
-      
-
-   
 
     <div class="form-grid-div">
    

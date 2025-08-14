@@ -46,6 +46,8 @@ deployment:
     - /bin/cp regForEvents.php $DEPLOYPATH
     - /bin/cp regForEventsOnline.php $DEPLOYPATH
     - /bin/cp regcancel.php $DEPLOYPATH
+    - /bin/cp regPaycancel.php $DEPLOYPATH
+    - /bin/cp regPaysuccess.php $DEPLOYPATH
     - /bin/cp regsuccess.php $DEPLOYPATH
     - /bin/cp renewcancel.php $DEPLOYPATH
     - /bin/cp renewNow.php $DEPLOYPATH

@@ -124,7 +124,7 @@ if ($addReg) {
                         $meal_item = array(
                             'id' => $id,
                             'mealname' => $mealname,
-                            'mealdescription' => 'mealdescription',
+                            'mealdescription' => $mealdescription,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,

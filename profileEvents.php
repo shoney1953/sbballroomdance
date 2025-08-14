@@ -4,6 +4,7 @@ $sess = session_start();
 require_once 'config/Database.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/EventRegistration.php';
+require_once 'models/Event.php';
 require_once 'models/User.php';
 require_once 'models/MemberPaid.php';
 require_once 'models/DinnerMealChoices.php';
@@ -38,6 +39,7 @@ $db = $database->connect();
 $userid = $_SESSION['userid'];
 $user = new User($db);
 $partner = new User($db);
+$event = new Event($db);
 $mChoices = new DinnerMealChoices($db);
 $mealchoices = [];
 $user->id = $_SESSION['userid'];
@@ -165,7 +167,61 @@ if ($prowCount > 0) {
     <section id="eventregistrations" class="content">
         <h2>Event Registrations</h2>
     <div class="form-grid2">
+      <?php
+ if (isset($_SESSION['testmode']) && $_SESSION['testmode'] === 'YES') {
+    echo '<div class="form-grid-div">';
+    echo '<form method="POST" name="MemberPayEvents" action="actions/payEventReg.php">';
+         echo '<table>';
+         echo '<thead>';
+         echo '<tr>';
+         echo '<th colspan="5" style="text-align: center">Pay for Event Registrations</th>';
+         echo '</tr>'; 
+           echo '<tr>';
+             echo '<th>Pay?</th>';
 
+             echo '<th>Event Name</th>';
+             echo '<th>Event Type</th>';
+             echo '<th>Event Date</th>';
+
+         echo '</tr>';
+         echo '</thead>';
+         echo '<tbody>'; 
+        foreach ($eventRegs as $reg) {
+
+          if ($reg['paid'] === '0') {
+               $event->id = $reg['eventid'];
+               $event->read_single();
+       
+               if ($event->eventcost !== '0') {
+                   $payID = "pay".$reg['id'];
+                  $payPartID = "payPart".$reg['id'];
+              echo "<tr>";
+               echo "<td>";
+             
+               echo "<input type='checkbox' title='Check to Pay for Event Registration' name='".$payID."'>";
+              
+               echo "</td>";
+               
+                 echo "<td>".$reg['eventname']."</td>";
+                 echo "<td>".$reg['eventtype']."</td>";
+                 echo "<td>".$reg['eventdate']."</td>";  
+
+                 echo '<input type="hidden" name="id" value="'.$reg['id'].'">';
+
+               echo "</tr>";
+
+               } // eventcost
+               
+          } //not paid
+        } // foreach eventreg
+         echo '</tbody>';
+        echo '</table>';
+        echo '<button type="submit" name="submitPayReg">Pay for Your Event Registrations</button> ';      
+    echo '</div>'; // form grid div
+  echo '<div class="form-grid-div">';
+    echo '</div>'; // form grid div
+      }
+    ?>
     <div class="form-grid-div">
  
 
@@ -338,7 +394,8 @@ if ($prowCount > 0) {
     echo '</form>';
     echo '</div>';
      }
- if (isset($_SESSION['testmode']) && $_SESSION['testmode'] === 'YES') {
+
+    //------------------------------- update meals
     echo '<div class="form-grid-div">';
      echo '<form method="POST" name="MemberUpdateEventMeals" action="actions/updateMealEventReg.php">';  
      echo '<table>';
@@ -606,7 +663,7 @@ if ($prowCount > 0) {
         echo '</form>';
         echo '</div>';
         } // yes partnerid
- } 
+ 
      ?>
 
     <div class="form-grid-div">
@@ -805,9 +862,7 @@ if ($prowCount > 0) {
               
                } // if bbq
              } // foreach
-         
-         
-     
+
       
         echo '</div>';
         echo '</tbody>';
