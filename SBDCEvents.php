@@ -33,9 +33,16 @@ $upcomingEvents = $_SESSION['upcoming_events'];
     <section id="events" class="content">
 
       <br>
-        <h2 class="section-header">Choose to register and Pay Immediately or <br> Register then pay later from your profile - paying online later from your profile; or Send in your form and check manually</h2>
-        <h4>Once Registered, You may modify or delete your registrations from your profile under the Event Registration tab.</h4>
-     
+      <?php       
+      if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+        echo '<h2 class="section-header">Choose to register and Pay Immediately or <br> Register then pay later from your profile - paying online later from your profile; or Send in your form and check manually</h2>';
+       
+      } else {
+          echo '<h2 class="section-header">Choose to register for events and then Send in your form and check manually</h2>';
+       
+      }
+     ?>
+      <h4>Once Registered, You may modify or delete your registrations from your profile under the Event Registration tab.</h4>
         <div class="form-grid2">
         <?php
 
@@ -48,7 +55,11 @@ $upcomingEvents = $_SESSION['upcoming_events'];
         }
     
         echo '<div class="form-grid-div">';
+         if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
         echo "<button><a href='regForEvents.php'><h4>Click to Register for Events and pay <em>LATER</em> either <br> Online from your profile event registrations or <br> Manually by sending in a form and check</h4></a></button> ";
+         } else {
+             echo "<button><a href='regForEvents.php'><h4>Click to Register for Events and pay Manually by sending in a form and check</h4></a></button> ";
+         }
         echo '</div>';
 
       
