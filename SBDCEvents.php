@@ -33,8 +33,8 @@ $upcomingEvents = $_SESSION['upcoming_events'];
     <section id="events" class="content">
 
       <br>
-        <h1 class="section-header">List of Upcoming Events</h1>
-        <h4>To Register for events, click the Register for Events Button Below. You must be logged in as a Visitor or Member to register.</h4>
+        <h2 class="section-header">Choose to register and Pay Immediately or <br> Register then pay later from your profile - paying online later from your profile; or Send in your form and check manually</h2>
+        <h4>Once Registered, You may modify or delete your registrations from your profile under the Event Registration tab.</h4>
      
         <div class="form-grid2">
         <?php
@@ -43,12 +43,12 @@ $upcomingEvents = $_SESSION['upcoming_events'];
             if (isset($_SESSION['role'])) {
         if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
             echo '<div class="form-grid-div">';
-              echo "<button><a href='regForEventsOnline.php'><h4>Click to Register and Pay for Events Online</h4></a></button> ";
+              echo "<button><a href='regForEventsOnline.php'><h4>Click to Register and Pay for Events Online <em>NOW</em></h4></a></button> ";
               echo '</div>';
         }
     
         echo '<div class="form-grid-div">';
-        echo "<button><a href='regForEvents.php'><h4>Click to Register for Events</h4></a></button> ";
+        echo "<button><a href='regForEvents.php'><h4>Click to Register for Events and pay <em>LATER</em> either <br> Online from your profile event registrations or <br> Manually by sending in a form and check</h4></a></button> ";
         echo '</div>';
 
       

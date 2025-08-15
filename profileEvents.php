@@ -176,6 +176,9 @@ if ($prowCount > 0) {
          echo '<tr>';
          echo '<th colspan="5" style="text-align: center">Pay for Event Registrations</th>';
          echo '</tr>'; 
+         echo '<tr>';
+         echo '<th colspan="5" style="text-align: center">Events whose cut-off dates are past today will not show up. Please contact the Treasurer or Event Coordinator to arrange payment.</th>';
+        echo '</tr>';
            echo '<tr>';
              echo '<th>Pay?</th>';
 
@@ -192,10 +195,18 @@ if ($prowCount > 0) {
                $event->id = $reg['eventid'];
                $event->read_single();
        
-               if ($event->eventcost !== '0') {
-                   $payID = "pay".$reg['id'];
-                  $payPartID = "payPart".$reg['id'];
-              echo "<tr>";
+              if ($event->eventcost !== '0') {
+                  $payID = "pay".$reg['id'];
+          
+                  $eventCutOff = strtotime($reg['eventdate'].'-7 days');
+                  $comparedateTS = strtotime($compareDate);
+                  $eventRegEnd = strtotime($event->eventregend);
+           
+                  if (( ($event->eventtype === 'Dinner Dance') &&  ($comparedateTS <= $eventCutOff) ) ||
+                       (($event->eventtype === 'Dance Party')  &&  ($reg['ddattenddinner'] === '1') && ($comparedateTS <= $eventCutOff) ) ||
+                       (($event->eventtype === 'Dance Party')  &&  ($reg['ddattenddinner'] !== '1') && ($comparedateTS <= $eventRegEnd ) )) {
+    
+               echo "<tr>";
                echo "<td>";
              
                echo "<input type='checkbox' title='Check to Pay for Event Registration' name='".$payID."'>";
@@ -209,7 +220,7 @@ if ($prowCount > 0) {
                  echo '<input type="hidden" name="id" value="'.$reg['id'].'">';
 
                echo "</tr>";
-
+                 } // meets date criteria
                } // eventcost
                
           } //not paid
@@ -217,11 +228,12 @@ if ($prowCount > 0) {
          echo '</tbody>';
         echo '</table>';
         echo '<button type="submit" name="submitPayReg">Pay for Your Event Registrations</button> ';      
-    echo '</div>'; // form grid div
-  echo '<div class="form-grid-div">';
-    echo '</div>'; // form grid div
-      }
+        echo '</div>'; // form grid div
+     echo '<div class="form-grid-div">';
+     echo '</div>'; // form grid div
+      } // testmode
     ?>
+
     <div class="form-grid-div">
  
 
