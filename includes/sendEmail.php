@@ -3,12 +3,10 @@ require 'PHPMailer.php';
 require 'SMTP.php';
 require 'Exception.php';
 // require_once '../config/env.php';
-$_SESSION['mailpwd'] = '$2023mail4SBDC';
+$_SESSION['mailpwd'] = '@20254SbdcDancers';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
-
 
 function sendEmail($toEmail, 
     $toName,  
