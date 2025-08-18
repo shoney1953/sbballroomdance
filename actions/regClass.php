@@ -255,9 +255,9 @@ if (isset($_POST['submitRegClass'])) {
             } // end foreach class
         } //end foreach regselected
 
-//    $redirect = "Location: ".$_SESSION['homeurl'];
-//      header($redirect);
-//  exit;
+   $redirect = "Location: ".$_SESSION['homeurl'];
+     header($redirect);
+ exit;
 } // end submit
 
 
