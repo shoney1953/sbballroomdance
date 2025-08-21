@@ -664,6 +664,7 @@ foreach ($upcomingEvents as $event) {
                 echo '<input type="hidden" name="guestpriceid" value='.$event['eventguestpriceid'].'>';     
                 echo '<input type="hidden" name="eventguestcost" value='.$event['eventguestcost'].'>';
 
+
                 if ($_SESSION['role'] === 'visitor') {
                   echo '<input type="hidden" name="visitor" value="1">';
                 echo '<input type="hidden" name="firstname1" value='.$_SESSION['visitorfirstname'].'>';
@@ -839,6 +840,8 @@ foreach ($upcomingEvents as $event) {
             echo "<h1 class='form-title'>Update Reservations for ".$event['eventname']." on ".$event['eventdate']."</h1>";
             echo '<form method="POST" name="MemberUpdateEventMeals" action="updateMealEventRegt.php">';  
             echo '<input type="hidden" name="regID1" value='.$reg->id.'>';
+            echo '<input type="hidden" name="ddattdin1" value="1">';
+            echo '<input type="hidden" name="ddattdin2" value="1">';
             if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                     echo '<input type="hidden" name="regID2" value='.$partnerReg->id.'>';
                  }

@@ -21,7 +21,7 @@ $mealChk = '';
 $mealChk2 = '';
 
 if (isset($_POST['submitModifyRegs'])) {
-     
+ 
             if (isset($_POST['regID1'])) {
               $eventReg->id = $_POST['regID1'];
               $eventReg->read_single();
@@ -55,7 +55,7 @@ if (isset($_POST['submitModifyRegs'])) {
               } // while
             } // rowcount
          
-
+           
             if (isset($_POST['ddattdin1'])) {
                $eventReg->ddattenddinner = 1;
             } else {

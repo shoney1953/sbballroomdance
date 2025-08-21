@@ -134,7 +134,7 @@ if (!isset($_POST['submitAddRegs'])) {
       
    }
 
-    $emailSubject = "You have registered for SBDC event(s)";
+
 
         $eventid = $_POST['eventid'];
 
@@ -210,9 +210,7 @@ if (!isset($_POST['submitAddRegs'])) {
                                   $potentialReg1['guestprice'] =  $choice['guestprice'];
                                   $potentialReg1['guestpriceid'] =  $choice['guestpriceid'];
                                   $potentialReg1['priceid'] =  $choice['priceid'];
-                         
-                         
-                            
+
                                } //smeal1
                    
                              $mealChk2 = 'meal2'.$choice['id'];
@@ -238,7 +236,7 @@ if (!isset($_POST['submitAddRegs'])) {
             }  //testmode
 // the following happens when user has specified NOT to pay online
             if (!(isset($_POST['payonline'])) ) {
-
+                $emailSubject = "You have registered for SBDC event(s)";
                 $num_registered++;
                 $eventId = $eventInst->id;
                 $emailBody .= "<br><strong> Event: ".$eventInst->eventname.
@@ -592,6 +590,7 @@ if (!isset($_POST['submitAddRegs'])) {
 
 
         if ($potentialReg1['eventtype'] === 'Dinner Dance') {
+
         if ($_POST['visitor'] === '1') {
          $danceCost = $danceCost + $potentialReg1['guestprice'];
          $cost1 = $potentialReg1['guestprice'];
