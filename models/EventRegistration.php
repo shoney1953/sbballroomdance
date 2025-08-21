@@ -63,10 +63,9 @@ class EventRegistration {
 
     // Get Single Danceevent
     public function read_single() {
-      
-
+    
           $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
-          c.orgemail as orgemail
+          c.orgemail as orgemail,
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
           r.registeredby, r.cornhole, r.softball, r.mealchoice,
           r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
@@ -226,18 +225,25 @@ public function read_ByEmail($email) {
 }
   public function read_ByEventIdUser($eventid, $userid) {
 
-    $query = 'SELECT 
-     id, eventid, userid, mealchoice, dietaryrestriction
-    FROM ' . $this->table . ' 
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+     r.id, r.eventid, r.userid, r.mealchoice, r.dietaryrestriction,
+     r.dateregistered, r.registeredby, r.paid, r.paidonline, r.ddattenddinner,
+     r.cornhole, r.softball,
+     m.mealname as mealname, m.mealdescription as mealdescription
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
     WHERE
-      (eventid = :eventid) AND (userid = :userid)
+      (r.eventid = :eventid) AND (r.userid = :userid)
       LIMIT 0,1';
 
     // Prepare statement
     $stmt = $this->conn->prepare($query);
 
     // Bind ID
-
     $stmt->bindParam('eventid', $eventid);
     $stmt->bindParam('userid', $userid);
     // Execute query
@@ -253,9 +259,74 @@ public function read_ByEmail($email) {
           $this->eventid = $row['eventid'];
           $this->userid = $row['userid'];
           $this->mealchoice = $row['mealchoice'];
+          $this->eventname = $row['eventname'];
+          $this->eventtype = $row['eventtype'];
+          $this->eventdate = $row['eventdate'];
+          $this->orgemail = $row['orgemail'];
           $this->dietaryrestriction = $row['dietaryrestriction'];
-     
+          $this->ddattenddinner = $row['ddattenddinner'];
+          $this->dateregistered = $row['dateregistered'];
+          $this->registeredby = $row['registeredby'];
+          $this->paid = $row['paid'];
+          $this->paidonline = $row['paidonline'];
+          $this->mealdescription = $row['mealdescription'];
+          $this->mealname = $row['mealname'];
+          $this->cornhole = $row['cornhole'];
+          $this->softball = $row['softball'];
+          return true;
+          }
+          return false;
 
+}
+ public function read_ByEventIdVisitor($eventid, $email) {
+
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+     r.id, r.eventid, r.userid, r.mealchoice, r.dietaryrestriction,
+     r.dateregistered, r.registeredby, r.paid, r.paidonline, r.ddattenddinner,
+     r.cornhole, r.softball,
+     m.mealname as mealname, m.mealdescription as mealdescription
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      (r.eventid = :eventid) AND (r.email = :email)
+      LIMIT 0,1';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+    $stmt->bindParam('email', $email);
+    // Execute query
+ 
+    $stmt->execute();
+
+       $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          // Set properties
+          if ($row) {
+          $this->id = $row['id'];
+          $this->eventid = $row['eventid'];
+          $this->userid = $row['userid'];
+          $this->mealchoice = $row['mealchoice'];
+          $this->eventname = $row['eventname'];
+          $this->eventtype = $row['eventtype'];
+          $this->eventdate = $row['eventdate'];
+          $this->orgemail = $row['orgemail'];
+          $this->dietaryrestriction = $row['dietaryrestriction'];
+          $this->ddattenddinner = $row['ddattenddinner'];
+          $this->dateregistered = $row['dateregistered'];
+          $this->registeredby = $row['registeredby'];
+          $this->paid = $row['paid'];
+          $this->paidonline = $row['paidonline'];
+          $this->mealdescription = $row['mealdescription'];
+          $this->mealname = $row['mealname'];
+          $this->cornhole = $row['cornhole'];
+          $this->softball = $row['softball'];
           return true;
           }
           return false;
@@ -505,7 +576,6 @@ public function readLike($eventid, $search) {
  
       ' SET cornhole = :cornhole, softball = :softball, ddattenddinner = :ddattenddinner 
           WHERE id = :id';
-
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);

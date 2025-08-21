@@ -148,6 +148,7 @@ if ($prowCount > 0) {
      <ul>
         <li><a href="index.php">Back to Home</a></li>
         <li><a href="SBDCEvents.php">Back to Events</a></li>
+        
 
         <li><a href="yourProfile.php">Back to Your Profile</a></li>
      

@@ -401,7 +401,8 @@ hr {
 }
 .content p {
   color: rgb(41, 39, 39);
-  line-height: 30px;
+  /* line-height: 30px; */
+  line-height: normal;
   letter-spacing: 1.2px;
   text-align: center;
 }
@@ -458,11 +459,21 @@ hr {
   padding: 2px;
   box-shadow: 2px 2px 2px 1px rgba(33, 24, 37, 0.2);
 }
+.form-container-flex {
+  display: flex;
+}
 .form-title {
 /* color: rgb(42, 7, 58); */
 /* color: var(--formdivision-color3); */
 color: var(--button-background3);
 text-align: center;
+font-weight: bolder;
+}
+.form-title-left {
+/* color: rgb(42, 7, 58); */
+/* color: var(--formdivision-color3); */
+color: var(--button-background3);
+text-align: left;
 font-weight: bolder;
 }
 .form-division {
@@ -495,7 +506,8 @@ font-weight: bolder;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 1px;
-  /* grid-auto-rows: minmax(50px, auto); */
+  /* grid-auto-rows: minax(50px, auto); */
+
   grid-auto-rows: auto;
   margin-top: 1px;
   margin-bottom:  1px;
@@ -1345,7 +1357,7 @@ iframe {
   }
   .content p {
     color: rgb(41, 39, 39);
-    line-height: 35px;
+    line-height: normal;
     letter-spacing: 1.1px;
   }
 
@@ -1587,7 +1599,7 @@ iframe {
   }
   .content p {
     color: rgb(41, 39, 39);
-    line-height: 35px;
+    line-height: normal;
     letter-spacing: 1.1px;
   }
 
@@ -1868,7 +1880,7 @@ iframe {
   }
   .content p {
     color: rgb(41, 39, 39);
-    line-height: 20px;
+    line-height: normal;
     letter-spacing: 1.1px;
   }
 

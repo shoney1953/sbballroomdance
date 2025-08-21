@@ -48,7 +48,14 @@ $result = $mChoices->read_ByEventId($eventID);
     <div class="container">   
      <ul> 
     <li><a href="index.php">Back to Home</a></li>
-    <li><a href="SBDCEvents.php">Back to Upcoming Events</a></li>
+    <?php
+      if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+        echo '  <li><a href="SBDCEventst.php">Back to Upcoming Events</a></li>';
+      } else {
+         echo '  <li><a href="SBDCEvents.php">Back to Upcoming Events</a></li>';
+      }
+    ?>
+  
      </ul>
     </div>
 </nav>

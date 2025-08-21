@@ -89,7 +89,6 @@ if (!isset($_POST['submitEventReg'])) {
  
     }
 
-  
 
     foreach ($events as $event) {
 
@@ -116,11 +115,7 @@ if (!isset($_POST['submitEventReg'])) {
                   
               $eventId = $event['id'];
               $evTypeID = "et".$event['id'];
-              $potentialReg1['eventid'] = $event['id'];
-              $potentialReg1['orgemail'] = $event['orgemail'];
-              $potentialReg1['eventdate'] = $event['eventdate'];
-              $potentialReg1['eventtype'] = $event['eventtype'];
-              $potentialReg1['eventname'] = $event['eventname'];
+  
               $eventname = $event['eventname'];
               $eventdate = $event['eventdate'];
               $potentialReg1['firstname'] = $_POST['regFirstName1'];
@@ -201,14 +196,7 @@ if (!isset($_POST['submitEventReg'])) {
 
                                   $meal2 = $choice['mealname'];
                                   $mealprice2 = $choice['memberprice'];
-                                  $potentialReg2['productid'] = $choice['productid'];
-                                  $mealpriceid2 = $choice['priceid'];
-                                  $potentialReg2['mealchoice'] =  $choice['id'];
-                                  $potentialReg2['mealdesc'] = $choice['mealname'];                       
-                                  $potentialReg2['memberprice'] =  $choice['memberprice'];
-                                  $potentialReg2['guestprice'] =  $choice['guestprice'];
-                                  $potentialReg2['guestpriceid'] =  $choice['guestpriceid'];
-                                  $potentialReg2['priceid'] =  $choice['priceid'];
+      
 
                                } //smeal2
                       } // foreach choice

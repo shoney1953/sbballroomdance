@@ -42,6 +42,7 @@ $visitorLast = '';
         unset($_SESSION['username']);
         unset($_SESSION['visitorfirstname']);
         unset($_SESSION['visitorlastname']);
+          unset($_SESSION['visitoremail']);
         unset($_SESSION['userfirstname']);
         unset($_SESSION['userlastname']);
         unset($_SESSION['partnerid']);
@@ -49,7 +50,7 @@ $visitorLast = '';
         $_SESSION['visitorfirstname'] = $visitor->firstname;
         $_SESSION['visitorlastname'] = $visitor->lastname;
         $_SESSION['username'] = $visitor->email;
-
+        $_SESSION['visitoremail'] = $visitor->email;
         $_SESSION['useremail'] = $visitor->email;
         $_SESSION['role'] = "visitor";
         if ($visitor->read_ByEmail($visitorEmail)) {

@@ -69,6 +69,7 @@ deployment:
     - /bin/cp SBDCContact.php $DEPLOYPATH
     - /bin/cp SBDCDJInfo.php $DEPLOYPATH
     - /bin/cp SBDCEvents.php $DEPLOYPATH
+    - /bin/cp SBDCEventst.php $DEPLOYPATH
     - /bin/cp SBDCHelp.php $DEPLOYPATH
     - /bin/cp SBDCInstructor.php $DEPLOYPATH
     - /bin/cp SBDCMemberDirectory.php $DEPLOYPATH

@@ -148,8 +148,8 @@ if ($rowCount > 0) {
             'eventguestcost' => $eventguestcost
         );
         array_push($events, $event_item);
-    
-        if ($compareDate <= $row['eventdate']) {
+   
+        if (strtotime($compareDate) <= strtotime($row['eventdate'])) {
             array_push($upcomingEvents, $event_item);
         }
         
@@ -348,7 +348,14 @@ if ($rowCount > 0) {
          Activities Calendar
         </a></li>
             <li><a title="Pictures from various activities and class videos" href="SBDCPictures.php">Photos</a></li>
-            <li><a title="List of Upcoming Events" href="SBDCEvents.php">Upcoming Events</a></li>
+                <?php
+      if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+        echo '  <li><a title="List of Upcoming Events" href="SBDCEventst.php">Upcoming Events</a></li>';
+      } else {
+         echo '  <li><a title="List of Upcoming Events" href="SBDCEvents.php">Upcoming Events</a></li>';
+      }
+    ?>
+            <!-- <li><a title="List of Upcoming Events" href="SBDCEvents.php">Upcoming Events</a></li> -->
 
             <li><a title="List of Upcoming Classes" href="SBDCClasses.php">Upcoming Classes</a></li>
 

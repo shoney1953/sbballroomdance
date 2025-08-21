@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require 'PHPMailer.php';
 require 'SMTP.php';
 require 'Exception.php';
