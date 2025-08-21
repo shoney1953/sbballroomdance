@@ -561,12 +561,10 @@ if (!isset($_POST['submitAddRegs'])) {
       
           $danceCost = $danceCost + $potentialReg1['memberprice'];
 
-           $cost1 = $potentialReg1['memberprice'];
-    
+           $cost1 = $potentialReg1['memberprice']; 
           if (isset($_POST['firstname2'])) { 
             $cost2 = $potentialReg2['memberprice'];
-            $danceCost = $danceCost + $potentialReg2['memberprice'];
-           
+            $danceCost = $danceCost + $potentialReg2['memberprice'];        
          }
        } // visitor
       } // attend dinner
