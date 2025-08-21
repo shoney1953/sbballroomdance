@@ -553,6 +553,8 @@ foreach ($upcomingEvents as $event) {
                      echo "<input type='checkbox'  title='Attend dinner' id='ddattdin1' name='ddattdin1' >";
                   }
                   echo '</div>'; // end of form item
+            } else {
+                echo "<input type='hidden'   id='ddattdin1' name='ddattdin1' value".$reg->ddattenddinner.">";
             }
      
             foreach ($mealChoices as $choice){
@@ -585,14 +587,16 @@ foreach ($upcomingEvents as $event) {
                   } else {
                      echo "<input type='checkbox'  title='Meal Choice' id='ddattdin2' name='ddattdin2' >";
                   }
-                  echo '</div>'; // end of form item
-                
+                  echo '</div>'; // end of form item                
+            } else {
+                echo "<input type='hidden'   id='ddattdin2' name='ddattdin2' value".$reg->ddattenddinner.">";
             }
     
               foreach ($mealChoices as $choice){
                      $mealChk2 = 'meal2'.$choice['id'];
                     echo '<div class="form-item">';
                  echo "<h4 class='form-item-title'>Select ".$choice['mealname']."</h4>";
+
                   if ($partnerReg->mealchoice === $choice['id']) {
                         echo "<input type='checkbox'  title='Meal Choice' id='".$mealChk2."' name='".$mealChk2."' checked>";
                   } else {

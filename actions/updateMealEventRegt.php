@@ -21,7 +21,7 @@ $mealChk = '';
 $mealChk2 = '';
 
 if (isset($_POST['submitModifyRegs'])) {
- 
+     
             if (isset($_POST['regID1'])) {
               $eventReg->id = $_POST['regID1'];
               $eventReg->read_single();
@@ -72,6 +72,7 @@ if (isset($_POST['submitModifyRegs'])) {
             } // mealchoice != 0
             $eventReg->updateMealEventReg();
             // partner info below
+       
             if (isset($_POST['regID2'])) {
             if (isset($_POST['ddattdin2'])) {
                $partnerEventReg->ddattenddinner = 1;

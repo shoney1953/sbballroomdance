@@ -93,7 +93,7 @@ if (!isset($_POST['submitAddRegs'])) {
    if (isset($_POST['mem2Chk'])) {
    
     $regFirstName2 = htmlentities($_POST['firstname2']);
-    var_dump($regFirstName2);
+
     $regLastName2 = htmlentities($_POST['lastname2']);
     $regEmail2 = htmlentities($_POST['email2']);  
   
@@ -368,7 +368,7 @@ if (!isset($_POST['submitAddRegs'])) {
                     $eventReg->create();
                     $eventInst->addCount($eventReg->eventid);
                 }  //end no results
-                var_dump($regFirstName2);
+            
              if (isset($regFirstName2)) {
                        // do the insert(s)
                     $partnerEventReg->firstname = $regFirstName2;
@@ -414,7 +414,7 @@ if (!isset($_POST['submitAddRegs'])) {
                      }
      
                     if (!$result) {
-                        var_dump($partnerEventReg);
+                 
                         $partnerEventReg->create();
                         $eventInst->addCount($partnerEventReg->eventid);
                     }
