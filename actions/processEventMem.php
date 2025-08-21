@@ -340,7 +340,7 @@ foreach ($upcomingEvents as $event) {
             } // rowcount
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Register for ".$event['eventname']." on ".$event['eventdate']."</h1>";
-                echo  '<form method="POST" action="regEventpt.php">  ';
+                echo  '<form method="POST" action="regEventPt.php">  ';
                 echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
                 echo '<input type="hidden" name="eventproductid" value='.$event['eventproductid'].'>';
                 echo '<input type="hidden" name="eventcost" value='.$event['eventcost'].'>';
@@ -648,7 +648,7 @@ foreach ($upcomingEvents as $event) {
             } // rowcount
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Register for ".$event['eventname']." on ".$event['eventdate']."</h1>";
-                echo  '<form method="POST" action="regEventpt.php">  ';
+                echo  '<form method="POST" action="regEventPt.php">  ';
                 echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
                 echo '<input type="hidden" name="eventproductid" value='.$event['eventproductid'].'>';
                 echo '<input type="hidden" name="eventcost" value='.$event['eventcost'].'>';
