@@ -86,6 +86,9 @@ if (!isset($_POST['submitAddRegs'])) {
     $potentialReg1['email'] = htmlentities($_POST['email1']);  
     $potentialReg1['email'] = filter_var($potentialReg1['email'], FILTER_SANITIZE_EMAIL); 
     $potentialReg1['registeredby'] = $_SESSION['username'];
+    $potentialReg1['productid'] = $eventInst->eventproductid;
+    $potentialReg1['priceid'] = $eventInst->eventmempriceid;
+    $potentialReg1['guestpriceid'] = $eventInst->eventguestpriceid;
    if (isset($_POST['message'])) {
        $potentialReg1['message'] = htmlentities($_POST['message']); 
        $potentialReg2['message'] = htmlentities($_POST['message']); 
@@ -100,8 +103,10 @@ if (!isset($_POST['submitAddRegs'])) {
     $potentialReg2['eventname'] = $eventInst->eventname;
     $potentialReg2['eventdate'] = $eventInst->eventdate;
     $potentialReg2['eventid'] = $eventInst->id;
-    $potentialReg2 ['orgemail'] = $eventInst->orgemail;
- 
+    $potentialReg2['orgemail'] = $eventInst->orgemail;
+    $potentialReg2['productid'] = $eventInst->eventproductid;
+    $potentialReg2['priceid'] = $eventInst->eventmempriceid;
+    $potentialReg2['guestpriceid'] = $eventInst->eventguestpriceid;
     }
     $regFirstName1 = htmlentities($_POST['firstname1']);
     $regLastName1 = htmlentities($_POST['lastname1']);
@@ -134,8 +139,6 @@ if (!isset($_POST['submitAddRegs'])) {
       
    }
 
-
-
         $eventid = $_POST['eventid'];
 
         if (isset($_POST['message'])) {
@@ -144,7 +147,6 @@ if (!isset($_POST['submitAddRegs'])) {
            $message = ''; 
         }
        
-           if (isset($_SESSION['testmode'])) {   
             
               if (isset($_POST['dietaryr1'])) {
                 $dietaryRestriction1 = $_POST['dietaryr1'];
@@ -233,7 +235,7 @@ if (!isset($_POST['submitAddRegs'])) {
                       } // foreach choice
                    
                 }  // rowCount
-            }  //testmode
+  
 // the following happens when user has specified NOT to pay online
             if (!(isset($_POST['payonline'])) ) {
                 $emailSubject = "You have registered for SBDC event(s)";

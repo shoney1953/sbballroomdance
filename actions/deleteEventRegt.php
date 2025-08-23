@@ -29,37 +29,63 @@ $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = "";
-$replyTopic = "SBDC Event Registration";
+$replyTopic = "SBDC Event Registration Removal";
 $regId1 = 0;
 $regId2 = 0;
 $create_successful = 0;
 $result = 0;
+    $gotEventRec = 0;
+    $gotPartnerEventRec = 0;
 
 if (isset($_POST['submitRemoveRegs'])) {
-    $eventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['userid']);
+    $gotEventRec = 0;
+    $gotPartnerEventRec = 0;
+    if ($eventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['userid'])) {
+           $gotEventRec = 1;
+           $remID1 = "rem".$eventReg->id;
+ 
+    }
  
     if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-        $partnerEventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['partnerid']);            
-       }
-            $remID1 = "rem".$eventReg->id;
-            $remID2 = "rem".$partnerEventReg->id;
-  if (isset($_POST['deleteRegs'])) {
-   $regId1 = $_POST['regID1'];
+        if ($partnerEventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['partnerid'])) {
+            $gotPartnerEventRec = 1;
+            $remID2 = "rem".$partnerEventReg->id; 
+                
+    }              
+ }
+    var_dump($remID1, $remID2);
+
     if (isset($_POST["$remID2"])) {
-      $regId2 = $_POST['regID2'];
-      }
-           
+         
+             $eventid = $_POST['eventid'];
+             $regFirstName1 = $partnerEventReg->firstname;
+             $regLastName1 = $partnerEventReg->lastname;
+             $regEmail1 = $_SESSION['partneremail'];
+             if ($partnerEventReg->orgemail != null) {
+               $toCC2 = $partnerEventReg->orgemail;
+               $toCC2 = $_SESSION['useremail'];
+             } else {
+                 $toCC2 = $_SESSION['partneremail'];
+             }
+        }      
     if (isset($_POST["$remID1"])) {
-        $eventReg->id = $regId1;
+  
         $eventid = $_POST['eventid'];
+         $regFirstName1 = $eventReg->firstname;
+        $regLastName1 = $eventReg->lastname;
+         $regEmail1 = $_SESSION['useremail'];
         if ($eventReg->orgemail != null) {
             $toCC2 = $eventReg->orgemail;
+            if (isset($_SESSION['partneremail'])) {
+                 $toCC3 = $_SESSION['useremail'];
+            }
+         
+        } else {
+             $toCC2 = $_SESSION['partneremail'];
         }
-        if (isset($_POST["$remID2"])) {
-          $toCC3 = $_SESSION['partneremail'];
-            $partnerEventReg->id = $regId2;
-            $eventid = $_POST['eventid'];
-        }
+
+    }
+       
     $regFirstName1 = $eventReg->firstname;
     $regLastName1 = $eventReg->lastname;
     $regEmail1 = $_SESSION['useremail'];
@@ -94,18 +120,18 @@ if (isset($_POST['submitRemoveRegs'])) {
         
    /*********************************************** */
 
+         if (isset($_POST["$remID1"])) {
+        
            $eventReg->delete();
-
            $event->decrementCount($eventid);
-          if (isset($_POST["$remID2"])) {
-             
+         }
+        if (isset($_POST["$remID2"])) {
+        
                   $partnerEventReg->delete();
                   $event->decrementCount($eventid);
           }
        
-           }
-          }
-  }
+    }
 
          $redirect = "Location: ".$_SESSION['returnurl'];
         header($redirect);

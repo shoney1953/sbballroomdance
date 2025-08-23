@@ -43,7 +43,7 @@ $tempReg = new TempOnlineEventReg($db);
 
 if (isset($_POST['submitRegConfirm'])) {
 /*  create temp reg in database */
-
+var_dump($potentialReg1);
 $tempReg->eventid = $potentialReg1['eventid'];
 $tempReg->eventname = $potentialReg1['eventname'];
 $tempReg->eventtype = $potentialReg1['eventtype'];
@@ -68,9 +68,6 @@ if ($potentialReg1['ddattenddinner'] === '1') {
   $tempReg->mealchoice1 = 0;
   $tempReg->mealdesc1 = '';
   $tempReg->dietaryrestriction1 = '';
-  $tempReg->mealchoice2 = 0;
-  $tempReg->mealdesc2 = '';
-  $tempReg->dietaryrestriction2 = '';
 }
 
 $tempReg->productid1 = $potentialReg1['productid'];
@@ -90,10 +87,17 @@ if (isset($potentialReg2['firstname'])) {
   $tempReg->firstname2 = $potentialReg2['firstname'];
   $tempReg->lastname2 = $potentialReg2['lastName'];
   $tempReg->email2 = $potentialReg2['email'];
-  $tempReg->mealchoice2 = $potentialReg2['mealchoice'];
-  $tempReg->mealdesc2 = $potentialReg2['mealdesc'];
-  $tempReg->dietaryrestriction2 = $potentialReg2['dietaryrestriction'];
+
   $tempReg->productid2 = $potentialReg2['productid'];
+   if ($potentialReg2['ddattenddinner'] === '1') {
+    $tempReg->mealchoice2 = $potentialReg2['mealchoice'];
+    $tempReg->mealdesc2 = $potentialReg2['mealdesc'];
+    $tempReg->dietaryrestriction2 = $potentialReg2['dietaryrestriction'];
+  } else {
+    $tempReg->mealchoice2 = 0;
+    $tempReg->mealdesc2 = '';
+    $tempReg->dietaryrestriction2 = '';
+  }
   if ($tempReg->visitor != 1) {
     $tempReg->priceid2 = $potentialReg2['priceid'];
      $priceObj2 = $stripe->prices->retrieve($potentialReg2['priceid'], []);
@@ -103,6 +107,7 @@ if (isset($potentialReg2['firstname'])) {
      $priceObj2 = $stripe->prices->retrieve($potentialReg2['guestpriceid'], []);
     $totalCost = $totalCost + $priceObj2->unit_amount;
   }
+
  
 };
 

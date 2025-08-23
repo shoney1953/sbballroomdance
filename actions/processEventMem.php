@@ -16,6 +16,8 @@ $user = new User($db);
 $mChoices = new DinnerMealChoices($db);
 $mealChoices = [];
 $mealChk = '';
+$gotEventReg = 0;
+$gotPartnerEventReg = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,26 +61,35 @@ foreach ($upcomingEvents as $event) {
             }
      switch ($event['eventtype']) {
         case "BBQ Picnic": 
-            if (isset($_POST["$regChk"])) {
+           $gotEventReg = 0;
+                $gotPartnerEventReg = 0;
                 if ($_SESSION['role'] === 'visitor') {
-                     $reg->read_ByEventIdVisitor($event['id'],$_SESSION['username']);
+                     if ($reg->read_ByEventIdVisitor($event['id'],$_SESSION['username'])) {
+                          $gotEventReg = 1;
+                     }
                 } else {
-                     $reg->read_ByEventIdUser($event['id'],$_SESSION['userid']);
+                     if ($reg->read_ByEventIdUser($event['id'],$_SESSION['userid'])) {
+                          $gotEventReg = 1;
+                     }
                 }
              
                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                $partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid']);
+                if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
+                            $gotPartnerEventReg = 1;
+                }
                }
+            if (isset($_POST["$regChk"])) {
+              
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Register for ".$event['eventname']." on ".$event['eventdate']."</h1>";
                 echo  '<form method="POST" action="regEventt.php">  ';
                 echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
                 echo '<div class="form-grid-div">';
-                echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Add Registrations(s)?</h4>';
-                echo "<input type='checkbox' title='Check to Add Registration(s)' name='addRegs'> ";
-                echo '</div>'; // end of form item
+              
                 echo '<div class="form-grid">';
+              
+               if (!$gotEventReg) {
+                  if (isset($_SESSION['username'])) {
                   if ($_SESSION['role'] === 'visitor') {
                     echo '<input type="hidden" name="firstname1" value='.$_SESSION['visitorfirstname'].'>';
                     echo '<input type="hidden" name="lastname1" value='.$_SESSION['visitorlastname'].'>';
@@ -89,8 +100,10 @@ foreach ($upcomingEvents as $event) {
                     echo '<input type="hidden" name="email1" value='.$_SESSION['useremail'].'>';
                   }
   
-             
+                }
+
                 echo '<div class="form-item">';
+
                if ($_SESSION['role'] === 'visitor') {
                  echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname']." ".$_SESSION['useremail']."</h4>";
                } else {
@@ -113,7 +126,8 @@ foreach ($upcomingEvents as $event) {
                 echo '</div>';
                 echo '</div>'; // form grid
                 echo '</div>'; // form grid div
-                   if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+              }
+                if (!$gotPartnerEventReg) {
                     echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
                     echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
                     echo '<input type="hidden" name="email2" value='.$_SESSION['partneremail'].'>';
@@ -144,50 +158,56 @@ foreach ($upcomingEvents as $event) {
                 echo '</form>';
                }
                
-            
-
+ 
 
              if (isset($_POST["$delChk"])) {
              
-                if ($_SESSION['role'] === 'visitor') {
-                     $reg->read_ByEventIdVisitor($event['id'],$_SESSION['username']);
-                } else {
-                     $reg->read_ByEventIdUser($event['id'],$_SESSION['userid']);
-                }
-               if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                $partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid']);
-                   $remID2 = "rem".$partnerReg->id;
-               }
-               $remID1 = "rem".$reg->id;
-            
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Remove Reservations for ".$event['eventname']." on ".$event['eventdate']."</h1>";
                  echo  '<form method="POST" action="deleteEventRegt.php">  ';
                 echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
-                  echo '<input type="hidden" name="regID1" value='.$reg->id.'>';
+       
                  echo '<div class="form-grid-div">';
                 echo '<div class="form-grid">';
-                echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Remove Registration(s)?</h4>';
-                echo "<input type='checkbox' title='Check to Remove Event Registration(s)' name='deleteRegs'> ";
-                echo '</div>'; // end of form item
-                echo '<div class="form-item">';
+          
+
                 if ($_SESSION['role'] === 'visitor') {
-                   echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['visitorfirstname']."</h4>";
+                   if ($reg->read_ByEventIdVisitor($event['id'],$_SESSION['username'])) {
+                        $remID1 = "rem".$reg->id;
+                        echo '<form-item>';
+                      echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['visitorfirstname']."</h4>";
+                  
+                      echo "<input type='checkbox'  title='Check to remove registration' id='".$remID1."' name='".$remID1."' checked>";
+                      echo '</div>';
+                 
+                   }
+                  
                 } else {
-                     echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['userfirstname']."</h4>";
+                    if ($reg->read_ByEventIdUser($event['id'],$_SESSION['userid'])) {
+                          $remID1 = "rem".$reg->id;
+                      echo '<form-item>';
+                      echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['userfirstname']."</h4>";
+            
+                      echo "<input type='checkbox'  title='Check to remove registration' id='".$remID1."' name='".$remID1."' checked>";
+                      echo '</div>';
+         
+                    }
+                     
                 }
-             
-                echo "<input type='checkbox'  title='Check to remove registration' id='".$remID1."' name='".$remID1."' checked>";
-                echo '</div>';
+              echo '</div>';
+              
                  if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+                 
+                  if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
+                   $remID2 = "rem".$partnerReg->id;
+               
                 echo '<div class="form-item">';
                 echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['partnerfirstname']."</h4>";
                 echo "<input type='checkbox'  title='Check to remove registration' id='".$remID2."' name='".$remID2."' checked>";
-                    echo '<input type="hidden" name="regID2" value='.$partnerReg->id.'>';
+              
                 echo '</div>';
                  }
-              
+                }
                 echo '</div>'; // end of form grid
                 echo '<button type="submit" name="submitRemoveRegs">Remove Registration(s)</button>';
                   echo  '</form>';
@@ -195,10 +215,15 @@ foreach ($upcomingEvents as $event) {
              } // end of delete check
 
             if (isset($_POST["$upChk"])) {
+              $gotEventReg = 0;
               if ($_SESSION['role'] === 'visitor') {
-                  $reg->read_ByEventIdVisitor($event['id'],$_SESSION['username']);
+                  if ($reg->read_ByEventIdVisitor($event['id'],$_SESSION['username'])) {
+                    $gotEventReg = 1;
+                  }
               } else {
-                  $reg->read_ByEventIdUser($event['id'],$_SESSION['userid']);
+                  if ($reg->read_ByEventIdUser($event['id'],$_SESSION['userid'])) {
+                       $gotEventReg = 1;
+                  }
               }
         
         
@@ -209,30 +234,33 @@ foreach ($upcomingEvents as $event) {
                 $updID = "upd".$reg->id;
                 $dddinID = "dddin".$reg->id;
                 echo '<input type="hidden" name="regID1" value='.$reg->id.'>';
+                $gotPartnerEventReg = 0;
              if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                $partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid']);
+                if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
+                    $gotPartnerEventReg = 1;
+                
          
                 $chID2 = "ch2".$partnerReg->id;
                 $sbID2 = "sb2".$partnerReg->id;
                 $dddinID2 = "dddin2".$partnerReg->id;
+                }
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Modify BBQ Picnic Reservations for ".$event['eventname']." on ".$event['eventdate']."</h1>";
-
+       
+                if ($gotEventReg) {
                 echo '<div class="form-grid-div">';
                 echo '<div class="form-grid">';
-                
                  echo '<div class="form-item">';
                  if ($_SESSION['role'] === 'visitor') {
                     echo "<h4>".$_SESSION['visitorfirstname']."'s Information</h4>";
                  } else {
                    echo "<h4>".$_SESSION['userfirstname']."'s Information</h4>";
                  }
-                
-                
+
                 echo '</div>';
 
                  echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Attend Dinner?</h4>';
+                 echo '<h4 class="form-item-title">Attend Dinner?</h4>';
           
                 if ($reg->ddattenddinner === '1') {
                     echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked>";
@@ -261,7 +289,11 @@ foreach ($upcomingEvents as $event) {
                 echo '</div>'; // end of form item
                 echo '</div>'; // end of form grid
                 echo '</div>'; // end of form grid div
+              }
+              // partner
               if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+                if ($gotPartnerEventReg) {
+
                  echo '<input type="hidden" name="regID2" value='.$partnerReg->id.'>';
                    echo '<div class="form-grid-div">';
                    echo '<div class="form-grid">';
@@ -298,6 +330,7 @@ foreach ($upcomingEvents as $event) {
                 echo '</div>'; // end of form item
                 echo '</div>'; // end of form grid div
                     }
+                  }
                 echo '<button type="submit" name="submitUpdateBBQReg">Submit Updates</button>';
                 echo '</div>'; // end of form container
                 echo '</form>';
@@ -447,61 +480,83 @@ foreach ($upcomingEvents as $event) {
                echo '<button type="submit" name="submitAddRegs">Add Registration(s)</button>';
                 echo '</div>'; // form container
               }
+
              if (isset($_POST["$delChk"])) {
-                if ($_SESSION['role'] === 'visitor') {
-                     $reg->read_ByEventIdVisitor($event['id'],$_SESSION['username']);
+               $gotEventReg = 0;
+               $gotPartnerEventReg = 0;
+              if ($_SESSION['role'] === 'visitor') {
+                     if ($reg->read_ByEventIdVisitor($event['id'],$_SESSION['username'])) {
+                             $gotEventReg = 1;
+                     }
                 } else {
-                     $reg->read_ByEventIdUser($event['id'],$_SESSION['userid']);
+                     if ($reg->read_ByEventIdUser($event['id'],$_SESSION['userid'])) {
+                          $gotEventReg = 1;
+                     }
                 }
-                 
                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                $partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid']);
-                   $remID2 = "rem".$partnerReg->id;
+                if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
+                         $gotPartnerEventReg = 1;
+                } 
                }
-               $remID1 = "rem".$reg->id;
-            
+          
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Remove Reservations for ".$event['eventname']." on ".$event['eventdate']."</h1>";
-                 echo  '<form method="POST" action="deleteEventRegt.php">  ';
+                echo  '<form method="POST" action="deleteEventRegt.php">  ';
                 echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
-                  echo '<input type="hidden" name="regID1" value='.$reg->id.'>';
-                 echo '<div class="form-grid-div">';
-                echo '<div class="form-grid">';
-                echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Remove Registration(s)?</h4>';
-                echo "<input type='checkbox' title='Check to Remove Event Registration(s)' name='deleteRegs'> ";
-                echo '</div>'; // end of form item
-                echo '<div class="form-item">';
-                if ($_SESSION['role'] === 'visitor') {
-                     echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['visitorfirstname']."</h4>";
-                } else {
-                   echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['userfirstname']."</h4>";
+
+                if ($gotEventReg) {
+                     $remID1 = "rem".$reg->id;
+                    echo '<div class="form-grid-div">';
+                    echo '<div class="form-grid">';
+                  
+                    echo '<div class="form-item">';
+                    if ($_SESSION['role'] === 'visitor') {
+                        echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['visitorfirstname']."</h4>";
+                    } else {
+                      echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['userfirstname']."</h4>";
+                    }
+                    echo "<input type='checkbox'  title='Check to remove registration' id='".$remID1."' name='".$remID1."' checked>";
+                    echo '</div>'; // form item
+                    echo '</div>'; // form grid
+                    echo '</div>'; // form grid div
                 }
-               
-                echo "<input type='checkbox'  title='Check to remove registration' id='".$remID1."' name='".$remID1."' checked>";
-                echo '</div>';
-                 if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                echo '<div class="form-item">';
-                echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['partnerfirstname']."</h4>";
-                echo "<input type='checkbox'  title='Check to remove registration' id='".$remID2."' name='".$remID2."' checked>";
+
+
+                 if ($gotPartnerEventReg) {                               
+                    echo '<div class="form-grid-div">';
+                    echo '<div class="form-grid">';
+                    $remID2 = "rem".$partnerReg->id;               
+                    echo '<div class="form-item">';
+                    echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['partnerfirstname']."</h4>";
+                    echo "<input type='checkbox'  title='Check to remove registration' id='".$remID2."' name='".$remID2."' checked>";
                     echo '<input type="hidden" name="regID2" value='.$partnerReg->id.'>';
-                echo '</div>';
+                    echo '</div>';
+                     echo '</div>'; // end of form grid
+                     echo '</div>';  // end form grid div
+                  
                  }
-                echo  '</form>';
-                echo '</div>'; // end of form grid
+
                 echo '<button type="submit" name="submitRemoveRegs">Remove Registration(s)</button>';
                 echo '</div>'; // end of form container
+                echo  '</form>';
              } // end of delete check
 
             if (isset($_POST["$upChk"])) {
-      
+               $gotEventReg = 0;
+               $gotPartnerEventReg = 0;
               if ($_SESSION['role'] === 'visitor') {
-                     $reg->read_ByEventIdVisitor($event['id'],$_SESSION['username']);
+                     if ($reg->read_ByEventIdVisitor($event['id'],$_SESSION['username'])) {
+                             $gotEventReg = 1;
+                     }
                 } else {
-                     $reg->read_ByEventIdUser($event['id'],$_SESSION['userid']);
+                     if ($reg->read_ByEventIdUser($event['id'],$_SESSION['userid'])) {
+                          $gotEventReg = 1;
+                     }
                 }
              if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                $partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid']);  
+                if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
+                         $gotPartnerEventReg = 1;
+                } 
                }
            
              $mealChoices = [];
@@ -529,10 +584,8 @@ foreach ($upcomingEvents as $event) {
             echo '<div class="form-container"';
             echo "<h1 class='form-title'>Update Reservations for ".$event['eventname']." on ".$event['eventdate']."</h1>";
             echo '<form method="POST" name="MemberUpdateEventMeals" action="updateMealEventRegt.php">';  
+            if ($gotEventReg) {
             echo '<input type="hidden" name="regID1" value='.$reg->id.'>';
-            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                    echo '<input type="hidden" name="regID2" value='.$partnerReg->id.'>';
-                 }
              echo '<div class="form-grid-div">';
              
             echo '<div class="form-grid">';
@@ -567,13 +620,14 @@ foreach ($upcomingEvents as $event) {
                   } else {
                      echo "<input type='checkbox'  title='Meal Choice' id='".$mealChk."' name='".$mealChk."'>";
                   }
-                    echo '</div>'; // end of form item
-               
+                    echo '</div>'; // end of form item  
             }
        
             echo '</div>'; // end form grid
              echo '</div>'; // end form grid div
-               if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+          }  // end of goteventreg
+           if ($gotPartnerEventReg) {
+            echo '<input type="hidden" name="regID2" value='.$partnerReg->id.'>';
             echo '<div class="form-grid-div">';
             echo '<div class="form-grid">';
             echo '<div class="form-item">';
@@ -608,7 +662,7 @@ foreach ($upcomingEvents as $event) {
         
             echo '</div>'; // end form grid
              echo '</div>'; // end form grid div
-               }
+               }  // end of got partner reg
         
             echo '<button type="submit" name="submitModifyRegs">Modify Registration(s)</button>';
             echo '</div>'; // end of form container
@@ -618,16 +672,27 @@ foreach ($upcomingEvents as $event) {
         break;
 
         case "Dinner Dance":
-               if (isset($_POST["$regChk"])) {
+              $gotEventReg = 0;
+              $gotPartnerEventReg = 0;
                 if ($_SESSION['role'] === 'visitor') {
-                     $reg->read_ByEventIdVisitor($event['id'],$_SESSION['username']);
+                     if ($reg->read_ByEventIdVisitor($event['id'],$_SESSION['username'])) {
+                      $gotEventReg = 1;
+                     }
                 } else {
-                     $reg->read_ByEventIdUser($event['id'],$_SESSION['userid']);
+                     if ($reg->read_ByEventIdUser($event['id'],$_SESSION['userid'])) {
+                       $gotEventReg = 1;
+                     }
                 }
               
                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                $partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid']);
+                 if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
+                      $gotPartnerEventReg = 1;
+                 }
                }
+
+               if (isset($_POST["$regChk"])) {
+              
+  
               $mealChoices = [];
               $result = $mChoices->read_ByEventId($event['id']);
                 $rowCount = $result->rowCount();
@@ -650,6 +715,8 @@ foreach ($upcomingEvents as $event) {
                         array_push($mealChoices, $meal_item);
               } // while $row
             } // rowcount
+             
+
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Register for ".$event['eventname']." on ".$event['eventdate']."</h1>";
                 echo  '<form method="POST" action="regEventPt.php">  ';
@@ -702,7 +769,7 @@ foreach ($upcomingEvents as $event) {
                 // echo '</div>'; // form grid 
                 echo '<div class="form-grid-div" id="memMealChoice">';
                  if ($_SESSION['role'] === 'visitor') {
-                       echo "<h4 class='form-title-left'>Meal Selection for for ".$_SESSION['visitorfirstname']." ".$_SESSION['userlastname'].":</h4>";
+                       echo "<h4 class='form-title-left'>Meal Selection for for ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname'].":</h4>";
                      } else {
                        echo "<h4 class='form-title-left'>Meal Selection for for ".$_SESSION['userfirstname']." ".$_SESSION['userlastname'].":</h4>";
                      }
@@ -730,16 +797,12 @@ foreach ($upcomingEvents as $event) {
                 echo '<div class="form-grid-div" id="partMealChoice">';
                 echo "<h4 class='form-title-left'>Meal Selection for ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname'].":</h4>";
                 echo '<div class="form-grid">';
-  
-                // echo '<div class="form-item">';
-        
-                // echo '</div>'; // end of form item
+
                 foreach ($mealChoices as $choice){
                   $mealChk2 = 'meal2'.$choice['id'];
                   echo '<div class="form-item">';
                   echo "<h4 class='form-title-left'>".$choice['mealname']." <input type='checkbox'  title='Meal Choice' id='".$mealChk2."' name='".$mealChk2 ."'></h4>";
-                    echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
-                  // echo "<input type='checkbox'  title='Meal Choice' id='".$mealChk2."' name='".$mealChk2 ."'>";
+                  echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
                   echo '</div>'; // end of form item         
                  } // for each mealchoice
 
@@ -758,48 +821,43 @@ foreach ($upcomingEvents as $event) {
 
 
               if (isset($_POST["$delChk"])) {
-        
-                if ($_SESSION['role'] === 'visitor') {
-                     $reg->read_ByEventIdVisitor($event['id'],$_SESSION['username']);
-                } else {
-                     $reg->read_ByEventIdUser($event['id'],$_SESSION['userid']);
-                }
-               if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                $partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid']);
-                   $remID2 = "rem".$partnerReg->id;
-               }
-               $remID1 = "rem".$reg->id;
-            
+   
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Remove Reservations for ".$event['eventname']." on ".$event['eventdate']."</h1>";
                  echo  '<form method="POST" action="deleteEventRegt.php">  ';
                 echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
-                  echo '<input type="hidden" name="regID1" value='.$reg->id.'>';
-                 echo '<div class="form-grid-div">';
+               if ($gotEventReg) {
+                 $remID1 = "rem".$reg->id;
+                echo '<div class="form-grid-div">';
                 echo '<div class="form-grid">';
-                echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Remove Registration(s)?</h4>';
-                echo "<input type='checkbox' title='Check to Remove Event Registration(s)' name='deleteRegs'> ";
-                echo '</div>'; // end of form item
                 echo '<div class="form-item">';
                 if ($_SESSION['role'] === 'visitor') {
                     echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['visitorfirstname']."</h4>";
                 } else {
                    echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['userfirstname']."</h4>";
                 }
-              
                 echo "<input type='checkbox'  title='Check to remove registration' id='".$remID1."' name='".$remID1."' checked>";
-                echo '</div>';
-                 if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+                echo '</div>'; //form item
+                 echo '</div>'; // form grid
+                    echo '</div>'; // form grid div
+              } // got eventreq
+
+                 if ($gotPartnerEventReg) {
+                  $remID2 = "rem".$partnerReg->id;
+                   echo '<div class="form-grid-div">';
+                echo '<div class="form-grid">';
                 echo '<div class="form-item">';
                 echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['partnerfirstname']."</h4>";
                 echo "<input type='checkbox'  title='Check to remove registration' id='".$remID2."' name='".$remID2."' checked>";
-                    echo '<input type="hidden" name="regID2" value='.$partnerReg->id.'>';
+                echo '<input type="hidden" name="regID2" value='.$partnerReg->id.'>';
                 echo '</div>';
-                 }
-                echo  '</form>';
-                echo '</div>'; // end of form grid
+                echo '</div>'; // form grid
+                echo '</div>'; // form grid div
+                } // end got partner
+  
+                
                 echo '<button type="submit" name="submitRemoveRegs">Remove Registration(s)</button>';
+                echo  '</form>';
                 echo '</div>'; // end of form container
              } // end of delete check
 
@@ -907,52 +965,121 @@ foreach ($upcomingEvents as $event) {
         break;
 
         case "Meeting":
-              if (isset($_POST["$delChk"])) {
+             $gotEventReg = 0;
+              $gotPartnerEventReg = 0;
                 if ($_SESSION['role'] === 'visitor') {
-                     $reg->read_ByEventIdVisitor($event['id'],$_SESSION['username']);
+                     if ($reg->read_ByEventIdVisitor($event['id'],$_SESSION['username'])) {
+                      $gotEventReg = 1;
+                     }
                 } else {
-                     $reg->read_ByEventIdUser($event['id'],$_SESSION['userid']);
+                     if ($reg->read_ByEventIdUser($event['id'],$_SESSION['userid'])) {
+                       $gotEventReg = 1;
+                     }
                 }
+              
                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                $partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid']);
-                   $remID2 = "rem".$partnerReg->id;
+                 if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
+                      $gotPartnerEventReg = 1;
+                 }
                }
-               $remID1 = "rem".$reg->id;
-            
+
+              if (isset($_POST["$delChk"])) {
+
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Remove Reservations for ".$event['eventname']." on ".$event['eventdate']."</h1>";
                  echo  '<form method="POST" action="deleteEventRegt.php">  ';
                 echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
-                  echo '<input type="hidden" name="regID1" value='.$reg->id.'>';
+                if ($gotEventReg) {
+
+                  $remID1 = "rem".$reg->id;
                  echo '<div class="form-grid-div">';
                 echo '<div class="form-grid">';
                 echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Remove Registration(s)?</h4>';
-                echo "<input type='checkbox' title='Check to Remove Event Registration(s)' name='deleteRegs'> ";
-                echo '</div>'; // end of form item
+              
                 echo '<div class="form-item">';
                if ($_SESSION['role'] === 'visitor') {
                       
                           echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['visitorfirstname']."</h4>";
-                     } else {
+                 } else {
                       
                       echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['userfirstname']."</h4>";
-                     }
+                 }
         
                 echo "<input type='checkbox'  title='Check to remove registration' id='".$remID1."' name='".$remID1."' checked>";
                 echo '</div>';
-                 if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+                echo '</div>';
+                echo '</div>';
+                } // got eventreg
+
+                 if ($gotPartnerEventReg) {
+                    $remID2 = "rem".$partnerReg->id;
+                echo '<div class="form-grid-div">';
+                echo '<div class="form-grid">';
                 echo '<div class="form-item">';
                 echo "<h4 class='form-item-title'>Remove registration for ".$_SESSION['partnerfirstname']."</h4>";
                 echo "<input type='checkbox'  title='Check to remove registration' id='".$remID2."' name='".$remID2."' checked>";
-                    echo '<input type="hidden" name="regID2" value='.$partnerReg->id.'>';
+                echo '</div>';
+                echo '</div>';
                 echo '</div>';
                  }
-                echo  '</form>';
+    
                 echo '</div>'; // end of form grid
                 echo '<button type="submit" name="submitRemoveRegs">Remove Registration(s)</button>';
+                echo  '</form>';
                 echo '</div>'; // end of form container
              } // end of delete check
+             if (isset($_POST["$regChk"])) {
+              
+                echo '<div class="form-container"';
+                echo "<h1 class='form-title'>Register for ".$event['eventname']." on ".$event['eventdate']."</h1>";
+                echo  '<form method="POST" action="regEventt.php">  ';
+                echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
+
+         
+                if ($gotEventReg === 0) {
+                   echo '<div class="form-grid-div">';
+                  echo '<div class="form-grid">';
+                  if ($_SESSION['role'] === 'visitor') {
+                    echo '<input type="hidden" name="firstname1" value='.$_SESSION['visitorfirstname'].'>';
+                    echo '<input type="hidden" name="lastname1" value='.$_SESSION['visitorlastname'].'>';
+                    echo '<input type="hidden" name="email1" value='.$_SESSION['visitoremail'].'>';
+                  } else {
+                    echo '<input type="hidden" name="firstname1" value='.$_SESSION['userfirstname'].'>';
+                    echo '<input type="hidden" name="lastname1" value='.$_SESSION['userlastname'].'>';
+                    echo '<input type="hidden" name="email1" value='.$_SESSION['useremail'].'>';
+                  }
+              
+                echo '<div class="form-item">';
+               if ($_SESSION['role'] === 'visitor') {
+                 echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname']." ".$_SESSION['useremail']."</h4>";
+               } else {
+                  echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']." ".$_SESSION['useremail']."</h4>";
+               }
+                echo "<input type='checkbox'  title='Check add Reservation ' id='mem1CHK' name='mem1Chk' checked>";
+                echo '</div>';
+               
+        
+                echo '</div>'; // form grid
+                echo '</div>'; // form grid div
+              }
+                if (!$gotPartnerEventReg) {
+                    echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
+                    echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
+                    echo '<input type="hidden" name="email2" value='.$_SESSION['partneremail'].'>';
+                echo '<div class="form-grid-div">';
+                echo '<div class="form-grid">';
+                echo '<div class="form-item">';
+                echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']." ".$_SESSION['partneremail']."</h4>";
+                echo "<input type='checkbox'  title='Check add Reservation ' id='mem2CHK' name='mem2Chk' checked>";
+                echo '</div>';
+
+                 echo '</div>'; // form grid
+                echo '</div>'; // form grid div
+                 }
+                    echo '<button type="submit" name="submitAddRegs">Add Registration(s)</button>';
+                echo '</div>'; // form container 
+                echo '</form>';
+               }
         break;
 
         default:
