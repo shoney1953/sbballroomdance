@@ -178,6 +178,7 @@ if (isset($_GET['id'])) {
         }    
 
       }
+      if ((!(isset($_SESSION['testmode']))) || ($_SESSION['testmode'] === 'NO')) {
         echo '<div class="form-grid2">';
   
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
@@ -195,8 +196,9 @@ if (isset($_GET['id'])) {
         } else {
             echo '<h4><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Please Login as a Member or Visitor to Register</a></h4>';
         }
-        
         echo '</div>'; 
+      }
+        
     } 
  ?>
 

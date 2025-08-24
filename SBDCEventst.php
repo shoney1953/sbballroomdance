@@ -105,10 +105,12 @@ $gotPartnerEventReg = 0;
                     echo "<h4 class='form-item-title'>You registered for this event on: <br> ".substr($eventReg->dateregistered,0,10)."</h4>";
                     echo '</div>'; // end of form item
                     if ($event['eventtype'] === 'Dance Party') {
+        
                       if ($eventReg->ddattenddinner === '1') {
                          echo '<div class="form-item">';
                         echo "<h4 class='form-item-title'>You have chosen to attend dinner. </h4>";
                         echo '</div>'; // end of form item
+                        
                       } else {
                          echo '<div class="form-item">';
                         echo "<h4 class='form-item-title'>You have chosen not to attend dinner. </h4>";
@@ -164,6 +166,7 @@ $gotPartnerEventReg = 0;
                       echo "<h4 class='form-item-title'>Your partner registered for this event on: <br> ".substr($eventReg->dateregistered,0,10)."</h4>";
                       echo '</div>'; // end of form item
                       if ($event['eventtype'] === 'Dance Party') {
+                    
                         if ($partnereventReg->ddattenddinner === '1') {
                           echo '<div class="form-item">';
                           echo "<h4 class='form-item-title'>Your partner has chosen to attend dinner. </h4>";
