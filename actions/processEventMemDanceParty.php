@@ -108,9 +108,9 @@
                 echo '</div>';
                  echo '<div class="form-container hidden" id="memMealChoice1">';
                 if ($_SESSION['role'] === 'visitor') {
-                  echo "<h4 class='form-title-left'>Meal Selection for for ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname'].":</h4>";
+                  echo "<h4 class='form-title-left'>Meal Selection for ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname'].":</h4>";
                 } else {
-                  echo "<h4 class='form-title-left'>Meal Selection for for ".$_SESSION['userfirstname']." ".$_SESSION['userlastname'].":</h4>";
+                  echo "<h4 class='form-title-left'>Meal Selection for ".$_SESSION['userfirstname']." ".$_SESSION['userlastname'].":</h4>";
                 }
              
                 echo '<div class="form-grid">';
