@@ -38,6 +38,9 @@ $result = 0;
     $gotPartnerEventRec = 0;
 
 if (isset($_POST['submitRemoveRegs'])) {
+    $event->id = $_POST['eventid'];
+    $event->read_single();
+
     $gotEventRec = 0;
     $gotPartnerEventRec = 0;
     if ($eventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['userid'])) {
@@ -53,7 +56,7 @@ if (isset($_POST['submitRemoveRegs'])) {
                 
     }              
  }
-    var_dump($remID1, $remID2);
+ 
 
     if (isset($_POST["$remID2"])) {
          
@@ -63,21 +66,21 @@ if (isset($_POST['submitRemoveRegs'])) {
              $regEmail1 = $_SESSION['partneremail'];
              if ($partnerEventReg->orgemail != null) {
                $toCC2 = $partnerEventReg->orgemail;
-               $toCC2 = $_SESSION['useremail'];
+               $toCC3 = $_SESSION['useremail'];
              } else {
-                 $toCC2 = $_SESSION['partneremail'];
+                 $toCC2 = $_SESSION['useremail'];
              }
         }      
     if (isset($_POST["$remID1"])) {
   
         $eventid = $_POST['eventid'];
-         $regFirstName1 = $eventReg->firstname;
+        $regFirstName1 = $eventReg->firstname;
         $regLastName1 = $eventReg->lastname;
-         $regEmail1 = $_SESSION['useremail'];
+        $regEmail1 = $_SESSION['useremail'];
         if ($eventReg->orgemail != null) {
             $toCC2 = $eventReg->orgemail;
             if (isset($_SESSION['partneremail'])) {
-                 $toCC3 = $_SESSION['useremail'];
+                 $toCC3 = $_SESSION['partneremail'];
             }
          
         } else {
@@ -86,14 +89,13 @@ if (isset($_POST['submitRemoveRegs'])) {
 
     }
        
-    $regFirstName1 = $eventReg->firstname;
-    $regLastName1 = $eventReg->lastname;
-    $regEmail1 = $_SESSION['useremail'];
+
+   
     $emailBody .= "<br>NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
     $emailBody .= 
-                "<br>Event Date:  ".$eventReg->eventdate.
-                "<br>Event Type:  ".$eventReg->eventtype.
-                "<br>Event Name:  ".$eventReg->eventname;
+                "<br>Event Date:  ".$event->eventdate.
+                "<br>Event Type:  ".$event->eventtype.
+                "<br>Event Name:  ".$event->eventname;
         if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
             $regName1 = $regFirstName1.' '.$regLastName1;
             sendEmail(
@@ -125,6 +127,7 @@ if (isset($_POST['submitRemoveRegs'])) {
            $eventReg->delete();
            $event->decrementCount($eventid);
          }
+         
         if (isset($_POST["$remID2"])) {
         
                   $partnerEventReg->delete();

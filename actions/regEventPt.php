@@ -64,6 +64,7 @@ $id_int = 0;
 $potentialReg1 = [];
 $potentialReg2 = [];
 $num_registered = 0;
+$totalDanceOnlyCost = 0;
 $currentDate = new DateTime();
 
 if (!isset($_POST['submitAddRegs'])) {
@@ -148,8 +149,7 @@ if (!isset($_POST['submitAddRegs'])) {
         } else {
            $message = ''; 
         }
-       
-            
+
               if (isset($_POST['dietaryr1'])) {
                 $dietaryRestriction1 = $_POST['dietaryr1'];
                 $potentialReg1['dietaryrestriction'] = $dietaryRestriction1;
@@ -306,10 +306,24 @@ if (!isset($_POST['submitAddRegs'])) {
                              
 
                         } else {
+                           
                             $emailBody .= "You have chosen not to attend dinner before the dance.<br>";
-        
-                            $emailBody .= "Member Cost of the Dance Only will be $".number_format($eventInst->eventcost).".<br>";  
-                            $emailBody .= "Guest Cost of the Dance Only will be $".number_format($eventInst->eventguestcost).".<br>"; 
+                           if (isset($_POST['mem1Chk'])) {
+                            if ($_SESSION['role'] === 'visitor') {
+                              $totalDanceOnlyCost = $eventInst->eventguestcost;
+                            } else {
+                               $totalDanceOnlyCost = $eventInst->eventcost;
+                            }
+                           }
+                            if (isset($_POST['mem1Chk'])) {
+                            if ($_SESSION['role'] === 'visitor') {
+                              $totalDanceOnlyCost = $totalDanceOnlyCost + $eventInst->eventguestcost;
+                            } else {
+                               $totalDanceOnlyCost = $totalDanceOnlyCost + $eventInst->eventcost;
+                            }
+                           }
+                            $emailBody .= "Total Cost for the Dance Only will be $".number_format($totalDanceOnlyCost,2).".<br>";  
+                            // $emailBody .= "Guest Cost of the Dance Only will be $".number_format($eventInst->eventguestcost).".<br>"; 
                         }    
                           $emailBody .= "Please submit your fee prior to the dance as indicated on the form.<br>";  
 
@@ -351,17 +365,6 @@ if (!isset($_POST['submitAddRegs'])) {
                 } //switch end
 
 
-            
-                    if ($eventInst->eventcost > 0) {
-                        $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-                        $coststr =  "Member Minimum Cost for the Dance is: "
-                            .$fmt->formatCurrency($eventInst->eventcost, 'USD')."<br>
-                            Check the form for specific costs.<br>";
-            
-                        $emailBody .= $coststr;
-                        // $toCC2 = $treasurer;
-                    }
-                 
 
                     if ($eventInst->eventform) {
                         $actLink= "<a href='".$eventInst->eventform."'>
@@ -528,7 +531,7 @@ if (!isset($_POST['submitAddRegs'])) {
           $danceCost = $danceCost + $potentialReg1['memberprice'];
            $cost1 = $potentialReg1['memberprice']; 
          }
-        } // visitor
+        } // attend dinner
 
        if ($potentialReg1['ddattenddinner'] !== '1') {
         if ($_POST['visitor'] === '1') { 
@@ -540,7 +543,7 @@ if (!isset($_POST['submitAddRegs'])) {
             $cost1 = $danceCost;
           
           }
-
+        
           } // not attend dinner
          } // mem1chk
       if (isset($_POST['mem2Chk'])) {
@@ -557,21 +560,21 @@ if (!isset($_POST['submitAddRegs'])) {
 
        if ($potentialReg2['ddattenddinner'] !== '1') {
         if ($_POST['visitor'] === '1') { 
-           $danceCost = $potentialReg2['eventcost'] * 100;
-           $cost2 = $danceCost;      
-          
-           } else {
-             $danceCost = $potentialReg2['eventcost'] * 100;
-            $cost2 = $danceCost;
-           
-          }
+          $cost2 = $potentialReg2['eventguestcost'] * 100;  
+           $danceCost = $danceCost + $cost2;
 
+           } else {
+            $cost2 = $potentialReg2['eventcost'] * 100;;
+             $danceCost = $danceCost + $cost2;
+
+          }
+         
           } // not attend dinner
          } // mem2chk
-
+            
         } // dance party
 
-
+  
 
         if ($eventInst->eventtype === 'Dinner Dance') {
          if (isset($_POST['mem1Chk'])) {
@@ -585,9 +588,9 @@ if (!isset($_POST['submitAddRegs'])) {
              } // visitor
          } // mem1chk
         if (isset($_POST['mem2Chk'])) {
-
+         $cost2 = $potentialReg2['memberprice'];
          $danceCost = $danceCost + $potentialReg2['memberprice'];
-          $cost2 = $potentialReg2['memberprice'];
+       
        
          }  // mem2chk
     
