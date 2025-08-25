@@ -249,15 +249,8 @@ $gotPartnerEventReg = 0;
                   echo '<div class="form-grid">';
                         $comparedateTS = strtotime($compareDate);
                         $eventRegOpen = strtotime($event['eventregopen']);
-                    //  if ($comparedateTS >= $eventRegOpen) {
-                    //   echo '<div class="form-item">';
-                    //   echo '<h4 class="form-item-title">Report?</h4>';
-                    //   echo "<input type='checkbox' title='Select to Report on Event' name='".$rpChk."'>";   
-  
-                    //   echo '</div>';
-                    //   } // registration open
+                    
  
-                 
                      if (($gotEventReg) || ($gotPartnerEventReg)) {  
                           $eventCutOff = strtotime($event['eventdate'].'-7 days');
                           $comparedateTS = strtotime($compareDate);
@@ -285,14 +278,12 @@ $gotPartnerEventReg = 0;
 
                               } else {
 
-                     
                                   echo '<div class="form-item">';
                                   echo '<h4 class="form-item-title">Modify Registrations?</h4>';
                                   echo "<input type='checkbox' title='Select to Modify Registrations(s)' name='".$upChk."'>";   
                                   echo '</div>';
                                   $numActions++;
-                                
-                              
+ 
                               }
   
                            } else {
@@ -326,9 +317,34 @@ $gotPartnerEventReg = 0;
                               }  // got partner
                             } // end of else goteventreg
                           // }
- 
+                            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0) && (!($gotPartnerEventReg))) {
+                              $comparedateTS = strtotime($compareDate);
+                              $eventRegOpen = strtotime($event['eventregopen']);
+                                 if ($comparedateTS >= $eventRegOpen) {
+                                  echo '<div class="form-item">';
+                                  echo '<h4 class="form-item-title">Register?</h4>';
+                                  echo "<input type='checkbox' title='Select register for this event' name='".$regChk."'>";   
+                                  echo '</div>';
+                                    $numActions++;
+                            }
+                           }
+                            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0) && ($gotPartnerEventReg)) {
+                              if (!($gotEventReg)) {
+                              $comparedateTS = strtotime($compareDate);
+                              $eventRegOpen = strtotime($event['eventregopen']);
+                                if ($comparedateTS >= $eventRegOpen) {
+                                echo '<div class="form-item">';
+                                echo '<h4 class="form-item-title">Register?</h4>';
+                                echo "<input type='checkbox' title='Select register for this event' name='".$regChk."'>";   
+                                echo '</div>';
+                                  $numActions++;
+                              }
+
+                            }
+                           }
                             //  else below goes to registered
                           }  else {
+                    
                           $comparedateTS = strtotime($compareDate);
                           $eventRegOpen = strtotime($event['eventregopen']);
                           if ($comparedateTS >= $eventRegOpen) {
@@ -337,13 +353,16 @@ $gotPartnerEventReg = 0;
                             echo "<input type='checkbox' title='Select register for this event' name='".$regChk."'>";   
                             echo '</div>';
                               $numActions++;
+                            
                           } else {
                             echo '<div class="form-item">';
                             echo '<h4 class="form-item-title">Registration  is not Open for this event yet</h4>';
                             echo '</div>';
                           }
 
-                        }// registered
+              
+                      
+                      }  // registered
                         if ($numActions > 0) {
                               echo '<div class="form-item">';
                                echo "<button type='submit' name='subMemEvent'>Process</button>";

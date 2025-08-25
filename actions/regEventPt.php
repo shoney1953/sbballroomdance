@@ -308,20 +308,15 @@ if (!isset($_POST['submitAddRegs'])) {
                         } else {
                            
                             $emailBody .= "You have chosen not to attend dinner before the dance.<br>";
-                           if (isset($_POST['mem1Chk'])) {
+                      
                             if ($_SESSION['role'] === 'visitor') {
                               $totalDanceOnlyCost = $eventInst->eventguestcost;
                             } else {
                                $totalDanceOnlyCost = $eventInst->eventcost;
                             }
-                           }
-                            if (isset($_POST['mem1Chk'])) {
-                            if ($_SESSION['role'] === 'visitor') {
-                              $totalDanceOnlyCost = $totalDanceOnlyCost + $eventInst->eventguestcost;
-                            } else {
-                               $totalDanceOnlyCost = $totalDanceOnlyCost + $eventInst->eventcost;
-                            }
-                           }
+                           
+                     
+                           
                             $emailBody .= "Total Cost for the Dance Only will be $".number_format($totalDanceOnlyCost,2).".<br>";  
                             // $emailBody .= "Guest Cost of the Dance Only will be $".number_format($eventInst->eventguestcost).".<br>"; 
                         }    
@@ -458,6 +453,7 @@ if (!isset($_POST['submitAddRegs'])) {
                 }  // mem2chk
             
 
+  if (isset($_POST['mem1Chk'])) {
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
       
         $regName1 = $regFirstName1.' '.$regLastName1;
@@ -480,6 +476,31 @@ if (!isset($_POST['submitAddRegs'])) {
     } else {
         echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
     }
+  }
+      if (isset($_POST['mem2Chk'])) {
+     if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
+      
+        $regName2 = $regFirstName2.' '.$regLastName2;
+   
+        sendEmail(
+            $regEmail2, 
+            $regName2, 
+            $fromCC,
+            $fromEmailName,
+            $emailBody,
+            $emailSubject,
+            $replyEmail,
+            $replyTopic,
+            $mailAttachment,
+            $toCC2,
+            $toCC3,
+            $toCC4,
+            $toCC5
+        );
+    } else {
+        echo 'Registrant Email 2 is empty or Invalid. Please enter valid email.';
+    }
+  }
        $redirect = "Location: ".$_SESSION['returnurl'];
        header($redirect); 
        exit;

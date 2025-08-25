@@ -56,27 +56,15 @@ if (isset($_POST['submitRemoveRegs'])) {
                 
     }              
  }
- 
+         $emailBody .=
+                 "<br>Event Date:  ".$event->eventdate."
+                 <br>Event Type:  ".$event->eventtype."
+                 <br>Event Name:  ".$event->eventname."<br>";
 
-    if (isset($_POST["$remID2"])) {
-         
-             $eventid = $_POST['eventid'];
-             $regFirstName1 = $partnerEventReg->firstname;
-             $regLastName1 = $partnerEventReg->lastname;
-             $regEmail1 = $_SESSION['partneremail'];
-             if ($partnerEventReg->orgemail != null) {
-               $toCC2 = $partnerEventReg->orgemail;
-               $toCC3 = $_SESSION['useremail'];
-             } else {
-                 $toCC2 = $_SESSION['useremail'];
-             }
-        }      
     if (isset($_POST["$remID1"])) {
   
         $eventid = $_POST['eventid'];
-        $regFirstName1 = $eventReg->firstname;
-        $regLastName1 = $eventReg->lastname;
-        $regEmail1 = $_SESSION['useremail'];
+    
         if ($eventReg->orgemail != null) {
             $toCC2 = $eventReg->orgemail;
             if (isset($_SESSION['partneremail'])) {
@@ -87,19 +75,13 @@ if (isset($_POST['submitRemoveRegs'])) {
              $toCC2 = $_SESSION['partneremail'];
         }
 
-    }
-       
+    $emailBody .= "<br>NAME: ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']."<br>    EMAIL:  ".$_SESSION['useremail']."<br>";
+ 
 
-   
-    $emailBody .= "<br>NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
-    $emailBody .= 
-                "<br>Event Date:  ".$event->eventdate.
-                "<br>Event Type:  ".$event->eventtype.
-                "<br>Event Name:  ".$event->eventname;
-        if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
-            $regName1 = $regFirstName1.' '.$regLastName1;
+        if (filter_var($_SESSION['useremail'], FILTER_VALIDATE_EMAIL)) {
+            $regName1 = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
             sendEmail(
-                $regEmail1, 
+                $_SESSION['useremail'], 
                 $regName1, 
                 $fromCC,
                 $fromEmailName,
@@ -119,20 +101,51 @@ if (isset($_POST['submitRemoveRegs'])) {
             // header($redirect);
            exit;
         }
-        
-   /*********************************************** */
 
-         if (isset($_POST["$remID1"])) {
-        
            $eventReg->delete();
            $event->decrementCount($eventid);
-         }
-         
-        if (isset($_POST["$remID2"])) {
         
+        }  // end of member 1
+
+            if (isset($_POST["$remID2"])) {
+        
+             $eventid = $_POST['eventid'];
+
+             if ($partnerEventReg->orgemail != null) {
+               $toCC2 = $partnerEventReg->orgemail;
+               $toCC3 = $_SESSION['useremail'];
+             } else {
+                 $toCC2 = $_SESSION['useremail'];
+             }
+                $emailBody .= "<br>PARTNER NAME: ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']."<br>    EMAIL:  ".$_SESSION['partneremail']."<br>";
+
+               if (filter_var($_SESSION['partneremail'], FILTER_VALIDATE_EMAIL)) {
+            $regName2 = $_SESSION['partnerfirstname'].' '.$_SESSION['partnerlastname'];
+            sendEmail(
+                $_SESSION['partneremail'], 
+                $regName2, 
+                $fromCC,
+                $fromEmailName,
+                $emailBody,
+                $emailSubject,
+                $replyEmail,
+                $replyTopic,
+                $mailAttachment,
+                $toCC2,
+                $toCC3,
+                $toCC4,
+                $toCC5
+            );
+        } else {
+            echo 'Registrant 2 Email is empty or Invalid. Please enter valid email.';
+            //  $redirect = "Location: ".$_SESSION['returnurl'];
+            // header($redirect);
+           exit;
+        }
+
                   $partnerEventReg->delete();
                   $event->decrementCount($eventid);
-          }
+            }
        
     }
 
