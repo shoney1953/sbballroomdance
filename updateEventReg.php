@@ -89,10 +89,13 @@
             echo '<div class="form-grid">';
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Update?</h4>';
-            if ($event['eventtype'] !== 'Dinner Dance') {
-                echo "<input title='Select to Update Registration' type='checkbox' name='".$updID."'>"; 
-            } else {
+           
+           if ($event['eventtype'] == 'Dinner Dance') {
                echo "<input title='Select to Update Registration' type='checkbox' id=".$updID." name='".$updID."' onclick='displayMeals3U(".$reg['id'].")'>"; 
+            } else if ($event['eventtype'] === 'Dance Party') {
+               echo "<input title='Select to Update Registration' type='checkbox' id=".$updID." name='".$updID."' onclick='displayMeals3U(".$reg['id'].")'>"; 
+            } else {
+                  echo "<input title='Select to Update Registration' type='checkbox' name='".$updID."'>"; 
             }
        
             echo '</div>'; // end of form item
@@ -157,7 +160,6 @@
          
             if ($event['eventtype'] === 'Dance Party') {
      
-                
 
                 $ad = 0;
                 if ($reg['ddattenddinner']) {
@@ -183,9 +185,9 @@
             
                     if ($numMeals > 0) {
                   
-                        $fcuID = "fcu".$reg['id'];
+                       $fcu2ID = "fcu2".$reg['id'];
 
-                        echo "<div id='".$fcuID."' class='form-container hidden'>";  
+                        echo "<div id='".$fcu2ID."' class='form-container hidden'>";  
                         // echo "<div class='form-grid'>";
                         foreach ($mealChoices as $choice) {
     
@@ -194,6 +196,7 @@
                           echo "<div class='form-item'>";
                           echo '<h4 class="form-item-title">Select '.$choice['mealname'].'</h4>';
                             //    echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
+                      
                           if ($reg['mealchoice'] === $choice['id']) {
                                 echo "<input  title='Select This Meal' checked type='checkbox'name='".$mcID."'>";
                           } else {
