@@ -67,7 +67,23 @@ $gotPartnerEventReg = 0;
                 $comparedateTS = strtotime($compareDate);
                 $eventRegEnd = strtotime($event['eventregend']);
                 echo '<div class="form-container">';
-                echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a></h4>";
+                  if ($event['eventform']) {          
+                    echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a>
+                            -----> <a href='".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></h4>";
+                    } else {
+                       echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a></h4>";
+                    }
+                  if (isset($_SESSION['username'])) {
+                      $comparedateTS = strtotime($compareDate);
+                        $eventRegOpen = strtotime($event['eventregopen']);
+                    if ($comparedateTS >= $eventRegOpen) {
+                    echo "<p><form  target='_blank' name='reportEventForm'   method='POST' action='actions/reportEvent.php'> ";
+                    echo "<input type='hidden' name='eventId' value='".$event['id']."'>"; 
+                    echo "<button class='button-tiny' type='submit'>Report</button></p>";
+                    }
+                    echo '</form>';
+               
+                    }
                 if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party')) {
                     echo "<h5 class='form-title-left'> Last Day to sign up for dinner or modify dinner choices: ".date('Y-m-d', $eventCutOff).".  Registration ends: ".$event['eventregend'].".</h5>";
                 } else {
@@ -75,11 +91,7 @@ $gotPartnerEventReg = 0;
                 }
                 echo '<div class="form-grid">';
           
-                if ($event['eventform']) {
-                   echo '<div class="form-item">';
-                    echo "<h4 class='form-item-title'>Form: <a href='".$event['eventform']."'>PRINT</a></h4>";
-                    echo '</div>'; // end of form item       
-              } 
+
                $gotEventReg = 0;
                 if (isset($_SESSION['username'])) {
                   if ($_SESSION['role'] === 'visitor') {
@@ -126,7 +138,12 @@ $gotPartnerEventReg = 0;
                      if ($event['eventcost'] !== '0') {
                       if ($eventReg->paid !== '0') {
                           echo '<div class="form-item">';
-                          echo "<h4 class='form-item-title'>You have paid for this event.</h4>";
+                          if ($eventReg->paidonline === '1') {
+                              echo "<h4 class='form-item-title'>You have paid online for this event.</h4>"; 
+                          } else {
+                             echo "<h4 class='form-item-title'>You have paid for this event.</h4>";
+                          }
+                 
                           echo '</div>'; // end of form item
                       } else {
                           echo '<div class="form-item">';
@@ -185,7 +202,12 @@ $gotPartnerEventReg = 0;
                       if ($event['eventcost'] !== '0') {
                         if ($partnereventReg->paid !== '0') {
                             echo '<div class="form-item">';
-                            echo "<h4 class='form-item-title'>Your partner has paid for this event.</h4>";
+                            if ($partnereventReg->paidonline === '1') {
+                                echo "<h4 class='form-item-title'>Your partner has paid online for this event.</h4>";
+                            } else {
+                               echo "<h4 class='form-item-title'>Your partner has paid for this event.</h4>";
+                            }
+                  
                             echo '</div>'; // end of form item
                         } else {
                             echo '<div class="form-item">';
@@ -227,13 +249,13 @@ $gotPartnerEventReg = 0;
                   echo '<div class="form-grid">';
                         $comparedateTS = strtotime($compareDate);
                         $eventRegOpen = strtotime($event['eventregopen']);
-                     if ($comparedateTS >= $eventRegOpen) {
-                      echo '<div class="form-item">';
-                      echo '<h4 class="form-item-title">Report?</h4>';
-                      echo "<input type='checkbox' title='Select to Report on Event' name='".$rpChk."'>";   
+                    //  if ($comparedateTS >= $eventRegOpen) {
+                    //   echo '<div class="form-item">';
+                    //   echo '<h4 class="form-item-title">Report?</h4>';
+                    //   echo "<input type='checkbox' title='Select to Report on Event' name='".$rpChk."'>";   
   
-                      echo '</div>';
-                      } // registration open
+                    //   echo '</div>';
+                    //   } // registration open
  
                  
                      if (($gotEventReg) || ($gotPartnerEventReg)) {  

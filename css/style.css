@@ -999,17 +999,63 @@ button {
 button:link {
   color: var(--white3);
 }
+.button-tiny {
+  width: 5%;
+  border-radius: 2%;
+}
+.button-tiny:hover {
+  width: 6%;
+  border-radius: 5%;
+  color: var(--black3);
+  background-color: var(--white3);
+}
+.button-tiny:hover {
+  width: 6%;
+  border-radius: 5%;
+  color: var(--black3);
+  background-color: var(--white3);
+}
+.button-tiny:link, .button-tiny:visited {
+  width: 5%;
+  border-radius: 5%;
+  color: var(--white3);
+}
+.button-tiny:hover, .button-tiny:active {
+  width: 5%;
+  border-radius: 5%;
+  color: var(--black3);
+  background-color: var(--white3);
+}
+.button-tiny:link, .button-tiny:visited {
+  width: 5%;
+  border-radius: 5%;
+
+  color: var(--white3);
+}
+.button-tiny:hover, .button-tiny:active {
+  width: 5%;
+  border-radius: 5%;
+  color: var(--black3);
+  background-color: var(--white3);
+}
 .button-small {
   width: 5%;
   border-radius: 50%;
+
+  color: var(--white3);
 }
-.button-small:hover {
-  width: 6%;
+.button-small:link, .button-small:visited {
+  width: 5%;
+  border-radius: 50%;
+
+  color: var(--white3);
+}
+.button-small:hover, .button-small:active {
+  width: 5%;
   border-radius: 50%;
   color: var(--black3);
   background-color: var(--white3);
 }
-
 .button-small:link, .button-small:visited {
   width: 5%;
   border-radius: 50%;

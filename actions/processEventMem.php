@@ -33,6 +33,7 @@ $gotPartnerEventReg = 0;
         <div class="container">      
         <ul>  
             <li><a href="../index.php">Back to Home</a></li>
+            <li><a href="../SBDCEventst.php">Back to Upcoming Events</a></li>
         </ul>
         </div>
 </nav>

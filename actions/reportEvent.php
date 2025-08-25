@@ -26,7 +26,7 @@ $dwop = 0;
 $numDwop = 0;
 $init_dinner = 1;
 $paidNum = 0;
-
+$regCount = 0;
 class PDF extends FPDF
 {
     function Header() {
@@ -508,11 +508,11 @@ if ($rowCount > 0) {
     $pdf->Cell(100,8, "Registrations for this Event:  ", 1, 0,"L");
   
     $pdf->Cell(20,8, $regCount, 1, 1,"L");
-    if ($reg['eventtype'] === 'Dinner Dance') {
+    if ($event->eventtype === 'Dinner Dance') {
     $pdf->Cell(100,8, "Paid for this Event:           ", 1, 0,"L");
     $pdf->Cell(20, 8, $paidNum, 1, 1,"L"); 
     } 
-    if ($reg['eventtype'] === 'Dance Party') {
+    if ($event->eventtype === 'Dance Party') {
         $pdf->Cell(100, 8, "Paid for this Event:           ", 1, 0);
         $pdf->Cell(20, 8, $paidNum, 1, 1); 
         } 
@@ -522,19 +522,19 @@ if ($rowCount > 0) {
     $pdf->Cell(20, 8, $nonMemReg, 1, 1); 
     $pdf->Cell(100, 8, "DWOP Member Registrations:      ", 1, 0);
     $pdf->Cell(20, 8, $numDwop, 1, 1); 
-    if ($reg['eventtype'] === 'Dine and Dance') {
+    if ($event->eventtype === 'Dine and Dance') {
     $pdf->Cell(100, 8, "Attending Dinner (if Dine and Dance):  ", 1, 1);
     $pdf->Cell(20, 8, $attDinner, 1, 1);
     $pdf->Cell(100, 8, "Attending Dance (if Dine and Dance):  ", 1, 1);
     $pdf->Cell(20, 8, $attDance, 1, 1);
     }
-    if ($reg['eventtype'] === 'Dance Party') {
+    if ($event->eventtype === 'Dance Party') {
         $pdf->Cell(100, 8, "Attending Dinner (if Dance Party):  ".$attDinner, 1, 1);
         $pdf->Cell(20, 8, $attDinner, 1, 1);
         $pdf->Cell(100, 8, "Attending Dance (if Dance Party):  ".$attDance, 1, 1);
         $pdf->Cell(20, 8, $attDance, 1, 1);
         }
-        if ($reg['eventtype'] === 'BBQ Picnic') {
+        if ($event->eventtype === 'BBQ Picnic') {
             $pdf->Cell(100, 8, "Playing Cornhole:  ".$playCornhole, 1, 1);
   
             $pdf->Cell(100, 8, "Playing Softball:  ".$playSoftball, 1, 1);
