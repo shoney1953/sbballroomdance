@@ -46,24 +46,21 @@ if (isset($_POST['submitRemoveRegs'])) {
     if ($eventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['userid'])) {
            $gotEventRec = 1;
            $remID1 = "rem".$eventReg->id;
- 
     }
  
     if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
         if ($partnerEventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['partnerid'])) {
             $gotPartnerEventRec = 1;
-            $remID2 = "rem".$partnerEventReg->id; 
-                
+            $remID2 = "rem".$partnerEventReg->id;                 
     }              
- }
-         $emailBody .=
-                 "<br>Event Date:  ".$event->eventdate."
+   }
+     $emailBody .=
+                "<br>Event Date:  ".$event->eventdate."
                  <br>Event Type:  ".$event->eventtype."
                  <br>Event Name:  ".$event->eventname."<br>";
 
-    if (isset($_POST["$remID1"])) {
-  
-        $eventid = $_POST['eventid'];
+    if ((isset($_POST["$remID1"])) && (isset($_POST["$remID2"]))) {
+        
     
         if ($eventReg->orgemail != null) {
             $toCC2 = $eventReg->orgemail;
@@ -75,14 +72,37 @@ if (isset($_POST['submitRemoveRegs'])) {
              $toCC2 = $_SESSION['partneremail'];
         }
 
-    $emailBody .= "<br>NAME: ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']."<br>    EMAIL:  ".$_SESSION['useremail']."<br>";
- 
+         $emailBody .= "<br>MEMBER NAME: ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']."<br>    EMAIL:  ".$_SESSION['useremail']."<br>";
+         $emailBody .= "<br>PARTNER NAME: ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']."<br>    EMAIL:  ".$_SESSION['partneremail']."<br>";
+         $regName = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
+         $regEmail = $_SESSION['useremail'];
+    }
+       if ((isset($_POST["$remID1"])) && (!isset($_POST["$remID2"]))) {
+    
+                    $emailBody .= "<br>MEMBER NAME: ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']."<br>    EMAIL:  ".$_SESSION['useremail']."<br>";
+                     $regName = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
+                     $regEmail = $_SESSION['useremail'];
+       }
+       if ((isset($_POST["$remID2"])) && (!isset($_POST["$remID1"]))) {
 
-        if (filter_var($_SESSION['useremail'], FILTER_VALIDATE_EMAIL)) {
-            $regName1 = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
+                     $emailBody .= "<br>PARTNER NAME: ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']."<br>    EMAIL:  ".$_SESSION['partneremail']."<br>";
+                     $regName = $_SESSION['partnerfirstname'].' '.$_SESSION['partnerlastname'];
+                     $regEmail = $_SESSION['partneremail'];
+                      if ($event->orgemail != null) {
+                        $toCC2 = $event->orgemail;
+                        $toCC3 = $_SESSION['useremail'];
+                      } else {
+                          $toCC2 = $_SESSION['useremail'];
+                      }
+                         
+        }  
+    
+
+        if (filter_var($regEmail, FILTER_VALIDATE_EMAIL)) {
+       
             sendEmail(
-                $_SESSION['useremail'], 
-                $regName1, 
+                $regEmail, 
+                $regName, 
                 $fromCC,
                 $fromEmailName,
                 $emailBody,
@@ -101,52 +121,15 @@ if (isset($_POST['submitRemoveRegs'])) {
             // header($redirect);
            exit;
         }
-
+         if (isset($_POST["$remID1"])) {
            $eventReg->delete();
            $event->decrementCount($eventid);
-        
-        }  // end of member 1
-
-            if (isset($_POST["$remID2"])) {
-        
-             $eventid = $_POST['eventid'];
-
-             if ($partnerEventReg->orgemail != null) {
-               $toCC2 = $partnerEventReg->orgemail;
-               $toCC3 = $_SESSION['useremail'];
-             } else {
-                 $toCC2 = $_SESSION['useremail'];
-             }
-                $emailBody .= "<br>PARTNER NAME: ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']."<br>    EMAIL:  ".$_SESSION['partneremail']."<br>";
-
-               if (filter_var($_SESSION['partneremail'], FILTER_VALIDATE_EMAIL)) {
-            $regName2 = $_SESSION['partnerfirstname'].' '.$_SESSION['partnerlastname'];
-            sendEmail(
-                $_SESSION['partneremail'], 
-                $regName2, 
-                $fromCC,
-                $fromEmailName,
-                $emailBody,
-                $emailSubject,
-                $replyEmail,
-                $replyTopic,
-                $mailAttachment,
-                $toCC2,
-                $toCC3,
-                $toCC4,
-                $toCC5
-            );
-        } else {
-            echo 'Registrant 2 Email is empty or Invalid. Please enter valid email.';
-            //  $redirect = "Location: ".$_SESSION['returnurl'];
-            // header($redirect);
-           exit;
-        }
-
-                  $partnerEventReg->delete();
-                  $event->decrementCount($eventid);
-            }
-       
+         }
+        if (isset($_POST["$remID2"])) {
+           $partnerEventReg->delete();
+           $event->decrementCount($eventid);
+         }
+  
     }
 
          $redirect = "Location: ".$_SESSION['returnurl'];
