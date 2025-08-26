@@ -132,7 +132,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
         }
     }
             echo '</tr>';
-       if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+      
        
              if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party')) {
 
@@ -178,7 +178,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
                 }   // row count 
              } // eventtype
    
-        }  // testmode
+    
     $eventReg->create();
     $event->addCount($eventReg->eventid);
     $emailBody .= '<br>We hope you enjoy the event and consider joining our club.';

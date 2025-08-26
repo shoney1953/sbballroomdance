@@ -300,7 +300,7 @@
                     }
                    
                
-                    if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) { 
+          
                       $mcfcD = 'mcfcD'.$event['id'];
                       $mcfcP = 'mcfcP'.$event['id'];
                       if ($event['eventtype'] === 'Dinner Dance') {
@@ -388,7 +388,7 @@
                 
                    
 
-                  } //test mode
+             
                  
                 }
                  

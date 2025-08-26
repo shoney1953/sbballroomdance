@@ -198,7 +198,7 @@ if (isset($_POST['submitAddReg'])) {
                     }
                    if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party')) {
              
-                      if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+                  
                          
                          foreach ($mealChoices as $choice) {
                              $mcID = "mc".$usr['id'].$choice['id'];
@@ -217,7 +217,7 @@ if (isset($_POST['submitAddReg'])) {
                             $eventReg->dietaryrestriction = $_POST["$drID"];
                              $emailBody .= "<br>You have specified a dietary restriction of ".$_POST["$drID"].".";
                         }
-                      } // testmode
+                   
                    }  // eventtype
 
                     if ($event->eventform) {
@@ -230,9 +230,9 @@ if (isset($_POST['submitAddReg'])) {
                     }
                   
                  }
-                 if ($event->orgemail != null) {
-                    $toCC2 = $event->orgemail;
-                }
+                //  if ($event->orgemail != null) {
+                //     $toCC2 = $event->orgemail;
+                // }
                 $emailBody .= '<br>Note: You can also see these events from your profile on the website.';
 
                 $eventReg->create();

@@ -49,11 +49,9 @@ $result = $mChoices->read_ByEventId($eventID);
      <ul> 
     <li><a href="index.php">Back to Home</a></li>
     <?php
-      if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+  
         echo '  <li><a href="SBDCEventst.php">Back to Upcoming Events</a></li>';
-      } else {
-         echo '  <li><a href="SBDCEvents.php">Back to Upcoming Events</a></li>';
-      }
+    
     ?>
   
      </ul>
@@ -143,7 +141,7 @@ if (isset($_GET['id'])) {
     } // eventcost
          echo "</div>"; // form grid
          echo "</div>"; // form container 
-     if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+
      if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party')) {
 
         if ($num_meals > 0) {
@@ -173,33 +171,23 @@ if (isset($_GET['id'])) {
         } // num meals
      
       }  // dd or dp
-    } // testmode
+  
 
         }    
 
       }
-      if ((!(isset($_SESSION['testmode']))) || ($_SESSION['testmode'] === 'NO')) {
+  
         echo '<div class="form-grid2">';
   
         if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
-        if (isset($_SESSION['role'])) {
-        if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
-            echo '<div class="form-grid-div">';
-              echo "<button><a href='regForEventsOnline.php'><h4>Click to Register and Pay for Events Online</h4></a></button> ";
-              echo '</div>';
-           }
-        echo '<div class="form-grid-div">';
-        echo "<button><a href='regForEvents.php'><h4>Click to Register for Events</h4></a></button> ";
-        echo '</div>';
       
-         } // role
         } else {
             echo '<h4><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Please Login as a Member or Visitor to Register</a></h4>';
         }
         echo '</div>'; 
       }
         
-    } 
+    
  ?>
 
      <footer >

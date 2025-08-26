@@ -15,9 +15,7 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost') {
  
    $stripeSecretKey = $_SESSION['prodkey'] ;
 }
-if (($_SERVER['SERVER_NAME'] === 'localhost') || 
-    (($_SESSION['testmode'] === 'YES')) && (isset($_SESSION['testmode'])) ) {    
-
+if ($_SERVER['SERVER_NAME'] === 'localhost') {
   $stripeSecretKey = $_SESSION['testkey'] ;
 }
 

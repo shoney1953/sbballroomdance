@@ -179,7 +179,7 @@
                 // echo '<h4 class="form-item-title">Paid?</h4>';
                 // echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
                 // echo '</div>'; // end of form item
-             if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+       
        
              if ($event['eventtype'] === 'Dance Party') {
             
@@ -221,7 +221,7 @@
              } // eventtype Dance Party
    
     
-            } // testmode
+       
             
 
 
@@ -231,7 +231,7 @@
 
 
             if ($event['eventtype'] === 'Dinner Dance') {
-             if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+          
 
             
                     if ($numMeals > 0) {
@@ -269,7 +269,7 @@
 
                     } //nummeals
 
-             } // testmode         
+            
 
             } // end if dinner dance
             echo '<div class="form-item">';

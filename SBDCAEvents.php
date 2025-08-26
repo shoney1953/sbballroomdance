@@ -233,7 +233,6 @@ echo '<form method="POST" action="actions/processEvents.php">';
 
 
     if ($compareDate <= $event['eventdate']) {
-     if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) { 
 
    echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Add Meal Options</h4>';
@@ -244,7 +243,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '<h4 class="form-item-title">Update Meal Options</h4>';
    echo "<input type='checkbox' title='Select to Update Meal(s)' name='".$umChk."'>";
    echo '</div>';
-   }
+   
 }
 
   }

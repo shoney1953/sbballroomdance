@@ -47,9 +47,8 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost') {
    $stripeSecretKey = $_SESSION['prodkey'] ;
 }
 // setting to test stripe account if testmode or localhost 
-if (($_SERVER['SERVER_NAME'] === 'localhost') || 
-    (($_SESSION['testmode'] === 'YES') && (isset($_SESSION['testmode']))))  {    
-
+if ($_SERVER['SERVER_NAME'] === 'localhost') {
+    
   $stripeSecretKey = $_SESSION['testkey'] ;
 }
 $productDescription = '';

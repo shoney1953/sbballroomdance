@@ -112,7 +112,7 @@ if (!isset($_POST['submitEventReg'])) {
 
           $eventId = $event['id'];
 
-           if (isset($_SESSION['testmode'])) {   
+       
               $drID1 = "dr1".$event['id'];
               if (isset($_POST["$drID1"])) {
                 $dietaryRestriction1 = $_POST["$drID1"];
@@ -170,7 +170,7 @@ if (!isset($_POST['submitEventReg'])) {
                       } // foreach choice
                    
                 }  // rowCount
-            }  //testmode
+      
                 $num_registered++;
                 $eventId = $event['id'];
                 $emailBody .= "<br><strong> Event: ".$event['eventname'].
@@ -178,12 +178,12 @@ if (!isset($_POST['submitEventReg'])) {
                 "<br>DJ  :    ".$event['eventdj'].
                 "<br>Room:    ".$event['eventroom'].
                 "<br>Date:    ".date('M d Y',strtotime($event['eventdate']))."</strong><br>"; 
-                if ($event['orgemail'] != null) {
-                    $toCC2 = $event['orgemail'];
-                }
-                else {        
-                        $toCC2 = '';                    
-                }
+                // if ($event['orgemail'] != null) {
+                //     $toCC2 = $event['orgemail'];
+                // }
+                // else {        
+                //         $toCC2 = '';                    
+                // }
                 switch ($event['eventtype']) {
                   case "BBQ Picnic":
                     if (isset($_POST["$chkboxID2"])) {
@@ -201,7 +201,7 @@ if (!isset($_POST['submitEventReg'])) {
                   case "Dance Party":
                          if (isset($_POST["$chkboxID2"])) {
                                 $emailBody .= "You have chosen to attend dinner.<br>";
-                                if ($_SESSION['testmode'] === 'YES') {
+                           
                                     if ($meal1 !== '') {
                                         $emailBody .= "You selected ".$meal1." at the cost of $".number_format($mealprice1/100,2)."";   
                                         $danceCost = $danceCost + $mealprice1;    
@@ -211,7 +211,7 @@ if (!isset($_POST['submitEventReg'])) {
                                           $emailBody .= ".<br>";
                                        }
                              
-                                    }
+                                    
 
                             
                                     if ($meal2 !== '') {
@@ -234,13 +234,13 @@ if (!isset($_POST['submitEventReg'])) {
                             $emailBody .= "Guest Cost of the Dance Only will be $".number_format($event['eventguestcost']).".<br>"; 
                         }    
                           $emailBody .= "Please submit your fee prior to the dance as indicated on the form.<br>";  
-                        if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+                     
                            $emailBody .= "You may optionally choose to pay online. Simply go to your profile and click the pay button.<br>";
-                        }
+                    
                     break;
                     case "Dinner Dance":
 
-                        if (isset($_SESSION['testmode']) &&($_SESSION['testmode'] === 'YES')) {
+                       
                             if ($meal1 !== '') {
                                 $emailBody .= "You selected ".$meal1." at the cost of ".number_format($mealprice1/100,2).""; 
                                 $danceCost = $danceCost + $mealprice1;
@@ -263,10 +263,9 @@ if (!isset($_POST['submitEventReg'])) {
                                 } // meal2 
 
                            $emailBody .= "<br>Cost of the Dance will be ".number_format($danceCost/100,2).".<br>";  
-                         if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
-                           $emailBody .= "You may optionally choose to pay online. Simply go to your profile and click the pay button.<br>";
-                           }
-                        }  //testmode
+                    
+                           
+                    
 
                     break;
                     default:
@@ -276,7 +275,7 @@ if (!isset($_POST['submitEventReg'])) {
                 } //switch end
 
 
-                 if ((!isset($_SESSION['testmode']))  || ($_SESSION['testmode'] !== 'YES')) {
+             
                     if ($event['eventcost'] > 0) {
                         $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
                         $coststr =  "Member Minimum Cost for the Dance is: "
@@ -286,7 +285,7 @@ if (!isset($_POST['submitEventReg'])) {
                         $emailBody .= $coststr;
                         // $toCC2 = $treasurer;
                     }
-                 }
+                 
 
                     if (!$event['eventform']) {
                         $emailBody .= '<br>The signup form specifying meal choices and associated costs
@@ -339,14 +338,14 @@ if (!isset($_POST['submitEventReg'])) {
                     $eventReg->softball = 0;
                 }
 
-                if ($_SESSION['testmode'] === 'YES') {
+           
              
                     $eventReg->mealchoice = $mealid1;
                     if ($dietaryRestriction1 !== '') {
                         $eventReg->dietaryrestriction = $dietaryRestriction1;
                     }
 
-                } //testmode
+         
                 $eventReg->message = $message;
 
                 $eventReg->paid = 0;
@@ -372,7 +371,7 @@ if (!isset($_POST['submitEventReg'])) {
                     $eventReg->registeredby = $_SESSION['username'];
                     $eventReg->paid = 0;
 
-                    if ($_SESSION['testmode'] === 'YES') {
+                  
                 
                         $eventReg->mealchoice = $mealid2;
                        if ($dietaryRestriction2 !== '') {
@@ -381,7 +380,6 @@ if (!isset($_POST['submitEventReg'])) {
                         $eventReg->dietaryrestriction = '';
                        }
 
-                    } //testmode
                     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
 
                     if ($result) {

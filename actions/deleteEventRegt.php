@@ -61,16 +61,8 @@ if (isset($_POST['submitRemoveRegs'])) {
 
     if ((isset($_POST["$remID1"])) && (isset($_POST["$remID2"]))) {
         
-    
-        if ($eventReg->orgemail != null) {
-            $toCC2 = $eventReg->orgemail;
-            if (isset($_SESSION['partneremail'])) {
-                 $toCC3 = $_SESSION['partneremail'];
-            }
-         
-        } else {
              $toCC2 = $_SESSION['partneremail'];
-        }
+        
 
          $emailBody .= "<br>MEMBER NAME: ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']."<br>    EMAIL:  ".$_SESSION['useremail']."<br>";
          $emailBody .= "<br>PARTNER NAME: ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']."<br>    EMAIL:  ".$_SESSION['partneremail']."<br>";
@@ -88,13 +80,8 @@ if (isset($_POST['submitRemoveRegs'])) {
                      $emailBody .= "<br>PARTNER NAME: ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']."<br>    EMAIL:  ".$_SESSION['partneremail']."<br>";
                      $regName = $_SESSION['partnerfirstname'].' '.$_SESSION['partnerlastname'];
                      $regEmail = $_SESSION['partneremail'];
-                      if ($event->orgemail != null) {
-                        $toCC2 = $event->orgemail;
-                        $toCC3 = $_SESSION['useremail'];
-                      } else {
-                          $toCC2 = $_SESSION['useremail'];
-                      }
-                         
+                     $toCC2 = $_SESSION['useremail'];
+            
         }  
     
 

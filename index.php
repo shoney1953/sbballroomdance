@@ -349,15 +349,18 @@ if ($rowCount > 0) {
         </a></li>
             <li><a title="Pictures from various activities and class videos" href="SBDCPictures.php">Photos</a></li>
                 <?php
-      if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+  
         echo '  <li><a title="List of Upcoming Events" href="SBDCEventst.php">Upcoming Events</a></li>';
+    
+    
+          
+      if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+       echo '<li><a title="List of Upcoming Classes" href="SBDCClassest.php">Upcoming Classes</a></li>';
       } else {
-         echo '  <li><a title="List of Upcoming Events" href="SBDCEvents.php">Upcoming Events</a></li>';
+        echo '<li><a title="List of Upcoming Classes" href="SBDCClasses.php">Upcoming Classes</a></li>';
       }
-    ?>
-            <!-- <li><a title="List of Upcoming Events" href="SBDCEvents.php">Upcoming Events</a></li> -->
-
-            <li><a title="List of Upcoming Classes" href="SBDCClasses.php">Upcoming Classes</a></li>
+      ?>
+          
 
             <li><a title="2025 New Years Cruise" href="specialevent.php">2025 Cruise Info</a></li>
    

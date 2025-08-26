@@ -107,7 +107,7 @@ if ($addReg) {
         echo "<td>".$usr['email']."</td>";
         echo '</tr>';
 
-        if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+
        
              if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party')) {
               $mealChoices = [];
@@ -172,7 +172,7 @@ if ($addReg) {
              } // eventtype
    
         }
-     } // testmode
+
     }  // usr
      echo '</tbody>';
      echo '</table>';
@@ -221,7 +221,7 @@ if ($addReg) {
         }
         echo "<td> <textarea  title='Enter any notes about the visitor registration' name='notes1' rows='5' cols='50'></textarea></td>";
         echo '</tr>';
-       if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+ 
        
              if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party')) {
               $mealChoices = [];
@@ -282,7 +282,7 @@ if ($addReg) {
                 }   // row count 
              } // eventtype
    
-        }  // testmode
+    
  
   
         // second visitor
@@ -302,7 +302,7 @@ if ($addReg) {
 
         echo "<td> <textarea  title='Enter any notes about the visitor registration' name='notes2' rows='5' cols='50'></textarea></td>";
         echo '</tr>';
-        if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+   
         if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party')) {
 
                 if ($num_meals > 0) {
@@ -339,7 +339,7 @@ if ($addReg) {
                 }   // num_meals
              } // eventtype
    
-        }  // testmode
+   
         echo '</tbody>';
         echo '</table>';
     

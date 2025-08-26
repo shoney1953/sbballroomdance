@@ -11,10 +11,7 @@ require_once '../models/PaymentCustomer.php';
 // $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
 if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
   $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
-   $stripeSecretKey = $_SESSION['prodkey'] ;
-   if (($_SESSION['testmode'] === 'YES') && (isset($_SESSION['testmode']))) {
-    $stripeSecretKey = $_SESSION['testkey'] ;
-   }
+   $stripeSecretKey = $_SESSION['prodkey'] ;  
 }
 if ($_SERVER['SERVER_NAME'] === 'localhost') {    
   $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';  
