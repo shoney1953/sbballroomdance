@@ -154,8 +154,7 @@ $gotPartnerClassReg = 0;
                            }
                             //  else below goes to registered
                           }  else {
-                    
-                    
+
                             echo '<div class="form-item">';
                             echo '<h4 class="form-item-title">Register?</h4>';
                             echo "<input type='checkbox' title='Select to register for this class' name='".$regChk."'>";   

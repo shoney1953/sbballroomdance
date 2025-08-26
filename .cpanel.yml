@@ -61,13 +61,13 @@ deployment:
     - /bin/cp SBDCAAVisitors.php $DEPLOYPATH
     - /bin/cp SBDCAbout.php $DEPLOYPATH
     - /bin/cp SBDCAClasses.php $DEPLOYPATH
-    - /bin/cp SBDCAClassest.php $DEPLOYPATH
     - /bin/cp SBDCAEvents.php $DEPLOYPATH
     - /bin/cp SBDCAMembers.php $DEPLOYPATH
     - /bin/cp SBDCAOptions.php $DEPLOYPATH
     - /bin/cp SBDCAVisitors.php $DEPLOYPATH
     - /bin/cp SBDCBoard.php $DEPLOYPATH
     - /bin/cp SBDCClasses.php $DEPLOYPATH
+    - /bin/cp SBDCClassest.php $DEPLOYPATH
     - /bin/cp SBDCContact.php $DEPLOYPATH
     - /bin/cp SBDCDJInfo.php $DEPLOYPATH
     - /bin/cp SBDCEvents.php $DEPLOYPATH
