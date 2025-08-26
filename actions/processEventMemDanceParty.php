@@ -200,7 +200,8 @@
                 echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
 
                 if ($gotEventReg) {
-                     $remID1 = "rem".$reg->id;
+                    if ($reg->paid !== '1') {
+                      $remID1 = "rem".$reg->id;
                     echo '<div class="form-grid-div">';
                     echo '<div class="form-grid">';
                   
@@ -214,10 +215,13 @@
                     echo '</div>'; // form item
                     echo '</div>'; // form grid
                     echo '</div>'; // form grid div
+                    }
+                   
                 }
 
 
-                 if ($gotPartnerEventReg) {                               
+                 if ($gotPartnerEventReg) {    
+                  if ($partnerReg->paid !== '1')  {
                     echo '<div class="form-grid-div">';
                     echo '<div class="form-grid">';
                     $remID2 = "rem".$partnerReg->id;               
@@ -228,7 +232,7 @@
                     echo '</div>';
                      echo '</div>'; // end of form grid
                      echo '</div>';  // end form grid div
-                  
+                  }                          
                  }
 
                 echo '<button type="submit" name="submitRemoveRegs">Remove Registration(s)</button>';

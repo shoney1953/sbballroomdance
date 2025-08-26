@@ -87,6 +87,7 @@ if (isset($_POST['submitRegConfirm'])) {
     } // potential reg1
 
     if (isset($potentialReg2['firstname'])) {
+  
       $tempReg->eventid = $potentialReg2['eventid'];
       $tempReg->eventname = $potentialReg2['eventname'];
       $tempReg->eventtype = $potentialReg2['eventtype'];
@@ -119,7 +120,7 @@ if (isset($_POST['submitRegConfirm'])) {
         $priceObj2 = $stripe->prices->retrieve($potentialReg2['guestpriceid'], []);
         $totalCost = $totalCost + $priceObj2->unit_amount;
       }
-
+     
     } // potential reg2
 
 

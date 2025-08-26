@@ -97,7 +97,7 @@ if (!isset($_POST['submitAddRegs'])) {
     $regEmail2 = htmlentities($_POST['email2']);  
   
     $regEmail2 = filter_var($regEmail2, FILTER_SANITIZE_EMAIL); 
-      $toCC2 =   $regEmail2;
+      $toCC2 =   $_SESSION['useremail'];
     if ($user->getUserName($regEmail2)) {    
         $regUserid2 = $user->id;
       } else {
@@ -122,17 +122,8 @@ if (!isset($_POST['submitAddRegs'])) {
                 "<br>DJ  :    ".$eventInst->eventdj.
                 "<br>Room:    ".$eventInst->eventroom.
                 "<br>Date:    ".date('M d Y',strtotime($eventInst->eventdate))."</strong><br>"; 
-                if ($eventInst->orgemail != null) {
-                    if ($toCC2 != '') {
-                     $toCC3 = $eventInst->orgemail;
-                    } else {
-                      $toCC2 = $eventInst->orgemail;
-                    }
-                    
-                }
-                else {        
-                        $toCC3 = '';                    
-                }
+
+
                 switch ($eventInst->eventtype) {
                   case "BBQ Picnic":
                  
@@ -172,15 +163,15 @@ if (!isset($_POST['submitAddRegs'])) {
 
 
                 
-                    if ($eventInst->eventcost > 0) {
-                        $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-                        $coststr =  "Member Minimum Cost for the Dance is: "
-                            .$fmt->formatCurrency($eventInst->eventcost, 'USD')."<br>
-                            Check the form for specific costs.<br>";
+                    // if ($eventInst->eventcost > 0) {
+                    //     $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
+                    //     $coststr =  "Member Minimum Cost for the Dance is: "
+                    //         .$fmt->formatCurrency($eventInst->eventcost, 'USD')."<br>
+                    //         Check the form for specific costs.<br>";
             
-                        $emailBody .= $coststr;
-                        // $toCC2 = $treasurer;
-                    }
+                    //     $emailBody .= $coststr;
+                    //     // $toCC2 = $treasurer;
+                    // }
                  
 
                     if ($eventInst->eventform) {

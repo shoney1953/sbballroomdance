@@ -265,16 +265,8 @@ if (!isset($_POST['submitAddRegs'])) {
                 "<br>DJ  :    ".$eventInst->eventdj.
                 "<br>Room:    ".$eventInst->eventroom.
                 "<br>Date:    ".date('M d Y',strtotime($eventInst->eventdate))."</strong><br>"; 
-                if ($eventInst->orgemail != null) {
-                    if ($toCC2 != '') {
-                     $toCC3 = $eventInst->orgemail;
-                    } else {
-                      $toCC2 = $eventInst->orgemail;
-                    }                    
-                }
-                else {        
-                        $toCC3 = '';                    
-                }
+                
+
                 switch ($eventInst->eventtype) {
                
                   case "Dance Party":
@@ -412,8 +404,10 @@ if (!isset($_POST['submitAddRegs'])) {
                     $eventInst->addCount($eventReg->eventid);
                 }  //end no results
               }
+
              if (isset($_POST['mem2Chk'])) {
                        // do the insert(s)
+                  
                     $partnerEventReg->firstname = $regFirstName2;
                     $partnerEventReg->lastname = $regLastName2;
                     $partnerEventReg->eventid = $eventId;

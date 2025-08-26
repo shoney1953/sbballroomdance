@@ -92,6 +92,7 @@ $partnerEventReg->registeredby = $tempReg->registeredby;
 $partnerEventReg->paidonline = 1;
 $partnerEventReg->paid = 1;
 $partnerEventReg->message = $tempReg->message;
+$partnerEventReg->ddattenddinner = $tempReg->ddattenddinner;
 $partnerEventReg->mealchoice = $tempReg->mealchoice2;
 $partnerEventReg->dietaryrestriction = $tempReg->dietaryrestriction2;
 $partnerEventReg->firstname = $tempReg->firstname2;
@@ -110,6 +111,7 @@ if ($tempReg->firstname1 === '') {
 } else {
    $toCC2 = $partnerEventReg->email;
 }
+
 
 $partnerEventReg->create();
 $event->addCount($partnerEventReg->eventid);
