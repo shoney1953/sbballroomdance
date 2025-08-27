@@ -27,6 +27,7 @@ $numDwop = 0;
 $init_dinner = 1;
 $paidNum = 0;
 $regCount = 0;
+$paidOnline = 0;
 class PDF extends FPDF
 {
     function Header() {
@@ -121,6 +122,7 @@ class PDF extends FPDF
                 'paid' => $paid,
                 'ddattenddinner' => $ddattenddinner,
                 'ddattenddance' => $ddattenddance,
+                'paidonline' => $paidonline,
                 'cornhole' => $cornhole,
                 'softball' => $softball,
                 'message' => $message,
@@ -153,6 +155,7 @@ if ($rowCount > 0) {
         if ($init == 1) {
             $prevEvent = $reg['eventid'];
             $init = 0;
+            
             $event_string = ' '.$reg['eventtype'].' --- '.$reg['eventname'].'  '
                      .$reg['eventdate'].'   Cost: '.$event->eventcost;
             $pdf->SetFont('Arial', 'B', 12);
@@ -187,14 +190,14 @@ if ($rowCount > 0) {
             {
                 $pdf->Cell(18,8,"DWOP",1,0,"L");  
                 $pdf->Cell(14,8,"PAID",1,0,"L");
-                $pdf->Cell(50,8,"MEAL",1,0,"L");
+                $pdf->Cell(60,8,"MEAL",1,0,"L");
                 $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
             }
             if ($reg['eventtype'] === 'Dance Party') {
                 $pdf->Cell(18,8,"DWOP",1,0,"L"); 
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(22,8,"DINNER?",1,0,"L");
-                $pdf->Cell(50,8,"MEAL",1,0,"L");
+                $pdf->Cell(60,8,"MEAL",1,0,"L");
                 $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
 
             }
@@ -237,7 +240,7 @@ if ($rowCount > 0) {
               $pdf->Cell(18,8,"DWOP",1,0,"L"); 
               $pdf->Cell(14,8,"PAID",1,0,"L");
               $pdf->Cell(22,8,"DINNER?",1,0,"L");
-              $pdf->Cell(50,8,"MEAL",1,0,"L");
+              $pdf->Cell(60,8,"MEAL",1,0,"L");
               $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
            }
      
@@ -245,7 +248,7 @@ if ($rowCount > 0) {
            if ($reg['eventtype'] === 'Dinner Dance') {
             $pdf->Cell(18,8,"DWOP",1,0,"L"); 
             $pdf->Cell(14,8,"PAID",1,0,"L");
-            $pdf->Cell(50,8,"MEAL",1,0,"L");
+            $pdf->Cell(60,8,"MEAL",1,0,"L");
             $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
            }
 
@@ -282,6 +285,7 @@ if ($rowCount > 0) {
             $nonMemReg = 0;
             $attDance = 0;
             $attDinner = 0;
+            $paidOnline = 0;
             $prevEvent = $reg['eventid'];
             $event_string = ' '.$reg['eventname'].'  '
             .$reg['eventdate'].' ';
@@ -293,6 +297,7 @@ if ($rowCount > 0) {
             $pdf->Cell(40,8,"LAST NAME",1,0,"L");  
 
             $pdf->Cell(18,8,"MEM",1,0,"L");
+            
             if (($reg['eventtype'] === 'Novice Practice Dance') ||
             ($reg['eventtype'] === 'Social') ||
         
@@ -308,13 +313,13 @@ if ($rowCount > 0) {
                 $pdf->Cell(18,8,"DWOP",1,0,"L");
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(22,8,"DINNER?",1,0,"L");
-                $pdf->Cell(50,8,"MEAL",1,0,"L");
+                $pdf->Cell(60,8,"MEAL",1,0,"L");
                 $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
                }
             if ($reg['eventtype'] === 'Dinner Dance') {
                 $pdf->Cell(18,8,"DWOP",1,0,"L");
                 $pdf->Cell(14,8,"PAID",1,0,"L");
-                $pdf->Cell(50,8,"MEAL",1,0,"L");
+                $pdf->Cell(60,8,"MEAL",1,0,"L");
                 $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
             }
 
@@ -329,6 +334,9 @@ if ($rowCount > 0) {
                 $paidNum++;   
             } 
           
+        }
+        if ($reg['paidonline'] == true) {
+         $paidOnline++;
         }
         if ($reg['ddattenddinner'] == true) {
             $attDinner++;
@@ -488,11 +496,11 @@ if ($rowCount > 0) {
      if (($reg['eventtype'] === 'Dinner Dance') || ($reg['eventtype'] === 'Dance Party')) {
         if (($reg['mealchoice'] != NULL) && ($reg['mealchoice'] > 0)) {
 
-                $pdf->Cell(50,8,$reg['mealname'],1,0,"L");
+                $pdf->Cell(60,8,$reg['mealname'],1,0,"L");
                 $pdf->Cell(50,8,$reg['dietaryrestriction'],1,1,"L");
 
         } else {
-                $pdf->Cell(50,8," ",1,0,"L");
+                $pdf->Cell(60,8," ",1,0,"L");
                 $pdf->Cell(50,8," ",1,1,"L");
         }
      }
@@ -511,10 +519,14 @@ if ($rowCount > 0) {
     if ($event->eventtype === 'Dinner Dance') {
     $pdf->Cell(100,8, "Paid for this Event:           ", 1, 0,"L");
     $pdf->Cell(20, 8, $paidNum, 1, 1,"L"); 
+     $pdf->Cell(100,8, "Paid Online:           ", 1, 0,"L");
+    $pdf->Cell(20, 8, $paidOnline, 1, 1,"L"); 
     } 
     if ($event->eventtype === 'Dance Party') {
         $pdf->Cell(100, 8, "Paid for this Event:           ", 1, 0);
         $pdf->Cell(20, 8, $paidNum, 1, 1); 
+        $pdf->Cell(100,8, "Paid Online:           ", 1, 0,"L");
+        $pdf->Cell(20, 8, $paidOnline, 1, 1,"L"); 
         } 
     $pdf->Cell(100, 8, "Member Registrations:          ", 1, 0);
     $pdf->Cell(20, 8, $memReg, 1, 1); 
