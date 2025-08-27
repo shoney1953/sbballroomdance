@@ -206,7 +206,7 @@ if (isset($_POST['submitAddReg'])) {
                           
                                  $eventReg->mealchoice = $choice['id'];
                              
-                                 $emailBody .= "<br>You have selected the meal ".$choice['mealname']." at a cost of ".number_format($choice['memberprice']/100,2).".";
+                                 $emailBody .= "<br>You have selected the meal ".$choice['mealname']." at a cost of $".number_format($choice['memberprice']/100,2).".";
                              }
                           } // foreach
                         $drID = "dr".$usr['id'];
