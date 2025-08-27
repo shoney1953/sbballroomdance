@@ -172,7 +172,6 @@ if (isset($_POST['submitAddReg'])) {
                     "<br>Type:    ".$event->eventtype.
                     "<br>DJ  :    ".$event->eventdj.
                     "<br>Room:    ".$event->eventroom.
-                    "<br>Cost:    $".$fmt->formatCurrency($event->eventcost, 'USD').
                     "<br>Date:    ".date('M d Y',strtotime($event->eventdate))."</strong><br>"; 
                     if ($event->eventtype === 'BBQ Picnic') {
                         if (isset($_POST["$attDin"])) {
