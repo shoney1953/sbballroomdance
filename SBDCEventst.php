@@ -15,6 +15,7 @@ $compareDate = $currentDate->format('Y-m-d');
 $numActions = 0;
 $gotEventReg = 0;
 $gotPartnerEventReg = 0;
+$hr = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,12 +68,17 @@ $gotPartnerEventReg = 0;
                 $comparedateTS = strtotime($compareDate);
                 $eventRegEnd = strtotime($event['eventregend']);
                 echo '<div class="form-container">';
+                   $hr = 'eventMem.php?id=';
+                   $hr .= $event["id"];
+
                   if ($event['eventform']) {          
                     echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a>
                             -----> <a href='".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></h4>";
                     } else {
-                       echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a></h4>";
+                       echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a>
+                      </h4>";
                     }
+                    echo "<h5 class='form-title-left'> <a href='".$hr."'> Number Registered: ".$event['eventnumregistered']."</a></h5>";
                   if (isset($_SESSION['username'])) {
                       $comparedateTS = strtotime($compareDate);
                         $eventRegOpen = strtotime($event['eventregopen']);
@@ -84,10 +90,12 @@ $gotPartnerEventReg = 0;
                     echo '</form>';
                
                     }
+            
                 if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party')) {
                     echo "<h5 class='form-title-left'> Last Day to sign up for dinner or modify dinner choices: ".date('Y-m-d', $eventCutOff).".  Registration ends: ".$event['eventregend'].".</h5>";
                 } else {
-                     echo "<h5 class='form-title-left'> Registration ends: ".$event['eventregend'].".</h5>";
+                     echo "<h5 class='form-title-left'> Registration ends: ".$event['eventregend'].". </h5>";
+                    
                 }
                 echo '<div class="form-grid">';
           
