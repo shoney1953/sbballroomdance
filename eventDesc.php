@@ -6,7 +6,7 @@ require_once 'models/Event.php';
 $allEvents = $_SESSION['upcoming_events'];
 $eventRegistrations = [];
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
-
+$hr = '';
 $database = new Database();
 $db = $database->connect();
 $event = new Event($db);
@@ -124,10 +124,15 @@ if (isset($_GET['id'])) {
       echo "<h4 class='form-item-title'> Last Day to Register for Event: ".$event['eventregend']."</h4>";
       echo "</div>";
     }
-    
-    echo "<div class='form-item'>";
-    echo "<h4 class='form-item-title'> Number Registered: ".$event['eventnumregistered']."</h4>";
-    echo "</div>";
+        echo "<div class='form-item'>";
+    $hr = 'eventMem.php?id=';
+   $hr .= $event["id"];
+   echo "<h4 class='form-title'>Number Registered: 
+        <a href='".$hr."'>".$event['eventnumregistered']."</a></h4>";
+   echo '</div>';
+    // echo "<div class='form-item'>";
+    // echo "<h4 class='form-item-title'> Number Registered: ".$event['eventnumregistered']."</h4>";
+    // echo "</div>";
     if ($event['eventcost'] !== '0') {
       if ($event['eventtype'] === 'Dance Party')  {
       echo "<div class='form-item'>";
