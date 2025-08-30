@@ -501,6 +501,7 @@ font-weight: bolder;
   font:bolder;
   text-align: left;
   font-size: small;
+
   }
 .form-grid {
   display: grid;
@@ -743,6 +744,10 @@ input[type="checkbox"] {
   margin: 2px 2px;
   /* border-radius: 2px; */
   box-sizing: border-box;
+}
+.checkbox-red {
+outline-width: 10px solid #7c0a10;
+!important;
 }
 input[type="number"] {
   width: 100%;
