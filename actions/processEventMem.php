@@ -240,5 +240,21 @@ foreach ($upcomingEvents as $event) {
             }
         }
     
-         
+      function togglePay1() {
+    
+        // Select the element
+        if (document.getElementById('payonline').checked) {
+
+             document.getElementById('paylater').checked = false;
+        }
+      }
+      function togglePay2() {
+
+         if (document.getElementById('paylater').checked) {
+    
+          document.getElementById('payonline').checked = false;
+         }
+  
+       
+        } 
     </script>

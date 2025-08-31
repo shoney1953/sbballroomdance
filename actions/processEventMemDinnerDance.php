@@ -78,10 +78,13 @@
                  }
                  echo '<div class="form-grid">';
                 echo '<div class="form-item">';
-                echo "<h4 class='form-item-title'>Pay Online?</h4>";
-                echo "<input type='checkbox'  title='Check to attend dinner' id='payonline' name='payonline'>";
+                echo "<h4 class='form-item-title-emp'>Pay Online?</h4>";
+                echo "<input type='checkbox' class='checkbox-red'  title='Check to attend dinner' id='payonline' name='payonline' checked onclick='togglePay1()'>";
                 echo '</div>';
-               
+                echo '<div class="form-item">';
+                echo "<h4 class='form-item-title-emp'>or PAY Manually Later?</h4>";
+                echo "<input  type='checkbox' class='checkbox-red' title='Check to PAY the Treasurer Later' id='paylater' name='paylater' onclick='togglePay2()'>";
+                echo '</div>';
 
                  if ($event['eventform']) {
                 echo '<div class="form-item" id="eventform">';
