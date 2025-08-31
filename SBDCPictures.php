@@ -52,6 +52,8 @@ $sess = session_start();
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-05-16-2025-Spring-Fling-Dance">Spring Fling 05 16 2025</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-June-2025-Dance">June Dance 06 19 2025</a></li>
        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Red-White-Blue-Dance-07-18-2025">Red White and Blue Dance 07 18 2025</a></li>
+       <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Lazy-Daze-of-Summer-08-21-2025">Lazy Daze of Summer 08 21 2025</a></li>
+       
        
        
  
