@@ -74,14 +74,7 @@
                  }
                  echo '<div class="form-grid">';
 
-                echo '<div class="form-item">';
-                echo "<h4 class='form-item-title-emp'>PAY ONLINE?</h4>";
-                echo "<input  type='checkbox' class='checkbox-red' title='Check to PAY ONLINE NOW' id='payonline' name='payonline' checked onclick='togglePay1()'>";
-                echo '</div>';
-                 echo '<div class="form-item">';
-                echo "<h4 class='form-item-title-emp'>or PAY Manually Later?</h4>";
-                echo "<input  type='checkbox' class='checkbox-red' title='Check to PAY the Treasurer Later' id='paylater' name='paylater' onclick='togglePay2()'>";
-                echo '</div>';
+               
                 if ($event['eventform']) {
                 echo '<div class="form-item" id="eventform">';
                 echo "<h4 class='form-item-title'>Form: <a href='".$event['eventform']."'>VIEW or PRINT FORM</a></h4>";
@@ -173,7 +166,15 @@
                   echo '</div>'; // form grid
                 
                 }
-
+                   echo '<div class="form-grid">';
+                echo '<div class="form-item">';
+                echo "<h4 class='form-item-title-emp'>PAY ONLINE?</h4>";
+                echo "<input  type='checkbox' class='checkbox-red' title='Check to PAY ONLINE NOW' id='payonline' name='payonline' checked onclick='togglePay1()'>";
+                echo '</div>';
+                 echo '<div class="form-item">';
+                echo "<h4 class='form-item-title-emp'>or PAY Manually Later?</h4>";
+                echo "<input  type='checkbox' class='checkbox-red' title='Check to PAY the Treasurer Later' id='paylater' name='paylater' onclick='togglePay2()'>";
+                echo '</div>';
                echo '<button type="submit" name="submitAddRegs">Add Registration(s)</button>';
                echo '</form>';
                  echo '</div>'; // form grid div
