@@ -91,6 +91,9 @@
                 // echo '</div>'; // form grid 
                 echo '<div class="form-grid-div" id="memMealChoice">';
                  echo "<div class='form-item'>";
+                 if (!$gotEventReg) {
+
+              
                 if ($_SESSION['role'] === 'visitor') {
                  echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname']." ".$_SESSION['useremail']."</h4>";
                } else {
@@ -122,8 +125,11 @@
                   echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr1' value='".$_SESSION['dietaryrestriction']."' >"; 
                   echo "</div>";
                 echo '</div>'; // form grid div
+                 }
+                
+                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) { 
+                  if (!$gotPartnerEventReg) {
 
-                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                 echo '<div class="form-grid-div" id="partMealChoice">';
                 echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']." ".$_SESSION['partneremail']."</h4>";
     
@@ -145,7 +151,7 @@
                   echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr2' value='".$_SESSION['partnerdietaryrestriction']."' >"; 
                   // echo "</div>";
                   echo '</div>'; // form grid div
-
+                }
                 }
                     echo '<div class="form-grid">';
                  echo '<div class="form-item">';
