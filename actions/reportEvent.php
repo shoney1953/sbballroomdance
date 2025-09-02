@@ -28,6 +28,7 @@ $init_dinner = 1;
 $paidNum = 0;
 $regCount = 0;
 $paidOnline = 0;
+$mealsSelected = [];
 class PDF extends FPDF
 {
     function Header() {
@@ -77,7 +78,8 @@ class PDF extends FPDF
                             'guestprice' => $guestprice,
                             'productid' => $productid,
                             'priceid' => $priceid,
-                            'guestpriceid' => $guestpriceid
+                            'guestpriceid' => $guestpriceid,
+                            'numberchosen' => 0
 
                         );
                         array_push($mealChoices, $meal_item);
@@ -498,7 +500,14 @@ if ($rowCount > 0) {
 
                 $pdf->Cell(60,8,$reg['mealname'],1,0,"L");
                 $pdf->Cell(50,8,$reg['dietaryrestriction'],1,1,"L");
+                foreach ($mealChoices as &$meal) {
 
+                    if ($meal['id'] === $reg['mealchoice']) {
+                        $meal['numberchosen']++;
+                    
+                    }
+                }
+               unset($meal);
         } else {
                 $pdf->Cell(60,8," ",1,0,"L");
                 $pdf->Cell(50,8," ",1,1,"L");
@@ -546,15 +555,25 @@ if ($rowCount > 0) {
         $pdf->Cell(100, 8, "Attending Dance (if Dance Party):  ".$attDance, 1, 1);
         $pdf->Cell(20, 8, $attDance, 1, 1);
         }
-        if ($event->eventtype === 'BBQ Picnic') {
+   if ($event->eventtype === 'BBQ Picnic') {
             $pdf->Cell(100, 8, "Playing Cornhole:  ".$playCornhole, 1, 1);
   
             $pdf->Cell(100, 8, "Playing Softball:  ".$playSoftball, 1, 1);
 
             $pdf->Cell(100, 8, "Attending Meal:  ".$attDinner, 1, 1);
-  
 
+     }
+     if (($event->eventtype === 'Dance Party') || ($event->eventtype === 'Dinner Dance')) { 
+         $pdf->Ln(2);
+             $pdf->Cell(150, 8, "Number of Meals Selected:  ", 1, 1);
+        foreach ($mealChoices as $meal) {
+            if ($meal['numberchosen'] > 0) {
+             $pdf->Cell(100, 8, $meal['mealname'], 1, 0);  
+             $pdf->Cell(50, 8, $meal['numberchosen'], 1, 1); 
             }
+
+        }
+     }
     $pdf->SetFont('Arial', '', 10);
 } else {
     $pdf->SetFont('Arial','B', 14);
