@@ -1,4 +1,7 @@
 <?php
+if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
+         var_dump('inside dance party');
+        }
              $gotEventReg = 0;
              $gotPartnerEventReg = 0;
                  if ($_SESSION['role'] === 'visitor') {
@@ -10,12 +13,17 @@
                       $gotEventReg = 1;
                    }
                 }
-             
+             if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
+         var_dump($gotEventReg);
+        }
                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                  if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
                         $gotPartnerEventReg = 1;
                  }
                }
+                if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
+         var_dump($gotPartnerEventReg);
+        }
               $mealChoices = [];
               $result = $mChoices->read_ByEventId($event['id']);
                 $rowCount = $result->rowCount();
