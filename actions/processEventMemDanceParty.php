@@ -1,7 +1,5 @@
 <?php
-if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
-         var_dump('inside dance party');
-        }
+
              $gotEventReg = 0;
              $gotPartnerEventReg = 0;
                  if ($_SESSION['role'] === 'visitor') {
@@ -21,9 +19,7 @@ if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
                         $gotPartnerEventReg = 1;
                  }
                }
-                if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
-         var_dump($gotPartnerEventReg);
-        }
+             
               $mealChoices = [];
               $result = $mChoices->read_ByEventId($event['id']);
                 $rowCount = $result->rowCount();
@@ -51,7 +47,7 @@ if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
 
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Register for ".$event['eventname']." on ".$event['eventdate']."</h1>";
-                echo  '<form method="POST" action="regEventPt.php">  ';
+                echo  '<form method="POST" action="regEventPt.php"> ';
                 echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
                 echo '<input type="hidden" name="eventproductid" value='.$event['eventproductid'].'>';
                 echo '<input type="hidden" name="eventcost" value='.$event['eventcost'].'>';

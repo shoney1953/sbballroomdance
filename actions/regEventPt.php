@@ -65,6 +65,8 @@ $potentialReg1 = [];
 $potentialReg2 = [];
 $num_registered = 0;
 $totalDanceOnlyCost = 0;
+$DinnerSelected1 = 0;
+$DinnerSelected2 = 0;
 $currentDate = new DateTime();
 
 if (!isset($_POST['submitAddRegs'])) {
@@ -219,7 +221,7 @@ if (!isset($_POST['submitAddRegs'])) {
                     
                            $mealChk1 = 'meal'.$choice['id'];
                          if (isset($_POST["$mealChk1"])) {
-                      
+                               $DinnerSelected1 = 1;
                                   $mealid1 = $choice['id'];
                                   $meal1 = $choice['mealname'];
                                   $mealprice1 = $choice['memberprice'];
@@ -236,7 +238,7 @@ if (!isset($_POST['submitAddRegs'])) {
                    
                              $mealChk2 = 'meal2'.$choice['id'];
                          if (isset($_POST["$mealChk2"])) {   
-                             
+                               $DinnerSelected2 = 1;
                                   $mealid2 = $choice['id'];
                                   $meal2 = $choice['mealname'];
                                   $mealprice2 = $choice['memberprice'];
@@ -273,7 +275,11 @@ if (!isset($_POST['submitAddRegs'])) {
                      
                          if (isset($_POST['ddattdin1'])) {
                                 $emailBody .= "You have chosen to attend dinner.<br>";
-                         
+                                  if (!$DinnerSelected1) {
+                                           $redirect = "Location: ".$_SESSION['returnurl']."?error=Meal1NotSelected";
+                                            header($redirect); 
+                                            exit;
+                                  }
                                     if ($meal1 !== '') {
                                         $emailBody .= "You selected ".$meal1." at the cost of $".number_format($mealprice1/100,2)."";   
                                         $danceCost = $danceCost + $mealprice1;    
@@ -533,12 +539,13 @@ if (!isset($_POST['submitAddRegs'])) {
        $cost1 = 0;
        $cost2 = 0;
        $totalDanceCost = 0;
-
+       $error = 0;
   
       if ($eventInst->eventtype === 'Dance Party') {
+    
        if (isset($_POST['mem1Chk'])) {
        if ($potentialReg1['ddattenddinner'] === '1') {
-   
+        if (isset($potentialReg1['mealchoice'])) {
         if ($_POST['visitor'] === '1') { 
          $danceCost = $danceCost + $potentialReg1['guestprice'];
          $cost1 = $potentialReg1['guestprice'];  
@@ -546,6 +553,10 @@ if (!isset($_POST['submitAddRegs'])) {
           $danceCost = $danceCost + $potentialReg1['memberprice'];
            $cost1 = $potentialReg1['memberprice']; 
          }
+        } else {
+          $error++;
+          echo '<h1>Member or Visitor 1 selected attend dinner, but no meal was selected!</h1>';
+        }
         } // attend dinner
 
        if ($potentialReg1['ddattenddinner'] !== '1') {
@@ -563,15 +574,21 @@ if (!isset($_POST['submitAddRegs'])) {
          } // mem1chk
       if (isset($_POST['mem2Chk'])) {
        if ($potentialReg2['ddattenddinner'] === '1') {
-   
-        if ($_POST['visitor'] === '1') { 
-         $danceCost = $danceCost + $potentialReg2['guestprice'];
-         $cost2 = $potentialReg2['guestprice'];  
-        } else {
-          $danceCost = $danceCost + $potentialReg2['memberprice'];
-           $cost2 = $potentialReg2['memberprice']; 
-         }
-        } // visitor
+        if (isset($potentialReg2['mealchoice'])) {
+            if ($_POST['visitor'] === '1') { 
+            $danceCost = $danceCost + $potentialReg2['guestprice'];
+            $cost2 = $potentialReg2['guestprice'];  
+            } else {
+              $danceCost = $danceCost + $potentialReg2['memberprice'];
+              $cost2 = $potentialReg2['memberprice']; 
+            }
+            
+        } else {   
+          $error++;
+          echo '<h1>Member or Visitor 2 selected attend dinner, but no meal was selected!</h1>';
+        }
+        } // attend dinner
+ 
 
        if ($potentialReg2['ddattenddinner'] !== '1') {
         if ($_POST['visitor'] === '1') { 
@@ -613,6 +630,7 @@ if (!isset($_POST['submitAddRegs'])) {
        
 
         echo "<h4> You are registering for ".$eventInst->eventname." on ".$eventInst->eventdate.".</h4>";
+        if ($error === 0) {
          $ftotalprice = number_format(($danceCost/100),2);
          $fprice1 = number_format(($cost1/100),2);
          $fprice2 = number_format(($cost2/100),2);
@@ -678,6 +696,7 @@ if (!isset($_POST['submitAddRegs'])) {
          }
 
         }
+      }
          echo '<div class="form-grid4">';
         echo '<div class="form-grid-div">';
         echo "</div>";
@@ -690,7 +709,12 @@ if (!isset($_POST['submitAddRegs'])) {
         echo '<input type="hidden" name="mem2Chk" value="1">';
          }
         echo '<div class="form-item">';
-        echo '<br><button   type="submit" name="submitRegConfirm">CONFIRM AND PROCEED</button>'; 
+        if ($error === 0) {
+             echo '<br><button   type="submit" name="submitRegConfirm">CONFIRM AND PROCEED</button>'; 
+        } else {
+          echo '<h1>There were errors in your registration; please return and correct thanks!</h1><br>';
+        }
+     
         echo '</div>';
         echo "</div>";
         echo '</form>';

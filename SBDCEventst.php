@@ -4,7 +4,7 @@ require_once 'config/Database.php';
 require_once 'models/EventRegistration.php';
 require_once 'models/EventRegistrationArch.php';
 require_once 'models/User.php';
-$_SESSION['returnurl'] = $_SERVER['REQUEST_URI']; 
+
 $upcomingEvents = $_SESSION['upcoming_events'];
 $database = new Database();
 $db = $database->connect();
@@ -36,7 +36,17 @@ $hr = '';
     </ul>
      </div>
 </nav>  
-
+   <?php
+    if (isset($_GET['error'])) {
+            echo '<div class="container-error">';
+            echo '<h4 class="error"> Registration ERROR:  '.$_GET['error'].'. Please Reenter Data</h4>';
+            echo '</div>';
+            unset($_GET['error']);
+        } else {
+            $_SESSION['returnurl'] = $_SERVER['REQUEST_URI']; 
+            unset($_GET['error']);
+        }
+   ?>
     <div class="container-section">
     <section id="events" class="content">
       <br><br>

@@ -42,7 +42,8 @@ $gotPartnerEventReg = 0;
 <div class="section-back">
 
 <?php
-
+       
+          
 foreach ($upcomingEvents as $event) {
     $upChk = "up".$event['id'];
     $rpChk = "rp".$event['id'];
@@ -75,8 +76,6 @@ foreach ($upcomingEvents as $event) {
    
         case "Dance Party": 
            include_once 'processEventMemDanceParty.php';
-
-
         break;   
 
     
