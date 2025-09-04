@@ -47,6 +47,9 @@ if ($rowCount > 0) {
           'paidonline' => $paidonline
 
       );
+      if (strpos($csv_item['email'], '@xx')) {
+        $csv_item['email'] = ' ';
+      }
       array_push($csvMembers, $csv_item);
   
   }
