@@ -19,8 +19,8 @@ $csvMembers = [];
 $title_array = 
 ['Last Name',
 'First Name', 
-'Email', 
 'Phone', 
+'Email', 
 'Address',
 'Date Joined', 
 'Joined Online',
@@ -37,8 +37,8 @@ if ($rowCount > 0) {
 
           'lastname' => $lastname,
           'firstname' => $firstname,
-          'email' => $email,
           'phone' => $phone,
+          'email' => $email,
           'streetaddress' => $streetaddress,
           'datejoined' => substr($datejoined,0,10),
           'joinedonline' => $joinedonline,
