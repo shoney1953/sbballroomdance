@@ -212,9 +212,11 @@ if (isset($_POST['submitAddReg'])) {
                         $drID = "dr".$usr['id'];
                    
                         if (isset($_POST["$drID"])) {
-                           
+                           if (($_POST["$drID"] !== NULL) && ($_POST["$drID"] !== '')) {
                             $eventReg->dietaryrestriction = $_POST["$drID"];
                              $emailBody .= "<br>You have specified a dietary restriction of ".$_POST["$drID"].".";
+                           }
+
                         }
                    
                    }  // eventtype
