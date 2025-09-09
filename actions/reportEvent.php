@@ -193,14 +193,14 @@ if ($rowCount > 0) {
                 $pdf->Cell(18,8,"DWOP",1,0,"L");  
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
-                $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
+                $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
             }
             if ($reg['eventtype'] === 'Dance Party') {
                 $pdf->Cell(18,8,"DWOP",1,0,"L"); 
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(22,8,"DINNER?",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
-                $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
+                $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
 
             }
 
@@ -243,7 +243,7 @@ if ($rowCount > 0) {
               $pdf->Cell(14,8,"PAID",1,0,"L");
               $pdf->Cell(22,8,"DINNER?",1,0,"L");
               $pdf->Cell(60,8,"MEAL",1,0,"L");
-              $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
+              $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
            }
      
 
@@ -251,7 +251,7 @@ if ($rowCount > 0) {
             $pdf->Cell(18,8,"DWOP",1,0,"L"); 
             $pdf->Cell(14,8,"PAID",1,0,"L");
             $pdf->Cell(60,8,"MEAL",1,0,"L");
-            $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
+            $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
            }
 
             }
@@ -316,13 +316,13 @@ if ($rowCount > 0) {
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(22,8,"DINNER?",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
-                $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
+                $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
                }
             if ($reg['eventtype'] === 'Dinner Dance') {
                 $pdf->Cell(18,8,"DWOP",1,0,"L");
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
-                $pdf->Cell(50,8,"DIETARY RESTR",1,1,"L");
+                $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
             }
 
     
@@ -499,7 +499,7 @@ if ($rowCount > 0) {
         if (($reg['mealchoice'] != NULL) && ($reg['mealchoice'] > 0)) {
 
                 $pdf->Cell(60,8,$reg['mealname'],1,0,"L");
-                $pdf->Cell(50,8,$reg['dietaryrestriction'],1,1,"L");
+                $pdf->Cell(60,8,$reg['dietaryrestriction'],1,1,"L");
                 foreach ($mealChoices as &$meal) {
 
                     if ($meal['id'] === $reg['mealchoice']) {

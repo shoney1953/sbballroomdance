@@ -405,9 +405,15 @@ if (!isset($_POST['submitAddRegs'])) {
                         exit; 
                 } //endresult
                 if (!$result) {
-                
+                   if (($eventReg->email !== NULL) && ($eventReg->email !== ' ')) {
                     $eventReg->create();
                     $eventInst->addCount($eventReg->eventid);
+                   } else {
+                     $redirect = "Location: ".$_SESSION['regeventurl'].'?error=Member Registration email blank Please return and correct.';
+                        header($redirect);
+                        exit; 
+                   }
+        
                 }  //end no results
               }
 
@@ -445,9 +451,15 @@ if (!isset($_POST['submitAddRegs'])) {
                      }
      
                     if (!$result) {
-                       
+                       if (($partnerEventReg->email !== NULL) && ($partnerEventReg->email !== ' ')) {
                         $partnerEventReg->create();
-                        $eventInst->addCount($partnerEventReg->eventid);
+                        $eventInst->addCount($partnerEventReg->eventid); 
+                       } else {
+                        $redirect = "Location: ".$_SESSION['regeventurl'].'?error=Partner Registration email blank Please return and correct.';
+                        header($redirect);
+                        exit; 
+                   }
+                      
                     }
                        
                 }  // mem2chk

@@ -235,9 +235,19 @@ if (isset($_POST['submitAddReg'])) {
                 //     $toCC2 = $event->orgemail;
                 // }
                 $emailBody .= '<br>Note: You can also see these events from your profile on the website.';
-
-                $eventReg->create();
-                $event->addCount($eventReg->eventid);
+                if (($eventReg->email !== NULL) && ($eventReg->email !== ' ')) {
+                          $eventReg->create();
+                          $event->addCount($eventReg->eventid);
+                } else {
+                     if ($result) {
+                    $redirect = "Location: ".$_SESSION['adminurl']."#events";
+                   header($redirect);
+                   exit;
+                 }
+ 
+                }
+             
+            
 
                 if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
       
