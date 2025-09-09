@@ -176,7 +176,7 @@ if (($tempReg->priceid2 !== NULL) && ($tempReg->priceid1 !== NULL)) {
   ],
   'customer' => $customer->id,
   'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
+  'success_url' => $YOUR_DOMAIN . '/regsuccesst.php?regid='.$tempRegID,
   'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
   ]); 
 } else {
@@ -189,7 +189,7 @@ if (($tempReg->priceid2 !== NULL) && ($tempReg->priceid1 !== NULL)) {
     ],
     'customer' => $customer->id,
     'mode' => 'payment',
-    'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
+    'success_url' => $YOUR_DOMAIN . '/regsuccesst.php?regid='.$tempRegID,
     'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
   ]); 
   }

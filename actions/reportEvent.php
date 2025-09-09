@@ -193,14 +193,14 @@ if ($rowCount > 0) {
                 $pdf->Cell(18,8,"DWOP",1,0,"L");  
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
-                $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
+                $pdf->Cell(60,8,"DIETARY RESTRICTION",1,1,"L");
             }
             if ($reg['eventtype'] === 'Dance Party') {
                 $pdf->Cell(18,8,"DWOP",1,0,"L"); 
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(22,8,"DINNER?",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
-                $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
+                $pdf->Cell(60,8,"DIETARY RESTRICTION",1,1,"L");
 
             }
 
@@ -243,7 +243,7 @@ if ($rowCount > 0) {
               $pdf->Cell(14,8,"PAID",1,0,"L");
               $pdf->Cell(22,8,"DINNER?",1,0,"L");
               $pdf->Cell(60,8,"MEAL",1,0,"L");
-              $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
+              $pdf->Cell(60,8,"DIETARY RESTRICTION",1,1,"L");
            }
      
 
@@ -251,7 +251,7 @@ if ($rowCount > 0) {
             $pdf->Cell(18,8,"DWOP",1,0,"L"); 
             $pdf->Cell(14,8,"PAID",1,0,"L");
             $pdf->Cell(60,8,"MEAL",1,0,"L");
-            $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
+            $pdf->Cell(60,8,"DIETARY RESTRICTION",1,1,"L");
            }
 
             }
@@ -316,13 +316,13 @@ if ($rowCount > 0) {
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(22,8,"DINNER?",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
-                $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
+                $pdf->Cell(60,8,"DIETARY RESTRICTION",1,1,"L");
                }
             if ($reg['eventtype'] === 'Dinner Dance') {
                 $pdf->Cell(18,8,"DWOP",1,0,"L");
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
-                $pdf->Cell(60,8,"DIETARY RESTR",1,1,"L");
+                $pdf->Cell(60,8,"DIETARY RESTRICTION",1,1,"L");
             }
 
     

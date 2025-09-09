@@ -27,14 +27,16 @@ $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";
-$replyTopic = "SBDC Event Registration";
-$emailBody = "Thanks for registering for the ".$tempReg->eventname." on ".$tempReg->eventdate.".<br>";
-$emailSubject = "You have registered for ".$tempReg->eventname." and paid online.";
+$replyTopic = "SBDC Online Event Registration";
+
 $toCC2 = '';
 $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 if ($tempReg->firstname1 != '') {
+$emailBody = "Thanks, ".$tempReg->firstname1." ".$tempReg->lastname1." for registering for the ".$tempReg->eventname." on ".$tempReg->eventdate.".<br>";
+$emailSubject = $tempReg->firstname1." ".$tempReg->lastname1." registered for ".$tempReg->eventname." and paid online.";
+
 $eventReg->eventid = $tempReg->eventid;
 $eventReg->eventname = $tempReg->eventname;
 $eventReg->eventtype = $tempReg->eventtype;
