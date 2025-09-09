@@ -510,7 +510,7 @@ if ($rowCount > 0) {
                unset($meal);
         } else {
                 $pdf->Cell(60,8," ",1,0,"L");
-                $pdf->Cell(50,8," ",1,1,"L");
+                $pdf->Cell(60,8," ",1,1,"L");
         }
      }
   
