@@ -189,18 +189,7 @@ if ($regCount > 0) {
       if ($dateregts > $sixMonthdate) {
         $user['sixmonthclasses']++;
 
-      } else {
-         if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
-            if ($user['lastname'] === 'Goins') {
-             var_dump($user['email']);
-             var_dump( date('m/d/Y H:i:s', $dateregts));
-             var_dump (date('m/d/Y H:i:s', $sixMonthdate));
-            }
-
-          }
-
-
-        }
+      } 
       }
       array_push($userArrMod, $user);
     }
