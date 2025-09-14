@@ -97,15 +97,23 @@ if ($userCount > 0) {
   foreach ($userArr as $user) {
 
     $result = $eventRegistration->read_ByEmail($user['email']);
-    if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
+  
+    $regCount = $result->rowCount();
+  if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
           if ($user['lastname'] === 'Goins') {
+            var_dump($result->rowCount());
+             var_dump($regCount);
+            var_dump($user['email']);
+            }
+          }
+    if ($regCount > 0) {
+       if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
+          if ($user['lastname'] === 'Goins') {
+            var_dump('regcount > 0');
             var_dump($result->rowCount());
             var_dump($user['email']);
             }
           }
-    $regCount = $result->rowCount();
-
-    if ($regCount > 0) {
       while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
         $event_item = array(
@@ -118,6 +126,7 @@ if ($userCount > 0) {
         $user['sixmonthevents']++;    
         if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
           if ($user['email'] === 'argoins422017@gmail.com') {
+            var_dump('user');
             var_dump($user['totevents']);
             var_dump($user['sixmonthevents']);
             }
