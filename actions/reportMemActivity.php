@@ -101,14 +101,16 @@ if ($userCount > 0) {
         $user['sixmonthevents'] = $user['sixmonthevents'] + $regCount ;    
     }
 
-    $result = $classRegistration->read_ByEmail($user['email']);
+    // $result = $classRegistration->read_ByEmail($user['email']);
+    $result = $classRegistration->read_ByUserid($user['id']);
     $regCount = $result->rowCount();
     if ($regCount > 0) {
         $user['totclassess'] = $user['totclasses'] + $regCount;
         $user['sixmonthclasses'] = $user['sixmonthclasses'] + $regCount ;    
     }
 
-$result = $eventRegistrationArch->read_ByEmail($user['email']);
+// $result = $eventRegistrationArch->read_ByEmail($user['email']);
+$result = $eventRegistrationArch->read_ByUserid($user['id']);
 
 $regCount = $result->rowCount();
 
@@ -131,7 +133,7 @@ $regCount = $result->rowCount();
 }
 }  
 // $result = $classRegistrationArch->read_ByEmail($user['email']);
-$result = $classRegistrationArch->read_ByEmail($user['id']);
+$result = $classRegistrationArch->read_ByUserid($user['id']);
 $regCount = $result->rowCount();
 
 if ($regCount > 0) {
