@@ -97,7 +97,12 @@ if ($userCount > 0) {
   foreach ($userArr as $user) {
 
     $result = $eventRegistration->read_ByEmail($user['email']);
-
+    if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
+             if ($user['lastname'] === 'Goins') {
+            var_dump($result->rowCount());
+            var_dump($user['email']);
+            }
+          }
     $regCount = $result->rowCount();
 
     if ($regCount > 0) {
@@ -121,7 +126,12 @@ if ($userCount > 0) {
     }
 
         $result = $classRegistration->read_ByEmail($user['email']);
-
+         if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
+             if ($user['lastname'] === 'Goins') {
+            var_dump($result->rowCount());
+            var_dump($user['email']);
+            }
+          }
         $regCount = $result->rowCount();
 
         if ($regCount > 0) {
