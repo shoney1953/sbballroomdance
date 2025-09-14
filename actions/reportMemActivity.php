@@ -60,9 +60,7 @@ class PDF extends FPDF
 $result = $user->read();
 
     $userCount = $result->rowCount();
-   if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
-    var_dump($userCount);
-   }
+
     if ($userCount > 0) {
     
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -95,74 +93,19 @@ $result = $user->read();
 
 if ($userCount > 0) {
   foreach ($userArr as $user) {
-
     $result = $eventRegistration->read_ByEmail($user['email']);
-  
     $regCount = $result->rowCount();
-  if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
-          if ($user['lastname'] === 'Goins') {
-            var_dump($result->rowCount());
-             var_dump($regCount);
-            var_dump($user['email']);
-            }
-          }
     if ($regCount > 0) {
-       if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
-          if ($user['lastname'] === 'Goins') {
-            var_dump('regcount > 0');
-            var_dump($result->rowCount());
-            var_dump($user['email']);
-            }
-          }
-      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-        $event_item = array(
-            'id' => $id,
-            'eventname' => $eventname,
-            'registeredby' => $registeredby,
-            'dateregistered' => $dateregistered
-        );
-        $user['totevents']++;
-        $user['sixmonthevents']++;    
-        if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
-          if ($user['email'] === 'argoins422017@gmail.com') {
-            var_dump('user');
-            var_dump($user['totevents']);
-            var_dump($user['sixmonthevents']);
-            }
-          }
-
-      }
+        $user['totevents'] = $user['totevents'] + $regCount;
+        $user['sixmonthevents'] = $user['sixmonthevents'] + $regCount ;    
     }
 
-        $result = $classRegistration->read_ByEmail($user['email']);
-         if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
-             if ($user['lastname'] === 'Goins') {
-            var_dump($result->rowCount());
-            var_dump($user['email']);
-            }
-          }
-        $regCount = $result->rowCount();
-
-        if ($regCount > 0) {
-          while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            extract($row);
-            $event_item = array(
-                'id' => $id,
-                'classname' => $classname,
-                'registeredby' => $registeredby,
-                'dateregistered' => $dateregistered
-            );
-            $user['totclasses']++;
-            $user['sixmonthclasses']++;  
-          if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
-             if ($user['lastname'] === 'Goins') {
-            var_dump($user);
-            }
-          }
-          } 
-
-        }
+    $result = $classRegistration->read_ByEmail($user['email']);
+    $regCount = $result->rowCount();
+    if ($regCount > 0) {
+        $user['totclassess'] = $user['totclasses'] + $regCount;
+        $user['sixmonthclasses'] = $user['sixmonthclasses'] + $regCount ;    
+    }
 
 $result = $eventRegistrationArch->read_ByEmail($user['email']);
 
@@ -179,7 +122,6 @@ if ($regCount > 0) {
     );
     $user['totevents']++;
     $dateregts = strtotime($event_item['dateregistered']);
-
 
       if ($dateregts > $sixMonthdate) {
         $user['sixmonthevents']++;
