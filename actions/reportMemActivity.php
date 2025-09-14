@@ -93,7 +93,8 @@ $result = $user->read();
 
 if ($userCount > 0) {
   foreach ($userArr as $user) {
-    $result = $eventRegistration->read_ByEmail($user['email']);
+    // $result = $eventRegistration->read_ByEmail($user['email']);
+      $result = $eventRegistration->read_ByUserid($user['id']);
     $regCount = $result->rowCount();
     if ($regCount > 0) {
         $user['totevents'] = $user['totevents'] + $regCount;
@@ -129,8 +130,8 @@ $regCount = $result->rowCount();
       } 
 }
 }  
-$result = $classRegistrationArch->read_ByEmail($user['email']);
-
+// $result = $classRegistrationArch->read_ByEmail($user['email']);
+$result = $classRegistrationArch->read_ByEmail($user['id']);
 $regCount = $result->rowCount();
 
 if ($regCount > 0) {
@@ -205,6 +206,7 @@ $pdf->Ln(2);
 
 $pdf->Cell(0, 5, "Total Members without Activity in the last 6 Months:  ".$totalNoAct, 0, 1);
 $pdf->Cell(0, 5, "Total Members without any Activity:  ".$totalNoActEver, 0, 1);
+$pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
 // if ((!isset($_SESSION['testmode']) || (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'NO')))) {
   $pdf->Output("I", "MemberNoActivity.".$today.".PDF");
 // }
