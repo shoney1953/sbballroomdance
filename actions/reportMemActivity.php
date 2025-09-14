@@ -125,7 +125,11 @@ $regCount = $result->rowCount();
     );
     $user['totevents']++;
     $dateregts = strtotime($event_item['dateregistered']);
-
+       if ($user['id'] === 93 ) {
+      var_dump($dateregts);
+      var_dump($event_item['eventname']);
+      var_dump($sixMonthdate);
+    }
       if ($dateregts > $sixMonthdate) {
         $user['sixmonthevents']++;
 
@@ -145,6 +149,9 @@ if ($regCount > 0) {
         'registeredby' => $registeredby,
         'dateregistered' => $dateregistered
     );
+    if ($user['id'] === 93 ) {
+
+    }
     $user['totclasses']++;
     $dateregts = strtotime($class_item['dateregistered']);
 
@@ -209,9 +216,9 @@ $pdf->Ln(2);
 $pdf->Cell(0, 5, "Total Members without Activity in the last 6 Months:  ".$totalNoAct, 0, 1);
 $pdf->Cell(0, 5, "Total Members without any Activity:  ".$totalNoActEver, 0, 1);
 $pdf->Cell(0, 5, "Total Members:  ".$userCount, 0, 1);
-// if ((!isset($_SESSION['testmode']) || (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'NO')))) {
+if ((!isset($_SESSION['testmode']) || (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'NO')))) {
   $pdf->Output("I", "MemberNoActivity.".$today.".PDF");
-// }
+}
 
 
 
