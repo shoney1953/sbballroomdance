@@ -111,7 +111,7 @@ $result = $eventRegistrationArch->read_ByEmail($user['email']);
 
 $regCount = $result->rowCount();
 
-if ($regCount > 0) {
+  if ($regCount > 0) {
   while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     extract($row);
     $event_item = array(
@@ -127,8 +127,6 @@ if ($regCount > 0) {
         $user['sixmonthevents']++;
 
       } 
-
-
 }
 }  
 $result = $classRegistrationArch->read_ByEmail($user['email']);
@@ -150,12 +148,11 @@ if ($regCount > 0) {
 
       if ($dateregts > $sixMonthdate) {
         $user['sixmonthclasses']++;
-
-      } 
-      }
-      array_push($userArrMod, $user);
+       } 
+   }
+  
     }
-
+    array_push($userArrMod, $user);
 }
 } 
 
@@ -188,16 +185,18 @@ foreach ($userArrMod as $user) {
       $pdf->Cell(10,5,"NO",0,1,"L");  
     }
     $totalNoAct++;
-    // $pdf->Cell(15,5,$user['totevents'],0,0,"L"); 
-    // $pdf->Cell(15,5,$user['sixmonthevents'],0,1,"L");  
+  if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
+
+    $pdf->Cell(15,5,$user['sixmonthevents'],0,0,"L");  
+
+    $pdf->Cell(15,5,$user['sixmonthclasses'],0,1,"L");  
   
   }
+}
   if (($user['totevents'] === 0) && 
      ($user['totclasses'] === 0)) {
   
     $totalNoActEver++;
-    // $pdf->Cell(15,5,$user['totevents'],0,0,"L"); 
-    // $pdf->Cell(15,5,$user['sixmonthevents'],0,1,"L");  
   
   }
 }
@@ -206,9 +205,9 @@ $pdf->Ln(2);
 
 $pdf->Cell(0, 5, "Total Members without Activity in the last 6 Months:  ".$totalNoAct, 0, 1);
 $pdf->Cell(0, 5, "Total Members without any Activity:  ".$totalNoActEver, 0, 1);
-if ((!isset($_SESSION['testmode']) || (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'NO')))) {
+// if ((!isset($_SESSION['testmode']) || (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'NO')))) {
   $pdf->Output("I", "MemberNoActivity.".$today.".PDF");
-}
+// }
 
 
 
