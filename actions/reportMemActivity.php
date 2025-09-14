@@ -111,7 +111,11 @@ if ($userCount > 0) {
         );
         $user['totevents']++;
         $user['sixmonthevents']++;    
-
+      if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
+          if ($user['lastname'] === 'Goins') {
+            var_dump($user);
+            }
+          }
 
       }
     }
@@ -131,7 +135,11 @@ if ($userCount > 0) {
             );
             $user['totclasses']++;
             $user['sixmonthclasses']++;  
-
+          if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
+             if ($user['lastname'] === 'Goins') {
+            var_dump($user);
+            }
+          }
           } 
 
         }
@@ -183,10 +191,12 @@ if ($regCount > 0) {
 
       } else {
          if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
-      
+            if ($user['lastname'] === 'Goins') {
              var_dump($user['email']);
              var_dump( date('m/d/Y H:i:s', $dateregts));
              var_dump (date('m/d/Y H:i:s', $sixMonthdate));
+            }
+
           }
 
 
