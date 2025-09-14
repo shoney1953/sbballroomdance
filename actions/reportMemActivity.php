@@ -15,7 +15,9 @@ $classRegistrationArch = new ClassRegistrationArch($db);
 $eventRegistration = new EventRegistration($db);
 $eventRegistrationArch = new EventRegistrationArch($db);
 $today = date("m-d-Y");
+
 $sixMonthdate = strtotime("-6 months");
+
 
 $userArr = [];
 $userArrMod = [];
@@ -58,7 +60,9 @@ class PDF extends FPDF
 $result = $user->read();
 
     $userCount = $result->rowCount();
-
+   if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+    var_dump($userCount);
+   }
     if ($userCount > 0) {
     
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -148,10 +152,11 @@ if ($regCount > 0) {
     $user['totevents']++;
     $dateregts = strtotime($event_item['dateregistered']);
 
+
       if ($dateregts > $sixMonthdate) {
         $user['sixmonthevents']++;
 
-      }
+      } 
 
 
 }
@@ -176,7 +181,13 @@ if ($regCount > 0) {
       if ($dateregts > $sixMonthdate) {
         $user['sixmonthclasses']++;
 
-      }
+      } else {
+         if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
+      
+             var_dump($user['email']);
+             var_dump( date('m/d/Y H:i:s', $dateregts));
+             var_dump (date('m/d/Y H:i:s', $sixMonthdate));
+          }
 
 
         }
@@ -184,9 +195,8 @@ if ($regCount > 0) {
       array_push($userArrMod, $user);
     }
 
-
 }
- 
+} 
 
 
 
@@ -235,8 +245,10 @@ $pdf->Ln(2);
 
 $pdf->Cell(0, 5, "Total Members without Activity in the last 6 Months:  ".$totalNoAct, 0, 1);
 $pdf->Cell(0, 5, "Total Members without any Activity:  ".$totalNoActEver, 0, 1);
+if ((!isset($_SESSION['testmode']) || (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'NO')))) {
+  $pdf->Output("I", "MemberNoActivity.".$today.".PDF");
+}
 
-$pdf->Output("I", "MemberNoActivity.".$today.".PDF");
 
 
 // $redirect = "Location: ".$_SESSION['adminurl'];
