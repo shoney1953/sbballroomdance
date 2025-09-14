@@ -98,7 +98,7 @@ if ($userCount > 0) {
 
     $result = $eventRegistration->read_ByEmail($user['email']);
     if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
-             if ($user['lastname'] === 'Goins') {
+          if ($user['lastname'] === 'Goins') {
             var_dump($result->rowCount());
             var_dump($user['email']);
             }
@@ -116,9 +116,10 @@ if ($userCount > 0) {
         );
         $user['totevents']++;
         $user['sixmonthevents']++;    
-      if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
-          if ($user['lastname'] === 'Goins') {
-            var_dump($user);
+        if ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES'))) {
+          if ($user['email'] === 'argoins422017@gmail.com') {
+            var_dump($user['totevents']);
+            var_dump($user['sixmonthevents']);
             }
           }
 
