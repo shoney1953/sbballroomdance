@@ -126,6 +126,8 @@ foreach ($upcomingEvents as $event) {
                 echo '</div>';
                 } // got eventreg
 
+                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+                  var_dump($_SESSION['partnerid']);
                  if ($gotPartnerEventReg) {
                     $remID2 = "rem".$partnerReg->id;
                 echo '<div class="form-grid-div">';
@@ -143,6 +145,7 @@ foreach ($upcomingEvents as $event) {
                 echo  '</form>';
                 echo '</div>'; // end of form container
              } // end of delete check
+            }
              if (isset($_POST["$regChk"])) {
               
                 echo '<div class="form-container"';
@@ -177,6 +180,7 @@ foreach ($upcomingEvents as $event) {
                 echo '</div>'; // form grid
                 echo '</div>'; // form grid div
               }
+                 if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                 if (!$gotPartnerEventReg) {
                     echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
                     echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
@@ -191,10 +195,12 @@ foreach ($upcomingEvents as $event) {
                  echo '</div>'; // form grid
                 echo '</div>'; // form grid div
                  }
+                }
                     echo '<button type="submit" name="submitAddRegs">Add Registration(s)</button>';
                 echo '</div>'; // form container 
                 echo '</form>';
                }
+               
         break;
 
         default:

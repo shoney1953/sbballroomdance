@@ -136,6 +136,7 @@
                  }  // end not goteventreg
 
                 // 
+                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                 if (!$gotPartnerEventReg) {
                   echo '<div class="form-grid-div">';
                    echo '<div class="form-grid">';
@@ -170,6 +171,7 @@
                   echo '</div>'; // form grid
                 
                 }
+              }
                    echo '<div class="form-grid">';
                 echo '<div class="form-item">';
                 echo "<h4 class='form-item-title-emp'>PAY ONLINE?</h4>";

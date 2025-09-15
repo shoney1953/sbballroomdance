@@ -54,6 +54,8 @@ $hr = '';
       <h4>You can click on the Event Name to get complete details on the event.</h4>
       
         <?php 
+       
+   
         if (isset($_SESSION['username'])) {
               echo '<h4>If you do not see the action you need perform on the event, please contact the event coordinator.</h4>';
           }
@@ -123,9 +125,10 @@ $hr = '';
                     } ;
                   }
                   $gotPartnerEventReg = 0;
-                   if (isset($_SESSION['partnerid'])) {
+                   if (isset($_SESSION['partnerid']) && ($_SESSION['partnerid'] != 0)) {
                       if ($partnereventReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {  
                         $gotPartnerEventReg = 1;
+
                       }
                     }
 
