@@ -44,6 +44,7 @@ $tempReg = new TempOnlineEventReg($db);
 
 if (isset($_POST['submitRegConfirm'])) {
 /*  create temp reg in database */
+
     if (isset($potentialReg1['firstname'])) {
       $tempReg->eventid = $potentialReg1['eventid'];
       $tempReg->eventname = $potentialReg1['eventname'];
@@ -81,8 +82,7 @@ if (isset($_POST['submitRegConfirm'])) {
           $priceObj1 = $stripe->prices->retrieve($potentialReg1['guestpriceid'], []);
           $totalCost = $priceObj1->unit_amount;
         }
-    } // potential reg1
-
+    } // potential reg1var_dump($potentialReg2);
     if (isset($potentialReg2['firstname'])) {
   
       $tempReg->eventid = $potentialReg2['eventid'];

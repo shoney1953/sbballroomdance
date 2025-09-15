@@ -163,7 +163,7 @@ if (!isset($_POST['submitAddRegs'])) {
               }
               if ($eventInst->eventtype === 'Dinner Dance') {
                 $potentialReg1['ddattenddinner'] = '1';
-                 $potentialReg2['ddattenddinner'] = '1';
+                 
               } else {
                 if (isset($_POST['ddattdin1'])) {
              
@@ -177,8 +177,10 @@ if (!isset($_POST['submitAddRegs'])) {
                   $potentialReg2['ddattenddinner'] = '1'; 
                   $partnerEventReg->ddattenddinner = '1';
                 } else {
+                   if (isset($_POST['mem2Chk'])) {
                    $potentialReg2['ddattenddinner'] = '0'; 
                   $partnerEventReg->ddattenddinner = '0';
+                   }
                 }
               }
               if (isset($_POST['mem1Chk'])) {
@@ -239,6 +241,7 @@ if (!isset($_POST['submitAddRegs'])) {
                              $mealChk2 = 'meal2'.$choice['id'];
                          if (isset($_POST["$mealChk2"])) {   
                                $DinnerSelected2 = 1;
+                                 $potentialReg2['ddattenddinner'] = '1';
                                   $mealid2 = $choice['id'];
                                   $meal2 = $choice['mealname'];
                                   $mealprice2 = $choice['memberprice'];
