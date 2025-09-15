@@ -127,7 +127,7 @@ foreach ($upcomingEvents as $event) {
                 } // got eventreg
 
                 if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                  var_dump($_SESSION['partnerid']);
+              
                  if ($gotPartnerEventReg) {
                     $remID2 = "rem".$partnerReg->id;
                 echo '<div class="form-grid-div">';

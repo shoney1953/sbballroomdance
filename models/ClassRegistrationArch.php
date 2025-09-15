@@ -73,7 +73,8 @@ class ClassRegistrationArch {
       return $stmt;
     
     
-    } public function read_ByEmail($email) {
+    } 
+    public function read_ByEmail($email) {
       
       // Create query
       // $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 

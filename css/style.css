@@ -942,6 +942,17 @@ td input[type="select"] {
   justify-content: left;
   font-size: 85%;
 }
+.form-grid5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    justify-content: left;
+    font-size: 85%;
+  }
 .form-grid6 {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -1312,6 +1323,17 @@ iframe {
     justify-content: left;
     font-size: 75%;
   }
+  .form-grid5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    justify-content: left;
+    font-size: 75%;
+  }
   .form-grid6 {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -1553,6 +1575,17 @@ iframe {
   .form-grid4 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    justify-content: left;
+    font-size: 75%;
+  }
+  .form-grid5 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1px;
     grid-auto-rows: minmax(100px, auto);
     border-radius: 1px;
@@ -1834,6 +1867,17 @@ iframe {
     margin-bottom: 1px;
     justify-content: left;
     font-size: 80%;
+  }
+  .form-grid5 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    grid-auto-rows: minmax(100px, auto);
+    border-radius: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    justify-content: left;
+    font-size: 75%;
   }
   .form-grid6 {
     display: grid;

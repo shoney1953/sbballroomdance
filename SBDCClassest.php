@@ -81,7 +81,7 @@ $gotPartnerClassReg = 0;
                     } ;
                   
                   $gotPartnerClassReg = 0;
-                   if (isset($_SESSION['partnerid'])) {
+                   if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                       if ($partnerClassReg->read_ByClassIdUser($class['id'],$_SESSION['partnerid'])) {  
                 
                         $gotPartnerClassReg = 1;

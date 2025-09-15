@@ -338,7 +338,7 @@ $hr = '';
                               }  // got partner
                             } // end of else goteventreg
                           // }
-                            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0) && (!($gotPartnerEventReg))) {
+                            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0') && (!($gotPartnerEventReg))) {
                               $comparedateTS = strtotime($compareDate);
                               $eventRegOpen = strtotime($event['eventregopen']);
                                  if ($comparedateTS >= $eventRegOpen) {
@@ -349,7 +349,7 @@ $hr = '';
                                     $numActions++;
                             }
                            }
-                            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0) && ($gotPartnerEventReg)) {
+                            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0') && ($gotPartnerEventReg)) {
                               if (!($gotEventReg)) {
                               $comparedateTS = strtotime($compareDate);
                               $eventRegOpen = strtotime($event['eventregopen']);

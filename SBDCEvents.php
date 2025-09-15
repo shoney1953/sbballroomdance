@@ -150,6 +150,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                  $hr .= $event["id"];
                  $ed = 'eventDesc.php?id=';
                  $ed .= $event["id"];
+       
                   echo "<tr>";
                     if (isset($_SESSION['username'])) {
                     echo "<td>";

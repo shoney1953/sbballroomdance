@@ -74,7 +74,7 @@
 
           if ($_SESSION['role'] != 'visitor') {
               echo '<input type="hidden" name="visitor" value="0">';
-            if (isset($_SESSION['partnerid'])) {
+            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
               $partner->id = $_SESSION['partnerid'];
               $partner->read_single();
              }
@@ -106,9 +106,8 @@
             }
             echo "<input type='hidden' name='regUserid1' value='".$_SESSION['userid']."' </input>";;
            echo '</div>';
-           if (isset($_SESSION['partnerid'])) {
+           if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
 
-            if ($_SESSION['partnerid'] > 0) {
                echo "<input type='hidden' name='regUserid2' value='".$_SESSION['partnerid']."' </input>";;
               echo '<div class="form-item">';
               echo '<h4 class="form-item-title">Partner First Name</h4>';
@@ -124,7 +123,7 @@
               echo '<h4 class="form-item-title">Partner Email</h4>';
               echo '<input type="email" name="regEmail2" value="'.$partner->email.'">';
               echo '</div>';
-           }
+           
           }
          echo '</div>';
    
@@ -348,7 +347,7 @@
                     echo "<textarea name='$drID1' cols='10' rows='1'>".$_SESSION['dietaryrestriction']."</textarea>";
                     echo '</div>';
                     echo '</div>';
-                    if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {               
+                    if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {               
                             $pcfcd = 'pcfcD'.$event['id'];
                             $pcfcp = 'pcfcP'.$event['id'];
                             if ($event['eventtype'] === 'Dinner Dance') {

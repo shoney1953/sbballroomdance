@@ -117,7 +117,7 @@ $db = $database->connect();
       
                 if ($_SESSION['role'] != 'visitor') {
       
-                  if (isset($_SESSION['partnerid'])) {
+                  if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                     $partner->id = $_SESSION['partnerid'];
                     $partner->read_single();
                    }
@@ -163,7 +163,7 @@ $db = $database->connect();
                  }
                 
                  if (isset($_SESSION['partnerid'])) {
-                  if ($_SESSION['partnerid'] > 0) {
+                  if ($_SESSION['partnerid'] !== '0') {
                     echo '<div class="form-item">';
                     echo '<h4 class="form-item-title">Partner First Name</h4>';
                     echo '<input type="text" name="regFirstName2" value="'.$partner->firstname.'">';

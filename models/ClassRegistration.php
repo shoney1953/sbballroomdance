@@ -190,6 +190,7 @@ public function read_ByUserid($userid) {
 
 
 }
+
 public function read_ByEmail($email) {
       
   // Create query

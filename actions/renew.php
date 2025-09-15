@@ -74,7 +74,7 @@ if (isset($_POST['submitRenewal'])) {
   }
 
 $tempOnlineRenewal->userid = $_SESSION['userid']; 
-if (isset($_SESSION['partnerid'])) {
+if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
   $tempOnlineRenewal->partnerid = $_SESSION['partnerid'];
 } else {
    $tempOnlineRenewal->partnerid = 0;

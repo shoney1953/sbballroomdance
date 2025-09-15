@@ -15,7 +15,7 @@
             <li><a href="index.php">Back to Home</a></li>
             <li><a href="#major">Major Sponsors</a></li>
             <li><a href="#danceparty">Dance Party Sponsors</a></li>
-            <li><a href="#novicelesson">Novice Lesson Sponsors</a></li>
+            <li><a href="#novicelesson">Novice Sponsors</a></li>
         </ul>
         </div>
     </nav>
@@ -27,19 +27,21 @@
       <h1>Major Sponsors</h1>
     <!-- <img  class="sponsorLogo" src="img/SponsorHeader.png" alt="Sponsor Logo"> -->
     </div>
-    <div class="form-grid2"> 
+    <div class="form-grid3"> 
        <!-- <div class="form-grid4">  -->
       <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/Fraley.png" alt="Ann Fraley info">
+       <img  class="sponsorImage" src="img/Fraley2026.png" alt="Ann Fraley info">
       </div>
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/cruiseplanner.png" alt="Cruise Planner">
+      </div>
+       <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Miller2026.png" alt="Dana Miller Insurance">
       </div>
     </div>
     <div id="danceparty"class="sponsorLogo-Div">
       
       <h1>Dance Party Sponsors</h1>
-    <!-- <img  class="sponsorLogo" src="img/SponsorHeader.png" alt="Sponsor Logo"> -->
     </div>
 
     <div class="form-grid4"> 
@@ -61,7 +63,9 @@
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/xfinity.png" alt="Xfinity info">
       </div>
-      
+        <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Harn2026.png" alt="Wendy Harn info">
+      </div>
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/Vantagewest.png" alt="VantageWest info">
       </div>
@@ -73,11 +77,11 @@
      
       </div>
       <div id="novicelesson" class="sponsorLogo-Div">
-      <h1>Novice Party Sponsors</h1>
+      <h1>Novice Sponsors</h1>
       </div>
-      <div class="form-grid6"> 
+      <div class="form-grid5"> 
       <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/Agnew.png" alt="Jean Agnew info">
+       <img  class="sponsorImage" src="img/Agnew2026.png" alt="Jean Agnew info">
       </div>
       <div class="sponsorCard">
        
@@ -87,12 +91,9 @@
        <img  class="sponsorImage" src="img/bigbear.png" alt="Big Bear info">
       </div>
       <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/OroValleyDental.png" alt="Oro Valley Dental info">
+       <img  class="sponsorImage" src="img/OroValleyDental2026larger.png" alt="Oro Valley Dental info">
       </div>
-      <div class="sponsorCard">
-       
-       <img  class="sponsorImage" src="img/harn.png" alt="Wendy Harn info">
-      </div>
+    
       <div class="sponsorCard">
         
        <img  class="sponsorImage" src="img/absolutelyart.png" alt="Absolutely Art info">
@@ -104,6 +105,17 @@
       <div class="sponsorCard">
        
        <img  class="sponsorImage" src="img/desertlife.png" alt="Desert Life Pharmacy info">
+      </div>
+
+      <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Mercedes2026.png" alt="Mercedes info">
+      </div>
+
+       <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Jessica2026.png" alt="Jessica info">
+      </div>
+       <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/LaCroix2026.png" alt="Daniel Lacroix info">
       </div>
       </div>
       
