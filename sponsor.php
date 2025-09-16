@@ -85,7 +85,7 @@
        <img  class="sponsorImage" src="img/bigbear.png" alt="Big Bear info">
       </div>
       <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/OroValleyDental2026larger.png" alt="Oro Valley Dental info">
+       <img  class="sponsorImage" src="img/OroValleyDentalVertical2026.png" alt="Oro Valley Dental info">
       </div>
     
       <div class="sponsorCard">
