@@ -51,12 +51,6 @@
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/GolfCars.png" alt="Golf Carts info">
       </div>
-    <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/SC Cares.png" alt="Gary Kueker info">
-      </div>
-      <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/CLUBPILATES.png" alt="Club Pilates info">
-      </div>
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/Danswear.png" alt="Dance West info">
       </div>
