@@ -109,11 +109,23 @@ if ($reportClass) {
           } else {
               echo '<option value = "Novice">Novice </option>';
           }
+
+           if ($class['classlevel'] == 'Level 2') {
+              echo '<option value = "Level 2" selected>Level 2 </option>';
+          } else {
+              echo '<option value = "Level 2">Level 2 </option>';
+          }
+         if ($class['classlevel'] == 'Level 3') {
+              echo '<option value = "Level 3" selected>Level 3 </option>';
+          } else {
+              echo '<option value = "Level 3">Level 3 </option>';
+          }
           if ($class['classlevel'] == 'Beginner') {
               echo '<option value = "Beginner" selected>Beginner </option>';
           } else {
               echo '<option value = "Beginner">Beginner </option>';
           }
+
           if ($class['classlevel'] == 'Beginner Plus') {
               echo '<option value = "Beginner Plus" selected>Beginner Plus </option>';
           } else {
@@ -358,6 +370,17 @@ echo '</form>';
               echo '<option value = "Novice" selected>Novice </option>';
           } else {
               echo '<option value = "Novice">Novice </option>';
+          }
+       
+           if ($class['classlevel'] == 'Level 2') {
+              echo '<option value = "Level 2" selected>Level 2 </option>';
+          } else {
+              echo '<option value = "Level 2">Level 2 </option>';
+          }
+          if ($class['classlevel'] == 'Level 3') {
+              echo '<option value = "Level 3" selected>Level 3 </option>';
+          } else {
+              echo '<option value = "Level 3">Level 3 </option>';
           }
           if ($class['classlevel'] == 'Beginner') {
               echo '<option value = "Beginner" selected>Beginner </option>';

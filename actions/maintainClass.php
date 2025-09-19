@@ -191,6 +191,17 @@ if(isset($_POST['archiveClass'])) {
         } else {
             echo '<option value = "Novice">Novice </option>';
         }
+
+           if ($class['classlevel'] == 'Level 2') {
+              echo '<option value = "Level 2" selected>Level 2 </option>';
+          } else {
+              echo '<option value = "Level 2">Level 2 </option>';
+          }
+        if ($class['classlevel'] == 'Level 3') {
+              echo '<option value = "Level 3" selected>Level 3 </option>';
+          } else {
+              echo '<option value = "Level 3">Level 3 </option>';
+          }
         if ($class->classlevel == 'Beginner') {
             echo '<option value = "Beginner" selected>Beginner </option>';
         } else {
@@ -261,7 +272,9 @@ if(isset($_POST['archiveClass'])) {
             echo '<input type="text" name="classname" required ><br>';
             echo '<label for="classlevel">Class Level</label><br>';
             echo '<select name = "classlevel"> <br>';
-            echo '<option value = "Novice">Novice </option>';
+            echo '<option value = "Novice">Novice </option>';  
+            echo '<option value = "Level 2">Level 2 </option>';
+            echo '<option value = "Level 3">Level 3 </option>';
             echo '<option value = "Beginner">Beginner </option>';
             echo '<option value = "Beginner Plus">Beginner Plus </option>';
             echo '<option value = "Intermediate">Intermediate</option>';
