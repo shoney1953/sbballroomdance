@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 require_once '../includes/sendEmail.php';
 require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
@@ -20,10 +20,18 @@ $expirationDate = null;
 $emailBody = null;
 
 $fromCC = $webmaster;
+if (!isset($_POST['SubmitResetPwd'])) {
+  $redirect = "Location: ../index.php";
+  header($redirect);
+  exit; 
+}
 
-if (isset($_POST['SubmitResetPwd'])) {
-  
-  if ($user->validate_email($_POST['email'])) {
+   if (!$user->validate_email($_POST['email'])) {
+     $redirect = "Location: ../forgotPassword.php?reset=noemail";
+    header($redirect);
+    exit;  
+   }
+
     $pwdReset->pwdResetEmail = $_POST['email'];
     $pwdReset->deleteByEmail();
     //  first remove anything hanging around in the file with this email
@@ -40,7 +48,7 @@ if (isset($_POST['SubmitResetPwd'])) {
       || ($_SERVER['SERVER_NAME'] === "sbballroomdance.com") ) {
         $url = "https://sbballroomdance.com/";
         $url .= "createNewPassword.php?selector=".$selector."&validator=".$validator."";
-      }
+  }
  
 
   $currentDate = new DateTime();
@@ -83,20 +91,19 @@ if (isset($_POST['SubmitResetPwd'])) {
     $toCC5
   );
 
+if ((!isset($_SESSION['testmode'])) ||
+   (isset($_SESSION['testmode']) && ($_SESSION['testmode']) !== 'YES'))
+  {
+
   $redirect = "Location: ../forgotPassword.php?reset=success";
   header($redirect);
   exit;  
   } else {
-    $redirect = "Location: ../forgotPassword.php?reset=noemail";
-    header($redirect);
-    exit;  
+    var_dump($_SESSION['testmode']);
+    var_dump($emailBody);
   }
-} else {
-  $redirect = "Location: ../index.php";
-  header($redirect);
-  exit; 
-}
-$redirect = "Location: ../index.php";
-header($redirect);
-exit; 
+
+
+
+
 ?>
