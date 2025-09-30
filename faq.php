@@ -192,9 +192,7 @@
         <p> We try to have a DJ at most of them - especially Fridays and Mondays, so that you can practice what you've been learning in the various classes. You can request music for various dances, and
           the DJs will play them if they have the music.
         </p>
-        <p>
-          Often on Wednesdays when no Novice Class is being held, the room will be available without a DJ, so you could feel free to bring your own music and practice.
-        </p>
+
         <p>They are designated as <em><strong>Open</strong></em> because they are open to all SaddleBrooke Residents.</p>
     
       </div> 

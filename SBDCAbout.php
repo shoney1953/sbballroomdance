@@ -153,7 +153,7 @@ require_once 'includes/siteemails.php';
                 
                 </tr>
 
-                <tr>
+                <!-- <tr>
                     <td>   </td>
                     <td>3rd and 5th Wednesdays</td>
                     <td> <a title="click for map" href="https://goo.gl/maps/kGnv9ohdmdZfQpcQ6">Mariposa Room at DesertView</a></td>
@@ -162,7 +162,7 @@ require_once 'includes/siteemails.php';
                     <td>When there is not a novice class or review session</td>
                     <td> </td>
                 
-                </tr>
+                </tr> -->
                 <tr>
                     <td>   </td>
                     <td>Friday</td>

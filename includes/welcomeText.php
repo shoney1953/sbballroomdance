@@ -50,7 +50,6 @@
          <ul>
          <li>Available Mondays 4 - 6pm in the HOA1 Vermilion Room</li>
          <li>Fridays 4 - 6pm in the HOA1 Vermilion Room </li>
-         <li>Wednesdays from 5pm to 6pm in the Mariposa Room at DesertView</li>
          </ul></li><br>";
        
        $emailBody .= "<li>Your name, email, phone and address will be listed in our directory by default unless
