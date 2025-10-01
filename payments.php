@@ -1,10 +1,30 @@
 <?php
 session_start();
-// require_once './vendor/autoload.php';
 
+date_default_timezone_set("America/Phoenix");
+// require_once 'vendor/autoload.php';
 require_once 'config/Database.php';
 require_once 'models/PaymentCustomer.php';
 require_once 'models/PaymentProduct.php';
+
+// if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
+//   $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
+//    $stripeSecretKey = $_SESSION['prodkey'] ;
+
+// }
+// if ($_SERVER['SERVER_NAME'] === 'localhost') {    
+//   $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';  
+//   $stripeSecretKey = $_SESSION['testkey'] ;
+// }
+// \Stripe\Stripe::setApiKey($stripeSecretKey);
+// // header('Content-Type: application/json');
+
+// $stripe = new \Stripe\StripeClient($stripeSecretKey);
+// // $charges = $stripe->charges->all(['limit' => 3]);
+// $charges = $stripe->charges->all();
+
+
+
 if (isset($_SESSION['role'])) {
 
 } else {
@@ -96,6 +116,7 @@ if ($rowCount > 0) {
            echo "<li><a href='index.php'>Back to Home</a></li> ";
             if ($_SESSION['role'] === 'SUPERADMIN') {  
                 echo "<li><a href='administration.php'>Back to Administration</a></li> ";
+                 echo "<li><a href='paymentHist.php'>Stripe Payment History</a></li> ";
 
             }
 
@@ -210,5 +231,10 @@ if ($rowCount > 0) {
    </section>
     
    </div>
+    <footer >
+    <?php
+    require 'footer.php';
+   ?>
+    </footer>
 </body>
 </html>
