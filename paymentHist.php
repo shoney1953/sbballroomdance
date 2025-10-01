@@ -21,9 +21,7 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
 
 $stripe = new \Stripe\StripeClient($stripeSecretKey);
 // $charges = $stripe->charges->all(['limit' => 3]);
-$charges = $stripe->charges->all();
-
-
+$charges = $stripe->charges->all(['limit' => 100]);
 
 
 if (isset($_SESSION['role'])) {
