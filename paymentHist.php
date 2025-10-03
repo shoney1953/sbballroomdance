@@ -6,7 +6,29 @@ require_once 'vendor/autoload.php';
 require_once 'config/Database.php';
 require_once 'models/PaymentCustomer.php';
 require_once 'models/PaymentProduct.php';
+if (isset($_SESSION['role'])) {
 
+} else {
+      header("Location: https://www.sbballroomdance.com/");
+     exit;
+}
+$_SESSION['paymenthisturl'] = $_SERVER['REQUEST_URI'];
+$_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
+if (!isset($_SESSION['username']))
+{
+    $redirect = "Location: ".$_SESSION['homeurl'];
+    header($redirect);
+} else {
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] != 'SUPERADMIN') {
+            $redirect = "Location: ".$_SESSION['homeurl'];
+            header($redirect); 
+        }
+       } else {
+        $redirect = "Location: ".$_SESSION['homeurl'];
+        header($redirect);
+       }
+}
 if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
   $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
    $stripeSecretKey = $_SESSION['prodkey'] ;
@@ -20,80 +42,50 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
 // header('Content-Type: application/json');
 
 $stripe = new \Stripe\StripeClient($stripeSecretKey);
-// $charges = $stripe->charges->all(['limit' => 3]);
-$charges = $stripe->charges->all(['limit' => 100]);
+$lastYear = date('Y', strtotime('+1 year'));
+$thisYear = date("Y"); 
+$current_month = date('m');
+$current_year = date('Y');
+$currentDate = new DateTime();
+$compareDate = $currentDate->format('Y-m-d');
+$compareDateTS = strtotime($compareDate);
+$searchCustomers = [];
+$_SESSION['searchCustomers'] = [];
+
+if (isset($_POST['searchemail']))  {
+
+  $search = trim($_POST['searchemail']);
 
 
-if (isset($_SESSION['role'])) {
 
-} else {
-      header("Location: https://www.sbballroomdance.com/");
-     exit;
-}
-$_SESSION['paymenturl'] = $_SERVER['REQUEST_URI'];
-$_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
+ $qstring = 'email~ "'.$search.'"';
 
-
-$database = new Database();
-$db = $database->connect();
-// refresh events
-
-if (!isset($_SESSION['username'])) {
-    $redirect = "Location: ".$_SESSION['homeurl'];
-    header($redirect);
-}
-$allCustomers = [];
-$allProducts = [];
-$product = new PaymentProduct($db);
-$result = $product->read();
-$rowCount = $result->rowCount();
-$num_products = $rowCount;
-$_SESSION['allProducts'] = [];
-if ($rowCount > 0) {
-
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-  
-        $product_item = array(
-            'productid' => $productid,
-            'description' => $description,
-            'name' => $name,
-            'priceid' => $priceid,
-            'type' => $type,
-            'price'=> $price,
-            'eventid' => $eventid
-
-        );
-        array_push($allProducts, $product_item);
+       $customers = $stripe->customers->search([
+       'query' => $qstring,
+      ]);
     
-    }
+        foreach($customers['data'] as $cust) {
+          array_push($searchCustomers, $cust);
+        }
+   
+      if ($customers['has_more']) {
   
-    $_SESSION['allProducts'] = $allProducts;
-}
+      do {
+        $customers = $stripe->charges->search([
+         'query' => $qstring,
+         'page' => $customers['next_page']
+          ]);
+            foreach($customers['data'] as $cust) {
+              array_push($searchCustomers, $cust);
+               
+            }
+         } while ($customers['has_more']);
+        }
+      $_SESSION['searchCustomers'] = $searchCustomers;
 
-$customer = new PaymentCustomer($db);
-$result = $customer->read();
-$rowCount = $result->rowCount();
-$num_customers = $rowCount;
-$_SESSION['allCustomers'] = [];
-if ($rowCount > 0) {
-
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-        $customer_item = array(
-            'customerid' => $customerid,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'email' => $email,
-            'userid' => $userid
-
-        );
-        array_push($allCustomers, $customer_item);
-    
-    }
-  
-    $_SESSION['allCustomers'] = $allCustomers;
-}
+unset($_POST['searchemail']);
+      }
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,37 +121,84 @@ if ($rowCount > 0) {
    <div class="container-section ">
    <section class="content">
     <h1>Stripe Payment History</h1>
-    <div class="form-grid2">
-   
-    <div class="form-grid-div">
-        <h2>Online Payments</h2>
-        <?php
-           echo '<table>';
-            echo '<thead>';
-                echo '<tr>';
-                    echo '<th>Date</th> '; 
-                    echo '<th>Amount</th> '; 
-                    echo '<th>Email</th> '; 
-                    echo '<th>Receipt URL</th> '; 
+    <h4><em>Please Note Retrieving Data from Stripe can be quite slow.. please be patient!</em></h4>
+      <div class="form-grid2">
 
+       <div class="form-grid-div">
+            <form method="POST" action="#">
+              <div class='form-grid'>
+                <div class="form-item">
+                      <h4 class='form-item-title'>Search By Email?</h4>
+                    <input type='text'  placeholder="full or partial email"
+                          title='Enter Partial or Full Email to Search Transactions' name='searchemail'>     
+                 
+                </div>
+            
+                    <button type="submit" name="submitSearchTrans">Search </button>   
+                  
+              </div>
+            </form>
+                    <form method="POST" action="actions/processStripeTrans.php">
+       
+           <table>
+            <thead>
+              <tr>
+                <th>Select?</th>
+                <th>Email</th>
+                <th>Customer ID </th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $i = 0;
+              foreach ($searchCustomers as $cust) {
+                $custCHK = "CCHK".$i;
+                $custID = "CCID".$i;
+                  $custEmail = "CEMAIL".$i;
+                echo '<tr>';
+                echo '<td><input type="checkbox" name="'.$custCHK.'"</td>';
+                echo '<td>'.$cust['email'].'</td>';
+                echo '<td>'.$cust['id'].'</td>';
+                echo '<td><input type="hidden" name="'.$custID.'" value="'.$cust['id'].'"><td>';
+                echo '<input type="hidden"  name="'.$custEmail.'" value="'.$cust['email'].'">';
                 echo '</tr>';
-              echo '</thead>'  ;
-              echo '<tbody>';
-        
-            foreach ($charges['data'] as $transaction) {
-              echo '<tr>';
-                echo "<td>".date('m/d/Y', $transaction['created'])."</td>";
-                echo "<td>$".number_format($transaction['amount']/100, 2)."</td>";
-                echo "<td>$".$transaction['billing_details']['email']."</td>";
-                echo "<td><a href='".$transaction['receipt_url']."'>Click to see Receipt</a></td>";
-              echo '</tr>';
-            }
-             echo '</tbody>';
-            echo '</table>';   
-            echo '<br>';
-          ?>
+                $i++;
+              }
+
+              ?>
+              <tr > 
+                  <td colspan="5"><button type="submit" name="submitGetTrans">Retrieve Transactions by Email</button>
+            </tr>
+            </tbody>
+           </table>
+            </form>
+       </div>
+    <div class="form-grid-div">
+       <form method="POST" action="actions/processStripeTrans.php">
+
+            <div class="form-item">
+                      <h4 class='form-item-title'>Search by Date?</h4>
+                      <label for="startdate">Beginning Date Range</label>
+                    <input type='date'  placeholder="start date"
+                          title='starting date for transactions' name='startdate'>     
+            
+                </div>
+                 <div class="form-item">
+                    <label for="enddate">Ending Date Range</label>
+                    <input type='date'  placeholder="end date"
+                          title='ending date for transactions' name='enddate'>     
+                    <button type="submit" name="submitGetTransDate">Retrieve Transactions by Date </button>   
+                </div>
+            </form>
     </div>
-    </div>
+ 
+
+
+     
+   
+   
+    
+    
    
    </section>
     

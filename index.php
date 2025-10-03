@@ -152,11 +152,8 @@ if ($rowCount > 0) {
         if (strtotime($compareDate) <= strtotime($row['eventdate'])) {
             array_push($upcomingEvents, $event_item);
         }
-        
-     
 
     }
-  
 
 } 
 

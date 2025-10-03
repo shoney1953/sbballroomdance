@@ -30,7 +30,21 @@ class PaymentCustomer {
 
       return $stmt;
     }
+ public function readByEmail($email) {
+      // Create query
+      $query = 'SELECT * FROM ' . $this->table . ' 
+      WHERE email LIKE :email
+      ORDER BY customerid';
 
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      $stmt->bindParam('email', $email);
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
     // Get Single Danceclass
     public function read_single($customerid) {
          $this->id = $id;

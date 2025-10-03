@@ -33,6 +33,7 @@ $paymentcustomer = new PaymentCustomer($db);
 
 $chargeProductID = '';
 $chargePriceID = '';
+
 $searchemail = $_SESSION['useremail'];
 $qstring = 'email: "'.$searchemail.'"';
 
@@ -85,6 +86,7 @@ $tempOnlineRenewal->renewboth = $_SESSION['renewboth'];
 
 $tempOnlineRenewal->create();
 $renewID = $db->lastInsertId();
+
 $checkout_session = \Stripe\Checkout\Session::create([
    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
   'line_items' => [[
