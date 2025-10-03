@@ -193,7 +193,7 @@ if ($rowCount > 0) {
         if ($_SESSION['role'] === 'SUPERADMIN') {
              
 
-                    echo '<li><a title="Set Up Payment Options" href="payments.php">Payment Options</a></li>';
+                    echo '<li><a title="Set Up Payment Options" href="payments.php">Online Payments</a></li>';
                     echo '<li><a target="_blank" title="Go to Stripe Dashboard" href="https://stripe.com/">Stripe Dashboard</a></li>';
 
          

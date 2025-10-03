@@ -4,7 +4,7 @@ session_start();
 date_default_timezone_set("America/Phoenix");
 // require_once 'vendor/autoload.php';
 require_once 'config/Database.php';
-require_once 'models/PaymentCustomer.php';
+// require_once 'models/PaymentCustomer.php';
 require_once 'models/PaymentProduct.php';
 
 // if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
@@ -49,6 +49,9 @@ $product = new PaymentProduct($db);
 $result = $product->read();
 $rowCount = $result->rowCount();
 $num_products = $rowCount;
+$membershipProducts = [];
+$danceProducts = [];
+$mealProducts = [];
 $_SESSION['allProducts'] = [];
 if ($rowCount > 0) {
 
@@ -65,6 +68,15 @@ if ($rowCount > 0) {
             'eventid' => $eventid
 
         );
+        if ($product_item['type'] === 'membership') {
+            array_push($membershipProducts, $product_item);
+        }
+       if ($product_item['type'] === 'dance') {
+            array_push($danceProducts, $product_item);
+        }
+        if ($product_item['type'] === 'meal') {
+            array_push($mealProducts, $product_item);
+        }
         array_push($allProducts, $product_item);
     
     }
@@ -72,29 +84,7 @@ if ($rowCount > 0) {
     $_SESSION['allProducts'] = $allProducts;
 }
 
-$customer = new PaymentCustomer($db);
-$result = $customer->read();
-$rowCount = $result->rowCount();
-$num_customers = $rowCount;
-$_SESSION['allCustomers'] = [];
-if ($rowCount > 0) {
 
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-        $customer_item = array(
-            'customerid' => $customerid,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'email' => $email,
-            'userid' => $userid
-
-        );
-        array_push($allCustomers, $customer_item);
-    
-    }
-  
-    $_SESSION['allCustomers'] = $allCustomers;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,14 +120,18 @@ if ($rowCount > 0) {
    <div class="container-section ">
    <section  class="content">
     <h1>Payment Processing Options</h1>
-    <div class="form-grid2">
-   
-    <div class="form-grid-div">
-        <h2>Online Payment Products</h2>
+   <h2>Online Payment Products</h2>
+   <div class="form-grid2">
+ 
+     
         <?php
+         echo '<div class="form-grid-div">';
            echo '<table>';
             echo '<thead>';
                 echo '<tr>';
+                echo '<td colspan="6">Membership Products </td>';
+                echo '</tr>';
+                 echo '<tr>';
                     echo '<th>Product ID</th> '; 
                     echo '<th>Event ID</th> '; 
                     echo '<th>Product Type</th> '; 
@@ -150,7 +144,7 @@ if ($rowCount > 0) {
               echo '</thead>'  ;
               echo '<tbody>';
         
-                foreach($allProducts as $product) {
+                foreach($membershipProducts as $product) {
              
                       echo "<tr>";
                         echo "<td>".$product['productid']."</td>";
@@ -163,10 +157,8 @@ if ($rowCount > 0) {
          
                       echo "</tr>";
                   }
-             echo '</tbody>';
-            echo '</table>';   
-            echo '<br>';
-            echo '<div class="form-container">';
+                  echo '<tr>';
+                  echo '<td colspan="6"> ';
            echo '<form method="POST" action="actions/addPaymentProduct.php">';
            echo "<h4 class='form-title'>Add a Membership Payment Product</h4>";
            echo '<div class="form-grid">';
@@ -190,44 +182,91 @@ if ($rowCount > 0) {
            echo '<button type="submit" name="submitAddProduct">Add the Product</button><br>';
            echo '</form>';
            echo '</div>';
-            ?>
-    </div>
-  
-    <div class="form-grid-div">
-        <h2>Customers</h2>
-        <?php
+           echo '</td>';
+                  echo '</tr>';
+             echo '</tbody>';
+            echo '</table>';  
+            echo '</div>' ;
+         echo '<div class="form-grid-div">';
            echo '<table>';
             echo '<thead>';
                 echo '<tr>';
-                    echo '<th>Customer ID</th> '; 
-                    echo '<th>User ID</th> '; 
-                    echo '<th>First Name</th> '; 
-                    echo '<th>Last Name</th>';
-                    echo '<th>Email</th>';
-
+                echo '<td colspan="6">Dance Products </td>';
+                echo '</tr>';
+                echo '<tr>';
+                    echo '<th>Product ID</th> '; 
+                    echo '<th>Event ID</th> '; 
+                    echo '<th>Product Type</th> '; 
+                    echo '<th>Product Name</th> '; 
+                    echo '<th>Description</th> '; 
+                    echo '<th>Price</th>';
+  
                   
-               echo '</tr>';
+                echo '</tr>';
               echo '</thead>'  ;
               echo '<tbody>';
         
-                foreach($allCustomers as $customer) {
+                foreach($danceProducts as $product) {
              
                       echo "<tr>";
-                        echo "<td>".$customer['customerid']."</td>";
-                        echo "<td>".$customer['userid']."</td>";
-                        echo "<td>".$customer['firstname']."</td>";
-                        echo "<td>".$customer['lastname']."</td>";
-                        echo "<td>".$customer['email']."</td>";
-           
+                        echo "<td>".$product['productid']."</td>";
+                         echo "<td>".$product['eventid']."</td>";
+                        echo "<td>".$product['type']."</td>";
+                        echo "<td>".$product['name']."</td>";
+                        echo "<td>".$product['description']."</td>";
+                        $dollarPrice = $product['price']/100;
+                        echo "<td>".$dollarPrice."</td>";               
          
                       echo "</tr>";
                   }
              echo '</tbody>';
-            echo '</table>';   
-            echo '<br>';
+            echo '</table>';  
+            echo '</div>' ;
+
+ 
+            // echo '</div>';
+            echo '<div class="form-grid-div">';
+           echo '<table>';
+            echo '<thead>';
+                echo '<tr>';
+                echo '<td colspan="6">Meal Products </td>';
+                echo '</tr>';
+                echo '<tr>';
+                    echo '<th>Product ID</th> '; 
+                    echo '<th>Event ID</th> '; 
+                    echo '<th>Product Type</th> '; 
+                    echo '<th>Product Name</th> '; 
+                    echo '<th>Description</th> '; 
+                    echo '<th>Price</th>';
+  
+                  
+                echo '</tr>';
+              echo '</thead>'  ;
+              echo '<tbody>';
+        
+                foreach($mealProducts as $product) {
+             
+                      echo "<tr>";
+                        echo "<td>".$product['productid']."</td>";
+                         echo "<td>".$product['eventid']."</td>";
+                        echo "<td>".$product['type']."</td>";
+                        echo "<td>".$product['name']."</td>";
+                        echo "<td>".$product['description']."</td>";
+                        $dollarPrice = $product['price']/100;
+                        echo "<td>".$dollarPrice."</td>";               
+         
+                      echo "</tr>";
+                  }
+             echo '</tbody>';
+            echo '</table>';  
+            echo '</div>' ;
+                  echo '</div>' ;
+         
             ?>
     </div>
-    </div>
+  
+  
+
    </section>
     
    </div>
