@@ -38,12 +38,10 @@ class PaymentProduct {
       $stmt = $this->conn->prepare($query);
 
       // Execute query
-      $stmt->execute();
 
-      return $stmt;
     }
     // Get Single Danceclass
-    public function read_byProductId ($productid) {
+    public function read_byProductId($productid) {
          $this->productid = $productid;
    
           // Create query
@@ -74,6 +72,26 @@ class PaymentProduct {
           return true;
           }
           return false;
+
+
+    }
+public function read_ByType($type) {
+         $this->type = $type;
+   
+          // Create query
+          $query = 'SELECT * FROM ' . $this->table . ' WHERE type = :type'; 
+  
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+
+          // Bind ID
+          $stmt->bindParam(':type', $type);
+
+          // Execute query
+
+           $stmt->execute();
+
+           return $stmt;
 
 
     }

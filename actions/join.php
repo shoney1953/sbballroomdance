@@ -243,7 +243,7 @@ $formatphone = '';
       <h4>Click the CONFIRM button to proceed, or the GO BACK button to modify information.</h4><br>
       <?php
 
-       $paymentproduct->read_single($chargeProductID);
+       $paymentproduct->read_byProductId($chargeProductID);
        $fprice = number_format(($paymentproduct->price/100),2);
 
          echo "<h4>You will be charged: $".$fprice." for ".$paymentproduct->name."</h4><br>";

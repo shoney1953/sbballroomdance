@@ -7,7 +7,7 @@
   $db = $database->connect();
   $memberProducts = [];
 $product = new PaymentProduct($db);
-$result = $product->read();
+$result = $product->read_ByType('membership');
 $rowCount = $result->rowCount();
 $num_products = $rowCount;
 $current_month = date('m');
@@ -25,6 +25,7 @@ if ($rowCount > 0) {
             'productid' => $productid,
             'description' => $description,
             'name' => $name,
+            'type' => $type,
             'price' => $price,
             'priceid' => $priceid,
             'eventid' => $eventid
