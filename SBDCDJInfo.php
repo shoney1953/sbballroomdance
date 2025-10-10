@@ -40,7 +40,7 @@ DJ Documents</a><br>
             Also, Check out the Automated DJ APP (ROBO DJ) that can be used where WIFI is available
         </p>
        
-        <a target="_blank" href="https://drive.google.com/file/d/1lRa1Sr_RIpyj-yLF_9qeZgdC7QGZ5q-X/view?usp=sharing"><em>Click for ROBO DJ Guide</em></a><br>
+        <a target="_blank" href="https://drive.google.com/file/d/1kUVa636BDZ9YzE39pp6tTC82q6TzdS5J/view?usp=sharing"><em>Click for ROBO DJ Guide</em></a><br>
          <a  target="_blank" href="https://sbdcrobodj.com/">Go to ROBO DJ App</a><br>
    
         <?php
