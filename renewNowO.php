@@ -9,9 +9,7 @@
   $memberProducts = [];
 $product = new PaymentProduct($db);
 
-$result = $product->read();
-$rowCount = $result->rowCount();
-$num_products = $rowCount;
+
 
 $memberProducts = [];
 $_SESSION['memberproducts'] = [];
@@ -26,6 +24,9 @@ $current_year = date('Y');
   $couplePriceID = '';
   $newProduct = [];
   $chargePriceID = '';
+  $result = $product->read_ByType('membership');
+$rowCount = $result->rowCount();
+$num_products = $rowCount;
 if ($rowCount > 0) {
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -34,16 +35,13 @@ if ($rowCount > 0) {
             'productid' => $productid,
             'description' => $description,
             'name' => $name,
+            'type' => $type,
             'price' => $price,
             'priceid' => $priceid
 
         );
  
-     $pos = strpos($product_item['name'], 'Membership');
-
-      if ($pos) {
         array_push($memberProducts, $product_item);
-      }
             
         }
     }

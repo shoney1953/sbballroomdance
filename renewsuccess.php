@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 require_once 'includes/sendEmail.php';
 require_once 'includes/siteemails.php';
@@ -90,6 +90,7 @@ if ($rowCount > 0) {
 
    if ($noRenewalYear === 0) {
      $member->userid = $tempOnlineRenewal->userid;
+     var_dump($renewalYear);
     $member->year = $renewalYear;
     $member->paid = 1;   
     $member->paidonline = 1;
