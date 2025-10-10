@@ -1,17 +1,15 @@
 <?php
-session_start();
+
 require_once '../includes/sendEmail.php';
 require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/ClassRegistration.php';
 require_once '../models/DanceClass.php';
 
-
 $database = new Database();
 $db = $database->connect();
 $classReg = new ClassRegistration($db);
 $danceClass = new DanceClass($db);
-
 $regs = $_SESSION['classregistrations'];
 $regSelected = [];
 $regAll = '';

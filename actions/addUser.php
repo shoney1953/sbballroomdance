@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once '../includes/sendEmail.php';
 require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
@@ -33,7 +33,7 @@ $toCC2 = $president;
 $toCC3 = $webmaster;
 // 
 
-$toCC4 = $volunteerDirector; 
+$toCC4 = ''; 
 
 // $toCC4 = 'richardschroeder50@gmail.com';
 $toCC5 = $vicePresident;

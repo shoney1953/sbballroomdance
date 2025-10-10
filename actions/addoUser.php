@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once '../includes/sendEmail.php';
 require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
@@ -7,7 +7,6 @@ require_once '../models/User.php';
 require_once '../models/UserArchive.php';
 require_once '../models/MemberPaid.php';
 date_default_timezone_set("America/Phoenix");
-
 
 $database = new Database();
 $db = $database->connect();
@@ -29,7 +28,7 @@ $fromCC = '';
 
 $toCC2 = $president;
 $toCC4 = $treasurer;
-$toCC5 = $volunteerDirector; 
+$toCC5 = ''; 
 
 // $fromCC = $secretary; // leave commented
 

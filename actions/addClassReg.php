@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once '../includes/sendEmail.php';
 require_once '../config/Database.php';
 require_once '../models/ClassRegistration.php';

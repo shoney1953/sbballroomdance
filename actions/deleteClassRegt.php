@@ -106,9 +106,9 @@ if (isset($_POST['submitRemoveRegs'])) {
     $toCC2 = $_SESSION['useremail'];
 
     $emailBody .= 
-                "<br>Class Date:  ".$partnerReg->classdate.
-                "<br>Class Level: ".$partnerReg->classlevel.
-                "<br>Class Name:  ".$partnerReg->classname;
+                "<br>Class Date:  ".$danceClass->date.
+                "<br>Class Level: ".$danceClass->classlevel.
+                "<br>Class Name:  ".$danceClass->classname;
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
             $regName1 = $regFirstName1.' '.$regLastName1;
             sendEmail(

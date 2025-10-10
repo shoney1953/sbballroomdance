@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once '../includes/sendEmail.php';
 require_once '../includes/siteemails.php';
   

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once '../includes/sendEmail.php';
 require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
@@ -65,7 +65,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $classReg->firstname = $_POST['firstname1'];
     $classReg->lastname = $_POST['lastname1'];
     $classReg->email = $_POST['email1'];
-    $classReg->paid = 0;
+  
     $classReg->userid = 0;
     $result = $classReg->checkDuplicate($classReg->email, $classReg->classid );
     if (!$result) {
@@ -75,7 +75,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $classReg->lastname = $_POST['lastname1'];
     $classReg->email = $_POST['email1'];
     $classReg->registeredby = $_SESSION['username'];
-    $classReg->paid = 0;
+ 
     $classReg->userid = 0;
 
     $classReg->create();
@@ -147,7 +147,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $classReg->firstname = $_POST['firstname2'];
     $classReg->lastname = $_POST['lastname2'];
     $classReg->email = $_POST['email2'];
-    $classReg->paid = 0;
+
     $classReg->userid = 0;
     $classReg->registeredby = $_SESSION['username'];
     $result = $classReg->checkDuplicate($classReg->email, $classReg->classid );
@@ -157,7 +157,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $classReg->firstname = $_POST['firstname2'];
     $classReg->lastname = $_POST['lastname2'];
     $classReg->email = $_POST['email2'];
-    $classReg->paid = 0;
+
     $classReg->userid = 0;
 
     $classReg->create();

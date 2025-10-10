@@ -82,7 +82,7 @@ $fromCC = '';
 
 $toCC2 = $president;
 $toCC4 = $treasurer;
-$toCC5 = $volunteerDirector; 
+$toCC5 = ''; 
 
 // $fromCC = $secretary; // leave commented
         $userdefault1 = ucfirst($tempmember1->firstname).ucfirst(substr($tempmember1->lastname,0,1));
