@@ -38,7 +38,9 @@ class PaymentProduct {
       $stmt = $this->conn->prepare($query);
 
       // Execute query
+      $stmt->execute();
 
+      return $stmt;
     }
     // Get Single Danceclass
     public function read_byProductId($productid) {
