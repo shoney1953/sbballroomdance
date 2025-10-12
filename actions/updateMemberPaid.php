@@ -68,9 +68,15 @@ function sendThanks($memStat,$userEmail,$secretary,$president,$webmaster) {
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toName = $memStat['firstname']." ".$memStat['lastname'] ;
     $mailSubject = 'Thanks for Renewing your membership at SBDC Ballroom Dance Club!';
-    $fromCC = $secretary;
-    $toCC2 = $president;
-    $toCC3 = $webmaster;
+    $toCC2 = $webmaster;
+      if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+            $fromCC = '';
+            $toCC3 = '';
+      } else {
+           $fromCC = $secretary;
+           $toCC3 = $president;
+      }
+
     $toCC4 = '';
     $toCC5 = null;
 

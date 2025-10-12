@@ -190,9 +190,16 @@ function sendThanks($user,$treasurer,$president,$webmaster) {
     $toName = $user->firstname." ".$user->lastname ;
     $userEmail = $user->email;
     $mailSubject = 'Thanks for Renewing your membership Online at SBDC Ballroom Dance Club!';
+    $toCC2 = $webmaster;
+    if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+         $fromCC = $webmaster;
+         $toCC3 = '';
+    } else {
     $fromCC = $treasurer;
-    $toCC2 = $president;
-    $toCC3 = $webmaster;
+    $toCC3 = $president;
+    }
+
+ 
     $toCC4 = '';
     $toCC5 = null;
 

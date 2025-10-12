@@ -72,16 +72,21 @@ foreach($allOptions as $option) {
 }
 
 $mailAttachment = '';
-$toCC3 = $webmaster; 
+$toCC2 = $webmaster; 
 // $toCC2 = '';
 // $toCC4 = '';
 // $toCC5 = '';
 
 $fromCC = '';
 
+if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+    $toCC3 = '';
+    $toCC4 = '';
+} else {
+    $toCC3 = $president;
+     $toCC4 = $treasurer;
+}
 
-$toCC2 = $president;
-$toCC4 = $treasurer;
 $toCC5 = ''; 
 
 // $fromCC = $secretary; // leave commented

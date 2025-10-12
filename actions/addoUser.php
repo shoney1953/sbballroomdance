@@ -18,16 +18,19 @@ $nextYear = date('Y', strtotime('+1 year'));
 $current_month = date('m');
 $current_year = date('Y');
 $mailAttachment = '';
-$toCC3 = $webmaster; 
-// $toCC2 = '';
-// $toCC4 = '';
-// $toCC5 = '';
+$toCC2 = $webmaster; 
+
 
 $fromCC = '';
+  if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+   $toCC3 = '';
+   $toCC4 = '';
+  } else {
+    $toCC3 = $president;
+    $toCC4 = $treasurer;
+  }
 
 
-$toCC2 = $president;
-$toCC4 = $treasurer;
 $toCC5 = ''; 
 
 // $fromCC = $secretary; // leave commented
