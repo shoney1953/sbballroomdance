@@ -168,7 +168,12 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo "<td>".substr($event['eventregopen'],5,5)."</td>";
                     echo "<td>".substr($event['eventregend'],5,5)."</td>";
                     if ($event['eventform']) {
-                        echo '<td><a href="'.$event['eventform'].'">PRINT</a></td>';
+                        if (substr($event['eventform'],0,4) === 'http') {
+                             echo '<td><a href="'.$event['eventform'].'">PRINT</a></td>';
+                        } else {
+                              echo '<td><a href="uploads/forms/'.$event['eventform'].'">PRINT</a></td>';
+                        }
+                      
                     } else {
                             echo "<td> </td>"; 
                     }

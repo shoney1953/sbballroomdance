@@ -58,6 +58,7 @@ $archiveEvent = false;
 $duplicateEvent = false;
 $addMeals = false;
 $updateMeals = false;
+$uploadForm = false;
 $urChk = false;
 $drChk = false;
 $arChk = false;
@@ -70,6 +71,7 @@ $aeChk = false;
 $cvChk = false;
 $amChk = false;
 $umChk = false;
+$ufChk = false;
 $event_count = 0;
 
 if (isset($_POST['submitEventProcess'])) {
@@ -93,6 +95,7 @@ if (isset($_POST['submitEventProcess'])) {
         $archiveEvent = false;
         $addMeals = false;
         $updateMeals = false;
+        $uploadForm = false;
         $rpChk = "rp".$event['id'];
         $upChk = "up".$event['id'];
         $dlChk = "dl".$event['id'];
@@ -105,6 +108,7 @@ if (isset($_POST['submitEventProcess'])) {
         $cvChk = "cv".$event['id'];
         $amChk = "am".$event['id'];
         $umChk = "um".$event['id'];
+         $ufChk = "uf".$event['id'];
         $mbSrch = "srch".$event['id'];
    //  event check boxes 
 
@@ -130,6 +134,13 @@ if (isset($_POST['submitEventProcess'])) {
     }
     if (isset($_POST["$umChk"])) {
         $updateMeals = true;
+        $processEvent = true;
+    
+        break;
+       
+    }
+     if (isset($_POST["$ufChk"])) {
+        $uploadForm = true;
         $processEvent = true;
     
         break;

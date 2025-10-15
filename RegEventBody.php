@@ -397,7 +397,12 @@
     
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Event Form</h4>';
-                echo '<a href="'.$event['eventform'].'">PRINT</a>';
+                if (substr($event['eventform'],0,4) === 'http') {
+                   echo '<a href="'.$event['eventform'].'">PRINT</a>';
+                } else {
+                   echo '<a href="uploads/forms/'.$event['eventform'].'">PRINT</a>';
+                }
+              
                 echo '</div>';
             } 
           }

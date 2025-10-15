@@ -67,11 +67,31 @@ if ($updateMeals) {
      
   }
 }
+if ($uploadForm) {
+
+  foreach ($allEvents as $event) {
+    $ufChk = 'uf'.$event['id'];
+
+    if (isset($_POST["$ufChk"])) {
+         echo "<h4>Upload Flyer for  ".$event['eventname']."  ".$event['eventdate']."</h4>";
+      echo '<form method="POST" action="uploadForm.php"  enctype="multipart/form-data">';
+      echo '<div class="form-grid-div">';
+      echo "<input type='hidden' name='eventid' value='".$event['id']."'>"; 
+      echo 'Select file to upload Only PDFs supported:<br>';
+      echo '<input type="file" name="fileToUpload" id="fileToUpload"><br>';
+      echo '<button type="submit" name="submitUpload">UPLOAD</button>';
+      echo '</div> ';  
+      echo '</form>';
+      unset($_POST["$ufChk"]);
+      break;
+    }
+     
+  }
+}
   if ($emailEvent) {
- 
 
     foreach ($allEvents as $event) {
-  
+
       $eventNum = (int)substr($emChk,2);
 
       if ($event['id'] == $eventNum) {

@@ -173,7 +173,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
     $cvChk = "cv".$event['id'];
     $amChk = 'am'.$event['id'];
     $umChk = 'um'.$event['id'];
-
+    $ufChk = 'uf'.$event['id'];
     $mbSrch = "srch".$event['id'];
     $class_month = substr($event['eventdate'], 5, 2);
     $class_year = substr($event['eventdate'], 0, 4);
@@ -242,6 +242,11 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Update Meal Options</h4>';
    echo "<input type='checkbox' title='Select to Update Meal(s)' name='".$umChk."'>";
+   echo '</div>';
+
+   echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Upload Flyer</h4>';
+   echo "<input type='checkbox' title='Select to Upload Flyer' name='".$ufChk."'>";
    echo '</div>';
    
 }

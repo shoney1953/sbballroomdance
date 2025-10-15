@@ -294,11 +294,19 @@ if (!isset($_POST['submitEventReg'])) {
                         attached.<br>';
                     }
                     if ($event['eventform']) {
-                        $actLink= "<a href='".$event['eventform']."'>
+                        if (substr($event['eventform'],0,4) === 'http') {
+                                                    $actLink= "<a href='".$event['eventform']."'>
                         Click to view event Form</a><br>";
                        $emailBody .= 'There is a signup form to submit registration details and payment.<br>';
                        $emailBody .= "Click on <em>PRINT</em> in the Form column of the event listing
                         on the website to open the form.<br> Or<br>$actLink";
+                        } else {
+                        $mailAttachment = '..uploads/forms/'.$event['eventform'];
+                       $emailBody .= 'There is an attached signup form to submit registration details and payment.<br>';
+
+                        }
+                  
+
     
                     }
                 //  }

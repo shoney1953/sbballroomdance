@@ -224,6 +224,36 @@ class Event {
 
           return false;
     }
+     public function update_form() {
+          // Create query
+          $query = 'UPDATE ' . $this->table . 
+          ' SET  eventform = :eventform
+            WHERE id = :id ';
+
+
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+
+          // Clean data
+
+
+          // Bind data
+
+          $stmt->bindParam(':eventform', $this->eventform);
+ 
+          $stmt->bindParam(':id', $this->id);
+  
+
+          // Execute query
+          if($stmt->execute()) {
+            return true;
+          }
+
+          // Print error if something goes wrong
+          printf("Error: %s.\n", $stmt->error);
+
+          return false;
+    }
   public function addCount($id) {
       
       // Create query

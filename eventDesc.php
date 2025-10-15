@@ -104,7 +104,12 @@ if (isset($_GET['id'])) {
 
     if ($event['eventform']) {
       echo "<div class='form-item'>";
-      echo "<h4 class='form-item-title'> <a href='".$event['eventform']."'>PRINT EVENT FORM</a></h4>";
+      if (substr($event['eventform'],0,4) === 'http') {
+        echo "<h4 class='form-item-title'> <a href='".$event['eventform']."'>PRINT EVENT FORM</a></h4>";
+      } else {
+             echo "<h4 class='form-item-title'> <a href='uploads/forms/".$event['eventform']."'>PRINT EVENT FORM</a></h4>";
+      }
+      
       echo "</div>";
     }
     if ($event['eventtype'] === 'Dance Party') {

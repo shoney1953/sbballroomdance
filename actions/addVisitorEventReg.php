@@ -122,13 +122,19 @@ if (isset($_POST['submitAddVisitorReg'])) {
         $emailBody .= $coststr;
         $toCC2 = $treasurer;
         if ($event->eventform) {
-
-            $actLink= "<a href='".$event->eventform."'>
+          if (substr($event->eventform,0,4) === 'http') {
+                       $actLink= "<a href='".$event->eventform."'>
             Click to view event Form</a>";
             $emailBody .= 'There is a form to submit registration details and payment.<br>';
             $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
                 on the website to open the form. Or<br>$actLink";
-            $toCC2 = $treasurer;
+            $toCC2 = $treasurer; 
+          } else {
+           $mailAttachment = '..uploads/forms/'.$event->eventform;
+            $emailBody .= 'There is an attached form to submit registration details and payment.<br>';
+
+          }
+
         }
     }
             echo '</tr>';
@@ -276,13 +282,19 @@ if (isset($_POST['submitAddVisitorReg'])) {
         $emailBody .= $coststr;
         $toCC2 = $treasurer;
         if ($event->eventform) {
-
+          if (substr($event->eventform,0,4) === 'http') {
             $actLink= "<a href='".$event->eventform."'>
             Click to view event Form</a>";
             $emailBody .= 'There is a form to submit registration details and payment.<br>';
             $emailBody .= "Click on <em>VIEW</em> in the Form column of the event listing
                 on the website to open the form. Or<br>$actLink";
             $toCC2 = $treasurer;
+          } else {
+            $mailAttachment = '../uploads/forms/'.$event->eventform;
+            $emailBody .= 'There is an attached form to submit registration details and payment.<br>';
+
+          }
+
         }
          foreach ($mealChoices as $choice) {
             $mcID = "mcVisitor2".$choice['id'];

@@ -222,11 +222,17 @@ if (isset($_POST['submitAddReg'])) {
                    }  // eventtype
 
                     if ($event->eventform) {
-                        $actLink= "<a href='".$event->eventform."'>
-                        Click here to open the event Form</a><br>";
-                       $emailBody .= '<br>There is a flyer associated with the dance.<br>';
-                       $emailBody .= "Click on <em>PRINT</em> in the Form column of the event listing
-                        on the website to open the form.<br> Or<br>$actLink";
+                        if (substr($event->eventform,0,4) === 'http') {
+                            $actLink= "<a href='".$event->eventform."'>
+                            Click here to open the event Form</a><br>";
+                        $emailBody .= '<br>There is a flyer associated with the dance.<br>';
+                        $emailBody .= "Click on <em>PRINT</em> in the Form column of the event listing
+                            on the website to open the form.<br> Or<br>$actLink";
+                        } else {
+                        $mailAttachment = '../uploads/forms/'.$event->eventform;
+                        $emailBody .= '<br>There is a attached flyer associated with the event.<br>';
+                        }
+
      
                     }
                   

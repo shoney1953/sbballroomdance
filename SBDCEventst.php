@@ -84,8 +84,14 @@ $hr = '';
                    $hr .= $event["id"];
 
                   if ($event['eventform']) {          
-                    echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a>
+                    if (substr($event['eventform'],0,4) === 'http') {
+                          echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a>
                             -----> <a href='".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></h4>";
+                    } else {
+                      echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a>
+                            -----> <a href='uploads/forms/".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></h4>";
+                    }
+                      
                     } else {
                        echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a>
                       </h4>";
