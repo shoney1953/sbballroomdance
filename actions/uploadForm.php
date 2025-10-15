@@ -35,9 +35,9 @@ if (isset($_POST['submitUpload'])) {
     $event->id = $_POST['eventid'];
     $event->eventform = $newFileName;
     $event->update_form();
-   //  $redirect = "Location: ".$_SESSION['requrl']."?success=fileuploaded";
-   //  header($redirect);
-   //   exit;
+    $redirect = "Location: ".$_SESSION['returnurl'];
+    header($redirect);
+     exit;
   } else {
         $redirect = "Location: ".$_SESSION['returnurl']."?error=filetype";
         header($redirect);
