@@ -104,6 +104,7 @@ $event->read_single();
            echo "<div class='container-section' name='addmeals'>  <br><br>";
            echo '<section id="users"  class="content">';
            echo ' <h3 class="section-header">Add Meal Choices to '.$event->eventname.' '.$event->eventdate.'</h3> ';
+           echo ' <h4 >Be sure to add both a member and guest price for each meal you are entering</h4>';
             echo '<div class="form-container">';
         
             echo "<form method='POST' action='addMealOption.php'>"; 

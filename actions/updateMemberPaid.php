@@ -52,7 +52,7 @@ if (isset($_POST['updateMemPaid'])) {
             $user->id = $memStat['userid'];
             $user->read_single();
             $userEmail = $user->email;
-            sendThanks($memStat,$userEmail,$secretary,$president,$webmaster);
+            sendThanks($memStat,$userEmail,$president,$webmaster);
           
         }
        
@@ -63,7 +63,7 @@ if (isset($_POST['updateMemPaid'])) {
 header($redirect);
 exit; 
 }
-function sendThanks($memStat,$userEmail,$secretary,$president,$webmaster) {
+function sendThanks($memStat,$userEmail,$president,$webmaster) {
 
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toName = $memStat['firstname']." ".$memStat['lastname'] ;
@@ -73,7 +73,7 @@ function sendThanks($memStat,$userEmail,$secretary,$president,$webmaster) {
             $fromCC = '';
             $toCC3 = '';
       } else {
-           $fromCC = $secretary;
+           $fromCC = $webmaster;
            $toCC3 = $president;
       }
 

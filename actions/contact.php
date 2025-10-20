@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
     $contact->email = filter_var($contact->email, FILTER_SANITIZE_EMAIL);  
     $contact->create();
     $fromEmailName = 'SBDC Ballroom Dance Club';
-    $toCC2 = $secretary;
+    $toCC2 = $webmaster;
     $toCC3 = '';
     $toCC4 = '';
     $toCC5 = '';
