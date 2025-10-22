@@ -285,7 +285,7 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
         echo '</form>';   
         echo '</div> ';   
         echo '<form target="_blank" method="POST" action="actions/searchUserArchive.php" >';
-        echo '<input type="text"  name="search" ><br>';
+        echo '<input type="search"  name="search" ><br>';
         echo '<button type="submit" name="searchUser">Search Archived Members</button>'; 
         echo '</form>';
         

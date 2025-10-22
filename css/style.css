@@ -782,6 +782,14 @@ input[type="textbox"] {
   /* border-radius: 2px; */
   box-sizing: border-box;
 }
+input[type="search"] {
+  width: 80%;
+  max-width: 100%;
+  padding: 2px 2px;
+  margin: 2px 2px;
+  /* border-radius: 2px; */
+  box-sizing: border-box;
+}
 textarea  {
   width: 100%;
   max-width: 100%;
@@ -870,7 +878,15 @@ td input[type="textbox"] {
   box-sizing: border-box;
 }
 
+td input[type="search"] {
+  width: 100%;
+    max-width: 100%;
+  padding: 4px 4px;
+  margin: 4px 4px;
+  border-radius: 4px;
 
+  box-sizing: border-box;
+}
 
 td input[type="select"] {
   width: 100%;
@@ -1387,6 +1403,12 @@ iframe {
     margin: 2px 2px;
     box-sizing: border-box;
   }
+  input[type="search"] {
+      max-width: 100%;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    box-sizing: border-box;
+  }
     input[type="text"] {
       max-width: 100%;
     padding: 2px 2px;
@@ -1642,6 +1664,12 @@ iframe {
     box-sizing: border-box;
   }
   input[type="textbox"] {
+      max-width: 100%;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    box-sizing: border-box;
+  }
+  input[type="search"] {
       max-width: 100%;
     padding: 2px 2px;
     margin: 2px 2px;
@@ -1935,6 +1963,13 @@ iframe {
     box-sizing: border-box;
     cursor: pointer;
   }
+  input[type="search"] {
+     max-width: 100%;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
   input[type="checkbox"] {
     width: 15px;
     height: 15px;
@@ -2143,6 +2178,13 @@ iframe {
     cursor: pointer;
   }
   input[type="textbox"] {
+      max-width: 100%;
+    padding: 2px 2px;
+    margin: 2px 2px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  input[type="search"] {
       max-width: 100%;
     padding: 2px 2px;
     margin: 2px 2px;

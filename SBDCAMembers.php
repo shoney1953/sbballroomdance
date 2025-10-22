@@ -236,7 +236,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<form  method="POST" action="actions/searchUser.php" >';
         echo '<div class="form-grid-div">';
         echo '<button type="submit" name="searchUser">Search Criteria to Qualify Members for Maintenance</button>'; 
-        echo '<input type="text" title="Enter Full or Partial Name or Email to Search." name="search" >';
+        echo '<input type="search" title="Enter Full or Partial Name or Email to Search." name="search" >';
         echo '</div>';
         echo '</div>';
         echo '</form>';

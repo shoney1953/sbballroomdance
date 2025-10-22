@@ -45,7 +45,7 @@ $directory = $_SESSION['directory']
    
         echo '<div class="form-grid-div">';
         echo '<form target="_blank" method="POST" action="actions/searchDirectory.php" >';
-        echo '<input type="text"  name="search" >';
+        echo '<input type="search"  name="search" >';
         echo '<button type="submit" name="searchUser">Search Directory by Name or Email</button>';  
         echo '</form>';
      
