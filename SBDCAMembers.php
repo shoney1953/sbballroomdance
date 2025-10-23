@@ -191,7 +191,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '</form>';
             echo '</div> '; 
             echo '<div class="form-grid-div">';
-            echo '<form target="_blank" method="POST" action="actions/emailMembers.php">'; 
+            echo '<form method="POST" action="actions/emailMembers.php">'; 
             echo '<button type="submit" name="submitEmailMembers">Email Members</button>';   
             echo '</form>';
             echo '</div> '; 

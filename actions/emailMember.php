@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once '../includes/sendEmailArr.php';
 require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
@@ -44,13 +44,19 @@ $toCC3 = 'sbbdcschedule@gmail.com';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
-$replyTopic = "Message All from SBDC";
+$replyTopic = "Message Members from SBDC";
 $rowCount = 0;
 $regEmail1 = [];
 
-  
-    $result = $user->readByHOA();
-    $rowCount = $result->rowCount();
+if (isset($_POST['submitEmailMember'])) {
+     if (($_POST['emailgroup'] === 'emailByHOA') && (isset($_POST['HOA']))) {
+        $result = $user->readByHOAS($_POST['HOA']);
+        $rowCount = $result->rowCount();
+     } else {
+        $result = $user->read();
+        $rowCount = $result->rowCount();
+     }
+
 
       if ($rowCount > 0) {
 
@@ -65,25 +71,17 @@ $regEmail1 = [];
               
             );
           
-            if (isset($_POST['HOA']) && isset($_POST['emailByHOA'])){
-               if ($_POST['HOA'] === $hoa) {
-        
-                if ($reg_item['email'] != '') {
+             if ($reg_item['email'] != '') {
                     $regEmail1[] = array('email' => $reg_item['email'],
                     'name' => $reg_item['firstname'].' '.$reg_item['lastname']);
                }
-            }
-            } else {
-                if (isset($_POST['emailAll']))
-                if ($reg_item['email'] != '') {
-                    $regEmail1[] = array('email' => $reg_item['email'],
-                    'name' => $reg_item['firstname'].' '.$reg_item['lastname']);
-                   }
            
-            }
 
         } // end while
-     
+      if (isset($_POST['emailSubject'])) {
+        $emailSubject = $_POST['emailSubject'];
+      }
+
       $replyEmail = htmlentities($_POST['replyEmail']);
       $toCC2 = htmlentities($_POST['replyEmail']); 
       $emailText = strip_tags($_POST['emailBody']);
@@ -91,7 +89,7 @@ $regEmail1 = [];
       $emailBody = $emailText;
       $replaceArr  = array("\r\n", "\n", "\r");
       $htmlEmail = str_replace($replaceArr, "<br>", $emailBody);
-
+     
   
         sendEmailArray(
             $regEmail1,  
@@ -110,8 +108,8 @@ $regEmail1 = [];
          
     } // end if rowcount
               
-     
-$redirect = "Location: ".$_SESSION['adminurl']."#members";
+ }   // if submit
+$redirect = "Location: ".$_SESSION['returnurl'];
 header($redirect);
 exit;
 ?>

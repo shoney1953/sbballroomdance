@@ -16,27 +16,37 @@ session_start();
     <div class="content">
 
     <h1>Email Members</h1>
-    <h4>This process takes a while to generate the email so please be patient. Just close the window when the process is complete.</h4>
+    <h4>This process takes a while to generate the email so please be patient. It will return to the admin Member Page when complete</h4>
+    <fieldset>
       <form method="POST" action="emailMember.php"> 
+         <div class="form-grid2">
         <div class="form-grid-div">
-
-      <label for"emailAll">Email All Members</label>
-       <input type="checkbox" name="emailAll" >
-       <br><br>OR<br><br>
-       <label for"emailByHOA">Email Members by HOA</label>
-       <input type="checkbox" name="emailByHOA" ><br>
-       <label for"HOA">Select HOA</label>
+        <legend>Select A Member Group to email</legend>
+         <input type="radio" id="emailall" name="emailgroup" value="emailAll" checked>  
+         <label for="emailall">Email All Members</label><br>          
+    
+      </div>
+      <div class="form-grid-div">
+       <br><input type="radio" id='emailhoa' name="emailgroup" value="emailByHOA" >
+       <label for="emailhoa">Email by HOA</label>
+       <br><label for"HOA">Select HOA</label>
        <select name = 'HOA'> 
          <option value="1">HOA 1</option>
          <option value="2">HOA 2</option>
        </select>
-       <br><br>
-        <label for="replyEmail">Email to reply to: </label>> <br>
+       </div>
+      </div>
+      </fieldset>
+     <div class="form-grid-div">
+        <label for="emailSubject">Email Subject Line: </label> <br>
+        <input type="text" name="emailSubject" id="emailSubject" placeholder="Subject line for the email">
+        <label for="replyEmail">Email to reply to: </label> <br>
         <?php
         echo '<input type="email" name="replyEmail" value="'.$_SESSION['useremail'].'"><br>'; 
         ?>
+
         <label for="emailBody">Email Text</label><br>
-        <textarea  name="emailBody" rows="30" cols="75"></textarea><br>
+        <textarea  name="emailBody" rows="20" cols="70"></textarea>
       
         <br>
         <button type='submit' name='submitEmailMember'>Send Email</button>    

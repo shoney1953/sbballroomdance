@@ -75,6 +75,21 @@ class User {
 
       return $stmt;
     }
+    public function readByHOAS($hoa) {
+      // Create query
+
+      $query = 'SELECT * FROM ' . $this->table . '  
+      WHERE hoa = :hoa
+      ORDER BY  lastname, firstname';
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam('hoa', $hoa);
+      // Execute query
+      $stmt->execute();
+
+      return $stmt;
+    }
     public function readByLogin() {
       // Create query
       $query = 'SELECT * FROM ' . $this->table . ' ORDER BY lastLogin DESC, lastname, firstname ';
