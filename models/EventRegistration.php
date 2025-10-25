@@ -190,6 +190,7 @@ public function read_ByEmail($email) {
   
     return $stmt;
   }
+ 
   public function read_ByEventId($eventid) {
       
 

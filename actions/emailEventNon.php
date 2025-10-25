@@ -5,6 +5,7 @@ require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
+require_once '../models/User.php';
 date_default_timezone_set("America/Phoenix");
 if (!isset($_SESSION['username']))
 {
@@ -21,12 +22,15 @@ if (!isset($_SESSION['username']))
         header($redirect);
        }
 }
+$comEmail1 = '';
+$comEmail2 = '';
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $event = new Event($db);
+$user = new User($db);
 $emailText = '';
-$emailBody = "A Message About Your SBDC Ballroom Dance Event:<br>";
+$emailBody = "A Message About an Upcoming SBDC Ballroom Dance Event:<br>";
 $emailSubject = '';
 $numRegClasses = 0;
 $message2Ins = '';
@@ -35,52 +39,61 @@ $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $regEmail1 = [];
+$regArray = [];
+$userArray = [];
+$resultArray = [];
 $toCC2 = ''; 
 $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
 $replyTopic = "Event Message";
-$emailSubject = "A Message about Your SBDC Ballroom Dance Club Event";
+$emailSubject = "A Message about an Upcoming SBDC Ballroom Dance Club Event";
 $preface = '';
 $rowCount = 0;
 if (isset($_POST['submitEventEmail'])) {
-    if (isset($_POST['subject'])) {
-        $emailSubject = $_POST['subject'];
-    }
-    $eventReg->eventid = $_POST['eventId'];
-    $result = $eventReg->read_ByEventId($eventReg->eventid);
-    $rowCount = $result->rowCount();
-  
+  if (isset($_POST['subject'])) {
+    $emailSubject = $_POST['subject'];
+  }
+    $event->id = $_POST['eventId'];
+    $event->read_single();
+
+      $result = $user->read();
+     $rowCount = $result->rowCount();
+
       if ($rowCount > 0) {
 
         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             extract($row);
-            $reg_item = array(
+            $user_item = array(
                 'id' => $id,
                 'firstname' => $firstname,
                 'lastname' => $lastname,
-                'eventid' => $eventid,
-                'eventname' => $eventname,
-                'eventdate' => $eventdate,
-                'message' => $message,
-                'userid' => $userid,
-                'email' => $email,
-                'paid' => $paid,
-                'registeredby' => $registeredby,
-                'dateregistered' => $dateregistered
-              
+                'email' => $email
+             
             );
-            $preface = "Event: ".$reg_item['eventname'].
-                    "\n Date: ".$reg_item['eventdate']."\n\r";
-            if ($reg_item['email'] != '') {
-                $regEmail1[] = array('email' => $reg_item['email'],
-                'name' => $reg_item['firstname'].' '.$reg_item['lastname']);
-            }
-           
-           
+            array_push($userArray, $user_item);
+
         } // end while
- 
+      }
+
+      foreach ($userArray as $us) {
+     
+           if ($eventReg->read_ByEventIdUser($_POST['eventId'], $us['id'])) {
+             // person is registered
+         
+           } else {
+      
+            $preface = "Event: ".$event->eventname.
+                    "\n Date: ".$event->eventdate."\n\r";
+            if ($us['email'] != '') {
+                $regEmail1[] = array('email' => $us['email'],
+                'name' => $us['firstname'].' '.$us['lastname']);
+           }
+
+        }
+      }
+      // var_dump($regEmail1);
       $replyEmail = htmlentities($_POST['replyEmail']);
       $toCC2 = htmlentities($_POST['replyEmail']); 
 
@@ -90,8 +103,7 @@ if (isset($_POST['submitEventEmail'])) {
       $emailBody = $preface.$emailText;
       $replaceArr  = array("\r\n", "\n", "\r");
       $htmlEmail = str_replace($replaceArr, "<br>", $emailBody);
-      
-    
+
         sendEmailArray(
             $regEmail1,  
             $fromCC,
@@ -107,10 +119,10 @@ if (isset($_POST['submitEventEmail'])) {
             $toCC5
         );
          
-    } // end if rowcount
+ 
 }    // end ifset                
 
-$redirect = "Location: ".$_SESSION['adminurl']."#events";
+$redirect = "Location: ".$_SESSION['returnurl'];
 header($redirect);
 exit;
 ?>

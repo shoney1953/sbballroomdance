@@ -54,6 +54,7 @@ $csvEvent = false;
 $updateEvent = false;
 $deleteEvent = false;
 $emailEvent = false;
+$emailEventNon = false;
 $archiveEvent = false;
 $duplicateEvent = false;
 $addMeals = false;
@@ -66,6 +67,7 @@ $rpChk = false;
 $upChk = false;
 $dlChk = false;
 $emChk = false;
+$emNonChk = false;
 $dpChk = false;
 $aeChk = false;
 $cvChk = false;
@@ -90,6 +92,7 @@ if (isset($_POST['submitEventProcess'])) {
         $updateEvent = false;
         $deleteEvent = false;
         $emailEvent = false;
+        $emailEventNon = false;
         $csvEvent = false;
         $duplicateEvent = false;
         $archiveEvent = false;
@@ -100,6 +103,7 @@ if (isset($_POST['submitEventProcess'])) {
         $upChk = "up".$event['id'];
         $dlChk = "dl".$event['id'];
         $emChk = "em".$event['id'];
+        $emNonChk = "emnon".$event['id'];
         $dpChk = "dp".$event['id'];
         $aeChk = "ae".$event['id'];
         $arChk = "ar".$event['id'];
@@ -165,6 +169,11 @@ if (isset($_POST['submitEventProcess'])) {
     }
     if (isset($_POST["$emChk"])) {
         $emailEvent = true;
+        $processEvent = true;
+        break;
+    }
+    if (isset($_POST["$emNonChk"])) {
+        $emailEventNon = true;
         $processEvent = true;
         break;
     }

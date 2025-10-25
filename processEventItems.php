@@ -99,12 +99,46 @@ if ($uploadForm) {
         echo '<form method="POST" action="emailEvent.php"> ';
         echo '<div class="form-grid-div">';
         echo "<input type='hidden' name='eventId' value='".$event['id']."'>"; 
-       
+
+        echo '<label for="subject">Email Subject </label>';
+        echo '<input type="text" name="subject" id="subject" placeholder="Enter Email Subject"><br>';  
+
+        echo '<label for="replyEmail">Email to reply to: </label>';
+        echo '<input type="email" name="replyEmail" id="replyEmail" value="'.$_SESSION['useremail'].'"><br>';  
+
+        echo '<label for="emailBody">Email Text</label><br>';
+        echo '<textarea  name="emailBody" rows="20" cols="100"></textarea><br>';
+      
+        echo '<br>';
+        echo '<button type="submit" name="submitEventEmail">Send Email</button> ';  
+        echo '</div> ';  
+
+        echo '</form>';
+      
+        break;
+      }
+      
+      
+    }
+  }
+    if ($emailEventNon) {
+
+    foreach ($allEvents as $event) {
+
+      $eventNum = (int)substr($emChk,2);
+
+      if ($event['id'] == $eventNum) {
+        echo "<h4>Emailing Those Not Registered for  ".$event['eventname']."  ".$event['eventdate']."</h4>";
+        echo '<form method="POST" action="emailEventNon.php"> ';
+        echo '<div class="form-grid-div">';
+        echo "<input type='hidden' name='eventId' value='".$event['id']."'>"; 
+        echo '<label for="subject">Email Subject </label>';
+        echo '<input type="text" name="subject" id="subject" placeholder="Enter Email Subject"><br>';  
         echo '<label for="replyEmail">Email to reply to: </label>';
         echo '<input type="email" name="replyEmail" value="'.$_SESSION['useremail'].'"><br>';  
 
         echo '<label for="emailBody">Email Text</label><br>';
-        echo '<textarea  name="emailBody" rows="30" cols="100"></textarea><br>';
+        echo '<textarea  name="emailBody" rows="20" cols="100"></textarea><br>';
       
         echo '<br>';
         echo '<button type="submit" name="submitEventEmail">Send Email</button> ';  

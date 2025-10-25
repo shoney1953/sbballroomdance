@@ -165,6 +165,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
     $upChk = "up".$event['id'];
     $dlChk = "dl".$event['id'];
     $emChk = "em".$event['id'];
+    $emNonChk = "emnon".$event['id'];
     $aeChk = "ae".$event['id'];
     $dpChk = "dp".$event['id'];
     $arChk = "ar".$event['id'];
@@ -217,8 +218,13 @@ echo '<form method="POST" action="actions/processEvents.php">';
     echo '</div>';
 
    echo '<div class="form-item">';
-   echo '<h4 class="form-item-title">Email?</h4>';
+   echo '<h4 class="form-item-title">Email Attendees?</h4>';
    echo "<input type='checkbox' title='Only select 1 event for Email' name='".$emChk."'>";
+   echo '</div>';
+   
+   echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Email Those Not Registered?</h4>';
+   echo "<input type='checkbox' title='Only select 1 event for Email' name='".$emNonChk."'>";
    echo '</div>';
   if ($_SESSION['role'] != 'DJ') {
    echo '<div class="form-item">';
