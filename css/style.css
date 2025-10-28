@@ -746,7 +746,7 @@ input[type="checkbox"] {
   height: 25px;
   padding: 2px 2px;
   margin: 2px 2px;
-  /* border-radius: 2px; */
+  border-radius: 4px;
   box-sizing: border-box;
 }
 

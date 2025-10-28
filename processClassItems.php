@@ -41,12 +41,13 @@ if ($reportClass) {
         echo '<form method="POST" action="emailClass.php"> ';
         echo '<div class="form-grid-div">';
         echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
-       
+        echo '<label for="subject">Email Subject: </label>';
+        echo '<input type="text" name="subject" placeholder="Subject of class email"><br>';  
         echo '<label for="replyEmail">Email to reply to: </label>';
         echo '<input type="email" name="replyEmail" value="'.$_SESSION['useremail'].'"><br>';  
 
         echo '<label for="emailBody">Email Text</label><br>';
-        echo '<textarea  name="emailBody" rows="30" cols="100"></textarea><br>';
+        echo '<textarea  name="emailBody" rows="20" cols="100"></textarea><br>';
       
         echo '<br>';
         echo '<button type="submit" name="submitClassEmail">Send Email</button> ';  

@@ -291,7 +291,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
     echo '</div>';
         echo '<div class="form-item">';
     echo '<h4 class="form-item-title">Enter Search Criteria to limit Registrations</h4>';
-    echo "<input type='text'  
+    echo "<input type='search'  
           title='Enter Partial or Full Name to qualify Registrations' name='".$mbSrch."' >"; 
     echo '</div>';
     echo '<div class="form-item">';

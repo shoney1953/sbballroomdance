@@ -56,6 +56,9 @@ $mailAttachment = '';
 $replyTopic = "Class Message";
 $rowCount = 0;
 $preface = '';
+if (isset($_POST['submitClassEmail'])) {
+
+
     $classReg->classid = $_POST['classId'];
     $result = $classReg->read_ByClassId($classReg->classid);
     $rowCount = $result->rowCount();
@@ -80,6 +83,9 @@ $preface = '';
             "\n Beginning Date: ".$reg_item['classdate']."\n\r"
             ;
             $emailSubject = 'A Message About Your SBDC Ballroom Dance Class: '.$reg_item['classname'];
+             if (isset($_POST['subject'])) {
+                     $emailSubject = $_POST['subject'];
+                 }
             if ($reg_item['email'] != '') {
                 $regEmail1[] = array('email' => $reg_item['email'],
                 'name' => $reg_item['firstname'].' '.$reg_item['lastname']);
@@ -113,8 +119,8 @@ $preface = '';
          
     } // end if rowcount
               
-
-$redirect = "Location: ".$_SESSION['adminurl']."#classes";
+}
+$redirect = "Location: ".$_SESSION['returnurl'];
 header($redirect);
 exit;
 ?>
