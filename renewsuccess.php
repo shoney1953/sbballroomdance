@@ -90,7 +90,7 @@ if ($rowCount > 0) {
 
    if ($noRenewalYear === 0) {
      $member->userid = $tempOnlineRenewal->userid;
-     var_dump($renewalYear);
+
     $member->year = $renewalYear;
     $member->paid = 1;   
     $member->paidonline = 1;
