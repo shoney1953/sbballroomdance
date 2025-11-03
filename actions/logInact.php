@@ -3,6 +3,7 @@ session_start();
 date_default_timezone_set("America/Phoenix");
 require_once '../config/Database.php';
 require_once '../models/User.php';
+require_once '../models/Options.php';
 require_once '../models/MemberPaid.php';
 $database = new Database();
 $db = $database->connect();
@@ -20,6 +21,44 @@ $compareDate = $currentDate->format('Y-m-d');
 $yearsPaid = [];
 $nextYearNotThere = 0;
 $thisYearNotThere = 0;
+$rowCount = 0;
+$allOptions = [];
+
+if (!isset($_SESSION['allOptions'])) {
+$options = new Options($db);
+$result = $options->read();
+$rowCount = $result->rowCount();
+$num_options = $rowCount;
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+ 
+        $option_item = array(
+            'id' => $id,
+            'year' => $year,
+            'renewalmonth' => $renewalmonth,
+            'discountmonth' => $discountmonth   
+        );
+        array_push($allOptions, $option_item);
+
+    }
+    $_SESSION['allOptions'] = $allOptions;
+} 
+foreach($allOptions as $option) {
+    if ($current_year === $option['year']) {
+        $_SESSION['renewalmonth'] = $option['renewalmonth'];
+        $_SESSION['discountmonth'] = $option['discountmonth'];
+
+        break;
+    }
+}
+}
+
+$_SESSION['renewThisYear'] = 0;
+$_SESSION['renewNextYear'] = 0;
+if (isset($_SESSION['allOptions'])) {
+
 $allOptions = $_SESSION['allOptions'];
 foreach($allOptions as $option) {
     if ($current_year === $option['year']) {
@@ -29,8 +68,7 @@ foreach($allOptions as $option) {
         break;
     }
 }
-$_SESSION['renewThisYear'] = 0;
-$_SESSION['renewNextYear'] = 0;
+}
 if (isset($_SESSION['renewalmonth'])) {
    $renewalMonth = $_SESSION['renewalmonth'];
 
