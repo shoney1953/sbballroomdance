@@ -13,9 +13,8 @@ $result = 0;
 $curpaid =  $_SESSION['memPaidCurrent'];
 foreach($curpaid as $c) {
     if ($c['userid'] == 10) {
-      var_dump($c);
-      $result = $memPaid->read_byUseridYear($c['userid'], $nextYear);
-      var_dump($result);
+
+   
     }
 
    if (!$memPaid->read_byUseridYear($c['userid'], $nextYear)) {
@@ -33,7 +32,7 @@ foreach($curpaid as $c) {
 }
 
 }
-// $redirect = "Location: ".$_SESSION['returnurl'];
-// header($redirect);
-// exit;
+$redirect = "Location: ".$_SESSION['returnurl'];
+header($redirect);
+exit;
 ?>

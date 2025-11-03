@@ -113,9 +113,7 @@ class MemberPaid {
       }
     public function read_byUseridYear($userid, $year) {
             // Create query
-            if ($userid === 10) {
-              var_dump($userid, $year);
-            }
+
           $query = 'SELECT * FROM ' . $this->table . ' 
             WHERE userid = :userid AND year = :year LIMIT 0,1'
 
@@ -144,9 +142,7 @@ class MemberPaid {
           $this->paid = $row['paid'];
           $this->paidonline = $row['paidonline'];
           $this->id = $row['id'];
-          if ($this->userid === 10) {
-            var_dump($this);
-          }
+
     
           return true;
       }
