@@ -64,6 +64,7 @@ deployment:
     - /bin/cp SBDCAClasses.php $DEPLOYPATH
     - /bin/cp SBDCAEvents.php $DEPLOYPATH
     - /bin/cp SBDCAMembers.php $DEPLOYPATH
+    - /bin/cp SBDCAMemPop.php $DEPLOYPATH
     - /bin/cp SBDCAOptions.php $DEPLOYPATH
     - /bin/cp SBDCAVisitors.php $DEPLOYPATH
     - /bin/cp SBDCBoard.php $DEPLOYPATH

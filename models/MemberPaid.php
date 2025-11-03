@@ -111,7 +111,49 @@ class MemberPaid {
             $stmt->execute();
             return $stmt;
       }
+    public function read_byUseridYear($userid, $year) {
+            // Create query
+            if ($userid === 10) {
+              var_dump($userid, $year);
+            }
+          $query = 'SELECT * FROM ' . $this->table . ' 
+            WHERE userid = :userid AND year = :year LIMIT 0,1'
 
+           ; 
+
+
+            // Prepare statement
+            $stmt = $this->conn->prepare($query);
+  
+            // Bind ID
+            $stmt->bindParam(':userid', $userid);
+            $stmt->bindParam(':year', $year);
+  
+ 
+
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+          // Set properties
+
+        if ($stmt->execute()) ;
+         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+       if ($row) {
+           $this->userid = $row['userid'];
+          $this->year = $row['year'];
+          $this->paid = $row['paid'];
+          $this->paidonline = $row['paidonline'];
+          $this->id = $row['id'];
+          if ($this->userid === 10) {
+            var_dump($this);
+          }
+    
+          return true;
+      }
+
+
+      return false;
+      }
     // Create record
 
     public function create() {
