@@ -3,6 +3,7 @@ session_start();
 
 require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
+
 require_once '../models/TempOnlineRenewal.php';
 require_once '../models/PaymentProduct.php';
 require_once '../models/PaymentCustomer.php';
@@ -30,6 +31,8 @@ $database = new Database();
 $db = $database->connect();
 $tempOnlineRenewal = new TempOnlineRenewal($db);
 $paymentcustomer = new PaymentCustomer($db);
+
+
 
 $chargeProductID = '';
 $chargePriceID = '';

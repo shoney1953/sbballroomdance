@@ -1,6 +1,7 @@
 <?php
   session_start();
   require_once 'config/Database.php';
+  require_once 'models/MemberPaid.php';
   require_once 'models/PaymentCustomer.php';
   require_once 'models/PaymentProduct.php';
 
@@ -8,16 +9,24 @@
   $db = $database->connect();
   $memberProducts = [];
 $product = new PaymentProduct($db);
-
+$memPaid = new MemberPaid($db);
 
 
 $memberProducts = [];
 $_SESSION['memberproducts'] = [];
 $current_year = date('Y');
 
-  $next_year = date('Y', strtotime('+1 year'));
-  $searchIndividual = $current_year." Individual Membership";
-  $searchCouple = $current_year." Couple Membership";
+$next_year = date('Y', strtotime('+1 year'));
+
+  if ($memPaid->read_byUseridYear($_SESSION['userid'], $current_year)) {
+      $searchIndividual = $next_year." Individual Membership";
+     $searchCouple = $next_year." Couple Membership";
+  } else {
+      $searchIndividual = $current_year." Individual Membership";
+      $searchCouple = $current_year." Couple Membership";
+  }
+
+
   $indProductID = '';
   $coupleProductID = '';
   $indPriceID = '';
