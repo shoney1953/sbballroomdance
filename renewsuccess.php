@@ -14,7 +14,7 @@ $database = new Database();
 $db = $database->connect();
 $user1 = new User($db);
 $user2 = new User($db);
-
+$renewalYear = $current_year = date('Y');
 $member  = new MemberPaid($db);
 $partner = new MemberPaid($db);
 $tempOnlineRenewal = new TempOnlineRenewal($db);
@@ -83,7 +83,7 @@ if ($rowCount > 0) {
         $member->id = $yp['id'];
 
         $member->update();
-       sendThanks($user1,$treasurer,$president,$webmaster);
+       sendThanks($user1,$treasurer,$president,$webmaster,$renewalYear);
        $noRenewalYear = 1;
     }
   }
@@ -95,7 +95,7 @@ if ($rowCount > 0) {
     $member->paid = 1;   
     $member->paidonline = 1;
     $member->create();
-    sendThanks($user1,$treasurer,$president,$webmaster);
+    sendThanks($user1,$treasurer,$president,$webmaster,$renewalYear);
 
    }
 } else {
@@ -105,7 +105,7 @@ if ($rowCount > 0) {
     $member->paid = 1;  
     $member->paidonline = 1;
     $member->create();
-    sendThanks($user1,$treasurer,$president,$webmaster);
+    sendThanks($user1,$treasurer,$president,$webmaster,$renewalYear);
 
 
 }
@@ -152,7 +152,7 @@ if ($tempOnlineRenewal->renewboth === '1') {
 
             $partner->update();
             $noRenewalYear = 1;
-            sendThanks($user2,$treasurer,$president,$webmaster);
+            sendThanks($user2,$treasurer,$president,$webmaster,$renewalYear);
           }
     }
 
@@ -163,7 +163,7 @@ if ($tempOnlineRenewal->renewboth === '1') {
         $partner->paidonline = 1;
  
         $partner->create();
-        sendThanks($user2,$treasurer,$president,$webmaster);
+        sendThanks($user2,$treasurer,$president,$webmaster,$renewalYear);
 
    }
 } else {
@@ -173,7 +173,7 @@ if ($tempOnlineRenewal->renewboth === '1') {
         $partner->paid = 1;
         $partner->paidonline = 1;
         $partner->create();
-        sendThanks($user2,$treasurer,$president,$webmaster);
+        sendThanks($user2,$treasurer,$president,$webmaster,$renewalYear);
     
 }
 
@@ -184,12 +184,12 @@ $tempOnlineRenewal->delete();
     $_SESSION['renewThisYear'] = 0;
     $_SESSION['renewNextYear'] = 0;
 
-function sendThanks($user,$treasurer,$president,$webmaster) {
+function sendThanks($user,$treasurer,$president,$webmaster,$renewalYear) {
 
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toName = $user->firstname." ".$user->lastname ;
     $userEmail = $user->email;
-    $mailSubject = 'Thanks for Renewing your membership Online at SBDC Ballroom Dance Club!';
+    $mailSubject = 'Thanks for Renewing your membership Online at SBDC Ballroom Dance Club for year: '.$renewalYear;
     $toCC2 = $webmaster;
     if ($_SERVER['SERVER_NAME'] === 'localhost') {  
          $fromCC = $webmaster;
@@ -265,9 +265,11 @@ function sendThanks($user,$treasurer,$president,$webmaster) {
     </nav>
     <section id="RenewSuccessful" class="content">
 
-           <br><br><br>
+           <br><br><br><br>
     <div class="container-section ">
-      <h1>You have successfully renewed your membership to  the Saddlebrooke Ballroom Dance Club!</h1>
+        <?php
+      echo '<h1>You have successfully renewed your membership to  the Saddlebrooke Ballroom Dance Club for year: '.$renewalYear.'!</h1>';
+      ?>
       <h3>Your payment has been successfully processed, and should show SaddleBrooke Ballroom Dance Club on your statement</h3>
       <h3>Click on Your Profile in the menu above to see your payment status.</h3>     
      
