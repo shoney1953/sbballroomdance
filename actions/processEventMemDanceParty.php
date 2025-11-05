@@ -115,11 +115,16 @@
                 }
              
                 echo '<div class="form-grid">';
-
+                $mealsNumber = count($mealChoices);
                 foreach ($mealChoices as $choice){
                   $mealChk = 'meal'.$choice['id'];
                   echo '<div class="form-item">';
-                  echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk."' name='".$mealChk ."'>".$choice['mealname']."</h4>";
+                  if ($mealsNumber === 1) {
+                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' checked id='".$mealChk."' name='".$mealChk ."'>".$choice['mealname']."</h4>"; 
+                  } else {
+                     echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk."' name='".$mealChk ."'>".$choice['mealname']."</h4>";
+                  }
+                 
                   echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
                   echo '</div>'; // end of form item         
                  } // for each mealchoice
@@ -157,7 +162,11 @@
                   foreach ($mealChoices as $choice){
                   $mealChk2 = 'meal2'.$choice['id'];
                   echo '<div class="form-item">';
-                  echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk2."' name='".$mealChk2 ."'>".$choice['mealname']."</h4>";
+                  if ($mealsNumber === 1) {
+                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' checked id='".$mealChk2."' name='".$mealChk2 ."'>".$choice['mealname']."</h4>";
+                  } else {
+                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk2."' name='".$mealChk2 ."'>".$choice['mealname']."</h4>";
+                  }
                     echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
                   // echo "<input type='checkbox'  title='Meal Choice' id='".$mealChk2."' name='".$mealChk2 ."'>";
                   echo '</div>'; // end of form item         

@@ -163,7 +163,9 @@ if (!isset($_POST['submitAddRegs'])) {
               }
               if ($eventInst->eventtype === 'Dinner Dance') {
                 $potentialReg1['ddattenddinner'] = '1';
-                 
+                 if (isset($_POST['mem2Chk'])) {
+                  $potentialReg2['ddattenddinner'] = '1';
+                 }
               } else {
                 if (isset($_POST['ddattdin1'])) {
              
@@ -180,9 +182,11 @@ if (!isset($_POST['submitAddRegs'])) {
                    if (isset($_POST['mem2Chk'])) {
                    $potentialReg2['ddattenddinner'] = '0'; 
                   $partnerEventReg->ddattenddinner = '0';
+              
                    }
                 }
               }
+                
               if (isset($_POST['mem1Chk'])) {
                if ($potentialReg1['visitor'] === '1') {
                     $potentialReg1['eventcost'] = $eventInst->eventguestcost;
@@ -196,6 +200,7 @@ if (!isset($_POST['submitAddRegs'])) {
                   } else {
                     $potentialReg2['eventcost'] = $eventInst->eventcost;
                   }  
+                  
               }
   
               $result = $mealchoices->read_ByEventId($eventInst->id);
@@ -239,11 +244,14 @@ if (!isset($_POST['submitAddRegs'])) {
                                } //smeal1
                    
                              $mealChk2 = 'meal2'.$choice['id'];
+                 ;
                          if (isset($_POST["$mealChk2"])) {   
+                            
                                $DinnerSelected2 = 1;
-                                 $potentialReg2['ddattenddinner'] = '1';
+                                //  $potentialReg2['ddattenddinner'] = '1';
                                   $mealid2 = $choice['id'];
                                   $meal2 = $choice['mealname'];
+                        
                                   $mealprice2 = $choice['memberprice'];
                                   $mealpriceid2 = $choice['priceid'];
                                   $potentialReg2['productid'] = $choice['productid'];
@@ -255,7 +263,8 @@ if (!isset($_POST['submitAddRegs'])) {
                                   $potentialReg2['guestpriceid'] =  $choice['guestpriceid'];
                                   $potentialReg2['priceid'] =  $choice['priceid'];
                        
-                               } //smeal2
+                               } 
+                             
                       } // foreach choice
                    
                 }  // rowCount
@@ -275,7 +284,7 @@ if (!isset($_POST['submitAddRegs'])) {
                 switch ($eventInst->eventtype) {
                
                   case "Dance Party":
-                     
+                  
                          if (isset($_POST['ddattdin1'])) {
                                 $emailBody .= "You have chosen to attend dinner.<br>";
                                   if (!$DinnerSelected1) {
@@ -292,7 +301,7 @@ if (!isset($_POST['submitAddRegs'])) {
                                           $emailBody .= ".<br>";
                                        }
                                     }
-                            
+                             
                                     if ($meal2 !== '') {
                                         $emailBody .= "You also selected ".$meal2." at the cost of $".number_format($mealprice2/100,2)."";    
                                         $danceCost = $danceCost + $mealprice2;    
@@ -327,7 +336,7 @@ if (!isset($_POST['submitAddRegs'])) {
                     case "Dinner Dance":
 
                    
-                            if (isset($_POST['mem2Chk'])) {
+                            if (isset($_POST['mem1Chk'])) {
                             if ($meal1 !== '') {
                                 $emailBody .= "You selected ".$meal1." at the cost of ".number_format($mealprice1/100,2).""; 
                                 $danceCost = $danceCost + $mealprice1;
@@ -340,6 +349,7 @@ if (!isset($_POST['submitAddRegs'])) {
 
                             }
                              if (isset($_POST['mem2Chk'])) {
+                    
                             if ($meal2 !== '') {
                                 $emailBody .= "Your Partner selected ".$meal2." at the cost of ".number_format($mealprice2/100,2).".<br>";    
                                 $danceCost = $danceCost + $mealprice2;    
