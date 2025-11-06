@@ -225,8 +225,8 @@ if (!isset($_POST['submitAddRegs'])) {
                     } // while
 
                       foreach ($mChoices as $choice) {
-                    
-                           $mealChk1 = 'meal'.$choice['id'];
+                       if (isset($_POST['ddattdin1']) ) {
+                          $mealChk1 = 'meal'.$choice['id'];
                          if (isset($_POST["$mealChk1"])) {
                                $DinnerSelected1 = 1;
                                   $mealid1 = $choice['id'];
@@ -244,7 +244,9 @@ if (!isset($_POST['submitAddRegs'])) {
                                } //smeal1
                    
                              $mealChk2 = 'meal2'.$choice['id'];
-                 ;
+                       }
+                     
+                         if (isset($_POST['ddattdin2']) ) {
                          if (isset($_POST["$mealChk2"])) {   
                             
                                $DinnerSelected2 = 1;
@@ -266,7 +268,7 @@ if (!isset($_POST['submitAddRegs'])) {
                                } 
                              
                       } // foreach choice
-                   
+                    }
                 }  // rowCount
   
 // the following happens when user has specified NOT to pay online
@@ -619,6 +621,7 @@ if (!isset($_POST['submitAddRegs'])) {
           $error++;
           echo '<h1>Member or Visitor 2 selected attend dinner, but no meal was selected!</h1>';
         }
+
         } // attend dinner
  
 

@@ -37,7 +37,7 @@ date_default_timezone_set("America/Phoenix");
 
    ?>
    <h3>You can print the membership form and send it it with your check</h3>
-   <h3><a href='img/SBDC Membership Form 2025.pdf' target='_blank'>
+   <h3><a href='img/SBDC Membership Form 2026.pdf' target='_blank'>
             Click for Membership Form</a></h3>
 
  
