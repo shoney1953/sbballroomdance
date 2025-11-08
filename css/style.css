@@ -196,7 +196,7 @@ hr {
   position: relative;
   margin-bottom: 10px;
   z-index: -2;
-  animation-duration: 30s;
+  animation-duration: 40s;
   animation: change 40s infinite ease-in-out;
 }
 .hero::before {
@@ -266,6 +266,10 @@ hr {
   90%
   {
       background-image: url("../img/carousel10.jpg");
+  }
+  95%
+  {
+    background-image: url("../img/charitywalk.jpg");
   }
   100%
   {
