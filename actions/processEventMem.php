@@ -265,4 +265,39 @@ foreach ($upcomingEvents as $event) {
   
        
         } 
-    </script>
+     
+   function displayguests() {
+
+
+        // Select the element
+        if (document.getElementById('addguests').checked) {
+        var element1 = document.getElementById('displayguests');
+        element1.classList.remove('hidden');
+        const formData = new FormData(formElement);
+
+        var numguests = document.forms['regEvent'].elements['numguests'].value;
+        console.log(numguests);
+        if (numguests > 0) {
+         for (let step = 0; step < numguests; step++) {
+             createInput(step);
+          }
+
+
+        }
+        }
+        else {
+            var element1 = document.getElementById('displayguests');
+            element1.classList.add('hidden');
+            }
+        }
+        function createInput(step) {
+  const guest = document.createElement("div");
+  box.classList.add("form-element");
+  box.innerHTML = `
+    <h4>Guest${step}</h4>
+    `;
+
+
+   main.appendChild(box);
+}
+  </script>

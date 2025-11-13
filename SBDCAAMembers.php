@@ -123,6 +123,8 @@ if ($rowCount > 0) {
             'ddattenddinner' => $ddattenddinner,
             'ddattenddance' => $ddattenddance,
             'registeredby' => $registeredby,
+            'modifiedby' => $modifiedby,
+            'modifieddate' => $modifieddate,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);

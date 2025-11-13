@@ -25,6 +25,8 @@ class EventRegistrationArch {
     public $registeredby;
     public $cornhole;
     public $softball;
+    public $modifiedby;
+    public $modifieddate;
     public $paidonline;
 
 
@@ -39,7 +41,7 @@ class EventRegistrationArch {
       $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate, c.eventtype as eventtype,
       c.orgemail as orgemail,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-      r.registeredby, r.cornhole, r.softball, r.paidonline,
+      r.registeredby, r.cornhole, r.softball, r.paidonline, r.modifiedby, r.modifieddate,
       r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
       r.mealchoice, r.dietaryrestriction
       FROM ' . $this->table . ' r
@@ -62,7 +64,7 @@ class EventRegistrationArch {
       $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate, c.eventtype as eventtype,
       c.orgemail as orgemail,
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-      r.registeredby,  r.cornhole, r.softball, r.paidonline,
+      r.registeredby,  r.cornhole, r.softball, r.paidonline, r.modifiedby, r.modifieddate,
       r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
       r.mealchoice, r.dietaryrestriction
       FROM ' . $this->table . ' r
@@ -87,7 +89,7 @@ class EventRegistrationArch {
           $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
           c.orgemail as orgemail,
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-          r.registeredby,  r.cornhole, r.softball, r.paidonline,
+          r.registeredby,  r.cornhole, r.softball, r.paidonline, r.modifiedby, r.modifieddate,
           r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
           r.mealchoice, r.dietaryrestriction
           FROM ' . $this->table . ' r
@@ -129,6 +131,8 @@ class EventRegistrationArch {
           $this->cornhole = $row['cornhole'];
           $this->softball = $row['softball'];
           $this->paidonline = $row['paidonline'];
+          $this->modifieddate = $row['modifieddate'];
+           $this->modifiedby = $row['modifiedby'];
 
     }
 // Get reg by userid
@@ -139,7 +143,7 @@ public function read_ByUserid($userid) {
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     c.orgemail as orgemail,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline, r.modifieddate, r.modifiedby,
     r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
     r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
@@ -170,7 +174,7 @@ public function read_ByEmail($email) {
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     c.orgemail as orgemail,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline, r.modifieddate, r.modifiedby,
     r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
     r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
@@ -202,7 +206,7 @@ public function read_ByEmail($email) {
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     c.orgemail as orgemail,
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
-    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline, r.modifieddate, r.modifiedby,
     r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
     r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
@@ -234,7 +238,7 @@ public function read_ByEmail($email) {
           ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance,
           registeredby = :registeredby, cornhole = :cornhole, softball = :softball,
           mealchoice = :mealchoice, dietaryrestriction = :dietaryrestriction,
-          paidonline = :paidonline,
+          paidonline = :paidonline, modifieddate = :modifieddate, modifiedby = :modifiedby,
           eventid = :eventid';
 
           // Prepare statement
@@ -270,6 +274,8 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
           $stmt->bindParam(':registeredby', $this->registeredby);
           $stmt->bindParam(':paidonline', $this->paidonline);
+          $stmt->bindParam(':modifiedby', $this->modifiedby);
+          $stmt->bindParam(':modifieddate', $this->modifieddate);
      
 
           // Execute query

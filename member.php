@@ -122,6 +122,8 @@ if ($rowCount > 0) {
             'mealname' => $mealname,
             'dietaryrestriction' => $dietaryrestriction,
             'paidonline' => $paidonline,
+            'modifiedby' => $modifiedby,
+            'modifieddate' => $modifieddate,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegs, $reg_item);
@@ -151,6 +153,8 @@ if ($rowCount > 0) {
             'mealchoice' => $mealchoice,
             'dietaryrestriction' => $dietaryrestriction,
             'paidonline' => $paidonline,
+            'modifiedby' => $modifiedby,
+            'modifieddate' => $modifieddate,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegsArch, $reg_item);

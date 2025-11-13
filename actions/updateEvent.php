@@ -62,6 +62,7 @@ if (isset($_POST['submitUpdate'])) {
             $eventRec->eventguestpriceid = $_POST["$evgpriceID"];
             $eventRec->eventmempriceid = $_POST["$evmpriceID"];
             $eventRec->eventproductid = $_POST["$evprodID"];
+   
             $eventRec->update();
         }
     }

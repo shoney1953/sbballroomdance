@@ -2,8 +2,7 @@
 $sess = session_start();
 
 require_once 'config/Database.php';
-require_once 'models/ClassRegistration.php';
-require_once 'models/EventRegistration.php';
+
 require_once 'models/User.php';
 require_once 'models/MemberPaid.php';
 date_default_timezone_set("America/Phoenix");

@@ -61,7 +61,7 @@ if (isset($_POST['submitUpdateReg'])) {
             $eventReg->eventid = $_POST['eventid'];
             $eventReg->email = $_POST["$emailID"];
             $eventReg->userid = $_POST["$useridID"];
-            
+            $eventReg->modifiedby = $_SESSION['username'];
             if (isset($_POST["$paidID"])) {
 
                 $eventReg->paid = $_POST["$paidID"];

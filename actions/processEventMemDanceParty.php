@@ -47,7 +47,7 @@
 
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Register for ".$event['eventname']." on ".$event['eventdate']."</h1>";
-                echo  '<form method="POST" action="regEventPt.php"> ';
+                echo  '<form id="regEvent" method="POST" action="regEventPt.php"> ';
                 echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
                 echo '<input type="hidden" name="eventproductid" value='.$event['eventproductid'].'>';
                 echo '<input type="hidden" name="eventcost" value='.$event['eventcost'].'>';
@@ -181,6 +181,19 @@
                 
                 }
               }
+                // echo '<div class="form-grid">';
+                // echo '<div class="form-item">';
+                //   echo "<h4 class='form-item-title'>Add Guests?</h4>";
+                // echo "<h4 class='form-title-left'> <input type='checkbox'  title='Click to add guests to reservation' id='addguests' name='addguests' onclick='displayguests()'</h4>";
+                // echo '</div>'; // form grid div
+                // echo '<div class="form-item">';
+                //  echo "<h4 class='form-item-title'>Number of Guests?</h4>";
+                // echo "<h4 class='form-title-left'> <input type='number'  title='Number of Guests' id='numguests' name='numguests'</h4>";
+                // echo '</div>'; // form grid div
+                //      echo '<div class="form-container hidden" id="displayguests">';
+                //      echo '<h4>Enter Guest Information</h4>';
+                //      echo '</div>';
+                // echo '</div>'; // form container
                    echo '<div class="form-grid">';
                 echo '<div class="form-item">';
                 echo "<h4 class='form-item-title-emp'>PAY ONLINE?</h4>";
@@ -190,6 +203,7 @@
                 echo "<h4 class='form-item-title-emp'>or PAY Manually Later?</h4>";
                 echo "<input  type='checkbox' class='checkbox-red' title='Check to PAY the Treasurer Later' id='paylater' name='paylater' onclick='togglePay2()'>";
                 echo '</div>';
+
                echo '<button type="submit" name="submitAddRegs">Add Registration(s)</button>';
                echo '</form>';
                  echo '</div>'; // form grid div
@@ -390,3 +404,4 @@
 
 
 ?>
+

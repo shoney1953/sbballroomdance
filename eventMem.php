@@ -44,6 +44,8 @@ if ($rowCount > 0) {
             'registeredby' => $registeredby,
             'mealchoice' => $mealchoice,
             'mealname' => $mealname,
+            'modifiedby' => $modifiedby,
+            'modifieddate' => $modifieddate,
             'dateregistered' => date('m d Y', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);
@@ -145,6 +147,8 @@ echo '<div class="container-section ">';
                         echo '<th>Reg Date</th>';
                         echo '<th>Reg By</th>';
                         echo '<th>Message</th>';
+                        echo '<th>Mod Date</th>';
+                        echo '<th>Mod By</th>';
                     echo '</tr>';
                     
             
@@ -210,6 +214,8 @@ echo '<div class="container-section ">';
                             echo "<td>".$eventRegistration['dateregistered']."</td>"; 
                             echo "<td>".$eventRegistration['registeredby']."</td>"; 
                             echo "<td>".$eventRegistration['message']."</td>"; 
+                            echo "<td>".$eventRegistration['modifiedby']."</td>"; 
+                            echo "<td>".$eventRegistration['modifieddate']."</td>"; 
                           echo "</tr>";
                       
                     }

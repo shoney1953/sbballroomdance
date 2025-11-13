@@ -2,7 +2,7 @@
 $sess = session_start();
 
 require_once 'config/Database.php';
-require_once 'models/ClassRegistration.php';
+
 require_once 'models/EventRegistration.php';
 require_once 'models/Event.php';
 require_once 'models/User.php';
@@ -80,6 +80,8 @@ if ($rowCount > 0) {
             'dietaryrestriction' => $dietaryrestriction,
             'registeredby' => $registeredby,
             'paidonline' => $paidonline,
+            'modifiedby' => $modifiedby,
+            'modifieddate' => $modifieddate,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegs, $reg_item);
@@ -119,6 +121,8 @@ if ($prowCount > 0) {
             'dietaryrestriction' => $dietaryrestriction,
             'registeredby' => $registeredby,
             'paidonline' => $paidonline,
+            'modifiedby' => $modifiedby,
+            'modifieddate' => $modifieddate,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($peventRegs, $reg_item);
@@ -255,7 +259,9 @@ if ($prowCount > 0) {
                 <th>Paid</th>
                 <th>Online</th>
                 <th>Date Registered</th>   
-                <th>Registered By</th>         
+                <th>Registered By</th>           
+                <th>Date Modified</th> 
+                <th>Modified By</th>          
             </tr>
             </thead>
             <tbody>
@@ -290,12 +296,14 @@ if ($prowCount > 0) {
                     }
                     echo "<td>".$eventRegistration['dateregistered']."</td>";
                     echo "<td>".$eventRegistration['registeredby']."</td>";
+                    echo "<td>".$eventRegistration['modifieddate']."</td>";
+                    echo "<td>".$eventRegistration['modifiedby']."</td>";
                     echo '<input type="hidden" name="eventid" value="'.$eventRegistration['eventid'].'">';
                   
                     
           
                   echo "</tr>";
-                   if (isset($_SESSION['testmode']) && $_SESSION['testmode'] === 'YES') {
+               
                     
                   if (($eventRegistration['mealchoice'] != NULL) && ($eventRegistration['mealchoice'] > 0) ) {
                     $mealChoice->id = $eventRegistration['mealchoice'];
@@ -310,7 +318,7 @@ if ($prowCount > 0) {
                     echo "<td><em>".$eventRegistration['dietaryrestriction']."</em></td>";
                     echo '</tr>';
                   } // meal choice not null and > 0
-                  } // testmode
+       
             }  // foreach $eventreg
          
             ?> 
@@ -694,7 +702,9 @@ if ($prowCount > 0) {
              <th>Event Type</th>
              <th>Event Date</th>
              <th>Date Registered</th>   
-             <th>Registered By</th>         
+             <th>Registered By</th>   
+            <th>Date Modified</th>  
+            <th>Modified By</th>       
          </tr>
          </thead>
          <tbody>
@@ -718,6 +728,8 @@ if ($prowCount > 0) {
                  echo "<td>".$reg['eventdate']."</td>";  
                  echo "<td>".$reg['dateregistered']."</td>";
                  echo "<td>".$reg['registeredby']."</td>";
+                 echo "<td>".$reg['modifieddate']."</td>";
+                 echo "<td>".$reg['modifiedby']."</td>";
                  echo '<input type="hidden" name="id" value="'.$reg['id'].'">';
 
        
@@ -798,7 +810,9 @@ if ($prowCount > 0) {
                 echo '<th>Event Type</th>';
                 echo '<th>Event Date</th>';
                 echo '<th>Date Registered</th>';   
-                echo '<th>Registered By</th>';         
+                echo '<th>Registered By</th>';      
+                echo '<th>Date Modified</th>';   
+                echo '<th>Modified By</th>';      
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -821,6 +835,8 @@ if ($prowCount > 0) {
                     echo "<td>".$reg['eventdate']."</td>";  
                     echo "<td>".$reg['dateregistered']."</td>";
                     echo "<td>".$reg['registeredby']."</td>";
+                    echo "<td>".$reg['modifieddate']."</td>";
+                    echo "<td>".$reg['modifiedby']."</td>";
                     echo '<input type="hidden" name="id" value="'.$reg['id'].'">';
    
           

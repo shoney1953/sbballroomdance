@@ -198,6 +198,7 @@ hr {
   z-index: -2;
   animation-duration: 40s;
   animation: change 40s infinite ease-in-out;
+  transition:  40s infinite ease-in-out;
 }
 .hero::before {
   content: "";
@@ -594,8 +595,9 @@ font-weight: bolder;
   /* width: 100%;
   height: 100%; */
   text-align: center;
-  transition: transform 0.8s;
+  transition: transform 1s ease-in-out;
   transform-style: preserve-3d;
+  transition-behavior: allow-discrete ;
 }
 
 /* Do an horizontal flip when you move the mouse over the flip box container */

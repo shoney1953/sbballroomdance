@@ -10,6 +10,7 @@ class EventRegistration {
     public $eventid;
     public $email;
     public $dateregistered;
+    public $modifieddate;
     public $eventname;
     public $eventdate;
     public $eventtype;
@@ -22,6 +23,7 @@ class EventRegistration {
     public $mealchoice;
     public $dietaryrestriction;
     public $registeredby;
+    public $modifiedby;
     public $cornhole;
     public $softball;
     public $paidonline;
@@ -41,6 +43,7 @@ class EventRegistration {
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
       r.registeredby, r.cornhole, r.softball, r.mealchoice,
       r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+      r.modifiedby, r.modifieddate,
       r.paidonline, m.mealname as mealname,
       r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
       FROM ' . $this->table . ' r
@@ -69,6 +72,7 @@ class EventRegistration {
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
           r.registeredby, r.cornhole, r.softball, r.mealchoice,
           r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+           r.modifiedby, r.modifieddate,
           r.paidonline, m.mealname as mealname,
           r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
           FROM ' . $this->table . ' r
@@ -103,6 +107,7 @@ class EventRegistration {
           $this->orgemail = $row['orgemail'];
           $this->email = $row['email'];
           $this->dateregistered = $row['dateregistered'];
+          $this->modifieddate = $row['modifieddate'];
           $this->paid = $row['paid'];
           $this->message = $row['message'];
           $this->ddattenddinner = $row['ddattenddinner'];
@@ -110,6 +115,7 @@ class EventRegistration {
           $this->mealchoice = $row['mealchoice'];
           $this->dietaryrestriction = $row['dietaryrestriction'];
           $this->registeredby = $row['registeredby'];
+           $this->modifiedby = $row['modifiedby'];
           $this->cornhole = $row['cornhole'];
           $this->softball = $row['softball'];
           $this->paidonline = $row['paidonline'];
@@ -129,6 +135,7 @@ public function read_ByUserid($userid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby, r.cornhole, r.softball, 
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate,
     r.paidonline, m.mealname as mealname,
     r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
     FROM ' . $this->table . ' r
@@ -163,6 +170,7 @@ public function read_ByEmail($email) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, 
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate,
     r.paidonline, m.mealname as mealname,
     r.mealchoice, r.dietaryrestriction
     FROM ' . $this->table . ' r
@@ -199,6 +207,7 @@ public function read_ByEmail($email) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
     LEFT JOIN
@@ -230,6 +239,7 @@ public function read_ByEmail($email) {
     c.eventtype as eventtype, c.orgemail as orgemail,
      r.id, r.eventid, r.userid, r.mealchoice, r.dietaryrestriction,
      r.dateregistered, r.registeredby, r.paid, r.paidonline, r.ddattenddinner,
+     r.modifiedby, r.modifieddate,
      r.cornhole, r.softball,
      m.mealname as mealname, m.mealdescription as mealdescription
     FROM ' . $this->table . ' r
@@ -268,6 +278,8 @@ public function read_ByEmail($email) {
           $this->ddattenddinner = $row['ddattenddinner'];
           $this->dateregistered = $row['dateregistered'];
           $this->registeredby = $row['registeredby'];
+          $this->modifieddate = $row['modifieddate'];
+          $this->modifiedby = $row['modifiedby'];
           $this->paid = $row['paid'];
           $this->paidonline = $row['paidonline'];
           $this->mealdescription = $row['mealdescription'];
@@ -286,6 +298,7 @@ public function read_ByEmail($email) {
      r.id, r.eventid, r.userid, r.mealchoice, r.dietaryrestriction,
      r.dateregistered, r.registeredby, r.paid, r.paidonline, r.ddattenddinner,
      r.cornhole, r.softball,
+     r.modifiedby, r.modifieddate,
      m.mealname as mealname, m.mealdescription as mealdescription
     FROM ' . $this->table . ' r
     LEFT JOIN
@@ -322,6 +335,8 @@ public function read_ByEmail($email) {
           $this->ddattenddinner = $row['ddattenddinner'];
           $this->dateregistered = $row['dateregistered'];
           $this->registeredby = $row['registeredby'];
+          $this->dateregistered = $row['modifieddate'];
+          $this->registeredby = $row['modifiedby'];
           $this->paid = $row['paid'];
           $this->paidonline = $row['paidonline'];
           $this->mealdescription = $row['mealdescription'];
@@ -341,6 +356,7 @@ public function read_ByEventIdDinner($eventid) {
   r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
   r.registeredby,  r.cornhole, r.softball, r.paidonline,
   r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+  r.modifiedby, r.modifieddate,
   r.mealchoice, r.dietaryrestriction, m.mealname as mealname
   FROM ' . $this->table . ' r
   LEFT JOIN
@@ -371,6 +387,7 @@ public function read_ByMealID($mealid) {
   c.eventtype as eventtype, c.orgemail as orgemail,
   r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
   r.registeredby,  r.cornhole, r.softball, r.paidonline,
+  r.modifiedby, r.modifieddate,
   r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
   r.mealchoice, r.dietaryrestriction, m.mealname as mealname
   FROM ' . $this->table . ' r
@@ -430,6 +447,7 @@ public function readLike($eventid, $search) {
   $query = 'SELECT 
   id, eventid, firstname, lastname, email, dateregistered, registeredby,
   userid, paid, message, ddattenddinner, ddattenddance,
+  modifieddate, modifiedby,
   mealchoice, dietaryrestriction,
   cornhole, softball, paidonline
 
@@ -525,6 +543,7 @@ public function readLike($eventid, $search) {
           cornhole = :cornhole, softball = :softball, mealchoice = :mealchoice,
           ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance, 
           dietaryrestriction = :dietaryrestriction,
+          modifiedby = :modifiedby, modifieddate = NOW(),
           eventid = :eventid  WHERE id = :id';
     
 
@@ -558,7 +577,7 @@ public function readLike($eventid, $search) {
           $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
           $stmt->bindParam(':mealchoice', $this->mealchoice);
           $stmt->bindParam(':message', $this->message);
-
+          $stmt->bindParam(':modifiedby', $this->modifiedby);
 
           // Execute query
           if($stmt->execute()) {
@@ -575,7 +594,8 @@ public function readLike($eventid, $search) {
       // Create query
       $query = 'UPDATE ' . $this->table . 
  
-      ' SET cornhole = :cornhole, softball = :softball, ddattenddinner = :ddattenddinner 
+      ' SET cornhole = :cornhole, softball = :softball, ddattenddinner = :ddattenddinner,
+        modifiedby = :modifiedby, modifieddate = NOW()
           WHERE id = :id';
 
       // Prepare statement
@@ -587,7 +607,7 @@ public function readLike($eventid, $search) {
       $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
       $stmt->bindParam(':cornhole', $this->cornhole);
       $stmt->bindParam(':softball', $this->softball);
-
+      $stmt->bindParam(':modifiedby', $this->modifiedby);
 
       // Execute query
       if($stmt->execute()) {
@@ -633,7 +653,8 @@ public function updateMealEventReg() {
       $query = 'UPDATE ' . $this->table . 
       ' SET mealchoice = :mealchoice, 
             dietaryrestriction = :dietaryrestriction,
-            ddattenddinner = :ddattenddinner
+            ddattenddinner = :ddattenddinner,
+            modifiedby = :modifiedby, modifieddate = NOW()
           WHERE id = :id';
 
 
@@ -646,6 +667,7 @@ public function updateMealEventReg() {
       $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
       $stmt->bindParam(':mealchoice', $this->mealchoice);
       $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
+      $stmt->bindParam(':modifiedby', $this->modifiedby);
 
       // Execute query
       if($stmt->execute()) {
