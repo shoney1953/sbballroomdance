@@ -191,12 +191,12 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '<button type="submit" name="submitHOAreport">Report Members by HOA</button>';   
             echo '</form>';
             echo '</div> '; 
-            echo '<div class="form-grid-div">';
-            echo '<form method="POST" action="actions/emailMembers.php">'; 
-            echo '<button type="submit" name="submitEmailMembers">Email Members</button>';   
-            echo '</form>';
-            echo '</div> '; 
-            /* */
+            // echo '<div class="form-grid-div">';
+            // echo '<form method="POST" action="actions/emailMembers.php">'; 
+            // echo '<button type="submit" name="submitEmailMembers">Email Members</button>';   
+            // echo '</form>';
+            // echo '</div> '; 
+            /*  removed 11 14 2025 per Ann */
             echo '<div class="form-grid-div">';
             echo '<form target="_blank" method="POST" action="actions/reportUserByMonth.php">'; 
             echo '<button type="submit" name="submitUserRep">Report Members By Create Date</button>';   
