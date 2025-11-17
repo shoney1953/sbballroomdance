@@ -161,6 +161,7 @@ if (isset($_POST['submitAddUser'])) {
             echo '<option value = "MEMBER">Normal Member Functions</option>';
             echo '<option value = "ADMIN">Can Update all but Members</option>';
             echo '<option value = "SUPERADMIN">Can Update All Tables</option>';
+            echo '<option value = "EVENTADMIN">Can Add/Delete/Email Events, maintain meals</option>';
             echo '<option value = "INSTRUCTOR">Can Maintain Classes</option>';
              echo '<option value = "DJ">Can Email and Report on Events</option>';
             echo '</select>';

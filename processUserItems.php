@@ -144,6 +144,11 @@ $_SESSION['userurl'] = $_SERVER['REQUEST_URI'];
               } else {
                   echo '<option value = "SUPERADMIN">Can Update All Tables</option>';
               }
+               if ($usr['role'] === "EVENTADMIN") {
+                  echo '<option value = "EVENTADMIN" selected>Can Add, Delete Events modify meals</option>';
+              } else {
+                   echo '<option value = "EVENTADMIN">Can Add/Delete/Email Events modify meals</option>';
+              }
               if ($usr['role'] === "INSTRUCTOR") {
                   echo '<option value = "INSTRUCTOR" selected>Can Maintain Classes</option>';
               } else {

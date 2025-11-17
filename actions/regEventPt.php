@@ -10,7 +10,7 @@ require_once '../models/DinnerMealChoices.php';
 date_default_timezone_set("America/Phoenix");
 
 $events = $_SESSION['upcoming_events'];
- 
+ var_dump($_POST);
 $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
@@ -20,6 +20,8 @@ $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $partnerEventReg = new EventRegistration($db);
+$guest1EventReg = new EventRegistration($db);
+$guest2EventReg = new EventRegistration($db);
 $eventInst = new Event($db);
 $user = new User($db);
 $mealchoices = new DinnerMealChoices($db);
@@ -52,6 +54,14 @@ $regLastName1;
 $regLastName2;
 $regEmail1;
 $regEmail2;
+$regGuestFirstName1;
+$regGuestFirstName2;
+$regGuestLastName1;
+$regGuestLastName2;
+$regGuestEmail1;
+$regGuestEmail2;
+$dietaryRestrictionG1 = '';
+$dietaryRestrictionG2 = '';
 $meal2 = '';
 $mealprice2 = '';
 $mealid2 = 0;
@@ -63,6 +73,8 @@ $drID2 = '';
 $id_int = 0;
 $potentialReg1 = [];
 $potentialReg2 = [];
+$potentialRegG1 = [];
+$potentialRegG2 = [];
 $num_registered = 0;
 $totalDanceOnlyCost = 0;
 $DinnerSelected1 = 0;
@@ -143,6 +155,95 @@ if (!isset($_POST['submitAddRegs'])) {
       
    
 }
+if (isset($_POST['addguests'])) {
+  if (isset($_POST['guest1fname']) && ($_POST['guest1fname'] !== '')) {
+     $potentialGReg2['eventid'] = $eventInst->id;
+    $potentialRegG1['eventtype'] = $eventInst->eventtype;
+    $potentialRegG1['eventname'] = $eventInst->eventname;
+    $potentialRegG1['eventdate'] = $eventInst->eventdate;
+    $potentialRegG1['orgemail'] = $eventInst->orgemail;
+    $potentialRegG1['visitor'] = 1;
+    $potentialRegG1['firstname'] = htmlentities($_POST['guest1fname']);
+    $potentialRegG1['lastName'] = htmlentities($_POST['guest1lname']);
+    $potentialRegG1['email'] = htmlentities($_POST['guest1email']);  
+    $potentialRegG1['email'] = filter_var($potentialRegG1['email'], FILTER_SANITIZE_EMAIL); 
+    $potentialRegG1['registeredby'] = $_SESSION['username'];
+    $potentialRegG1['productid'] = $eventInst->eventproductid;
+    $potentialRegG1['priceid'] = $eventInst->eventmempriceid;
+    $potentialRegG1['guestpriceid'] = $eventInst->eventguestpriceid;
+    if (isset($_POST['message'])) {
+       $potentialRegG1['message'] = htmlentities($_POST['message']); 
+       }
+    $regGuestFirstName1 = htmlentities($_POST['guest1fname']);
+    $regGuestLastName1 = htmlentities($_POST['guest1lname']);
+    $regGuestEmail1 = htmlentities($_POST['guest1email']);  
+    $regGuestEmail1 = filter_var($regGuestEmail1, FILTER_SANITIZE_EMAIL); 
+    if (isset($_POST['guest1dr'])) {
+                $dietaryRestrictionG1 = $_POST['guest1dr'];
+                $potentialRegG1['dietaryrestriction'] = $dietaryRestrictionG1;
+              }
+      if ($eventInst->eventtype === 'Dinner Dance') {
+    $potentialRegG1['ddattenddinner'] = '1';
+  
+   if ($eventInst->eventtype === 'Dinner Dance') {
+    $potentialRegG1['ddattenddinner'] = '1';
+  } else {
+    if (isset($_POST['guest1dinner'])) {
+      $potentialRegG1['ddattenddinner'] = '1';
+       $guest1EventReg->ddattenddinner = '1';
+    } else {
+      $potentialRegG1['ddattenddinner'] = '0';
+       $guest1EventReg->ddattenddinner = '0';
+    }
+     
+  }
+}
+  }  // guest1
+   if (isset($_POST['guest2fname']) && ($_POST['guest2fname'] !== '')) {
+     $potentialGReg2['eventid'] = $eventInst->id;
+    $potentialRegG2['eventtype'] = $eventInst->eventtype;
+    $potentialRegG2['eventname'] = $eventInst->eventname;
+    $potentialRegG2['eventdate'] = $eventInst->eventdate;
+    $potentialRegG2['orgemail'] = $eventInst->orgemail;
+    $potentialRegG2['visitor'] = 1;
+    $potentialRegG2['firstname'] = htmlentities($_POST['guest2fname']);
+    $potentialRegG2['lastName'] = htmlentities($_POST['guest2lname']);
+    $potentialRegG2['email'] = htmlentities($_POST['guest2email']);  
+    $potentialRegG2['email'] = filter_var($potentialRegG2['email'], FILTER_SANITIZE_EMAIL); 
+    $potentialRegG2['registeredby'] = $_SESSION['username'];
+    $potentialRegG2['productid'] = $eventInst->eventproductid;
+    $potentialRegG2['priceid'] = $eventInst->eventmempriceid;
+    $potentialRegG2['guestpriceid'] = $eventInst->eventguestpriceid;
+    if (isset($_POST['message'])) {
+       $potentialRegG2['message'] = htmlentities($_POST['message']); 
+       }
+    $regGuestFirstName2 = htmlentities($_POST['guest2fname']);
+    $regGuestLastName2 = htmlentities($_POST['guest2lname']);
+    $regGuestEmail2 = htmlentities($_POST['guest2email']);  
+    $reGuestgEmail2 = filter_var($regGuestEmail1, FILTER_SANITIZE_EMAIL); 
+  
+   if (isset($_POST['guest2dr'])) {
+                $dietaryRestrictionG2 = $_POST['guest2dr'];
+                $potentialRegG2['dietaryrestriction'] = $dietaryRestrictionG2;
+              }
+  if ($eventInst->eventtype === 'Dinner Dance') {
+    $potentialRegG2['ddattenddinner'] = '1';
+  } else {
+    if (isset($_POST['guest2dinner'])) {
+      $potentialRegG2['ddattenddinner'] = '1';
+       $guest2EventReg->ddattenddinner = '1';
+      
+    } else {
+      $potentialRegG2['ddattenddinner'] = '0';
+       $guest2EventReg->ddattenddinner = '1';
+    }
+     
+  }
+
+} //guest 2
+  } // add guests
+
+
 
         $eventid = $_POST['eventid'];
 
@@ -243,10 +344,11 @@ if (!isset($_POST['submitAddRegs'])) {
 
                                } //smeal1
                    
-                             $mealChk2 = 'meal2'.$choice['id'];
+                            
                        }
                      
                          if (isset($_POST['ddattdin2']) ) {
+                           $mealChk2 = 'meal2'.$choice['id'];
                          if (isset($_POST["$mealChk2"])) {   
                             
                                $DinnerSelected2 = 1;
@@ -267,8 +369,54 @@ if (!isset($_POST['submitAddRegs'])) {
                        
                                } 
                              
+                      } // ddattdin2
+                      if (isset($_POST['guest1dinner'])) {
+                           $guest1Chk = 'g1meal'.$choice['id'];
+                           if (isset($_POST["$guest1Chk"])) {
+                              $DinnerSelectedG1 = 1;
+                                //  $potentialReg2['ddattenddinner'] = '1';
+                                  $mealidG1 = $choice['id'];
+                                  $mealG1 = $choice['mealname'];
+                        
+                                  $mealpriceG1 = $choice['guestprice'];
+                                  $mealpriceidG1 = $choice['guestpriceid'];
+                                  $potentialRegG1['productid'] = $choice['productid'];
+                                  $mealpriceidG1 = $choice['guestpriceid'];
+                                  $potentialRegG1['mealchoice'] =  $choice['id'];
+                                  $potentialRegG1['mealdesc'] = $choice['mealname'];                       
+                                  $potentialRegG1['memberprice'] =  $choice['memberprice'];
+                                  $potentialRegG1['guestprice'] =  $choice['guestprice'];
+                                  $potentialRegG1['guestpriceid'] =  $choice['guestpriceid'];
+                                  $potentialRegG1['priceid'] =  $choice['priceid'];
+                       
+                               } 
+
+                           } //guest1 dinner
+                      if (isset($_POST['guest2dinner'])) {
+                           $guest2Chk = 'g2meal'.$choice['id'];
+                           if (isset($_POST["$guest2Chk"])) {
+                              $DinnerSelectedG2 = 1;
+                                //  $potentialReg2['ddattenddinner'] = '1';
+                                  $mealidG2 = $choice['id'];
+                                  $mealG2 = $choice['mealname'];
+                        
+                                  $mealpriceG1 = $choice['guestprice'];
+                                  $mealpriceidG2 = $choice['guestpriceid'];
+                                  $potentialRegG2['productid'] = $choice['productid'];
+                                  $mealpriceidG2 = $choice['guestpriceid'];
+                                  $potentialRegG2['mealchoice'] =  $choice['id'];
+                                  $potentialRegG2['mealdesc'] = $choice['mealname'];                       
+                                  $potentialRegG2['memberprice'] =  $choice['memberprice'];
+                                  $potentialRegG2['guestprice'] =  $choice['guestprice'];
+                                  $potentialRegG2['guestpriceid'] =  $choice['guestpriceid'];
+                                  $potentialRegG2['priceid'] =  $choice['priceid'];
+                       
+                               } 
+
+                           } //guest1 dinner
+
                       } // foreach choice
-                    }
+                    
                 }  // rowCount
   
 // the following happens when user has specified NOT to pay online
@@ -313,8 +461,7 @@ if (!isset($_POST['submitAddRegs'])) {
                                           $emailBody .= ".<br>";
                                         }
                                     }
-             
-                                    $emailBody .= "Total Cost of the Dance will be ".number_format($danceCost/100,2).".<br><br>";   
+            
                              
 
                         } else {
@@ -329,10 +476,44 @@ if (!isset($_POST['submitAddRegs'])) {
                            
                      
                            
-                            $emailBody .= "Total Cost for the Dance Only will be $".number_format($totalDanceOnlyCost,2).".<br>";  
+                           
                             // $emailBody .= "Guest Cost of the Dance Only will be $".number_format($eventInst->eventguestcost).".<br>"; 
                         }    
-                          $emailBody .= "Please submit your fee prior to the dance as indicated on the form.<br>";  
+                        if (isset($_POST['addguests']) ) {
+                          if (isset($_POST['guest1dinner'])) {
+                            if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
+                              $emailBody .= "Your first Guest ".$_POST['guest1fname']." selected ".$mealg1." at the cost of $".number_format($mealpriceG1/100,2)."";   
+                               if ($dietaryRestrictionG1 != '') {
+                                          $emailBody .= " with a dietary restriction of ".$dietaryRestrictionG1.".<br>";
+                                       } else {
+                                          $emailBody .= ".<br>";
+                                       }
+                            }
+                          } else {
+                            if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
+                                  $emailBody .= "Your first guest".$_POST['guest1fname']." has chosen not to attend dinner before the dance.<br>";
+                                 $totalDanceOnlyCost = $eventInst->eventguestcost;
+                            }
+                          }
+
+                            if (isset($_POST['guest2dinner'])) {
+                            if ((isset($_POST['guest2fname'])) && ($_POST['guest2fname'] !== '')) {
+                              $emailBody .= "Your second Guest ".$_POST['guest2fname']." selected ".$mealg2." at the cost of $".number_format($mealpriceG2/100,2)."";   
+                               if ($dietaryRestrictionG2 != '') {
+                                          $emailBody .= " with a dietary restriction of ".$dietaryRestrictionG2.".<br>";
+                                       } else {
+                                          $emailBody .= ".<br>";
+                                       }
+                            }
+                          } else {
+                            if ((isset($_POST['guest2fname'])) && ($_POST['guest2fname'] !== '')) {
+                                  $emailBody .= "Your second guest".$_POST['guest2fname']." has chosen not to attend dinner before the dance.<br>";
+                                 $totalDanceOnlyCost = $eventInst->eventguestcost;
+                            }
+                          }
+                        } //end add guests
+                         $emailBody .= "Total Cost for the Dance Only will be $".number_format($totalDanceOnlyCost,2).".<br>";  
+                        $emailBody .= "Please submit your fee prior to the dance as indicated on the form.<br>";  
 
                     break;
                     case "Dinner Dance":
@@ -362,6 +543,30 @@ if (!isset($_POST['submitAddRegs'])) {
                                  }  
                                 } // meal2 
                             }
+
+                          if (isset($_POST['addguests']) ) {
+                          if (isset($_POST['guest1dinner'])) {
+                            if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
+                              $emailBody .= "Your first Guest ".$_POST['guest1fname']." selected ".$mealg1." at the cost of $".number_format($mealpriceG1/100,2)."";   
+                               if ($dietaryRestrictionG1 != '') {
+                                          $emailBody .= " with a dietary restriction of ".$dietaryRestrictionG1.".<br>";
+                                       } else {
+                                          $emailBody .= ".<br>";
+                                       }
+                            }
+                          } 
+
+                            if (isset($_POST['guest2dinner'])) {
+                            if ((isset($_POST['guest2fname'])) && ($_POST['guest2fname'] !== '')) {
+                              $emailBody .= "Your second Guest ".$_POST['guest2fname']." selected ".$mealg2." at the cost of $".number_format($mealpriceG2/100,2)."";   
+                               if ($dietaryRestrictionG2 != '') {
+                                          $emailBody .= " with a dietary restriction of ".$dietaryRestrictionG2.".<br>";
+                                       } else {
+                                          $emailBody .= ".<br>";
+                                       }
+                            }
+                          }
+                        } //end add guests
                            $emailBody .= "<br>Cost of the Dance will be ".number_format($danceCost/100,2).".<br>";  
 
 
@@ -485,7 +690,95 @@ if (!isset($_POST['submitAddRegs'])) {
                     }
                        
                 }  // mem2chk
-            
+            if (isset($_POST['addguests'])) {
+              if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
+                  $guest1EventReg->firstname = $regFirstNameG1;
+                    $guest1EventReg->lastname = $regLastNameG1;
+                    $guest1EventReg->eventid = $eventId;
+                    $guest1EventReg->email = $regEmailG1;
+                    $guest1EventReg->userid = 0;
+                    $guest1EventReg->message = $message;
+                    $guest1EventReg->registeredby = $_SESSION['username'];
+                    $guest1EventReg->paid = 0;
+                if (isset($_POST['guest1dinner'])) {
+                    $guest1EventReg->ddattenddinner = 1;
+                } else {
+                    $guest1EventReg->ddattenddinner = 0;
+                }
+                
+                
+                        $guest1EventReg->mealchoice = $mealidG1;
+                       if ($dietaryRestrictionG1 !== '') {
+                        $guest1EventReg->dietaryrestriction = $dietaryRestrictionG1;
+                       } else {
+                        $guest1EventReg->dietaryrestriction = '';
+                       }
+
+                    $result = $guest1EventReg->checkDuplicate($guest1EventReg->email, $guest1EventReg->eventid);
+
+                    if ($result) {
+                        $redirect = "Location: ".$_SESSION['regeventurl'].'?error=Duplicate Registration Guest1 Please check from the upcoming events tab.';
+                        header($redirect);
+                        exit; 
+                     }
+     
+                    if (!$result) {
+                       if (($guest1EventReg->email !== NULL) && ($guest1EventReg->email !== ' ')) {
+                        $guest1EventReg->create();
+                        $eventInst->addCount($guest1EventReg->eventid); 
+                       } else {
+                        $redirect = "Location: ".$_SESSION['regeventurl'].'?error=Guest 1 Registration email blank Please return and correct.';
+                        header($redirect);
+                        exit; 
+                   }
+                      
+                    }
+                       
+              } // guest 1
+              if ((isset($_POST['guest2fname'])) && ($_POST['guest2fname'] !== '')) {
+                  $guest2EventReg->firstname = $regFirstNameG2;
+                    $guest2EventReg->lastname = $regLastNameG2;
+                    $guest2EventReg->eventid = $eventId;
+                    $guest2EventReg->email = $regEmailG2;
+                    $guest2EventReg->userid = 0;
+                    $guest2EventReg->message = $message;
+                    $guest2EventReg->registeredby = $_SESSION['username'];
+                    $guest2EventReg->paid = 0;
+                if (isset($_POST['guest2dinner'])) {
+                    $guest2EventReg->ddattenddinner = 1;
+                } else {
+                    $gues21EventReg->ddattenddinner = 0;
+                }
+
+                        $guest2EventReg->mealchoice = $mealidG1;
+                       if ($dietaryRestrictionG2 !== '') {
+                        $guest2EventReg->dietaryrestriction = $dietaryRestrictionG2;
+                       } else {
+                        $guest2EventReg->dietaryrestriction = '';
+                       }
+
+                    $result = $guest2EventReg->checkDuplicate($guest2EventReg->email, $guest2EventReg->eventid);
+
+                    if ($result) {
+                        $redirect = "Location: ".$_SESSION['regeventurl'].'?error=Duplicate Registration Guest2 Please check from the upcoming events tab.';
+                        header($redirect);
+                        exit; 
+                     }
+     
+                    if (!$result) {
+                       if (($guest2EventReg->email !== NULL) && ($guest2EventReg->email !== ' ')) {
+                        $guest2EventReg->create();
+                        $eventInst->addCount($guest2EventReg->eventid); 
+                       } else {
+                        $redirect = "Location: ".$_SESSION['regeventurl'].'?error=Guest 2 Registration email blank Please return and correct.';
+                        header($redirect);
+                        exit; 
+                   }
+                      
+                    }
+                       
+              } // guest 2
+            }
 
   if (isset($_POST['mem1Chk'])) {
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
@@ -541,7 +834,46 @@ if (!isset($_POST['submitAddRegs'])) {
   } // end of not pay online
    $_SESSION['potentialReg1'] = $potentialReg1;
    $_SESSION['potentialReg2'] = $potentialReg2;
- 
+ if (isset($_POST['addguests'])) {
+   if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
+     $regGName1 = $regFirstNameG1.' '.$regLastNameG1;
+      sendEmail(
+            $regEmailG1, 
+            $regNameG1, 
+            $fromCC,
+            $fromEmailName,
+            $emailBody,
+            $emailSubject,
+            $replyEmail,
+            $replyTopic,
+            $mailAttachment,
+            $toCC2,
+            $toCC3,
+            $toCC4,
+            $toCC5
+        );
+           $_SESSION['potentialRegG1'] = $potentialRegG1;
+   }
+    if ((isset($_POST['gues21fname'])) && ($_POST['guest2fname'] !== '')) {
+     $regGName2 = $regFirstNameG2.' '.$regLastNameG2;
+      sendEmail(
+            $regEmailG2, 
+            $regNameG2, 
+            $fromCC,
+            $fromEmailName,
+            $emailBody,
+            $emailSubject,
+            $replyEmail,
+            $replyTopic,
+            $mailAttachment,
+            $toCC2,
+            $toCC3,
+            $toCC4,
+            $toCC5
+        );
+           $_SESSION['potentialRegG2'] = $potentialRegG2;
+   }
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -638,6 +970,11 @@ if (!isset($_POST['submitAddRegs'])) {
          
           } // not attend dinner
          } // mem2chk
+         if (isset($_POST['addguests'])) {
+          if (isset($_POST['guest1dinner'])) {
+            
+          }
+         }
             
         } // dance party
 

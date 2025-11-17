@@ -226,8 +226,48 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '<h4 class="form-item-title">Email Those Not Registered?</h4>';
    echo "<input type='checkbox' title='Only select 1 event for Email' name='".$emNonChk."'>";
    echo '</div>';
-  if ($_SESSION['role'] != 'DJ') {
+
+    if ($_SESSION['role'] === 'EVENTADMIN') {
+        echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Delete?</h4>';
+   echo "<input type='checkbox' title='Select to Delete Event(s)' name='".$dlChk."'>";
+   echo '</div>';
+      echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Duplicate?</h4>';
+   echo "<input type='checkbox' title='Only select 1 event to Duplicate' name='".$dpChk."'>";
+   echo '</div>';
+
    echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Update?</h4>';
+   echo "<input type='checkbox' title='Select to Update Event(s)' name='".$upChk."'>";   
+   echo '</div>';
+
+
+    if ($compareDate <= $event['eventdate']) {
+
+   echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Add Meal Options</h4>';
+   echo "<input type='checkbox' title='Select to Add Meal(s)' name='".$amChk."'>";
+   echo '</div>';
+
+   echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Update Meal Options</h4>';
+   echo "<input type='checkbox' title='Select to Update Meal(s)' name='".$umChk."'>";
+   echo '</div>';
+
+   echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Upload Flyer</h4>';
+   echo "<input type='checkbox' title='Select to Upload Flyer' name='".$ufChk."'>";
+   echo '</div>';
+    echo '<div class="form-item">';
+    echo '<button type="submit" name="submitEventProcess">Process This Event</button>'; 
+
+    echo '</div>';
+   
+}
+    }
+   if ($_SESSION['role'] === 'SUPERADMIN') {
+       echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Duplicate?</h4>';
    echo "<input type='checkbox' title='Only select 1 event to Duplicate' name='".$dpChk."'>";
    echo '</div>';
@@ -256,9 +296,6 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '</div>';
    
 }
-
-  }
-   if ($_SESSION['role'] === 'SUPERADMIN') {
        echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Delete?</h4>';
    echo "<input type='checkbox' title='Select to Delete Event(s)' name='".$dlChk."'>";
@@ -271,7 +308,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
 
     echo '</div>';  
     if ($compareDate <= $event['eventdate']) {
-    if ($_SESSION['role'] != 'DJ') {
+    if ($_SESSION['role'] === 'SUPERADMIN') {
  
     echo '<div class="form-grid">';
      echo '<div class="form-item">';

@@ -183,6 +183,11 @@ if ($rowCount > 0) {
                 echo '<li><a title="DJ Information" href="SBDCDJInfo.php">DJ Information</a></li>';
                 echo '<li><a title="Email Events" href="SBDCAEvents.php">Maintain Events</a></li>'; 
             }
+     if ($_SESSION['role'] === 'EVENTADMIN') {
+                echo '<li><a title="Return to Home Page" href="index.php">Back to Home</a></li>';
+                echo '<li><a title="DJ Information" href="SBDCDJInfo.php">DJ Information</a></li>';
+                echo '<li><a title="Email Events" href="SBDCAEvents.php">Maintain Events</a></li>'; 
+            }
      if ($_SESSION['role'] === 'INSTRUCTOR') {
    
         echo '<li><a title="Return to Home Page" href="index.php">Back to Home</a></li>';

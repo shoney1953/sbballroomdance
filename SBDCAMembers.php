@@ -169,6 +169,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
 </nav>
 
 <?php
+
 if ($_SESSION['role'] === 'SUPERADMIN') {
         echo "<div class='container-section' name='users'>  <br><br>";
         echo '<section id="users"  class="content">';

@@ -52,9 +52,9 @@ foreach ($upcomingEvents as $event) {
     $payChk = "pay".$event['id'];
 
     if ($event['id'] === $_POST['eventId']) {
-         if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
-         var_dump($event);
-        }
+        //  if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
+        //  var_dump($event);
+        // }
         if (isset($_POST["$rpChk"])) {
             // unset($_POST["$rpChk"]);
             echo "<h4>Generated Report for  ".$event['eventname']."  ".$event['eventdate']."</h4>";
@@ -229,6 +229,7 @@ foreach ($upcomingEvents as $event) {
         if (document.getElementById('ddattdin1').checked) {
         var element1 = document.getElementById('memMealChoice1');
         element1.classList.remove('hidden');
+
         }
         else {
             var element1 = document.getElementById('memMealChoice1');
@@ -273,31 +274,48 @@ foreach ($upcomingEvents as $event) {
         if (document.getElementById('addguests').checked) {
         var element1 = document.getElementById('displayguests');
         element1.classList.remove('hidden');
-        const formData = new FormData(formElement);
+        var guestinfo = document.getElementById('guestinfo');
+        // const formData = new FormData(formElement);
 
-        var numguests = document.forms['regEvent'].elements['numguests'].value;
-        console.log(numguests);
-        if (numguests > 0) {
-         for (let step = 0; step < numguests; step++) {
-             createInput(step);
-          }
-
-
-        }
+        // var numguests = document.forms['regEvent'].elements['numguests'].value;
+        // console.log(numguests);
+        // if (numguests > 0) {
+        //  for (let step = 0; step < numguests; step++) {
+        //      createInput(step, guestinfo);
+        //   }
+        //   }
         }
         else {
             var element1 = document.getElementById('displayguests');
             element1.classList.add('hidden');
             }
         }
-        function createInput(step) {
-  const guest = document.createElement("div");
-  box.classList.add("form-element");
-  box.innerHTML = `
-    <h4>Guest${step}</h4>
-    `;
+  function displayG1Meals() {
+       console.log('in displayg1')
+        // Select the element
+        if (document.getElementById('guest1dinner').checked) {
+        var element1 = document.getElementById('guestMealChoice1');
+        element1.classList.remove('hidden');
 
+        }
+        else {
+            var element1 = document.getElementById('guestMealChoice1');
+            element1.classList.add('hidden');
+            }
+        }
+             
+  function displayG2Meals() {
+       console.log('in displayg2')
+        // Select the element
+        if (document.getElementById('guest2dinner').checked) {
+        var element2 = document.getElementById('guestMealChoice2');
+        element2.classList.remove('hidden');
 
-   main.appendChild(box);
-}
+        }
+        else {
+            var element2 = document.getElementById('guestMealChoice2');
+            element2.classList.add('hidden');
+            }
+        }
+
   </script>

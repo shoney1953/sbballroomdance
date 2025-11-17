@@ -402,6 +402,7 @@ if ($rowCount > 0) {
         if (isset($_SESSION['role'])) {
             if (($_SESSION['role'] === 'ADMIN') ||
                 ($_SESSION['role'] === 'SUPERADMIN') ||
+                ($_SESSION['role'] === 'EVENTADMIN') ||
                 ($_SESSION['role'] === 'DJ') ||
                 ($_SESSION['role'] === 'INSTRUCTOR')
              ) {

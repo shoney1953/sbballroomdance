@@ -57,7 +57,7 @@
                 echo '<input type="hidden" name="priceid" value='.$event['eventmempriceid'].'>';  
                 echo '<input type="hidden" name="guestpriceid" value='.$event['eventguestpriceid'].'>';     
                 echo '<input type="hidden" name="eventguestcost" value='.$event['eventguestcost'].'>';
-
+                echo '<input type="hidden" name="ddattdin1" value="1">';
 
                 if ($_SESSION['role'] === 'visitor') {
                   echo '<input type="hidden" name="visitor" value="1">';
@@ -75,6 +75,7 @@
                    echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
                    echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
                    echo '<input type="hidden" name="email2" value='.$_SESSION['partneremail'].'>';
+                    echo '<input type="hidden" name="ddattdin2" value="1">';
                  }
                  echo '<div class="form-grid">';
                
@@ -163,6 +164,107 @@
                   echo '</div>'; // form grid div
                 }
                 }
+        
+                if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
+               echo '<div class="form-grid-div">';
+            
+                echo '<div class="form-item">';
+                  echo "<h4 class='form-item-title'>Add Guests?</h4>";
+                echo "<h4 class='form-title-left'> <input type='checkbox'  title='Click to add guests to reservation' id='addguests' name='addguests' onclick='displayguests()'</h4>";
+                echo '</div>'; // form grid div
+         
+                     echo '<div class="form-container hidden" id="displayguests">';
+                      echo '<h4>Enter Guest Information</h4>';
+         
+                      echo '<div id="guestinfo" class="form-grid4">';
+                      echo '<div class="form-item">';
+                       echo "<h4 class='form-item-title'>Guest1 First Name</h4>";
+                        echo "<input type='text' title='Enter Guest 1 First Name' name='guest1fname' placeholder='Guest 1 first name' >"; 
+                      echo '</div>';
+                       echo '<div class="form-item">';
+                       echo "<h4 class='form-item-title'>Guest1 Last Name</h4>";
+                        echo "<input type='text' title='Enter Guest 1 Last Name' name='guest1lname' placeholder='Guest 1 last name' >"; 
+                      echo '</div>';
+                      echo '<div class="form-item">';
+                       echo "<h4 class='form-item-title'>Guest1 Email</h4>";
+                        echo "<input type='text' title='Enter Guest 1 Email' name='guest1email' placeholder='Guest 1 email' >"; 
+                      echo '</div>';
+                        echo '<div class="form-item">';
+                       echo "<h4 class='form-item-title'>Guest 1 Select Dinner</h4>";
+                        echo "<input type='checkbox' title='Indicate Guest 1 will have dinner' id='guest1dinner' name='guest1dinner' onclick='displayG1Meals()'>"; 
+                      echo '</div>';
+                        echo '</div>'; // end formgrid4
+
+                      echo '<div class="form-container hidden" id="guestMealChoice1">';
+                       echo '<div class="form-grid">';
+                $mealsNumber = count($mealChoices);
+                foreach ($mealChoices as $choice){
+                  $guest1Chk = 'g1meal'.$choice['id'];
+                  echo '<div class="form-item">';
+                  if ($mealsNumber === 1) {
+                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' checked id='".$guest1Chk."' name='".$guest1Chk."'>".$choice['mealname']."</h4>"; 
+                  } else {
+                     echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$guest1Chk."' name='".$guest1Chk."'>".$choice['mealname']."</h4>";
+                  }
+                 
+                  echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
+                  echo '</div>'; // end of form item         
+                 } // for each mealchoice
+            
+                   echo '</div>'; // end form grid
+                  echo "<div class='form-item'>";
+                  echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
+                  echo "<input type='text' title='Enter guest1 Dietary Restrictions' name='dietaryg1'  >"; 
+                  echo "</div>";  // form item
+
+  
+                  echo '</div>'; // end form grid div hidden
+                   echo '<div id="guestinfo" class="form-grid4">';
+                        echo '<div class="form-item">';
+                       echo "<h4 class='form-item-title'>Guest2 First Name</h4>";
+                        echo "<input type='text' title='Enter Guest 2 First Name' name='guest2fname' placeholder='Guest 2 first name' >"; 
+                      echo '</div>';
+                       echo '<div class="form-item">';
+                       echo "<h4 class='form-item-title'>Guest1 Last Name</h4>";
+                        echo "<input type='text' title='Enter Guest 2 Last Name' name='guest2lname' placeholder='Guest 2 last name' >"; 
+                      echo '</div>';
+                      echo '<div class="form-item">';
+                       echo "<h4 class='form-item-title'>Guest1 Email</h4>";
+                        echo "<input type='text' title='Enter Guest 2 Email' name='guest2email' placeholder='Guest 2 email' >"; 
+                      echo '</div>';
+                         echo '<div class="form-item">';
+                       echo "<h4 class='form-item-title'>Guest 2 Select Dinner</h4>";
+                        echo "<input type='checkbox' title='Indicate Guest 2 will have dinner' id='guest2dinner' name='guest2dinner' onclick='displayG2Meals()' >"; 
+                      echo '</div>';
+                        echo '</div>';
+                  echo '<div class="form-container hidden" id="guestMealChoice2">';
+                       echo '<div class="form-grid">';
+                $mealsNumber = count($mealChoices);
+                foreach ($mealChoices as $choice){
+                  $guest2Chk = 'g2meal'.$choice['id'];
+                  echo '<div class="form-item">';
+                  if ($mealsNumber === 1) {
+                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' checked id='".$guest2Chk."' name='".$guest2Chk."'>".$choice['mealname']."</h4>"; 
+                  } else {
+                     echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$guest2Chk."' name='".$guest2Chk."'>".$choice['mealname']."</h4>";
+                  }
+                 
+                  echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
+                  echo '</div>'; // end of form item         
+                 } // for each mealchoice
+            
+                   echo '</div>'; // end form grid
+                }
+                  echo "<div class='form-item'>";
+                  echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
+                  echo "<input type='text' title='Enter Guest2 Dietary Restrictions' name='dietaryg2'  >"; 
+                  echo "</div>";  // form item
+
+           
+                  echo '</div>'; // end form grid div hidden
+               
+                     echo '</div>';
+                echo '</div>'; // form container
                     echo '<div class="form-grid">';
                  echo '<div class="form-item">';
                 echo "<h4 class='form-item-title-emp'>Pay Online?</h4>";
