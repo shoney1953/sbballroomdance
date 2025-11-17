@@ -252,9 +252,9 @@
                   echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
                   echo '</div>'; // end of form item         
                  } // for each mealchoice
-            
+                
                    echo '</div>'; // end form grid
-                }
+                
                   echo "<div class='form-item'>";
                   echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
                   echo "<input type='text' title='Enter Guest2 Dietary Restrictions' name='dietaryg2'  >"; 
@@ -262,9 +262,11 @@
 
            
                   echo '</div>'; // end form grid div hidden
-               
+                
                      echo '</div>';
+                
                 echo '</div>'; // form container
+                }
                     echo '<div class="form-grid">';
                  echo '<div class="form-item">';
                 echo "<h4 class='form-item-title-emp'>Pay Online?</h4>";

@@ -10,7 +10,7 @@ require_once '../models/DinnerMealChoices.php';
 date_default_timezone_set("America/Phoenix");
 
 $events = $_SESSION['upcoming_events'];
- var_dump($_POST);
+//  var_dump($_POST);
 $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
@@ -972,7 +972,7 @@ if (isset($_POST['addguests'])) {
          } // mem2chk
          if (isset($_POST['addguests'])) {
           if (isset($_POST['guest1dinner'])) {
-            
+
           }
          }
             
