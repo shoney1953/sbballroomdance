@@ -149,7 +149,7 @@ if (isset($_POST['submitAddReg'])) {
                         } else {
                         $eventReg->ddattenddinner = 0;
                         }
-                      
+                 
                     }
                                                                                 
   
@@ -196,7 +196,7 @@ if (isset($_POST['submitAddReg'])) {
                         }
                     }
                    if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party')) {
-             
+                             $toCC3 = $treasurer;
                   
                          
                          foreach ($mealChoices as $choice) {
