@@ -159,6 +159,9 @@ $replyTopic = "SBDC Event Registration Update ";
 }
  $event->id = $eventReg->eventid;
 $event->read_single();
+if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party')) {
+
+
 $emailSubject = 'An Event Registration has been modified for '.$event->eventname.'!';
 $emailBody .= '<br>************************************';
 $emailBody .= "<br> <strong>Event: ".$event->eventname.
@@ -184,10 +187,7 @@ $emailBody .= "<br>Email: ".$eventReg->email;
 $emailBody .= "<br>Paid: ".$eventReg->paid;
 $emailBody .= "<br>Attend Dinner: ".$eventReg->ddattenddinner;
 $emailBody .= "<br>Meal Choice: ".$eventReg->mealchoice;
-
-
-
-               
+          
                     sendEmail(
                         $treasurer, 
                         "treasurer", 
@@ -206,10 +206,10 @@ $emailBody .= "<br>Meal Choice: ".$eventReg->mealchoice;
                     $emailBody = "Thanks for registering for the following events:<br>";  
                 } else {
                     echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
-            
-
+                }       
+            }
     $redirect = "Location: ".$_SESSION['adminurl']."#events";
     header($redirect);
     exit;
-}
+
 ?>
