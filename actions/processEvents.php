@@ -20,7 +20,7 @@ if (!isset($_SESSION['username']))
     header($redirect);
 } else {
     if (isset($_SESSION['role'])) {
-        if (($_SESSION['role'] != 'ADMIN') && ($_SESSION['role'] != 'SUPERADMIN') && ($_SESSION['role'] != 'DJ')) {
+        if (($_SESSION['role'] != 'EVENTADMIN') && ($_SESSION['role'] != 'SUPERADMIN') && ($_SESSION['role'] != 'DJ')) {
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect); 
         }
