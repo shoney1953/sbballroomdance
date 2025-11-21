@@ -19,7 +19,7 @@ if (!isset($_SESSION['username']))
     header($redirect);
 } else {
     if (isset($_SESSION['role'])) {
-        if (($_SESSION['role'] != 'ADMIN') && ($_SESSION['role'] != 'SUPERADMIN') ) {
+        if (($_SESSION['role'] != 'EVENTADMIN') && ($_SESSION['role'] != 'SUPERADMIN') ) {
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect); 
         }
@@ -99,7 +99,7 @@ $event->read_single();
 </nav>
 
   <?php
-   if (($_SESSION['role'] == 'ADMIN') || 
+   if (($_SESSION['role'] == 'EVENTADMIN') || 
         ($_SESSION['role'] == 'SUPERADMIN') ) {
            echo "<div class='container-section' name='addmeals'>  <br><br>";
            echo '<section id="users"  class="content">';

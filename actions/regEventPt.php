@@ -10,7 +10,7 @@ require_once '../models/DinnerMealChoices.php';
 date_default_timezone_set("America/Phoenix");
 
 $events = $_SESSION['upcoming_events'];
-//  var_dump($_POST);
+ var_dump($_POST);
 $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
@@ -52,14 +52,14 @@ $regFirstName1;
 $regFirstName2;
 $regLastName1;
 $regLastName2;
+$regFirstNameG1;
+$regFirstNameG2;
+$regLastNameG1;
+$regLastNameG2;
 $regEmail1;
 $regEmail2;
-$regGuestFirstName1;
-$regGuestFirstName2;
-$regGuestLastName1;
-$regGuestLastName2;
-$regGuestEmail1;
-$regGuestEmail2;
+$regEmailG1;
+$regEmailG2;
 $dietaryRestrictionG1 = '';
 $dietaryRestrictionG2 = '';
 $meal2 = '';
@@ -690,8 +690,13 @@ if (isset($_POST['addguests'])) {
                     }
                        
                 }  // mem2chk
+        var_dump($regFirstNameG1);
             if (isset($_POST['addguests'])) {
               if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
+                  $regFirstNameG1 = $_POST['guest1fname'];
+                  $regLastNameG1 = $_POST['guest1lname'];
+                  $regEmailG1 = $_POST['guest1email'];
+                 var_dump($regFirstNameG1);
                   $guest1EventReg->firstname = $regFirstNameG1;
                     $guest1EventReg->lastname = $regLastNameG1;
                     $guest1EventReg->eventid = $eventId;
@@ -736,6 +741,8 @@ if (isset($_POST['addguests'])) {
                        
               } // guest 1
               if ((isset($_POST['guest2fname'])) && ($_POST['guest2fname'] !== '')) {
+                         $regFirstNameG2 = $_POST['guest2fname'];
+                  $regLastNameG2 = $_POST['guest2lname'];
                   $guest2EventReg->firstname = $regFirstNameG2;
                     $guest2EventReg->lastname = $regLastNameG2;
                     $guest2EventReg->eventid = $eventId;
@@ -836,9 +843,9 @@ if (isset($_POST['addguests'])) {
    $_SESSION['potentialReg2'] = $potentialReg2;
  if (isset($_POST['addguests'])) {
    if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
-     $regGName1 = $regFirstNameG1.' '.$regLastNameG1;
+     $regNameG1 = $_POST['guest1fname'].' '.$_POST['guest1lname'];
       sendEmail(
-            $regEmailG1, 
+            $_POST['guest1email'], 
             $regNameG1, 
             $fromCC,
             $fromEmailName,
@@ -854,10 +861,10 @@ if (isset($_POST['addguests'])) {
         );
            $_SESSION['potentialRegG1'] = $potentialRegG1;
    }
-    if ((isset($_POST['gues21fname'])) && ($_POST['guest2fname'] !== '')) {
-     $regGName2 = $regFirstNameG2.' '.$regLastNameG2;
+    if ((isset($_POST['guest2fname'])) && ($_POST['guest2fname'] !== '')) {
+     $regNameG2 = $_POST['guest2fname'].' '.$_POST['guest2lname'];
       sendEmail(
-            $regEmailG2, 
+            $_POST['guest2email'], 
             $regNameG2, 
             $fromCC,
             $fromEmailName,

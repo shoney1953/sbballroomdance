@@ -7,6 +7,8 @@ require_once '../models/PaymentProduct.php';
 require_once '../models/Event.php';
 
 $productDescription = '';
+var_dump('inside add meal');
+var_dump($_SESSION['role']);
 if (isset($_SESSION['role'])) {
 
 } else {
@@ -19,7 +21,7 @@ if (!isset($_SESSION['username']))
     header($redirect);
 } else {
     if (isset($_SESSION['role'])) {
-        if (($_SESSION['role'] != 'ADMIN') && ($_SESSION['role'] != 'SUPERADMIN') ) {
+        if (($_SESSION['role'] != 'EVENTADMIN') && ($_SESSION['role'] != 'SUPERADMIN') ) {
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect); 
         }
