@@ -177,6 +177,7 @@ if ($uploadForm) {
        $evgcostID = "evgcost".$event['id'];
        $evgpriceID = "evgprice".$event['id'];
        $evmpriceID = "evmprice".$event['id'];
+       $evdwopct = "evdwopct".$event['id'];
        echo '<div class="form-container">';
        echo '<div class="form-grid">';
 
@@ -321,6 +322,14 @@ if ($uploadForm) {
       echo "<input type='text' class='text-small' name='".$evgpriceID."' value='".$event['eventguestpriceid']."' 
       title='Enter the Guest Stripe Product Id for the event' >";
       echo '</div>';
+      if ($_SESSION['role'] === 'SUPERADMIN') {
+          echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Event DWOP Count</h4>";
+          echo "<input type='text' class='text-small' name='".$evdwopct."' value='".$event['eventdwopcount']."' 
+          title='Enter singles count for this event' >";
+          echo '</div>';
+      }
+
 
       echo "<input type='hidden' name='".$evidID."' value='".$event['id']."'>"; 
  

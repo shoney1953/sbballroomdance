@@ -76,7 +76,8 @@ if ($rowCount > 0) {
             'eventproductid' => $eventproductid,
             'eventmempriceid' => $eventmempriceid,
             'eventguestpriceid' => $eventguestpriceid,
-            'eventguestcost' => $eventguestcost
+            'eventguestcost' => $eventguestcost,
+            'eventdwopcount' => $eventdwopcount
         );
         array_push($allEvents, $event_item);
     

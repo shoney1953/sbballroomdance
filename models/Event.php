@@ -21,6 +21,7 @@ class Event {
     public $eventmempriceid;
     public $eventguestcost;
     public $eventguestpriceid;
+    public $eventdwopcount;
 
     // Constructor with DB
     public function __construct($db) {
@@ -93,6 +94,7 @@ class Event {
           $this->eventmempriceid = $row['eventmempriceid'];
           $this->eventguestpriceid = $row['eventguestpriceid'];
           $this->eventguestcost = $row['eventguestcost'];
+          $this->eventdwopcount = $row['eventdwopcount'];
           return true;
           }
           return false;
@@ -173,6 +175,7 @@ class Event {
           eventmempriceid = :eventmempriceid,
           eventguestpriceid = :eventguestpriceid,
           eventguestcost = :eventguestcost,
+          eventdwopcount = :eventdwopcount,
           eventnumregistered = :eventnumregistered
             WHERE id = :id ';
    
@@ -204,7 +207,7 @@ class Event {
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
           $stmt->bindParam(':eventregend', $this->eventregend);
-
+          $stmt->bindParam(':eventdwopcount', $this->eventdwopcount);
           $stmt->bindParam(':eventregopen', $this->eventregopen);    
           $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);

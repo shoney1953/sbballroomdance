@@ -8,7 +8,7 @@ if (!isset($_SESSION['username'])) {
     header($redirect);
 } else {
     if (isset($_SESSION['role'])) {
-        if (($_SESSION['role'] != 'ADMIN') && ($_SESSION['role'] != 'SUPERADMIN')) {
+        if (($_SESSION['role'] != 'EVENTADMIN') && ($_SESSION['role'] != 'SUPERADMIN')) {
             $redirect = "Location: ".$_SESSION['homeurl'];
             header($redirect); 
         }
@@ -17,6 +17,7 @@ if (!isset($_SESSION['username'])) {
         header($redirect);
        }
 }
+
 $database = new Database();
 $db = $database->connect();
 $eventRec = new Event($db);
@@ -43,6 +44,7 @@ if (isset($_POST['submitUpdate'])) {
     $evgcostID = "evgcost".$event['id'];
     $evgpriceID = "evgprice".$event['id'];
     $evmpriceID = "evmprice".$event['id'];
+    $evdwopct = "evdwopct".$event['id'];
         if (isset($_POST["$evSelectChk"])) {
 
             $eventRec->id = $event['id'];
@@ -62,7 +64,8 @@ if (isset($_POST['submitUpdate'])) {
             $eventRec->eventguestpriceid = $_POST["$evgpriceID"];
             $eventRec->eventmempriceid = $_POST["$evmpriceID"];
             $eventRec->eventproductid = $_POST["$evprodID"];
-   
+            $eventRec->eventdwopcount = $_POST["$evdwopct"];
+
             $eventRec->update();
         }
     }

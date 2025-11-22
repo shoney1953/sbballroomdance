@@ -74,6 +74,7 @@ if ($rowCount > 0) {
             'eventcost' => $eventcost,
             'eventform' => $eventform,
             'orgemail' => $orgemail,
+            'eventdwopcount' => $eventdwopcount,
             'eventdj' => $eventdj,
             "eventdesc" => html_entity_decode($eventdesc),
             "eventroom" => $eventroom,

@@ -179,24 +179,17 @@ if ($rowCount > 0) {
                   $pdf->Cell(22,8,"Meal?",1,1,"L");
             }
 
-            if (($reg['eventtype'] === 'Novice Practice Dance') ||
-            ($reg['eventtype'] === 'Social') ||            
-            ($reg['eventtype'] === 'TGIF') ||
-            ($reg['eventtype'] === 'Meeting'))
-            {        
-                $pdf->Cell(18,8,"DWOP",1,1,"L"); 
-          
-            } 
+
             
             if ($reg['eventtype'] === 'Dinner Dance')
             {
-                $pdf->Cell(18,8,"DWOP",1,0,"L");  
+      
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
                 $pdf->Cell(60,8,"DIETARY RESTRICTION",1,1,"L");
             }
             if ($reg['eventtype'] === 'Dance Party') {
-                $pdf->Cell(18,8,"DWOP",1,0,"L"); 
+        
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(22,8,"DINNER?",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
@@ -228,18 +221,10 @@ if ($rowCount > 0) {
             $pdf->Cell(22,8,"Softball",1,0,"L"); 
             $pdf->Cell(22,8,"Meal?",1,1,"L");
         }
-        if (($reg['eventtype'] === 'Novice Practice Dance') ||
-           ($reg['eventtype'] === 'Social') ||
-           ($reg['eventtype'] === 'TGIF') ||
-           ($reg['eventtype'] === 'Meeting')
-             )
-           {        
-               $pdf->Cell(18,8,"DWOP",1,1,"L"); 
-         
-           } 
+
          
            if ($reg['eventtype'] === 'Dance Party') {
-              $pdf->Cell(18,8,"DWOP",1,0,"L"); 
+
               $pdf->Cell(14,8,"PAID",1,0,"L");
               $pdf->Cell(22,8,"DINNER?",1,0,"L");
               $pdf->Cell(60,8,"MEAL",1,0,"L");
@@ -248,7 +233,7 @@ if ($rowCount > 0) {
      
 
            if ($reg['eventtype'] === 'Dinner Dance') {
-            $pdf->Cell(18,8,"DWOP",1,0,"L"); 
+
             $pdf->Cell(14,8,"PAID",1,0,"L");
             $pdf->Cell(60,8,"MEAL",1,0,"L");
             $pdf->Cell(60,8,"DIETARY RESTRICTION",1,1,"L");
@@ -300,26 +285,18 @@ if ($rowCount > 0) {
 
             $pdf->Cell(18,8,"MEM",1,0,"L");
             
-            if (($reg['eventtype'] === 'Novice Practice Dance') ||
-            ($reg['eventtype'] === 'Social') ||
-        
-            ($reg['eventtype'] === 'TGIF') ||
-            ($reg['eventtype'] === 'Meeting')
-           )
-            {
-                $pdf->Cell(18,8,"DWOP",1,1,"L");
-            } 
+
           
        
             if ($reg['eventtype'] === 'Dance Party') {
-                $pdf->Cell(18,8,"DWOP",1,0,"L");
+        ;
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(22,8,"DINNER?",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
                 $pdf->Cell(60,8,"DIETARY RESTRICTION",1,1,"L");
                }
             if ($reg['eventtype'] === 'Dinner Dance') {
-                $pdf->Cell(18,8,"DWOP",1,0,"L");
+    
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");
                 $pdf->Cell(60,8,"DIETARY RESTRICTION",1,1,"L");
@@ -389,31 +366,7 @@ if ($rowCount > 0) {
                 } 
 
             }
-            if (($reg['eventtype'] === 'Novice Practice Dance') ||
-                ($reg['eventtype'] === 'Social') ||
-
-                ($reg['eventtype'] === 'TGIF') ||
-                ($reg['eventtype'] === 'Meeting')
-               )
-            {
-               if ($user->partnerId > 0) {
-                $pdf->Cell(18,8,"NO",1,1,"L"); 
-               } else {
-                $pdf->Cell(18,8,"YES",1,1,"L"); 
-                $numDwop++;
-               } 
-            } else if (!($reg['eventtype'] === 'Novice Practice Dance') &&
-                       !($reg['eventtype'] === 'BBQ Picnic') ) {
-                if ($user->partnerId > 0) {
-                    
-                    $pdf->Cell(18,8,"NO",1,0,"L"); 
-    
-                   } else {
-                    $pdf->Cell(18,8,"YES",1,0,"L"); 
-                    $numDwop++;
-                   } 
-            
-           } 
+ 
         } else {
            
             if (($reg['eventtype'] === 'Novice Practice Dance') ||
@@ -423,9 +376,8 @@ if ($rowCount > 0) {
                )
             {
                 $pdf->SetTextColor(255 , 0, 0);   
-                $pdf->Cell(18,8,"NO",1,0,"L");
-                $pdf->SetTextColor(0 , 0, 0);
-                $pdf->Cell(18,8,"UNK",1,1,"L"); 
+                $pdf->Cell(18,8,"NO",1,1,"L");
+        $pdf->SetTextColor(0 , 0, 0);
 
              } else { 
                 if (!($reg['eventtype'] === 'BBQ Picnic'))
@@ -433,7 +385,6 @@ if ($rowCount > 0) {
                     $pdf->SetTextColor(255 , 0, 0); 
                     $pdf->Cell(18,8,"NO",1,0,"L");
                     $pdf->SetTextColor(0 , 0, 0);
-                    $pdf->Cell(18,8,"UNK",1,0,"L"); 
                 } 
 
 
@@ -542,7 +493,7 @@ if ($rowCount > 0) {
     $pdf->Cell(100, 8, "Non Member Registrations:      ", 1, 0);
     $pdf->Cell(20, 8, $nonMemReg, 1, 1); 
     $pdf->Cell(100, 8, "DWOP Member Registrations:      ", 1, 0);
-    $pdf->Cell(20, 8, $numDwop, 1, 1); 
+    $pdf->Cell(20, 8, $event->eventdwopcount, 1, 1); 
     if ($event->eventtype === 'Dine and Dance') {
     $pdf->Cell(100, 8, "Attending Dinner (if Dine and Dance):  ", 1, 1);
     $pdf->Cell(20, 8, $attDinner, 1, 1);
