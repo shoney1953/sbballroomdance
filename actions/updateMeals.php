@@ -17,17 +17,61 @@ if (isset($_SESSION['role'])) {
 $allEvents = $_SESSION['allEvents'] ;
 if (!isset($_SESSION['username']))
 {
-    $redirect = "Location: ".$_SESSION['homeurl'];
-    header($redirect);
+   if (isset($_SESSION['homeurl'])) {
+             $redirect = "Location: ".$_SESSION['homeurl'];
+ 
+           }  else {
+            if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+                $redirect = 'Location: http://localhost/sbdcballroomdance/index.php';
+            }
+            else {
+                 $redirect = 'Location: https://www.sbballroomdance.com/index.php';  
+            }
+           } 
+             header($redirect);
+            exit;
 } else {
     if (isset($_SESSION['role'])) {
         if (($_SESSION['role'] != 'EVENTADMIN') && ($_SESSION['role'] != 'SUPERADMIN') ) {
-            $redirect = "Location: ".$_SESSION['homeurl'];
-            header($redirect); 
+          if (isset($_SESSION['homeurl'])) {
+             $redirect = "Location: ".$_SESSION['homeurl'];
+ 
+           }  else {
+            if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+                $redirect = 'Location: http://localhost/sbdcballroomdance/index.php';
+            }
+            else {
+                 $redirect = 'Location: https://www.sbballroomdance.com/index.php';  
+            }
+           } 
+           if (isset($_SESSION['homeurl'])) {
+             $redirect = "Location: ".$_SESSION['homeurl'];
+ 
+           }  else {
+            if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+                $redirect = 'Location: http://localhost/sbdcballroomdance/index.php';
+            }
+            else {
+                 $redirect = 'Location: https://www.sbballroomdance.com/index.php';  
+            }
+           } 
+             header($redirect);
+            exit;
         }
        } else {
-        $redirect = "Location: ".$_SESSION['homeurl'];
-        header($redirect);
+         if (isset($_SESSION['homeurl'])) {
+             $redirect = "Location: ".$_SESSION['homeurl'];
+ 
+           }  else {
+            if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+                $redirect = 'Location: http://localhost/sbdcballroomdance/index.php';
+            }
+            else {
+                 $redirect = 'Location: https://www.sbballroomdance.com/index.php';  
+            }
+           } 
+             header($redirect);
+            exit;
        }
 }
 if ($_SERVER['SERVER_NAME'] !== 'localhost') {    

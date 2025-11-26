@@ -77,8 +77,6 @@ $today = date("m-d-Y");
 $pdf->Output("I", "SBDCUpcomingClasses.".$today.".pdf");
 
 
-// $redirect = "Location: ".$_SESSION['homeurl'];
-// header($redirect);
-// exit;
+
 
 ?>

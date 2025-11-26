@@ -11,7 +11,7 @@ require_once 'models/Options.php';
 require_once 'models/Keys.php';
 require_once 'includes/siteemails.php';
 
-// $_SESSION['homeurl'] = $_SERVER['REQUEST_URI']; 
+
 
 
 if (isset($_GET['error'])) {

@@ -5,10 +5,7 @@ $allClasses = $_SESSION['allClasses'];
 
 
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
-// if (!isset($_SESSION['username'])) {
-//     $redirect = "Location: ".$_SESSION['homeurl'];
-//     header($redirect);
-// }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
