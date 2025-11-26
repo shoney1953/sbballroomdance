@@ -52,9 +52,7 @@ foreach ($upcomingEvents as $event) {
     $payChk = "pay".$event['id'];
 
     if ($event['id'] === $_POST['eventId']) {
-        //  if (isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'YES')) {
-        //  var_dump($event);
-        // }
+
         if (isset($_POST["$rpChk"])) {
             // unset($_POST["$rpChk"]);
             echo "<h4>Generated Report for  ".$event['eventname']."  ".$event['eventdate']."</h4>";

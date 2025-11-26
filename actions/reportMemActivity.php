@@ -125,11 +125,7 @@ $regCount = $result->rowCount();
     );
     $user['totevents']++;
     $dateregts = strtotime($event_item['dateregistered']);
-       if ($user['id'] === 93 ) {
-      var_dump($dateregts);
-      var_dump($event_item['eventname']);
-      var_dump($sixMonthdate);
-    }
+
       if ($dateregts > $sixMonthdate) {
         $user['sixmonthevents']++;
 

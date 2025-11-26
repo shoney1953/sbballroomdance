@@ -82,7 +82,7 @@ if (isset($_POST['submitRegConfirm'])) {
           $priceObj1 = $stripe->prices->retrieve($potentialReg1['guestpriceid'], []);
           $totalCost = $priceObj1->unit_amount;
         }
-    } // potential reg1var_dump($potentialReg2);
+    } 
     if (isset($potentialReg2['firstname'])) {
   
       $tempReg->eventid = $potentialReg2['eventid'];

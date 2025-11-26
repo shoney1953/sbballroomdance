@@ -126,7 +126,7 @@ if (isset($_POST['submitEventEmail'])) {
 
         }
       }
-      // var_dump($regEmail1);
+
       $replyEmail = htmlentities($_POST['replyEmail']);
       $toCC2 = htmlentities($_POST['replyEmail']); 
 

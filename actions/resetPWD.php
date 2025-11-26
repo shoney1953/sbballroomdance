@@ -99,8 +99,7 @@ if ((!isset($_SESSION['testmode'])) ||
   header($redirect);
   exit;  
   } else {
-    var_dump($_SESSION['testmode']);
-    var_dump($emailBody);
+
   }
 
 

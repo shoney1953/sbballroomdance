@@ -7,8 +7,7 @@ require_once '../models/PaymentProduct.php';
 require_once '../models/Event.php';
 
 $productDescription = '';
-var_dump('inside add meal');
-var_dump($_SESSION['role']);
+
 if (isset($_SESSION['role'])) {
 
 } else {

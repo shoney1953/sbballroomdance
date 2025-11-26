@@ -10,7 +10,7 @@ require_once '../models/DinnerMealChoices.php';
 date_default_timezone_set("America/Phoenix");
 
 $events = $_SESSION['upcoming_events'];
- var_dump($_POST);
+
 $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
@@ -699,13 +699,13 @@ if (isset($_POST['addguests'])) {
                     }
                        
                 }  // mem2chk
-        var_dump($regFirstNameG1);
+       
             if (isset($_POST['addguests'])) {
               if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
                   $regFirstNameG1 = $_POST['guest1fname'];
                   $regLastNameG1 = $_POST['guest1lname'];
                   $regEmailG1 = $_POST['guest1email'];
-                 var_dump($regFirstNameG1);
+       
                   $guest1EventReg->firstname = $regFirstNameG1;
                     $guest1EventReg->lastname = $regLastNameG1;
                     $guest1EventReg->eventid = $eventId;
