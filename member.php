@@ -366,7 +366,7 @@ if ($rowCount > 0) {
                 echo '<td>No Form Link</td>';
             }
             
-            echo "<td>$user->robodjlastlogin</td>";
+            echo "<td>$user->robodjnumlogins</td>";
             echo "<td>$user->robodjlastlogin</td>";
             echo '</tr>';
             echo '</tbody>';
