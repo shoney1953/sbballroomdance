@@ -20,6 +20,7 @@ function sendEmailArray(
     $replyEmail,
     $replyTopic,
     $emailAttach,
+    $emailAttach2,
     $toCC2,
     $toCC3,
     $toCC4,
@@ -89,7 +90,9 @@ function sendEmailArray(
         if ($emailAttach) {
             $mail->addAttachment($emailAttach);         //Add attachments
         }
-           
+         if ($emailAttach2) {
+            $mail->addAttachment($emailAttach2);         //Add attachments
+        } 
 
         $mail->isHTML(true);   
         

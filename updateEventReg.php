@@ -81,6 +81,7 @@
             $useridID = "userid".$reg['id'];
             $messID = "mess".$reg['id'];
             $paidID = "paid".$reg['id'];
+            $dwopID = "dwop".$reg['id'];
             $dddinID = "dddin".$reg['id'];
             $useridID = "userid".$reg['id'];
 
@@ -174,11 +175,7 @@
                  echo "<input type='number'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
        
                 
-                echo '</div>'; // end of form item
-                // echo '<div class="form-item">';  
-                // echo '<h4 class="form-item-title">Paid?</h4>';
-                // echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
-                // echo '</div>'; // end of form item
+                echo '</div>'; 
        
        
              if ($event['eventtype'] === 'Dance Party') {
@@ -275,6 +272,10 @@
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Paid?</h4>';
             echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
+            echo '</div>'; // end of form item
+            echo '<div class="form-item">';
+            echo '<h4 class="form-item-title">DWOP?</h4>';
+            echo "<input type='number' title='Enter 1 to DWOP, 2 for UNKNOWN, 0 for Couple' name='".$dwopID."'. min='0' max='2' value='".$reg['dwop']."'>";
             echo '</div>'; // end of form item
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Message</h4>';

@@ -35,6 +35,7 @@ if (isset($_POST['submit'])) {
     $toCC5 = '';
     $toName = $contact->firstname.' '.$contact->lastname; 
     $replyEmail = $webmaster;
+    $mailAttachment2 = '';
     $actLink = "<a href='https://calendar.google.com/calendar/u/2?cid=c2JiZGNzY2hlZHVsZUBnbWFpbC5jb20'>
     Click to view Activities Calendar</a><br>";
     if ($existingUser === 'NO') {
@@ -81,6 +82,7 @@ if (isset($_POST['submit'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

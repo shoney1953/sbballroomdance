@@ -9,7 +9,8 @@ require_once 'models/MemberPaid.php';
 require_once 'models/User.php';
 require_once 'models/TempOnlineRenewal.php';
 $renewalYear = '';
-
+$mailAttachment = '';
+$mailAttachment2 = '';
 $database = new Database();
 $db = $database->connect();
 $user1 = new User($db);
@@ -210,8 +211,7 @@ function sendThanks($user,$treasurer,$president,$webmaster,$renewalYear) {
        Click to view Activities Calendar</a><br>";
        $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
-       $mailAttachment = ""; 
-
+ 
        $emailBody = "<br>Welcome renewing member <b>$toName </b>
        to the SaddleBrooke Ballroom Dance Club.<br><br>";
        $emailBody .= "Thanks for renewing your membership. We hope you'll 
@@ -232,6 +232,7 @@ function sendThanks($user,$treasurer,$president,$webmaster,$renewalYear) {
         $replyEmail,
         $replyTopic,
         $mailAttachment,
+        $mailAttachment2,
         $toCC2,
         $toCC3,
         $toCC4,

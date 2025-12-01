@@ -15,6 +15,7 @@ $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";
+$mailAttachment2 = "";
 $replyTopic = "SBDC Event Registration";
 $database = new Database();
 $db = $database->connect();
@@ -82,6 +83,11 @@ if (!isset($_POST['submitEventReg'])) {
     $regEmail1 = filter_var($regEmail1, FILTER_SANITIZE_EMAIL); 
     if ($user->getUserName($regEmail1)) {    
         $regUserid1 = $user->id;
+        if ($user->partnerid !== '0') {
+            $eventReg->dwop = 0;
+        } else {
+            $eventReg->dwop = 1;
+        }
        }
    if (isset($_POST['message'])) {
        $message = htmlentities($_POST['message']); 
@@ -374,7 +380,7 @@ if (!isset($_POST['submitEventReg'])) {
                         exit; 
                 } //endresult
                 if (!$result) {
-                
+                  
                     $eventReg->create();
                     $eventInst->addCount($eventReg->eventid);
                 }  //end no results
@@ -388,8 +394,12 @@ if (!isset($_POST['submitEventReg'])) {
                     $eventReg->message = $message;
                     $eventReg->registeredby = $_SESSION['username'];
                     $eventReg->paid = 0;
-
-                  
+                    if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+                       $eventReg->dwop = 0;
+                    } else {
+                        $eventReg->dwop = 1;
+                    }
+                
                 
                         $eventReg->mealchoice = $mealid2;
                        if ($dietaryRestriction2 !== '') {
@@ -407,6 +417,7 @@ if (!isset($_POST['submitEventReg'])) {
                      }
      
                     if (!$result) {
+            
                         $eventReg->create();
                         $eventInst->addCount($eventReg->eventid);
                     }
@@ -435,6 +446,7 @@ if (!isset($_POST['submitEventReg'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,
@@ -458,6 +470,7 @@ if (!isset($_POST['submitEventReg'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

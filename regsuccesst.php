@@ -27,6 +27,7 @@ $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";
+$mailAttachment2 = "";
 $replyTopic = "SBDC Online Event Registration";
 
 $toCC2 = '';
@@ -53,9 +54,16 @@ $regLastName1 = $eventReg->lastname;
 $regEmail1 = $eventReg->email;
 if ($tempReg->visitor !== '1') {
     $user->getUserName($eventReg->email);
+
     $eventReg->userid = $user->id;
+    if ($user->partnerId !== '0' ) {
+        $eventReg->dwop = 0;
+    } else {
+         $eventReg->dwop = 1;
+    }
 } else {
      $eventReg->userid = 0;
+     $eventReg->dwop = 2;
 }
 
 $regEmail1 = $eventReg->email;
@@ -103,8 +111,15 @@ $partnerEventReg->email = $tempReg->email2;
 if ($tempReg->visitor !== '1') {
     $user->getUserName($partnerEventReg->email);
     $partnerEventReg->userid = $user->id;
+   
+       if ($user->partnerId !== '0' ) {
+        $partnerEventReg->dwop = 0;
+    } else {
+         $partnerEventReg->dwop = 1;
+    }
 } else {
      $partnerEventReg->userid = 0;
+     $partnerEventReg->dwop = 2;
 }
 if ($tempReg->firstname1 === '') {
   $regFirstName1 = $partnerEventReg->firstname;
@@ -149,6 +164,7 @@ if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

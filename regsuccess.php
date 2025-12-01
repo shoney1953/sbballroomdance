@@ -26,6 +26,7 @@ $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";
+$mailAttachment2 = "";
 $replyTopic = "SBDC Event Registration";
 $emailBody = "Thanks for registering for the ".$tempReg->eventname." on ".$tempReg->eventdate.".<br>";
 $emailSubject = "You have registered for ".$tempReg->eventname." and paid online.";
@@ -52,8 +53,14 @@ $regEmail1 = $eventReg->email;
 if ($tempReg->visitor !== '1') {
     $user->getUserName($eventReg->email);
     $eventReg->userid = $user->id;
+    if ($user->partnerId !== '0') {
+       $eventReg->dwop = 0;  
+    } else {
+        $eventReg->dwop = 1;
+    }
 } else {
      $eventReg->userid = 0;
+     $eventReg->dwop = 2;
 }
 
 $regEmail1 = $eventReg->email;
@@ -91,12 +98,19 @@ $eventReg->lastname = $tempReg->lastname2;
 $eventReg->email = $tempReg->email2;
 if ($tempReg->visitor !== '1') {
     $user->getUserName($eventReg->email);
+
     $eventReg->userid = $user->id;
+    if ($user->partnerId !== '0') {
+       $eventReg->dwop = 0;  
+    } else {
+        $eventReg->dwop = 1;
+    }
 } else {
      $eventReg->userid = 0;
 }
 
 $toCC2 = $eventReg->email;
+
 $eventReg->create();
 $event->addCount($eventReg->eventid);
     if ($tempReg->ddattenddinner === '1') {
@@ -131,6 +145,7 @@ if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

@@ -29,6 +29,7 @@ $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = "";
+$mailAttachment2 = "";
 $replyTopic = "SBDC Class Registration";
 $regId1 = 0;
 $regId2 = 0;
@@ -81,6 +82,7 @@ if (isset($_POST['submitRemoveRegs'])) {
                 $replyEmail,
                 $replyTopic,
                 $mailAttachment,
+                $mailAttachment2,
                 $toCC2,
                 $toCC3,
                 $toCC4,
@@ -121,6 +123,7 @@ if (isset($_POST['submitRemoveRegs'])) {
                 $replyEmail,
                 $replyTopic,
                 $mailAttachment,
+               $mailAttachment2,
                 $toCC2,
                 $toCC3,
                 $toCC4,

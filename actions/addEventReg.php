@@ -80,6 +80,7 @@ $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
+$mailAttachment2 = ''; 
 $replyTopic = "SBDC Event Registration";
 
 
@@ -131,6 +132,11 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->lastname = $usr['lastname'];
                     $regLastName1 = $eventReg->lastname;
                     $eventReg->email = $usr['email'];
+                    if ($usr['partnerid'] === '0') {
+                        $eventReg->dwop = 1;
+                    } else {
+                        $eventReg->dwop = 0;
+                    }
                     $eventReg->dietaryrestriction = $usr['dietaryrestriction'];
                     $regEmail1 = $eventReg->email;
                     $eventReg->userid = $usr['id'];
@@ -291,6 +297,7 @@ if (isset($_POST['submitAddReg'])) {
                         $replyEmail,
                         $replyTopic,
                         $mailAttachment,
+                        $mailAttachment2,
                         $toCC2,
                         $toCC3,
                         $toCC4,

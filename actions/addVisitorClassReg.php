@@ -73,6 +73,7 @@ $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = '../img/SBDC Membership Form 2025.pdf'; 
+$mailAttachment2 = '';
 $replyTopic = "Class Registration";
 $emailSubject = "Your instructor has registered you for selected Classes";
 $actLink
@@ -150,6 +151,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,
@@ -232,6 +234,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

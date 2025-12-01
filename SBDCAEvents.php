@@ -127,6 +127,7 @@ if ($rowCount > 0) {
             'registeredby' => $registeredby,
             'mealchoice' => $mealchoice,
             'dietaryrestriction' => $dietaryrestriction,
+            'dwop' => $dwop,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);
@@ -134,6 +135,7 @@ if ($rowCount > 0) {
     }
   
     $_SESSION['eventregistrations'] = $eventRegistrations;
+   
 } 
 ?>
 <!DOCTYPE html>

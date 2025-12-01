@@ -30,7 +30,7 @@ if (!isset($_SESSION['username']))
         && ($_SESSION['role'] != 'SUPERADMIN')
         && ($_SESSION['role'] != 'INSTRUCTOR')
         ) {
-          \   if (isset($_SESSION['homeurl'])) {
+           if (isset($_SESSION['homeurl'])) {
              $redirect = "Location: ".$_SESSION['homeurl'];
  
            }  else {
@@ -77,6 +77,7 @@ $toCC3 = 'sbbdcschedule@gmail.com';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
+$mailAttachment2 = ''; 
 $replyTopic = "Message Members from SBDC";
 $rowCount = 0;
 $regEmail1 = [];
@@ -133,6 +134,7 @@ if (isset($_POST['submitEmailMember'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

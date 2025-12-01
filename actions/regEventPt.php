@@ -15,6 +15,7 @@ $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";
+$mailAttachment2 = "";
 $replyTopic = "SBDC Event Registration";
 $database = new Database();
 $db = $database->connect();
@@ -29,6 +30,8 @@ $message = '';
 $result = 0;
 $danceCost = 0;
 $regSelected = [];
+$mem1Partnerid = '';
+$mem2Partnerid = '';
 $regAll = '';
 $emailBody = "Thanks for registering for the following SBDC event(s):<br>";
 $emailSubject = '';
@@ -124,6 +127,7 @@ if (!isset($_POST['submitAddRegs'])) {
     $regEmail1 = filter_var($regEmail1, FILTER_SANITIZE_EMAIL); 
     if ($user->getUserName($regEmail1)) {    
         $regUserid1 = $user->id;
+        $mem1Partnerid = $user->partnerId;
        }
 
 }
@@ -158,6 +162,7 @@ if (!isset($_POST['submitAddRegs'])) {
       $toCC2 =   $regEmail2;
     if ($user->getUserName($regEmail2)) {    
         $regUserid2 = $user->id;
+        $mem2Partnerid = $user->partnerId;
       } else {
           $regUserid2 = 0;
       }
@@ -642,6 +647,11 @@ if (isset($_POST['addguests'])) {
                 } //endresult
                 if (!$result) {
                    if (($eventReg->email !== NULL) && ($eventReg->email !== ' ')) {
+                    if ($mem1Partnerid !== '0') {
+                      $eventReg->dwop = 0;
+                    } else {
+                      $eventReg->dwop = 1;
+                    }
                     $eventReg->create();
                     $eventInst->addCount($eventReg->eventid);
                    } else {
@@ -688,6 +698,11 @@ if (isset($_POST['addguests'])) {
      
                     if (!$result) {
                        if (($partnerEventReg->email !== NULL) && ($partnerEventReg->email !== ' ')) {
+                        if ($mem2Partnerid !== '0') {
+                          $partnerEventReg->dwop = 0;
+                        } else {
+                           $partnerEventReg->dwop = 1;
+                        }
                         $partnerEventReg->create();
                         $eventInst->addCount($partnerEventReg->eventid); 
                        } else {
@@ -811,6 +826,7 @@ if (isset($_POST['addguests'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,
@@ -835,6 +851,7 @@ if (isset($_POST['addguests'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,
@@ -863,6 +880,7 @@ if (isset($_POST['addguests'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,
@@ -882,6 +900,7 @@ if (isset($_POST['addguests'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

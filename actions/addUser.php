@@ -51,6 +51,7 @@ $db = $database->connect();
 $user = new User($db);
 $userArchive = new UserArchive($db);
 $mailAttachment = '';
+$mailAttachment2 = '';
 $toCC2 = $president;
 $toCC3 = $webmaster;
 // 
@@ -170,6 +171,7 @@ if (isset($_POST['submitAddUser'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

@@ -125,6 +125,7 @@ if ($rowCount > 0) {
             'registeredby' => $registeredby,
             'modifiedby' => $modifiedby,
             'modifieddate' => $modifieddate,
+            'dwop' => $dwop,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);

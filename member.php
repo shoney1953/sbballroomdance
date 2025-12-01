@@ -136,6 +136,7 @@ if ($rowCount > 0) {
             'paidonline' => $paidonline,
             'modifiedby' => $modifiedby,
             'modifieddate' => $modifieddate,
+            'dwop' => $dwop,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegs, $reg_item);
@@ -167,6 +168,7 @@ if ($rowCount > 0) {
             'paidonline' => $paidonline,
             'modifiedby' => $modifiedby,
             'modifieddate' => $modifieddate,
+            'dwop' => $dwop,
             "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegsArch, $reg_item);

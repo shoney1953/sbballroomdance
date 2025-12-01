@@ -15,6 +15,7 @@ $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";
+$mailAttachment2 = "";
 $replyTopic = "SBDC Event Registration";
 $database = new Database();
 $db = $database->connect();
@@ -291,6 +292,7 @@ if (!isset($_POST['submitAddRegs'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,
@@ -314,6 +316,7 @@ if (!isset($_POST['submitAddRegs'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

@@ -82,6 +82,7 @@ $toCC3 = $danceDirector;
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
+$mailAttachment2 = ''; 
 $replyTopic = "Class Message";
 $rowCount = 0;
 $preface = '';
@@ -133,6 +134,7 @@ $preface = '';
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

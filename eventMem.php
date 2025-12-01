@@ -58,6 +58,7 @@ if ($rowCount > 0) {
             'mealname' => $mealname,
             'modifiedby' => $modifiedby,
             'modifieddate' => $modifieddate,
+            'dwop' => $dwop,
             'dateregistered' => date('m d Y', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);

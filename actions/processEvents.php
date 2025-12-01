@@ -264,6 +264,7 @@ if (isset($_POST['submitEventProcess'])) {
               'message' => $message,
               'paid' => $paid,
               'mealchoice' => $mealchoice,
+              'dwop' => $dwop,
               'dietaryrestriction' => $dietaryrestriction,
               'userid' => $userid
            
@@ -297,6 +298,7 @@ if (isset($_POST['submitEventProcess'])) {
                   'mealchoice' => $mealchoice,
                   'dietaryrestriction' => $dietaryrestriction,
                   'paid' => $paid,
+                  'dwop' => $dwop,
                   'userid' => $userid
 
                   
@@ -312,6 +314,7 @@ if (isset($_POST['submitEventProcess'])) {
 
 }
 $_SESSION['registrations'] = $regs;
+
 break;
 }
 

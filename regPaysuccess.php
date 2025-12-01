@@ -23,6 +23,8 @@ $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $mailAttachment = "";
+$fromEmailName = 'SBDC Ballroom Dance Club';
+$mailAttachment2 = "";
 $replyTopic = "SBDC Event Registration";
 $emailBody = "Thanks for paying online for the ".$tempReg->eventname." on ".$tempReg->eventdate.".<br>";
 $emailSubject = "You paid onlne for ".$tempReg->eventname.".";
@@ -87,6 +89,7 @@ if (filter_var($tempReg->email1, FILTER_VALIDATE_EMAIL)) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

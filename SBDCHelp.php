@@ -42,7 +42,7 @@ require_once 'includes/siteemails.php';
                if ($_SESSION['role'] === 'INSTRUCTOR') {
                         echo '<h4><a href=" https://drive.google.com/file/d/10C0c7Kyy96TC59KxG7W7khnSnOSTyCwa/view?usp=sharing">Click for Instructors Guide</a></h4>';
                 } 
-                if (($_SESSION['role'] === 'SUPERADMIN') | ($_SESSION['role'] === 'ADMIN')) {
+                if (($_SESSION['role'] === 'SUPERADMIN') | ($_SESSION['role'] === 'EVENTADMIN')) {
                     echo '<h4><a href="https://drive.google.com/file/d/17-gspL4hcl7P23g0LOjY3RHRpFqqQ5KV/view?usp=sharing">Click for Administrators Guide</a></h4>';
                 }
              }

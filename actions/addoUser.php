@@ -18,6 +18,7 @@ $nextYear = date('Y', strtotime('+1 year'));
 $current_month = date('m');
 $current_year = date('Y');
 $mailAttachment = '';
+$mailAttachment2 = '';
 $toCC2 = $webmaster; 
 
 
@@ -110,6 +111,7 @@ $toCC5 = '';
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+             $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,
@@ -222,6 +224,7 @@ require '../includes/emailSignature.php';
          $replyEmail,
          $replyTopic,
          $mailAttachment,
+        $mailAttachment2,
          $toCC2,
          $toCC3,
          $toCC4,

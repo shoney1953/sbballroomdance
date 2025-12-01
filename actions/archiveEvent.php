@@ -142,6 +142,7 @@ if (isset($_POST['submitArchive'])) {
             $eventRegArch->message = $reg_item['message'];
             $eventRegArch->ddattenddance = $reg_item['ddattenddance'];
             $eventRegArch->ddattenddinner = $reg_item['ddattenddinner'];
+            $eventRegArch->dwop = $reg_item['dwop'];
             if ($reg_item['mealchoice'] === NULL) {
                  $eventRegArch->mealchoice = 0;
             } else {

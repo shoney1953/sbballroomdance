@@ -28,6 +28,7 @@ class EventRegistrationArch {
     public $modifiedby;
     public $modifieddate;
     public $paidonline;
+    public $dwop;
 
 
     // Constructor with DB
@@ -43,7 +44,7 @@ class EventRegistrationArch {
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
       r.registeredby, r.cornhole, r.softball, r.paidonline, r.modifiedby, r.modifieddate,
       r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
-      r.mealchoice, r.dietaryrestriction
+      r.mealchoice, r.dietaryrestriction, r.dwop
       FROM ' . $this->table . ' r
       LEFT JOIN
         eventsarch c ON r.preveventid = c.previd
@@ -66,7 +67,7 @@ class EventRegistrationArch {
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
       r.registeredby,  r.cornhole, r.softball, r.paidonline, r.modifiedby, r.modifieddate,
       r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
-      r.mealchoice, r.dietaryrestriction
+      r.mealchoice, r.dietaryrestriction, r.dwop
       FROM ' . $this->table . ' r
       LEFT JOIN
         eventsarch c ON r.preveventid = c.previd
@@ -91,7 +92,7 @@ class EventRegistrationArch {
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
           r.registeredby,  r.cornhole, r.softball, r.paidonline, r.modifiedby, r.modifieddate,
           r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
-          r.mealchoice, r.dietaryrestriction
+          r.mealchoice, r.dietaryrestriction, r.dwop
           FROM ' . $this->table . ' r
           LEFT JOIN
             eventsarch c ON r.preveventid = c.previd
@@ -132,7 +133,8 @@ class EventRegistrationArch {
           $this->softball = $row['softball'];
           $this->paidonline = $row['paidonline'];
           $this->modifieddate = $row['modifieddate'];
-           $this->modifiedby = $row['modifiedby'];
+          $this->modifiedby = $row['modifiedby'];
+          $this->dwop = $row['dwop'];
 
     }
 // Get reg by userid
@@ -145,7 +147,7 @@ public function read_ByUserid($userid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline, r.modifieddate, r.modifiedby,
     r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
-    r.mealchoice, r.dietaryrestriction
+    r.mealchoice, r.dietaryrestriction, r.dwop
     FROM ' . $this->table . ' r
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
@@ -176,7 +178,7 @@ public function read_ByEmail($email) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline, r.modifieddate, r.modifiedby,
     r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
-    r.mealchoice, r.dietaryrestriction
+    r.mealchoice, r.dietaryrestriction, r.dwop
     FROM ' . $this->table . ' r
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
@@ -208,7 +210,7 @@ public function read_ByEmail($email) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline, r.modifieddate, r.modifiedby,
     r.userid, r.paid, r.message, r.preveventid, r.ddattenddinner, r.ddattenddance,
-    r.mealchoice, r.dietaryrestriction
+    r.mealchoice, r.dietaryrestriction, r.dwop
     FROM ' . $this->table . ' r
     LEFT JOIN
       eventsarch c ON r.preveventid = c.previd
@@ -237,7 +239,7 @@ public function read_ByEmail($email) {
           userid = :userid, paid = :paid, message = :message, preveventid = :preveventid,
           ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance,
           registeredby = :registeredby, cornhole = :cornhole, softball = :softball,
-          mealchoice = :mealchoice, dietaryrestriction = :dietaryrestriction,
+          mealchoice = :mealchoice, dietaryrestriction = :dietaryrestriction, dwop = :dwop,
           paidonline = :paidonline, modifieddate = :modifieddate, modifiedby = :modifiedby,
           eventid = :eventid';
 
@@ -276,7 +278,7 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':paidonline', $this->paidonline);
           $stmt->bindParam(':modifiedby', $this->modifiedby);
           $stmt->bindParam(':modifieddate', $this->modifieddate);
-     
+          $stmt->bindParam(':dwop', $this->dwop);
 
           // Execute query
           if($stmt->execute()) {
@@ -298,6 +300,7 @@ public function read_ByEmail($email) {
           cornhole = :cornhole, softball = :softball, paidonline = :paidonline,
           ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance,
           mealchoice = :mealchoice, dietaryrestriction = :dietaryrestriction,
+          dwop = :dwop,
           eventid = :eventid  WHERE id = :id';
    
 
@@ -332,8 +335,8 @@ public function read_ByEmail($email) {
           $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
           $stmt->bindParam(':cornhole', $this->cornhole);
           $stmt->bindParam(':softball', $this->softball);
-          $stmt->bindParam(':paidonline ', $this->paidonline);
-
+          $stmt->bindParam(':paidonline', $this->paidonline);
+          $stmt->bindParam(':dwop', $this->dwop);
           // Execute query
           if($stmt->execute()) {
             return true;

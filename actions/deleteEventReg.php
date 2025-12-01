@@ -28,6 +28,7 @@ $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = "";
+$mailAttachment2 = "";
 $replyTopic = "SBDC Event Registration";
 $regId1 = 0;
 $regId2 = 0;
@@ -65,6 +66,7 @@ $result = 0;
                 $replyEmail,
                 $replyTopic,
                 $mailAttachment,
+                $mailAttachment2,
                 $toCC2,
                 $toCC3,
                 $toCC4,

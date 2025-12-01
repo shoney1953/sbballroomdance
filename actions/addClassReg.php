@@ -71,6 +71,7 @@ $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
+$mailAttachment2 = ''; 
 $replyEmail = 'annzabinski@gmail.com';
 $replyTopic = "SBDC Class Registration";
 $emailSubject = "Your instructor has registered you for selected SBDC Classes";
@@ -129,6 +130,7 @@ if (isset($_POST['submitAddReg'])) {
                     $replyEmail,
                     $replyTopic,
                     $mailAttachment,
+                    $mailAttachment2,
                     $toCC2,
                     $toCC3,
                     $toCC4,

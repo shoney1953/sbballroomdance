@@ -9,6 +9,8 @@ require_once '../models/MemberPaid.php';
 date_default_timezone_set("America/Phoenix");
 $nextYear = date('Y', strtotime('+1 year'));
 $thisYear = date("Y");  
+$mailAttachment = ""; 
+$mailAttachment2 = ""; 
 if (!isset($_SESSION['username']))
 {
      if (isset($_SESSION['homeurl'])) {
@@ -120,7 +122,7 @@ function sendThanks($memStat,$userEmail,$president,$webmaster) {
        Click to view Activities Calendar</a><br>";
        $webLink
            = "<a href='https://www.sbballroomdance.com'>Click to go to the SBDC Website.</a>";
-       $mailAttachment = ""; 
+
 
        $emailBody = "<br>Welcome renewing member <b>$toName </b>
        to the SaddleBrooke Ballroom Dance Club.<br><br>";
@@ -142,6 +144,7 @@ function sendThanks($memStat,$userEmail,$president,$webmaster) {
         $replyEmail,
         $replyTopic,
         $mailAttachment,
+        $mailAttachment2,
         $toCC2,
         $toCC3,
         $toCC4,

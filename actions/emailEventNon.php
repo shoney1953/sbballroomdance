@@ -80,6 +80,7 @@ $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
+$mailAttachment2 = ''; 
 $replyTopic = "Event Message";
 $emailSubject = "A Message about an Upcoming SBDC Ballroom Dance Club Event";
 $preface = '';
@@ -146,6 +147,7 @@ if (isset($_POST['submitEventEmail'])) {
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,

@@ -64,6 +64,7 @@ $eventRegBefore = new EventRegistration($db);
 $mChoices = new DinnerMealChoices($db);
 $mealchoices = [];
 $regs = $_SESSION['registrations'];
+
 $updID = '';
 $fnamID = '';
 $lnamID = '';
@@ -80,10 +81,13 @@ $fromCC = 'sheila_honey_5@hotmail.com';
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
 $toCC2 = $webmaster;
-$toCC3 = $treasurer;
+// $toCC3 = $treasurer;
+$toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 $mailAttachment = ''; 
+$mailAttachment2 = ''; 
+    
 $emailBody = "An event Registration has been modified by an administrator:<br>";
 $replyTopic = "SBDC Event Registration Update ";
 
@@ -95,11 +99,12 @@ $replyTopic = "SBDC Event Registration Update ";
         $useridID = "userid".$reg['id'];
         $messID = "mess".$reg['id'];
         $paidID = "paid".$reg['id'];
+        $dwopID = "dwop".$reg['id'];
         $dddinID = "dddin".$reg['id'];
         $chID = "ch".$reg['id'];
         $sbID = "sb".$reg['id'];
         $drID = "dr".$reg['id'];
-        
+ 
         if (isset($_POST["$updID"])) {
    
             $eventRegBefore->id = $reg['id'];
@@ -117,6 +122,12 @@ $replyTopic = "SBDC Event Registration Update ";
                 $eventReg->paid = $_POST["$paidID"];
             } else {
                 $eventReg->paid = $reg['paid'];
+            }
+            if (isset($_POST["$dwopID"])) {
+      
+                $eventReg->dwop = $_POST["$dwopID"];
+            } else {
+                $eventReg->dwop = $reg['dwop'];
             }
             $eventReg->message = $_POST["$messID"];
           
@@ -181,10 +192,11 @@ $replyTopic = "SBDC Event Registration Update ";
                     } //rowcount
                     if (isset($_POST["$drID"])) {
                         $eventReg->dietaryrestriction = $_POST["$drID"];
-                    }
- 
+                     }
+
+                     }
+               
             $eventReg->update();
-        }
     } 
  
  
@@ -231,12 +243,13 @@ $emailBody .= "<br>Meal Choice: ".$eventReg->mealchoice;
                         $replyEmail,
                         $replyTopic,
                         $mailAttachment,
+                        $mailAttachment2,
                         $toCC2,
                         $toCC3,
                         $toCC4,
                         $toCC5
                     );
-                    $emailBody = "Thanks for registering for the following events:<br>";  
+         
                 } else {
                     echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
                 }       

@@ -63,8 +63,9 @@ if (!isset($_POST['SubmitResetPwd'])) {
   // set up for email
   $fromEmailName = 'SBDC Ballroom Dance Club';
   $toName = $user->email;
-  $mailSubject = 'SBDC Forgotten Password';
+  $mailSubject = 'SBDC Reset Forgotten Password';
   $mailAttachment = null;
+   $mailAttachment2 = null;
   $toCC2 = null;
   $toCC3 = null;
   $toCC4 = null;
@@ -85,6 +86,7 @@ if (!isset($_POST['SubmitResetPwd'])) {
     $replyEmail,
     $replyTopic,
     $mailAttachment,
+    $mailAttachment2,
     $toCC2,
     $toCC3,
     $toCC4,

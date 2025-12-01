@@ -72,6 +72,7 @@ foreach($allOptions as $option) {
 }
 
 $mailAttachment = '';
+$mailAttachment2 = '';
 $toCC2 = $webmaster; 
 // $toCC2 = '';
 // $toCC4 = '';
@@ -156,6 +157,7 @@ $toCC5 = '';
             $replyEmail,
             $replyTopic,
             $mailAttachment,
+            $mailAttachment2,
             $toCC2,
             $toCC3,
             $toCC4,
@@ -262,6 +264,7 @@ require 'includes/emailSignature.php';
          $replyEmail,
          $replyTopic,
          $mailAttachment,
+         $mailAttachment2,
          $toCC2,
          $toCC3,
          $toCC4,
