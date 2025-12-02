@@ -108,7 +108,7 @@ date_default_timezone_set("America/Phoenix");
 
   <h4>Just click on the form below, print it and then fill it in and send it along with member dues to the treasurer of our club (name and address is on the form).</h4>
         <h4><a  
-            href='img/SBDC Membership Form 2025.pdf' target='_blank'>
+            href='img/SBDC Membership Form 2026.pdf' target='_blank'>
             Click for Membership Form</a></h4>
     <h4> As soon as your information is entered, you'll get your userid and password and can login to the website to register for events and classes.</h4>  
    

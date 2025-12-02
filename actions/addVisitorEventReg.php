@@ -71,7 +71,7 @@ $toCC2 = '';
 $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
-$mailAttachment = '../img/SBDC Membership Form 2025.pdf'; 
+$mailAttachment = '../img/SBDC Membership Form 2026.pdf'; 
 $mailAttachment2 = '';
 $replyTopic = "SBDC Event Registration";
 
