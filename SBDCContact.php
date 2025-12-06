@@ -33,33 +33,33 @@ require_once 'includes/siteemails.php';
         echo '<h1 class="section-header">To correspond with one of the board members or directors, Just click on any of the names below: </h1>';
 
         echo '<ul>';
-            echo '<li class="li-none li-large">President
-                   &rarr; <a href="mailto:'.$president.'?subject=SBDC Contact Info">
-                       Ann Pizzitola</a></li>';
-            echo '<li class="li-none li-large">Vice President  
-                &rarr;  <a href="mailto:'.$vicePresident.'?subject=SBDC Info">
-                Lynne Pendlebury</a></li>';
-            echo '<li class="li-none li-large">Questions about costs of events or membership 
-                  &rarr; <a href="mailto:'.$treasurer.'?subject=SBDC Contact Info">
-                  Linda Shamburg</a></li>';
-            echo '<li class="li-none li-large">General Questions    
-                &rarr; <a href="mailto:'.$secretary.'?subject=SBDC Contact Info">
-                Pat Knepler</a></li>';
-            echo '<li class="li-none li-large">Questions about Classes   
-                &rarr; <a href="mailto:'.$danceDirector.'?subject=SBDC Contact Info">
-                Dale Pizzitola</a></li>';
-            echo '<li class="li-none li-large">Questions about Volunteering   
-                &rarr; <a href="mailto:'.$volunteerDirector.'?subject=SBDC Contact Info">
-                Valerie Green</a></li>';
-           echo '<li class="li-none li-large">Questions about Music or DJing 
-                &rarr; <a href="mailto:'.$djDirector.'?subject=SBDC Contact Info">
-                Rick Baumgartner</a></li>';
-            echo '<li class="li-none li-large">Questions about the Website   
-                &rarr; <a href="mailto:'.$webmaster.'?subject=SBDC Contact Info">
-                Sheila Honey</a></li>';
-            echo '<li class="li-none li-large">Registering for or questions about events or classes   
-                &rarr; <a href="mailto:countmein@sbballroomdance.com?subject=SBDC Contact Info">
-                countmein@sbballroomdance.com</a></li>';
+            echo '<li class="li-none li-large li-left">
+                    <a href="mailto:'.$president.'?subject=SBDC Contact Info">
+                       Ann Pizzitola</a>, President</li>';
+            echo '<li class="li-none li-large li-left">  
+                <a href="mailto:'.$vicePresident.'?subject=SBDC Info">
+                Lynne Pendlebury</a>, Vice President, Questions about Events</li>';
+            echo '<li class="li-none li-large li-left">
+                <a href="mailto:'.$treasurer.'?subject=SBDC Contact Info">
+                  Linda Shamburg</a>, Treasurer, Questions about costs of events or membership </li>';
+            echo '<li class="li-none li-large li-left">   
+                <a href="mailto:'.$secretary.'?subject=SBDC Contact Info">
+                Pat Knepler</a>, Secretary, General Questions </li>';
+            echo '<li class="li-none li-large li-left"> 
+                <a href="mailto:'.$danceDirector.'?subject=SBDC Contact Info">
+                Dale Pizzitola</a>, Dance Director, Questions about Class</li>';
+            echo '<li class="li-none li-large li-left">
+                <a href="mailto:'.$volunteerDirector.'?subject=SBDC Contact Info">
+                Valerie Green</a>, Questions about Volunteering   </a></li>';
+           echo '<li class="li-none li-large li-left">
+                <a href="mailto:'.$djDirector.'?subject=SBDC Contact Info">
+                Rick Baumgartner</a>, DJ Director, Questions about Music or DJing </li>';
+            echo '<li class="li-none li-large li-left">  
+               <a href="mailto:'.$webmaster.'?subject=SBDC Contact Info">
+                Sheila Honey</a>, Webmaster, Questions about the Website </li>';
+            echo '<li class="li-none li-large li-left"> 
+                <a href="mailto:countmein@sbballroomdance.com?subject=SBDC Contact Info">
+                countmein@sbballroomdance.com</a> Registering for or questions about events or class</li>';
   
         echo '</ul>';
         echo '<br><br>';

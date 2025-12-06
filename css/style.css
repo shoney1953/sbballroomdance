@@ -44,6 +44,7 @@
   --purple-contrast3: rgb(95,82,134);
   --table-novice: rgb(68, 146, 120);
   --table-intermediate: rgb(69, 38, 225);
+  --input-focus:  rgb(31, 220, 157);
 }
 * {
   box-sizing: border-box;
@@ -360,6 +361,12 @@ hr {
   list-style: none;
   margin: 30px 10px 10px 10px;
   padding: 10px 10px 10px 10px;
+}
+.li-left {
+    text-align: left;
+  align-items: left;
+  justify-content: left;
+  margin-bottom: 3px;
 }
 .list-box {
   text-align: left;
@@ -713,6 +720,11 @@ input[type="text"] {
   /* border-radius: 2px; */
   box-sizing: border-box;
 }
+input[type="text"]:focus {
+
+  border-color: var(--input-focus);
+  outline:none;
+}
 input[type="email"] {
   width: 100%;
   max-width: 100%;
@@ -738,6 +750,10 @@ select {
 
   box-sizing: border-box;
 }
+select:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 input[type="password"] {
   width: 100%;
   max-width: 100%;
@@ -745,6 +761,10 @@ input[type="password"] {
   margin: 2px 2px;
   /* border-radius: 2px; */
   box-sizing: border-box;
+}
+input[type="password"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
 }
 input[type="checkbox"] {
 
@@ -755,7 +775,10 @@ input[type="checkbox"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
+input[type="checkbox"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 input[type="number"] {
   width: 100%;
     max-width: 100%;
@@ -763,6 +786,10 @@ input[type="number"] {
   margin: 2px 2px;
   /* border-radius: 2px; */
   box-sizing: border-box;
+}
+input[type="number"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
 }
 input[type="date"] {
   width: 100%;
@@ -772,6 +799,10 @@ input[type="date"] {
   /* border-radius: 2px; */
   box-sizing: border-box;
 }
+input[type="date"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 input[type="tel"] {
   width: 100%;
    max-width: 100%;
@@ -779,6 +810,14 @@ input[type="tel"] {
   margin: 2px 2px;
   /* border-radius: 2px; */
   box-sizing: border-box;
+}
+input[type="tel"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
+input[type="date"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
 }
 input[type="textbox"] {
   width: 80%;
@@ -788,6 +827,10 @@ input[type="textbox"] {
   /* border-radius: 2px; */
   box-sizing: border-box;
 }
+input[type="textbox"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 input[type="search"] {
   width: 80%;
   max-width: 100%;
@@ -796,6 +839,10 @@ input[type="search"] {
   /* border-radius: 2px; */
   box-sizing: border-box;
 }
+input[type="search"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 textarea  {
   width: 100%;
   max-width: 100%;
@@ -803,6 +850,10 @@ textarea  {
   margin: 2px 2px;
   /* border-radius: 2px; */
   box-sizing: border-box;
+}
+textarea:focus {
+  border-color: var(--input-focus);
+  outline: none;
 }
 input[type="text"].text-small {
   width: 50%;
@@ -813,6 +864,10 @@ input[type="text"].text-small {
     box-sizing: border-box;
 
 }
+input[type="text"].text-small:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 input[type="text"].text-large {
   width: 100%;
   max-width: 100%;
@@ -820,6 +875,10 @@ input[type="text"].text-large {
     margin: 2px 2px;
     /* border-radius: 2px; */
   box-sizing: border-box;
+}
+input[type="text"].text-large:focus {
+  border-color: var(--input-focus);
+   outline: none;
 }
 /*  table qualifiers */
 td input[type="text"] {
@@ -830,6 +889,14 @@ td input[type="text"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
+td input[type="password"].text-small:focus {
+  border-color: var(--input-focus);
+   outline: none;
+}
+td input[type="password"].text-small:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 td input[type="password"] {
   width: 100%;
   max-width: 100%;
@@ -837,6 +904,10 @@ td input[type="password"] {
   margin: 4px 4px;
   border-radius: 4px;
   box-sizing: border-box;
+}
+td input[type="password"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
 }
 td input[type="checkbox"] {
   width: 20px;
@@ -847,6 +918,10 @@ td input[type="checkbox"] {
   border-radius: 4px;
   box-sizing: border-box;
 }
+td input[type="checkbox"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 td input[type="number"] {
   width: 100%;
   max-width: 100%;
@@ -855,6 +930,10 @@ td input[type="number"] {
   border-radius: 2px;
   box-sizing: border-box;
 }
+td input[type="number"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 td input[type="date"] {
    width: 100%;
    max-width: 100%;
@@ -862,6 +941,10 @@ td input[type="date"] {
   margin: 2px 2px;
   border-radius: 2px;
   box-sizing: border-box;
+}
+td input[type="date"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
 }
 td input[type="email"] {
   width: 100%;
@@ -873,7 +956,10 @@ td input[type="email"] {
 
   box-sizing: border-box;
 }
-
+td input[type="email"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 td input[type="textbox"] {
   width: 100%;
     max-width: 100%;
@@ -883,7 +969,10 @@ td input[type="textbox"] {
 
   box-sizing: border-box;
 }
-
+td input[type="textbox"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 td input[type="search"] {
   width: 100%;
     max-width: 100%;
@@ -893,7 +982,10 @@ td input[type="search"] {
 
   box-sizing: border-box;
 }
-
+td input[type="search"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 td input[type="select"] {
   width: 100%;
     max-width: 100%;
@@ -903,6 +995,10 @@ td input[type="select"] {
   border-radius: 4px;
 
   box-sizing: border-box;
+}
+td input[type="select"]:focus {
+  border-color: var(--input-focus);
+  outline: none;
 }
 
 .form-grid2 {
@@ -1195,6 +1291,10 @@ button a:active {
   line-height: 1.5;
   background-color: var(--white3);
 }
+.select:focus {
+  border-color: var(--input-focus);
+  outline: none;
+}
 .section {
   background-color: rgb(43, 32, 43);
   text-align: center;
@@ -1420,6 +1520,10 @@ iframe {
     padding: 2px 2px;
     margin: 2px 2px;
     box-sizing: border-box;
+  }
+  input[type="text"]:focus {
+   border-color: var(--input-focus);
+     outline: none;
   }
   input[type="checkbox"] {
     width: 20px;
