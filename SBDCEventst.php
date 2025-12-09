@@ -82,7 +82,7 @@ $hr = '';
                 // echo '<div class="form-container">';
 
                 echo '<fieldset>';
-                echo "<legend  title='Click for complete event description'><a  href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." ".$event['eventdate']."</a></legend>";
+                echo "<legend  title='Click for complete event description'><a  href='".$ed."'>".$event['eventtype'].": &nbsp;&nbsp;  ".$event['eventname']." &nbsp;&nbsp;  on &nbsp; ".$event['eventdate']."</a></legend>";
 
 
                   if ($event['eventform']) {          

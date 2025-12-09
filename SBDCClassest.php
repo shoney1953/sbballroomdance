@@ -17,6 +17,7 @@ $compareDate = $currentDate->format('Y-m-d');
 $numActions = 0;
 $gotClassReg = 0;
 $gotPartnerClassReg = 0;
+$classLiteral = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,8 +64,10 @@ $gotPartnerClassReg = 0;
 
                 //  echo '<div class="form-container">';
                 echo '<fieldset>';
+                $classLiteral = $class['classlevel'].': &nbsp;&nbsp;  '.$class['classname']."  &nbsp;&nbsp;   on &nbsp; ".$class['date'];
 
-                 echo "<legend title='Click for complete class description'><a href='".$cd."'>".$class['classlevel'].": ".$class['classname']." on ".$class['date']."</a></legend>";
+                //  echo "<legend title='Click for complete class description'><a href='".$cd."'>  ".$class['classlevel'].":     ".$class['classname']."      on ".$class['date']."</a></legend>";
+                 echo "<legend title='Click for complete class description'><a href='".$cd."'> $classLiteral</a></legend>";
  
                   if (isset($_SESSION['username'])) {
                     echo "<h5 class='form-title-left' title='click for pdf report'><form  target='_blank' name='reportClassForm'   method='POST' action='actions/reportClass.php'> ";

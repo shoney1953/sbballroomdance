@@ -195,7 +195,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
     $showReg = 0;
     // echo '<div class="form-container">';
     echo '<fieldset>';
-    echo '<legend>'.$event['eventtype'].': '.$event['eventname'].' on '.$event['eventdate'].'</legend>';
+    echo '<legend>'.$event['eventtype'].':   '.$event['eventname'].'    on '.$event['eventdate'].'</legend>';
     echo '<div class="form-grid">';
 
 //    echo '<div class="form-item">';
