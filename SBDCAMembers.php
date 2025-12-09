@@ -184,7 +184,9 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
 if ($_SESSION['role'] === 'SUPERADMIN') {
         echo "<div class='container-section' name='users'>  <br><br>";
         echo '<section id="users"  class="content">';
-        echo ' <h3 class="section-header">Maintain Members</h3> ';
+        // echo ' <h3 class="section-header">Maintain Members</h3> ';
+        echo '<br><br><br><fieldset>';
+        echo '<legend>Member Actions</legend>';
         echo '<div class="form-grid2">';
             echo "<div class='form-grid-div'>";
             echo "<form method='POST' action='actions/maintainUser.php'>"; 
@@ -192,12 +194,17 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '</form>'    ;   
             echo '</div> ';   
             echo '</div> ';  
-            echo '<div class="form-grid6">';
+            echo '<div class="form-grid">';
             echo '<div class="form-grid-div">';
             echo '<form target="_blank" method="POST" action="actions/reportUser.php">'; 
             echo '<button type="submit" name="submitUserRep">Report Members</button>';   
             echo '</form>';
             echo '</div> '; 
+            echo '<div class="form-grid-div">';
+            echo '<form target="_blank" method="POST" action="actions/membersCsv.php">'; 
+            echo '<button type="submit" name="submitCreateCsv">Create CSV file of members</button>';   
+            echo '</form>'    ;          
+            echo '</div> ';  
             echo '<div class="form-grid-div">';
             echo '<form target="_blank" method="POST" action="actions/reportUserHoa.php">'; 
             echo '<button type="submit" name="submitHOAreport">Report Members by HOA</button>';   
@@ -232,11 +239,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
             echo '</form>'    ;          
             echo '</div> ';   
           
-            echo '<div class="form-grid-div">';
-            echo '<form target="_blank" method="POST" action="actions/membersCsv.php">'; 
-            echo '<button type="submit" name="submitCreateCsv">Create CSV file of members</button>';   
-            echo '</form>'    ;          
-            echo '</div> ';   
+ 
          
             echo '<div class="form-grid-div">';
             echo '<form target="_blank" method="POST" action="actions/reportRoboDJUsage.php">'; 
@@ -253,7 +256,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '</div>';
         echo '</div>';
         echo '</form>';
-     
+       echo '</fieldset>';
         echo '<table>';
         echo '<thead>';
         echo '<tr>';

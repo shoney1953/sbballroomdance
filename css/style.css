@@ -460,7 +460,28 @@ hr {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+legend {
+  font-weight: bold;
+  background: rgb(55, 94, 58);
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  
+}
+fieldset {
+  width: 100%;
+  padding: 2px;
+  margin: 0 auto;
+}
 
+fieldset legend a:link,
+fieldset legend a:visited,
+fieldset legend a:hover,
+fieldset legend a:active
+ {
+     text-decoration: none;
+  color: white;
+}
 .form-container {
   max-width: 90%;
   width: 90%;
@@ -1099,6 +1120,9 @@ td input[type="select"]:focus {
   text-align: left;
   margin-left: 25px;
   padding: 20px 20px 20px 20px;
+}
+input:hover {
+  background-color: var(--white3);
 }
 h2 a:link,
 h2 a:visited {

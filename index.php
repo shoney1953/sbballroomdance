@@ -351,11 +351,9 @@ if ($rowCount > 0) {
     
     
           
-      if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
+  
        echo '<li><a title="List of Upcoming Classes" href="SBDCClassest.php">Upcoming Classes</a></li>';
-      } else {
-        echo '<li><a title="List of Upcoming Classes" href="SBDCClasses.php">Upcoming Classes</a></li>';
-      }
+  
       ?>
           
 
@@ -387,7 +385,7 @@ if ($rowCount > 0) {
             if ($_SESSION['role'] != 'visitor') {
               
               echo ' <li><a title="List of SaddleBrooke Ballroom Dance Club Members" href="SBDCMemberDirectory.php">Member Directory</a></li>';
-             echo ' <li><a title="Volunteer Nomination Form" href="https://drive.google.com/file/d/1IidsVacsyALADJhXKUVwaPahdYxI0XIK/view?usp=drive_link">Volunteer Nomination Form</a></li>';
+            //  echo ' <li><a title="Volunteer Nomination Form" href="https://drive.google.com/file/d/1IidsVacsyALADJhXKUVwaPahdYxI0XIK/view?usp=drive_link">Volunteer Nomination Form</a></li>';
               echo '<li><a title="List of Volunteer Activites" href="#">Volunteer &dtrif;</a>';
               echo '<ul >';
                   echo '<li><a href="SBDCDJInfo.php">DJ Info</a></li>';

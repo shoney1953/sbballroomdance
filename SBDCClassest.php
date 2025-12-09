@@ -61,11 +61,13 @@ $gotPartnerClassReg = 0;
                  $cd .= $class["id"];
                  $numActions = 0;
 
-                 echo '<div class="form-container">';
-                 echo "<h4 class='form-title-left' title='Click for complete class description'><a href='".$cd."'>".$class['classlevel'].": ".$class['classname']." on ".$class['date']."</a></h4>";
+                //  echo '<div class="form-container">';
+                echo '<fieldset>';
+
+                 echo "<legend title='Click for complete class description'><a href='".$cd."'>".$class['classlevel'].": ".$class['classname']." on ".$class['date']."</a></legend>";
  
                   if (isset($_SESSION['username'])) {
-                    echo "<p><form  target='_blank' name='reportClassForm'   method='POST' action='actions/reportClass.php'> ";
+                    echo "<h5 class='form-title-left' title='click for pdf report'><form  target='_blank' name='reportClassForm'   method='POST' action='actions/reportClass.php'> ";
                     echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
                     echo "<button class='button-tiny' type='submit'>Report</button></p>";
                     echo '</form>';
@@ -176,7 +178,8 @@ $gotPartnerClassReg = 0;
                        echo '</form>';
                 
          
-              echo "</div>"; // end of form container
+              // echo "</div>"; // end of form container
+              echo '</fieldset>';
                 
             } // end of foreach
  

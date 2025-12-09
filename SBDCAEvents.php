@@ -193,20 +193,22 @@ echo '<form method="POST" action="actions/processEvents.php">';
     $class_month = substr($event['eventdate'], 5, 2);
     $class_year = substr($event['eventdate'], 0, 4);
     $showReg = 0;
-    echo '<div class="form-container">';
+    // echo '<div class="form-container">';
+    echo '<fieldset>';
+    echo '<legend>'.$event['eventtype'].': '.$event['eventname'].' on '.$event['eventdate'].'</legend>';
     echo '<div class="form-grid">';
 
+//    echo '<div class="form-item">';
+//    echo "<h4 class='form-title'>Name: ".$event['eventname']." </h4>";
+//    echo '</div>';
+//    echo '<div class="form-item">';
+//    echo "<h4 class='form-title'>Type: ".$event['eventtype']."</h4>";
+//    echo '</div>';
+//    echo '<div class="form-item">';
+//    echo "<h4 class='form-title'>Date: ".$event['eventdate']."</h4>";
+//    echo '</div>';
    echo '<div class="form-item">';
-   echo "<h4 class='form-title'>Name: ".$event['eventname']." </h4>";
-   echo '</div>';
-   echo '<div class="form-item">';
-   echo "<h4 class='form-title'>Type: ".$event['eventtype']."</h4>";
-   echo '</div>';
-   echo '<div class="form-item">';
-   echo "<h4 class='form-title'>Date: ".$event['eventdate']."</h4>";
-   echo '</div>';
-   echo '<div class="form-item">';
-   echo "<h4 class='form-title'>Cost: ".$event['eventcost']."</h4>";
+   echo "<h4 class='form-title'>Minimum Cost: ".$event['eventcost']."</h4>";
    echo '</div>';
    echo '<div class="form-item">';
    echo "<h4 class='form-title'>ID: ".$event['id']."</h4>";
@@ -362,7 +364,8 @@ echo '<form method="POST" action="actions/processEvents.php">';
         echo '</div>';
     }
  
-   echo '</div>';
+//    echo '</div>';
+echo '</fieldset>';
    }
    echo '<button type="submit" name="submitEventProcess">Process Events</button>'; 
 

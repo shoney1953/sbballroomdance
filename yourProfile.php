@@ -77,8 +77,10 @@ if ($user->partnerId !== 0) {
     <h3>Member Profile</h3>
     <form method='POST' action='actions/updateUserInfo.php'>
   
-    <div class="form-container">
-    <h4 class="form-title">Your Profile Information</h4>
+    <!-- <div class="form-container"> -->
+    <fieldset>
+        <legend>Update Your Profile Information</legend>
+    <!-- <h4 class="form-title">Your Profile Information</h4> -->
         <div class="form-grid">
             <div class="form-item">
             <h4 class="form-item-title">First Name</h4>
@@ -187,11 +189,13 @@ if ($user->partnerId !== 0) {
       
         <button type="submit" name="submitUpdateUser">Update Your Information</button>
         </form>
-    </div>
-        
-        <div class="form-container">
+    <!-- </div> -->
+        </fieldset>
+        <fieldset>
+            <legend>Change Your Password</legend>
+        <!-- <div class="form-container"> -->
         <form method="POST" action="actions/updateUserPass.php">
-        <h4 class="form-title">Change Your Password</h4>
+        <!-- <h4 class="form-title">Change Your Password</h4> -->
         <div class="form-grid">
             <div class="form-item">
             <h4 class="form-item-title">Enter Your Current Password</h4>
@@ -266,8 +270,8 @@ if ($user->partnerId !== 0) {
         <input type="hidden" name="id" value='<?php echo $user->id ?>'>   
         <button type='submit' name='SubmitPassChange'>Change Your Password</button>
         </form>
-        </div>
-
+        <!-- </div> -->
+            </fieldset>
  
   
        

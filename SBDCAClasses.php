@@ -175,15 +175,17 @@ if ($rowCount > 0) {
                 $class_month = substr($class['date'], 5, 2);
                 $class_year = substr($class['date'], 0, 4);
                 $showReg = 0;
-                echo "<div class='form-container'>";
+                // echo "<div class='form-container'>";
+                echo '<fieldset>';
+                echo '<legend>'.$class['classname'].' '.$class['classlevel'].' '.$class['date'].'</legend>';
                 echo "<div class='form-grid'>";
-                echo "<h4 class='form-title'>Name: ".$class['classname']."</h4>";
-                echo "<h4 class='form-title'>Level: ".$class['classlevel']."</h4>";
-                echo "<h4 class='form-title'>Start Date: ".$class['date']."</h4>";
+                // echo "<h4 class='form-title'>Name: ".$class['classname']."</h4>";
+                // echo "<h4 class='form-title'>Level: ".$class['classlevel']."</h4>";
+                // echo "<h4 class='form-title'>Start Date: ".$class['date']."</h4>";
                 $hr = 'classMem.php?id=';
                 $hr .= $class["id"];
               
-                echo "<h4 class='form-title'>
+                echo "<h4 class='form-title' title='click to see registrants'>
                        Number Registered: <a href='".$hr."'>".$class['numregistered']."</a></h4>";
                 
                 echo "</div>"; // end of form grid
@@ -271,7 +273,8 @@ if ($rowCount > 0) {
                 }
 
 
-                echo "</div>"; // end of form container
+                // echo "</div>"; // end of form container
+                echo '</fieldset>';
             }
             echo '<button type="submit" name="submitClassProcess">Process Classes</button><br><br>'; 
             echo '</form>';

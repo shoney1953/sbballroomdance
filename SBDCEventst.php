@@ -79,31 +79,30 @@ $hr = '';
 
                 $comparedateTS = strtotime($compareDate);
                 $eventRegEnd = strtotime($event['eventregend']);
-                echo '<div class="form-container">';
-                   $hr = 'eventMem.php?id=';
-                   $hr .= $event["id"];
+                // echo '<div class="form-container">';
+
+                echo '<fieldset>';
+                echo "<legend  title='Click for complete event description'><a  href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." ".$event['eventdate']."</a></legend>";
+
 
                   if ($event['eventform']) {          
                     if (substr($event['eventform'],0,4) === 'http') {
-                          echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a>
-                            -----> <a href='".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></h4>";
+                          echo "<h4 class='form-title-left'> <a href='".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></a></h4>";
                     } else {
-                      echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a>
-                            -----> <a href='uploads/forms/".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></h4>";
+                      echo "<h4 class='form-title-left'> <a href='uploads/forms/".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></a></h4>";
                     }
                       
-                    } else {
-                       echo "<h4 class='form-title-left' title='Click for complete event description'><a href='".$ed."'>".$event['eventtype'].": ".$event['eventname']." on ".$event['eventdate']."</a>
-                      </h4>";
-                    }
-                    echo "<h5 class='form-title-left'> <a href='".$hr."'> Number Registered: ".$event['eventnumregistered']."</a></h5>";
+                    } 
+                   $hr = 'eventMem.php?id=';
+                   $hr .= $event["id"];
+                    echo "<h5 class='form-title-left' title='click to see attendees'> <a href='".$hr."'> Number Registered: ".$event['eventnumregistered']."</a></h5>";
                   if (isset($_SESSION['username'])) {
                       $comparedateTS = strtotime($compareDate);
                         $eventRegOpen = strtotime($event['eventregopen']);
                     if ($comparedateTS >= $eventRegOpen) {
-                    echo "<p><form  target='_blank' name='reportEventForm'   method='POST' action='actions/reportEvent.php'> ";
+                    echo "<h5 class='form-title-left'><form  target='_blank' name='reportEventForm'   method='POST' action='actions/reportEvent.php'> ";
                     echo "<input type='hidden' name='eventId' value='".$event['id']."'>"; 
-                    echo "<button class='button-tiny' type='submit'>Report</button></p>";
+                    echo "<button class='button-tiny' type='submit' title='click to get a pdf report'>Report</button></p>";
                     }
                     echo '</form>';
                
@@ -404,8 +403,8 @@ $hr = '';
                        echo '</div>';                     
                        echo '</form>';
                 
-         
-              echo "</div>"; // end of form container
+              echo "</fieldset>";
+              // echo "</div>"; // end of form container
                 
             } // end of foreach
  

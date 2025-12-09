@@ -30,6 +30,7 @@ date_default_timezone_set("America/Phoenix");
    <h4>If you are a member and having trouble logging on     
          <a href="faq.php">Click to See Our Frequently Asked Questions</a>, or 
        <a href="mailto:'.$webmaster.'?subject=SBDC Login Info"> Click to contact Webmaster</a></h4>
+       <br><br>
         <?php
         if (isset($_GET['error'])) {
             echo '<div class="container-error">';
@@ -42,14 +43,15 @@ date_default_timezone_set("America/Phoenix");
                 ?>
           
         <div class="form-grid6">
-        <div class="form-grid-div">
-        <h4 class="section-header">SBDC MEMBERS Please Log in here</h4>
+     <div class="form-grid-div"> 
+       <!-- <h4 class="section-header">SBDC MEMBERS Please Log in here</h4>  -->
 
       
             <form method="POST" action="actions/logInact.php">
                
-
-                <label for="username">Member User Name or Email</label><br>
+              <fieldset>
+                <legend> SBDC MEMBERS Please Log in here</legend>
+                <br><label for="username">Member User Name or Email</br>
                 <input type="text" name="username" title="Your User Name will be either your email or your first name and last initial 
             with the first letter of your first name and first letter of your last name capitalized." required><br>
                 <label for="password">Enter Password</label><br>
@@ -75,23 +77,26 @@ date_default_timezone_set("America/Phoenix");
                 }
                 </script>
                 <br>
-                <button type="submit" name="SubmitLogIN">Submit</button><br>              
+                <button type="submit" name="SubmitLogIN">Submit</button><br>      
+                
         </form>
        
         <br>
         
-              <a style="font-weight: bold; font-size: 16px" href="forgotPassword.php"><em>Forgot Your Member Password?  Click to get a reset password email.</em></a>
-              <br><br><br>
+              <a style="font-weight: bold; font-size: 16px" href="forgotPassword.php"><Click>Forgot Your Member Password? <br>Click here to get a reset password email. </em></a>
+              <p>This email may go to your Spam or Junk folders, so please check those folders if you do not see the email.
+              <br><br>
               
-
+         </fieldset>    
         </div>
         <div class="form-grid-div">
         </div>
         <div class="form-grid-div">
-        <h4 class="section-header">Visitors Please Log in here.</h4>
+        <!-- <h4 class="section-header">Visitors Please Log in here.</h4> -->
             <form method="POST" action="actions/visitorAct.php">
-                     
-                <label for="firstname">Visitor First Name</label><br>
+                 <fieldset>
+                    <legend>VISITORS Please Log in here</legend>
+                <br><label for="firstname">Visitor First Name</br>
                 <input type="text" name="firstname" required><br>
                 <label for="lastname">Visitor Last Name</label><br>
                 <input type="text" name="lastname" required><br>
@@ -105,6 +110,7 @@ date_default_timezone_set("America/Phoenix");
                 <br>
                 <button type="submit" name="SubmitVisitorLogIN">Submit</button><br>
                 </div>
+                </fieldset>    
         </form>
         </div>
     </section>
