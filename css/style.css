@@ -467,6 +467,7 @@ legend {
   padding: 5px;
   border-radius: 4px;
   text-align: left;
+  width: 100%;
   
 }
 fieldset {
@@ -1162,6 +1163,8 @@ button:link {
 .button-tiny {
   width: 5%;
   border-radius: 2%;
+  font-size: 75%;
+  text-align: left;
 }
 .button-tiny:hover {
   width: 6%;
@@ -1500,7 +1503,9 @@ iframe {
     margin-bottom: 2px;
     font-size: 100%;
   }
-
+ button {
+    padding: 8px 15px;
+ }
   button:link,
   button:visited {
     /* background-color: darkviolet; */
@@ -1770,7 +1775,9 @@ iframe {
     margin-bottom: 2px;
     font-size: 80%;
   }
-
+button {
+     padding: 8px 15px;
+}
   button:link,
   button:visited {
     /* background-color: darkviolet; */

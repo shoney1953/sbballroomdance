@@ -144,7 +144,7 @@ if ($rowCount > 0) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v3">
     <title>SBDC Ballroom Dance - Event Administration</title>
 </head>
 <body>
@@ -195,18 +195,10 @@ echo '<form method="POST" action="actions/processEvents.php">';
     $showReg = 0;
     // echo '<div class="form-container">';
     echo '<fieldset>';
-    echo '<legend>'.$event['eventtype'].':  &nbsp;&nbsp; '.$event['eventname'].'  &nbsp;&nbsp;  on &nbsp;&nbsp;'.$event['eventdate'].'</legend>';
+    echo "<legend>".$event['eventdate']." &nbsp;&nbsp;&nbsp; ".$event['eventname']."  &nbsp;&nbsp&nbsp;".$event['eventtype']."</legend>";
     echo '<div class="form-grid">';
 
-//    echo '<div class="form-item">';
-//    echo "<h4 class='form-title'>Name: ".$event['eventname']." </h4>";
-//    echo '</div>';
-//    echo '<div class="form-item">';
-//    echo "<h4 class='form-title'>Type: ".$event['eventtype']."</h4>";
-//    echo '</div>';
-//    echo '<div class="form-item">';
-//    echo "<h4 class='form-title'>Date: ".$event['eventdate']."</h4>";
-//    echo '</div>';
+
    echo '<div class="form-item">';
    echo "<h4 class='form-title'>Minimum Cost: ".$event['eventcost']."</h4>";
    echo '</div>';

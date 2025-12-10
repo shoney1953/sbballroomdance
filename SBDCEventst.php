@@ -23,7 +23,7 @@ $hr = '';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v4">
     <title>SBDC Ballroom Dance - Events Test Mode</title>
 </head>
 <body>
@@ -82,7 +82,7 @@ $hr = '';
                 // echo '<div class="form-container">';
 
                 echo '<fieldset>';
-                echo "<legend  title='Click for complete event description'><a  href='".$ed."'>".$event['eventtype'].": &nbsp;&nbsp;  ".$event['eventname']." &nbsp;&nbsp;  on &nbsp; ".$event['eventdate']."</a></legend>";
+                echo "<legend  title='Click for complete event description'><a  href='".$ed."'>".$event['eventdate']." &nbsp;&nbsp;  ".$event['eventname']." &nbsp;&nbsp; ".$event['eventtype']."</a></legend>";
 
 
                   if ($event['eventform']) {          

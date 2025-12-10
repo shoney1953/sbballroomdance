@@ -131,7 +131,7 @@ if ($rowCount > 0) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v3">
     <title>SBDC Ballroom Dance - Class Administration</title>
 </head>
 <body>
@@ -177,7 +177,7 @@ if ($rowCount > 0) {
                 $showReg = 0;
                 // echo "<div class='form-container'>";
                 echo '<fieldset>';
-                echo '<legend>'.$class['classname'].' &nbsp;&nbsp; '.$class['classlevel'].'&nbsp;&nbsp; '.$class['date'].'</legend>';
+                echo '<legend>'.$class['date'].' &nbsp;&nbsp; '.$class['classname'].' &nbsp;&nbsp; '.$class['classlevel'].' </legend>';
                 echo "<div class='form-grid'>";
                 // echo "<h4 class='form-title'>Name: ".$class['classname']."</h4>";
                 // echo "<h4 class='form-title'>Level: ".$class['classlevel']."</h4>";

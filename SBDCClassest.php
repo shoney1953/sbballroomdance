@@ -25,7 +25,7 @@ $classLiteral = '';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="css/style.css?v3">
     <title>SBDC Ballroom Dance - Events Test Mode</title>
 </head>
 <body>
@@ -46,7 +46,7 @@ $classLiteral = '';
       
         <?php 
         if (isset($_SESSION['username'])) {
-              echo '<h4>If you do not see the action you need perform on the class, please contact the instructor.</h4>';
+              echo '<h4>If you do not see the action you need perform on the class, please contact the instructor.</h4><br>';
           }
         if (!(isset($_SESSION['username']))) {
           echo '<h4><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Click Here Login as a Member or Visitor to Register or Manage Event Registrations</a></h4>';
@@ -64,7 +64,7 @@ $classLiteral = '';
 
                 //  echo '<div class="form-container">';
                 echo '<fieldset>';
-                $classLiteral = $class['classlevel'].': &nbsp;&nbsp;  '.$class['classname']."  &nbsp;&nbsp;   on &nbsp; ".$class['date'];
+                $classLiteral = $class['date'].'&nbsp;&nbsp; '.$class['classname'].' &nbsp; &nbsp;'.$class['classlevel']   ;
 
                 //  echo "<legend title='Click for complete class description'><a href='".$cd."'>  ".$class['classlevel'].":     ".$class['classname']."      on ".$class['date']."</a></legend>";
                  echo "<legend title='Click for complete class description'><a href='".$cd."'> $classLiteral</a></legend>";
