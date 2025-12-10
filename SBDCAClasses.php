@@ -177,7 +177,7 @@ if ($rowCount > 0) {
                 $showReg = 0;
                 // echo "<div class='form-container'>";
                 echo '<fieldset>';
-                echo '<legend>'.$class['classname'].' '.$class['classlevel'].' '.$class['date'].'</legend>';
+                echo '<legend>'.$class['classname'].' &nbsp;&nbsp; '.$class['classlevel'].'&nbsp;&nbsp; '.$class['date'].'</legend>';
                 echo "<div class='form-grid'>";
                 // echo "<h4 class='form-title'>Name: ".$class['classname']."</h4>";
                 // echo "<h4 class='form-title'>Level: ".$class['classlevel']."</h4>";
