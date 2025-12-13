@@ -112,6 +112,7 @@ if (isset($_POST['submitArchive'])) {
                 'userid' => $userid,
                 'email' => $email,
                 'paid' => $paid,
+                'dwop' => $dwop,
                 'ddattenddinner' => $ddattenddinner,
                 'cornhole' => $cornhole,
                 'softball' => $softball,

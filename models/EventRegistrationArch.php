@@ -237,7 +237,7 @@ public function read_ByEmail($email) {
           $query = 'INSERT INTO ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           userid = :userid, paid = :paid, message = :message, preveventid = :preveventid,
-          ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance,
+          ddattenddinner = :ddattenddinner, ddattenddance = :ddattenddance, 
           registeredby = :registeredby, cornhole = :cornhole, softball = :softball,
           mealchoice = :mealchoice, dietaryrestriction = :dietaryrestriction, dwop = :dwop,
           paidonline = :paidonline, modifieddate = :modifieddate, modifiedby = :modifiedby,
