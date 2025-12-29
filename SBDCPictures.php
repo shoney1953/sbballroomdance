@@ -24,7 +24,7 @@ $sess = session_start();
 </nav>  
 
 
-   <section id="pictures" class="content">
+   <section id="pictures" >
    <br>  
        <h4 class="section-header">Links to Pictures from Past Events</h4>
 

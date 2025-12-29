@@ -311,13 +311,13 @@ hr {
   text-align: left;
   text-decoration: underline;
 }
-.motto-font {
+/* .motto-font {
   font-family: "Dancing Script", cursive;
   color: rgb(202, 86, 86);
   margin-bottom: 20px;
   border-radius: 5px;
-}
-.motto-img {
+} */
+/* .motto-img {
   width: 400px;
   margin-bottom: 20px;
 }
@@ -326,7 +326,7 @@ hr {
 
   border-radius: 15px;
   /* opacity: 1; */
-}
+/* } */ */
 .profile {
   background-image: var(--lg3);
 }
@@ -401,6 +401,7 @@ hr {
   align-items: center;
   justify-content: center;
   background-color: rgba(252, 237, 237, 0.2);
+  /* background-color: rgba(48, 75, 62, 0.2) ; */
 }
 .content h1,
 .content h2,
