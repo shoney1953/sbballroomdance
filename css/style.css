@@ -25,7 +25,7 @@
   /* silver pallet */
   --lg3: linear-gradient(
     180deg,
-    rgba(168, 168, 157, 0.1), 
+    rgba(168, 168, 157, 0.33), 
     rgba(183, 183, 177, 0.4),
     rgba(200, 200, 194, 0.6),
     rgba(221, 219, 208, 0.9)
@@ -174,17 +174,7 @@ hr {
   background-color: var(--white3);
 }
 .hero {
-  /*background-image: url("../img/moonrise\ opaque.jpg"); */
-  /*background-image: url("../img/morning1.jpg");  */
-  /*background-image: url("../img/halfmoonCrop.jpg"); */
-  /* background-image: url("../img/monsoon_small.jpg"); */
-  /* background-image: url("../img/Spring_small.jpg"); */
-  /* background-image: url("../img/painterly\ flowers.jpg");  */
-  /* background-image: url("../img/background\ collage.jpg");   */
-  /* background-image: url("../img/springback2.jpg");   */
-   /* background-image: url("../img/bluecollage1920.jpg");   */
-   /* background-image: url("../img/decembercollage8.jpg");  */
-  background-image: url("../img/bw.jpg");  
+
   height: 100vh;
   background-repeat: no-repeat;
   background-size: contain;
@@ -198,7 +188,7 @@ hr {
   margin-bottom: 10px;
   z-index: -2;
   animation-duration: 40s;
-  animation: change 40s infinite ease-in-out;
+  animation: carousel 40s infinite ease-in-out;
   transition:  40s infinite ease-in-out;
 }
 .hero::before {
@@ -220,7 +210,7 @@ hr {
   font-size: 20px;
   letter-spacing: 1px;
 }
-@keyframes change{
+@keyframes carousel{
   0%
   {
       background-image: url("../img/carousel14.jpg");

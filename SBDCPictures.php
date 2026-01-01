@@ -39,6 +39,13 @@ $sess = session_start();
        </ul>
        
        <div class="form-grid6">
+        <div class="form-grid-div">
+       <h4>2026</h4>
+         <ul>
+         <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2026-Photos">2026 Combined Photos</a></em></li>
+         <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2026-New-Years-Cruise">New Year's Cruise</a></li>
+         <ul>
+        </div>
        <div class="form-grid-div">
        <h4>2025</h4>
        <ul>
