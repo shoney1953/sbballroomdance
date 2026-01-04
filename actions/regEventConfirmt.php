@@ -18,6 +18,8 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
   $stripeSecretKey = $_SESSION['testkey'] ;
 }
 if ($_SESSION['testmode'] === 'YES') {
+  var_dump($_SESSION['prodkey']);
+  var_dump($_SESSION['testkey']);
   var_dump($YOUR_DOMAIN);
   var_dump($stripeSecretKey);
 }
