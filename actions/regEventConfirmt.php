@@ -17,12 +17,7 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
   $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';  
   $stripeSecretKey = $_SESSION['testkey'] ;
 }
-if ($_SESSION['testmode'] === 'YES') {
-  var_dump($_SESSION['prodkey']);
-  var_dump($_SESSION['testkey']);
-  var_dump($YOUR_DOMAIN);
-  var_dump($stripeSecretKey);
-}
+
 \Stripe\Stripe::setApiKey($stripeSecretKey);
 // header('Content-Type: application/json');
 
@@ -215,12 +210,10 @@ if (($tempReg->priceid2 !== NULL) && ($tempReg->priceid1 !== NULL)) {
   }
 
 }
-if ($_SESSION['testmode'] === 'YES') {
-  // var_dump($checkout_session);
-} else {
+
     header("HTTP/1.1 303 See Other");
     header("Location: " . $checkout_session->url);
-}
+
 
 
 
