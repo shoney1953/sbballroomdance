@@ -122,6 +122,7 @@ date_default_timezone_set("America/Phoenix");
              }
          
          }
+
          if ($_SESSION['partnerid'] > 0) {
             echo '<td colspan="3">';
             echo '<div class="form-item">';

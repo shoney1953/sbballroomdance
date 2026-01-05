@@ -81,7 +81,7 @@ function sendEmail($toEmail,
         if ($emailAttach) {
             $mail->addAttachment($emailAttach);         //Add attachments
         }
-           if ($emailAttach2) {
+        if ($emailAttach2) {
             $mail->addAttachment($emailAttach2);         //Add attachments
         } 
 

@@ -84,7 +84,7 @@ if ($rowCount > 0) {
         $member->id = $yp['id'];
 
         $member->update();
-       sendThanks($user1,$treasurer,$president,$webmaster,$renewalYear);
+       sendThanks($user1,$treasurer,$president,$webmaster,$renewalYear, $mailAttachment, $mailAttachment2);
        $noRenewalYear = 1;
     }
   }
@@ -96,7 +96,7 @@ if ($rowCount > 0) {
     $member->paid = 1;   
     $member->paidonline = 1;
     $member->create();
-    sendThanks($user1,$treasurer,$president,$webmaster,$renewalYear);
+    sendThanks($user1,$treasurer,$president,$webmaster,$renewalYear, $mailAttachment, $mailAttachment2);
 
    }
 } else {
@@ -106,7 +106,7 @@ if ($rowCount > 0) {
     $member->paid = 1;  
     $member->paidonline = 1;
     $member->create();
-    sendThanks($user1,$treasurer,$president,$webmaster,$renewalYear);
+    sendThanks($user1,$treasurer,$president,$webmaster,$renewalYear, $mailAttachment, $mailAttachment2);
 
 
 }
@@ -153,7 +153,7 @@ if ($tempOnlineRenewal->renewboth === '1') {
 
             $partner->update();
             $noRenewalYear = 1;
-            sendThanks($user2,$treasurer,$president,$webmaster,$renewalYear);
+            sendThanks($user2,$treasurer,$president,$webmaster,$renewalYear, $mailAttachment, $mailAttachment2);
           }
     }
 
@@ -164,7 +164,7 @@ if ($tempOnlineRenewal->renewboth === '1') {
         $partner->paidonline = 1;
  
         $partner->create();
-        sendThanks($user2,$treasurer,$president,$webmaster,$renewalYear);
+        sendThanks($user2,$treasurer,$president,$webmaster,$renewalYear, $mailAttachment, $mailAttachment2);
 
    }
 } else {
@@ -174,7 +174,7 @@ if ($tempOnlineRenewal->renewboth === '1') {
         $partner->paid = 1;
         $partner->paidonline = 1;
         $partner->create();
-        sendThanks($user2,$treasurer,$president,$webmaster,$renewalYear);
+        sendThanks($user2,$treasurer,$president,$webmaster,$renewalYear, $mailAttachment, $mailAttachment2);
     
 }
 
@@ -185,7 +185,7 @@ $tempOnlineRenewal->delete();
     $_SESSION['renewThisYear'] = 0;
     $_SESSION['renewNextYear'] = 0;
 
-function sendThanks($user,$treasurer,$president,$webmaster,$renewalYear) {
+function sendThanks($user,$treasurer,$president,$webmaster,$renewalYear,$mailAttachment, $mailAttachment2) {
 
     $fromEmailName = 'SBDC Ballroom Dance Club';
     $toName = $user->firstname." ".$user->lastname ;
