@@ -25,8 +25,9 @@ $directory = $_SESSION['directory']
 </nav>  
 <div class="container-section ">
     <section id="directory" class="content">
-
-        <h4 class="section-header">Membership Directory</h4><br>
+      <?php
+        echo '<h4 class="section-header">Membership Directory -- Current Number of Members: '.$_SESSION['num_members'].'</h4><br>';
+        ?>
     <?php
 
      if (isset($_SESSION['username'])) {
@@ -45,13 +46,13 @@ $directory = $_SESSION['directory']
    
         echo '<div class="form-grid-div">';
         echo '<form target="_blank" method="POST" action="actions/searchDirectory.php" >';
-        echo '<input type="search"  name="search" >';
+        echo '<input type="search"  name="search" placeholder="enter partial name or email to search" >';
         echo '<button type="submit" name="searchUser">Search Directory by Name or Email</button>';  
         echo '</form>';
      
      echo '</div>';
      echo '</div> ';    
-     echo '<h4>List of Members</h4>';
+     echo '<legend>List of Members</legend>';
         echo '<table>';
         echo '<thead>';
         echo '<tr>';
@@ -79,7 +80,7 @@ $directory = $_SESSION['directory']
              
         echo '</tbody>';
             echo '</table><br>';       
- 
+        echo '</legend>';
             echo '</section>';
                 }
             }

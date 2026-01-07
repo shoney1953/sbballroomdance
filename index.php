@@ -39,6 +39,7 @@ $num_classes = 0;
 $num_events = 0;
 $classes = [];
 $events = [];
+$num_users = 0;
 $upcomingClasses = [];
 $upcomingEvents = [];
 $directory = [];
@@ -232,6 +233,7 @@ if (isset($_SESSION['username'])) {
     
     $rowCount = $result->rowCount();
     $num_users = $rowCount;
+    $_SESSION['num_members'] = $num_users;
     $_SESSION['directory'] = [];
     if($rowCount > 0) {
     
@@ -445,7 +447,11 @@ if ($rowCount > 0) {
        
             <p>We are a primarily social club that provides dance lessons,
                  and opportunities to dance and socialize.</p><br>
-            <p>We are comprised of around 250 members from both SaddleBrooke HOA 1 and HOA 2.</p><br>
+         
+            <?php
+            echo '<p>We are comprised of around '.$num_users.' members from both SaddleBrooke HOA 1 and HOA 2.</p><br>';
+            ?>
+            <p>No previous dance experience is required, we can teach you how to dance!</p>
             <p>We're not <em>"strictly ballroom"</em>. Latin, Western, and Line Dance 
                are also generes of music we play at our dances. </p><br><br>
             <p>Click one of the menu tabs above for more information</p><br>

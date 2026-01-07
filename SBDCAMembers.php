@@ -186,7 +186,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
         echo '<section id="users"  class="content">';
         // echo ' <h3 class="section-header">Maintain Members</h3> ';
         echo '<br><br><br><fieldset>';
-        echo '<legend>Member Actions</legend>';
+        echo '<legend>Member Actions -- Number of Members: '.$num_users.'</legend>';
         echo '<div class="form-grid2">';
             echo "<div class='form-grid-div'>";
             echo "<form method='POST' action='actions/maintainUser.php'>"; 
