@@ -283,13 +283,13 @@ if ($uploadForm) {
 
       echo "<div class='form-item'>";
       echo "<h4 class='form-item-title'>Event Minimum Cost</h4>";
-      echo "<input type='text' class='text-small' name='".$evcostID."' value='".$event['eventcost']."' 
+      echo "<input type='text' class='text-small' name='".$evcostID."' value='".$event['eventcost']."' required
       title='Enter the Member Event Cost if any' >";
       echo '</div>';
 
       echo "<div class='form-item'>";
       echo "<h4 class='form-item-title'>Event Guest Minimum Cost</h4>";
-      echo "<input type='text' class='text-small' name='".$evgcostID."' value='".$event['eventguestcost']."' 
+      echo "<input type='text' class='text-small' name='".$evgcostID."' value='".$event['eventguestcost']."' required
       title='Enter the Guest Event Cost if any' >";
       echo '</div>';
 
@@ -544,12 +544,12 @@ echo '</form>';
           echo '</div>';
           echo "<div class='form-item'>";
           echo "<h4 class='form-item-title'>Event Minimum Cost</h4>";
-          echo "<input type='text' class='text-small' name='eventcost' value='".$event['eventcost']."' 
+          echo "<input type='text' class='text-small' name='eventcost' value='".$event['eventcost']."' required
               title='Enter the Member Minimum Cost if any' >";
           echo '</div>';
           echo "<div class='form-item'>";
           echo "<h4 class='form-item-title'>Event Guest Minimum Cost</h4>";
-          echo "<input type='text' class='text-small' name='eventguestcost' value='".$event['eventguestcost']."' 
+          echo "<input type='text' class='text-small' name='eventguestcost' value='".$event['eventguestcost']."' required
               title='Enter the Guest Minimum Cost if any' >";
           echo '</div>';
        
