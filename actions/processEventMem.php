@@ -316,4 +316,69 @@ foreach ($upcomingEvents as $event) {
             }
         }
 
+        function displayMealsB1() {
+             
+        // Select the element
+        if (document.getElementById('ddattm1').checked) {
+        var element1 = document.getElementById('memMealChoice1');
+        element1.classList.remove('hidden');
+
+        }
+        else {
+            var element1 = document.getElementById('memMealChoice1');
+            element1.classList.add('hidden');
+            }
+        }
+        function displayMealsB2() {
+     
+        // Select the element
+        if (document.getElementById('ddattm2').checked) {
+        var element1 = document.getElementById('memMealChoice2');
+        element1.classList.remove('hidden');
+        }
+        else {
+            var element1 = document.getElementById('memMealChoice2');
+            element1.classList.add('hidden');
+            }
+        }
+
+        function displayMealsBU1(id) {
+        var dddinID1 = "dddin"+id; 
+   
+ 
+        // Select the element
+        if (document.getElementById(dddinID1).checked) {
+    
+        var element1 = document.getElementById('memMealChoiceU1');
+        console.log(element1);
+        element1.classList.remove('hidden');
+        }
+        else {
+        
+            var element1 = document.getElementById('memMealChoiceU1');
+            console.log(element1);
+            element1.classList.add('hidden');
+
+            }
+        }
+        function displayMealsBU2(id) {
+        var dddinID2 = "dddin2"+id; 
+        console.log(dddinID2);
+
+        // Select the element
+        if (document.getElementById(dddinID2).checked) {
+    
+        var element1 = document.getElementById('memMealChoiceU2');
+           console.log(element2);
+        element1.classList.remove('hidden');
+        }
+        else {
+         console.log(element2);
+            var element1 = document.getElementById('memMealChoiceU2');
+            element1.classList.add('hidden');
+
+            }
+        }
+
+      
   </script>

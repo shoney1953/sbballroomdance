@@ -24,6 +24,7 @@ $partnerEventReg = new EventRegistration($db);
 $eventInst = new Event($db);
 $user = new User($db);
 $mealchoices = new DinnerMealChoices($db);
+$mChoices = [];
 $message = '';
 $result = 0;
 $danceCost = 0;
@@ -59,6 +60,7 @@ $mealid2 = 0;
 $mealproductid2 = '';
 $mealpriceid2 = '';
 $dietaryRestriction2 = '';
+$num_meals = 0;
 $drID1 = '';
 $drID2 = '';
 $id_int = 0;
@@ -72,9 +74,32 @@ if (!isset($_POST['submitAddRegs'])) {
      header($redirect); 
      exit;
 }
-
+ 
     $eventInst->id = $_POST['eventid'];
     $eventInst->read_single();
+      $result = $mealchoices->read_ByEventId($eventInst->id);
+
+                $rowCount = $result->rowCount();
+                $num_meals = $rowCount;
+                if ($rowCount > 0) {
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        $meal_item = array(
+                            'id' => $id,
+                            'mealname' => $mealname,
+                            'mealdescription' => $mealdescription,
+                            'eventid' => $eventid,
+                            'memberprice' => $memberprice,
+                            'guestprice' => $guestprice,
+                            'productid' => $productid,
+                            'priceid' => $priceid,
+                            'guestpriceid' => $guestpriceid
+                        );
+                        array_push($mChoices, $meal_item);              
+                    } // while
+
+                }   
+
     if (isset($_POST['mem1Chk'])) {
     $regFirstName1 = htmlentities($_POST['firstname1']);
     $regLastName1 = htmlentities($_POST['lastname1']);
@@ -89,7 +114,7 @@ if (!isset($_POST['submitAddRegs'])) {
        } else {
         $message = '';
        }
-      
+    var_dump($_POST)  ;
    if (isset($_POST['mem2Chk'])) {
    
     $regFirstName2 = htmlentities($_POST['firstname2']);
@@ -127,10 +152,41 @@ if (!isset($_POST['submitAddRegs'])) {
 
                 switch ($eventInst->eventtype) {
                   case "BBQ Picnic":
-                 
-                    if (isset($_POST['ddattm1'])) {
-                        $emailBody .= "You have chosen to attend dinner.<br>";
+             if ($user->getUserName($regEmail1)) {    
+                 $regUserid1 = $user->id;
+                  $mem1Partnerid = $user->partnerId;
+                  } 
+             if (isset($regEmail2))   {
+                    if ($user->getUserName($regEmail2)) {    
+                    $regUserid2 = $user->id;
+                    $mem2Partnerid = $user->partnerId;
+                  } 
+                  }
+                   if ($mem1Partnerid !== '0') {
+                      $eventReg->dwop = 0;
+                    } else {
+                      $eventReg->dwop = 1;
                     }
+       
+                    if (isset($_POST['ddattm1'])) {
+                        $emailBody .= "You have chosen to attend the meal.<br>";
+                       
+              }
+                        foreach ($mChoices as $choice) {
+                    
+                          $mealChk1 = 'meal'.$choice['id'];
+                         if (isset($_POST["$mealChk1"])) {
+                          
+                                $eventReg->mealchoice = $choice['id'];
+                                 $emailBody .= 'Your meal choice is: '.$choice['mealname'].'.<br>';
+                               } //smeal1   
+                       
+                    }
+                     if (isset($_POST['dietaryr1'])) {
+                        
+                           $eventReg->dietaryrestriction = $_POST['dietaryr1'];
+                           $emailBody .= 'Your dietary restriction is: '.$eventReg->dietaryrestriction.'.<br>';
+                         }
                     if (isset($_POST['ch1'])) {
                         $emailBody .= "You have chosen to play cornhole.<br>";
                     }
@@ -138,7 +194,21 @@ if (!isset($_POST['submitAddRegs'])) {
                         $emailBody .= "You have chosen to play softball.<br>";
                     }
                    if (isset($_POST['ddattm2'])) {
-                        $emailBody .= "Your partner has chosen to attend dinner.<br>";
+                        $emailBody .= "<br>Your partner has chosen to attend the meal.<br>";
+                        foreach ($mChoices as $choice) {
+                    
+                          $mealChk2 = 'meal2'.$choice['id'];
+                         if (isset($_POST["$mealChk2"])) {
+                          
+                                $partnerEventReg->mealchoice = $choice['id'];
+                                 $emailBody .= 'You partners meal choice is: '.$choice['mealname'].'.<br>';
+                               } //smeal1   
+                        }
+                        if (isset($_POST['dietaryr2'])) {
+                        
+                           $partnerEventReg->dietaryrestriction = $_POST['dietaryr2'];
+                           $emailBody .= 'Your partner specified a dietary restriction of: '.$partnerEventReg->dietaryrestriction.'.<br>';
+                         }                      
                     }
                     if (isset($_POST['ch2'])) {
                         $emailBody .= "Your partner has chosen to play cornhole.<br>";
@@ -163,17 +233,6 @@ if (!isset($_POST['submitAddRegs'])) {
                 } //switch end
 
 
-                
-                    // if ($eventInst->eventcost > 0) {
-                    //     $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-                    //     $coststr =  "Member Minimum Cost for the Dance is: "
-                    //         .$fmt->formatCurrency($eventInst->eventcost, 'USD')."<br>
-                    //         Check the form for specific costs.<br>";
-            
-                    //     $emailBody .= $coststr;
-                    //     // $toCC2 = $treasurer;
-                    // }
-                 
 
                     if ($eventInst->eventform) {
                         $actLink= "<a href='".$eventInst->eventform."'>
@@ -191,21 +250,20 @@ if (!isset($_POST['submitAddRegs'])) {
                     $emailBody .= '<br> <br>';
                 }
             
-                $emailBody .= '<br>You may login to the website and check Upcoming Events to see the status of your registrations.'; 
-   
-                $emailBody .= '<br> <br>';
+
           
                 // do the insert(s)
              if (isset($_POST['mem1Chk'])) {
+                
                          
                 $eventReg->firstname = $regFirstName1;
                 $eventReg->lastname = $regLastName1;
                 $eventReg->eventid = $eventId;
                 $eventReg->email = $regEmail1;
-                $eventReg->eventname = 
+                $eventReg->eventname = $eventInst->eventname;
                 $eventReg->registeredby = $_SESSION['username'];
                 $eventReg->userid = $regUserid1;
-                $eventReg->mealchoice = 0;
+                // $eventReg->mealchoice = 0;
                 $eventReg->message = $message;
                if (isset($_POST['ddattm1'])) {
                     $eventReg->ddattenddinner = 1;
@@ -237,17 +295,23 @@ if (!isset($_POST['submitAddRegs'])) {
              }
               if (isset($_POST['mem2Chk'])) {
                        // do the insert(s)
+                    if ($mem2Partnerid !== '0') {
+                      $partnerEventReg->dwop = 0;
+                    } else {
+                      $partnerEventReg->dwop = 1;
+                    }
                     $partnerEventReg->firstname = $regFirstName2;
                     $partnerEventReg->lastname = $regLastName2;
                     $partnerEventReg->eventid = $eventId;
                     $partnerEventReg->email = $regEmail2;
                     $partnerEventReg->userid = $regUserid2;
                     $partnerEventReg->message = $message;
-                    $partnerEventReg->mealchoice = 0;
+             
                     $partnerEventReg->registeredby = $_SESSION['username'];
                     $partnerEventReg->paid = 0;
                  if (isset($_POST['ddattm2'])) {
                      $partnerEventReg->ddattenddinner = 1;
+  
                 } else {
                      $partnerEventReg->ddattenddinner = 0;
                 }
@@ -277,7 +341,9 @@ if (!isset($_POST['submitAddRegs'])) {
                        
                 }  // register mem2
 
-                
+                     $emailBody .= '<br>You may login to the website and check Upcoming Events to see the status of your registration(s).'; 
+   
+                $emailBody .= '<br> <br>';           
  
    if (isset($_POST['mem1Chk'])) {
         $regName1 = $regFirstName1.' '.$regLastName1;

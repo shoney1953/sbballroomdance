@@ -1,6 +1,8 @@
                 <?php
+        
                 $gotEventReg = 0;
                 $gotPartnerEventReg = 0;
+                var_dump($_SESSION['partnerid']);
                 if ($_SESSION['role'] === 'visitor') {
                      if ($reg->read_ByEventIdVisitor($event['id'],$_SESSION['username'])) {
                           $gotEventReg = 1;
@@ -14,8 +16,32 @@
                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                 if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
                             $gotPartnerEventReg = 1;
+                            
                 }
                }
+              $mealChoices = [];
+              $result = $mChoices->read_ByEventId($event['id']);
+                $rowCount = $result->rowCount();
+                $num_meals = $rowCount;
+                if ($rowCount > 0) {
+                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                        extract($row);
+                        $meal_item = array(
+                            'id' => $id,
+                            'mealname' => $mealname,
+                            'mealdescription' => $mealdescription,
+                            'eventid' => $eventid,
+                            'memberprice' => $memberprice,
+                            'guestprice' => $guestprice,
+                            'productid' => $productid,
+                            'priceid' => $priceid,
+                            'guestpriceid' => $guestpriceid
+
+                        );
+                        array_push($mealChoices, $meal_item);
+              } // while $row
+            } // rowcount
+   
             if (isset($_POST["$regChk"])) {
               
                 echo '<div class="form-container"';
@@ -52,8 +78,39 @@
                 echo '</div>';
                 echo '<div class="form-item">';
                 echo "<h4 class='form-item-title'>Attend Meal?</h4>";
-                echo "<input type='checkbox'  title='Check to attend meal' id='ddattm1' name='ddattm1'>";
-                echo '</div>';
+                echo "<input type='checkbox'  title='Check to attend meal' id='ddattm1' name='ddattm1' onclick='displayMealsB1()'>";
+            
+                 echo '<div class="form-container hidden" id="memMealChoice1">';
+                if ($_SESSION['role'] === 'visitor') {
+                  echo "<h4 class='form-title-left'>Meal Selection for ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname'].":</h4>";
+                } else {
+                  echo "<h4 class='form-title-left'>Meal Selection for ".$_SESSION['userfirstname']." ".$_SESSION['userlastname'].":</h4>";
+                }
+             
+                echo '<div class="form-grid">';
+                $mealsNumber = count($mealChoices);
+                foreach ($mealChoices as $choice){
+                  $mealChk = 'meal'.$choice['id'];
+                  echo '<div class="form-item">';
+                  if ($mealsNumber === 1) {
+                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' checked id='".$mealChk."' name='".$mealChk ."'>".$choice['mealname']."</h4>"; 
+                  } else {
+                     echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk."' name='".$mealChk ."'>".$choice['mealname']."</h4>";
+                  }
+                 
+                  echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
+                  echo '</div>'; // end of form item         
+                 } // for each mealchoice
+            
+                   echo '</div>'; // end form grid
+                 
+                  echo "<div class='form-item'>";
+                  echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
+                  echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr1' value='".$_SESSION['dietaryrestriction']."' >"; 
+                  echo "</div>";  // form item
+      echo '</div>';
+           
+                  echo '</div>'; // end form grid div hidden
                 echo '<div class="form-item">';
                 echo "<h4 class='form-item-title'>Play Cornhole?</h4>";
                 echo "<input type='checkbox'  title='Check to play Cornhole' id='ch1' name='ch1'>";
@@ -65,7 +122,8 @@
                 echo '</div>'; // form grid
                 echo '</div>'; // form grid div
               }
-                if (!$gotPartnerEventReg) {
+          
+                if ($gotPartnerEventReg === 0) {
                     echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
                     echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
                     echo '<input type="hidden" name="email2" value='.$_SESSION['partneremail'].'>';
@@ -77,8 +135,35 @@
                 echo '</div>';
                  echo '<div class="form-item">';
                 echo "<h4 class='form-item-title'>Attend Meal?</h4>";
-                echo "<input type='checkbox'  title='Check to attend meal' id='ddattm2' name='ddattm2'>";
-                echo '</div>';
+                echo "<input type='checkbox'  title='Check to attend meal' id='ddattm2' name='ddattm2' onclick='displayMealsB2()'>";
+              
+
+                 echo '<div class="form-container hidden" id="memMealChoice2">';
+                echo "<h4 class='form-title-left'>Meal Selection for ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname'].":</h4>";
+    
+                echo '<div class="form-grid">';
+         
+                  foreach ($mealChoices as $choice){
+                  $mealChk2 = 'meal2'.$choice['id'];
+                  echo '<div class="form-item">';
+                  if ($mealsNumber === 1) {
+                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' checked id='".$mealChk2."' name='".$mealChk2 ."'>".$choice['mealname']."</h4>";
+                  } else {
+                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk2."' name='".$mealChk2 ."'>".$choice['mealname']."</h4>";
+                  }
+                    echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
+                  // echo "<input type='checkbox'  title='Meal Choice' id='".$mealChk2."' name='".$mealChk2 ."'>";
+                    echo '</div>'; // end of form item         
+                   } // for each mealchoice
+
+                  echo '</div>'; // form grid
+                  echo "<div class='form-item'>";
+                  echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
+                  echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr2' value='".$_SESSION['partnerdietaryrestriction']."' >"; 
+                  echo "</div>";
+                  echo '</div>'; // form grid
+
+               echo '</div>';
                  echo '<div class="form-item">';
                 echo "<h4 class='form-item-title'>Play Cornhole?</h4>";
                 echo "<input type='checkbox'  title='Check to play Cornhole' id='ch2' name='ch2'>";
@@ -182,6 +267,7 @@
                 $sbID2 = "sb2".$partnerReg->id;
                 $dddinID2 = "dddin2".$partnerReg->id;
                 }
+             }
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Modify BBQ Picnic Reservations for ".$event['eventname']." on ".$event['eventdate']."</h1>";
        
@@ -201,11 +287,31 @@
                  echo '<h4 class="form-item-title">Attend Dinner?</h4>';
           
                 if ($reg->ddattenddinner === '1') {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked>";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked >";
                   } else {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."'>";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' >";
                   }
-   
+                      
+                echo '<div class="form-container" id="memMealChoiceU1">';
+                echo '<div class="form-grid">';
+         
+                foreach ($mealChoices as $choice){
+                  $mealChk = 'meal'.$choice['id'];
+                  echo '<div class="form-item">';
+                  if ($reg->mealchoice === $choice['id']) {
+                     echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk."' checked name='".$mealChk ."'>".$choice['mealname']."</h4>";
+                  } else {
+                      echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk."' name='".$mealChk ."'>".$choice['mealname']."</h4>";
+                  }
+                     
+                  
+                 
+                  echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
+                  echo '</div>'; // end of form item         
+                 } // for each mealchoice
+            
+                   echo '</div>'; // end form grid
+               echo '</div>';
                 echo '</div>'; // end of form item
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Play Cornhole?</h4>';
@@ -230,7 +336,7 @@
               }
               // partner
               if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                if ($gotPartnerEventReg) {
+                if ($gotPartnerEventReg !== 0) {
 
                  echo '<input type="hidden" name="regID2" value='.$partnerReg->id.'>';
                    echo '<div class="form-grid-div">';
@@ -243,12 +349,29 @@
                  echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Attend Dinner?</h4>';
                 if ($partnerReg->ddattenddinner === '1') {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID2."' name='".$dddinID2."' checked>";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID2."' name='".$dddinID2."' checked >";
                   } else {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID2."' name='".$dddinID2."'>";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID2."' name='".$dddinID2."' >";
                   }
-   
-                echo '</div>'; // end of form item
+             
+                     echo '<div class="form-container " id="memMealChoiceU2">';
+                  echo '<div class="form-grid">';
+               foreach ($mealChoices as $choice){
+                $meal2Chk = 'meal2'.$choice['id'];
+                  echo '<div class="form-item">';
+                  if ($partnerReg->mealchoice === $choice['id']) {
+                     echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$meal2Chk."' checked name='".$meal2Chk ."'>".$choice['mealname']."</h4>";
+                  } else {
+                      echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$meal2Chk."' name='".$meal2Chk ."'>".$choice['mealname']."</h4>";
+                  }                   
+                 
+                  echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
+                  echo '</div>'; // end of form item         
+                 
+                 } // for each mealchoice
+                  echo '</div>';
+                    echo '</div>'; // end of form item
+              echo '</div>';
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Play Cornhole?</h4>';
                 if ($partnerReg->cornhole === '1') {
@@ -273,5 +396,5 @@
                 echo '</div>'; // end of form container
                 echo '</form>';
             }
-        } // end of update checked
+     
         ?>

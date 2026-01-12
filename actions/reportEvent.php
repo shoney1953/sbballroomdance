@@ -22,7 +22,8 @@ $attDance = 0;
 $attDinner = 0;
 $playCornhole = 0;
 $playSoftball = 0;
-
+$mem1Partnerid = 0;
+$mem2Partnerid = 0;
 $numDwop = 0;
 $init_dinner = 1;
 $paidNum = 0;
@@ -179,9 +180,11 @@ if ($rowCount > 0) {
             $pdf->Cell(18,8,"MEM",1,0,"L"); 
             $pdf->Cell(15,8,"DWOP",1,0,"L");
             if ($reg['eventtype'] === 'BBQ Picnic') {
-                  $pdf->Cell(22,8,"Cornhole",1,0,"L");                 
-                  $pdf->Cell(22,8,"Softball",1,0,"L"); 
-                  $pdf->Cell(22,8,"Meal?",1,1,"L");
+                  $pdf->Cell(18,8,"Cornhole",1,0,"L");                 
+                  $pdf->Cell(18,8,"Softball",1,0,"L"); 
+                  $pdf->Cell(18,8,"Meal?",1,0,"L");
+                   $pdf->Cell(60,8,"Meal Choice",1,0,"L");
+                   $pdf->Cell(60,8,"Dietary Restriction",1,1,"L");
             }
 
             if ($reg['eventtype'] === 'Dinner Dance')
@@ -223,9 +226,11 @@ if ($rowCount > 0) {
            $pdf->Cell(15,8,"DWOP",1,0,"L"); 
 
         if ($reg['eventtype'] === 'BBQ Picnic') {
-            $pdf->Cell(22,8,"Cornhole",1,0,"L");                 
-            $pdf->Cell(22,8,"Softball",1,0,"L"); 
-            $pdf->Cell(22,8,"Meal?",1,1,"L");
+            $pdf->Cell(18,8,"Cornhole",1,0,"L");                 
+            $pdf->Cell(18,8,"Softball",1,0,"L"); 
+            $pdf->Cell(18,8,"Meal?",1,0,"L");
+            $pdf->Cell(60,8,"Meal Choice",1,0,"L");
+            $pdf->Cell(60,8,"Dietary Restriction",1,1,"L");
         }
 
          
@@ -360,20 +365,21 @@ if ($rowCount > 0) {
                         $pdf->Cell(15,8,"UNK",1,0,"L");
                     }
                 if ($reg['cornhole'] === '1') {
-                    $pdf->Cell(22,8,"YES",1,0,"L");
+                    $pdf->Cell(18,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(22,8,"NO ",1,0,"L");
+                    $pdf->Cell(18,8,"NO ",1,0,"L");
                 } 
                 if ($reg['softball'] === '1') {
-                    $pdf->Cell(22,8,"YES",1,0,"L");
+                    $pdf->Cell(18,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(22,8,"NO ",1,0,"L");
+                    $pdf->Cell(18,8,"NO ",1,0,"L");
                 } 
                 if ($reg['ddattenddinner'] === '1') {
-                    $pdf->Cell(22,8,"YES",1,1,"L");
+                    $pdf->Cell(18,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(22,8,"NO ",1,1,"L");
+                    $pdf->Cell(18,8,"NO ",1,0,"L");
                 } 
+                
 
             }
  
@@ -420,21 +426,21 @@ if ($rowCount > 0) {
                     }
                 
                 if ($reg['cornhole'] === '1') {
-                    $pdf->Cell(22,8,"YES",1,0,"L");
+                    $pdf->Cell(18,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(22,8,"NO ",1,0,"L");
+                    $pdf->Cell(18,8,"NO ",1,0,"L");
                 } 
                 if ($reg['softball'] === '1') {
-                    $pdf->Cell(22,8,"YES",1,0,"L");
+                    $pdf->Cell(18,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(22,8,"NO ",1,0,"L");
+                    $pdf->Cell(18,8,"NO ",1,0,"L");
                 } 
                 if ($reg['ddattenddinner'] === '1') {
-                    $pdf->Cell(22,8,"YES",1,1,"L");
+                    $pdf->Cell(18,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(22,8,"NO ",1,1,"L");
+                    $pdf->Cell(18,8,"NO ",1,0,"L");
                 } 
-
+ 
             }
             
             $nonMemReg++; 
@@ -484,7 +490,7 @@ if ($rowCount > 0) {
             $pdf->Cell(22,8,"NO ",1,0,"L");
         } 
     }
-     if (($reg['eventtype'] === 'Dinner Dance') || ($reg['eventtype'] === 'Dance Party')) {
+     if (($reg['eventtype'] === 'Dinner Dance') || ($reg['eventtype'] === 'Dance Party') || ($reg['eventtype'] === 'BBQ Picnic')) {
         if (($reg['mealchoice'] != NULL) && ($reg['mealchoice'] > 0)) {
 
                 $pdf->Cell(60,8,$reg['mealname'],1,0,"L");
@@ -549,7 +555,7 @@ if ($rowCount > 0) {
             $pdf->Cell(100, 8, "Attending Meal:  ".$attDinner, 1, 1);
 
      }
-     if (($event->eventtype === 'Dance Party') || ($event->eventtype === 'Dinner Dance')) { 
+     if (($event->eventtype === 'Dance Party') || ($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'BBQ Picnic')) { 
          $pdf->Ln(2);
              $pdf->Cell(150, 8, "Number of Meals Selected:  ", 1, 1);
         foreach ($mealChoices as $meal) {

@@ -9,13 +9,13 @@
      
      ?>
      <script>
-        function displayMeals1(userid) {
 
+        function displayMeals1(userid) {
         var register =  "us"+userid; 
         var formcontainer =  "fc"+userid;
 
         // Select the element
-        if (document.getElementById(register).checked) {
+        if (dfunctionocument.getElementById(register).checked) {
     
         var element1 = document.getElementById(formcontainer);
         element1.classList.remove('hidden');
