@@ -23,6 +23,7 @@ class EventArch {
     public $eventguestcost;
     public $eventguestpriceid;
     public $eventdwopcount;
+
     // Constructor with DB
     public function __construct($db) {
       $this->conn = $db;
@@ -142,6 +143,7 @@ class EventArch {
           $this->eventguestpriceid = $row['eventguestpriceid'];
           $this->eventguestcost = $row['eventguestcost'];
           $this->eventdwopcount = $row['eventdwopcount'];
+       
     }
 
     // Create Event
@@ -157,6 +159,7 @@ class EventArch {
           eventmempriceid = :eventmempriceid,
           eventguestpriceid = :eventguestpriceid,
           eventguestcost = :eventguestcost,
+    
           eventnumregistered = :eventnumregistered';
 
           // Prepare statement
@@ -186,6 +189,7 @@ class EventArch {
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventregend', $this->eventregend);
+
           $stmt->bindParam(':eventregopen', $this->eventregopen);
           $stmt->bindParam(':eventform', $this->eventform);
           $stmt->bindParam(':eventdj', $this->eventdj);
@@ -217,6 +221,7 @@ class EventArch {
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           previd = :previd, eventregend = :eventregend, eventregopen = :eventregopen,
+ 
           orgemail = :orgemail, eventdwopcount = :eventdwopcount,
           eventproductid = :eventproductid,
           eventmempriceid = :eventmempriceid,
@@ -254,6 +259,7 @@ class EventArch {
           $stmt->bindParam(':eventform', $this->eventform);
           $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventregend', $this->eventregend);
+   
           $stmt->bindParam(':eventregopen', $this->eventregopen);
           $stmt->bindParam(':previd', $this->previd);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);

@@ -93,7 +93,7 @@
            
            if ($event['eventtype'] == 'Dinner Dance') {
                echo "<input title='Select to Update Registration' type='checkbox' id=".$updID." name='".$updID."' onclick='displayMeals3U(".$reg['id'].")'>"; 
-            } else if ($event['eventtype'] === 'Dance Party') {
+            } else if (($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'BBQ Picnic')) {
                echo "<input title='Select to Update Registration' type='checkbox' id=".$updID." name='".$updID."' onclick='displayMeals3U(".$reg['id'].")'>"; 
             } else {
                   echo "<input title='Select to Update Registration' type='checkbox' name='".$updID."'>"; 
@@ -138,7 +138,39 @@
                 else {
                     $ch = 0;
                 }
+                  if ($numMeals > 0) {
+                  
+                       $fcu2ID = "fcu2".$reg['id'];
                 
+                        echo "<div id='".$fcu2ID."' class='form-container hidden'>";  
+                        // echo "<div class='form-grid'>";
+                        foreach ($mealChoices as $choice) {
+    
+                          $mcID = "mc".$reg['id'].$choice['id'];
+
+                          echo "<div class='form-item'>";
+                          echo '<h4 class="form-item-title">Select '.$choice['mealname'].'</h4>';
+                            //    echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
+                      
+                          if ($reg['mealchoice'] === $choice['id']) {
+                                echo "<input  title='Select This Meal' checked type='checkbox'name='".$mcID."'>";
+                          } else {
+                               echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
+                          } 
+         
+                 
+                         $price = number_format($choice['memberprice']/100,2);
+                          echo "<h5 class='form-item-title'>".$price."</h5>";
+                          echo "</div>"; // form item mc                    
+                          } // foreach mealchoice
+                       $drID = "dr".$reg['id'];
+                      echo "<div class='form-item'>";
+                      echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
+                      echo "<input type='text' title='Enter Member Dietary Restrictions' name='".$drID."' value='".$reg['dietaryrestriction']."' >"; 
+                      echo "</div>";  // form item dr
+                   
+                      echo "</div>";  // form item drS
+                  }
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Play Cornhole?</h4>';
                 echo "<input type='number'  title='Enter 1 for Play Cornhole' name='".$chID."' min='0' max='1' value='".$ch."'>";
@@ -177,13 +209,13 @@
                 
                 echo '</div>'; 
        
-       
+
              if ($event['eventtype'] === 'Dance Party') {
-            
+          
                     if ($numMeals > 0) {
                   
                        $fcu2ID = "fcu2".$reg['id'];
-
+                
                         echo "<div id='".$fcu2ID."' class='form-container hidden'>";  
                         // echo "<div class='form-grid'>";
                         foreach ($mealChoices as $choice) {
@@ -275,6 +307,9 @@
             echo '</div>'; // end of form item
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">DWOP?</h4>';
+            if ($reg['dwop'] === NULL)  {
+                $reg['dwop'] = 2;
+            }
             echo "<input type='number' title='Enter 1 to DWOP, 2 for UNKNOWN, 0 for Couple' name='".$dwopID."'. min='0' max='2' value='".$reg['dwop']."'>";
             echo '</div>'; // end of form item
             echo '<div class="form-item">';

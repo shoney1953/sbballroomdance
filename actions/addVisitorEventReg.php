@@ -114,12 +114,12 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $visitor->firstname = $_POST['firstname1'];
     $regFirstName1 = $visitor->firstname;
     $visitor->lastname = $_POST['lastname1'];
-    $visitor->notes = $_POST['notes1'];
+    // $visitor->notes = $_POST['notes1'];
     $regLastName1 =  $visitor->lastname;
     if ($visitor->read_ByEmail($visitor->email)) {
         $visitor->firstname = $_POST['firstname1'];
         $visitor->lastname = $_POST['lastname1'];
-        $visitor->notes = $_POST['notes1'];
+        // $visitor->notes = $_POST['notes1'];
         $visitor->update($visitor->email);
     } else {
     
@@ -139,9 +139,9 @@ if (isset($_POST['submitAddVisitorReg'])) {
 
     if ($event->eventcost > 0) {
         $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-        $coststr =  "<br> Member Event Cost is approximately: "
+        $coststr =  "<br> Guest Event Cost is approximately: "
         .$fmt->formatCurrency($event->eventcost, 'USD')."<br>
-            Check the form for specific costs. <br>Non-member cost will be slightly higher.";
+            Check the form for specific costs. ";
         $emailBody .= $coststr;
         $toCC2 = $treasurer;
         if ($event->eventform) {
@@ -163,7 +163,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
             echo '</tr>';
       
        
-             if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party')) {
+             if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party') || ($event->eventtype === 'BBQ Picnic')) {
 
               $result = $mChoices->read_ByEventId($event->id);
 
@@ -176,7 +176,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
                         extract($row);
                         $meal_item = array(
                             'id' => $id,
-                            'mealchoice' => $mealchoice,
+                            'mealname' => $mealname,
                             'eventid' => $eventid,
                             'memberprice' => $memberprice,
                             'guestprice' => $guestprice,
@@ -193,7 +193,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
                           $mcID = "mcVisitor1".$choice['id'];
                           if (isset($_POST["$mcID"])) {
                             $eventReg->mealchoice = $choice['id'];
-                            $emailBody .= "<br>You have selected ".$choice['mealchoice']." at a cost of ".number_format($choice['memberprice']/100,2).".";
+                            $emailBody .= "<br>You have selected ".$choice['mealname']." at a cost of ".number_format($choice['guestprice']/100,2).".";
                           }
                          } // foreach
 
@@ -207,7 +207,14 @@ if (isset($_POST['submitAddVisitorReg'])) {
                 }   // row count 
              } // eventtype
    
-    
+    if (isset($_POST['v1cornhole'])) {
+        $eventReg->cornhole = 1;
+        $emailBody .= '<br>You have elected to play cornhole.';
+    }
+     if (isset($_POST['v1softball'])) {
+        $eventReg->softball = 1;
+          $emailBody .= '<br>You have elected to play softball.';
+    }
     $eventReg->create();
     $event->addCount($eventReg->eventid);
     $emailBody .= '<br>We hope you enjoy the event and consider joining our club.';
@@ -236,7 +243,7 @@ if (isset($_POST['submitAddVisitorReg'])) {
         echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
    }                    
     }
-    
+ 
     /*      2nd visitor */
     $eventReg->eventid = $_POST['eventid'];
     if (isset($_POST['email2'])) {
@@ -260,12 +267,15 @@ if (isset($_POST['submitAddVisitorReg'])) {
     }
    
     $eventReg->userid = 0;
+  
     $result = $eventReg->checkDuplicate($eventReg->email, $eventReg->eventid);
+
     if ($result) {
         $redirect = "Location: ".$_SESSION['returnurl'];
         header($redirect);
         exit;
     }
+ 
     if (!$result) {
 
    
@@ -275,12 +285,12 @@ if (isset($_POST['submitAddVisitorReg'])) {
     $visitor->firstname = $_POST['firstname2'];
     $regFirstName1 = $visitor->firstname;
     $visitor->lastname = $_POST['lastname2'];
-    $visitor->notes = $_POST['notes2'];
+    // $visitor->notes = $_POST['notes2'];
     $regLastName1 =  $visitor->lastname;
     if ($visitor->read_ByEmail($visitor->email)) {
         $visitor->firstname = $_POST['firstname2'];
         $visitor->lastname = $_POST['lastname2'];
-        $visitor->notes = $_POST['notes2'];
+        // $visitor->notes = $_POST['notes2'];
         $visitor->update($visitor->email);
     } else {
     
@@ -300,9 +310,9 @@ if (isset($_POST['submitAddVisitorReg'])) {
     if ($event->eventcost > 0) {
 
         $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-        $coststr =  "<br> Member Event Cost is approximately: "
-        .$fmt->formatCurrency($event->eventcost, 'USD')."<br>
-            Check the form for specific costs. <br>Non-member cost will be slightly higher.";
+        $coststr =  "<br> Guest Event Cost is approximately: "
+        .$fmt->formatCurrency($event->eventguestcost, 'USD')."<br>
+            Check the form for specific costs. ";
         $emailBody .= $coststr;
         $toCC2 = $treasurer;
         if ($event->eventform) {
@@ -321,21 +331,30 @@ if (isset($_POST['submitAddVisitorReg'])) {
 
         }
          foreach ($mealChoices as $choice) {
-            $mcID = "mcVisitor2".$choice['id'];
-            if (isset($_POST["$mcID"])) {
+            $mcID2 = "mcVisitor2".$choice['id'];
+            if (isset($_POST["$mcID2"])) {
                     $eventReg->mealchoice = $choice['id'];
-                    $emailBody .= "<br>You have selected ".$choice['mealchoice']." at a cost of ".number_format($choice['memberprice']/100,2).".";
+                    $emailBody .= "<br>You have selected ".$choice['mealname']." at a cost of ".number_format($choice['guestprice']/100,2).".";
                  }
                 } // foreach
 
                 $drID = "drVisitor2";
                 if (isset($_POST["$drID"])) {
                 $eventReg->dietaryrestriction = $_POST["$drID"];
-                $emailBody .= "<br>You have specified a dietary restriction of ".$_POST["$drID"];
+                $emailBody .= "<br>You have specified a dietary restriction of ".$_POST["$drID2"];
         }
-      $eventReg->create();
-      $event->addCount($eventReg->eventid);                
+              
     }
+       if (isset($_POST['v2cornhole'])) {
+        $eventReg->cornhole = 1;
+        $emailBody .= '<br>You have elected to play cornhole.';
+    }
+     if (isset($_POST['v2softball'])) {
+        $eventReg->softball = 1;
+          $emailBody .= '<br>You have elected to play softball.';
+    }
+      $eventReg->create();
+      $event->addCount($eventReg->eventid);  
     $emailBody .= '<br>We hope you enjoy the event and consider joining our club.';
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
 

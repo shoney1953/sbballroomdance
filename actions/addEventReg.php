@@ -219,12 +219,21 @@ if (isset($_POST['submitAddReg'])) {
 
                         } else {
                             $emailBody .= "<br>You have chosen NOT to attend dinner before the dance.";
-                            $emailBody .= "<br>As of 2025, there is now a charge of $5 per member and $10 per visitor for the dance only.";
-                            $emailBody .= "<br>Please submit your fee prior to the dance as indicated on the form.";
+                            if ($event->eventtype != 'BBQ Picnic') {
+                                if ($eventreg->paid !== 1) {
+                                $emailBody .= "<br>As of 2025, there is now a charge of $5 per member and $10 per visitor for the dance only.";
+                                $emailBody .= "<br>Please submit your fee prior to the dance as indicated on the form.";
+                                }
+                            }
+
+    
                         }
                     }
-                   if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party')) {
-                             $toCC3 = $treasurer;
+                   if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party') || ($event->eventtype === 'BBQ Picnic')) {
+                         if ($event->eventtype !== 'BBQ Picnic') {
+                                $toCC3 = $treasurer;
+                         }
+                          
                   
                          
                          foreach ($mealChoices as $choice) {

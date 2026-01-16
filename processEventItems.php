@@ -169,6 +169,7 @@ if ($uploadForm) {
        $evcostID = "evcost".$event['id'];
        $evnumregID = "evnumreg".$event['id'];
        $evrendID = "evrend".$event['id'];
+       $evmrendID = "evmrend".$event['id'];
        $evropenID = "evropen".$event['id'];
        $evformID = "evform".$event['id'];
        $evidID = "evid".$event['id'];
@@ -262,6 +263,7 @@ if ($uploadForm) {
       echo "<input type='date' name='".$evropenID."' value='".$event['eventregopen']."' 
       title='Select the Registration Opening Date' >";
       echo '</div>';
+
 
       echo "<div class='form-item'>";
       echo "<h4 class='form-item-title'>Dance Only Registration End</h4>";

@@ -47,10 +47,10 @@ if ($addReg) {
     echo '<br><br><table>';
     echo '<thead>';
     echo '<tr>';
-    echo '<th colspan=7>Add Member Registrations</th>';
+    echo '<th colspan=7><legend>Add Member Registrations</legend></th>';
     echo '</tr>';
     echo '<tr>';
-    echo '<th colspan=7>Select One or all of the following members</th>';
+    echo '<th colspan=7>Select One or more of the following members and scroll to the bottom for the submit button</th>';
     echo '</tr>';
     echo '<tr>';
     echo '<th>Add</th>';
@@ -90,15 +90,18 @@ if ($addReg) {
          } else {
            echo "<td><input  title='Select to Add Registrations' type='checkbox'  name='".$usrID."'></td>";
          }
-        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party') ){
+        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'BBQ Picnic') ){
             echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' id='".$attDin."' name='".$attDin."' onclick='displayMeals2(".$usr['id'].")'></td>";
-            echo "<td><input title='Select to indicate Registrant has Paid' type='checkbox' name='".$pdDinn."'></td>";
+            if ($event['eventtype'] !== 'BBQ Picnic') {
+                echo "<td><input title='Select to indicate Registrant has Paid' type='checkbox' name='".$pdDinn."'></td>";  
+            }
+           
         }
         if ($event['eventtype'] === 'Dinner Dance'){
             echo "<td><input title='Select to indicate Registrant has Paid' type='checkbox' name='".$pdDinn."'></td>";
         }
         if ($event['eventtype'] === 'BBQ Picnic')  {
-            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='".$attDin."'></td>";
+            // echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='".$attDin."'></td>";
             echo "<td><input title='Select to indicate Registrant will play Cornhole' type='checkbox' name='".$ch."'></td>";
             echo "<td><input title='Select to indicate Registrant will play Softball' type='checkbox' name='".$sb."'></td>";
         }
@@ -109,7 +112,7 @@ if ($addReg) {
 
 
        
-             if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party')) {
+             if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'BBQ Picnic')) {
               $mealChoices = [];
          
               $result = $mChoices->read_ByEventId($event['id']);
@@ -134,6 +137,7 @@ if ($addReg) {
 
                         );
                         array_push($mealChoices, $meal_item);
+                
                     } // while
                     if ($rowCount > 0) {
                         echo "<tr>";
@@ -144,15 +148,20 @@ if ($addReg) {
                         echo "<div id='".$fcID."' class='form-container hidden'>";  
                     echo "<div class='form-grid'>";
                     foreach ($mealChoices as $choice) {
-    
+                     
                           $mcID = "mc".$usr['id'].$choice['id'];
 
                           echo "<div class='form-item'>";
                           echo '<h4 class="form-item-title">Select?</h4>'; 
                           echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
                              echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
-                         $price = number_format($choice['memberprice']/100,2);
-                          echo "<h5 class='form-item-title'>".$price."</h5>";
+                             if ($event['eventtype'] !== 'BBQ Picnic') {
+                              
+                                    $price = number_format($choice['memberprice']/100,2);
+                                     echo "<h5 class='form-item-title'>".$price."</h5>";
+                             }
+                    
+
                           echo "</div>";
 
                     
@@ -190,22 +199,32 @@ if ($addReg) {
         echo '<table>';   
         echo '<thead>';
         echo '<tr>';
-        echo '<th colspan=6>Add Visitor Registration</th>';
+        echo '<th colspan=6><legend>Add Visitor Registration(s)</legend></th>';
         echo '</tr>';
         echo '<tr>';
         echo '<th>Visitor First Name</td>';
         echo '<th>Last Name</td>';
         echo '<th>Email</td>';
-    
-        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party') ) {
+         if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'BBQ Picnic')){
+       
             echo '<th>Attend<br>Dinner?</th>';
-            echo '<th>Paid?</th>';
+            if ($event['eventtype'] !== 'BBQ Picnic') {
+              echo '<th>Paid?</th>';
+            }
+        
         }
         if ($event['eventtype'] === 'Dinner Dance') {
 
             echo '<th>Paid?</th>';
         }
-        echo '<th>Notes</td>';
+        if ($event['eventtype'] === 'BBQ Picnic') {
+            echo '<th>Cornhole?</th>';
+             echo '<th>Softball?</th>';
+        }
+              
+           
+        
+    
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
@@ -213,18 +232,54 @@ if ($addReg) {
         echo "<td><input title='Enter Visitor First Name' type='text' name='firstname1'></td>";
         echo "<td><input title='Enter Visitor Last Name' type='text' name='lastname1'></td>";
         echo "<td><input type='email' name='email1' required></td>";
-        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party')){
-            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='attdin1'></td>";
-            echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn1'></td>";
+        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'BBQ Picnic')){
+            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' id='attdin1' name='attdin1' onclick='v1Meals()'>";
+               if ($num_meals > 0) {
+               echo "<div id='visitor1meals' class='form-container hidden'>";  
+              
+                    echo "<div class='form-grid'>";
+
+                        foreach ($mealChoices as $choice) {
+                          $mcID = "mcVisitor1".$choice['id'];
+                          echo "<div class='form-item'>";
+                          echo '<h4 class="form-item-title">Select?</h4>'; 
+                          echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
+                          echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
+                          if ($event['eventtype'] !== 'BBQ Picnic') {
+                          $price = number_format($choice['guestprice']/100,2);
+                          echo "<h5 class='form-item-title'>".$price."</h5>";
+                          }
+
+                          echo "</div>";
+                         } // foreach
+
+                       $drID = "drVisitor1";
+                      echo "<div class='form-item'>";
+                      echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
+                      echo "<input type='text' title='Enter Member Dietary Restrictions' name='".$drID."' >"; 
+                      echo "</div>";
+
+                    echo "</div>";
+               }
+                    echo '</td>';
+
+            if ($event['eventtype'] !== 'BBQ Picnic') {
+                 echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn1'></td>";
+            }
+            
         }
         if ($event['eventtype'] === 'Dinner Dance'){
             echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn1'></td>";
         }
-        echo "<td> <textarea  title='Enter any notes about the visitor registration' name='notes1' rows='5' cols='50'></textarea></td>";
+        if ($event['eventtype'] === 'BBQ Picnic') {
+            echo '<td><input title="select if visitor 1 will play cornhole" type="checkbox" name="v1cornhole"></td>';
+            echo '<td><input title="select if visitor 1 will play softball" type="checkbox" name="v1softball"></td>';
+        }
+   
         echo '</tr>';
  
        
-             if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party')) {
+             if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party') || ($event['eventtype'])) {
               $mealChoices = [];
          
               $result = $mChoices->read_ByEventId($event['id']);
@@ -252,29 +307,9 @@ if ($addReg) {
                     } // while
               
                     echo "<tr>";
-                    echo "<td> </td>";  
-                    echo "<td colspan='5>";
-                
-                    echo "<div  class='form-container'>";  
-                    echo "<div class='form-grid'>";
-
-                        foreach ($mealChoices as $choice) {
-                          $mcID = "mcVisitor1".$choice['id'];
-                          echo "<div class='form-item'>";
-                          echo '<h4 class="form-item-title">Select?</h4>'; 
-                          echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
-                          echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
-                          $price = number_format($choice['guestprice']/100,2);
-                          echo "<h5 class='form-item-title'>".$price."</h5>";
-                          echo "</div>";
-                         } // foreach
-
-                       $drID = "drVisitor1";
-                      echo "<div class='form-item'>";
-                      echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
-                      echo "<input type='text' title='Enter Member Dietary Restrictions' name='".$drID."' >"; 
-                      echo "</div>";
-                         echo "</div>";
+                    // echo "<td> </td>";  
+                    // echo "<td colspan='6>";
+               
           
                     echo "</div>";
                     echo "</td>";
@@ -288,56 +323,62 @@ if ($addReg) {
   
         // second visitor
         echo '<tr>';
-        echo "<td><input title='Enter Visitor First Name' type='text' name='firstname2'></td>";
-        echo "<td><input title='Enter Visitor Last Name' type='text' name='lastname2'></td>";
+        echo "<td><input title='Enter Visitor 2 First Name' type='text' name='firstname2'></td>";
+        echo "<td><input title='Enter Visitor 2 Last Name' type='text' name='lastname2'></td>";
 
 //             second visitor reg
         echo "<td><input type='email' name='email2'></td>";
-        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party'))  {
-            echo "<td><input title='Select to indicate Registrant will attend dinner' type='checkbox' name='attdin2'></td>";
-            echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn2'></td>";
-        }
-        if ($event['eventtype'] === 'Dinner Dance'){
-            echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn2'></td>";
-        }
-
-        echo "<td> <textarea  title='Enter any notes about the visitor registration' name='notes2' rows='5' cols='50'></textarea></td>";
-        echo '</tr>';
-   
-        if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party')) {
-
-                if ($num_meals > 0) {
-
-                    echo "<tr>";
-                    echo "<td> </td>";  
-                    echo "<td colspan='5>";
-                
-                    echo "<div class='form-container'>";  
+        if (($event['eventtype'] === 'Dine and Dance') || ($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'BBQ Picnic'))  {
+            echo "<td ><input title='Select to indicate Registrant will attend dinner' type='checkbox' id='attdin2' name='attdin2' onclick='v2Meals()'>";
+               if ($num_meals > 0) {
+                    
+                 echo "<div id='visitor2meals' class='form-container hidden'>";  
                     echo "<div class='form-grid'>";
 
                         foreach ($mealChoices as $choice) {
-                          $mcID = "mcVisitor2".$choice['id'];
+                          $mcID2 = "mcVisitor2".$choice['id'];
                           echo "<div class='form-item'>";
                           echo '<h4 class="form-item-title">Select?</h4>'; 
-                          echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
+                          echo "<input  title='Select This Meal' type='checkbox'name='".$mcID2."'>";
                           echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
-                          $price = number_format($choice['guestprice']/100,2);
-                          echo "<h5 class='form-item-title'>".$price."</h5>";
+                          if ($event['eventtype'] !== 'BBQ Picnic') {
+                            $price = number_format($choice['guestprice']/100,2);
+                            echo "<h5 class='form-item-title'>".$price."</h5>";
+                          }
+
                           echo "</div>";
                          } // foreach
 
-                       $drID = "drVisitor2";
+                       $drID2 = "drVisitor2";
                       echo "<div class='form-item'>";
                       echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
-                      echo "<input type='text' title='Enter Member Dietary Restrictions' name='".$drID."' >"; 
+                      echo "<input type='text' title='Enter Member Dietary Restrictions' name='".$drID2."' >"; 
                       echo "</div>";
                          echo "</div>";
           
                     echo "</div>";
-                    echo "</td>";
-                    echo "</tr>";
-                  
-                }   // num_meals
+               }
+             echo "</td>";
+               
+
+            if ($event['eventtype'] !== 'BBQ Picnic') {
+                 echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn2'></td>";
+            }
+            
+        }
+        if ($event['eventtype'] === 'Dinner Dance'){
+            echo "<td><input title='Select to indicate Registrant has paid' type='checkbox' name='pddinn2'></td>";
+        }
+        if ($event['eventtype'] === 'BBQ Picnic') {
+            echo '<td><input title="select if visitor 2 will play cornhole" type="checkbox" name="v2cornhole"></td>';
+            echo '<td><input title="select if visitor 2 will play softball" type="checkbox" name="v2softball"></td>';
+        }
+   
+        echo '</tr>';
+   
+        if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'BBQ Picnic')) {
+
+               
              } // eventtype
    
    

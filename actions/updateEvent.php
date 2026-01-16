@@ -70,6 +70,7 @@ if (isset($_POST['submitUpdate'])) {
     $evnumregID = "evnumreg".$event['id'];
     $evformID = "evform".$event['id'];
     $evrendID = "evrend".$event['id'];
+    $evmrendID = "evmrend".$event['id'];
     $evropenID = "evropen".$event['id'];
     $evidID = "evid".$event['id'];
     $evoeID = "evoe".$event['id'];
@@ -92,6 +93,7 @@ if (isset($_POST['submitUpdate'])) {
             $eventRec->eventcost = $_POST["$evcostID"];
             $eventRec->eventregopen = $_POST["$evropenID"];
             $eventRec->eventregend = $_POST["$evrendID"];
+           
             $eventRec->eventnumregistered = $_POST["$evnumregID"];
             $eventRec->eventguestcost = $_POST["$evgcostID"];
             $eventRec->eventguestpriceid = $_POST["$evgpriceID"];

@@ -95,6 +95,7 @@ if ($rowCount > 0) {
             'eventmempriceid' => $eventmempriceid,
             'eventguestpriceid' => $eventguestpriceid,
             'eventguestcost' => $eventguestcost
+          
         );
         array_push($allEvents, $event_item);
     

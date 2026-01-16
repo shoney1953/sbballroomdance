@@ -148,6 +148,14 @@ echo '<div class="container-section ">';
                                 echo  '<th>Meal Selected</th>';
                             }
                         }
+                        
+                        if ($event['eventtype'] === 'BBQ Picnic') {
+                            echo '<th>Attend<br>Dinner?</th>';
+                     
+              
+                                echo  '<th>Meal Selected</th>';
+
+                        }
                         if ($event['eventtype'] === 'Dinner Dance') {
 
                             if ($event['eventcost'] > 0) {
@@ -178,8 +186,13 @@ echo '<div class="container-section ">';
                             echo "<td>".$eventRegistration['lastname']."</td>";
                             echo "<td>".$eventRegistration['email']."</td>"; 
                     
-                         
-
+                           if ($event['eventtype'] === 'BBQ Picnic') {
+                                if ($eventRegistration['ddattenddinner'] == true ) {
+                                    echo "<td>&#10004;</td>"; 
+                                } else {
+                                    echo "<td>&times;</td>"; 
+                                } 
+                           }
                             if ($event['eventtype'] === 'Dance Party') {
                                 if ($eventRegistration['ddattenddinner'] == true ) {
                                     echo "<td>&#10004;</td>"; 

@@ -9,6 +9,38 @@
      
      ?>
      <script>
+       function v1Meals() { 
+     
+            var element1 = document.getElementById('visitor1meals');
+          
+        // Select the element
+        if (document.getElementById('attdin1').checked) {
+
+           element1.classList.remove('hidden');
+        }
+        else {
+ 
+            element1.classList.add('hidden');
+
+            }
+        }
+        function v2Meals() { 
+ 
+        var element1 = document.getElementById('visitor2meals');
+  
+        // Select the element
+        if (document.getElementById('attdin2').checked) {
+    
+       
+        element1.classList.remove('hidden');
+        }
+        else {
+        
+      
+            element1.classList.add('hidden');
+
+            }
+         }
 
         function displayMeals1(userid) {
         var register =  "us"+userid; 
@@ -21,7 +53,7 @@
         element1.classList.remove('hidden');
         }
         else {
-            console.log('notchecked');
+         
             var element1 = document.getElementById(formcontainer);
             element1.classList.add('hidden');
 
@@ -40,7 +72,7 @@
         element1.classList.remove('hidden');
         }
         else {
-            console.log('notchecked');
+        
             var element1 = document.getElementById(formcontainer);
             element1.classList.add('hidden');
 
@@ -58,7 +90,7 @@
         element1.classList.remove('hidden');
         }
         else {
-            console.log('notchecked');
+          
             var element1 = document.getElementById(formcontainer);
             element1.classList.add('hidden');
             }
@@ -71,12 +103,13 @@
 
         // Select the element
         if (document.getElementById(update).checked) {
-        console.log(formcontainer);
+        
+  
         var element1 = document.getElementById(formcontainer);
         element1.classList.remove('hidden');
         }
         else {
-            console.log('notchecked');
+      
             var element1 = document.getElementById(formcontainer);
             element1.classList.add('hidden');
 
