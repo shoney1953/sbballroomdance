@@ -213,7 +213,7 @@ hr {
 @keyframes carousel{
   0%
   {
-      background-image: url("../img/carousel14.jpg");
+      background-image: url("../img/Carousel23.jpg");
   }
   5%
   {
@@ -229,7 +229,7 @@ hr {
   }
   30%
   {
-      background-image: url("../img/carousel7.jpg");
+      background-image: url("../img/Carousel21.jpeg");
   }
   40%
   {
@@ -241,7 +241,7 @@ hr {
   }
   60%
   {
-      background-image: url("../img/carousel3.jpg");
+      background-image: url("../img/Carousel20.jpeg");
   }
   65%
   {
@@ -261,11 +261,11 @@ hr {
   }
   95%
   {
-    background-image: url("../img/charitywalk.jpg");
+    background-image: url("../img/carousel14.jpg");
   }
   100%
   {
-      background-image: url("../img/carousel5.jpg");
+      background-image: url("../img/Carousel22.jpeg");
   }
 }
 .hidden {
