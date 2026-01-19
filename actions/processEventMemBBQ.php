@@ -2,7 +2,7 @@
         
                 $gotEventReg = 0;
                 $gotPartnerEventReg = 0;
-                var_dump($_SESSION['partnerid']);
+       
                 if ($_SESSION['role'] === 'visitor') {
                      if ($reg->read_ByEventIdVisitor($event['id'],$_SESSION['username'])) {
                           $gotEventReg = 1;
@@ -14,33 +14,15 @@
                 }
              
                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+               $x = $partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid']);
+        
                 if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
                             $gotPartnerEventReg = 1;
                             
                 }
                }
-              $mealChoices = [];
-              $result = $mChoices->read_ByEventId($event['id']);
-                $rowCount = $result->rowCount();
-                $num_meals = $rowCount;
-                if ($rowCount > 0) {
-                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                        extract($row);
-                        $meal_item = array(
-                            'id' => $id,
-                            'mealname' => $mealname,
-                            'mealdescription' => $mealdescription,
-                            'eventid' => $eventid,
-                            'memberprice' => $memberprice,
-                            'guestprice' => $guestprice,
-                            'productid' => $productid,
-                            'priceid' => $priceid,
-                            'guestpriceid' => $guestpriceid
-
-                        );
-                        array_push($mealChoices, $meal_item);
-              } // while $row
-            } // rowcount
+             
+       
    
             if (isset($_POST["$regChk"])) {
               
@@ -82,33 +64,39 @@
             
                  echo '<div class="form-container hidden" id="memMealChoice1">';
                 if ($_SESSION['role'] === 'visitor') {
-                  echo "<h4 class='form-title-left'>Meal Selection for ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname'].":</h4>";
+                  echo "<h4 class='form-title-left'>Selection for ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname'].":</h4>";
                 } else {
-                  echo "<h4 class='form-title-left'>Meal Selection for ".$_SESSION['userfirstname']." ".$_SESSION['userlastname'].":</h4>";
+                  echo "<h4 class='form-title-left'>Selection for ".$_SESSION['userfirstname']." ".$_SESSION['userlastname'].":</h4>";
                 }
              
-                echo '<div class="form-grid">';
-                $mealsNumber = count($mealChoices);
-                foreach ($mealChoices as $choice){
-                  $mealChk = 'meal'.$choice['id'];
+                echo '<div class="form-grid2">';
                   echo '<div class="form-item">';
-                  if ($mealsNumber === 1) {
-                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' checked id='".$mealChk."' name='".$mealChk ."'>".$choice['mealname']."</h4>"; 
-                  } else {
-                     echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk."' name='".$mealChk ."'>".$choice['mealname']."</h4>";
-                  }
-                 
-                  echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
-                  echo '</div>'; // end of form item         
-                 } // for each mealchoice
-            
+                      echo '<h4 class="form-item-title"># Hot Dogs?</h4>';
+                  echo '<input type="number" name="numhotdogs1" id="numhotdogs1" min="0" title="number of hot dogs you want" value="0" onchange="changeHdBuns1(this)">';
+                  echo '</div>'; // end form item
+                    echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title"># Buns ?</h4>';
+                  echo '<input type="number" name="numhdbuns1" id="numhdbuns1" min="0" value="0" title="enter number of hot dog buns you want">';
+                  echo '</div>'; // end form item
+                     echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title"># Burgers?</h4>';
+                  echo '<input type="number" name="numhamburgers1" id="numhamburgers1" min="0" value="0" title="number of hamburgers you want" onchange="changeHbBuns1(this)">';
+                  echo '</div>'; // end form item
+                    echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title">#  Buns?</h4>';
+                  echo '<input type="number" name="numhbbuns1" id="numhbbuns1" min="0" value="0" title="enter number of hamburger buns you want">';
+                  echo '</div>'; // end form item
+                      echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title">Vegetarian?</h4>';
+                  echo '<input type="checkbox" name="vegetarian1" title="Specify if you are vegetarian">';
+                  echo '</div>'; // end form item
                    echo '</div>'; // end form grid
                  
                   echo "<div class='form-item'>";
                   echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
                   echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr1' value='".$_SESSION['dietaryrestriction']."' >"; 
                   echo "</div>";  // form item
-      echo '</div>';
+                  echo '</div>';
            
                   echo '</div>'; // end form grid div hidden
                 echo '<div class="form-item">';
@@ -122,7 +110,7 @@
                 echo '</div>'; // form grid
                 echo '</div>'; // form grid div
               }
-          
+            
                 if ($gotPartnerEventReg === 0) {
                     echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
                     echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
@@ -141,22 +129,30 @@
                  echo '<div class="form-container hidden" id="memMealChoice2">';
                 echo "<h4 class='form-title-left'>Meal Selection for ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname'].":</h4>";
     
-                echo '<div class="form-grid">';
-         
-                  foreach ($mealChoices as $choice){
-                  $mealChk2 = 'meal2'.$choice['id'];
+          
+           echo '<div class="form-grid2">';
                   echo '<div class="form-item">';
-                  if ($mealsNumber === 1) {
-                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' checked id='".$mealChk2."' name='".$mealChk2 ."'>".$choice['mealname']."</h4>";
-                  } else {
-                    echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk2."' name='".$mealChk2 ."'>".$choice['mealname']."</h4>";
-                  }
-                    echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
-                  // echo "<input type='checkbox'  title='Meal Choice' id='".$mealChk2."' name='".$mealChk2 ."'>";
-                    echo '</div>'; // end of form item         
-                   } // for each mealchoice
-
-                  echo '</div>'; // form grid
+                      echo '<h4 class="form-item-title"># Hot Dogs?</h4>';
+                  echo '<input type="number" name="numhotdogs2" id="numhotdogs2" min="0" value="0" title="enter number of hot dogs you want" onchange="changeHdBuns2(this)">';
+                  echo '</div>'; // end form item
+                    echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title"># Buns ?</h4>';
+                  echo '<input type="number" name="numhdbuns2" id="numhdbuns2" min="0" value="0" title="enter number of hot dog buns you want">';
+                  echo '</div>'; // end form item
+                     echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title"># Burgers?</h4>';
+                  echo '<input type="number" name="numhamburgers2" id="numhamburgers2" min="0" value="0" title="enter number of hamburgers you want" onchange="changeHbBuns2(this)">';
+                  echo '</div>'; // end form item
+                    echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title">#  Buns?</h4>';
+                  echo '<input type="number" name="numhbbuns2" id="numhbbuns2" min="0" value="0" title="enter number of hamburger buns you want">';
+                  echo '</div>'; // end form item
+                      echo '<div class="form-item">';
+                      echo '<h4 class="form-item-title">Vegetarian?</h4>';
+                  echo '<input type="checkbox" name="vegetarian2" title="Specify if you are vegetarian">';
+                  echo '</div>'; // end form item
+                   echo '</div>'; // end form grid
+           
                   echo "<div class='form-item'>";
                   echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
                   echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr2' value='".$_SESSION['partnerdietaryrestriction']."' >"; 
@@ -295,20 +291,7 @@
                 echo '<div class="form-container" id="memMealChoiceU1">';
                 echo '<div class="form-grid">';
          
-                foreach ($mealChoices as $choice){
-                  $mealChk = 'meal'.$choice['id'];
-                  echo '<div class="form-item">';
-                  if ($reg->mealchoice === $choice['id']) {
-                     echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk."' checked name='".$mealChk ."'>".$choice['mealname']."</h4>";
-                  } else {
-                      echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$mealChk."' name='".$mealChk ."'>".$choice['mealname']."</h4>";
-                  }
-                     
-                  
-                 
-                  echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
-                  echo '</div>'; // end of form item         
-                 } // for each mealchoice
+                
             
                    echo '</div>'; // end form grid
                echo '</div>';
@@ -356,19 +339,7 @@
              
                      echo '<div class="form-container " id="memMealChoiceU2">';
                   echo '<div class="form-grid">';
-               foreach ($mealChoices as $choice){
-                $meal2Chk = 'meal2'.$choice['id'];
-                  echo '<div class="form-item">';
-                  if ($partnerReg->mealchoice === $choice['id']) {
-                     echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$meal2Chk."' checked name='".$meal2Chk ."'>".$choice['mealname']."</h4>";
-                  } else {
-                      echo "<h4 class='form-title-left'> <input type='checkbox'  title='Meal Choice' id='".$meal2Chk."' name='".$meal2Chk ."'>".$choice['mealname']."</h4>";
-                  }                   
-                 
-                  echo "<p class='small-p'><em>".$choice['mealdescription']."</em></p>";
-                  echo '</div>'; // end of form item         
-                 
-                 } // for each mealchoice
+            
                   echo '</div>';
                     echo '</div>'; // end of form item
               echo '</div>';
@@ -398,3 +369,21 @@
             }
      
         ?>
+        <script>
+          function changeHdBuns1(input1) {
+             var input2 = document.getElementById('numhdbuns1');
+             input2.value = input1.value;
+          }
+            function changeHbBuns1(input1) {
+             var input2 = document.getElementById('numhbbuns1');
+             input2.value = input1.value;
+          }
+            function changeHdBuns2(input1) {
+             var input2 = document.getElementById('numhdbuns2');
+             input2.value = input1.value;
+          }
+            function changeHbBuns2(input1) {
+             var input2 = document.getElementById('numhbbuns2');
+             input2.value = input1.value;
+          }
+        </script>

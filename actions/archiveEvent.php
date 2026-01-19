@@ -123,7 +123,12 @@ if (isset($_POST['submitArchive'])) {
                 'registeredby' => $registeredby,
                 'modifiedby' => $modifiedby,
                 'modifieddate' => $modifieddate,
-                'dateregistered' => $dateregistered
+                'dateregistered' => $dateregistered,
+                'numhotdogs' => $numhotdogs,
+                'numhdbuns' => $numhdbuns,
+                'numhamburgers' => $numhamburgers,
+                'numhbbuns' => $numhbbuns,
+                'vegetarian' => $vegetarian
             );
 
             $eventRegArch->preveventid = $reg_item['eventid'];
@@ -149,7 +154,11 @@ if (isset($_POST['submitArchive'])) {
             } else {
                 $eventRegArch->mealchoice = $reg_item['mealchoice'];
             }
-        
+            $eventRegArch->numhotdogs = $reg_item['numhotdogs'];
+            $eventRegArch->numhdbuns = $reg_item['numhdbuns'];
+            $eventRegArch->numhamburgers = $reg_item['numhamburgers'];
+            $eventRegArch->numhbbuns = $reg_item['numhbbuns'];
+            $eventRegArch->vegetarian = $reg_item['vegetarian'];
             $eventRegArch->paidonline = $reg_item['paidonline'];
             $eventRegArch->dietaryrestriction = $reg_item['dietaryrestriction'];
             $eventRegArch->create();

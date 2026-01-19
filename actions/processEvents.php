@@ -265,6 +265,11 @@ if (isset($_POST['submitEventProcess'])) {
               'paid' => $paid,
               'mealchoice' => $mealchoice,
               'dwop' => $dwop,
+              'numhotdogs' => $numhotdogs,
+              'numhdbuns' => $numhdbuns,
+              'numhamburgers' => $numhamburgers,
+              'numhbbuns' => $numhbbuns,
+              'vegetarian' => $vegetarian,
               'dietaryrestriction' => $dietaryrestriction,
               'userid' => $userid
            
@@ -299,6 +304,11 @@ if (isset($_POST['submitEventProcess'])) {
                   'dietaryrestriction' => $dietaryrestriction,
                   'paid' => $paid,
                   'dwop' => $dwop,
+                    'numhotdogs' => $numhotdogs,
+              'numhdbuns' => $numhdbuns,
+              'numhamburgers' => $numhamburgers,
+              'numhbbuns' => $numhbbuns,
+              'vegetarian' => $vegetarian,
                   'userid' => $userid
 
                   

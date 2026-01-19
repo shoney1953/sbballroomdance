@@ -1,6 +1,11 @@
 <?php
 session_start();
-
+unset($_SESSION['partnerdietaryrestriction']);
+unset($_SESSION['partnerfirstname']);
+unset($_SESSION['partnerlastname']);
+  unset($_SESSION['partnerrole']);
+  unset($_SESSION['partnername']);
+  unset($_SESSION['partneremai ']);
 require_once '../config/Database.php';
 require_once '../models/Visitor.php';
 date_default_timezone_set("America/Phoenix");

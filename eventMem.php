@@ -59,6 +59,11 @@ if ($rowCount > 0) {
             'modifiedby' => $modifiedby,
             'modifieddate' => $modifieddate,
             'dwop' => $dwop,
+            'numhotdogs' => $numhotdogs,
+            'numhdbuns' => $numhdbuns,
+            'numhamburgers' => $numhamburgers,
+            'numhbbuns' => $numhbbuns,
+            'vegetarian' => $vegetarian,
             'dateregistered' => date('m d Y', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);
@@ -153,7 +158,7 @@ echo '<div class="container-section ">';
                             echo '<th>Attend<br>Dinner?</th>';
                      
               
-                                echo  '<th>Meal Selected</th>';
+                        
 
                         }
                         if ($event['eventtype'] === 'Dinner Dance') {
@@ -236,7 +241,10 @@ echo '<div class="container-section ">';
 
                                 }
                             }
-                            echo "<td>".$eventRegistration['mealname']."</td>";
+                            if ($event['eventtype'] !== 'BBQ Picnic') {
+                               
+                            echo "<td>".$eventRegistration['mealname']."</td>"; 
+                            }
                             echo "<td>".$eventRegistration['dateregistered']."</td>"; 
                             echo "<td>".$eventRegistration['registeredby']."</td>"; 
                             echo "<td>".$eventRegistration['message']."</td>"; 

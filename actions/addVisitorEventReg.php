@@ -51,6 +51,7 @@ if (!isset($_SESSION['username']))
             exit;
        }
 }
+// var_dump($_POST);
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
@@ -215,6 +216,31 @@ if (isset($_POST['submitAddVisitorReg'])) {
         $eventReg->softball = 1;
           $emailBody .= '<br>You have elected to play softball.';
     }
+     if (isset($_POST['nv1hd'])) {
+        $eventReg->numhotdogs = $_POST['nv1hd'];
+    } else {
+        $eventReg->numhotdogs = 0;
+    }
+     if (isset($_POST['nv1hdb'])) {
+        $eventReg->numhdbuns = $_POST['nv1hdb'];
+    } else {
+        $eventReg->numhdbuns = 0;
+    }
+      if (isset($_POST['nv1hb'])) {
+        $eventReg->numhamburgers = $_POST['nv1hb'];
+    } else {
+        $eventReg->numhamburgers = 0;
+    }
+     if (isset($_POST['nv1hbb'])) {
+        $eventReg->numhbbuns = $_POST['nv1hbb'];
+    } else {
+        $eventReg->numhbbuns = 0;
+    }
+      if (isset($_POST['v1veg'])) {
+        $eventReg->vegetarian = 1;
+      } else {
+        $eventReg->vegetarian = 0;
+      }
     $eventReg->create();
     $event->addCount($eventReg->eventid);
     $emailBody .= '<br>We hope you enjoy the event and consider joining our club.';
@@ -353,6 +379,31 @@ if (isset($_POST['submitAddVisitorReg'])) {
         $eventReg->softball = 1;
           $emailBody .= '<br>You have elected to play softball.';
     }
+    if (isset($_POST['nv2hd'])) {
+        $eventReg->numhotdogs = $_POST['nv2hd'];
+    } else {
+           $eventReg->numhotdogs = 0;
+    }
+     if (isset($_POST['nv2hdb'])) {
+        $eventReg->numhdbuns = $_POST['nv2hdb'];
+    } else {
+        $eventReg->numhdbuns = 0;
+    }
+      if (isset($_POST['nv2hb'])) {
+        $eventReg->numhamburgers = $_POST['nv2hb'];
+    } else {
+        $eventReg->numhamburgers = 0;
+    }
+     if (isset($_POST['nv2hbb'])) {
+        $eventReg->numhbbuns = $_POST['nv2hbb'];
+    } else {
+        $eventReg->numhbbuns = 0;
+    }
+      if (isset($_POST['v2veg'])) {
+        $eventReg->vegetarian = 1;
+      } else {
+        $eventReg->vegetarian = 0;
+      }
       $eventReg->create();
       $event->addCount($eventReg->eventid);  
     $emailBody .= '<br>We hope you enjoy the event and consider joining our club.';

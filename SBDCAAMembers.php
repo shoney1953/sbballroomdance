@@ -126,6 +126,11 @@ if ($rowCount > 0) {
             'modifiedby' => $modifiedby,
             'modifieddate' => $modifieddate,
             'dwop' => $dwop,
+            'numhotdogs' => $numhotdogs,
+            'numhdbuns' => $numhdbuns,
+            'numhamburgers' => $numhamburgers,
+            'numhbbuns' => $numhbbuns,
+            'vegetarian' => $vegetarian,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);

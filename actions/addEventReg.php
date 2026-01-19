@@ -82,7 +82,7 @@ $toCC5 = '';
 $mailAttachment = ''; 
 $mailAttachment2 = ''; 
 $replyTopic = "SBDC Event Registration";
-
+// var_dump($_POST);
 
 if (isset($_POST['submitAddReg'])) {        
     if (isset($_POST['eventid'])) {
@@ -132,7 +132,8 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->lastname = $usr['lastname'];
                     $regLastName1 = $eventReg->lastname;
                     $eventReg->email = $usr['email'];
-                    if ($usr['partnerid'] === '0') {
+                
+                    if ($usr['partnerId'] === '0') {
                         $eventReg->dwop = 1;
                     } else {
                         $eventReg->dwop = 0;
@@ -170,7 +171,7 @@ if (isset($_POST['submitAddReg'])) {
                         $eventReg->ddattenddinner = 1;
                     }
                     if (($event->eventtype === 'Dance Party') || 
-                         $event->eventtype === 'BBQ Picnic') {
+                         ($event->eventtype === 'BBQ Picnic')) {
                         if (isset($_POST["$attDin"])) {
                             $eventReg->ddattenddinner = 1;
                            
@@ -179,7 +180,38 @@ if (isset($_POST['submitAddReg'])) {
                         }
                  
                     }
-                                                                                
+                   if  ($event->eventtype === 'BBQ Picnic') {
+                  $nhdID = "nhd".$usr['id'];
+                  $nhdbID = "nhdb".$usr['id'];
+                  $nhbID = "nhb".$usr['id'];
+                  $nhbbID = "nhbb".$usr['id'];
+                  $vegID = "veg".$usr['id']; 
+                  if (isset($_POST["$nhdID"])) {
+                    $eventReg->numhotdogs = $_POST["$nhdID"];
+                  } else {
+                    $eventReg->numhotdogs = 0;
+                  }
+                     if (isset($_POST["$nhdbID"])) {
+                    $eventReg->numhdbuns = $_POST["$nhdbID"];
+                  } else {
+                    $eventReg->numhdbuns = 0;
+                  }
+                      if (isset($_POST["$nhbID"])) {
+                    $eventReg->numhamburgers = $_POST["$nhbID"];
+                  } else {
+                    $eventReg->numhamburgers = 0;
+                  }
+                     if (isset($_POST["$nhbbID"])) {
+                    $eventReg->numhbbuns = $_POST["$nhbbID"];
+                  } else {
+                    $eventReg->numhbbuns = 0;
+                  }
+                  if (isset($_POST["$vegID"])) {
+                    $eventReg->vegetarian = 1;
+                  } else {
+                    $eventReg->vegetarian = 0;
+                  }
+                   }                                                            
   
                  $result = $eventReg->checkDuplicate($regEmail1, $eventReg->eventid);
   
@@ -211,7 +243,7 @@ if (isset($_POST['submitAddReg'])) {
                         if (isset($_POST["$playSoftball"])) {
                             $emailBody .= "<br>You have chosen to play Softball.";
                         }
-                        $emailBody .= "<br>You may go to Your Profile on the Website to change any of these options.";
+                        $emailBody .= "<br>You may go to Upcoming Events on the Website to change any of these options.";
                     }
                     if (($event->eventtype === 'Dine and Dance') || ($event->eventtype === 'Dance Party') ){
                         if (isset($_POST["$attDin"])) {
@@ -229,10 +261,10 @@ if (isset($_POST['submitAddReg'])) {
     
                         }
                     }
-                   if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party') || ($event->eventtype === 'BBQ Picnic')) {
-                         if ($event->eventtype !== 'BBQ Picnic') {
+                   if (($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'Dance Party') ) {
+                       
                                 $toCC3 = $treasurer;
-                         }
+                         
                           
                   
                          

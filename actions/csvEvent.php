@@ -47,6 +47,11 @@ $number = 0;
             'First Name',
             'Last Name', 
             'Email',
+            '# Hot Dogs',
+            '# Hot Dog Buns',
+            '# Burgers',
+            '# Burger Buns',
+            'Veg',
             'Member',
             'Cornhole',
             'Softball'
@@ -66,6 +71,11 @@ $number = 0;
                     'firstname' => $firstname,
                     'lastname' => $lastname,
                     'email' => $email,
+                    'numhotdogs' => $numhotdogs,
+                    'numhdbuns' => $numhdbuns,
+                    'numhamburgers' => $numhamburgers,
+                    'numhbbuns' => $numhbbuns,
+                    'vegetarian' => $vegetarian,
                     'member' => $member,
                     'cornhole' => $cornhole,
                     'softball' => $softball

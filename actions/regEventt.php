@@ -24,7 +24,7 @@ $partnerEventReg = new EventRegistration($db);
 $eventInst = new Event($db);
 $user = new User($db);
 $mealchoices = new DinnerMealChoices($db);
-$mChoices = [];
+
 $message = '';
 $result = 0;
 $danceCost = 0;
@@ -40,7 +40,7 @@ $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
 $smealCHK1 = '';
-$mChoices = [];
+
 $meal1 = '';
 $mealprice1 = '';
 $mealid1 = 0;
@@ -74,32 +74,10 @@ if (!isset($_POST['submitAddRegs'])) {
      header($redirect); 
      exit;
 }
- 
+
     $eventInst->id = $_POST['eventid'];
     $eventInst->read_single();
-      $result = $mealchoices->read_ByEventId($eventInst->id);
-
-                $rowCount = $result->rowCount();
-                $num_meals = $rowCount;
-                if ($rowCount > 0) {
-                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                        extract($row);
-                        $meal_item = array(
-                            'id' => $id,
-                            'mealname' => $mealname,
-                            'mealdescription' => $mealdescription,
-                            'eventid' => $eventid,
-                            'memberprice' => $memberprice,
-                            'guestprice' => $guestprice,
-                            'productid' => $productid,
-                            'priceid' => $priceid,
-                            'guestpriceid' => $guestpriceid
-                        );
-                        array_push($mChoices, $meal_item);              
-                    } // while
-
-                }   
-
+     
     if (isset($_POST['mem1Chk'])) {
     $regFirstName1 = htmlentities($_POST['firstname1']);
     $regLastName1 = htmlentities($_POST['lastname1']);
@@ -114,7 +92,7 @@ if (!isset($_POST['submitAddRegs'])) {
        } else {
         $message = '';
        }
-    var_dump($_POST)  ;
+
    if (isset($_POST['mem2Chk'])) {
    
     $regFirstName2 = htmlentities($_POST['firstname2']);
@@ -169,24 +147,24 @@ if (!isset($_POST['submitAddRegs'])) {
                     }
        
                     if (isset($_POST['ddattm1'])) {
-                        $emailBody .= "You have chosen to attend the meal.<br>";
-                       
-              }
-                        foreach ($mChoices as $choice) {
-                    
-                          $mealChk1 = 'meal'.$choice['id'];
-                         if (isset($_POST["$mealChk1"])) {
-                          
-                                $eventReg->mealchoice = $choice['id'];
-                                 $emailBody .= 'Your meal choice is: '.$choice['mealname'].'.<br>';
-                               } //smeal1   
-                       
-                    }
-                     if (isset($_POST['dietaryr1'])) {
+                        $emailBody .= "<br>You have chosen to attend the meal.<br>";
+                        if (isset($_POST['numhotdogs1'])) {
+                            $emailBody .= "<br>You have specified ".$_POST['numhotdogs1']." hot dogs with ".$_POST['numhdbuns1']." buns.";
+                        }
+                        if (isset($_POST['numhamburgers1'])) {
+                            $emailBody .= "<br>You have specified ".$_POST['numhamburgers1']." hamburgers with ".$_POST['numhbbuns1']."  buns.";
+                        }
+                        if (isset($_POST['vegetarian1'])) {
+                            $emailBody .= "<br>You have specified vegetarian.";
+                        }
+                          if (isset($_POST['dietaryr1'])) {
                         
                            $eventReg->dietaryrestriction = $_POST['dietaryr1'];
-                           $emailBody .= 'Your dietary restriction is: '.$eventReg->dietaryrestriction.'.<br>';
+                           $emailBody .= "<br>Your dietary restriction is: ".$eventReg->dietaryrestriction.".<br>";
                          }
+              }
+                      
+                   
                     if (isset($_POST['ch1'])) {
                         $emailBody .= "You have chosen to play cornhole.<br>";
                     }
@@ -195,14 +173,14 @@ if (!isset($_POST['submitAddRegs'])) {
                     }
                    if (isset($_POST['ddattm2'])) {
                         $emailBody .= "<br>Your partner has chosen to attend the meal.<br>";
-                        foreach ($mChoices as $choice) {
-                    
-                          $mealChk2 = 'meal2'.$choice['id'];
-                         if (isset($_POST["$mealChk2"])) {
-                          
-                                $partnerEventReg->mealchoice = $choice['id'];
-                                 $emailBody .= 'You partners meal choice is: '.$choice['mealname'].'.<br>';
-                               } //smeal1   
+                          if (isset($_POST['numhotdogs2'])) {
+                            $emailBody .= "<br>Your partner specified ".$_POST['numhotdogs2']."  hot dogs with ".$_POST['numhdbuns2']." buns.";
+                        }
+                        if (isset($_POST['numhamburgers2'])) {
+                            $emailBody .= "<br>Your partner specified ".$_POST['numhamburgers2']." hamburgers with ".$_POST['numhbbuns2']." buns.";
+                        }
+                        if (isset($_POST['vegetarian2'])) {
+                            $emailBody .= "<br>Your partner specified vegetarian.";
                         }
                         if (isset($_POST['dietaryr2'])) {
                         
@@ -263,12 +241,30 @@ if (!isset($_POST['submitAddRegs'])) {
                 $eventReg->eventname = $eventInst->eventname;
                 $eventReg->registeredby = $_SESSION['username'];
                 $eventReg->userid = $regUserid1;
-                // $eventReg->mealchoice = 0;
+                $eventReg->mealchoice = 0;
                 $eventReg->message = $message;
                if (isset($_POST['ddattm1'])) {
                     $eventReg->ddattenddinner = 1;
+                    if (isset($_POST['numhamburgers1'])) {
+                        $eventReg->numhamburgers = $_POST['numhamburgers1'];
+                        $eventReg->numhbbuns = $_POST['numhbbuns1'];
+                    }
+                      if (isset($_POST['numhotdogs1'])) {
+                        $eventReg->numhotdogs = $_POST['numhotdogs1'];
+                        $eventReg->numhdbuns = $_POST['numhdbuns1'];
+                    }
+                    if (isset($_POST['vegetarian1'])) {
+                        $eventReg->vegetarian = 1;
+                    } else {
+                        $eventReg->vegetarian = 0;  
+                    }
                 } else {
                     $eventReg->ddattenddinner = 0;
+                    $eventReg->numhamburgers = 0;
+                    $eventReg->numhbbuns = 0;
+                    $eventReg->numhotdogs = 0;
+                    $eventReg->numhdbuns = 0;
+                    $eventReg->vegetarian = 0;
                 }
                 if (isset($_POST['ch1'])) {
                     $eventReg->cornhole = 1;
@@ -287,12 +283,12 @@ if (!isset($_POST['submitAddRegs'])) {
                         header($redirect);
                         exit; 
                 } //endresult
-                if (!$result) {
+                if (!$result) 
                 
                     $eventReg->create();
                     $eventInst->addCount($eventReg->eventid);
                 }  //end no results
-             }
+             
               if (isset($_POST['mem2Chk'])) {
                        // do the insert(s)
                     if ($mem2Partnerid !== '0') {
@@ -306,14 +302,36 @@ if (!isset($_POST['submitAddRegs'])) {
                     $partnerEventReg->email = $regEmail2;
                     $partnerEventReg->userid = $regUserid2;
                     $partnerEventReg->message = $message;
-             
+                    $partnerEventReg->mealchoice = 0;
                     $partnerEventReg->registeredby = $_SESSION['username'];
                     $partnerEventReg->paid = 0;
                  if (isset($_POST['ddattm2'])) {
                      $partnerEventReg->ddattenddinner = 1;
+                       $partnerEventReg->ddattenddinner = 1;
+                    if (isset($_POST['numhamburgers2'])) {
+                        $partnerEventReg->numhamburgers = $_POST['numhamburgers2'];
+                        $partnerEventReg->numhbbuns = $_POST['numhbbuns2'];
+                    }
+                      if (isset($_POST['numhotdogs2'])) {
+                        $partnerEventReg->numhotdogs = $_POST['numhotdogs2'];
+                        $partnerEventReg->numhdbuns = $_POST['numhdbuns2'];
+                    }
+                    if (isset($_POST['vegetarian2'])) {
+                        $partnerEventReg->vegetarian = 1;
+                    } else {
+                        $partnerEventReg->vegetarian = 0;
+                    }
+                   
   
                 } else {
                      $partnerEventReg->ddattenddinner = 0;
+                       $partnerEventReg->ddattenddinner = 0;
+                    $partnerEventReg->numhamburgers = 0;
+                    $partnerEventReg->numhbbuns = 0;
+                    $partnerEventReg->numhotdogs = 0;
+                    $partnerEventReg->numhdbuns = 0;
+                
+                    $partnerEventReg->vegetarian = 0;
                 }
                 if (isset($_POST['ch2'])) {
                      $partnerEventReg->cornhole = 1;
@@ -334,7 +352,7 @@ if (!isset($_POST['submitAddRegs'])) {
                      }
      
                     if (!$result) {
-                 
+             
                         $partnerEventReg->create();
                         $eventInst->addCount($partnerEventReg->eventid);
                     }
@@ -347,6 +365,9 @@ if (!isset($_POST['submitAddRegs'])) {
  
    if (isset($_POST['mem1Chk'])) {
         $regName1 = $regFirstName1.' '.$regLastName1;
+         if (isset($_POST['mem2Chk'])) {
+            $toCC3 = $regEmail2;
+         }
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
         sendEmail(
             $regEmail1, 
@@ -369,30 +390,30 @@ if (!isset($_POST['submitAddRegs'])) {
 
     }
 }
- if (isset($_POST['mem2Chk'])) {
-        $regName2 = $regFirstName2.' '.$regLastName2;
-    if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-        sendEmail(
-            $regEmail2, 
-            $regName2, 
-            $fromCC,
-            $fromEmailName,
-            $emailBody,
-            $emailSubject,
-            $replyEmail,
-            $replyTopic,
-            $mailAttachment,
-            $mailAttachment2,
-            $toCC2,
-            $toCC3,
-            $toCC4,
-            $toCC5
-        );
-    } else {
-        echo 'Registrant Email 2 is empty or Invalid. Please enter valid email.';
+//  if (isset($_POST['mem2Chk'])) {
+//         $regName2 = $regFirstName2.' '.$regLastName2;
+//     if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
+//         sendEmail(
+//             $regEmail2, 
+//             $regName2, 
+//             $fromCC,
+//             $fromEmailName,
+//             $emailBody,
+//             $emailSubject,
+//             $replyEmail,
+//             $replyTopic,
+//             $mailAttachment,
+//             $mailAttachment2,
+//             $toCC2,
+//             $toCC3,
+//             $toCC4,
+//             $toCC5
+//         );
+//     } else {
+//         echo 'Registrant Email 2 is empty or Invalid. Please enter valid email.';
 
-    }
- }
+//     }
+//  }
 
    $redirect = "Location: ".$_SESSION['returnurl'];
    header($redirect); 

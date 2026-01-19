@@ -30,7 +30,11 @@ $paidNum = 0;
 $regCount = 0;
 $paidOnline = 0;
 $mealsSelected = [];
-
+$numHotdogs = 0;
+$numHamburgers = 0;
+$numHDbuns = 0;
+$numHBbuns = 0;
+$numveg = 0;
 class PDF extends FPDF
 {
     function Header() {
@@ -131,6 +135,11 @@ class PDF extends FPDF
                 'mealchoice' => $mealchoice,
                 'mealname' => $mealname,
                 'dwop' => $dwop,
+                  'numhotdogs' => $numhotdogs,
+              'numhdbuns' => $numhdbuns,
+              'numhamburgers' => $numhamburgers,
+              'numhbbuns' => $numhbbuns,
+              'vegetarian' => $vegetarian,
                 'dietaryrestriction' => $dietaryrestriction,
                 'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
 
@@ -177,13 +186,17 @@ if ($rowCount > 0) {
             $pdf->Cell(35,8,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(40,8,"LAST NAME",1,0,"L");  
 
-            $pdf->Cell(18,8,"MEM",1,0,"L"); 
-            $pdf->Cell(15,8,"DWOP",1,0,"L");
+            $pdf->Cell(12,8,"MEM",1,0,"L"); 
+            $pdf->Cell(12,8,"DWOP",1,0,"L");
             if ($reg['eventtype'] === 'BBQ Picnic') {
-                  $pdf->Cell(18,8,"Cornhole",1,0,"L");                 
-                  $pdf->Cell(18,8,"Softball",1,0,"L"); 
-                  $pdf->Cell(18,8,"Meal?",1,0,"L");
-                   $pdf->Cell(60,8,"Meal Choice",1,0,"L");
+                  $pdf->Cell(12,8,"Corn",1,0,"L");                 
+                  $pdf->Cell(12,8,"Soft",1,0,"L"); 
+                  $pdf->Cell(12,8,"Meal",1,0,"L");
+                  $pdf->Cell(12,8,"Bur",1,0,"L");
+                   $pdf->Cell(12,8,"BB",1,0,"L");
+                  $pdf->Cell(12,8,"Hot",1,0,"L");
+                  $pdf->Cell(12,8,"HB",1,0,"L");
+                        $pdf->Cell(12,8,"Veg",1,0,"L");
                    $pdf->Cell(60,8,"Dietary Restriction",1,1,"L");
             }
 
@@ -222,14 +235,18 @@ if ($rowCount > 0) {
            $pdf->SetFont('Arial', '', 10);
            $pdf->Cell(35,8,"FIRST NAME",1,0,"L"); 
            $pdf->Cell(40,8,"LAST NAME",1,0,"L");  
-           $pdf->Cell(18,8,"MEM",1,0,"L"); 
-           $pdf->Cell(15,8,"DWOP",1,0,"L"); 
+           $pdf->Cell(12,8,"MEM",1,0,"L"); 
+           $pdf->Cell(12,8,"DWOP",1,0,"L"); 
 
         if ($reg['eventtype'] === 'BBQ Picnic') {
-            $pdf->Cell(18,8,"Cornhole",1,0,"L");                 
-            $pdf->Cell(18,8,"Softball",1,0,"L"); 
-            $pdf->Cell(18,8,"Meal?",1,0,"L");
-            $pdf->Cell(60,8,"Meal Choice",1,0,"L");
+            $pdf->Cell(12,8,"Corn",1,0,"L");                 
+            $pdf->Cell(12,8,"Soft",1,0,"L"); 
+            $pdf->Cell(12,8,"Meal",1,0,"L");
+            $pdf->Cell(12,8,"Bur",1,0,"L");
+            $pdf->Cell(12,8,"BB",1,0,"L");
+             $pdf->Cell(12,8,"Hot",1,0,"L");
+            $pdf->Cell(12,8,"HB",1,0,"L");
+             $pdf->Cell(12,8,"Veg",1,0,"L");
             $pdf->Cell(60,8,"Dietary Restriction",1,1,"L");
         }
 
@@ -325,6 +342,21 @@ if ($rowCount > 0) {
         if ($reg['paidonline'] == true) {
          $paidOnline++;
         }
+        if ($reg['numhotdogs'] > 0) {
+            $numHotdogs  = $numHotdogs + $reg['numhotdogs'];
+        }
+         if ($reg['numhdbuns'] > 0) {
+            $numHDbuns  = $numHDbuns + $reg['numhdbuns'];
+        }
+         if ($reg['numhamburgers'] > 0) {
+            $numHamburgers  = $numHamburgers + $reg['numhamburgers'];
+        }
+          if ($reg['numhbbuns'] > 0) {
+            $numHBbuns  = $numHBbuns + $reg['numhbbuns'];
+        }
+        if ($reg['vegetarian'] === '1') {
+            $numveg++;
+        }
         if ($reg['ddattenddinner'] == true) {
             $attDinner++;
         }
@@ -352,34 +384,43 @@ if ($rowCount > 0) {
           $pdf->Cell(40,8,$reg['lastname'],1,0,"L");  
     
           if ($user->getUserName($reg['email'])) {
-            $pdf->Cell(18,8,"YES",1,0,"L"); 
+            $pdf->Cell(12,8,"YES",1,0,"L"); 
             $memReg++; 
 
        
             if ($reg['eventtype'] === 'BBQ Picnic') {
                     if ($reg['dwop'] === '0') {
-                    $pdf->Cell(15,8,"NO",1,0,"L"); 
+                    $pdf->Cell(12,8,"NO",1,0,"L"); 
                     } else if ($reg['dwop'] === '1') {
-                        $pdf->Cell(15,8,"YES",1,0,"L");
+                        $pdf->Cell(12,8,"YES",1,0,"L");
                     } else {
-                        $pdf->Cell(15,8,"UNK",1,0,"L");
+                        $pdf->Cell(12,8,"UNK",1,0,"L");
                     }
                 if ($reg['cornhole'] === '1') {
-                    $pdf->Cell(18,8,"YES",1,0,"L");
+                    $pdf->Cell(12,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(18,8,"NO ",1,0,"L");
+                    $pdf->Cell(12,8,"NO ",1,0,"L");
                 } 
                 if ($reg['softball'] === '1') {
-                    $pdf->Cell(18,8,"YES",1,0,"L");
+                    $pdf->Cell(12,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(18,8,"NO ",1,0,"L");
+                    $pdf->Cell(12,8,"NO ",1,0,"L");
                 } 
                 if ($reg['ddattenddinner'] === '1') {
-                    $pdf->Cell(18,8,"YES",1,0,"L");
+                    $pdf->Cell(12,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(18,8,"NO ",1,0,"L");
+                    $pdf->Cell(12,8,"NO ",1,0,"L");
                 } 
-                
+                $pdf->Cell(12,8,$reg['numhamburgers'],1,0,"L");
+                $pdf->Cell(12,8,$reg['numhbbuns'],1,0,"L");
+                 $pdf->Cell(12,8,$reg['numhotdogs'],1,0,"L");
+                $pdf->Cell(12,8,$reg['numhdbuns'],1,0,"L");
+                 if ($reg['vegetarian'] === '1') {
+                    $pdf->Cell(12,8,"YES",1,0,"L");
+                } else {
+                    $pdf->Cell(12,8,"NO ",1,0,"L");
+                } 
+                 $pdf->Cell(60,8,$reg['dietaryrestriction'],1,1,"L");
 
             }
  
@@ -414,33 +455,42 @@ if ($rowCount > 0) {
              }
              if ($reg['eventtype'] === 'BBQ Picnic') {
                 $pdf->SetTextColor(255 , 0, 0);   
-                $pdf->Cell(18,8,"NO",1,0,"L");
+                $pdf->Cell(12,8,"NO",1,0,"L");
                 $pdf->SetTextColor(0 , 0, 0);
 
                 if ($reg['dwop'] === '0') {
-                    $pdf->Cell(15,8,"NO",1,0,"L"); 
+                    $pdf->Cell(12,8,"NO",1,0,"L"); 
                     } else if ($reg['dwop'] === '1') {
-                        $pdf->Cell(15,8,"YES",1,0,"L");
+                        $pdf->Cell(12,8,"YES",1,0,"L");
                     } else {
-                        $pdf->Cell(15,8,"UNK",1,0,"L");
+                        $pdf->Cell(12,8,"UNK",1,0,"L");
                     }
                 
                 if ($reg['cornhole'] === '1') {
-                    $pdf->Cell(18,8,"YES",1,0,"L");
+                    $pdf->Cell(12,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(18,8,"NO ",1,0,"L");
+                    $pdf->Cell(12,8,"NO ",1,0,"L");
                 } 
                 if ($reg['softball'] === '1') {
-                    $pdf->Cell(18,8,"YES",1,0,"L");
+                    $pdf->Cell(12,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(18,8,"NO ",1,0,"L");
+                    $pdf->Cell(12,8,"NO ",1,0,"L");
                 } 
                 if ($reg['ddattenddinner'] === '1') {
-                    $pdf->Cell(18,8,"YES",1,0,"L");
+                    $pdf->Cell(12,8,"YES",1,0,"L");
                 } else {
-                    $pdf->Cell(18,8,"NO ",1,0,"L");
+                    $pdf->Cell(12,8,"NO ",1,0,"L");
                 } 
- 
+                $pdf->Cell(12,8,$reg['numhamburgers'],1,0,"L");
+                $pdf->Cell(12,8,$reg['numhbbuns'],1,0,"L");
+                 $pdf->Cell(12,8,$reg['numhotdogs'],1,0,"L");
+                $pdf->Cell(12,8,$reg['numhdbuns'],1,0,"L");
+                if ($reg['vegetarian'] === '1') {
+                    $pdf->Cell(12,8,"YES",1,0,"L");
+                } else {
+                    $pdf->Cell(12,8,"NO ",1,0,"L");
+                } 
+                $pdf->Cell(60,8,$reg['dietaryrestriction'],1,1,"L");
             }
             
             $nonMemReg++; 
@@ -490,7 +540,7 @@ if ($rowCount > 0) {
             $pdf->Cell(22,8,"NO ",1,0,"L");
         } 
     }
-     if (($reg['eventtype'] === 'Dinner Dance') || ($reg['eventtype'] === 'Dance Party') || ($reg['eventtype'] === 'BBQ Picnic')) {
+     if (($reg['eventtype'] === 'Dinner Dance') || ($reg['eventtype'] === 'Dance Party') ) {
         if (($reg['mealchoice'] != NULL) && ($reg['mealchoice'] > 0)) {
 
                 $pdf->Cell(60,8,$reg['mealname'],1,0,"L");
@@ -553,9 +603,13 @@ if ($rowCount > 0) {
             $pdf->Cell(100, 8, "Playing Softball:  ".$playSoftball, 1, 1);
 
             $pdf->Cell(100, 8, "Attending Meal:  ".$attDinner, 1, 1);
-
+            $pdf->Cell(100, 8, "Number Hot Dogs:  ".$numHotdogs, 1, 1);
+            $pdf->Cell(100, 8, "Number Hot Dogs buns:  ".$numHDbuns, 1, 1);
+            $pdf->Cell(100, 8, "Number Hamburgers:  ".$numHamburgers, 1, 1);
+            $pdf->Cell(100, 8, "Number Hamburger buns:  ".$numHBbuns, 1, 1);
+            $pdf->Cell(100, 8, "Number Vegetarians:  ".$numveg, 1, 1);
      }
-     if (($event->eventtype === 'Dance Party') || ($event->eventtype === 'Dinner Dance') || ($event->eventtype === 'BBQ Picnic')) { 
+     if (($event->eventtype === 'Dance Party') || ($event->eventtype === 'Dinner Dance') ) { 
          $pdf->Ln(2);
              $pdf->Cell(150, 8, "Number of Meals Selected:  ", 1, 1);
         foreach ($mealChoices as $meal) {

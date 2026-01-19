@@ -317,15 +317,17 @@ foreach ($upcomingEvents as $event) {
         }
 
         function displayMealsB1() {
-             
+       console.log('inside displaymealsB1')  ;
+            var element1 = document.getElementById('memMealChoice1');
+            console.log(element1);
         // Select the element
         if (document.getElementById('ddattm1').checked) {
-        var element1 = document.getElementById('memMealChoice1');
+   
         element1.classList.remove('hidden');
 
         }
         else {
-            var element1 = document.getElementById('memMealChoice1');
+ 
             element1.classList.add('hidden');
             }
         }

@@ -1,5 +1,6 @@
 <?php
 session_start();
+  $_SESSION = array();
 date_default_timezone_set("America/Phoenix");
 require_once '../config/Database.php';
 require_once '../models/User.php';
@@ -95,7 +96,7 @@ if (isset($_SESSION['renewalmonth'])) {
             $_SESSION['useremail'] = $user->email;
             $_SESSION['partnerid'] = $user->partnerId;
     
-            if ($user->partnerId > 0) {
+            if ($user->partnerId !== '0') {
                 $partner->id = $user->partnerId;
                 $partner->read_single();
                 $_SESSION['partnerdietaryrestriction'] = $partner->dietaryrestriction;

@@ -104,6 +104,11 @@ $replyTopic = "SBDC Event Registration Update ";
         $chID = "ch".$reg['id'];
         $sbID = "sb".$reg['id'];
         $drID = "dr".$reg['id'];
+        $nhdID = "nhd".$reg['id'];
+         $nhdbID = "nhdb".$reg['id'];
+        $nhbID = "nhb".$reg['id'];
+        $nhbbID = "nhbb".$reg['id'];
+        $vegID = "veg".$reg['id'];
  
         if (isset($_POST["$updID"])) {
    
@@ -148,11 +153,38 @@ $replyTopic = "SBDC Event Registration Update ";
              } else {
                  $eventReg->softball = $reg['softball'];
              }
+
+            if (isset($_POST["$nhdID"])) {
+                $eventReg->numhotdogs = $_POST["$nhdID"];
+            } else {
+                $eventReg->numhotdogs = $reg['numhotdogs'];
+            }
+             if (isset($_POST["$nhdbID"])) {
+                $eventReg->numhdbuns = $_POST["$nhdbID"];
+            } else {
+                $eventReg->numhdbuns = $reg['numhdbuns'];
+            }
+             if (isset($_POST["$nhbID"])) {
+                $eventReg->numhamburgers = $_POST["$nhbID"];
+            } else {
+                $eventReg->numhamburgers = $reg['numhamburgers'];
+            }
+             if (isset($_POST["$nhbbID"])) {
+                $eventReg->numhbbuns = $_POST["$nhbbID"];
+            } else {
+                $eventReg->numhbbuns = $reg['numhbbuns'];
+            }
              if (isset($_POST["$messID"])) {
                 $eventReg->message = $_POST["$messID"];
              }
              else {
                 $eventReg->message = $reg['message'];
+             }
+              if (isset($_POST["$vegID"])) {
+                $eventReg->vegetarian = $_POST["$vegID"];
+             }
+             else {
+                $eventReg->vegetarian = $reg['vegetarian'];
              }
             $eventReg->ddattenddance = $reg['ddattenddance'];
             $eventReg->dateregistered = $reg['dateregistered'];

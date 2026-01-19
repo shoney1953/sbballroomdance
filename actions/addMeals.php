@@ -144,13 +144,29 @@ $event->read_single();
              echo "<textarea title='Enter Meal 1 Description' name='mealdesc1' rows='2' cols='40'></textarea>";
              echo '</div>';
               echo "<div class='form-item'>";
-            echo "<h4 class='form-item-title'>Member Price in Pennies</h4>";
-            echo "<input type='text' name='memberprice1' title='Enter member price for Meal Choice 1 in pennies' >";
-              echo '</div>';
+              echo "<h4 class='form-item-title'>Member Price in Pennies</h4>";
+              // if ($event->eventtype === 'BBQ Picnic') {
+   
+              //   echo "<input type='text' name='memberprice1' title='Enter member price for Meal Choice 1 in pennies' value='0000' >";
+                  
+              // } else {
+        
+                echo "<input type='text' name='memberprice1' title='Enter member price for Meal Choice 1 in pennies' >";
+          
+              // }
+                echo '</div>';
 
               echo "<div class='form-item'>";
-            echo "<h4 class='form-item-title'>Guest Price in Pennies</h4>";
-            echo "<input type='text' name='guestprice1' title='Enter guest price for Meal Choice 1 in pennies' >";
+                echo "<h4 class='form-item-title'>Guest Price in Pennies</h4>";
+                  // if ($event->eventtype === 'BBQ Picnic') {
+                   
+                  //     echo "<input type='text' name='guestprice1' title='Enter guest price for Meal Choice 1 in pennies' value='0000' >";
+                  // } else {
+            
+                      echo "<input type='text' name='guestprice1' title='Enter guest price for Meal Choice 1 in pennies' >";
+                  // }
+
+
               echo '</div>';
                 echo '</div> ';  
    
@@ -166,11 +182,22 @@ $event->read_single();
              echo '</div>';
               echo "<div class='form-item'>";
             echo "<h4 class='form-item-title'>Member Price in Pennies</h4>";
-            echo "<input type='text' name='memberprice2' title='Enter member price for Meal Choice 2 in pennies' >";
+            // if ($event->eventtype === 'BBQ Picnic') {
+            //      echo "<input type='text' name='memberprice2' title='Enter member price for Meal Choice 2 in pennies' value ='0000' >";
+            // } else {
+                echo "<input type='text' name='memberprice2' title='Enter member price for Meal Choice 2 in pennies' >";
+            // }
+         
               echo '</div>';
               echo "<div class='form-item'>";
-            echo "<h4 class='form-item-title'>Guest Price in Pennies</h4>";
-            echo "<input type='text' name='guestprice2' title='Enter guest price for Meal Choice 2 in pennies' >";
+                   echo "<h4 class='form-item-title'>Guest Price in Pennies</h4>";
+                // if ($event->eventtype === 'BBQ Picnic') {
+                //         echo "<input type='text' name='guestprice2' title='Enter guest price for Meal Choice 2 in pennies' value='0000' >";
+                // } else {
+                    echo "<input type='text' name='guestprice2' title='Enter guest price for Meal Choice 2 in pennies' >";
+                // }
+      //  
+      
               echo '</div>';
                       echo '</div>';
           
@@ -186,11 +213,21 @@ $event->read_single();
              echo '</div>';
               echo "<div class='form-item'>";
             echo "<h4 class='form-item-title'>Member Price in Pennies</h4>";
-            echo "<input type='text' name='memberprice3' title='Enter member price for Meal Choice 3 in pennies' >";
+            // if ($event->eventtype === 'BBQ Picnic') {
+            //         echo "<input type='text' name='memberprice3' title='Enter member price for Meal Choice 3 in pennies' value='0000' >";
+            //       } else {
+                     echo "<input type='text' name='memberprice3' title='Enter member price for Meal Choice 3 in pennies' >";
+                  // }
+
               echo '</div>';
               echo "<div class='form-item'>";
             echo "<h4 class='form-item-title'>Guest Price in Pennies</h4>";
-            echo "<input type='text' name='guestprice3' title='Enter guest price for Meal Choice 3 in pennies' >";
+              // if ($event->eventtype === 'BBQ Picnic') {
+              //   echo "<input type='text' name='guestprice3' title='Enter guest price for Meal Choice 3 in pennies' value='0000' >";
+              // } else {
+                 echo "<input type='text' name='guestprice3' title='Enter guest price for Meal Choice 3 in pennies' >";
+              // }
+  
               echo '</div>';
 
             echo "<button type='submit' name='submitAddMeals'>Add Meal Options</button>";   

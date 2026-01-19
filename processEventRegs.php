@@ -79,6 +79,59 @@
             }
         }
 
+        function displayBBQ(userid) {
+
+             
+        var attenddinner = 'datt'+userid;
+
+        var formcontainer =  "bq"+userid;
+
+         var element1 = document.getElementById(formcontainer);
+   
+        // Select the element
+        if (document.getElementById(attenddinner).checked) {
+            element1.classList.remove('hidden');
+            }
+        else {
+            element1.classList.add('hidden');
+            }
+        }
+         function displayBBQV1() {
+
+             
+        var attenddinner = 'attdin1';
+
+        var formcontainer =  'displayV1';
+
+         var element1 = document.getElementById(formcontainer);
+   
+        // Select the element
+        if (document.getElementById(attenddinner).checked) {
+            element1.classList.remove('hidden');
+            }
+        else {
+            element1.classList.add('hidden');
+            }
+        }
+
+        function displayBBQV2() {
+
+           console.log('inside bbqv1') ; 
+        var attenddinner = 'attdin2';
+
+        var formcontainer =  'displayV2';
+
+         var element1 = document.getElementById(formcontainer);
+   
+        // Select the element
+        if (document.getElementById(attenddinner).checked) {
+            element1.classList.remove('hidden');
+            }
+        else {
+            element1.classList.add('hidden');
+            }
+        }
+
         function displayMeals2U(regid) {
        
         var attenddinner = 'dddin'+regid;

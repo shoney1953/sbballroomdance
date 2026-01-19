@@ -155,6 +155,7 @@ $hr = '';
                         echo '</div>'; // end of form item
                       }
                     }
+                    if ($event['eventtype'] !== 'BBQ Picnic') {
                     if ($eventReg->mealchoice !== '0') {
                  
                         echo '<div class="form-item">';
@@ -178,12 +179,34 @@ $hr = '';
                       
                        } // event paid
                       } // eventcost
+                    }
+
                         if ($event['eventtype'] === 'BBQ Picnic') {
              
                      if ($eventReg->ddattenddinner === '1') {
                          echo '<div class="form-item">';
                         echo "<h4 class='form-item-title'>You have chosen to attend lunch. </h4>";
                         echo '</div>'; // end of form item
+                        if ($eventReg->numhamburgers > 0) {
+                          echo '<div class="form-item">';
+                           echo "<h4 class='form-item-title'>You have chosen ".$eventReg->numhamburgers." hamburgers with ".$eventReg->numhbbuns." buns. </h4>";
+                           echo '</div>'; // end of form item
+                        }
+                         if ($eventReg->numhotdogs > 0) {
+                          echo '<div class="form-item">';
+                           echo "<h4 class='form-item-title'>You have chosen ".$eventReg->numhotdogs." hotdogs with ".$eventReg->numhdbuns." buns. </h4>";
+                           echo '</div>'; // end of form item
+                        }
+                         if ($eventReg->vegetarian === '1') {
+                           echo '<div class="form-item">';
+                           echo "<h4 class='form-item-title'>You have specified vegetarian. </h4>";
+                           echo '</div>'; // end of form item
+                         }
+                          if ($eventReg->dietaryrestriction != '') {
+                           echo '<div class="form-item">';
+                           echo "<h4 class='form-item-title'>You have specified a dietary restriction of ".$eventReg->dietaryrestriction.". </h4>";
+                           echo '</div>'; // end of form item
+                         }
                       } else {
                          echo '<div class="form-item">';
                         echo "<h4 class='form-item-title'>You have chosen not to attend lunch. </h4>";
@@ -248,6 +271,26 @@ $hr = '';
                          echo '<div class="form-item">';
                         echo "<h4 class='form-item-title'>Your partner has chosen to attend lunch. </h4>";
                         echo '</div>'; // end of form item
+                          if ($partnereventReg->numhamburgers > 0) {
+                          echo '<div class="form-item">';
+                           echo "<h4 class='form-item-title'>Your partner chose ".$partnereventReg->numhamburgers." hamburgers with ".$partnereventReg->numhbbuns." buns. </h4>";
+                           echo '</div>'; // end of form item
+                        }
+                         if ($partnereventReg->numhotdogs > 0) {
+                          echo '<div class="form-item">';
+                           echo "<h4 class='form-item-title'>Your partner chose ".$partnereventReg->numhotdogs." hotdogs with ".$partnereventReg->numhdbuns." buns. </h4>";
+                           echo '</div>'; // end of form item
+                        }
+                         if ($partnereventReg->vegetarian === '1') {
+                           echo '<div class="form-item">';
+                           echo "<h4 class='form-item-title'>Your partner specified vegetarian. </h4>";
+                           echo '</div>'; // end of form item
+                         }
+                          if ($partnereventReg->dietaryrestriction != '') {
+                           echo '<div class="form-item">';
+                           echo "<h4 class='form-item-title'>Your partner specified a dietary restriction of ".$partnereventReg->dietaryrestriction.". </h4>";
+                           echo '</div>'; // end of form item
+                         }
                       } else {
                          echo '<div class="form-item">';
                         echo "<h4 class='form-item-title'>Your partner has chosen not to attend lunch. </h4>";

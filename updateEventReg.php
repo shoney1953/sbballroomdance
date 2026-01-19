@@ -84,7 +84,11 @@
             $dwopID = "dwop".$reg['id'];
             $dddinID = "dddin".$reg['id'];
             $useridID = "userid".$reg['id'];
-
+            $nhdID = "nhd".$reg['id'];
+            $nhdbID = "nhdb".$reg['id'];
+            $nhbID = "nhb".$reg['id'];
+            $nhbbID = "nhbb".$reg['id'];
+            $vegID = "veg".$reg['id'];
 
             echo '<div class="form-container">';
             echo '<div class="form-grid">';
@@ -93,7 +97,9 @@
            
            if ($event['eventtype'] == 'Dinner Dance') {
                echo "<input title='Select to Update Registration' type='checkbox' id=".$updID." name='".$updID."' onclick='displayMeals3U(".$reg['id'].")'>"; 
-            } else if (($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'BBQ Picnic')) {
+            } else if ($event['eventtype'] === 'BBQ Picnic') {
+                echo "<input title='Select to Update Registration' type='checkbox' id=".$updID." name='".$updID."' onclick='displayMeals3U(".$reg['id'].")'>"; 
+            } else if ($event['eventtype'] === 'Dance Party') {
                echo "<input title='Select to Update Registration' type='checkbox' id=".$updID." name='".$updID."' onclick='displayMeals3U(".$reg['id'].")'>"; 
             } else {
                   echo "<input title='Select to Update Registration' type='checkbox' name='".$updID."'>"; 
@@ -127,7 +133,7 @@
                 }
 
                 echo '<div class="form-item">';
-                echo '<h4 class="form-item-title">Attend Dinner?</h4>';
+                echo '<h4 class="form-item-title">Attend Meal?</h4>';
                 echo "<input type='number'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
        
                 echo '</div>'; // end of form item
@@ -138,39 +144,42 @@
                 else {
                     $ch = 0;
                 }
-                  if ($numMeals > 0) {
+                 
                   
-                       $fcu2ID = "fcu2".$reg['id'];
-                
-                        echo "<div id='".$fcu2ID."' class='form-container hidden'>";  
-                        // echo "<div class='form-grid'>";
-                        foreach ($mealChoices as $choice) {
-    
-                          $mcID = "mc".$reg['id'].$choice['id'];
+                        echo "<div class='form-item'>";
+                       echo '<h4 class="form-item-title">Num Hot Dogs?</h4>';
+                         echo "<input type='number' title='Enter number hot dogs' min='0' name='".$nhdID."' value='".$reg['numhotdogs']."' >"; 
+                        echo '</div>'; // end form item
 
                           echo "<div class='form-item'>";
-                          echo '<h4 class="form-item-title">Select '.$choice['mealname'].'</h4>';
-                            //    echo "<h5 class='form-item-title'>".$choice['mealname']."</h5>";
-                      
-                          if ($reg['mealchoice'] === $choice['id']) {
-                                echo "<input  title='Select This Meal' checked type='checkbox'name='".$mcID."'>";
-                          } else {
-                               echo "<input  title='Select This Meal' type='checkbox'name='".$mcID."'>";
-                          } 
+                            echo '<h4 class="form-item-title">Num Hot Dogs Buns?</h4>';
+                         echo "<input type='number' title='Enter number hot dog buns' min='0' name='".$nhdbID."' value='".$reg['numhdbuns']."' >"; 
+                         echo '</div>'; // end form item  
          
-                 
-                         $price = number_format($choice['memberprice']/100,2);
-                          echo "<h5 class='form-item-title'>".$price."</h5>";
-                          echo "</div>"; // form item mc                    
-                          } // foreach mealchoice
+                          echo "<div class='form-item'>";
+    
+                         echo '<h4 class="form-item-title">Num Burgers?</h4>';
+                         echo "<input type='number' title='Enter number burgers' min='0' name='".$nhbID."' value='".$reg['numhamburgers']."' >"; 
+                          echo '</div>'; // end form item
+
+                          echo "<div class='form-item'>";
+                            echo '<h4 class="form-item-title">Num Burger Buns?</h4>';
+                         echo "<input type='number' title='Enter number hot dog buns' min='0' name='".$nhbbID."' value='".$reg['numhbbuns']."' >"; 
+                         echo '</div>'; // end form item
+
+                          echo "<div class='form-item'>";
+                       echo '<h4 class="form-item-title">Vegetarian?</h4>';
+                           echo "<input type='number' title='Specify Vegetarian' min='0' max='1' name='".$vegID."' value='".$reg['vegetarian']."' >"; 
+                        echo '</div>'; // end form item
+         
+     
                        $drID = "dr".$reg['id'];
                       echo "<div class='form-item'>";
                       echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
                       echo "<input type='text' title='Enter Member Dietary Restrictions' name='".$drID."' value='".$reg['dietaryrestriction']."' >"; 
                       echo "</div>";  // form item dr
-                   
-                      echo "</div>";  // form item drS
-                  }
+        
+                //   }
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Play Cornhole?</h4>';
                 echo "<input type='number'  title='Enter 1 for Play Cornhole' name='".$chID."' min='0' max='1' value='".$ch."'>";
