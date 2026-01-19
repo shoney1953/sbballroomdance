@@ -35,13 +35,18 @@ $paidID = '';
 $dddinID = '';
 
 if (isset($_POST['submitUpdateBBQReg'])) {
-
+var_dump($post);
     foreach ($regs as $reg) {
         $updID = "upd".$reg['id'];
 
         $dddinID = "dddin".$reg['id'];
         $chID = "ch".$reg['id'];
         $sbID = "sb".$reg['id'];
+                        $nhdID = "nhd".$reg['id'];
+                $nhdbID = "nhdb".$reg['id'];
+                $nhbID = "nhb".$reg['id'];
+                $nhbbID = "nhbb".$reg['id'];
+                $vegID = "veg".$reg['id'];
     
         if (isset($_POST["$updID"])) {
 
@@ -63,14 +68,41 @@ if (isset($_POST['submitUpdateBBQReg'])) {
              } else {
                  $eventReg->softball = 0;
              }
+               if (isset($_POST["$vegID"])) {
+                $eventReg->vegetarian = 1;
+             } else {
+                 $eventReg->vegetarian = 0;
+             }
+               if (isset($_POST["$nhbID"])) {
+                $eventReg->numhamburgers = $_POST["$nhbID"];
+             } else {
+                 $eventReg->numhamburgers = 0;
+             }
+               if (isset($_POST["$nhbbID"])) {
+                $eventReg->numhbbuns = $_POST["$nhbbID"];
+             } else {
+                 $eventReg->numhbbuns = 0;
+             }
+                   if (isset($_POST["$nhdID"])) {
+                $eventReg->numhotdogs = $_POST["$nhdID"];
+             } else {
+                 $eventReg->numhotdogs = 0;
+             }
+               if (isset($_POST["$nhdbID"])) {
+                $eventReg->numhdbuns = $_POST["$nhdbID"];
+             } else {
+                 $eventReg->numhdbuns = 0;
+             }
+
+
 
             $eventReg->updateBBQEventReg();
         }
     }
  
  
-    $redirect = "Location: ".$_SESSION['profileurl']."#events";
-    header($redirect);
-    exit;
+    // $redirect = "Location: ".$_SESSION['profileurl']."#events";
+    // header($redirect);
+    // exit;
 }
 ?>

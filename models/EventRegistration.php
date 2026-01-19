@@ -660,6 +660,7 @@ public function readLike($eventid, $search) {
           numhamburgers = :numhamburgers,
           numhbbuns = :numhbbuns,
           vegetarian = :vegetarian,
+          dietaryrestriction = :dietaryrestriction
           WHERE id = :id';
 
       // Prepare statement
@@ -674,10 +675,12 @@ public function readLike($eventid, $search) {
       $stmt->bindParam(':cornhole', $this->cornhole);
       $stmt->bindParam(':softball', $this->softball);
       $stmt->bindParam(':modifiedby', $this->modifiedby);
-    $stmt->bindParam(':numhotdogs', $this->numhotdogs);
-          $stmt->bindParam(':numhdbuns', $this->numhdbuns);
-           $stmt->bindParam(':numhamburgers', $this->numhamburgers);
-          $stmt->bindParam(':numhbbuns', $this->numhbbuns);
+      $stmt->bindParam(':numhotdogs', $this->numhotdogs);
+      $stmt->bindParam(':numhdbuns', $this->numhdbuns);
+      $stmt->bindParam(':numhamburgers', $this->numhamburgers);
+      $stmt->bindParam(':numhbbuns', $this->numhbbuns);
+      $stmt->bindParam(':vegetarian', $this->vegetarian);
+      $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
       // Execute query
       if($stmt->execute()) {
         return true;

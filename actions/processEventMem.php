@@ -363,22 +363,38 @@ foreach ($upcomingEvents as $event) {
 
             }
         }
-        function displayMealsBU2(id) {
-        var dddinID2 = "dddin2"+id; 
-        console.log(dddinID2);
-
+         function displayMealsBU1(id) {
+        var dddinID1 = "dddin"+id; 
+   
+ 
         // Select the element
-        if (document.getElementById(dddinID2).checked) {
+        if (document.getElementById(dddinID1).checked) {
     
-        var element1 = document.getElementById('memMealChoiceU2');
-           console.log(element2);
+        var element1 = document.getElementById('memMealChoiceU1');
+        console.log(element1);
         element1.classList.remove('hidden');
         }
         else {
-         console.log(element2);
-            var element1 = document.getElementById('memMealChoiceU2');
+        
+            var element1 = document.getElementById('memMealChoiceU1');
+            console.log(element1);
             element1.classList.add('hidden');
 
+            }
+        }
+
+        function displayMealsBU2(id) {
+        var dddinID2 = "dddin2"+id; 
+        console.log(dddinID2);
+        var element1 = document.getElementById('memMealChoiceU2');
+           console.log(element1);
+        // Select the element
+        if (document.getElementById(dddinID2).checked) {
+
+        element1.classList.remove('hidden');
+        }
+        else {
+            element1.classList.add('hidden');
             }
         }
 

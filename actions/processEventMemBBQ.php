@@ -252,6 +252,11 @@
                 $sbID = "sb".$reg->id;
                 $updID = "upd".$reg->id;
                 $dddinID = "dddin".$reg->id;
+                $nhdID = "nhd".$reg->id;
+                $nhdbID = "nhdb".$reg->id;
+                $nhbID = "nhb".$reg->id;
+                $nhbbID = "nhbb".$reg->id;
+                $vegID = "veg".$reg->id;
                 echo '<input type="hidden" name="regID1" value='.$reg->id.'>';
                 $gotPartnerEventReg = 0;
              if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
@@ -262,6 +267,11 @@
                 $chID2 = "ch2".$partnerReg->id;
                 $sbID2 = "sb2".$partnerReg->id;
                 $dddinID2 = "dddin2".$partnerReg->id;
+                $nhdID2 = "nhd2".$partnerReg->id;
+                $nhdbID2 = "nhdb2".$partnerReg->id;
+                $nhbID2 = "nhb2".$partnerReg->id;
+                $nhbbID2 = "nhbb2".$partnerReg->id;
+                $vegID2 = "veg2".$partnerReg->id;
                 }
              }
                 echo '<div class="form-container"';
@@ -283,16 +293,56 @@
                  echo '<h4 class="form-item-title">Attend Dinner?</h4>';
           
                 if ($reg->ddattenddinner === '1') {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked >";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked onclick='displayMealsBU1($reg->id)'>";
                   } else {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' >";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' onclick='displayMealsU1($reg->id)' >";
                   }
                       
                 echo '<div class="form-container" id="memMealChoiceU1">';
-                echo '<div class="form-grid">';
-         
+                echo '<div class="form-grid2">';
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># Dogs</h4>';
+          
+                echo "<input type='number'  title='Number of Hot Dogs' name='".$nhdID."' min='0' value=".$reg->numhotdogs.">";
                 
-            
+         
+                echo '</div>'; // end of form item
+                 echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># HD Buns</h4>';
+          
+                echo "<input type='number'  title='Number of Hot Dog buns' name='".$nhdbID."' min='0' value=".$reg->numhdbuns.">";
+                
+         
+                echo '</div>'; // end of form item
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># Burgers</h4>';
+          
+                echo "<input type='number'  title='Number of Hamburgers' name='".$nhbID."' min='0' value=".$reg->numhamburgers.">";
+                
+         
+                echo '</div>'; // end of form item
+                 echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># Burg Buns</h4>';
+          
+                echo "<input type='number'  title='Number of Hamburger buns' name='".$nhbbID."' min='0' value=".$reg->numhbbuns.">";
+                
+         
+                echo '</div>'; // end of form item
+                 echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Veg?</h4>';
+                if ($reg->vegetarian) {
+                   echo "<input type='checkbox'  title='Vegetarian' name='".$vegID."' checked>";
+                  } else {
+                      echo "<input type='checkbox'  title='Vegetarian' name='".$vegID."'>";
+                  }
+         
+                echo '</div>'; // end of form item
+               echo "<div class='form-item'>";
+                  echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
+                  echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr1' value='".$reg->dietaryrestriction."' >"; 
+                  echo "</div>";
+                
+      
                    echo '</div>'; // end form grid
                echo '</div>';
                 echo '</div>'; // end of form item
@@ -300,18 +350,18 @@
                 echo '<h4 class="form-item-title">Play Cornhole?</h4>';
          
                 if ($reg->cornhole === '1') {
-                   echo "<input type='checkbox'  title='Enter 1 for Play Cornhole' name='".$chID."' checked>";
+                   echo "<input type='checkbox'  title='Play Cornhole' name='".$chID."' checked>";
                   } else {
-                      echo "<input type='checkbox'  title='Enter 1 for Play Cornhole' name='".$chID."'>";
+                      echo "<input type='checkbox'  title='for Play Cornhole' name='".$chID."'>";
                   }
                echo '</div>'; // end of form item
                  echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Play Softball?</h4>';
         
                 if ($reg->softball === '1') {
-                echo "<input type='checkbox'  title='Enter 1 for Play Softball' name='".$sbID."' checked>";
+                echo "<input type='checkbox'  title='Play Softball' name='".$sbID."' checked>";
                 } else {
-                      echo "<input type='checkbox'  title='Enter 1 for Play Softball' name='".$sbID."'>";
+                      echo "<input type='checkbox'  title='Play Softball' name='".$sbID."'>";
                 }
                 echo '</div>'; // end of form item
                 echo '</div>'; // end of form grid
@@ -332,12 +382,58 @@
                  echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Attend Dinner?</h4>';
                 if ($partnerReg->ddattenddinner === '1') {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID2."' name='".$dddinID2."' checked >";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID2."' name='".$dddinID2."' checked onclick='displayMealsBU2($partnerReg->id)'>";
                   } else {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID2."' name='".$dddinID2."' >";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID2."' name='".$dddinID2."' onclick='displayMealsU2($partnerReg->id)'>";
                   }
              
-                     echo '<div class="form-container " id="memMealChoiceU2">';
+                echo '<div class="form-container " id="memMealChoiceU2">';
+                echo '<div class="form-grid2">';
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># Dogs</h4>';
+          
+                echo "<input type='number'  title='Number of Hot Dogs' name='".$nhdID2."' min='0' value=".$partnerReg->numhotdogs.">";
+                
+         
+                echo '</div>'; // end of form item
+                 echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># HD Buns</h4>';
+          
+                echo "<input type='number'  title='Number of Hot Dog buns' name='".$nhdbID2."' min='0' value=".$partnerReg->numhdbuns.">";
+                
+         
+                echo '</div>'; // end of form item
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># Burgers</h4>';
+          
+                echo "<input type='number'  title='Number of Hamburgers' name='".$nhbID2."' min='0' value=".$partnerReg->numhamburgers.">";
+                
+         
+                echo '</div>'; // end of form item
+                 echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># Burg Buns</h4>';
+          
+                echo "<input type='number'  title='Number of Hamburger buns' name='".$nhbbID2."' min='0' value=".$partnerReg->numhbbuns.">";
+                
+         
+                echo '</div>'; // end of form item
+                 echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Veg?</h4>';
+                if ($partnerReg->vegetarian) {
+                   echo "<input type='checkbox'  title='Vegetarian' name='".$vegID2."' checked>";
+                  } else {
+                      echo "<input type='checkbox'  title='Vegetarian' name='".$vegID2."'>";
+                  }
+         
+                echo '</div>'; // end of form item
+                 echo "<div class='form-item'>";
+                  echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
+                  echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr2' value='".$partnerReg->dietaryrestriction."' >"; 
+                  echo "</div>";
+             
+                
+      
+                   echo '</div>'; // end form grid
                   echo '<div class="form-grid">';
             
                   echo '</div>';

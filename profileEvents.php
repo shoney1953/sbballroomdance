@@ -729,6 +729,11 @@ if ($prowCount > 0) {
                 $sbID = "sb".$reg['id'];
                 $updID = "upd".$reg['id'];
                 $dddinID = "dddin".$reg['id'];
+                $nhdID = "nhd".$reg['id'];
+                $nhdbID = "nhdb".$reg['id'];
+                $nhbID = "nhb".$reg['id'];
+                $nhbbID = "nhbb".$reg['id'];
+                $vegID = "veg".$reg['id'];
            
                echo "<tr>";
                echo "<td><input type='checkbox' 
@@ -758,7 +763,47 @@ if ($prowCount > 0) {
                   } else {
                     echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."'>";
                   }
-   
+                echo "<div class='form-container'>";
+                 echo "<div class='form-grid'>";
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># Dogs</h4>';
+          
+                echo "<input type='number'  title='Number of Hot Dogs' name='".$nhdID."' min='0' value=".$reg['numhotdogs'].">";
+                
+         
+                echo '</div>'; // end of form item
+                 echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># HD Buns</h4>';
+          
+                echo "<input type='number'  title='Number of Hot Dog buns' name='".$nhdbID."' min='0' value=".$reg['numhdbuns'].">";
+                
+         
+                echo '</div>'; // end of form item
+                echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># Burgers</h4>';
+          
+                echo "<input type='number'  title='Number of Hamburgers' name='".$nhbID."' min='0' value=".$reg['numhamburger'].">";
+                
+         
+                echo '</div>'; // end of form item
+                 echo '<div class="form-item">';
+                echo '<h4 class="form-item-title"># Burg Buns</h4>';
+          
+                echo "<input type='number'  title='Number of Hamburger buns' name='".$nhbbID."' min='0' value=".$reg['numhbbuns'].">";
+                
+         
+                echo '</div>'; // end of form item
+                 echo '<div class="form-item">';
+                echo '<h4 class="form-item-title">Play Veg?</h4>';
+                if ($reg['vegetarian']) {
+                   echo "<input type='checkbox'  title='Vegetarian' name='".$vegID."' checked>";
+                  } else {
+                      echo "<input type='checkbox'  title='Vegetarian' name='".$vegID."'>";
+                  }
+         
+                echo '</div>'; // end of form item
+                  echo '</div>'; // end of form cgrid
+                  echo '</div>'; // end of form container
                 echo '</div>'; // end of form item
                 echo '</div>'; // end of form grid
                 echo '</td>';
@@ -770,7 +815,7 @@ if ($prowCount > 0) {
                 if ($reg['cornhole']) {
                    echo "<input type='checkbox'  title='Enter 1 for Play Cornhole' name='".$chID."' checked>";
                   } else {
-                      echo "<input type='checkbox'  title='Enter 1 for Play Cornhole' name='".$chID."' checked>";
+                      echo "<input type='checkbox'  title='Enter 1 for Play Cornhole' name='".$chID."' >";
                   }
          
                 echo '</div>'; // end of form item
@@ -784,7 +829,7 @@ if ($prowCount > 0) {
                 if ($reg['softball']) {
                 echo "<input type='checkbox'  title='Enter 1 for Play Softball' name='".$sbID."' checked>";
                 } else {
-                      echo "<input type='checkbox'  title='Enter 1 for Play Softball' name='".$sbID."' checked>";
+                      echo "<input type='checkbox'  title='Enter 1 for Play Softball' name='".$sbID."' >";
                 }
                 echo '</div>'; // end of form item
                 echo '</div>'; // end of form grid
