@@ -293,9 +293,10 @@
                  echo '<h4 class="form-item-title">Attend Dinner?</h4>';
           
                 if ($reg->ddattenddinner === '1') {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked onclick='displayMealsBU1($reg->id)'>";
+                    // echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked onclick='displayMealsBU1($reg->id)'>";
+                   echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked >";
                   } else {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' onclick='displayMealsU1($reg->id)' >";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."'  >";
                   }
                       
                 echo '<div class="form-container" id="memMealChoiceU1">';
