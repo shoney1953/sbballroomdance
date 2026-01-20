@@ -293,10 +293,10 @@
                  echo '<h4 class="form-item-title">Attend Dinner?</h4>';
           
                 if ($reg->ddattenddinner === '1') {
-                    // echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked onclick='displayMealsBU1($reg->id)'>";
-                   echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked >";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked onclick='displayMealsBU1($reg->id)'>";
+                  //  echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' checked >";
                   } else {
-                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."'  >";
+                    echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' onclick='displayMealsBU1($reg->id)' >";
                   }
                       
                 echo '<div class="form-container" id="memMealChoiceU1">';
@@ -388,7 +388,7 @@
                     echo "<input type='checkbox'  title='Enter 1 for Attend dinner' id='".$dddinID2."' name='".$dddinID2."' onclick='displayMealsU2($partnerReg->id)'>";
                   }
              
-                echo '<div class="form-container " id="memMealChoiceU2">';
+                echo '<div class="form-container  " id="memMealChoiceU2">';
                 echo '<div class="form-grid2">';
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title"># Dogs</h4>';
