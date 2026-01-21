@@ -34,10 +34,17 @@ $toCC2 = '';
 $toCC3 = '';
 $toCC4 = '';
 $toCC5 = '';
+
 if ($tempReg->firstname1 != '') {
 $emailBody = "Thanks, ".$tempReg->firstname1." ".$tempReg->lastname1." for registering for the ".$tempReg->eventname." on ".$tempReg->eventdate.".<br>";
 $emailSubject = $tempReg->firstname1." ".$tempReg->lastname1." registered for ".$tempReg->eventname." and paid online.";
-
+if ($tempReg->eventtype  != 'BBQ Picnic') {
+    $eventReg->numhamburgers = 0;
+    $eventReg->numhbbuns = 0;
+    $eventReg->numhotdogs = 0;
+    $eventReg->numhdbuns = 0;
+    $eventReg->vegetarian = 0;
+}
 $eventReg->eventid = $tempReg->eventid;
 $eventReg->eventname = $tempReg->eventname;
 $eventReg->eventtype = $tempReg->eventtype;
@@ -94,6 +101,13 @@ $eventReg->create();
 $event->addCount($eventReg->eventid);
 }
 if ($tempReg->firstname2 != '') {
+    if ($tempReg->eventtype  != 'BBQ Picnic') {
+    $partnerEventReg->numhamburgers = 0;
+    $partnerEventReg->numhbbuns = 0;
+    $partnerEventReg->numhotdogs = 0;
+    $partnerEventReg->numhdbuns = 0;
+    $partnerEventReg->vegetarian = 0;
+}
   $partnerEventReg->eventid = $tempReg->eventid;
 $partnerEventReg->eventname = $tempReg->eventname;
 $partnerEventReg->eventtype = $tempReg->eventtype;
