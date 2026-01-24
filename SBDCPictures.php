@@ -44,6 +44,8 @@ $sess = session_start();
          <ul>
          <li class="li-none"><em><a href="https://sheilahoney.smugmug.com/SBDC-2026-Photos">2026 Combined Photos</a></em></li>
          <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-2026-New-Years-Cruise">New Year's Cruise</a></li>
+        <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-Phantom-of-the-Opera-Dance-Jan-2026">Phantom of the Opera Jan 2026</a></li>
+         
          <ul>
         </div>
        <div class="form-grid-div">
