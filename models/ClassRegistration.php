@@ -316,6 +316,33 @@ public function readLike($classid, $search) {
 
 
 }
+public function read_ByMonth($date) {
+
+
+  $query = 'SELECT c.classname as classname, c.date as classdate
+  r.id, r.classid, r.firstname, r.lastname, r.email
+  FROM ' . $this->table . ' r
+  LEFT JOIN
+    danceclasses c ON r.classid = c.id
+  WHERE
+    c.classdate GE :date
+  ORDER BY 
+    r.classid, r.lastname, r.firstname';
+  
+
+  // Prepare statement
+  $stmt = $this->conn->prepare($query);
+
+  // Bind ID
+  $stmt->bindParam('date', $date);
+
+  // Execute query
+  $stmt->execute();
+
+  return $stmt;
+
+
+}
     // Create Danceclass
     public function create() {
           // Create query

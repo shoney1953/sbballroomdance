@@ -128,6 +128,9 @@ foreach ($upcomingClasses as $class) {
                 echo '</div>'; // form grid
                 echo '</div>'; // form grid div
               }
+    
+              if (isset($_SESSION['partnerid']) && ($_SESSION['partnerid'] !== '0' )) {
+  
                 if (!$gotPartnerClassReg) {
                     echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
                     echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
@@ -141,6 +144,8 @@ foreach ($upcomingClasses as $class) {
                  echo '</div>'; // form grid
                 echo '</div>'; // form grid div
                  }
+              }
+
                 echo '<button type="submit" name="submitAddRegs">Add Registration(s)</button>';
                 echo '</div>'; // form container 
                 echo '</form>';

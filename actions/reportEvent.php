@@ -186,8 +186,14 @@ if ($rowCount > 0) {
             $pdf->Cell(35,8,"FIRST NAME",1,0,"L"); 
             $pdf->Cell(40,8,"LAST NAME",1,0,"L");  
 
-            $pdf->Cell(12,8,"MEM",1,0,"L"); 
-            $pdf->Cell(12,8,"DWOP",1,0,"L");
+           
+            if ($reg['eventtype'] === 'Meeting') {
+                  $pdf->Cell(12,8,"MEM",1,1,"L"); 
+            } else {
+                 $pdf->Cell(12,8,"MEM",1,0,"L"); 
+                 $pdf->Cell(12,8,"DWOP",1,0,"L");
+            }
+        
             if ($reg['eventtype'] === 'BBQ Picnic') {
                   $pdf->Cell(12,8,"Corn",1,0,"L");                 
                   $pdf->Cell(12,8,"Soft",1,0,"L"); 
@@ -236,7 +242,12 @@ if ($rowCount > 0) {
            $pdf->Cell(35,8,"FIRST NAME",1,0,"L"); 
            $pdf->Cell(40,8,"LAST NAME",1,0,"L");  
            $pdf->Cell(12,8,"MEM",1,0,"L"); 
-           $pdf->Cell(12,8,"DWOP",1,0,"L"); 
+           if ($reg['eventtype'] === 'Meeting') {
+                 $pdf->Cell(12,8,"DWOP",1,1,"L"); 
+            } else {
+                 $pdf->Cell(12,8,"DWOP",1,0,"L");
+            }
+    
 
         if ($reg['eventtype'] === 'BBQ Picnic') {
             $pdf->Cell(12,8,"Corn",1,0,"L");                 
