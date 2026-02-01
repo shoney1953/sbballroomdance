@@ -78,7 +78,7 @@ if (isset($_SESSION['renewalmonth'])) {
 }
 
    if(isset($_POST['SubmitLogIN'])) {
-
+   
     $user->username = htmlentities($_POST['username']);
     $passEntered = htmlentities($_POST['password']);
  
@@ -197,7 +197,7 @@ if (isset($_SESSION['renewalmonth'])) {
             exit;
         }
         else {
-           
+
             if(isset($_SESSION['username'])) {
                 unset($_SESSION['username']);
             }
@@ -222,9 +222,22 @@ if (isset($_SESSION['renewalmonth'])) {
             if(isset($_SESSION['dietaryrestriction'])) {
                 unset($_SESSION['dietaryrestriction']);
             }
-            $redirect = "Location: ".$_SESSION['loginurl'].'?error=InvalidPassword';
-            header($redirect);
-            exit;  
+      
+             if (isset($_SESSION['loginurl'])) {
+             $redirect = "Location: ".$_SESSION['loginurl']."?error='InvalidPassword'";
+ 
+           }  else {
+            if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+                $redirect = 'Location: http://localhost/sbdcballroomdance/login.php?error=InvalidPassword';
+            }
+            else {
+                 $redirect = 'Location: https://www.sbballroomdance.com/login.php?error=InvalidPassword';  
+            }
+           } 
+             header($redirect);
+            exit;
+        
+
         } 
     } else {
         if(isset($_SESSION['username'])) {
@@ -248,10 +261,20 @@ if (isset($_SESSION['renewalmonth'])) {
         if(isset($_SESSION['partnerid'])) {
             unset($_SESSION['partnerid']);
         }
-      
-     $redirect = "Location: ".$_SESSION['loginurl'].'?error=No User Name or Email Found';
-     header($redirect);
-     exit;  
+        if (isset($_SESSION['loginurl'])) {
+             $redirect = "Location: ".$_SESSION['loginurl']."?error='No User Name Found'";
+ 
+           }  else {
+            if ($_SERVER['SERVER_NAME'] === 'localhost') {  
+                $redirect = 'Location: http://localhost/sbdcballroomdance/login.php?error=No User Name Found';
+            }
+            else {
+                 $redirect = 'Location: https://www.sbballroomdance.com/login.php?error=No User Name found';  
+            }
+           } 
+             header($redirect);
+            exit;
+
     } 
 }
     

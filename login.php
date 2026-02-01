@@ -32,6 +32,7 @@ date_default_timezone_set("America/Phoenix");
        <a href="mailto:'.$webmaster.'?subject=SBDC Login Info"> Click to contact Webmaster</a></h4>
        <br><br>
         <?php
+
         if (isset($_GET['error'])) {
             echo '<div class="container-error">';
             echo '<h4 class="error"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4>';
