@@ -82,6 +82,7 @@
             $messID = "mess".$reg['id'];
             $paidID = "paid".$reg['id'];
             $dwopID = "dwop".$reg['id'];
+            $guestID = "guest".$reg['id'];
             $dddinID = "dddin".$reg['id'];
             $useridID = "userid".$reg['id'];
             $nhdID = "nhd".$reg['id'];

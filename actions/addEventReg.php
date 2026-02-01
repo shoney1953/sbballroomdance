@@ -141,6 +141,7 @@ if (isset($_POST['submitAddReg'])) {
                     $eventReg->dietaryrestriction = $usr['dietaryrestriction'];
                     $regEmail1 = $eventReg->email;
                     $eventReg->userid = $usr['id'];
+                  
                     $eventReg->paid = 0;
                     $eventReg->registeredby = $_SESSION['username'];
 

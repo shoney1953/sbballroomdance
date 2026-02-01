@@ -129,6 +129,7 @@ if ($rowCount > 0) {
             'mealchoice' => $mealchoice,
             'dietaryrestriction' => $dietaryrestriction,
             'dwop' => $dwop,
+            'guest' => $guest,
             'numhotdogs' => $numhotdogs,
             'numhdbuns' => $numhdbuns,
             'numhamburgers' => $numhamburgers,

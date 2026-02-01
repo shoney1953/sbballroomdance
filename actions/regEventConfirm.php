@@ -40,6 +40,7 @@ $tempReg = new TempOnlineEventReg($db);
 
 if (isset($_POST['submitRegConfirm'])) {
 /*  create temp reg in database */
+$tempReg->registrationemail = $potentialReg1['registrationemail'];
 $tempReg->eventid = $potentialReg1['eventid'];
 $tempReg->eventname = $potentialReg1['eventname'];
 $tempReg->eventtype = $potentialReg1['eventtype'];
@@ -47,7 +48,7 @@ $tempReg->eventdate = $potentialReg1['eventdate'];
 $tempReg->orgemail = $potentialReg1['orgemail'];
 $tempReg->visitor = $potentialReg1['visitor'];
 $tempReg->message = $potentialReg1['message'];
-$tempReg->ddattenddinner = $potentialReg1['ddattenddinner'];
+$tempReg->ddattenddinner1 = $potentialReg1['ddattenddinner'];
 $tempReg->ddattenddance = 1;
 // $tempReg->registeredby = $potentialReg1['email'];
 $tempReg->registeredby = $_SESSION['username'];
@@ -82,12 +83,13 @@ if ($tempReg->visitor != 1) {
 
 
 if ($potentialReg2) {
-
+$tempReg->registrationemail = $potentialReg2['registrationemail'];
   $tempReg->firstname2 = $potentialReg2['firstname'];
   $tempReg->lastname2 = $potentialReg2['lastname'];
   $tempReg->email2 = $potentialReg2['email'];
   $tempReg->mealchoice2 = $potentialReg2['mealchoice'];
   $tempReg->mealdesc2 = $potentialReg2['mealdesc'];
+  $tempReg->ddattenddinner2 = $potentialReg2['ddattenddinner'];
   $tempReg->dietaryrestriction2 = $potentialReg2['dietaryrestriction'];
   $tempReg->productid2 = $potentialReg2['productid'];
   if ($tempReg->visitor != 1) {
@@ -101,12 +103,47 @@ if ($potentialReg2) {
   }
  
 };
+var_dump($potentialRegG1);
+
+if ($potentialRegG1) {
+  $tempReg->registrationemail = $potentialRegG1['registrationemail'];
+  $tempReg->guest1firstname = $potentialRegG1['firstname'];
+  $tempReg->guest1lastname = $potentialRegG1['lastName'];
+  $tempReg->guest1email = $potentialRegG1['email'];
+  $tempReg->guest1mealchoice = $potentialRegG1['mealchoice'];
+  $tempReg->guest1mealdesc = $potentialRegG2['mealdesc'];
+  $tempReg->guest1dr = $potentialRegG1['dietaryrestriction'];
+  $tempReg->guest1productid = $potentialRegG1['productid'];
+
+    $tempReg->guest1priceid = $potentialRegG1['guestpriceid'];
+     $priceObj3 = $stripe->prices->retrieve($potentialRegG1['guestpriceid'], []);
+    $totalCost = $totalCost + $priceObj2->unit_amount;
+  
+ 
+};
+
+if ($potentialRegG2) {
+  $tempReg->registrationemail = $potentialRegG2['registrationemail'];
+  $tempReg->guest2firstname = $potentialRegG2['firstname'];
+  $tempReg->guest2lastname = $potentialRegG2['lastName'];
+  $tempReg->guest2email= $potentialRegG2['email'];
+  $tempReg->guest2mealchoice = $potentialRegG2['mealchoice'];
+  $tempReg->guest2mealdesc = $potentialRegG2['mealdesc'];
+  $tempReg->guest2dr = $potentialRegG2['dietaryrestriction'];
+  $tempReg->guest2productid = $potentialRegG2['productid'];
+
+    $tempReg->guest2priceid = $potentialRegG2['guestpriceid'];
+     $priceObj4 = $stripe->prices->retrieve($potentialRegG2['guestpriceid'], []);
+    $totalCost = $totalCost + $priceObj2->unit_amount;
+  
+ 
+};
 
 $tempReg->totalcost = $totalCost;
 $tempReg->create();
 $tempRegID = $db->lastInsertId();
 /* */
-$searchemail = $potentialReg1['email'];
+$searchemail = $tempReg['registrationemail'];
 $qstring = 'email: "'.$searchemail.'"';
 
 $customer = $stripe->customers->search([
@@ -124,36 +161,58 @@ if (count($customer) == 0) {
 
   ]);
 }
-
-
-if ($tempReg->priceid2 !== NULL) {
-  $checkout_session = \Stripe\Checkout\Session::create([
-   # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-  'line_items' => [
-    ['price' => $tempReg->priceid1, 'quantity' => '1'],
-    ['price' => $tempReg->priceid2, 'quantity' => '1']
-  ],
-  'customer' => $customer->id,
-  'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
-  'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
-  ]); 
-} else {
-  $checkout_session = \Stripe\Checkout\Session::create([
+$line_item_array = '[';
+if ($tempReg->priceid1 != NULL) {
+   $line_item_array .=    "['price' => $tempReg->priceid1, 'quantity' => '1']";
+}
+if ($tempReg->priceid2 != NULL) {
+  $line_item_array .=    ",['price' => $tempReg->priceid2, 'quantity' => '1']"; 
+}
+  
+if ($tempReg->guest1priceid != NULL) {
+  $line_item_array .=    ",['price' => $tempReg->guest1priceid, 'quantity' => '1']";
+}
+if ($tempReg->guest2priceid != NULL) {
+  $line_item_array .=    ",['price' => $tempReg->guest2priceid, 'quantity' => '1']";
+}
+$line_item_array .= "]";
+var_dump($line_item_array);
+$checkout_session = \Stripe\Checkout\Session::create([
     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-    'line_items' => [
-      ['price' => $tempReg->priceid1, 'quantity' => '1']
-    ],
+    'line_items' => $line_item_array,
     'customer' => $customer->id,
     'mode' => 'payment',
     'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
     'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
   ]); 
+// if ($tempReg->priceid2 !== NULL) {
+//   $checkout_session = \Stripe\Checkout\Session::create([
+//    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+//   'line_items' => [
+//     ['price' => $tempReg->priceid1, 'quantity' => '1'],
+//     ['price' => $tempReg->priceid2, 'quantity' => '1']
+//   ],
+//   'customer' => $customer->id,
+//   'mode' => 'payment',
+//   'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
+//   'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
+//   ]); 
+// } else {
+//   $checkout_session = \Stripe\Checkout\Session::create([
+//     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+//     'line_items' => [
+//       ['price' => $tempReg->priceid1, 'quantity' => '1']
+//     ],
+//     'customer' => $customer->id,
+//     'mode' => 'payment',
+//     'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
+//     'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
+//   ]); 
 
-}
+// }
 
-header("HTTP/1.1 303 See Other");
-header("Location: " . $checkout_session->url);
+// header("HTTP/1.1 303 See Other");
+// header("Location: " . $checkout_session->url);
 
   } // end of submitted if
 

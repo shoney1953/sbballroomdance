@@ -100,6 +100,7 @@ $replyTopic = "SBDC Event Registration Update ";
         $messID = "mess".$reg['id'];
         $paidID = "paid".$reg['id'];
         $dwopID = "dwop".$reg['id'];
+        $guestID = "guest".$reg['id'];
         $dddinID = "dddin".$reg['id'];
         $chID = "ch".$reg['id'];
         $sbID = "sb".$reg['id'];
@@ -188,6 +189,9 @@ $replyTopic = "SBDC Event Registration Update ";
              }
             $eventReg->ddattenddance = $reg['ddattenddance'];
             $eventReg->dateregistered = $reg['dateregistered'];
+            $eventReg->registeredby = $reg['registeredby'];
+            $eventReg->guest = $reg['guest'];
+            
 
             $mealChoices = [];
          

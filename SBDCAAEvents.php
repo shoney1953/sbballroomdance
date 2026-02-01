@@ -132,6 +132,7 @@ if ($rowCount > 0) {
             'modifieddate' => $modifieddate,
             'modifiedby' => $modifiedby,
             'dwop' => $dwop,
+            'guest' => $guest,
             'numhotdogs' => $numhotdogs,
             'numhdbuns' => $numhdbuns,
             'numhamburgers' => $numhamburgers,

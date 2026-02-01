@@ -18,8 +18,10 @@ class TempOnlineEventReg  {
     public $eventtype;
     public $orgemail;
     public $message;
-    public $ddattenddinner;
+    public $ddattenddinner1;
+    public $ddattenddinner2;
     public $ddattenddance;
+
     public $mealchoice1;
     public $dietaryrestriction1;
     public $mealdesc1;
@@ -33,16 +35,25 @@ class TempOnlineEventReg  {
     public $registeredby;
     public $totalcost;
     public $guest1attenddinner;
+ 
     public $guest1firstname;
     public $guest1lastname;
     public $guest1mealchoice;
     public $guest1email;
       public $guest1dr;
     public $guest2attenddinner;
+
     public $guest2firstname;
     public $guest2lastname;
     public $guest2mealchoice;
     public $guest2email;
+    public $guest1mealdesc;
+    public $guest2mealdesc;
+    public $guest1priceid;
+    public $guest1productid;
+    public $guest2priceid;
+    public $guest2productid;
+    public $registrationemail;
   public $guest2dr;
     // Constructor with DB
     public function __construct($db) {
@@ -60,10 +71,11 @@ class TempOnlineEventReg  {
       firstname2, lastname2, email2,   mealchoice2, dietaryrestriction2,
       guest1firstname, guest1lastname, guest1email,  guest1attenddinner, guest1mealchoice, guest1dr,
       guest2firstname, guest2lastname, guest2email,  guest2attenddinner, guest2mealchoice, guest2dr,
-      productid2, priceid2,
-        visitor, totalcost,
+      productid2, priceid2, guest1mealdesc, guest2mealdesc, 
+      guest1priceid, guest1productid, guest2priceid, guest2productid,
+        visitor, totalcost, registrationemail,
       registeredby,  mealchoice,
-       message, ddattenddinner, ddattenddance,
+       message, ddattenddinner1, ddattenddinner2, ddattenddance,
        eventtype
       FROM ' . $this->table . ' 
       ORDER BY
@@ -88,9 +100,10 @@ class TempOnlineEventReg  {
            firstname2, lastname2, email2, mealchoice2, dietaryrestriction2,
           guest1firstname, guest1lastname, guest1email,  guest1attenddinner, guest1mealchoice, guest1dr,
           guest2firstname, guest2lastname, guest2email,  guest2attenddinner, guest2mealchoice, guest2dr,
-     
+          guest1mealdesc, guest2mealdesc, registrationemail,
+               guest1priceid, guest1productid, guest2priceid, guest2productid,
            productid2, priceid2, orgemail, dateregistered, 
-          message, ddattenddinner, ddattenddance
+          message, ddattenddinner1,ddattenddinner2, ddattenddance
           FROM ' . $this->table . ' 
 
           WHERE
@@ -141,7 +154,8 @@ class TempOnlineEventReg  {
 
           $this->visitor = $row['visitor'];
           $this->message = $row['message'];
-          $this->ddattenddinner = $row['ddattenddinner'];
+          $this->ddattenddinner1 = $row['ddattenddinner1'];
+          $this->ddattenddinner2 = $row['ddattenddinner2'];
           $this->ddattenddance = $row['ddattenddance'];
        
           $this->registeredby = $row['registeredby'];
@@ -163,6 +177,14 @@ class TempOnlineEventReg  {
           $this->guest2attenddinner = $row['guest2attenddinner'];
           $this->guest2mealchoice = $row['guest2mealchoice'];
           $this->guest2dr = $row['guest2dr'];
+          $this->guest1mealdesc = $row['guest1mealdesc'];
+           $this->guest2mealdesc = $row['guest2mealdesc'];
+          $this->guest1priceid = $row['guest1priceid'];
+           $this->guest1productid = $row['guest1productid'];
+          $this->guest2priceid = $row['guest2priceid'];
+           $this->guest2productid = $row['guest2productid'];
+            $this->registrationemail = $row['registrationemail'];
+   
           return true;
           }
           return false;
@@ -184,8 +206,12 @@ class TempOnlineEventReg  {
           guest1attenddinner = :guest1attenddinner, guest1mealchoice = :guest1mealchoice, guest1dr = :guest1dr,
              guest2firstname = :guest2firstname, guest2lastname = :guest2lastname, guest2email = :guest2email,  
           guest2attenddinner = :guest2attenddinner, guest2mealchoice = :guest2mealchoice, guest2dr = :guest2dr,
-
-          ddattenddinner = :ddattenddinner, mealdesc1 = :mealdesc1, mealdesc2 = :mealdesc2,
+          guest1mealdesc = :guest1mealdesc, guest2mealdesc = :guest2mealdesc,
+          guest1priceid = :guest1priceid, guest1productid = :guest1productid,
+           guest2priceid = :guest2priceid, guest2productid = :guest2productid,
+          ddattenddinner1 = :ddattenddinner1, ddattenddinner2 = :ddattenddinner2,
+          mealdesc1 = :mealdesc1, mealdesc2 = :mealdesc2,
+          registrationemail = :registrationemail,
           registeredby = :registeredby, orgemail = :orgemail,
           visitor = :visitor,
           eventid = :eventid';
@@ -233,8 +259,10 @@ class TempOnlineEventReg  {
           $stmt->bindParam(':mealchoice2', $this->mealchoice2);
           $stmt->bindParam(':mealdesc2', $this->mealdesc2);
           $stmt->bindParam(':visitor', $this->visitor);
-          $stmt->bindParam(':ddattenddinner', $this->ddattenddinner);
+          $stmt->bindParam(':ddattenddinner1', $this->ddattenddinner1);
+          $stmt->bindParam(':ddattenddinner2', $this->ddattenddinner2);
           $stmt->bindParam(':registeredby', $this->registeredby);
+          $stmt->bindParam(':registrationemail', $this->registrationemail);
           $stmt->bindParam(':message', $this->message);
           $stmt->bindParam(':totalcost', $this->totalcost);
           $stmt->bindParam(':productid1', $this->productid1);
@@ -248,6 +276,9 @@ class TempOnlineEventReg  {
             $stmt->bindParam(':guest1email', $this->guest1email);
             $stmt->bindParam(':guest1attenddinner', $this->guest1attenddinner);
             $stmt->bindParam(':guest1mealchoice', $this->guest1mealchoice);
+            $stmt->bindParam(':guest1mealdesc', $this->guest1mealdesc);
+            $stmt->bindParam(':guest1priceid', $this->guest1priceid);
+            $stmt->bindParam(':guest1productid', $this->guest1productid);
             $stmt->bindParam(':guest1dr', $this->guest1dr);
             
             $stmt->bindParam(':guest2firstname', $this->guest2firstname);
@@ -255,6 +286,9 @@ class TempOnlineEventReg  {
             $stmt->bindParam(':guest2email', $this->guest2email);
             $stmt->bindParam(':guest2attenddinner', $this->guest2attenddinner);
             $stmt->bindParam(':guest2mealchoice', $this->guest2mealchoice);
+            $stmt->bindParam(':guest2mealdesc', $this->guest2mealdesc);
+            $stmt->bindParam(':guest2priceid', $this->guest2priceid);
+            $stmt->bindParam(':guest2productid', $this->guest2productid);
             $stmt->bindParam(':guest2dr', $this->guest2dr);
           // Execute query
           if($stmt->execute()) {

@@ -11,6 +11,7 @@ $regs = $_SESSION['eventregistrations'];
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
+$guestEventReg = new EventRegistration($db);
 $partnerEventReg = new EventRegistration($db);
 $event = new Event($db);
 $regSelected = [];
@@ -37,6 +38,10 @@ $create_successful = 0;
 $result = 0;
     $gotEventRec = 0;
     $gotPartnerEventRec = 0;
+    $guests = [];
+    if (isset($_SESSION['guests']) && (count($_SESSION['guests']) > 0)) {
+        $guests = $_SESSION['guests'];
+    }
 
 if (isset($_POST['submitRemoveRegs'])) {
     $event->id = $_POST['eventid'];
@@ -84,7 +89,16 @@ if (isset($_POST['submitRemoveRegs'])) {
                      $toCC2 = $_SESSION['useremail'];
             
         }  
-    
+      foreach ($guests as $guest) {
+        $remGuestID = "remguest".$guest['id'];   
+        $guestID = 'guestid'.$guest['id']  ;   
+        if (isset($_POST["$remGuestID"])) {
+            $guestEventReg->id = $_POST["$guestID"];
+            $emailBody .= "<br>Guest: ".$guest['firstname']." ".$guest['lastname']." removed.<br>";
+           $guestEventReg->delete();
+           $event->decrementCount($eventid);
+         }
+      }
 
         if (filter_var($regEmail, FILTER_VALIDATE_EMAIL)) {
        

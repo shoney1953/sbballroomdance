@@ -75,12 +75,12 @@ if ($tempReg->visitor !== '1') {
 
 $regEmail1 = $eventReg->email;
 $regName1 = $eventReg->firstname." ".$eventReg->lastname;
-$eventReg->ddattenddinner = $tempReg->ddattenddinner;
+$eventReg->ddattenddinner = $tempReg->ddattenddinner1;
 $eventReg->ddattenddance = 1;
 $eventReg->mealchoice = $tempReg->mealchoice1;
 $eventReg->dietaryrestriction = $tempReg->dietaryrestriction1;
 
-if ($tempReg->ddattenddinner === '1') {
+if ($tempReg->ddattenddinner1 === '1') {
 
     if ($tempReg->mealchoice1 !== '0') {
       
@@ -116,7 +116,7 @@ $partnerEventReg->registeredby = $tempReg->registeredby;
 $partnerEventReg->paidonline = 1;
 $partnerEventReg->paid = 1;
 $partnerEventReg->message = $tempReg->message;
-$partnerEventReg->ddattenddinner = $tempReg->ddattenddinner;
+$partnerEventReg->ddattenddinner = $tempReg->ddattenddinner2;
 $partnerEventReg->mealchoice = $tempReg->mealchoice2;
 $partnerEventReg->dietaryrestriction = $tempReg->dietaryrestriction2;
 $partnerEventReg->firstname = $tempReg->firstname2;
@@ -146,7 +146,7 @@ if ($tempReg->firstname1 === '') {
 
 $partnerEventReg->create();
 $event->addCount($partnerEventReg->eventid);
-    if ($tempReg->ddattenddinner === '1') {
+    if ($tempReg->ddattenddinner2 === '1') {
         if ($tempReg->mealchoice2 !== '0') {
             $emailBody .= "Your Partner ".$partnerEventReg->firstname." ".$partnerEventReg->lastname." has chosen ".$tempReg->mealdesc2;
                 if ($tempReg->dietaryrestriction2 != '') {

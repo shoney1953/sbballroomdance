@@ -10,12 +10,17 @@ $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $partnereventReg = new EventRegistration($db);
+$guesteventReg = new EventRegistration($db);
 $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
 $numActions = 0;
 $gotEventReg = 0;
 $gotPartnerEventReg = 0;
+
+$num_guests = 0;
+$guests = [];
 $hr = '';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,6 +76,7 @@ $hr = '';
                 $delChk = "del".$event['id'];
                 $regChk = "reg".$event['id'];
                 $payChk = "pay".$event['id'];
+                 $addGuestsChk = "addguests".$event['id'];
                  $ed = 'eventDesc.php?id=';
                  $ed .= $event["id"];
                  $numActions = 0;
@@ -146,7 +152,7 @@ $hr = '';
         
                       if ($eventReg->ddattenddinner === '1') {
                          echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'>You have chosen to attend dinner. </h4>";
+                        echo "<h4 class='form-item-title'>You have chosen to attend dinner meal choice: ".$eventReg->mealname.". </h4>";
                         echo '</div>'; // end of form item
                         
                       } else {
@@ -155,13 +161,15 @@ $hr = '';
                         echo '</div>'; // end of form item
                       }
                     }
+                      if ($event['eventtype'] === 'Dinner Dance') {
+
+                         echo '<div class="form-item">';
+                        echo "<h4 class='form-item-title'>You have chosen meal: ".$eventReg->mealname.". </h4>";
+                        echo '</div>'; // end of form item
+  
+                    }
                     if ($event['eventtype'] !== 'BBQ Picnic') {
-                    if ($eventReg->mealchoice !== '0') {
-                 
-                        echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'>You selected the meal: <br> ".$eventReg->mealname."</h4>";
-                        echo '</div>'; // end of form item                   
-                    } // meal choice
+
                      if ($event['eventcost'] !== '0') {
                       if ($eventReg->paid !== '0') {
                           echo '<div class="form-item">';
@@ -235,7 +243,7 @@ $hr = '';
                     
                         if ($partnereventReg->ddattenddinner === '1') {
                           echo '<div class="form-item">';
-                          echo "<h4 class='form-item-title'>Your partner has chosen to attend dinner. </h4>";
+                          echo "<h4 class='form-item-title'>Your partner has chosen to attend dinner with meal choice:".$partnereventReg->mealname.". </h4>";
                           echo '</div>'; // end of form item
                         } else {
                           echo '<div class="form-item">';
@@ -243,11 +251,13 @@ $hr = '';
                           echo '</div>'; // end of form item
                         }
                       }
-                         if ($partnereventReg->mealchoice !== '0') {
-                          echo '<div class="form-item">';
-                          echo "<h4 class='form-item-title'>Your partner selected the meal: <br> ".$partnereventReg->mealname."</h4>";
-                          echo '</div>'; // end of form item
-                         }  // partner meal choice
+                     if ($event['eventtype'] === 'Dinner Dance') {
+
+                         echo '<div class="form-item">';
+                        echo "<h4 class='form-item-title'>Your partner has chosen meal: ".$partnereventReg->mealname.". </h4>";
+                        echo '</div>'; // end of form item
+  
+                    }
                       if ($event['eventcost'] !== '0') {
                         if ($partnereventReg->paid !== '0') {
                             echo '<div class="form-item">';
@@ -309,8 +319,84 @@ $hr = '';
                         }
                       } // got partner softball
                     } // got partner
+  
+                 $result = $guesteventReg->read_ByEventIdRegBy($event['id'], $_SESSION['username']);
+
+                  $rowCount = $result->rowCount();
+                  $num_guests  = $rowCount;
+   
+                  if ($num_guests > 0) {
+
+                      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                          extract($row);
+                          $reg_item = array(
+                              'id' => $id,
+                              'firstname' => $firstname,
+                              'lastname' => $lastname,
+                              'eventid' => $eventid,
+                              'eventname' => $eventname,
+                              'eventdate' => $eventdate,
+                              'eventtype' => $eventtype,
+                              'orgemail' => $orgemail,
+                              'message' => $message,
+                              'userid' => $userid,
+                              'email' => $email,
+                              'paid' => $paid,
+                              'ddattenddance' => $ddattenddance,
+                              'ddattenddinner' => $ddattenddinner,
+                              'registeredby' => $registeredby,
+                              'mealchoice' => $mealchoice,
+                              'dietaryrestriction' => $dietaryrestriction,
+                              'paidonline' => $paidonline,    
+                              'mealname' => $mealname,     
+                              'modifiedby' => $modifiedby,
+                              'modifieddate' => $modifieddate,
+                              'dwop' => $dwop,
+                              'guest' => $guest,
+                              'numhotdogs' => $numhotdogs,
+                              'numhdbuns' => $numhdbuns,
+                              'numhamburgers' => $numhamburgers,
+                              'numhbbuns' => $numhbbuns,
+                              'vegetarian' => $vegetarian,
+                              'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
+                          );
+                          array_push($guests, $reg_item);
+                    
+                      } // end while
+                      foreach ($guests as $guest) {
+                         echo '<div class="form-item">';
+                        echo "<h4 class='form-item-title'>You registered guest: ".$guest['firstname']." ".$guest['firstname'].". </h4>";
+                        echo '</div>'; // end of form item
+                        if ($guest['ddattenddinner']) {
+                          echo '<div class="form-item">';
+                        echo "<h4 class='form-item-title'> Guest will attend dinner with meal selection of ".$guest['mealname'].". </h4>";
+                        echo '</div>'; // end of form item
+
+                        } else {
+                           echo '<div class="form-item">';
+                        echo "<h4 class='form-item-title'> Guest will not attend dinner. </h4>";
+                        echo '</div>'; // end of form item
+                        }
+                      if ($event['eventcost'] !== '0') {
+                        if ($guest['paid'] !== '0') {
+                            echo '<div class="form-item">';
+                            if ($guest['paidonline'] === '1') {
+                                echo "<h4 class='form-item-title'>Guest paid online for this event.</h4>";
+                            } else {
+                               echo "<h4 class='form-item-title'>Guest has paid for this event.</h4>";
+                            }
                   
-     
+                            echo '</div>'; // end of form item
+                        } else {
+                            echo '<div class="form-item">';
+                            echo "<h4 class='form-item-title'>Guest has not paid for this event.</h4>";
+                            echo '</div>'; // end of form item
+                        
+                        } // event paid
+
+                        }
+                      } // for each guest
+                  } // num guests > 0
                    echo "</div>"; // end of form grid
       
                 echo "<form name='processEventMem'   method='POST' action='actions/processEventMem.php'> "; 
@@ -324,8 +410,10 @@ $hr = '';
                           $eventCutOff = strtotime($event['eventdate'].'-7 days');
                           $comparedateTS = strtotime($compareDate);
                           $eventRegEnd = strtotime($event['eventregend']);
-             
+                           
                           if ($comparedateTS <= $eventCutOff) { 
+                     
+                   
                            if (($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'Dinner Dance'))  {
                               if ($event['eventtype'] === 'Dance Party') {
                                 if ((($gotEventReg) && ($eventReg->ddattenddinner === '1')) ||
@@ -336,6 +424,13 @@ $hr = '';
                                     echo "<input type='checkbox' title='Select to Modify Registrations(s)' name='".$upChk."'>";   
                                     echo '</div>';
                                     $numActions++;
+                                } else {
+                                  if ($num_guests > 0) {
+                                     echo '<div class="form-item">';
+                                    echo '<h4 class="form-item-title">Modify Registrations?</h4>';
+                                    echo "<input type='checkbox' title='Select to Modify Registrations(s)' name='".$upChk."'>";   
+                                    echo '</div>';
+                                  }
                                 }
                                 if ($event['eventtype'] === 'Dinner Dance') {
                                     echo '<div class="form-item">';
@@ -411,6 +506,16 @@ $hr = '';
 
                             }
                            }
+                             if ($comparedateTS >= $eventRegOpen) {
+                              if (($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'Dinner Dance') ) {
+                                echo '<div class="form-item">'; 
+                                echo '<h4 class="form-item-title">Add Guests?</h4>';
+                                echo "<input type='checkbox' title='Select to add guest registrations for this event' name='".$addGuestsChk."'>";   
+                                echo '</div>';
+                                  $numActions++;
+                              }
+                                
+                              }
                             //  else below goes to registered
                           }  else {
                     

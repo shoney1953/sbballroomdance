@@ -135,6 +135,7 @@ class PDF extends FPDF
                 'mealchoice' => $mealchoice,
                 'mealname' => $mealname,
                 'dwop' => $dwop,
+                'guest' => $guest,
                   'numhotdogs' => $numhotdogs,
               'numhdbuns' => $numhdbuns,
               'numhamburgers' => $numhamburgers,

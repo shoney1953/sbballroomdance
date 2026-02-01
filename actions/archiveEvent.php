@@ -113,6 +113,7 @@ if (isset($_POST['submitArchive'])) {
                 'email' => $email,
                 'paid' => $paid,
                 'dwop' => $dwop,
+                'guest' => $guest,
                 'ddattenddinner' => $ddattenddinner,
                 'cornhole' => $cornhole,
                 'softball' => $softball,
@@ -161,6 +162,7 @@ if (isset($_POST['submitArchive'])) {
             $eventRegArch->vegetarian = $reg_item['vegetarian'];
             $eventRegArch->paidonline = $reg_item['paidonline'];
             $eventRegArch->dietaryrestriction = $reg_item['dietaryrestriction'];
+            $eventRegArch->guest = $reg_item['guest'];
             $eventRegArch->create();
       
         }

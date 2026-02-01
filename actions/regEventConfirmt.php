@@ -24,12 +24,20 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
 $stripe = new \Stripe\StripeClient($stripeSecretKey);
 $potentialReg1 = [];
 $potentialReg2 = [];
+$potentialRegG1 = [];
+$potentialRegG2 = [];
 if (isset($_SESSION['potentialReg1'])) {
 $potentialReg1 = $_SESSION['potentialReg1'];
 }
 
 if (isset($_SESSION['potentialReg2'])) {
   $potentialReg2 = $_SESSION['potentialReg2'];
+}
+if (isset($_SESSION['potentialRegG1'])) {
+  $potentialRegG1 = $_SESSION['potentialRegG1'];
+}
+if (isset($_SESSION['potentialRegG2'])) {
+  $potentialRegG2 = $_SESSION['potentialRegG2'];
 }
 
 $_SESSION['partialyearmem'] = 0;
@@ -46,8 +54,11 @@ $tempReg = new TempOnlineEventReg($db);
 
 if (isset($_POST['submitRegConfirm'])) {
 /*  create temp reg in database */
-
+    $tempReg->ddattenddinner1 = 0;
+    $tempReg->ddattenddinner2 = 0;
+    $tempReg->visitor = 0;
     if (isset($potentialReg1['firstname'])) {
+      $tempReg->registrationemail = $potentialReg1['registrationemail'];
       $tempReg->eventid = $potentialReg1['eventid'];
       $tempReg->eventname = $potentialReg1['eventname'];
       $tempReg->eventtype = $potentialReg1['eventtype'];
@@ -55,7 +66,7 @@ if (isset($_POST['submitRegConfirm'])) {
       $tempReg->orgemail = $potentialReg1['orgemail'];
       $tempReg->visitor = $potentialReg1['visitor'];
       $tempReg->message = $potentialReg1['message'];
-      $tempReg->ddattenddinner = $potentialReg1['ddattenddinner'];
+      $tempReg->ddattenddinner1 = $potentialReg1['ddattenddinner'];
       $tempReg->ddattenddance = 1;
       // $tempReg->registeredby = $potentialReg1['email'];
       $tempReg->registeredby = $_SESSION['username'];
@@ -86,7 +97,7 @@ if (isset($_POST['submitRegConfirm'])) {
         }
     } 
     if (isset($potentialReg2['firstname'])) {
-  
+     $tempReg->registrationemail = $potentialReg2['registrationemail'];
       $tempReg->eventid = $potentialReg2['eventid'];
       $tempReg->eventname = $potentialReg2['eventname'];
       $tempReg->eventtype = $potentialReg2['eventtype'];
@@ -94,7 +105,8 @@ if (isset($_POST['submitRegConfirm'])) {
       $tempReg->orgemail = $potentialReg2['orgemail'];
       $tempReg->visitor = $potentialReg2['visitor'];
       $tempReg->message = $potentialReg2['message'];
-      $tempReg->ddattenddinner = $potentialReg2['ddattenddinner'];
+      $tempReg->registeredby = $_SESSION['username'];
+      $tempReg->ddattenddinner2 = $potentialReg2['ddattenddinner'];
       $tempReg->ddattenddance = 1;
       $tempReg->firstname2 = $potentialReg2['firstname'];
       $tempReg->lastname2 = $potentialReg2['lastName'];
@@ -122,19 +134,82 @@ if (isset($_POST['submitRegConfirm'])) {
      
     } // potential reg2
 
+      if ((isset($potentialRegG1['firstname'])) && ($potentialRegG1['firstname'] !== '')) {
+      $tempReg->registrationemail = $potentialRegG1['registrationemail'];
+      $tempReg->eventid = $potentialRegG1['eventid'];
+      $tempReg->eventname = $potentialRegG1['eventname'];
+      $tempReg->eventtype = $potentialRegG1['eventtype'];
+      $tempReg->eventdate = $potentialRegG1['eventdate'];
+      $tempReg->orgemail = $potentialRegG1['orgemail'];
+           $tempReg->registeredby = $_SESSION['username'];
+      // $tempReg->visitor = $potentialRegG1['visitor'];
+      $tempReg->message = $potentialRegG1['message'];
+      $tempReg->guest1attenddinner = $potentialRegG1['ddattenddinner'];
+      $tempReg->ddattenddance = 1;
+      $tempReg->guest1firstname = $potentialRegG1['firstname'];
+      $tempReg->guest1lastname = $potentialRegG1['lastName'];
+      $tempReg->guest1email = $potentialRegG1['email'];
+
+      $tempReg->guest1productid = $potentialRegG1['productid'];
+      if ($potentialRegG1['ddattenddinner'] === '1') {
+        $tempReg->guest1mealchoice = $potentialRegG1['mealchoice'];
+        $tempReg->guest1mealdesc = $potentialRegG1['mealdesc'];
+        $tempReg->guest1dr = $potentialRegG1['dietaryrestriction'];
+      } else {
+        $tempReg->guest1mealchoice = 0;
+        $tempReg->guest1mealdesc = '';
+        $tempReg->guest1dr = '';
+      }
+     
+        $tempReg->guest1priceid = $potentialRegG1['guestpriceid'];
+        $priceObj3 = $stripe->prices->retrieve($potentialRegG1['guestpriceid'], []);
+        $totalCost = $totalCost + $priceObj3->unit_amount;
+      
+     
+    } // guest 2
+
+    if ((isset($potentialRegG2['firstname']))  && ($potentialRegG2['firstname'] !== '')) {
+      $tempReg->registrationemail = $potentialRegG2['registrationemail'];
+      $tempReg->eventid = $potentialRegG2['eventid'];
+      $tempReg->eventname = $potentialRegG2['eventname'];
+      $tempReg->eventtype = $potentialRegG2['eventtype'];
+      $tempReg->eventdate = $potentialRegG2['eventdate'];
+      $tempReg->orgemail = $potentialRegG2['orgemail'];
+           $tempReg->registeredby = $_SESSION['username'];
+      // $tempReg->visitor = $potentialRegG2['visitor'];
+      $tempReg->message = $potentialRegG2['message'];
+      $tempReg->guest2attenddinner = $potentialRegG2['ddattenddinner'];
+      $tempReg->ddattenddance = 1;
+      $tempReg->guest2firstname = $potentialRegG2['firstname'];
+      $tempReg->guest2lastname = $potentialRegG2['lastName'];
+      $tempReg->guest2email = $potentialRegG2['email'];
+
+      $tempReg->guest2productid = $potentialRegG2['productid'];
+      if ($potentialRegG2['ddattenddinner'] === '1') {
+        $tempReg->guest2mealchoice = $potentialRegG2['mealchoice'];
+        $tempReg->guest2mealdesc = $potentialRegG2['mealdesc'];
+        $tempReg->guest2dr = $potentialRegG2['dietaryrestriction'];
+      } else {
+        $tempReg->guest2mealchoice = 0;
+        $tempReg->guest2mealdesc = '';
+        $tempReg->guest2dr = '';
+      }
+
+        $tempReg->guest2priceid = $potentialRegG2['guestpriceid'];
+        $priceObj4 = $stripe->prices->retrieve($potentialRegG2['guestpriceid'], []);
+        $totalCost = $totalCost + $priceObj4->unit_amount;
+      
+     
+    } // guest 2
 
 $tempReg->totalcost = $totalCost;
 
 $tempReg->create();
 $tempRegID = $db->lastInsertId();
 /* */
-if (isset($potentialReg1['email'])) {
-  $searchemail = $potentialReg1['email'];
-} else {
-  if (isset($potentialReg2['email'])) {
-  $searchemail = $potentialReg2['email'];
-  }
-}
+
+  $searchemail = $tempReg->registrationemail;
+  
 
 $qstring = 'email: "'.$searchemail.'"';
 
@@ -166,50 +241,33 @@ if (count($customer) == 0) {
   }
 
 }
+$line_item_array = [];
 
-
-if (($tempReg->priceid2 !== NULL) && ($tempReg->priceid1 !== NULL)) {
-
-  $checkout_session = \Stripe\Checkout\Session::create([
-   # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-  'line_items' => [
-    ['price' => $tempReg->priceid1, 'quantity' => '1'],
-    ['price' => $tempReg->priceid2, 'quantity' => '1']
-  ],
-  'customer' => $customer->id,
-  'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '/regsuccesst.php?regid='.$tempRegID,
-  'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
-  ]); 
-} else {
-  if ($tempReg->priceid1 !== NULL) {
- 
-    $checkout_session = \Stripe\Checkout\Session::create([ 
-    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-    'line_items' => [
-      ['price' => $tempReg->priceid1, 'quantity' => '1']
-    ],
-    'customer' => $customer->id,
-    'mode' => 'payment',
-    'success_url' => $YOUR_DOMAIN . '/regsuccesst.php?regid='.$tempRegID,
-    'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
-  ]); 
-  }
-  if ($tempReg->priceid2 !== NULL) {
-  
-    $checkout_session = \Stripe\Checkout\Session::create([ 
-    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-    'line_items' => [
-      ['price' => $tempReg->priceid2, 'quantity' => '1']
-    ],
-    'customer' => $customer->id,
-    'mode' => 'payment',
-    'success_url' => $YOUR_DOMAIN . '/regsuccesst.php?regid='.$tempRegID,
-    'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
-  ]); 
-  }
-
+if ($tempReg->priceid1 != NULL) {
+   $line_item_array[] =  array('price' => $tempReg->priceid1, 'quantity' => '1');
 }
+if ($tempReg->priceid2 != NULL) {
+  $line_item_array[] = array('price' => $tempReg->priceid2, 'quantity' => '1'); 
+}
+  
+if ($tempReg->guest1priceid != NULL) {
+  $line_item_array[] =  array('price' => $tempReg->guest1priceid, 'quantity' => '1');
+}
+if ($tempReg->guest2priceid != NULL) {
+  $line_item_array[] =  array('price' => $tempReg->guest2priceid, 'quantity' => '1');
+}
+
+
+$checkout_session = \Stripe\Checkout\Session::create([
+    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+    'line_items' => $line_item_array,
+    'customer' => $customer->id,
+    'mode' => 'payment',
+    'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
+    'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
+  ]); 
+
+
 
     header("HTTP/1.1 303 See Other");
     header("Location: " . $checkout_session->url);

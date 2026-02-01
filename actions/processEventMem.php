@@ -11,7 +11,9 @@ $database = new Database();
 $db = $database->connect();
 $event = new Event($db);
 $reg = new EventRegistration($db);
+$memReg = new EventRegistration($db);
 $partnerReg = new EventRegistration($db);
+$guestEventReg = new EventRegistration($db);
 $user = new User($db);
 $mChoices = new DinnerMealChoices($db);
 $mealChoices = [];
@@ -50,6 +52,7 @@ foreach ($upcomingEvents as $event) {
     $delChk = "del".$event['id'];
     $regChk = "reg".$event['id'];
     $payChk = "pay".$event['id'];
+    $addGuestsChk = "addguests".$event['id'];
 
     if ($event['id'] === $_POST['eventId']) {
 

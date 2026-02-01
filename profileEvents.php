@@ -130,6 +130,7 @@ if ($prowCount > 0) {
             'modifiedby' => $modifiedby,
             'modifieddate' => $modifieddate,
             'dwop' => $dwop,
+            'guest' => $guest,
             'numhotdogs' => $numhotdogs,
             'numhdbuns' => $numhdbuns,
             'numhamburgers' => $numhamburgers,
