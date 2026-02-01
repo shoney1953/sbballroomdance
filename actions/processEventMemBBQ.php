@@ -12,14 +12,18 @@
                           $gotEventReg = 1;
                      }
                 }
-             
+       
                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                $x = $partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid']);
         
                 if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
                             $gotPartnerEventReg = 1;
                             
+                } else {
+                  $gotPartnerEventReg = 0;
                 }
+               } else {
+                     $gotPartnerEventReg = 0;
                }
              
        
@@ -110,8 +114,8 @@
                 echo '</div>'; // form grid
                 echo '</div>'; // form grid div
               }
-            
-                if ($gotPartnerEventReg === 0) {
+       
+                  if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] != '0') && ($gotPartnerEventReg === 0))  {
                     echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
                     echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
                     echo '<input type="hidden" name="email2" value='.$_SESSION['partneremail'].'>';
