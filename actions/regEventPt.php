@@ -619,7 +619,7 @@ if (isset($_POST['addguests'])) {
                           } else {
                           
                             if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
-                                  $emailBody .= "Your first guest".$_POST['guest1fname']." has chosen not to attend dinner before the dance Cost: $".$eventInst->eventguestcost."<br>";
+                                  $emailBody .= "Your first guest ".$_POST['guest1fname']." has chosen not to attend dinner before the dance Cost: $".$eventInst->eventguestcost."<br>";
                                  $danceCost = $danceCost + ($eventInst->eventguestcost * 100);
                                 
                             }
