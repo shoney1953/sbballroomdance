@@ -62,27 +62,39 @@ function sendEmailArray(
         $mail->setFrom($mailUsername, $fromEmailName);
        foreach($toArray as $to) {
         // $mail->addAddress($to['email'], $to['name']);     //Add all recipents in array
+         if (!stripos($to['email'],'@xxx')) {
           $mail->addBCC($to['email'], $to['name']);     //Add all recipents in array
+           }
        }
       
  
         $mail->addReplyTo($replyEmail, $replyTopic);
         if ($toCC) {
-            $mail->addCC($toCC);
+            if (!stripos($toCC,'@xxx')) {
+                $mail->addCC($toCC);
+            }
+       
         }
         if ($toCC2) {
+         if (!stripos($toCC2,'@xxx')) {
             $mail->addCC($toCC2);
+              }
         }
         if ($toCC3) {
+            if (!stripos($toCC3,'@xxx')) {
             $mail->addCC($toCC3);
+            }
         }
         if ($toCC4) {
+            if (!stripos($toCC4,'@xxx')) {
             $mail->addCC($toCC4);
+            }
         }
         if ($toCC5) {
+              if (!stripos($toCC5,'@xxx')) {
             $mail->addCC($toCC5);
         }
-        
+        }
         
        // $mail->addBCC('webmaster@sbballroomdance.com');
 

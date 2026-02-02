@@ -326,7 +326,7 @@ if ($rowCount > 0) {
           
        
             if ($reg['eventtype'] === 'Dance Party') {
-        ;
+        
                 $pdf->Cell(14,8,"PAID",1,0,"L");
                 $pdf->Cell(22,8,"DINNER?",1,0,"L");
                 $pdf->Cell(60,8,"MEAL",1,0,"L");

@@ -181,7 +181,7 @@ if (!isset($_POST['submitAddRegs'])) {
     $regEmail2 = htmlentities($_POST['email2']);  
   
     $regEmail2 = filter_var($regEmail2, FILTER_SANITIZE_EMAIL); 
-      $toCC2 =   $regEmail2;
+
     if ($user->getUserName($regEmail2)) {    
         $regUserid2 = $user->id;
         $mem2Partnerid = $user->partnerId;
@@ -864,12 +864,14 @@ if (isset($_POST['addguests'])) {
                     $guest1EventReg->vegetarian = 0;
                 if (isset($_POST['guest1dinner'])) {
                     $guest1EventReg->ddattenddinner = 1;
+                    $guest1EventReg->mealchoice = $mealidG1;
                 } else {
                     $guest1EventReg->ddattenddinner = 0;
+                    $guest1EventReg->mealchoice = 0;
                 }
                 
                 
-                        $guest1EventReg->mealchoice = $mealidG1;
+                 
                        if ($dietaryRestrictionG1 !== '') {
                         $guest1EventReg->dietaryrestriction = $dietaryRestrictionG1;
                        } else {
@@ -918,11 +920,13 @@ if (isset($_POST['addguests'])) {
                     $guest2EventReg->vegetarian = 0;
                 if (isset($_POST['guest2dinner'])) {
                     $guest2EventReg->ddattenddinner = 1;
+                    $guest2EventReg->mealchoice = $mealidG2;
                 } else {
-                    $gues21EventReg->ddattenddinner = 0;
+                    $guest2EventReg->ddattenddinner = 0;
+                    $guest2EventReg->mealchoice = 0;
                 }
 
-                        $guest2EventReg->mealchoice = $mealidG2;
+                
                        if ($dietaryRestrictionG2 !== '') {
                         $guest2EventReg->dietaryrestriction = $dietaryRestrictionG2;
                        } else {
@@ -952,11 +956,24 @@ if (isset($_POST['addguests'])) {
               } // guest 2
             }
 
-  if (isset($_POST['mem1Chk'])) {
-    if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
-      
-        $regName1 = $regFirstName1.' '.$regLastName1;
-   
+
+        
+        $regName1 = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
+        $regEmail1 = $_SESSION['useremail'];
+        if (isset($_POST['mem2Chk'])) {
+            $toCC2 = $regEmail2;
+        }
+     
+         if (isset($_POST['addguests'])) {
+
+            if (isset($_POST['guest1email']))  {
+              $toCC3 = $_POST['guest1email'];
+            }
+              if (isset($_POST['guest2email']))  {
+              $toCC4 = $_POST['guest2email'];
+            }
+        }
+       
         sendEmail(
             $regEmail1, 
             $regName1, 
@@ -973,80 +990,7 @@ if (isset($_POST['addguests'])) {
             $toCC4,
             $toCC5
         );
-    } else {
-        echo 'Registrant Email 1 is empty or Invalid. Please enter valid email.';
-    }
-  }
-      if (isset($_POST['mem2Chk'])) {
-     if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-      
-        $regName2 = $regFirstName2.' '.$regLastName2;
-   
-        sendEmail(
-            $regEmail2, 
-            $regName2, 
-            $fromCC,
-            $fromEmailName,
-            $emailBody,
-            $emailSubject,
-            $replyEmail,
-            $replyTopic,
-            $mailAttachment,
-            $mailAttachment2,
-            $toCC2,
-            $toCC3,
-            $toCC4,
-            $toCC5
-        );
-    } else {
-        echo 'Registrant Email 2 is empty or Invalid. Please enter valid email.';
-    }
-  }
-  //  used to be the end of not pay online
-
- if (isset($_POST['addguests'])) {
-   if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
-     $regNameG1 = $_POST['guest1fname'].' '.$_POST['guest1lname'];
-      sendEmail(
-            $_POST['guest1email'], 
-            $regNameG1, 
-            $fromCC,
-            $fromEmailName,
-            $emailBody,
-            $emailSubject,
-            $replyEmail,
-            $replyTopic,
-            $mailAttachment,
-            $mailAttachment2,
-            $toCC2,
-            $toCC3,
-            $toCC4,
-            $toCC5
-        );
-          
-   } // end guest1
-    if ((isset($_POST['guest2fname'])) && ($_POST['guest2fname'] !== '')) {
-     $regNameG2 = $_POST['guest2fname'].' '.$_POST['guest2lname'];
-      sendEmail(
-            $_POST['guest2email'], 
-            $regNameG2, 
-            $fromCC,
-            $fromEmailName,
-            $emailBody,
-            $emailSubject,
-            $replyEmail,
-            $replyTopic,
-            $mailAttachment,
-            $mailAttachment2,
-            $toCC2,
-            $toCC3,
-            $toCC4,
-            $toCC5
-        );
-    } // end guest2       
-   } // end of add guests
-            
-   
+        
             $redirect = "Location: ".$_SESSION['returnurl'];
        header($redirect); 
        exit;

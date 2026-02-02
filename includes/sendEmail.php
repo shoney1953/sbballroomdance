@@ -54,28 +54,54 @@ function sendEmail($toEmail,
         }
         //Recipients
         $mail->setFrom($mailUsername, $fromEmailName);
-       
-        $mail->addAddress($toEmail, $toName);     //Add a recipient
- 
+        if (!stripos($toEmail,'@xxx')) {
+           $mail->addAddress($toEmail, $toName);     //Add a recipient
+        }
         $mail->addReplyTo($replyEmail, $replyTopic);
         if ($toCC) {
-            $mail->addCC($toCC);
+            if (!stripos($toCC,'@xxx')) {
+                $mail->addCC($toCC);
+            }
+       
         }
         if ($toCC2) {
+         if (!stripos($toCC2,'@xxx')) {
             $mail->addCC($toCC2);
+              }
         }
-
         if ($toCC3) {
+            if (!stripos($toCC3,'@xxx')) {
             $mail->addCC($toCC3);
+            }
         }
         if ($toCC4) {
+            if (!stripos($toCC4,'@xxx')) {
             $mail->addCC($toCC4);
+            }
         }
         if ($toCC5) {
+              if (!stripos($toCC5,'@xxx')) {
             $mail->addCC($toCC5);
         }
+        }
+        // if ($toCC) {
+        //     $mail->addCC($toCC);
+        // }
+        // if ($toCC2) {
+        //     $mail->addCC($toCC2);
+        // }
+
+        // if ($toCC3) {
+        //     $mail->addCC($toCC3);
+        // }
+        // if ($toCC4) {
+        //     $mail->addCC($toCC4);
+        // }
+        // if ($toCC5) {
+        //     $mail->addCC($toCC5);
+        // }
         
-       // $mail->addBCC('webmaster@sbballroomdance.com');
+       $mail->addBCC('webmaster@sbballroomdance.com');
 
         //Attachments
         if ($emailAttach) {
