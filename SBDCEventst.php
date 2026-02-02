@@ -146,25 +146,25 @@ $hr = '';
                    if ($gotEventReg)  {
         
                     echo '<div class="form-item">';
-                    echo "<h4 class='form-item-title'>You registered for this event on: <br> ".substr($eventReg->dateregistered,0,10)."</h4>";
+                    echo "<h4 class='form-item-title'>You registered on: <br> ".substr($eventReg->dateregistered,0,10)."</h4>";
                     echo '</div>'; // end of form item
                     if ($event['eventtype'] === 'Dance Party') {
         
                       if ($eventReg->ddattenddinner === '1') {
                          echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'>You have chosen to attend dinner meal choice: ".$eventReg->mealname.". </h4>";
+                        echo "<h4 class='form-item-title'>You chose meal: ".$eventReg->mealname.". </h4>";
                         echo '</div>'; // end of form item
                         
                       } else {
                          echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'>You have chosen not to attend dinner. </h4>";
+                        echo "<h4 class='form-item-title'>You chose dance only. </h4>";
                         echo '</div>'; // end of form item
                       }
                     }
                       if ($event['eventtype'] === 'Dinner Dance') {
 
                          echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'>You have chosen meal: ".$eventReg->mealname.". </h4>";
+                        echo "<h4 class='form-item-title'>You chose meal: ".$eventReg->mealname.". </h4>";
                         echo '</div>'; // end of form item
   
                     }
@@ -174,15 +174,15 @@ $hr = '';
                       if ($eventReg->paid !== '0') {
                           echo '<div class="form-item">';
                           if ($eventReg->paidonline === '1') {
-                              echo "<h4 class='form-item-title'>You have paid online for this event.</h4>"; 
+                              echo "<h4 class='form-item-title'>You have paid online.</h4>"; 
                           } else {
-                             echo "<h4 class='form-item-title'>You have paid for this event.</h4>";
+                             echo "<h4 class='form-item-title'>You have paid.</h4>";
                           }
                  
                           echo '</div>'; // end of form item
                       } else {
                           echo '<div class="form-item">';
-                          echo "<h4 class='form-item-title'>You have not paid for this event.</h4>";
+                          echo "<h4 class='form-item-title'>You have not paid.</h4>";
                           echo '</div>'; // end of form item
                       
                        } // event paid
@@ -193,7 +193,7 @@ $hr = '';
              
                      if ($eventReg->ddattenddinner === '1') {
                          echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'>You have chosen to attend lunch. </h4>";
+                        echo "<h4 class='form-item-title'>You have chosen lunch. </h4>";
                         echo '</div>'; // end of form item
                         if ($eventReg->numhamburgers > 0) {
                           echo '<div class="form-item">';
@@ -237,24 +237,24 @@ $hr = '';
                     if ($gotPartnerEventReg) {
    
                       echo '<div class="form-item">';
-                      echo "<h4 class='form-item-title'>Your partner registered for this event on: <br> ".substr($eventReg->dateregistered,0,10)."</h4>";
+                      echo "<h4 class='form-item-title'>Your partner registered on: <br> ".substr($eventReg->dateregistered,0,10)."</h4>";
                       echo '</div>'; // end of form item
                       if ($event['eventtype'] === 'Dance Party') {
                     
                         if ($partnereventReg->ddattenddinner === '1') {
                           echo '<div class="form-item">';
-                          echo "<h4 class='form-item-title'>Your partner has chosen to attend dinner with meal choice:".$partnereventReg->mealname.". </h4>";
+                          echo "<h4 class='form-item-title'>Your partner chose meal: ".$partnereventReg->mealname.". </h4>";
                           echo '</div>'; // end of form item
                         } else {
                           echo '<div class="form-item">';
-                          echo "<h4 class='form-item-title'>Your partner has chosen not to attend dinner. </h4>";
+                          echo "<h4 class='form-item-title'>Your partner chose dance only. </h4>";
                           echo '</div>'; // end of form item
                         }
                       }
                      if ($event['eventtype'] === 'Dinner Dance') {
 
                          echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'>Your partner has chosen meal: ".$partnereventReg->mealname.". </h4>";
+                        echo "<h4 class='form-item-title'>Your partner chose meal: ".$partnereventReg->mealname.". </h4>";
                         echo '</div>'; // end of form item
   
                     }
@@ -262,15 +262,15 @@ $hr = '';
                         if ($partnereventReg->paid !== '0') {
                             echo '<div class="form-item">';
                             if ($partnereventReg->paidonline === '1') {
-                                echo "<h4 class='form-item-title'>Your partner has paid online for this event.</h4>";
+                                echo "<h4 class='form-item-title'>Your partner has paid online.</h4>";
                             } else {
-                               echo "<h4 class='form-item-title'>Your partner has paid for this event.</h4>";
+                               echo "<h4 class='form-item-title'>Your partner has paid.</h4>";
                             }
                   
                             echo '</div>'; // end of form item
                         } else {
                             echo '<div class="form-item">';
-                            echo "<h4 class='form-item-title'>Your partner has not paid for this event.</h4>";
+                            echo "<h4 class='form-item-title'>Your partner has not paid.</h4>";
                             echo '</div>'; // end of form item
                         
                         } // event paid
@@ -279,7 +279,7 @@ $hr = '';
                         if ($event['eventtype'] === 'BBQ Picnic') {
                         if ($partnereventReg->ddattenddinner === '1') {
                          echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'>Your partner has chosen to attend lunch. </h4>";
+                        echo "<h4 class='form-item-title'>Your partner has chosen lunch. </h4>";
                         echo '</div>'; // end of form item
                           if ($partnereventReg->numhamburgers > 0) {
                           echo '<div class="form-item">';
@@ -319,12 +319,12 @@ $hr = '';
                         }
                       } // got partner softball
                     } // got partner
-  
+             
                  $result = $guesteventReg->read_ByEventIdRegBy($event['id'], $_SESSION['username']);
 
                   $rowCount = $result->rowCount();
                   $num_guests  = $rowCount;
-   
+                 $guests = [];
                   if ($num_guests > 0) {
 
                       while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -363,33 +363,33 @@ $hr = '';
                           array_push($guests, $reg_item);
                     
                       } // end while
+                  
                       foreach ($guests as $guest) {
-                         echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'>You registered guest: ".$guest['firstname']." ".$guest['firstname'].". </h4>";
-                        echo '</div>'; // end of form item
+                    
+                       
                         if ($guest['ddattenddinner']) {
                           echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'> Guest will attend dinner with meal selection of ".$guest['mealname'].". </h4>";
+                        echo "<h4 class='form-item-title'>  ".$guest['firstname']."'s meal: ".$guest['mealname'].". </h4>";
                         echo '</div>'; // end of form item
 
                         } else {
                            echo '<div class="form-item">';
-                        echo "<h4 class='form-item-title'> Guest will not attend dinner. </h4>";
+                        echo "<h4 class='form-item-title'>  ".$guest['firstname']." chose dance only. </h4>";
                         echo '</div>'; // end of form item
                         }
                       if ($event['eventcost'] !== '0') {
                         if ($guest['paid'] !== '0') {
                             echo '<div class="form-item">';
                             if ($guest['paidonline'] === '1') {
-                                echo "<h4 class='form-item-title'>Guest paid online for this event.</h4>";
+                                echo "<h4 class='form-item-title'>Guest paid online.</h4>";
                             } else {
-                               echo "<h4 class='form-item-title'>Guest has paid for this event.</h4>";
+                               echo "<h4 class='form-item-title'>Guest has paid.</h4>";
                             }
                   
                             echo '</div>'; // end of form item
                         } else {
                             echo '<div class="form-item">';
-                            echo "<h4 class='form-item-title'>Guest has not paid for this event.</h4>";
+                            echo "<h4 class='form-item-title'>Guest has not paid.</h4>";
                             echo '</div>'; // end of form item
                         
                         } // event paid

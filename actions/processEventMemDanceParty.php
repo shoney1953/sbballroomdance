@@ -368,7 +368,7 @@
                       echo '<div class="form-container hidden" id="guestMealChoice1">';
                        echo '<div class="form-grid">';
                 $mealsNumber = count($mealChoices);
-                foreach ($mealChoices as $choice){
+                foreach ($mealChoices as $choice) {
                   $guest1Chk = 'g1meal'.$choice['id'];
                   echo '<div class="form-item">';
                   if ($mealsNumber === 1) {
@@ -396,11 +396,11 @@
                         echo "<input type='text' title='Enter Guest 2 First Name' name='guest2fname' placeholder='Guest 2 first name' >"; 
                       echo '</div>';
                        echo '<div class="form-item">';
-                       echo "<h4 class='form-item-title'>Guest1 Last Name</h4>";
+                       echo "<h4 class='form-item-title'>Guest2 Last Name</h4>";
                         echo "<input type='text' title='Enter Guest 2 Last Name' name='guest2lname' placeholder='Guest 2 last name' >"; 
                       echo '</div>';
                       echo '<div class="form-item">';
-                       echo "<h4 class='form-item-title'>Guest1 Email</h4>";
+                       echo "<h4 class='form-item-title'>Guest2 Email</h4>";
                         echo "<input type='text' title='Enter Guest 2 Email' name='guest2email' placeholder='Guest 2 email' >"; 
                       echo '</div>';
                          echo '<div class="form-item">';
@@ -645,6 +645,11 @@
                  echo "<h4 class='form-item-title'>Update?</h4>";
                  echo "<input type='checkbox'  title='Update member 1' id='mem1upd' name='mem1update' >";
              echo '</div>'; // end of form item
+               } else {
+                echo '<div class="form-item">';
+                        echo "<h4 class='form-item-title'>Member cannot be modified because dinner was not selected and registration was paid.</h4>";
+            
+                        echo '</div>'; // end of form item
                }
             if ($memReg->paid !== '1') {
                   echo '<div class="form-item">';
@@ -683,11 +688,16 @@
             echo '<div class="form-item">';
             echo "<h4>".$_SESSION['partnerfirstname']."'s Information</h4>";
             echo '</div>'; // end of form item
-               if (($partnerReg->ddattenddinner === 1) || ($partnerReg->paid !== '1')) {
+               if (($partnerReg->ddattenddinner === '1') || ($partnerReg->paid !== '1')) {
               echo '<div class="form-item">';
                  echo "<h4 class='form-item-title'>Update?</h4>";
                  echo "<input type='checkbox'  title='Update member 2' id='mem2upd' name='mem2update' >";
              echo '</div>'; // end of form item
+               } else {
+                echo '<div class="form-item">';
+                        echo "<h4 class='form-item-title'>Partner cannot be modified because dinner was not selected and registration was paid.</h4>";
+            
+                        echo '</div>'; // end of form item
                }
             if ($partnerReg->paid !== '1') {
                   echo '<div class="form-item">';
@@ -777,10 +787,15 @@
                         echo '<div class="form-item">';
                         echo "<h4>".$guest['firstname']."'s Information</h4>";
                         echo '</div>'; // end of form item
-                        if (($guest['ddattenddinner'] === 1) || ($guest['paid'] !== 1)) {
+                        if (($guest['ddattenddinner'] ==='1') || ($guest['paid'] !== '1')) {
                           echo '<div class="form-item">';
                         echo "<h4 class='form-item-title'>Update?</h4>";
                         echo "<input type='checkbox'  title='Update Guest' id='".$guestUpd."' name='".$guestUpd."' >";
+                        echo '</div>'; // end of form item
+                        } else {
+                            echo '<div class="form-item">';
+                        echo "<h4 class='form-item-title'>Guest cannot be modified because dinner was not selected and registration was paid.</h4>";
+            
                         echo '</div>'; // end of form item
                         }
 

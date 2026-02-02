@@ -231,6 +231,7 @@ if ($tempReg->eventtype !== 'BBQ Picnic') {
 
 $eventReg->create();
 $event->addCount($eventReg->eventid);
+
     if ($tempReg->guest2attenddinner === '1') {
          
         if ($tempReg->mealchoice2 !== '0') {
@@ -251,7 +252,8 @@ $event->addCount($eventReg->eventid);
     $emailBody .= "Your message to the event coordinator is : ".$tempReg->message.".<br>";
   }
   $emailBody .= "We look forward to seeing you at the event!<br>";
-$tempReg->delete();
+
+
 if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
       
         $regName1 = $regFirstName1.' '.$regLastName1;
@@ -280,6 +282,8 @@ if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
     } else {
          $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';  
     }
+      $tempReg->id = $tempRegID;
+      $tempReg->delete();
        $redirect = "Location: ".$YOUR_DOMAIN;
        header($redirect); 
        exit;

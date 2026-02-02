@@ -93,13 +93,10 @@
                        echo "<h4 class='form-item-title'>Guest1 Email</h4>";
                         echo "<input type='text' title='Enter Guest 1 Email' name='guest1email' placeholder='Guest 1 email' >"; 
                       echo '</div>';
-                        echo '<div class="form-item">';
-                       echo "<h4 class='form-item-title'>Guest 1 Select Dinner</h4>";
-                        echo "<input type='checkbox' title='Indicate Guest 1 will have dinner' id='guest1dinner' name='guest1dinner' onclick='displayG1Meals()'>"; 
-                      echo '</div>';
+   
                         echo '</div>'; // end formgrid4
 
-                      echo '<div class="form-container hidden" id="guestMealChoice1">';
+                      echo '<div class="form-container" id="guestMealChoice1">';
                        echo '<div class="form-grid">';
                 $mealsNumber = count($mealChoices);
                 foreach ($mealChoices as $choice){
@@ -130,19 +127,16 @@
                         echo "<input type='text' title='Enter Guest 2 First Name' name='guest2fname' placeholder='Guest 2 first name' >"; 
                       echo '</div>';
                        echo '<div class="form-item">';
-                       echo "<h4 class='form-item-title'>Guest1 Last Name</h4>";
+                       echo "<h4 class='form-item-title'>Guest2 Last Name</h4>";
                         echo "<input type='text' title='Enter Guest 2 Last Name' name='guest2lname' placeholder='Guest 2 last name' >"; 
                       echo '</div>';
                       echo '<div class="form-item">';
-                       echo "<h4 class='form-item-title'>Guest1 Email</h4>";
+                       echo "<h4 class='form-item-title'>Guest2 Email</h4>";
                         echo "<input type='text' title='Enter Guest 2 Email' name='guest2email' placeholder='Guest 2 email' >"; 
                       echo '</div>';
-                         echo '<div class="form-item">';
-                       echo "<h4 class='form-item-title'>Guest 2 Select Dinner</h4>";
-                        echo "<input type='checkbox' title='Indicate Guest 2 will have dinner' id='guest2dinner' name='guest2dinner' onclick='displayG2Meals()' >"; 
-                      echo '</div>';
+                       
                         echo '</div>';
-                  echo '<div class="form-container hidden" id="guestMealChoice2">';
+                  echo '<div class="form-container " id="guestMealChoice2">';
                        echo '<div class="form-grid">';
                 $mealsNumber = count($mealChoices);
                 foreach ($mealChoices as $choice){
@@ -334,13 +328,9 @@
                        echo "<h4 class='form-item-title'>Guest1 Email</h4>";
                         echo "<input type='text' title='Enter Guest 1 Email' name='guest1email' placeholder='Guest 1 email' >"; 
                       echo '</div>';
-                        echo '<div class="form-item">';
-                       echo "<h4 class='form-item-title'>Guest 1 Select Dinner</h4>";
-                        echo "<input type='checkbox' title='Indicate Guest 1 will have dinner' id='guest1dinner' name='guest1dinner' onclick='displayG1Meals()'>"; 
-                      echo '</div>';
-                        echo '</div>'; // end formgrid4
+                     echo '</div>';
 
-                      echo '<div class="form-container hidden" id="guestMealChoice1">';
+                      echo '<div class="form-container" id="guestMealChoice1">';
                        echo '<div class="form-grid">';
                 $mealsNumber = count($mealChoices);
                 foreach ($mealChoices as $choice){
@@ -370,19 +360,16 @@
                         echo "<input type='text' title='Enter Guest 2 First Name' name='guest2fname' placeholder='Guest 2 first name' >"; 
                       echo '</div>';
                        echo '<div class="form-item">';
-                       echo "<h4 class='form-item-title'>Guest1 Last Name</h4>";
+                       echo "<h4 class='form-item-title'>Guest2 Last Name</h4>";
                         echo "<input type='text' title='Enter Guest 2 Last Name' name='guest2lname' placeholder='Guest 2 last name' >"; 
                       echo '</div>';
                       echo '<div class="form-item">';
-                       echo "<h4 class='form-item-title'>Guest1 Email</h4>";
+                       echo "<h4 class='form-item-title'>Guest2 Email</h4>";
                         echo "<input type='text' title='Enter Guest 2 Email' name='guest2email' placeholder='Guest 2 email' >"; 
                       echo '</div>';
-                         echo '<div class="form-item">';
-                       echo "<h4 class='form-item-title'>Guest 2 Select Dinner</h4>";
-                        echo "<input type='checkbox' title='Indicate Guest 2 will have dinner' id='guest2dinner' name='guest2dinner' onclick='displayG2Meals()' >"; 
-                      echo '</div>';
+                       
                         echo '</div>';
-                  echo '<div class="form-container hidden" id="guestMealChoice2">';
+                  echo '<div class="form-container" id="guestMealChoice2">';
                        echo '<div class="form-grid">';
                 $mealsNumber = count($mealChoices);
                 foreach ($mealChoices as $choice){
@@ -469,7 +456,7 @@
              } // end of delete check
  // -----------------------------------------------------------------------
             if (isset($_POST["$upChk"])) {
-  
+    
              $mealChoices = [];
               $result = $mChoices->read_ByEventId($event['id']);
                 $rowCount = $result->rowCount();
@@ -623,12 +610,13 @@
                         echo '<div class="form-item">';
                         echo "<h4>".$guest['firstname']."'s Information</h4>";
                         echo '</div>'; // end of form item
-               
+        
+                      if (($guest['ddattenddinner'] === '1') || ($guest['ddattenddinner'] !== '1')) {
                          echo '<div class="form-item">';
                         echo "<h4 class='form-item-title'>Update?</h4>";
                         echo "<input type='checkbox'  title='Update Guest' id='".$guestUpd."' name='".$guestUpd."' >";
                         echo '</div>'; // end of form item
-                        
+                      }
 
                        foreach ($mealChoices as $choice){
                         $guestMeal = 'guestmeal'.$guest['id'].$choice['id'];
@@ -642,7 +630,7 @@
                       }
                       echo '</div>';
                   } // for each meal choice
-           
+                      
                    echo '</div>'; // end form grid
                   echo '</div>'; // end form grid div
                       } // for each guest

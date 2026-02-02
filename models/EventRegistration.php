@@ -254,7 +254,7 @@ public function read_ByEmail($email) {
 
 }
 public function read_ByEventIdRegBy($eventid, $registeredby) {
-      
+  
 
     $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
     c.eventtype as eventtype, c.orgemail as orgemail,

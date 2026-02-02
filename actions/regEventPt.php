@@ -106,6 +106,7 @@ $currentDate = new DateTime();
 
 
 if (!isset($_POST['submitAddRegs'])) {
+
    if (isset($_SESSION['homeurl'])) {
              $redirect = "Location: ".$_SESSION['homeurl'];
  
@@ -232,6 +233,7 @@ if (isset($_POST['addguests'])) {
     }
      
     }
+  
   } // guest 1
 
 
@@ -424,8 +426,10 @@ if (isset($_POST['addguests'])) {
                                } 
                              
                       } // ddattdin2
+                      if ($eventInst->eventtype === 'Dance Party') {
                       if (isset($_POST['guest1dinner'])) {
                            $guest1Chk = 'g1meal'.$choice['id'];
+                   
                            if (isset($_POST["$guest1Chk"])) {
                               $DinnerSelectedG1 = 1;
                                 //  $potentialReg2['ddattenddinner'] = '1';
@@ -469,6 +473,55 @@ if (isset($_POST['addguests'])) {
                                } 
 
                            } //guest1 dinner
+                      }  // dance party
+                      if ($eventInst->eventtype === 'Dinner Dance') {
+             
+                           $guest1Chk = 'g1meal'.$choice['id'];
+             
+                           if (isset($_POST["$guest1Chk"])) {
+                              $DinnerSelectedG1 = 1;
+                                //  $potentialReg2['ddattenddinner'] = '1';
+                                  $mealidG1 = $choice['id'];
+                                  $mealG1 = $choice['mealname'];
+                        
+                                  $mealpriceG1 = $choice['guestprice'];
+                                  $mealpriceidG1 = $choice['guestpriceid'];
+                                  $potentialRegG1['productid'] = $choice['productid'];
+                    
+                                  $potentialRegG1['mealchoice'] =  $choice['id'];
+                                  $potentialRegG1['mealdesc'] = $choice['mealname'];                       
+                                  $potentialRegG1['memberprice'] =  $choice['memberprice'];
+                                  $potentialRegG1['guestprice'] =  $choice['guestprice'];
+                                  $potentialRegG1['guestpriceid'] =  $choice['guestpriceid'];
+                                  $potentialRegG1['priceid'] =  $choice['priceid'];
+                   
+                               } 
+
+                   
+                           $guest2Chk = 'g2meal'.$choice['id'];
+                           if (isset($_POST["$guest2Chk"])) {
+                         
+                              $DinnerSelectedG2 = 1;
+                                //  $potentialReg2['ddattenddinner'] = '1';
+                                  $mealidG2 = $choice['id'];
+                                  $mealG2 = $choice['mealname'];
+                        
+                                  $mealpriceG2 = $choice['guestprice'];
+                                  $mealpriceidG2 = $choice['guestpriceid'];
+                                  $potentialRegG2['productid'] = $choice['productid'];
+          
+                                  $potentialRegG2['mealchoice'] =  $choice['id'];
+                                  $potentialRegG2['mealdesc'] = $choice['mealname'];                       
+                                  $potentialRegG2['memberprice'] =  $choice['memberprice'];
+                                  $potentialRegG2['guestprice'] =  $choice['guestprice'];
+                                  $potentialRegG2['guestpriceid'] =  $choice['guestpriceid'];
+                                  $potentialRegG2['priceid'] =  $choice['priceid'];
+               
+                       
+                               } 
+
+                        
+                      }  // dinner dance
 
                       } // foreach choice
                     
@@ -564,6 +617,7 @@ if (isset($_POST['addguests'])) {
                                        }
                             }
                           } else {
+                          
                             if ((isset($_POST['guest1fname'])) && ($_POST['guest1fname'] !== '')) {
                                   $emailBody .= "Your first guest".$_POST['guest1fname']." has chosen not to attend dinner before the dance Cost: $".$eventInst->eventguestcost."<br>";
                                  $danceCost = $danceCost + ($eventInst->eventguestcost * 100);
@@ -998,7 +1052,7 @@ if (isset($_POST['addguests'])) {
        exit;
   } //  ****      end of not pay online
   
- 
+ //--------------------------------------------------------------
    
     
  
@@ -1110,8 +1164,8 @@ if (isset($_POST['addguests'])) {
            
                         $cost3 = $potentialRegG1['eventcost'] * 100;  
                         $danceCost = $danceCost + $cost3;
-                    }
-                        if ($potentialRegG1['ddattenddinner'] === '1') {
+             }
+            if ($potentialRegG1['ddattenddinner'] === '1') {
                           if (!isset($potentialRegG1['mealchoice'])) {
                             $error++;
                               echo '<h1>Guest1 selected attend dinner, but no meal was selected!</h1>'; 
@@ -1119,8 +1173,8 @@ if (isset($_POST['addguests'])) {
                             $cost3 = $potentialRegG1['guestprice'];
                               $danceCost = $danceCost + $cost3;
                           }
-                        } 
-          }
+           } 
+          } // potential reg g1 not 0
      
                if (count($potentialRegG2) > 0) {
                if ($potentialRegG2['ddattenddinner'] !== '1') {
@@ -1136,7 +1190,7 @@ if (isset($_POST['addguests'])) {
                         $danceCost = $danceCost + $cost4;
                       }
                     } 
-                }
+                } // potential reg g2 not zero
       
          }  // add guests
         } // dance party
@@ -1161,14 +1215,20 @@ if (isset($_POST['addguests'])) {
          }  // mem2chk
 
          if (isset($_POST['addguests'])) {
+       
+              if (count($potentialRegG1) > 0) {
           if ($potentialRegG1['lastName'] !== ' ') {
              $cost3 = $potentialRegG1['guestprice'];
              $danceCost = $danceCost + $cost3;
          }
+              }
+         if (count($potentialRegG2) > 0) {
           if ($potentialRegG2['lastName'] !== ' ') {
              $cost4 = $potentialRegG2['guestprice'];
              $danceCost = $danceCost + $cost4;
          }
+         }
+
     
         } else {
           $potentialRegG1 = [];
@@ -1188,11 +1248,11 @@ if (isset($_POST['addguests'])) {
          echo '<div class="list-box">';
 
           if ($eventInst->eventtype === 'Dance Party') {
+
                echo "<h4>You have selected the following options(s). </h4><br>";
              echo "<ol>";
               if ((isset($_POST['mem1Chk'])) && ($potentialReg1['ddattenddinner'] !== '1')) {
              
-              
                  if (isset($_POST['mem1Chk'])) {
                    echo "<li>Dance Only for ".$_POST['firstname1']." at a cost of ".$fprice1.".</li>";
                  }
@@ -1201,21 +1261,23 @@ if (isset($_POST['addguests'])) {
           
               if ((isset($_POST['mem2Chk'])) && ($potentialReg2['ddattenddinner'] !== '1')) {
             
-              
                 if (isset($_POST['mem2Chk'])) {
                   echo "<li>Dance Only for ".$_POST['firstname2']." at a cost of ".$fprice2.".</li>";
                 }
-                
+              }
+                     
+
                 if (isset($_POST['addguests'])) {
-                    
+               
                     if (count($potentialRegG1) > 0)  {
                       if ((($potentialRegG1['lastName'] !== ' ')) && ($potentialRegG1['ddattenddinner'] !== '1')) {
                     //  echo "<h4> Guest ".$potentialRegG1['firstname']." ".$potentialRegG1['lastName']." has selected the following options(s). </h4><br>";
                 
                      echo "<li>Dance Only for Guest ".$potentialRegG1['firstname']." ".$potentialRegG1['lastName']." at a cost of ".$fprice3.".</li>";
-                  }
+                  } 
                     }
                       if (count($potentialRegG2) > 0)  { 
+              
                if ((($potentialRegG2['lastName'] !== ' ')) && ($potentialRegG2['ddattenddinner'] !== '1')) {
                  
                     //  echo "<h4> Guest ".$potentialRegG2['firstname']." ".$potentialRegG2['lastName']." has selected the following options(s). </h4><br>";
@@ -1264,13 +1326,15 @@ if (isset($_POST['addguests'])) {
            
 
              echo "<ol>";
-              if ((($potentialRegG1['lastName'] !== ' ')) && ($potentialRegG1['ddattenddinner'] === '1')) {
-               
-                 
-                    echo "<li>Meal Choice for " .$potentialRegG1['firstname']." ".$potentialRegG1['lastName']. ": ".$potentialRegG1['mealdesc']." at a cost of ".$fprice3." ".$drG1.".</li>";
 
+             if (count($potentialRegG1) > 0) {
+              if ((($potentialRegG1['lastName'] !== ' ')) && ($potentialRegG1['ddattenddinner'] === '1')) {
+
+                    echo "<li>Meal Choice for " .$potentialRegG1['firstname']." ".$potentialRegG1['lastName']. ": ".$potentialRegG1['mealdesc']." at a cost of ".$fprice3." ".$drG1.".</li>";
               }
+
              }
+
              if (count($potentialRegG2) > 0)  { 
                  if ($potentialRegG2['dietaryrestriction'] != '') {
                   $drG2 = ' with a dietary restriction of ';
@@ -1284,7 +1348,7 @@ if (isset($_POST['addguests'])) {
               }
              }
            } // end add guests
-
+           }
          echo "</ol>";
             echo "<br><h4>You will be charged a total of: $".$ftotalprice." </h4><br>";
          echo "</div>";
@@ -1313,7 +1377,7 @@ if (isset($_POST['addguests'])) {
          }
 
         }
-      }
+      
          echo '<div class="form-grid4">';
         echo '<div class="form-grid-div">';
         echo "</div>";

@@ -103,7 +103,7 @@ $tempReg->registrationemail = $potentialReg2['registrationemail'];
   }
  
 };
-var_dump($potentialRegG1);
+
 
 if ($potentialRegG1) {
   $tempReg->registrationemail = $potentialRegG1['registrationemail'];
@@ -176,7 +176,7 @@ if ($tempReg->guest2priceid != NULL) {
   $line_item_array .=    ",['price' => $tempReg->guest2priceid, 'quantity' => '1']";
 }
 $line_item_array .= "]";
-var_dump($line_item_array);
+
 $checkout_session = \Stripe\Checkout\Session::create([
     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
     'line_items' => $line_item_array,

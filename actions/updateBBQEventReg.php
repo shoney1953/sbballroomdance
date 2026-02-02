@@ -35,7 +35,7 @@ $paidID = '';
 $dddinID = '';
 
 if (isset($_POST['submitUpdateBBQReg'])) {
-var_dump($post);
+
     foreach ($regs as $reg) {
         $updID = "upd".$reg['id'];
 
