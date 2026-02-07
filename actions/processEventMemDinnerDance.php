@@ -16,6 +16,8 @@
                       $gotPartnerEventReg = 1;
                  }
                }
+                $comparedateTS = strtotime($compareDate); // current date in timestamp
+                $eventDinnRegEnd = strtotime($event['eventdinnerregend']); // last day to register for meals
                 $mealChoices = [];
               $result = $mChoices->read_ByEventId($event['id']);
                 $rowCount = $result->rowCount();

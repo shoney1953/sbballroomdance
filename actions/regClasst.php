@@ -78,7 +78,7 @@ if (isset($_POST['submitAddRegs'])) {
           }
 
 
-    $emailSubject = "You have registered for an SBDC dance class";
+    $emailSubject = "You have registered for an SBDC dance class: ".$danceClass->classname;
       
                 $classId = $danceClass->id;
                 $emailBody .= '**************************************';
@@ -175,7 +175,7 @@ if (isset($_POST['submitAddRegs'])) {
     $emailSubject = "People have Signed up for your upcoming Class";
 
 
-                $emailBody = "The following individuals have signed up for the class you are going to teach: <br>";
+                $emailBody = "The following individuals have signed up for the class you are going to teach: ".$danceClass->classname."<br>";
   
                 if ($message2Ins) {
                     $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";

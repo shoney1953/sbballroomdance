@@ -114,8 +114,14 @@ $hr = '';
                
                     }
             
-                if (($event['eventtype'] === 'Dinner Dance') || ($event['eventtype'] === 'Dance Party')) {
-                    echo "<h5 class='form-title-left'> Last Day to sign up for dinner or modify dinner choices: ".date('Y-m-d', $eventCutOff).".  Registration ends: ".$event['eventregend'].".</h5>";
+                if ($event['eventtype'] === 'Dinner Dance')  {
+                    echo "<h5 class='form-title-left'> Last Day to register:  ".$event['eventregend'].".</h5>";
+                } else {
+                     echo "<h5 class='form-title-left'> Registration ends: ".$event['eventregend'].". </h5>";
+                    
+                }
+                 if ($event['eventtype'] === 'Dance Party') {
+                    echo "<h5 class='form-title-left'> Last Day to sign up for dinner or modify dinner choices: ".$event['eventdinnerregend'].".  Registration ends: ".$event['eventregend'].".</h5>";
                 } else {
                      echo "<h5 class='form-title-left'> Registration ends: ".$event['eventregend'].". </h5>";
                     
@@ -407,7 +413,7 @@ $hr = '';
                     
  
                      if (($gotEventReg) || ($gotPartnerEventReg)) {  
-                          $eventCutOff = strtotime($event['eventdate'].'-7 days');
+                          $eventCutOff = strtotime($event['eventdinnerregend']);
                           $comparedateTS = strtotime($compareDate);
                           $eventRegEnd = strtotime($event['eventregend']);
                            
@@ -507,14 +513,22 @@ $hr = '';
                             }
                            }
                              if ($comparedateTS >= $eventRegOpen) {
-                              if (($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'Dinner Dance') ) {
+                              if ($event['eventtype'] === 'Dance Party')  {
                                 echo '<div class="form-item">'; 
                                 echo '<h4 class="form-item-title">Add Guests?</h4>';
                                 echo "<input type='checkbox' title='Select to add guest registrations for this event' name='".$addGuestsChk."'>";   
                                 echo '</div>';
                                   $numActions++;
                               }
-                                
+                                if  ($event['eventtype'] === 'Dinner Dance')  {
+                                    if ($comparedateTS <= $eventCutOff) { 
+                                echo '<div class="form-item">'; 
+                                echo '<h4 class="form-item-title">Add Guests?</h4>';
+                                echo "<input type='checkbox' title='Select to add guest registrations for this event' name='".$addGuestsChk."'>";   
+                                echo '</div>';
+                                  $numActions++;
+                                    }
+                              } 
                               }
                             //  else below goes to registered
                           }  else {

@@ -23,6 +23,7 @@ class EventArch {
     public $eventguestcost;
     public $eventguestpriceid;
     public $eventdwopcount;
+    public $eventdinnerregend;
 
     // Constructor with DB
     public function __construct($db) {
@@ -143,7 +144,7 @@ class EventArch {
           $this->eventguestpriceid = $row['eventguestpriceid'];
           $this->eventguestcost = $row['eventguestcost'];
           $this->eventdwopcount = $row['eventdwopcount'];
-       
+          $this->eventdinnerregend = $row['eventdinnerregend'];
     }
 
     // Create Event
@@ -159,7 +160,7 @@ class EventArch {
           eventmempriceid = :eventmempriceid,
           eventguestpriceid = :eventguestpriceid,
           eventguestcost = :eventguestcost,
-    
+          eventdinnerregend = :eventdinnerregend,
           eventnumregistered = :eventnumregistered';
 
           // Prepare statement
@@ -200,7 +201,7 @@ class EventArch {
           $stmt->bindParam(':eventguestpriceid', $this->eventguestpriceid);
           $stmt->bindParam(':eventguestcost', $this->eventguestcost);
           $stmt->bindParam(':eventdwopcount', $this->eventdwopcount);
-         
+          $stmt->bindParam(':eventdinnerregend', $this->eventdinnerregend);
 
           // Execute query
           if($stmt->execute()) {
@@ -221,7 +222,7 @@ class EventArch {
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           previd = :previd, eventregend = :eventregend, eventregopen = :eventregopen,
- 
+          eventdinnerregend = :eventdinnerregend,
           orgemail = :orgemail, eventdwopcount = :eventdwopcount,
           eventproductid = :eventproductid,
           eventmempriceid = :eventmempriceid,
@@ -269,6 +270,8 @@ class EventArch {
           $stmt->bindParam(':eventguestpriceid', $this->eventguestpriceid);
           $stmt->bindParam(':eventguestcost', $this->eventguestcost);
           $stmt->bindParam(':eventdwopcount', $this->eventdwopcount);
+           $stmt->bindParam(':eventdinnerregend', $this->eventdinnerregend);
+
           // Execute query
           if($stmt->execute()) {
             return true;

@@ -529,7 +529,7 @@ if (isset($_POST['addguests'])) {
 
 // the following happens when user has specified NOT to pay online
             if (!(isset($_POST['payonline'])) ) {
-                $emailSubject = "You have registered for SBDC event(s)";
+                $emailSubject = "You have registered for SBDC event: ".$eventInst->eventname;
                 $num_registered++;
                 $eventId = $eventInst->id;
                 $emailBody .= "<br><strong> Event: ".$eventInst->eventname.
@@ -1262,17 +1262,15 @@ if (isset($_POST['addguests'])) {
      
             $drG1 = '';
             $drG2 = '';
-             if (count($potentialRegG1) > 0)  { 
-              if ($potentialRegG1['dietaryrestriction'] != '') {
-                $drG1 = ' with a dietary restriction of ';
-                $drG1 .= $potentialRegG1['dietaryrestriction'];
-               }
-           
 
              echo "<ol>";
 
              if (count($potentialRegG1) > 0) {
               if ((($potentialRegG1['lastName'] !== ' ')) && ($potentialRegG1['ddattenddinner'] === '1')) {
+               if ($potentialRegG1['dietaryrestriction'] != '') {
+                $drG1 = ' with a dietary restriction of ';
+                $drG1 .= $potentialRegG1['dietaryrestriction'];
+               }
 
                     echo "<li>Meal Choice for " .$potentialRegG1['firstname']." ".$potentialRegG1['lastName']. ": ".$potentialRegG1['mealdesc']." at a cost of ".$fprice3." ".$drG1.".</li>";
               }
@@ -1280,19 +1278,19 @@ if (isset($_POST['addguests'])) {
              }
 
              if (count($potentialRegG2) > 0)  { 
-                 if ($potentialRegG2['dietaryrestriction'] != '') {
+                
+               if ((($potentialRegG2['lastName'] !== ' ')) && ($potentialRegG2['ddattenddinner'] === '1')) {
+                if ($potentialRegG2['dietaryrestriction'] != '') {
                   $drG2 = ' with a dietary restriction of ';
                   $drG2 .= $potentialRegG2['dietaryrestriction'];
               }
-               if ((($potentialRegG2['lastName'] !== ' ')) && ($potentialRegG2['ddattenddinner'] === '1')) {
-               
                  
                       echo "<li>Meal Choice for ".$potentialRegG2['firstname']." ".$potentialRegG2['lastName'].": ".$potentialRegG2['mealdesc']." at a cost of ".$fprice4." ".$drG2.".</li>";
 
               }
              }
            } // end add guests
-           }
+          //  }
          echo "</ol>";
             echo "<br><h4>You will be charged a total of: $".$ftotalprice." </h4><br>";
          echo "</div>";

@@ -169,6 +169,7 @@ if ($uploadForm) {
        $evcostID = "evcost".$event['id'];
        $evnumregID = "evnumreg".$event['id'];
        $evrendID = "evrend".$event['id'];
+       $evdrendID = "evdrend".$event['id'];
        $evmrendID = "evmrend".$event['id'];
        $evropenID = "evropen".$event['id'];
        $evformID = "evform".$event['id'];
@@ -270,7 +271,11 @@ if ($uploadForm) {
       echo "<input type='date' name='".$evrendID."' value='".$event['eventregend']."' 
       title='Select the Registration Closing Date' >";
       echo '</div>';
-
+      echo "<div class='form-item'>";
+      echo "<h4 class='form-item-title'>Dinner Registration End</h4>";
+      echo "<input type='date' name='".$evdrendID."' value='".$event['eventdinnerregend']."' 
+      title='Select the Registration Closing Date' >";
+      echo '</div>';
       echo "<div class='form-item'>";
       echo "<h4 class='form-item-title'>Event DJ</h4>";
       echo "<input type='text' name='".$evdjID."' value='".$event['eventdj']."' 
@@ -379,9 +384,9 @@ if ($deleteEvent) {
         echo "<td>".$event['eventtype']."</td>";
         echo "<td>".$event['eventdesc']."</td>";
         echo "<td>".$event['eventdate']."</td>";
-        echo "<td>".$event['eventregebd']."</td>";
+        echo "<td>".$event['eventregend']."</td>";
         echo "<td>".$event['eventdj']."</td>";
-        echo "<td>".$event['orgid']."</td>";
+        echo "<td>".$event['orgemail']."</td>";
 
         echo "<input type='hidden' name='".$evidID."' value='".$event['id']."'>";
         echo '</tr>';
@@ -529,11 +534,17 @@ echo '</form>';
           echo "<td><input type='date' name='eventregopen' value='".$event['eventregopen']."' 
               title='Select Registration Opening Date' ></td>";
           echo '</div>';
-          echo "<div class='form-item'>";
+           echo "<div class='form-item'>";
+          echo "<h4 class='form-item-title'>Dinner Registration Ends</h4>";
+          echo "<td><input type='date' name='eventdinnerregend' value='".$event['eventdinnerregend']."' 
+              title='Select Last day to sign up for dinner' ></td>";
+          echo '</div>';
+           echo "<div class='form-item'>";
           echo "<h4 class='form-item-title'>Dance Only Registration Ends</h4>";
           echo "<td><input type='date' name='eventregend' value='".$event['eventregend']."' 
               title='Select Registration Closing Date' ></td>";
           echo '</div>';
+         
           echo "<div class='form-item'>";
           echo "<h4 class='form-item-title'>Event DJ</h4>";
           echo "<input type='text' name='eventdj' value='".$event['eventdj']."' 

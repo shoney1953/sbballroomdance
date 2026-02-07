@@ -117,17 +117,17 @@ if (isset($_POST['submitAddUser'])) {
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">First Name</h4>';
-            echo "<input type='text' title='Member First Name' name='firstname' required>";
+            echo "<input type='text' id='addfirstname' title='Member First Name' name='firstname' required>";
             echo '</div>';
  
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Last Name</h4>';
-            echo "<input type='text' title='Member Last Name' name='lastname' required>";
+            echo "<input type='text' id='addlastname' title='Member Last Name' name='lastname' required>";
             echo '</div>';
 
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Email</h4>';
-            echo "<input type='email' name='email' title='Member Email if none exists use firstname@xxxxx.com' placeholder='Must not be a duplicate' required><br>";
+            echo "<input type='email' id='addemail' name='email' title='Member Email if none exists use firstname@xxxxx.com' placeholder='Must not be a duplicate' required><br>";
             echo '</div>';
 
             echo '<div class="form-item">';
@@ -230,4 +230,38 @@ if (isset($_POST['submitAddUser'])) {
     </div>
 </body>
 </html>
+<!-- <script>
+    const addemail = document.getElementById('addemail');
+    console.log(addemail);
+    addemail.addEventListener('change', (e) => {
+     
+       checkArchive(addemail.value)
+//   const returningMember = e.target.checkArchive();
+
+});
+async function checkArchive(email) {
+    try {
+    const response = await fetch('getArchive.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Indicate JSON data
+            },
+            body: JSON.stringify({ 'query_val': email }) // Convert JS object to JSON string
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json(); // Parse the JSON response
+        
+        // Display the data (adjust based on your data structure)
+        console.log(data);
+    } catch {
+     
+        console.error('Error:', error);
+    }
+
+}
+    </script> -->
 

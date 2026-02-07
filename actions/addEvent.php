@@ -124,6 +124,7 @@ $product = new PaymentProduct($db);
     $event->eventregend = $_POST['eventregend'];
     $event->eventcost = $_POST['eventcost'];
     $event->eventguestcost = $_POST['eventguestcost'];
+    $event->eventdinnerregend = $_POST['eventdinnerregend'];
     $event->eventguestpriceid = $guestpriceID->id;
     $event->eventmempriceid = $memberpriceID->id;
     $event->eventproductid = $newStripeProduct->id;

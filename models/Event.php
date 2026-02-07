@@ -22,6 +22,7 @@ class Event {
     public $eventguestcost;
     public $eventguestpriceid;
     public $eventdwopcount;
+    public $eventdinnerregend;
 
 
     // Constructor with DB
@@ -96,6 +97,7 @@ class Event {
           $this->eventguestpriceid = $row['eventguestpriceid'];
           $this->eventguestcost = $row['eventguestcost'];
           $this->eventdwopcount = $row['eventdwopcount'];
+          $this->eventdinnerregend = $row['eventdinnerregend'];
          
           return true;
           }
@@ -117,7 +119,7 @@ class Event {
           eventmempriceid = :eventmempriceid,
           eventguestpriceid = :eventguestpriceid,
           eventguestcost = :eventguestcost,
-
+          eventdinnerregend = :eventdinnerregend,
           eventnumregistered = :eventnumregistered';
 
           // Prepare statement
@@ -155,6 +157,7 @@ class Event {
           $stmt->bindParam(':eventmempriceid', $this->eventmempriceid);
           $stmt->bindParam(':eventguestpriceid', $this->eventguestpriceid);
           $stmt->bindParam(':eventguestcost', $this->eventguestcost);
+            $stmt->bindParam(':eventdinnerregend', $this->eventdinnerregend);
           // Execute query
           if($stmt->execute()) {
             return true;
@@ -179,7 +182,7 @@ class Event {
           eventmempriceid = :eventmempriceid,
           eventguestpriceid = :eventguestpriceid,
           eventguestcost = :eventguestcost,
-    
+          eventdinnerregend = :eventdinnerregend,
           eventdwopcount = :eventdwopcount,
           eventnumregistered = :eventnumregistered
             WHERE id = :id ';
@@ -222,6 +225,7 @@ class Event {
           $stmt->bindParam(':eventmempriceid', $this->eventmempriceid);
           $stmt->bindParam(':eventguestpriceid', $this->eventguestpriceid);
           $stmt->bindParam(':eventguestcost', $this->eventguestcost);
+          $stmt->bindParam(':eventdinnerregend', $this->eventdinnerregend);
 
           // Execute query
           if($stmt->execute()) {

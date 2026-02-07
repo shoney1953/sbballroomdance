@@ -20,6 +20,8 @@ $mealChoices = [];
 $mealChk = '';
 $gotEventReg = 0;
 $gotPartnerEventReg = 0;
+$currentDate = new DateTime();
+$compareDate = $currentDate->format('Y-m-d');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -276,15 +278,7 @@ foreach ($upcomingEvents as $event) {
         var element1 = document.getElementById('displayguests');
         element1.classList.remove('hidden');
         var guestinfo = document.getElementById('guestinfo');
-        // const formData = new FormData(formElement);
-
-        // var numguests = document.forms['regEvent'].elements['numguests'].value;
-        // console.log(numguests);
-        // if (numguests > 0) {
-        //  for (let step = 0; step < numguests; step++) {
-        //      createInput(step, guestinfo);
-        //   }
-        //   }
+      
         }
         else {
             var element1 = document.getElementById('displayguests');

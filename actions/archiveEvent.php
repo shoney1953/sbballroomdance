@@ -91,7 +91,7 @@ if (isset($_POST['submitArchive'])) {
       $eventArch->eventguestpriceid = $ea['eventguestpriceid'];
       $eventArch->eventguestcost = $ea['eventguestcost'];
       $eventArch->eventdwopcount = $ea['eventdwopcount'];
- 
+      $eventArch->eventdinnerregend = $ea['eventdinnerregend'];
       $eventRegArch->eventid = $db->lastInsertId();
       $eventReg->eventid = $ea['id'];
       $result = $eventReg->read_ByEventid($ea['id']);
