@@ -81,7 +81,7 @@ $hr = '';
                  $ed .= $event["id"];
                  $numActions = 0;
           
-                $eventCutOff = strtotime($event['eventdate'].'-7 days');
+                $eventCutOff = strtotime($event['eventdinnerregend']);
 
                 $comparedateTS = strtotime($compareDate);
                 $eventRegEnd = strtotime($event['eventregend']);
@@ -105,6 +105,7 @@ $hr = '';
                   if (isset($_SESSION['username'])) {
                       $comparedateTS = strtotime($compareDate);
                         $eventRegOpen = strtotime($event['eventregopen']);
+                                 $eventRegEnds = strtotime($event['eventregend']);
                     if ($comparedateTS >= $eventRegOpen) {
                     echo "<h5 class='form-title-left'><form  target='_blank' name='reportEventForm'   method='POST' action='actions/reportEvent.php'> ";
                     echo "<input type='hidden' name='eventId' value='".$event['id']."'>"; 
@@ -490,7 +491,7 @@ $hr = '';
                             if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0') && (!($gotPartnerEventReg))) {
                               $comparedateTS = strtotime($compareDate);
                               $eventRegOpen = strtotime($event['eventregopen']);
-                                 if ($comparedateTS >= $eventRegOpen) {
+                                 if (($comparedateTS >= $eventRegOpen) && ($comparedateTS <=  $eventRegEnds)) {
                                   echo '<div class="form-item">';
                                   echo '<h4 class="form-item-title">Register?</h4>';
                                   echo "<input type='checkbox' title='Select register for this event' name='".$regChk."'>";   
@@ -502,7 +503,7 @@ $hr = '';
                               if (!($gotEventReg)) {
                               $comparedateTS = strtotime($compareDate);
                               $eventRegOpen = strtotime($event['eventregopen']);
-                                if ($comparedateTS >= $eventRegOpen) {
+                                if (($comparedateTS >= $eventRegOpen) && ($comparedateTS <=  $eventRegEnds)) {
                                 echo '<div class="form-item">';
                                 echo '<h4 class="form-item-title">Register?</h4>';
                                 echo "<input type='checkbox' title='Select register for this event' name='".$regChk."'>";   
@@ -512,7 +513,7 @@ $hr = '';
 
                             }
                            }
-                             if ($comparedateTS >= $eventRegOpen) {
+                             if (($comparedateTS >= $eventRegOpen) && ($comparedateTS <=  $eventRegEnds)) {
                               if ($event['eventtype'] === 'Dance Party')  {
                                 echo '<div class="form-item">'; 
                                 echo '<h4 class="form-item-title">Add Guests?</h4>';
@@ -535,7 +536,8 @@ $hr = '';
                     
                           $comparedateTS = strtotime($compareDate);
                           $eventRegOpen = strtotime($event['eventregopen']);
-                          if ($comparedateTS >= $eventRegOpen) {
+                           $eventRegEnds = strtotime($event['eventregend']);
+                          if (($comparedateTS >= $eventRegOpen) && ($comparedateTS <=  $eventRegEnds)) {
                             echo '<div class="form-item">';
                             echo '<h4 class="form-item-title">Register?</h4>';
                             echo "<input type='checkbox' title='Select register for this event' name='".$regChk."'>";   
