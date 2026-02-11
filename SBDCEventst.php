@@ -546,7 +546,7 @@ $hr = '';
                             
                           } else {
                             echo '<div class="form-item">';
-                            echo '<h4 class="form-item-title">Registration  is not Open for this event yet</h4>';
+                            echo '<h4 class="form-item-title">Registration  is not Open for this event</h4>';
                             echo '</div>';
                           }
 
