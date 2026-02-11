@@ -54,7 +54,8 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
                 'created' => $created,
                 'streetAddress' => $streetaddress,
                 'joinedonline' => $joinedonline,
-                'lastLogin' => $lastLogin
+                'lastLogin' => $lastLogin,
+                'previd' => $previd
             );
             array_push($users, $user_item);
       

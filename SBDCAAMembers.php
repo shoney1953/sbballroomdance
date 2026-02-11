@@ -49,6 +49,7 @@ if ($_SESSION['role'] === 'SUPERADMIN') {
               'password' => $password,
               'partnerId' => $partnerid,
               'hoa' => $hoa,
+              'previd' => $previd,
               'passwordChanged' => $passwordChanged,
               'memberorigcreated' => $memberorigcreated,
               'created' => $created,
@@ -313,10 +314,17 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
                 echo "<tbody>";
         
                 foreach($users as $user) {
-                    $hr = 'archmember.php?id=';
-                    $hr .= $user["id"];
-               
-                    echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
+             
+                    if ($user['previd'] !== null) {
+                        $hr = 'archmember.php?previd=';
+                        $hr .= $user["previd"]; 
+                         echo '<td> <a href="'.$hr.'">'.$user["previd"].'</a></td>';
+                    } else {
+                               $hr = 'archmember.php?id=';
+                       $hr .= $user["id"];
+                         echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
+                    }
+                
              
                         // echo "<td>".$user['id']."</td>"; 
                         echo "<td>".$user['firstname']."</td>";               

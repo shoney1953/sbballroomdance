@@ -4,6 +4,7 @@ class UserArchive {
     private $conn;
     private $table = 'usersarchive';
     public $id;
+    public $previd;
     public $firstname;
     public $lastname;
     public $username;
@@ -115,12 +116,14 @@ class UserArchive {
 
           // Set properties
           $this->id = $row['id'];
+          $this->previd = $row['previd'];
           $this->firstname = $row['firstname'];
           $this->lastname = $row['lastname'];
           $this->username = $row['username'];
           $this->email = $row['email'];
           $this->role = $row['role'];
           $this->password = $row['password'];
+    
           $this->created = $row['created'];
           $this->role = $row['role'];
           $this->passwordChanged = $row['passwordChanged'];
@@ -141,6 +144,60 @@ class UserArchive {
          $this->robodjnumlogins = $row['robodjnumlogins'];
          $this->robodjlastlogin = $row['robodjlastlogin'];
          $this->memberorigcreated = $row['memberorigcreated'];
+              
+         $this->regformlink = $row['regformlink'];
+         $this->joinedonline = $row['joinedonline'];
+          $this->dietaryrestriction = $row['dietaryrestriction'];
+
+    }
+        public function read_singlePrevid() {
+   
+          // Create query
+          $query = 'SELECT * FROM ' . $this->table . ' WHERE previd = ? LIMIT 0,1'; 
+  
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+
+          // Bind ID
+          $stmt->bindParam(1, $this->previd);
+
+          // Execute query
+          $stmt->execute();
+
+          $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+          // Set properties
+          $this->id = $row['id'];
+          $this->previd = $row['previd'];
+          $this->firstname = $row['firstname'];
+          $this->lastname = $row['lastname'];
+          $this->username = $row['username'];
+          $this->email = $row['email'];
+          $this->role = $row['role'];
+          $this->password = $row['password'];
+    
+          $this->created = $row['created'];
+          $this->role = $row['role'];
+          $this->passwordChanged = $row['passwordChanged'];
+          $this->partnerId = $row['partnerid'];
+          $this->streetAddress = $row['streetaddress'];
+          $this->city = $row['city'];
+          $this->state = $row['state'];
+          $this->zip = $row['zip'];
+          $this->hoa = $row['hoa'];
+          $this->phone1 = $row['phone1'];
+          $this->phone2 = $row['phone2'];
+          $this->notes = $row['notes'];
+          $this->lastLogin = $row['lastLogin'];
+          $this->dateArchived = $row['dateArchived'];
+         $this->numlogins = $row['numlogins'];
+         $this->directorylist = $row['directorylist'];
+         $this->fulltime = $row['fulltime'];
+         $this->robodjnumlogins = $row['robodjnumlogins'];
+         $this->robodjlastlogin = $row['robodjlastlogin'];
+         $this->memberorigcreated = $row['memberorigcreated'];
+              
          $this->regformlink = $row['regformlink'];
          $this->joinedonline = $row['joinedonline'];
           $this->dietaryrestriction = $row['dietaryrestriction'];
@@ -166,6 +223,61 @@ class UserArchive {
       // Set properties
       if($row) {
       $this->id = $row['id'];
+      $this->previd = $row['previd'];
+      $this->firstname = $row['firstname'];
+      $this->lastname = $row['lastname'];
+      $this->username = $row['username'];
+      $this->email = $row['email'];
+      $this->password = $row['password'];
+      $this->created = $row['created'];
+      $this->role = $row['role'];
+      $this->passwordChanged = $row['passwordChanged'];
+      $this->partnerId = $row['partnerid'];
+      $this->streetAddress = $row['streetaddress'];
+      $this->city = $row['city'];
+      $this->state = $row['state'];
+      $this->zip = $row['zip'];
+      $this->hoa = $row['hoa'];
+      $this->phone1 = $row['phone1'];
+      $this->phone2 = $row['phone2'];
+      $this->notes = $row['notes'];
+      $this->lastLogin = $row['lastLogin'];
+      $this->dateArchived = $row['dateArchived'];
+      $this->numlogins = $row['numlogins'];
+      $this->directorylist = $row['directorylist'];
+      $this->fulltime = $row['fulltime'];
+      $this->robodjnumlogins = $row['robodjnumlogins'];
+      $this->robodjlastlogin = $row['robodjlastlogin'];
+      $this->memberorigcreated = $row['memberorigcreated'];
+      $this->regformlink = $row['regformlink'];
+      $this->joinedonline = $row['joinedonline'];
+      $this->dietaryrestriction = $row['dietaryrestriction'];
+        return true;
+      }
+     return false;
+
+}
+ public function getUserEmail($email) {
+        
+      // Create query
+      $query = 'SELECT * FROM ' . $this->table . ' WHERE  email = :email LIMIT 0,1'; 
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Bind ID
+   
+      $stmt->bindParam('email', $email);
+
+      // Execute query
+      $stmt->execute();
+
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      // Set properties
+      if($row) {
+      $this->id = $row['id'];
+      $this->previd = $row['previd'];
       $this->firstname = $row['firstname'];
       $this->lastname = $row['lastname'];
       $this->username = $row['username'];
@@ -210,6 +322,7 @@ class UserArchive {
           partnerid = :partnerid, streetaddress = :streetaddress,
           directorylist = :directorylist, fulltime = :fulltime,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
+          previd = :previd,
           memberorigcreated = :memberorigcreated, regformlink = :regformlink,
           robodjnumlogins = :robodjnumlogins, robodjlastlogin = :robodjlastlogin,
           joinedonline = :joinedonline, dietaryrestriction = :dietaryrestriction,
@@ -265,6 +378,7 @@ class UserArchive {
           $stmt->bindParam(':regformlink', $this->regformlink);
           $stmt->bindParam(':joinedonline', $this->joinedonline);
           $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
+            $stmt->bindParam(':previd', $this->previd);
 
           // Execute query
           if ($stmt->execute()) {
@@ -284,7 +398,7 @@ class UserArchive {
           $query = 'UPDATE ' . $this->table . 
           ' SET firstname = :firstname, lastname = :lastname, email = :email,
           username = :username, partnerid = :partnerid, 
-          streetaddress = :streetaddress,
+          streetaddress = :streetaddress, :previd = :previd,
           directorylist = :directorylist, dietaryrestriction = :dietaryrestriction,
           fulltime = :fulltime, regformlink = :regformlink,
           city = :city, state = :state, zip = :zip, hoa = :hoa,
@@ -335,7 +449,7 @@ class UserArchive {
           $stmt->bindParam(':regformlink', $this->regformlink);
           $stmt->bindParam(':joinedonline', $this->joinedonline);
           $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
-
+          $stmt->bindParam(':previd', $this->previd);
           // Execute query
           if($stmt->execute()) {
             return true;

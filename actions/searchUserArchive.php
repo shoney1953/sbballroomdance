@@ -82,6 +82,7 @@ if (isset($_POST['searchUser'])) {
                     'phone1' => $phone1,
                     'password' => $password,
                     'partnerId' => $partnerid,
+                    'previd' => $previd,
                     'hoa' => $hoa,
                     'passwordChanged' => $passwordChanged,
                     'streetAddress' => $streetaddress,
@@ -135,10 +136,17 @@ if (isset($_POST['searchUser'])) {
                 
         
                 foreach($users as $user) {
-                    $hr = '../archmember.php?id=';
-                    $hr .= $user["id"];
-               
-                    echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
+                    if ($user['previd'] !== null) {
+                        $hr = '../archmember.php?previd=';
+                       $hr .= $user["previd"];
+                       echo '<td> <a href="'.$hr.'">'.$user["previd"].'</a></td>';
+                    } else {
+                       $hr = '../archmember.php?id=';
+                       $hr .= $user["id"];
+                       echo '<td> <a href="'.$hr.'">'.$user["id"].'</a></td>';
+                    } 
+             
+
              
                         echo "<td>".$user['firstname']."</td>";               
                         echo "<td>".$user['lastname']."</td>";

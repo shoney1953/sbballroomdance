@@ -93,24 +93,19 @@ date_default_timezone_set("America/Phoenix");
    <h4>Members enjoy the benefits of attending any of our classes at no cost!
    They also receive reduced prices for our dinner dances!</h4>
    <h4>We would love to have you join us! It's easy.</h4>
-   <?php
-   if ((int)$current_month >= $_SESSION['discountmonth']) {
-     echo '<br><h4><em>NOTE: We are currently in the discount membership period of the year, so you will have the option of a discount rate for just the rest of '.$current_year.',<br>or
-     paying the full price of membership and becoming a member for the rest of '.$current_year.' and the next full year '.$next_year.'.</em><br><br>';
-   }
+ 
 
-      echo ' <button class="button-round" ><h1><em><a href="joinonline.php">JOIN and PAY ONLINE NOW!</a></em></h1></button>  ';
-      echo '<h4><em>OR</em></h4>';
+     <button class="button-round" ><h1><em><a href="joinonline.php">JOIN and PAY ONLINE NOW!</a></em></h1></button> 
+
+    <h4><em>OR</em></h4>
 
 
-  
-  ?>
 
   <h4>Just click on the form below, print it and then fill it in and send it along with member dues to the treasurer of our club (name and address is on the form).</h4>
         <h4><a  
             href='img/SBDC Membership Form 2026.pdf' target='_blank'>
             Click for Membership Form</a></h4>
-    <h4> As soon as your information is entered, you'll get your userid and password and can login to the website to register for events and classes.</h4>  
+    <h4> As soon as your information is entered, you'll get your userid and password via email and can login to the website to register for events and classes.</h4>  
    
 
     <br><br>

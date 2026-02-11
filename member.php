@@ -150,6 +150,7 @@ if ($rowCount > 0) {
     }
 } 
 
+
 $result = $eventRegArch->read_ByUserid($userid);
 
 $rowCount = $result->rowCount();

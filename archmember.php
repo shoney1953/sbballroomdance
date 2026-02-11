@@ -8,6 +8,7 @@ require_once 'models/EventRegistration.php';
 require_once 'models/EventRegistrationArch.php';
 require_once 'models/UserArchive.php';
 require_once 'models/MemberPaid.php';
+require_once 'models/MemberPaidArchive.php';
 date_default_timezone_set("America/Phoenix");
 
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
@@ -30,7 +31,9 @@ if (!isset($_SESSION['username'])) {
 $userid = 0;
 if (isset($_GET['id'])) {
     $userid = $_GET['id'];
-} else {
+} elseif (isset($_GET['previd']))
+  $userid = $_GET['previd'];
+else {
     $redirect = "Location: ".$_SESSION['adminurl'];
     header($redirect);
 }
@@ -48,40 +51,20 @@ $database = new Database();
 $db = $database->connect();
 
 $user = new UserArchive($db);
+if (isset($_GET['id'])) {
+    $user->id = $userid;
+    $user->read_single();
+} elseif (isset($_GET['previd'])) {
+    $user->previd = $userid;
+    $user->read_singlePrevid();
+}
 
-$user->id = $userid;
-
-$user->read_single();
 
 
 /* get class registrations */
-$classReg = new ClassRegistration($db);
+
 $classRegArch = new ClassRegistrationArch($db);
-$result = $classReg->read_ByUserid($userid);
 
-$rowCount = $result->rowCount();
-$numClasses = $rowCount;
-
-if ($rowCount > 0) {
-  
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-        $reg_item = array(
-            'id' => $id,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'classid' => $classid,
-            'classname' => $classname,
-            'classtime' => date('h:i:s A', strtotime($classtime)),
-            'classdate' => $classdate,
-            'email' => $email,
-            'registeredby' => $registeredby,
-            "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
-        );
-        array_push($classRegs, $reg_item);
-    
-    }
-} 
 $result = $classRegArch->read_ByUserid($userid);
 
 $rowCount = $result->rowCount();
@@ -107,43 +90,8 @@ if ($rowCount > 0) {
     
     }
 } 
-$eventReg = new EventRegistration($db);
+
 $eventRegArch = new EventRegistrationArch($db);
-$result = $eventReg->read_ByUserid($userid);
-
-$rowCount = $result->rowCount();
-$numEvents = $rowCount;
-
-if ($rowCount > 0) {
-
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-        $reg_item = array(
-            'id' => $id,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'eventid' => $eventid,
-            'eventname' => $eventname,
-            'eventdate' => $eventdate,
-            'email' => $email,
-            'paid' => $paid,
-            'registeredby' => $registeredby,
-            'mealchoice' => $mealchoice,
-            'dietaryrestriction' => $dietaryrestriction,
-            'paidonline' => $paidonline,
-            'dwop' => $dwop,
-            'guest' => $guest,
-            'numhotdogs' => $numhotdogs,
-            'numhdbuns' => $numhdbuns,
-            'numhamburgers' => $numhamburgers,
-            'numhbbuns' => $numhbbuns,
-            'vegetarian' => $vegetarian,
-            "dateregistered" => date('m d Y h:i:s A', strtotime($dateregistered))
-        );
-        array_push($eventRegs, $reg_item);
-
-    }
-} 
 
 $result = $eventRegArch->read_ByUserid($userid);
 
@@ -181,9 +129,10 @@ if ($rowCount > 0) {
     }
 }
 
-$eventReg = new MemberPaid($db);
-$yearsPaid = [];
-$result = $eventReg->read_byUserid($userid);
+
+$paidRegArch = new MemberPaidArch($db);
+$yearsPaidArch = [];
+$result = $paidRegArch->read_byUserid($userid);
 
 $rowCount = $result->rowCount();
 
@@ -198,7 +147,7 @@ if ($rowCount > 0) {
             'year' => $year
 
         );
-        array_push($yearsPaid, $paid_item);
+        array_push($yearsPaidArch, $paid_item);
 
     }
 } 
@@ -279,6 +228,7 @@ if ($rowCount > 0) {
             echo '<th>Created</td>';
             echo '<th>Date Archived</th>';
             echo '<th>Joined Online</th>';
+            echo '<th>Partner ID</th>';
             echo '</tr>';
             echo '</thead>';
             echo '<tbody>';
@@ -287,6 +237,7 @@ if ($rowCount > 0) {
             echo "<td>$user->memberorigcreated</td>";
             echo "<td>$user->dateArchived</td>";
             echo "<td>$user->joinedonline</td>";
+            echo "<td>$user->partnerId</td>";
             echo '</tr>';
             echo '</tbody>';
             echo '<thead>';
@@ -378,7 +329,7 @@ if ($rowCount > 0) {
     echo '<table>';
     echo '<thead>';
     echo '<tr>';
-    echo '<th colspan="3" style="text-align:center">Membership Status</th>';
+    echo '<th colspan="3" style="text-align:center">Previous Membership Status</th>';
     echo '</tr>';
     echo '<tr>';
     echo "<th>YEAR</th>";
@@ -387,7 +338,7 @@ if ($rowCount > 0) {
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
-    foreach ($yearsPaid as $year) {
+    foreach ($yearsPaidArch as $year) {
         echo "<tr>";
         echo "<td>".$year['year']."</td>";
         
@@ -409,96 +360,13 @@ if ($rowCount > 0) {
 
   
      ?>
-    
 
-    <div class="form-grid-div">
-   
-  
-        <table>
-            <thead>
-            <tr>
-            <th colspan="6" style="text-align:center">Active Classes</th>
-            </tr>
-            <tr>
-                <th>ID</th>
-                <th>Class Name</th>
-                <th>Start Date</th>
-                <th>Class Time</th>
-                <th>Date Registered</th>  
-                <th>Registered By</th>           
-            </tr>
-           </thead>
-           <tbody>
-
-            <?php 
-    
-            foreach ($classRegs as $classRegistration) {
-        
-    
-                  echo "<tr>";
-                    echo "<td>".$classRegistration['id']."</td>";
-                    echo "<td>".$classRegistration['classname']."</td>";
-                    echo "<td>".$classRegistration['classdate']."</td>";  
-                    echo "<td>".$classRegistration['classtime']."</td>";         
-                    echo "<td>".$classRegistration['dateregistered']."</td>";
-                    echo "<td>".$classRegistration['registeredby']."</td>";
-             
-                  echo "</tr>";
-            }
-         
-            ?> 
-           </tbody>
-        </table>
-
-        
-    </div>
-
-    <div class="form-grid-div">
-
-   
-        <table>
-        <thead>
-            <tr>
-            <th colspan="5" style="text-align:center">Active Events</th>
-            </tr>
-            <tr>
-                <th>ID</th>
-                <th>Event Name</th>
-                <th>Event Date</th>
-                <th>Paid</th>
-                <th>Date Registered</th>          
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-    
-            foreach ($eventRegs as $eventRegistration) {
-                $eventName = 'NONE';
-            
-                  echo "<tr>";
-                    echo "<td>".$eventRegistration['id']."</td>";
-                    echo "<td>".$eventRegistration['eventname']."</td>";
-                    echo "<td>".$eventRegistration['eventdate']."</td>";  
-                    if ($eventRegistration['paid'] == true ) {
-                      echo "<td>&#10004;</td>"; 
-                    } else {
-                        echo "<td>&times;</td>"; 
-                    }
-                    echo "<td>".$eventRegistration['dateregistered']."</td>";
-             
-                  echo "</tr>";
-            }
-         
-            ?> 
-        </tbody>
-        </table>
-    </div>
     <div class="form-grid-div">
    
        <table>
        <thead>
             <tr>
-            <th colspan="6" style="text-align:center">Past Class Registrations</th>'
+            <th colspan="6" style="text-align:center">Past Class Registrations</th>
             </tr>
            <tr>
                <th>ID</th>
@@ -538,7 +406,7 @@ if ($rowCount > 0) {
    <table>
    <thead>
             <tr>
-            <th colspan="6" style="text-align:center">Past Event Registrations</th>'
+            <th colspan="6" style="text-align:center">Past Event Registrations</th>
             </tr> 
 
            <tr>

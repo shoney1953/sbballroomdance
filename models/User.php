@@ -425,7 +425,141 @@ class User {
 
       return false;
     }
+public function unArchive() {
+          // Create query
+          $query = 'INSERT INTO ' . $this->table . 
+          ' SET firstname = :firstname, lastname = :lastname, email = :email,
+          username = :username, password = :password ,
+          partnerid = :partnerid, streetaddress = :streetaddress,
+          city = :city, state = :state, zip = :zip, hoa = :hoa,
+          directorylist = :directorylist, fulltime = :fulltime,
+          created = :created,
+          joinedonline = :joinedonline, dietaryrestriction = :dietaryrestriction,
+          phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
 
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+  
+          // Clean data
+          $this->firstname = htmlspecialchars(strip_tags($this->firstname));
+          $this->lastname = htmlspecialchars(strip_tags($this->lastname));
+          $this->username = htmlspecialchars(strip_tags($this->username));
+          $this->email = htmlspecialchars(strip_tags($this->email));
+          $this->password = $this->password;
+          $this->hoa = $this->hoa;
+          $this->partnerId = 0;
+          $this->streetAddress = htmlspecialchars(strip_tags($this->streetAddress));
+          $this->dietaryrestriction = htmlspecialchars(strip_tags($this->dietaryrestriction));
+          $this->city = htmlspecialchars(strip_tags($this->city));
+          $this->state = htmlspecialchars(strip_tags($this->state));
+          $this->notes = htmlspecialchars(strip_tags($this->notes));
+          $this->phone1 = htmlspecialchars(strip_tags($this->phone1));
+          $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
+          $this->zip = htmlspecialchars(strip_tags($this->zip));
+          $this->directorylist = $this->directorylist;
+          $this->fulltime = $this->fulltime;
+
+
+          // Bind data
+          $stmt->bindParam(':firstname', $this->firstname);
+          $stmt->bindParam(':lastname', $this->lastname);
+          $stmt->bindParam(':username', $this->username);
+          $stmt->bindParam(':email', $this->email);
+          $stmt->bindParam(':password', $this->password);
+          $stmt->bindParam(':partnerid', $this->partnerId);
+          $stmt->bindParam(':streetaddress', $this->streetAddress);
+          $stmt->bindParam(':city', $this->city);
+          $stmt->bindParam(':state', $this->state);
+          $stmt->bindParam(':hoa', $this->hoa);
+          $stmt->bindParam(':zip', $this->zip);
+          $stmt->bindParam(':phone1', $this->phone1);
+          $stmt->bindParam(':phone2', $this->phone2);
+          $stmt->bindParam(':notes', $this->notes);
+          $stmt->bindParam(':directorylist', $this->directorylist);
+          $stmt->bindParam(':fulltime', $this->fulltime);
+          $stmt->bindParam(':joinedonline', $this->joinedonline);
+          $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
+          $stmt->bindParam(':created', $this->created);
+
+          // Execute query
+          if ($stmt->execute()) {
+
+            return true;
+      }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+    }
+public function unArchive2() {
+          // Create query
+          $query = 'INSERT INTO ' . $this->table . 
+          ' SET firstname = :firstname, lastname = :lastname, email = :email,
+          username = :username, password = :password ,
+          partnerid = :partnerid, streetaddress = :streetaddress,
+          city = :city, state = :state, zip = :zip, hoa = :hoa,
+          directorylist = :directorylist, fulltime = :fulltime,
+          created = :created, id = :id,
+          joinedonline = :joinedonline, dietaryrestriction = :dietaryrestriction,
+          phone1 = :phone1, phone2 = :phone2, notes = :notes ' ;
+
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+  
+          // Clean data
+          
+          $this->firstname = htmlspecialchars(strip_tags($this->firstname));
+          $this->lastname = htmlspecialchars(strip_tags($this->lastname));
+          $this->username = htmlspecialchars(strip_tags($this->username));
+          $this->email = htmlspecialchars(strip_tags($this->email));
+          $this->password = $this->password;
+          $this->hoa = $this->hoa;
+          $this->partnerId = 0;
+          $this->streetAddress = htmlspecialchars(strip_tags($this->streetAddress));
+          $this->dietaryrestriction = htmlspecialchars(strip_tags($this->dietaryrestriction));
+          $this->city = htmlspecialchars(strip_tags($this->city));
+          $this->state = htmlspecialchars(strip_tags($this->state));
+          $this->notes = htmlspecialchars(strip_tags($this->notes));
+          $this->phone1 = htmlspecialchars(strip_tags($this->phone1));
+          $this->phone2 = htmlspecialchars(strip_tags($this->phone2));
+          $this->zip = htmlspecialchars(strip_tags($this->zip));
+          $this->directorylist = $this->directorylist;
+          $this->fulltime = $this->fulltime;
+
+          // Bind data   
+          $stmt->bindParam(':id', $this->id);
+          $stmt->bindParam(':firstname', $this->firstname);
+          $stmt->bindParam(':lastname', $this->lastname);
+          $stmt->bindParam(':username', $this->username);
+          $stmt->bindParam(':email', $this->email);
+          $stmt->bindParam(':password', $this->password);
+          $stmt->bindParam(':partnerid', $this->partnerId);
+          $stmt->bindParam(':streetaddress', $this->streetAddress);
+          $stmt->bindParam(':city', $this->city);
+          $stmt->bindParam(':state', $this->state);
+          $stmt->bindParam(':hoa', $this->hoa);
+          $stmt->bindParam(':zip', $this->zip);
+          $stmt->bindParam(':phone1', $this->phone1);
+          $stmt->bindParam(':phone2', $this->phone2);
+          $stmt->bindParam(':notes', $this->notes);
+          $stmt->bindParam(':directorylist', $this->directorylist);
+          $stmt->bindParam(':fulltime', $this->fulltime);
+          $stmt->bindParam(':joinedonline', $this->joinedonline);
+          $stmt->bindParam(':dietaryrestriction', $this->dietaryrestriction);
+          $stmt->bindParam(':created', $this->created);
+
+          // Execute query
+          if ($stmt->execute()) {
+
+            return true;
+      }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+    }
 
     public function update() {
           // Create query

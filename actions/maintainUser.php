@@ -1,4 +1,4 @@
-<?php
+l<?php
 session_start();
 require_once '../config/Database.php';
 require_once '../models/User.php';
@@ -58,27 +58,15 @@ if (!isset($_SESSION['username']))
             exit;
        }
 }
+$addUser = false;
 
-if(isset($_GET['error'])) {
-    echo '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4><br>';
-    unset($_GET['error']);
-} elseif(isset($_GET['success'])) {
-    echo '<br><h4 style="text-align: center"> Success:  '.$_GET['success'].'</h4><br>';
-    unset($_GET['success']);
-} 
-else {
-    $_SESSION['userurl'] = $_SERVER['REQUEST_URI']; 
 
-}
 
 $database = new Database();
 $db = $database->connect();
 $user = new User($db);
 
 
-$updateUser = false;
-$deleteUser = false;
-$addUser = false;
 $passdefault = 'test1234';
 $userdefault = '';
 
@@ -87,8 +75,9 @@ if (isset($_POST['submitAddUser'])) {
     $addUser = true;
 }
 
-
-
+$addUser = true;
+$errorExists = false;
+$errorMessage = '';
 
 ?>
 <!DOCTYPE html>
@@ -101,17 +90,88 @@ if (isset($_POST['submitAddUser'])) {
     <title>SBDC Ballroom Dance - Add New Member</title>
 </head>
 <body>
+<nav class="nav">
+    <div class="container">
+     
+     <ul>
+        <?php
+           echo "<li><a href='../index.php'>Back to Home</a></li> ";
+            if ($_SESSION['role'] === 'SUPERADMIN') {  
+                echo "<li><a href='../SBDCAMembers.php'>Back to Members</a></li> ";
+                echo "<li><a href='../administration.php'>Back to Administration</a></li> ";
 
-    <div class="section-back">
+
+            }
+
+?>
+    </ul>
+     </div>
+</nav>  
+    <br><br><br>
     <section id="users" class="container content">
 
       <?php
-    
+if(isset($_GET['error'])) {
+    $errorMessage = '<br><h4 style="text-align: center"> ERROR:  '.$_GET['error'].'. Please Reenter Data</h4><br>';
+    unset($_GET['error']);
+    $errorExists = true;
+    $addUser = true;
+} elseif(isset($_GET['success'])) {
+    echo '<br><h4 style="text-align: center"> Success:  '.$_GET['success'].'</h4><br>';
+    unset($_GET['success']);
+    $addUser = true;
+} elseif (isset($_GET['userstatus'])) {
+ 
+     if ($_GET['userstatus'] === 'NotArchived') {
+         $errorMessage = '<br><h4 style="text-align: center"> Member was not archived Please Add the member. </h4><br>';
+          $addUser = true;
+            $errorExists = true;
+     }
+     if ($_GET['userstatus'] === 'SuccessfullyUnArchived') {
+         $errorMessage = '<br><h4 style="text-align: center"> Member was restored. Please go to Maintain Member to Check the information for validity. </h4><br>';
+         $errorExists = true;
+     }
+      if ($_GET['userstatus'] === 'MemberExists') {
+         $errorMessage = "<br><h4 style='text-align: center'> A Current Member exists with this email: ".$_GET['email']."</h4><br>";
+         $errorExists = true;
+     }
+    unset($_GET['userstatus']);
+}
+
+else {
+    $_SESSION['userurl'] = $_SERVER['REQUEST_URI']; 
+
+}       
+
+if ($errorExists) {
+    echo '<div class="form-container">';
+    echo $errorMessage;
+    echo '<div>';
+
+}
         if ($addUser) {
+                  echo '<div class="form-container">';
+               
+            echo '<form method="POST" action="checkUserArchive.php">';
+            echo '<legend>Enter Email to check if they were a former member and UnArchive them.</legend>';
+            echo '<h4>You will need to add their partner separately  (if there is one) and relink them</h4>';
+                  echo '<div class="form-grid">';  
+            echo '<div class="form-item">';
+            echo '<h4 class="form-item-title">Archived Email</h4>';
+            echo "<input type='email' id='archemail' name='archemail' title='Member Email ' placeholder='Email to check and restore' required><br>";
+            echo '</div>';
+
+              echo '<button type="submit" name="submitCheckArch">Check if previous member</button><br>';
+                echo '</div>';
+            echo '</div>';
+            echo '</form>';
+
+          echo '</br>';
        
             echo '<div class="form-container">';
+           
             echo '<form method="POST" action="addUser.php">';
-            echo '<h4 class="form-title">Enter Member Information then click on the Add Member button</h4>';
+            echo '<legend>Enter Member Information then click on the Add Member button</legend>';
             echo '<h4 class="form-title">Note: City, State, Zip and passwords are all defaulted</h4>';
             echo '<div class="form-grid">';
 
@@ -230,38 +290,5 @@ if (isset($_POST['submitAddUser'])) {
     </div>
 </body>
 </html>
-<!-- <script>
-    const addemail = document.getElementById('addemail');
-    console.log(addemail);
-    addemail.addEventListener('change', (e) => {
-     
-       checkArchive(addemail.value)
-//   const returningMember = e.target.checkArchive();
 
-});
-async function checkArchive(email) {
-    try {
-    const response = await fetch('getArchive.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json' // Indicate JSON data
-            },
-            body: JSON.stringify({ 'query_val': email }) // Convert JS object to JSON string
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json(); // Parse the JSON response
-        
-        // Display the data (adjust based on your data structure)
-        console.log(data);
-    } catch {
-     
-        console.error('Error:', error);
-    }
-
-}
-    </script> -->
 

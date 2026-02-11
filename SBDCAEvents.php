@@ -312,16 +312,18 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '</div>';
    
 }
-       echo '<div class="form-item">';
-   echo '<h4 class="form-item-title">Delete?</h4>';
-   echo "<input type='checkbox' title='Select to Delete Event(s)' name='".$dlChk."'>";
-   echo '</div>';
+   if ($event['eventnumregistered'] <= 0) {
+            echo '<div class="form-item">';
+        echo '<h4 class="form-item-title">Delete?</h4>';
+        echo "<input type='checkbox' title='Select to Delete Event(s)' name='".$dlChk."'>";
+        echo '</div>';
+      }
     echo '<div class="form-item">';
-   echo '<h4 class="form-item-title">Archive?</h4>';
-   echo "<input type='checkbox' title='Select to Archive Events' name='".$aeChk."'>";
-   echo '</div>';
+    echo '<h4 class="form-item-title">Archive?</h4>';
+    echo "<input type='checkbox' title='Select to Archive Events' name='".$aeChk."'>";
+    echo '</div>';
+       
    }
-
     echo '</div>';  
     if ($compareDate <= $event['eventdate']) {
     if ($_SESSION['role'] === 'SUPERADMIN') {

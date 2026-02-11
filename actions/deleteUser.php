@@ -5,6 +5,7 @@ require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/ClassRegistration.php';
 require_once '../models/MemberPaid.php';
+require_once '../models/MemberPaidArchive.php';
 require_once '../models/DanceClass.php';
 require_once '../models/Event.php';
 require_once '../models/User.php';
@@ -72,6 +73,7 @@ $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $classReg = new ClassRegistration($db);
 $memberPaid = new MemberPaid($db);
+$memberPaidArch = new MemberPaidArch($db);
 $class = new DanceClass($db);
 $event = new Event($db);
 $user = new User($db);
@@ -144,6 +146,7 @@ if (isset($_POST['submitArchiveUser'])) {
         } 
     /* Archive the user before deleting */
         $userArc->firstname = $user->firstname;
+        $userArc->previd = $user->id;
         $userArc->lastname = $user->lastname;
         $userArc->username = $user->username;
         $userArc->email = $user->email;
@@ -172,6 +175,30 @@ if (isset($_POST['submitArchiveUser'])) {
 
         $eventReg->deleteUserid($user->id);
         $classReg->deleteUserid($user->id);
+        $result = $memberPaid->read_byUserid($user->id);
+
+        $rowCount = $result->rowCount();
+
+
+        if ($rowCount > 0) {
+
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                extract($row);
+                $paid_item = array(
+                    'id' => $id,
+                    'paid' => $paid,
+                    'year' => $year,
+                    'paidonline' => $paidonline
+
+                );
+             $memberPaidArch->userid = $user->id;
+             $memberPaidArch->paid = $paid_item['paid'];
+             $memberPaidArch->year = $paid_item['year'];
+             $memberPaidArch->paidonline = $paid_item['paidonline'];
+             $memberPaidArch->create();
+
+            }
+}
         $memberPaid->deleteUserid($user->id);
         $user->delete();
     }
