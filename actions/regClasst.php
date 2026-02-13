@@ -45,7 +45,11 @@ $regLastName2 = '';
 $classId = 0;
 
 
-if (isset($_POST['submitAddRegs'])) {
+if (!isset($_POST['submitAddRegs'])) {
+       $redirect = "Location: ".$_SESSION['homeurl'];
+       header($redirect);
+        exit;
+}
    $classId = $_POST['classid'];
    $danceClass->id = $_POST['classid'];
    $danceClass->read_single();
@@ -78,7 +82,7 @@ if (isset($_POST['submitAddRegs'])) {
           }
 
 
-    $emailSubject = "You have registered for an SBDC dance class: ".$danceClass->classname;
+    $emailSubject = "You have registered SBDC dance class: ".$danceClass->classname;
       
                 $classId = $danceClass->id;
                 $emailBody .= '**************************************';
@@ -114,7 +118,7 @@ if (isset($_POST['submitAddRegs'])) {
                     $danceClass->addCount($classId);
                 }
 
-            }
+            
                 
  
     if (isset($_POST['mem1Chk'])) {
@@ -123,27 +127,26 @@ if (isset($_POST['submitAddRegs'])) {
              
       }
           
-    if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
-        $regName1 = $regFirstName1.' '.$regLastName1;
-        sendEmail(
-            $regEmail1, 
-            $regName1, 
-            $fromCC,
-            $fromEmailName,
-            $emailBody,
-            $emailSubject,
-            $replyEmail,
-            $replyTopic,
-            $mailAttachment,
-            $mailAttachment2,
-            $toCC2,
-            $toCC3,
-            $toCC4,
-            $toCC5
-        );
+      if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
+          $regName1 = $regFirstName1.' '.$regLastName1;
+          sendEmail(
+              $regEmail1, 
+              $regName1, 
+              $fromCC,
+              $fromEmailName,
+              $emailBody,
+              $emailSubject,
+              $replyEmail,
+              $replyTopic,
+              $mailAttachment,
+              $mailAttachment2,
+              $toCC2,
+              $toCC3,
+              $toCC4,
+              $toCC5
+          );
     } 
-  } else {
-    if (isset($_POST['mem2Chk'])) {
+  } elseif (isset($_POST['mem2Chk'])) {
    
         $toCC2 = $_SESSION['useremail'];
      
@@ -170,58 +173,55 @@ if (isset($_POST['submitAddRegs'])) {
   
   
 
-   $toCC2 = '';
+   $toCC2 = $danceClass->registrationemail;
 
     $emailSubject = "People have Signed up for your upcoming Class";
 
 
-                $emailBody = "The following individuals have signed up for the class you are going to teach: ".$danceClass->classname."<br>";
-  
-                if ($message2Ins) {
-                    $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
-                }
-                if (isset($_POST['mem1Chk'])) {
-                  $emailBody .= "NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
-                }
-                if (isset($_POST['mem2Chk'])) {
-                  $emailBody .= "NAME: ".$regFirstName2." ".$regLastName2."<br>    EMAIL:  ".$regEmail2."<br>";
-                }
+            $emailBody = "The following individuals have signed up for the class you are going to teach: ".$danceClass->classname."<br>";
 
-                $classString = '';
-                $classString = "<br>Class: ".$danceClasslass->classname."<br>";
+            if ($message2Ins) {
+                $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
+            }
+            if (isset($_POST['mem1Chk'])) {
+              $emailBody .= "NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
+            }
+            if (isset($_POST['mem2Chk'])) {
+              $emailBody .= "NAME: ".$regFirstName2." ".$regLastName2."<br>    EMAIL:  ".$regEmail2."<br>";
+            }
 
-                    $insEmail = $danceClass->registrationemail;   
-                     $insEmail2 = "";
-                     $insEmail3 = "";
-                     $emailBody .= $classString;
-                     $regname = " ";
-  
-                     sendEmail(
-                         $insEmail, 
-                         $regname, 
-                         $fromCC,
-                         $fromEmailName,
-                         $emailBody,
-                         $emailSubject,
-                         $replyEmail,
-                         $replyTopic,
-                         $mailAttachment,
-                         $mailAttachment2,
-                         $toCC2,
-                         $toCC3,
-                         $toCC4,
-                         $toCC5
-                     );
-                     $classString = '';
-                  
+            $classString = '';
+            $classString = "<br>Class: ".$danceClasslass->classname."<br>";
+
+                $insEmail = $danceClass->registrationemail;   
+                  $insEmail2 = "";
+                  $insEmail3 = "";
+                  $emailBody .= $classString;
+                  $regname = " ";
+
+                  sendEmail(
+                      $insEmail, 
+                      $regname, 
+                      $fromCC,
+                      $fromEmailName,
+                      $emailBody,
+                      $emailSubject,
+                      $replyEmail,
+                      $replyTopic,
+                      $mailAttachment,
+                      $mailAttachment2,
+                      $toCC2,
+                      $toCC3,
+                      $toCC4,
+                      $toCC5
+                  );
+                  $classString = '';
+              
 
    $redirect = "Location: ".$_SESSION['returnurl'];
      header($redirect);
  exit;
-} // end submit
 
-   $redirect = "Location: ".$_SESSION['homeurl'];
-     header($redirect);
- exit;
+
 
 ?>
