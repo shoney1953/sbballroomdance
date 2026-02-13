@@ -49,6 +49,7 @@ $numActions = 0;
 $gotClassReg = 0;
 $gotPartnerClassReg = 0;
 $classLiteral = '';
+$classyear = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,17 +126,27 @@ $classLiteral = '';
                  $numActions = 0;
              
                 $classMonth = substr($class['date'],5,2);
+                $classYear = substr($class['date'],0,4);
              
                 if ($init === 0) {
                
                   $prevClassMonth = $classMonth ;
-        
-                    $classLiteral .= ' ------------------    MONTH: '.$classMonth.' ------------------<br>';
+                  echo '</div>';
+         
+                    echo '<div>';
+                   echo '<h4> ------------------   '.$classYear.'  MONTH: '.$classMonth.' ------------------</h4><br>';
+                    echo '</div>';
+                             echo '<div class="form-grid4">'  ;
+
                   $init = 1;
                 } elseif ($prevClassMonth !== $classMonth) {
                   $prevClassMonth = $classMonth;
            
-                    $classLiteral .= ' ------------------    MONTH: '.$classMonth.'  -----------------<br>';
+                    
+                  echo '</div>';
+                  echo '<h4> ------------------    '.$classYear.' MONTH: '.$classMonth.'  -----------------<h4><br>';
+                  echo '<div>';
+          
                   echo '</div>';
                      
                     echo '<div class="form-grid4">'  ;
