@@ -49,7 +49,7 @@ if (isset($_POST['submitRemoveRegs'])) {
     $event->id = $_POST['eventid'];
     $eventid = $_POST['eventid'];
     $event->read_single();
-
+    $toCC2 = $event->orgemail;
     $numregistered = $event->eventnumregistered;
     $gotEventRec = 0;
     $gotPartnerEventRec = 0;
@@ -112,7 +112,7 @@ if (isset($_POST['submitRemoveRegs'])) {
 
        if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
             if (isset($_POST["$remID2"])) {
-              $toCC2 = $_SESSION['partneremail'];
+              $toCC3 = $_SESSION['partneremail'];
               $emailBody .= "<br>PARTNER NAME: ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']."<br>    EMAIL:  ".$_SESSION['partneremail']."<br>";
               if ($gotPartnerEventRec) {
                  $partnerEventReg->delete();
