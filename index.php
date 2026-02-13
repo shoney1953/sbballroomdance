@@ -204,11 +204,11 @@ if ($rowCount > 0) {
         $class_month = substr($row['date'], 5, 2);
         $class_year = substr($row['date'], 0, 4);
 
-        if ($current_year < $class_year) {
+        if ((int)$current_year < (int)$class_year) {
             $numUpcomingClasses++;
             array_push($upcomingClasses, $class_item);
-        } else {         
-            if ($current_month <= $class_month) {
+        } elseif ((int)$class_year >= (int)$current_year) {         
+            if ((int)$current_month <= (int)$class_month) {
                 $numUpcomingClasses++;
                   array_push($upcomingClasses, $class_item);
              } 

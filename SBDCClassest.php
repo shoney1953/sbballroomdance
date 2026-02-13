@@ -4,8 +4,39 @@ require_once 'config/Database.php';
 require_once 'models/DanceClass.php';
 require_once 'models/ClassRegistration.php';
 require_once 'models/User.php';
-$upcomingClasses = $_SESSION['upcoming_classes'];
+$filter_name = '';
+$filter_level = '';
+$filter_criteria = '';
+
+if (count($_GET) === 0) {
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI']; 
+$upcomingClasses = $_SESSION['upcoming_classes'];
+unset($_SESSION['filtered_classes']);
+} else {
+  $filter_criteria = '<h4>Results filtered by ';
+  if (isset($_GET['name'])) {
+    $filter_name = str_replace('%','',$_GET['name']);
+    if ($filter_name !== '') {
+      $filter_criteria .= 'name: '.$filter_name.' ';   
+    }
+   
+    unset($_GET['name']);
+  }
+  if (isset($_GET['level'])) {
+    $filter_level = str_replace('%','',$_GET['level']);
+     
+        if ($filter_level !== '') {
+           $filter_criteria .= 'level: '.$filter_level.' ';
+        }
+        
+    unset($_GET['level']);
+  } 
+
+  if (isset($_SESSION['filtered_classes'])) {
+    $upcomingClasses = $_SESSION['filtered_classes'];
+  }
+}
+
 
 $database = new Database();
 $db = $database->connect();
@@ -25,7 +56,7 @@ $classLiteral = '';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css?v3">
+    <link rel="stylesheet" href="css/style.css?v4">
     <title>SBDC Ballroom Dance - Events Test Mode</title>
 </head>
 <body>
@@ -43,16 +74,47 @@ $classLiteral = '';
       <br><br>
       <h1>Upcoming Classes</h1>
       <h4>You can click on the Class Name to get complete details on the Class.</h4>
+    
       
-        <?php 
-        if (isset($_SESSION['username'])) {
-              echo '<h4>If you do not see the action you need perform on the class, please contact the instructor.</h4><br>';
+    <?php   
+      if (isset($_SESSION['username'])) {
+              echo '<h4>If you do not see the action you need to perform on the class, please contact the instructor.</h4><br>';
           }
+       echo '<fieldset>';
+        echo '<legend>Filter Classes</legend>';
+
+        echo '<form  method="POST" action="actions/searchClasses.php" >';
+        echo '<div class="form-grid4">';
+        echo '<div>';
+        echo '<h4 class="form-item-title">Search Class Name</h4>';
+        echo '<input type="search"  placeholder="search class name" name="searchname" ><br>';
+        echo '</div>';
+         echo '<div>';
+        echo '<h4 class="form-item-title">Search Class level</h4>';
+        echo '<input type="search"  placeholder="search class level" name="searchlevel" ><br>';
+        echo '</div>';
+         echo '<button type="submit" name="searchClasses">Filter classes</button>'; 
+        echo '</div>';
+       
+        echo '</form>';
+        echo '</fieldset>';
+         if ($filter_criteria !== '') {
+          if (($filter_name != '') || ($filter_level !== '')) {
+              echo $filter_criteria;
+          } else {
+            $filter_criteria = '';
+          }
+         
+         }
+         
         if (!(isset($_SESSION['username']))) {
           echo '<h4><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Click Here Login as a Member or Visitor to Register or Manage Event Registrations</a></h4>';
         }
-                 
-               
+          echo '<div class="form-grid4">'  ; 
+          $classMonth = 0;
+          $init = 0;
+          $prevClassMonth = 0;    
+          $classLiteral = '';
           foreach ($upcomingClasses as $class) {
 
                 $rpChk = "rp".$class['id'];
@@ -61,22 +123,40 @@ $classLiteral = '';
                  $cd = 'class.php?id=';
                  $cd .= $class["id"];
                  $numActions = 0;
-
+             
+                $classMonth = substr($class['date'],5,2);
+             
+                if ($init === 0) {
+               
+                  $prevClassMonth = $classMonth ;
+        
+                    $classLiteral .= ' ------------------    MONTH: '.$classMonth.' ------------------<br>';
+                  $init = 1;
+                } elseif ($prevClassMonth !== $classMonth) {
+                  $prevClassMonth = $classMonth;
+           
+                    $classLiteral .= ' ------------------    MONTH: '.$classMonth.'  -----------------<br>';
+                  echo '</div>';
+                     
+                    echo '<div class="form-grid4">'  ;
+                
+                }
                 //  echo '<div class="form-container">';
                 echo '<fieldset>';
-                $classLiteral = $class['date'].'&nbsp;&nbsp; '.$class['classname'].' &nbsp; &nbsp;'.$class['classlevel']   ;
+                $classLiteral .= $class['date'].'&nbsp;&nbsp; '.$class['classname'].' &nbsp; &nbsp;'.$class['classlevel'].' &nbsp; &nbsp;'.$class['instructors']   ;
 
                 //  echo "<legend title='Click for complete class description'><a href='".$cd."'>  ".$class['classlevel'].":     ".$class['classname']."      on ".$class['date']."</a></legend>";
                  echo "<legend title='Click for complete class description'><a href='".$cd."'> $classLiteral</a></legend>";
+                 $classLiteral = '';
  
                   if (isset($_SESSION['username'])) {
                     echo "<h5 class='form-title-left' title='click for pdf report'><form  target='_blank' name='reportClassForm'   method='POST' action='actions/reportClass.php'> ";
                     echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
-                    echo "<button class='button-tiny' type='submit'>Report</button></p>";
+                    echo "<button  type='submit'>Report</button></p>";
                     echo '</form>';
                     }
 
-                echo '<div class="form-grid">';
+          
 
                $gotClassReg = 0;
                 if (isset($_SESSION['username'])) {
@@ -97,7 +177,7 @@ $classLiteral = '';
                    if ($gotClassReg)  {
         
                     echo '<div class="form-item">';
-                    echo "<h4 class='form-item-title'>You registered for this class on: <br> ".substr($classReg->dateregistered,0,10)."</h4>";
+                    echo "<h4 class='form-item-title'>You registered for this class on: ".substr($classReg->dateregistered,0,10)."</h4>";
                     echo '</div>'; // end of form item
 
                   }  // end got class reg
@@ -105,17 +185,15 @@ $classLiteral = '';
                     if ($gotPartnerClassReg) {
    
                       echo '<div class="form-item">';
-                      echo "<h4 class='form-item-title'>Your partner registered for this class on: <br> ".substr($partnerClassReg->dateregistered,0,10)."</h4>";
+                      echo "<h4 class='form-item-title'>Your partner registered for this class on: ".substr($partnerClassReg->dateregistered,0,10)."</h4>";
                       echo '</div>'; // end of form item 
 
                     } // got partner
-                  
-     
-                   echo "</div>"; // end of form grid
+
       
                 echo "<form name='processClassMem'   method='POST' action='actions/processClassMem.php'> "; 
                 echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
-                echo '<div class="form-grid">';
+            
 
                      if (($gotClassReg) || ($gotPartnerClassReg)) {  
 
@@ -177,7 +255,7 @@ $classLiteral = '';
                     
 
                       }
-                       echo '</div>';                     
+                               
                        echo '</form>';
                 
          
@@ -185,7 +263,7 @@ $classLiteral = '';
               echo '</fieldset>';
                 
             } // end of foreach
- 
+         echo '</div>'
         ?>
 
     <br>

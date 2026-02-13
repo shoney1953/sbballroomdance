@@ -84,15 +84,16 @@ class DanceClass {
           }
           return false;
     }
-    public function read_ByArchDate($archdate) {
+    
+    public function searchName($name) {
       // Create query
 
-      $query = 'SELECT * FROM ' . $this->table . ' WHERE date < :archdate 
-       ORDER BY date';
+      $query = 'SELECT * FROM ' . $this->table . ' WHERE classname like :name 
+       ORDER BY name';
    
       // Prepare statement
       $stmt = $this->conn->prepare($query);
-      $stmt->bindParam(':archdate', $archdate);
+      $stmt->bindParam(':name', $name);
       // Execute query
       if($stmt->execute()) {
         return $stmt;
@@ -104,7 +105,47 @@ class DanceClass {
       return false;
           
     }
+    public function searchNameLevel($name, $level) {
+      // Create query
+    
+      $query = 'SELECT * FROM ' . $this->table . ' WHERE classname like :name AND classlevel like :level
+       ORDER BY date';
+   
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':name', $name);
+      $stmt->bindParam(':level', $level);
+      // Execute query
+      if($stmt->execute()) {
+        return $stmt;
+       }
 
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+          
+    }
+    public function searchLevel($level) {
+      // Create query
+
+      $query = 'SELECT * FROM ' . $this->table . ' WHERE classlevel like :level 
+       ORDER BY date';
+   
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':level', $level);
+      // Execute query
+      if($stmt->execute()) {
+        return $stmt;
+       }
+
+      // Print error if something goes wrong
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+          
+    }
     // Create Danceclass
     public function create() {
         if ($this->date2 == '') {
