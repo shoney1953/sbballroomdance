@@ -101,12 +101,17 @@ if (isset($_POST['submitUpdate'])) {
             $eventRec->eventmempriceid = $_POST["$evmpriceID"];
             $eventRec->eventproductid = $_POST["$evprodID"];
             $eventRec->eventdwopcount = $_POST["$evdwopct"];
-            $eventRec->eventdinnerregend = $_POST["$evdrendID"];
+    
+            if (isset($_POST["$evdrendID"])) {
+                if ($_POST["$evdrendID"] !== '') {
+                  $eventRec->eventdinnerregend = $_POST["$evdrendID"];
+                }
+            }
             $eventRec->update();
         }
     }
     
-    
+
     $redirect = "Location: ".$_SESSION['adminurl']."#events";
     header($redirect);
     exit;

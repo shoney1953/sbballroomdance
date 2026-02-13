@@ -41,22 +41,25 @@ $result = 0;
 if (isset($_POST['submitRemoveRegs'])) {
    $danceClass->id = $_POST['classid'];
    $danceClass->read_single();
-
+   $toCC2 = $danceClass->registrationemail;
   if ($reg->read_ByClassIdUser($_POST['classid'],$_SESSION['userid'])) {
-      $gotClassReg = 1;
-               
-    }
-                
+      $gotClassReg = 1;    
+    }             
     if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
       if ($partnerReg->read_ByClassIdUser($_POST['classid'],$_SESSION['partnerid'])) {
           $gotPartnerClassReg = 1;
       }
     }
-
-   if (isset($_POST['remID1'])) {
-      if (isset($_POST['remid2'])) {
-        $toCC2 = $_SESSION['partneremail'];
+   if ($_SESSION['role'] !== 'visitor') {
+    $toCC3 = $_SESSION['useremail'];
+   } else {
+    $toCC3 = $_SESSION['visitoremail'];
+   }
+    if (isset($_POST['remid2'])) {
+        $toCC4 = $_SESSION['partneremail'];
       }
+   if (isset($_POST['remID1'])) {
+     
     $regFirstName1 = $reg->firstname;
     $regLastName1 = $reg->lastname;
     $regEmail1 = $reg->email;
@@ -100,43 +103,9 @@ if (isset($_POST['submitRemoveRegs'])) {
        $partnerReg->delete(); 
        $danceClass->decrementCount($_POST['classid']); 
     }
-   } else if (isset($_POST['remID2'])) {
-    $regFirstName1 = $partnerReg->firstname;
-    $regLastName1 = $partnerReg->lastname;
-    $regEmail1 = $partnerReg->email;
-    $emailBody .= "<br>NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
-    $toCC2 = $_SESSION['useremail'];
-
-    $emailBody .= 
-                "<br>Class Date:  ".$danceClass->date.
-                "<br>Class Level: ".$danceClass->classlevel.
-                "<br>Class Name:  ".$danceClass->classname;
-    if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
-            $regName1 = $regFirstName1.' '.$regLastName1;
-            sendEmail(
-                $regEmail1, 
-                $regName1, 
-                $fromCC,
-                $fromEmailName,
-                $emailBody,
-                $emailSubject,
-                $replyEmail,
-                $replyTopic,
-                $mailAttachment,
-               $mailAttachment2,
-                $toCC2,
-                $toCC3,
-                $toCC4,
-                $toCC5
-            );
-        } else {
-            echo 'Registrant 2 Email is empty or Invalid. Please enter valid email.';
-        }
-   /*********************************************** */
-    $partnerReg->delete(); 
-    $danceClass->decrementCount($_POST['classid']);
-   }
-  }
+   } 
+}
+  
 
 
         $redirect = "Location: ".$_SESSION['returnurl'];

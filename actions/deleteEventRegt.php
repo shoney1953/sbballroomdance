@@ -6,7 +6,7 @@ require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
 
-$regs = $_SESSION['eventregistrations'];
+// $regs = $_SESSION['eventregistrations'];
 
 $database = new Database();
 $db = $database->connect();
@@ -36,6 +36,7 @@ $regId1 = 0;
 $regId2 = 0;
 $create_successful = 0;
 $result = 0;
+$numregistered = 0;
     $gotEventRec = 0;
     $gotPartnerEventRec = 0;
     $guests = [];
@@ -44,11 +45,24 @@ $result = 0;
     }
 
 if (isset($_POST['submitRemoveRegs'])) {
+
     $event->id = $_POST['eventid'];
+    $eventid = $_POST['eventid'];
     $event->read_single();
 
+    $numregistered = $event->eventnumregistered;
     $gotEventRec = 0;
     $gotPartnerEventRec = 0;
+     $emailBody .=
+                "<br>Event Date:  ".$event->eventdate."
+                 <br>Event Type:  ".$event->eventtype."
+                 <br>Event Name:  ".$event->eventname."<br>";
+   $emailBody .= "The following registrations were removed: <br>";
+    if ($_SESSION['role'] === 'visitor') {
+        $_SESSION['userid'] = '0';
+        $regName = $_SESSION['visitorfirstname'].' '.$_SESSION['visitorlastname'];
+
+    }
     if ($eventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['userid'])) {
            $gotEventRec = 1;
            $remID1 = "rem".$eventReg->id;
@@ -60,35 +74,61 @@ if (isset($_POST['submitRemoveRegs'])) {
             $remID2 = "rem".$partnerEventReg->id;                 
     }              
    }
-     $emailBody .=
-                "<br>Event Date:  ".$event->eventdate."
-                 <br>Event Type:  ".$event->eventtype."
-                 <br>Event Name:  ".$event->eventname."<br>";
-
-    if ((isset($_POST["$remID1"])) && (isset($_POST["$remID2"]))) {
-        
-             $toCC2 = $_SESSION['partneremail'];
-        
-
-         $emailBody .= "<br>MEMBER NAME: ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']."<br>    EMAIL:  ".$_SESSION['useremail']."<br>";
-         $emailBody .= "<br>PARTNER NAME: ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']."<br>    EMAIL:  ".$_SESSION['partneremail']."<br>";
-         $regName = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
-         $regEmail = $_SESSION['useremail'];
-    }
-       if ((isset($_POST["$remID1"])) && (!isset($_POST["$remID2"]))) {
     
-                    $emailBody .= "<br>MEMBER NAME: ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']."<br>    EMAIL:  ".$_SESSION['useremail']."<br>";
-                     $regName = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
-                     $regEmail = $_SESSION['useremail'];
-       }
-       if ((isset($_POST["$remID2"])) && (!isset($_POST["$remID1"]))) {
+   if ($_SESSION['role'] !== 'visitor') {
+       if (isset($_POST["$remID1"])) {
+        $emailBody .= "<br>MEMBER NAME: ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']."<br>    EMAIL:  ".$_SESSION['useremail']."<br>";
+        $regName = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
+        $regEmail = $_SESSION['useremail'];
 
-                     $emailBody .= "<br>PARTNER NAME: ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']."<br>    EMAIL:  ".$_SESSION['partneremail']."<br>";
-                     $regName = $_SESSION['partnerfirstname'].' '.$_SESSION['partnerlastname'];
-                     $regEmail = $_SESSION['partneremail'];
-                     $toCC2 = $_SESSION['useremail'];
+         if ($gotEventRec) {
+               $eventReg->delete();
+
+                if ($numregistered > 0) {
+                  $numregistered = $numregistered - 1;
+       
+                  $event->decrementCount($eventid, $numregistered);
+                }
+
+            }
+      }
+   } else {
+       if (isset($_POST["$remID1"])) {
+        $emailBody .= "<br>VISITOR NAME: ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname']."<br>    EMAIL:  ".$_SESSION['visitoremail']."<br>";
+        $regName = $_SESSION['visitorfirstname'].' '.$_SESSION['visitorlastname'];
+        $regEmail = $_SESSION['visitoremail'];
+     
+         if ($gotEventRec) {
+               $eventReg->delete();
+                 if ($numregistered > 0) {
+                  $numregistered = $numregistered - 1;
             
-        }  
+                  $event->decrementCount($eventid, $numregistered);
+                }
+            }
+        }
+   }
+  
+
+       if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+            if (isset($_POST["$remID2"])) {
+              $toCC2 = $_SESSION['partneremail'];
+              $emailBody .= "<br>PARTNER NAME: ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']."<br>    EMAIL:  ".$_SESSION['partneremail']."<br>";
+              if ($gotPartnerEventRec) {
+                 $partnerEventReg->delete();
+
+                 if ($numregistered > 0) {
+                  $numregistered = $numregistered - 1;
+         
+                  $event->decrementCount($eventid, $numregistered);
+                 }
+                }   
+            }
+        
+         }
+
+
+
       foreach ($guests as $guest) {
         $remGuestID = "remguest".$guest['id'];   
         $guestID = 'guestid'.$guest['id']  ;   
@@ -96,7 +136,11 @@ if (isset($_POST['submitRemoveRegs'])) {
             $guestEventReg->id = $_POST["$guestID"];
             $emailBody .= "<br>Guest: ".$guest['firstname']." ".$guest['lastname']." removed.<br>";
            $guestEventReg->delete();
-           $event->decrementCount($eventid);
+            if ($numregistered > 0) {
+                  $numregistered = $numregistered - 1;
+       
+                  $event->decrementCount($eventid, $numregistered);
+                }
          }
       }
 
@@ -120,18 +164,12 @@ if (isset($_POST['submitRemoveRegs'])) {
             );
         } else {
             echo 'Registrant 1 Email is empty or Invalid. Please enter valid email.';
-            //  $redirect = "Location: ".$_SESSION['returnurl'];
-            // header($redirect);
+             $redirect = "Location: ".$_SESSION['returnurl'];
+            header($redirect);
            exit;
         }
-         if (isset($_POST["$remID1"])) {
-           $eventReg->delete();
-           $event->decrementCount($eventid);
-         }
-        if (isset($_POST["$remID2"])) {
-           $partnerEventReg->delete();
-           $event->decrementCount($eventid);
-         }
+        
+
   
     }
 

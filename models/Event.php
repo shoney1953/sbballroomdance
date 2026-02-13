@@ -311,42 +311,27 @@ class Event {
           return false;
           }
 
-    public function decrementCount($id) {
+    public function decrementCount($id, $numregistered) {
 
-          // Create query
-          $query = 'SELECT eventnumregistered FROM ' . $this->table . ' WHERE id = ? LIMIT 0,1'; 
-
-          // Prepare statement
-          $stmt = $this->conn->prepare($query);
-
-          // Bind ID
-          $stmt->bindParam(1, $id);
-
-          // Execute query
-          $stmt->execute();
-
-          $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-          $this->eventnumregistered = $row['eventnumregistered'];
-          $this->eventnumregistered--;
-
+      
           $this->id = $id;
           // do the update
-          $query = 'UPDATE ' . $this->table . 
-          ' SET  eventnumregistered = :eventnumregistered WHERE id = :id';
+       
+          $query = 'UPDATE ' . $this->table .  
+          ' SET  eventnumregistered = :numregistered WHERE id = :id';
 
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
 
           // Bind data
-
-          $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
-          $stmt->bindParam(':id', $this->id);
+           $stmt->bindParam("id", $id);
+           $stmt->bindParam("numregistered", $numregistered);
       
           if($stmt->execute()) {
+         
           return true;
+ 
           }
 
           // Print error if something goes wrong

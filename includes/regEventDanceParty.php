@@ -89,7 +89,12 @@
                    echo '</div>'; // end form grid
                   echo "<div class='form-item'>";
                   echo '<h4 class="form-item-title">Dietary Restriction?</h4>';
-                  echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr1' value='".$_SESSION['dietaryrestriction']."' >"; 
+                  if ($_SESSION['role'] !== 'visitor') {
+                      echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr1' value='".$_SESSION['dietaryrestriction']."' >";  
+                  } else {
+                    echo "<input type='text' title='Enter Member Dietary Restrictions' name='dietaryr1'  >"; 
+                  }
+                 
                   echo "</div>";  // form item
 
                  } // end date check

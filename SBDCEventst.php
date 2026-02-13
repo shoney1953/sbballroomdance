@@ -2,10 +2,13 @@
 $sess = session_start();
 require_once 'config/Database.php';
 require_once 'models/EventRegistration.php';
+require_once 'models/Event.php';
 require_once 'models/EventRegistrationArch.php';
 require_once 'models/User.php';
 
-$upcomingEvents = $_SESSION['upcoming_events'];
+// $upcomingEvents = $_SESSION['upcoming_events'];
+$upcomingEvents = [];
+$events = [];
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
@@ -20,7 +23,48 @@ $gotPartnerEventReg = 0;
 $num_guests = 0;
 $guests = [];
 $hr = '';
+$event = new Event($db);
+$result = $event->read();
 
+$rowCount = $result->rowCount();
+$num_events = $rowCount;
+
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+        $event_item = array(
+            'id' => $id,
+            'eventname' => $eventname,
+            'eventtype' => $eventtype,
+            'eventdate' => $eventdate,
+            'eventcost' => $eventcost,
+            'eventform' => $eventform,
+            'orgemail' => $orgemail,
+            'eventdj' => $eventdj,
+            'eventdesc' => $eventdesc,
+            'eventroom' => $eventroom,
+            'eventregend' => $eventregend,
+            'eventregopen' => $eventregopen,
+            'eventnumregistered' => $eventnumregistered,
+            'eventproductid' => $eventproductid,
+            'eventmempriceid' => $eventmempriceid,
+            'eventguestpriceid' => $eventguestpriceid,
+            'eventdinnerregend' => $eventdinnerregend,
+            'eventguestcost' => $eventguestcost
+        );
+        array_push($events, $event_item);
+   
+        if (strtotime($compareDate) <= strtotime($row['eventdate'])) {
+            array_push($upcomingEvents, $event_item);
+        }
+
+    }
+
+} 
+
+$_SESSION['events'] = $events;
+$_SESSION['upcoming_events'] = $upcomingEvents;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,6 +179,7 @@ $hr = '';
                   if ($_SESSION['role'] === 'visitor') {
                    if ($eventReg->read_ByEventIdVisitor($event['id'],$_SESSION['username'])) {
                      $gotEventReg = 1;
+            
                    } ;
     
                   } else {
@@ -153,6 +198,7 @@ $hr = '';
                    if ($gotEventReg)  {
         
                     echo '<div class="form-item">';
+               
                     echo "<h4 class='form-item-title'>You registered on: <br> ".substr($eventReg->dateregistered,0,10)."</h4>";
                     echo '</div>'; // end of form item
                     if ($event['eventtype'] === 'Dance Party') {

@@ -400,7 +400,7 @@ public function read_ByEventIdRegBy($eventid, $registeredby) {
           $this->ddattenddinner = $row['ddattenddinner'];
           $this->dateregistered = $row['dateregistered'];
           $this->registeredby = $row['registeredby'];
-          $this->dateregistered = $row['modifieddate'];
+          $this->modifieddate = $row['modifieddate'];
           $this->modifiedby = $row['modifiedby'];
           $this->paid = $row['paid'];
           $this->paidonline = $row['paidonline'];

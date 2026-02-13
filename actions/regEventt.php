@@ -30,7 +30,7 @@ $result = 0;
 $danceCost = 0;
 $regSelected = [];
 $regAll = '';
-$emailBody = "Thanks for registering for the following SBDC event(s):<br>";
+$emailBody = "Thanks, ".$_SESSION['username']." for registering for the following SBDC event(s):<br>";
 $emailSubject = '';
 $eventNum = 0;
 $regUserid1 = 0;
@@ -77,7 +77,7 @@ if (!isset($_POST['submitAddRegs'])) {
 
     $eventInst->id = $_POST['eventid'];
     $eventInst->read_single();
-     
+    $toCC2 = $eventInst->orgemail;
     if (isset($_POST['mem1Chk'])) {
     $regFirstName1 = htmlentities($_POST['firstname1']);
     $regLastName1 = htmlentities($_POST['lastname1']);
@@ -101,7 +101,7 @@ if (!isset($_POST['submitAddRegs'])) {
     $regEmail2 = htmlentities($_POST['email2']);  
   
     $regEmail2 = filter_var($regEmail2, FILTER_SANITIZE_EMAIL); 
-      $toCC2 =   $_SESSION['useremail'];
+      $toCC3 =   $_SESSION['useremail'];
     if ($user->getUserName($regEmail2)) {    
         $regUserid2 = $user->id;
       } else {
@@ -110,7 +110,7 @@ if (!isset($_POST['submitAddRegs'])) {
       
    }
 
-    $emailSubject = "You have registered for SBDC event(s)";
+    $emailSubject = "You have registered for SBDC event: ".$eventInst->eventname;
 
         $eventid = $_POST['eventid'];
 
@@ -366,7 +366,7 @@ if (!isset($_POST['submitAddRegs'])) {
    if (isset($_POST['mem1Chk'])) {
         $regName1 = $regFirstName1.' '.$regLastName1;
          if (isset($_POST['mem2Chk'])) {
-            $toCC3 = $regEmail2;
+            $toCC4 = $regEmail2;
          }
     if (filter_var($regEmail1, FILTER_VALIDATE_EMAIL)) {
         sendEmail(
@@ -390,30 +390,6 @@ if (!isset($_POST['submitAddRegs'])) {
 
     }
 }
-//  if (isset($_POST['mem2Chk'])) {
-//         $regName2 = $regFirstName2.' '.$regLastName2;
-//     if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
-//         sendEmail(
-//             $regEmail2, 
-//             $regName2, 
-//             $fromCC,
-//             $fromEmailName,
-//             $emailBody,
-//             $emailSubject,
-//             $replyEmail,
-//             $replyTopic,
-//             $mailAttachment,
-//             $mailAttachment2,
-//             $toCC2,
-//             $toCC3,
-//             $toCC4,
-//             $toCC5
-//         );
-//     } else {
-//         echo 'Registrant Email 2 is empty or Invalid. Please enter valid email.';
-
-//     }
-//  }
 
    $redirect = "Location: ".$_SESSION['returnurl'];
    header($redirect); 
