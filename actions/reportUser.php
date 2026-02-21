@@ -142,6 +142,7 @@ if ($userCount > 0) {
     $pdf->SetFont('Arial', '', 14);
 }
 $today = date("m-d-Y");
+// $pdf->Output("F", "attachments/MemberReport".$today.".PDF");
 $pdf->Output("I", "MemberReport".$today.".PDF");
 }
 

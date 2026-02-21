@@ -83,7 +83,7 @@ if (!isset($_POST['submitEventReg'])) {
     $regEmail1 = filter_var($regEmail1, FILTER_SANITIZE_EMAIL); 
     if ($user->getUserName($regEmail1)) {    
         $regUserid1 = $user->id;
-        if ($user->partnerid !== '0') {
+        if ($user->partnerId !== '0') {
             $eventReg->dwop = 0;
         } else {
             $eventReg->dwop = 1;

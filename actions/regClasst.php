@@ -43,6 +43,8 @@ $regFirstName2 = '';
 $regLastName1 = '';
 $regLastName2 = '';
 $classId = 0;
+$reg1Dup = 'N';
+$reg2Dup = "N";
 
 
 if (!isset($_POST['submitAddRegs'])) {
@@ -61,7 +63,7 @@ if (!isset($_POST['submitAddRegs'])) {
     if ($user->getUserName($_POST['email1'])) {    
              $regId1 = $user->id;
         }
-         
+   
    }
 
     $regEmail2 = '';
@@ -76,7 +78,7 @@ if (!isset($_POST['submitAddRegs'])) {
        }  
 
     }
-
+    
     if (isset($_POST['message2ins'])) {
             $message2Ins = $_POST['message2ins'];
           }
@@ -101,8 +103,14 @@ if (!isset($_POST['submitAddRegs'])) {
                 $classReg->email = $regEmail1;
                 $classReg->userid = $_SESSION['userid'];
                 $classReg->registeredby = $_SESSION['username'];
-                $classReg->create();  
-                $danceClass->addCount($classId);
+                 if (!$classReg->checkDuplicate($regEmail1, $classID))  {
+                  $classReg->create();  
+                  $danceClass->addCount($classId);
+                      } else {
+                        $emailBody .= "<br>".$regFirstName1." ".$regLastName1." with email ".$regEmail1." was previously registered!<br>";
+                        $reg1Dup = 'Y';
+                      }
+
                }
 
                if (isset($_POST['mem2Chk'])) {
@@ -113,9 +121,14 @@ if (!isset($_POST['submitAddRegs'])) {
                     $partnerclassReg->email = $regEmail2;
                     $partnerclassReg->userid = $_SESSION['partnerid'];
                     $partnerclassReg->registeredby = $_SESSION['username'];
-            
-                    $partnerclassReg->create();
+                   if (!$classReg->checkDuplicate($regEmail2, $classID))  {
+                   $partnerclassReg->create();
                     $danceClass->addCount($classId);
+                      } else {
+                        $emailBody .= "<br>".$regFirstName2." ".$regLastName2." with email ".$regEmail2." was previously registered!<br>";
+                        $reg2Dup = 'Y';
+                      }
+ 
                 }
 
             
@@ -185,9 +198,15 @@ if (!isset($_POST['submitAddRegs'])) {
             }
             if (isset($_POST['mem1Chk'])) {
               $emailBody .= "NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
+              if ($reg1Dup === 'Y') {
+                 $emailBody .= "NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1." was previously registered. <br>";
+              }
             }
             if (isset($_POST['mem2Chk'])) {
               $emailBody .= "NAME: ".$regFirstName2." ".$regLastName2."<br>    EMAIL:  ".$regEmail2."<br>";
+                 if ($reg2Dup === 'Y') {
+                     $emailBody .= "NAME: ".$regFirstName2." ".$regLastName2."<br>    EMAIL:  ".$regEmail2." was previously registered.<br>";
+                 }
             }
 
             $classString = '';
