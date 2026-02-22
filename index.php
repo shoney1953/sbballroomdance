@@ -359,8 +359,8 @@ if ($rowCount > 0) {
   
       ?>
           
-<!-- 
-            <li><a title="2025 New Years Cruise" href="specialevent.php">2025 Cruise Info</a></li> -->
+
+            <li><a title="SBDC Dance Cruise 2.0" href="specialevent.php">SBDC Dance Cruise 2.0</a></li>
    
      </ul>
    

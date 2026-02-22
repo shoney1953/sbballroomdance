@@ -21,41 +21,30 @@
     <br>
    <br><br><br> 
     <div class="content">
-    <h1 style="color: red;font-weight: bold">Special Opportunity brought to you by one of our Sponsors!</h1>
-        <h1><img class="cruise" 
-            src="img/cruise.png" alt="cruise"></h1>
+    <h1 style="color: red;font-weight: bold">Special Opportunity brought to you by one of our Sponsors: SBDC Dance Cruise 2.0!</h1>
+
  
-  
+ 
+<h4>We are planning a lovely fall 2027 cruise originating in New York City with stops in Boston, Nova Scotia, Prince Edward Island and Quebec City, Canada. 
+ 
+If you are interested in the cruise and have not booked with Cruise Planners before, please contact Susan & Jerry via this link:  <a href="https://www.cruiseplannersandmore.com/form/0tHyMI8m1j">New Cruiser Intrest form</a>. <br>
+If you have booked with Cruise Planners before, please feel free to call or email Susan directly. </h4>
+ 
+<a href="img/Cruise 2.0 Sheet.pdf">Click for the information sheet distributed at the dance</a>
+<h4>This link is to a tour of the ship:  <a href="https://www.youtube.com/watch?v=b5VCZpkuSSM">Click to view video</a></h4>
+<h4>Here is a detailed deck plan:  <a href="https://www.onesourcecruises.com/pdf/onesource/cu/ships-and-onboard/deck-plans/Deckplans_QM2-1124.pdf">Click for Deck Plans</a></h4>
+<h4><a href="img/Cunard Stateroom_Amenities.pdf">Click to see Stateroom Amenities</a></h4>
 
-
-   
-    <h3>
-     To date (December 2024), 54 SaddleBrooke Ballroom Dance Club members have booked staterooms on this cruise.  
-    Club members interested in joining the fun and going on the cruise can access detailed information using the links below or Contact Susan or Jerry at Cruise Planners.  
-    </h3>
-    <h3>
-    <ul>
-
-         
-          <li class="li-none"><a href=" https://www.cruiseplannersandmore.com/pages/saddlebrooke-ballroom-dance-club-s-new-year-s-eve-cruise-39546">SaddleBrooke Ballroom Dance Club Cruise Info - password Cruise2025</a></li>
-          <li class="li-none"><a href="https://www.cruiseplannersandmore.com/cs/1730907">Click to see the Cruise details</a></li>
-          <li class="li-none"><a href="https://drive.google.com/file/d/1CdylqdIm9iyPfJzIVxQPlXckC8kjUyxn/view?usp=sharing">Click to download the Military Benefits.</a></li>
-   
-          
-          
-          
-    </ul>
-    </h3>
-    <br>
+<h3>Please note - you do not have to be part of the club to join the group.  Bring a friend!</h3>
 
 
     <h4>Brought to you by</h4>
     <h4>Susan & Jerry Wilson<br>
     Click below to email.</h4>
     <h3>
-    <a href="mailto:susan.wilson@cruiseplanners.com?subject=SBDC Cruise Info">
+    <a href="mailto:susan.wilson@cruiseplanners.com?subject=SBDC Cruise 2.0 Info ">
     susan.wilson@cruiseplanners.com</a> / 
-    <a href="mailto:jerry.wilson@cruiseplanners.com?subject=SBDC Cruise Info">
+    <a href="mailto:jerry.wilson@cruiseplanners.com?subject=SBDC Cruise 2.0 Info">
     jerry.wilson@cruiseplanners.com</a>
     
 <br>
