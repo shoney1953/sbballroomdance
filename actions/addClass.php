@@ -83,22 +83,11 @@ if (isset($_POST['submitAdd'])) {
 
 
     $class->date2 = $_POST["$cldate2ID"];
-   
     $class->date3 = $_POST["$cldate3ID"];
-   
     $class->date4 = $_POST["$cldate4ID"];
-
-
     $class->date5 = $_POST["$cldate5ID"];
-   
-    $class->date5 = '0001-01-01';
-    
     $class->date6 = $_POST["$cldate6ID"];
-
     $class->date7 = $_POST["$cldate7ID"];
-   
-    $class->date7 = '0001-01-01';
-    
 
     $class->date8 = $_POST["$cldate8ID"];
     $class->date9 = $_POST["$cldate9ID"];
