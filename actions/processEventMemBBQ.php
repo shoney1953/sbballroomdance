@@ -73,7 +73,7 @@
                   echo "<h4 class='form-title-left'>Selection for ".$_SESSION['userfirstname']." ".$_SESSION['userlastname'].":</h4>";
                 }
              
-                echo '<div class="form-grid2">';
+                echo '<div class="form-grid2-small">';
                   echo '<div class="form-item">';
                       echo '<h4 class="form-item-title"># Hot Dogs?</h4>';
                   echo '<input type="number" name="numhotdogs1" id="numhotdogs1" min="0" title="number of hot dogs you want" value="0" onchange="changeHdBuns1(this)">';
@@ -139,7 +139,7 @@
                 echo "<h4 class='form-title-left'>Meal Selection for ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname'].":</h4>";
     
           
-           echo '<div class="form-grid2">';
+           echo '<div class="form-grid2-small">';
                   echo '<div class="form-item">';
                       echo '<h4 class="form-item-title"># Hot Dogs?</h4>';
                   echo '<input type="number" name="numhotdogs2" id="numhotdogs2" min="0" value="0" title="enter number of hot dogs you want" onchange="changeHdBuns2(this)">';

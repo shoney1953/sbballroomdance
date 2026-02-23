@@ -1026,6 +1026,17 @@ td input[type="select"]:focus {
   margin-bottom: 2px;
   justify-content: left;
 }
+.form-grid2-small {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  /* grid-auto-rows: minmax(100px, auto); */
+  /* border: 1px dashed rgb(91, 2, 129); */
+  border-radius: 1px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  justify-content: left;
+}
 .form-grid-div {
   text-align: left;
   align-items: left;
@@ -2003,6 +2014,17 @@ button {
     gap: 5px;
     grid-auto-rows: minmax(100px, auto);
   }
+  .form-grid2-small {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1px;
+  /* grid-auto-rows: minmax(100px, auto); */
+  /* border: 1px dashed rgb(91, 2, 129); */
+  border-radius: 1px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  justify-content: left;
+}
   .form-grid1 {
     justify-content: left;
     align-items: left;
