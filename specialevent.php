@@ -26,12 +26,12 @@
  
  
 <h3>We are planning a lovely fall 2027 cruise originating in New York City with stops in Boston, Nova Scotia, Prince Edward Island and Quebec City, Canada.
-     <a href="https://www.cruiseplannersandmore.com/pages/saddlebrooke-ballroom-dance-fall-2027-cruise--45601">Click for Details!.</h3>
+     <a href="https://www.cruiseplannersandmore.com/pages/saddlebrooke-ballroom-dance-fall-2027-cruise--45601">Click for Details!</h3>
  
 <h4>If you are interested in the cruise and have not booked with Cruise Planners before, please contact Susan & Jerry via this link:  <a href="https://www.cruiseplannersandmore.com/form/0tHyMI8m1j">New Cruiser Intrest form</a>. <br></h4>
-<h4>If you have booked with Cruise Planners before, please feel free to call or email Susan directly. </h4>
+<h4>If you have booked with Cruise Planners before, please feel free to call or email Susan directly. </h4><br>
  
-<a href="img/Cruise 2.0 Sheet.pdf">Click for the information sheet distributed at the dance in February</a>
+<h4><a href="img/Cruise 2.0 Sheet.pdf">Click for the information sheet distributed at the dance in February</a></h4>
 <h4>This link is to a tour of the ship:  <a href="https://www.youtube.com/watch?v=b5VCZpkuSSM">Click to view video</a></h4>
 <h4>Here is a detailed deck plan:  <a href="https://www.onesourcecruises.com/pdf/onesource/cu/ships-and-onboard/deck-plans/Deckplans_QM2-1124.pdf">Click for Deck Plans</a></h4>
 <h4><a href="img/Cunard Stateroom_Amenities.pdf">Click to see Stateroom Amenities</a></h4>
