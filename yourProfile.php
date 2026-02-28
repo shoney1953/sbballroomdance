@@ -60,12 +60,7 @@ if ($user->partnerId !== 0) {
     <div class="container">     
      <ul>
         <li><a href="index.php">Back to Home</a></li>
-      <?php
-       if  (!isset($_SESSION['testmode']) || 
-            ((isset($_SESSION['testmode']) && ($_SESSION['testmode'] === 'NO')))) {
-            echo '<li><a href="profileClasses.php">Your Class Registrations</a></li>'; 
-           }
-        ?>
+    
         <li><a href="profileMem.php">Membership Status</a></li>
     </ul>
     </div>
