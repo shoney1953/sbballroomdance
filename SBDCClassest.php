@@ -58,7 +58,7 @@ $classyear = '';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css?v4">
-    <title>SBDC Ballroom Dance - Events Test Mode</title>
+    <title>SBDC Ballroom Dance - Upcoming Classes </title>
 </head>
 <body>
 <div class="profile">
@@ -78,6 +78,7 @@ $classyear = '';
     
       
     <?php   
+      
       if (isset($_SESSION['username'])) {
               echo '<h4>If you do not see the action you need to perform on the class, please contact the instructor.</h4><br>';
           }
@@ -107,7 +108,7 @@ $classyear = '';
           }
          
          }
-         
+  
         if (!(isset($_SESSION['username']))) {
           echo '<h4><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Click Here Login as a Member or Visitor to Register or Manage Event Registrations</a></h4>';
         }
@@ -160,9 +161,10 @@ $classyear = '';
                  echo "<legend title='Click for complete class description'><a href='".$cd."'> $classLiteral</a></legend>";
                  $classLiteral = '';
  
-                  if (isset($_SESSION['username'])) {
+                  if  (isset($_SESSION['username']) ) {
                     echo "<h5 class='form-title-left' title='click for pdf report'><form  target='_blank' name='reportClassForm'   method='POST' action='actions/reportClass.php'> ";
                     echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
+         
                     echo "<button  type='submit'>Report</button></p>";
                     echo '</form>';
                     }
@@ -170,12 +172,18 @@ $classyear = '';
           
 
                $gotClassReg = 0;
-                if (isset($_SESSION['username'])) {
+                if ((isset($_SESSION['username'])) && ($_SESSION['role'] !== 'visitor')) {
                     if ($classReg->read_ByClassIdUser($class['id'],$_SESSION['userid'])) {
                        $gotClassReg = 1;
                 
                     } ;
-                  
+                }
+                  if ((isset($_SESSION['username'])) && ($_SESSION['role'] === 'visitor')) {
+                    if ($classReg->read_ByClassIdEmail($class['id'],$_SESSION['username'])) {
+                       $gotClassReg = 1;
+                
+                    } ;
+                }
                   $gotPartnerClassReg = 0;
                    if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                       if ($partnerClassReg->read_ByClassIdUser($class['id'],$_SESSION['partnerid'])) {  
@@ -184,7 +192,7 @@ $classyear = '';
                        
                       }
                     }
-        
+                
                    if ($gotClassReg)  {
         
                     echo '<div class="form-item">';
@@ -201,11 +209,11 @@ $classyear = '';
 
                     } // got partner
 
-      
+        
                 echo "<form name='processClassMem'   method='POST' action='actions/processClassMem.php'> "; 
                 echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
-            
-
+     
+           
                      if (($gotClassReg) || ($gotPartnerClassReg)) {  
 
                           if ($gotClassReg) {
@@ -230,7 +238,7 @@ $classyear = '';
                         
                                   echo '<div class="form-item">';
                                   echo '<h4 class="form-item-title">Register?</h4>';
-                          
+                            
                                     echo "<input type='checkbox' title='Select to register for this class' name='".$regChk."'>";   
                                   echo '</div>';
                                     $numActions++;
@@ -248,9 +256,11 @@ $classyear = '';
                            }
                             //  else below goes to registered
                           }  else {
-
+                                 echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
+                          
                             echo '<div class="form-item">';
                             echo '<h4 class="form-item-title">Register?</h4>';
+        
                             echo "<input type='checkbox' title='Select to register for this class' name='".$regChk."'>";   
                          
                             echo '</div>';
@@ -264,16 +274,16 @@ $classyear = '';
                                echo '</div>';
                         }
                     
-
+                       echo '</form>';
                       }
                                
-                       echo '</form>';
+                   
                 
          
               // echo "</div>"; // end of form container
               echo '</fieldset>';
-                
-            } // end of foreach
+           
+            // } // end of foreach
          echo '</div>'
         ?>
 

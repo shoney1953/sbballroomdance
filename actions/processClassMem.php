@@ -46,22 +46,88 @@ foreach ($upcomingClasses as $class) {
     $regChk = "reg".$class['id'];
 
     if ($class['id'] === $_POST['classId']) {
-     
+      
              $gotClassReg = 0;
               $gotPartnerClassReg = 0;
-               
-              if ($reg->read_ByClassIdUser($class['id'],$_SESSION['userid'])) {
-                       $gotClassReg = 1;
+               if ($_SESSION['role'] !== 'visitor') {
+                  if ($reg->read_ByClassIdUser($class['id'],$_SESSION['userid'])) {
+                          $gotClassReg = 1;
+                        
+                    }
                     
+                  if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+                    if ($partnerReg->read_ByClassIdUser($class['id'],$_SESSION['partnerid'])) {
+                          $gotPartnerClassReg = 1;
+                    }
+                  }
+              }
+              if ($_SESSION['role'] === 'visitor') {
+                 if ($reg->read_ByClassIdEmail($class['id'],$_SESSION['username'])) {
+                          $gotClassReg = 1;
+                        
+                    }
+              }
+     
+             if (isset($_POST["$regChk"])) {
+            
+                echo '<div class="form-container"';
+                    echo "<h1 class='form-title'>Add Registrations for ".$class['classname']." beginning on ".$class['date']."</h1>";
+            
+                echo  '<form method="POST" action="regClasst.php">  ';
+                echo '<input type="hidden" name="classid" value='.$class['id'].'>';
+                 echo '<div class="form-item">';
+                  echo '<h4 class="form-item-title">Message To Instructor</h4>';
+                  echo "<textarea name='message2ins' cols='100' rows='4'></textarea><br><br>";
+                  echo '</div>';
+                if ($gotClassReg === 0) {
+                   echo '<div class="form-grid-div">';
+                    echo '<div class="form-grid">';
+                    if ($_SESSION['role'] !== 'visitor') {
+                   echo '<input type="hidden" name="firstname1" value='.$_SESSION['userfirstname'].'>';
+                    echo '<input type="hidden" name="lastname1" value='.$_SESSION['userlastname'].'>';
+                    echo '<input type="hidden" name="email1" value='.$_SESSION['useremail'].'>';
+                    } else {
+                        echo '<input type="hidden" name="firstname1" value='.$_SESSION['visitorfirstname'].'>';
+                    echo '<input type="hidden" name="lastname1" value='.$_SESSION['visitorlastname'].'>';
+                    echo '<input type="hidden" name="email1" value='.$_SESSION['username'].'>';
+                    }
+ 
+
+                echo '<div class="form-item">';
+                  if ($_SESSION['role'] !== 'visitor') {
+                  echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']." ".$_SESSION['useremail']."</h4>";
+                  } else {
+                      echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['visitorfirstname']." ".$_SESSION['visitorlastname']." ".$_SESSION['username']."</h4>";
+                  } 
+                  
+                echo "<input type='checkbox'  title='Check add Reservation ' name='mem1Chk' checked>";
+                echo '</div>';
+                echo '</div>'; // form grid
+                echo '</div>'; // form grid div
+              }
+    
+              if (isset($_SESSION['partnerid']) && ($_SESSION['partnerid'] !== '0' )) {
+  
+                if (!$gotPartnerClassReg) {
+                    echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
+                    echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
+                    echo '<input type="hidden" name="email2" value='.$_SESSION['partneremail'].'>';
+                echo '<div class="form-grid-div">';
+                echo '<div class="form-grid">';
+                echo '<div class="form-item">';
+                echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']." ".$_SESSION['partneremail']."</h4>";
+                echo "<input type='checkbox'  title='Check add Reservation '  name='mem2Chk' checked>";
+                echo '</div>';
+                 echo '</div>'; // form grid
+                echo '</div>'; // form grid div
                  }
-                
-               if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
-                 if ($partnerReg->read_ByClassIdUser($class['id'],$_SESSION['partnerid'])) {
-                      $gotPartnerClassReg = 1;
-                 }
+              }
+
+                echo '<button type="submit" name="submitAddRegs">Add Registration(s)</button>';
+                echo '</div>'; // form container 
+                echo '</form>';
                }
-           
-              if (isset($_POST["$delChk"])) {
+                if (isset($_POST["$delChk"])) {
 
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Remove Registrations for ".$class['classname']." beginning on ".$class['date']."</h1>";
@@ -102,56 +168,8 @@ foreach ($upcomingClasses as $class) {
                 echo '</div>'; // end of form container
              } // end of delete check
 
-   
-             if (isset($_POST["$regChk"])) {
-  
-                echo '<div class="form-container"';
-                    echo "<h1 class='form-title'>Add Registrations for ".$class['classname']." beginning on ".$class['date']."</h1>";
-            
-                echo  '<form method="POST" action="regClasst.php">  ';
-                echo '<input type="hidden" name="classid" value='.$class['id'].'>';
-                 echo '<div class="form-item">';
-                  echo '<h4 class="form-item-title">Message To Instructor</h4>';
-                  echo "<textarea name='message2ins' cols='100' rows='4'></textarea><br><br>";
-                  echo '</div>';
-                if ($gotClassReg === 0) {
-                   echo '<div class="form-grid-div">';
-                    echo '<div class="form-grid">';
-                    echo '<input type="hidden" name="firstname1" value='.$_SESSION['userfirstname'].'>';
-                    echo '<input type="hidden" name="lastname1" value='.$_SESSION['userlastname'].'>';
-                    echo '<input type="hidden" name="email1" value='.$_SESSION['useremail'].'>';
-
-                echo '<div class="form-item">';
-                  echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']." ".$_SESSION['useremail']."</h4>";
-                echo "<input type='checkbox'  title='Check add Reservation ' name='mem1Chk' checked>";
-                echo '</div>';
-                echo '</div>'; // form grid
-                echo '</div>'; // form grid div
-              }
-    
-              if (isset($_SESSION['partnerid']) && ($_SESSION['partnerid'] !== '0' )) {
-  
-                if (!$gotPartnerClassReg) {
-                    echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
-                    echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
-                    echo '<input type="hidden" name="email2" value='.$_SESSION['partneremail'].'>';
-                echo '<div class="form-grid-div">';
-                echo '<div class="form-grid">';
-                echo '<div class="form-item">';
-                echo "<h4 class='form-item-title'>Add registration for ".$_SESSION['partnerfirstname']." ".$_SESSION['partnerlastname']." ".$_SESSION['partneremail']."</h4>";
-                echo "<input type='checkbox'  title='Check add Reservation '  name='mem2Chk' checked>";
-                echo '</div>';
-                 echo '</div>'; // form grid
-                echo '</div>'; // form grid div
-                 }
-              }
-
-                echo '<button type="submit" name="submitAddRegs">Add Registration(s)</button>';
-                echo '</div>'; // form container 
-                echo '</form>';
-               }
-
     } // classid matches
+
 } // foreach upcoming class
 
 

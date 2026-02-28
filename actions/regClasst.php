@@ -101,7 +101,12 @@ if (!isset($_POST['submitAddRegs'])) {
                 $classReg->lastname = $regLastName1;
                 $classReg->classid = $classId;
                 $classReg->email = $regEmail1;
-                $classReg->userid = $_SESSION['userid'];
+                if ($_SESSION['role'] !== 'visitor') {
+                   $classReg->userid = $_SESSION['userid'];
+                } else {
+                   $classReg->userid = 0;
+                }
+  
                 $classReg->registeredby = $_SESSION['username'];
                  if (!$classReg->checkDuplicate($regEmail1, $classID))  {
                   $classReg->create();  

@@ -64,7 +64,7 @@ $visitorLast = '';
            $visitor->create();
             unset($_SESSION['username']);
         }
-      
+
    if (isset($_SESSION['homeurl'])) {
              $redirect = "Location: ".$_SESSION['homeurl'];
  
