@@ -109,12 +109,15 @@ if (!isset($_POST['submitAddRegs'])) {
   
                 $classReg->registeredby = $_SESSION['username'];
                  if (!$classReg->checkDuplicate($regEmail1, $classID))  {
+                  if ($classReg->firstname != '') {
                   $classReg->create();  
                   $danceClass->addCount($classId);
                       } else {
                         $emailBody .= "<br>".$regFirstName1." ".$regLastName1." with email ".$regEmail1." was previously registered!<br>";
                         $reg1Dup = 'Y';
                       }
+                  }
+
 
                }
 
@@ -127,8 +130,11 @@ if (!isset($_POST['submitAddRegs'])) {
                     $partnerclassReg->userid = $_SESSION['partnerid'];
                     $partnerclassReg->registeredby = $_SESSION['username'];
                    if (!$classReg->checkDuplicate($regEmail2, $classID))  {
-                   $partnerclassReg->create();
-                    $danceClass->addCount($classId);
+                    if ($partnerclassReg->firstname != '') {
+                       $partnerclassReg->create();
+                       $danceClass->addCount($classId);
+                      }
+                  
                       } else {
                         $emailBody .= "<br>".$regFirstName2." ".$regLastName2." with email ".$regEmail2." was previously registered!<br>";
                         $reg2Dup = 'Y';
