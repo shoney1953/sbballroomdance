@@ -78,7 +78,7 @@ $classyear = '';
     
       
     <?php   
-      
+     
       if (isset($_SESSION['username'])) {
               echo '<h4>If you do not see the action you need to perform on the class, please contact the instructor.</h4><br>';
           }
@@ -256,7 +256,8 @@ $classyear = '';
                            }
                             //  else below goes to registered
                           }  else {
-                                 echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
+                            if (isset($_SESSION['username'])) {
+                          echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 
                           
                             echo '<div class="form-item">';
                             echo '<h4 class="form-item-title">Register?</h4>';
@@ -265,6 +266,8 @@ $classyear = '';
                          
                             echo '</div>';
                               $numActions++;
+                            }
+                          
 
                       
                       }  // registered
