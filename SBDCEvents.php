@@ -33,19 +33,12 @@ $upcomingEvents = $_SESSION['upcoming_events'];
     <section id="events" class="content">
 
       <br>
-      <?php       
-      if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {
-        echo '<h2 class="section-header">Choose to register and Pay Immediately or <br> Register then pay later from your profile - paying online later from your profile; or Send in your form and check manually</h2>';
-       
-      } else {
-          echo '<h2 class="section-header">Choose to register for events and then Send in your form and check manually</h2>';
-       
-      }
-     ?>
+     
       <h4>Once Registered, You may modify or delete your registrations from your profile under the Event Registration tab.</h4>
         <div class="form-grid2">
         <?php
-
+        var_dump($_SESSION['role']);
+        var_dump($_SESSION['visitorfirstname']);
          if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
             if (isset($_SESSION['role'])) {
         if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {

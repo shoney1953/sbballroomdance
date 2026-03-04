@@ -62,7 +62,7 @@ $visitorLast = '';
           $visitor->update($visitorEmail);
         } else {
            $visitor->create();
-            unset($_SESSION['username']);
+          
         }
 
    if (isset($_SESSION['homeurl'])) {

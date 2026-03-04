@@ -7,7 +7,7 @@ require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
 
 // $regs = $_SESSION['eventregistrations'];
-
+var_dump('in deleteeventregt');
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
@@ -61,12 +61,22 @@ if (isset($_POST['submitRemoveRegs'])) {
     if ($_SESSION['role'] === 'visitor') {
         $_SESSION['userid'] = '0';
         $regName = $_SESSION['visitorfirstname'].' '.$_SESSION['visitorlastname'];
-
-    }
-    if ($eventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['userid'])) {
-           $gotEventRec = 1;
+        var_dump($_POST['eventid'],$_SESSION['visitoremail']);
+        if ($eventReg->read_ByEventIdVisitor($_POST['eventid'],$_SESSION['visitoremail'])) {
+          $gotEventRec = 1;
            $remID1 = "rem".$eventReg->id;
+         
+        } 
+
+    } else {
+        if ($eventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['userid'])) {
+        
+            $gotEventRec = 1;
+            $remID1 = "rem".$eventReg->id;
+        }
     }
+
+
  
     if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
         if ($partnerEventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['partnerid'])) {
@@ -74,13 +84,14 @@ if (isset($_POST['submitRemoveRegs'])) {
             $remID2 = "rem".$partnerEventReg->id;                 
     }              
    }
-    
+
    if ($_SESSION['role'] !== 'visitor') {
+
        if (isset($_POST["$remID1"])) {
         $emailBody .= "<br>MEMBER NAME: ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']."<br>    EMAIL:  ".$_SESSION['useremail']."<br>";
         $regName = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
         $regEmail = $_SESSION['useremail'];
-
+ 
          if ($gotEventRec) {
                $eventReg->delete();
 
@@ -163,7 +174,8 @@ if (isset($_POST['submitRemoveRegs'])) {
                 $toCC5
             );
         } else {
-            echo 'Registrant 1 Email is empty or Invalid. Please enter valid email.';
+           
+             echo 'Registrant 1 Email is empty or Invalid. Please enter valid email.';
              $redirect = "Location: ".$_SESSION['returnurl'];
             header($redirect);
            exit;

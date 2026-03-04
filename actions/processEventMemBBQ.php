@@ -189,7 +189,7 @@
  
 
              if (isset($_POST["$delChk"])) {
-             
+         
                 echo '<div class="form-container"';
                 echo "<h1 class='form-title'>Remove Reservations for ".$event['eventname']." on ".$event['eventdate']."</h1>";
                  echo  '<form method="POST" action="deleteEventRegt.php">  ';
