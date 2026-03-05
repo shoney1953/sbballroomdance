@@ -83,7 +83,9 @@ if ($err_switch == 1) {
  
 
 
-   <h1>To Join, enter your (and your partner's) information, and click the button to submit membership information.</h1>
+   <h1>To Join, enter your (and your partner's) information, and click the button to submit membership information.<br>
+    <em>Please note: YOU MUST HAVE A SADDLEBROOKE HOA 1 or HOA 2 ADDRESS to JOIN<em>
+   </h1>
    
   <?php
 
@@ -375,13 +377,13 @@ if ($err_switch == 1) {
             echo "<input type='email' name='email2' 
                 title='Enter the second members email' value=".$potentialmember2['email']." >";
         } 
-             else {
-            echo "<input type='email' name='email2' placeholder='member two email -- must be unique' 
+        else {
+            echo "<input type='email' name='email2' placeholder='must be unique - cannot be the same email as Member 1' 
              title='Enter the second members email' >";
     }
     }
      else {
-      echo "<input type='email' name='email2' placeholder='member two email -- must be unique' 
+      echo "<input type='email' name='email2' placeholder='must be unique - cannot be the same email as Member 1' 
              title='Enter the second members email' >";
     }
  
