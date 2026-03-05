@@ -89,7 +89,7 @@ date_default_timezone_set("America/Phoenix");
 
     <section id="joinUs" class="content">
    <br><br><br>
-   <h3>Join Our Club Today</h3>
+   <h3><em>If you are a SaddleBrooke Resident</em><br> Join Our Club Today</h3>
    <h4>Members enjoy the benefits of attending any of our classes at no cost!
    They also receive reduced prices for our dinner dances!</h4>
    <h4>We would love to have you join us! It's easy.</h4>
