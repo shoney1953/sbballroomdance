@@ -54,7 +54,9 @@ $number = 0;
             'Veg',
             'Member',
             'Cornhole',
-            'Softball'
+            'Softball',
+            'Date Registered',
+            'DWOP'
 
             ];
             array_push($csvEvent, $title_array);
@@ -78,7 +80,9 @@ $number = 0;
                     'vegetarian' => $vegetarian,
                     'member' => $member,
                     'cornhole' => $cornhole,
-                    'softball' => $softball
+                    'softball' => $softball,
+                    'dateregistered' => substr($dateregistered,0,10),
+                    'dwop' => $dwop
 
     
                 );
@@ -92,7 +96,9 @@ $number = 0;
             'First Name',
             'Last Name', 
             'Email',
+            'Date Registered',
             'Member',
+            'DWOP',
             'Dinner',
             'Paid',
             'Meal',
@@ -114,7 +120,9 @@ $number = 0;
                 'firstname' => $firstname,
                 'lastname' => $lastname,
                 'email' => $email,
+                'dateregistered' => substr($dateregistered,0,10),
                 'member' => $member,
+                'dwop' => $dwop,
                 'ddattenddinner' => $ddattenddinner,
                 'paid' => $paid,
                 'mealname' => $mealname,
