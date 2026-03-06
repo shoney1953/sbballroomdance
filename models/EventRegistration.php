@@ -253,6 +253,338 @@ public function read_ByEmail($email) {
     return $stmt;
 
 }
+public function read_ByEventIdRegDate($eventid) {
+      
+
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      r.eventid = :eventid 
+    ORDER BY 
+      r.dateregistered DESC, r.lastname, r.firstname';
+ 
+
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
+public function read_ByEventIdPaid($eventid) {
+      
+
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      r.eventid = :eventid 
+    ORDER BY 
+      r.paid, r.lastname, r.firstname';
+ 
+
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
+public function read_ByEventIdMeal($eventid) {
+      
+
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      r.eventid = :eventid 
+    ORDER BY 
+      mealname, r.lastname, r.firstname';
+ 
+
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
+public function read_ByEventIdModDate($eventid) {
+      
+
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      r.eventid = :eventid 
+    ORDER BY 
+      r.modifieddate DESC, r.lastname, r.firstname';
+ 
+
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
+public function read_ByEventIdAttendDinner($eventid) {
+     
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      r.eventid = :eventid 
+    ORDER BY 
+      r.ddattenddinner, r.lastname, r.firstname';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
+public function read_ByEventIdFirstName($eventid) {
+     
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      r.eventid = :eventid 
+    ORDER BY 
+      r.firstname, r.lastname, r.firstname';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
+public function read_ByEventIdLastName($eventid) {
+     
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      r.eventid = :eventid 
+    ORDER BY 
+      r.lastname, r.lastname, r.firstname';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
+public function read_ByEventIdEmail($eventid) {
+     
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      r.eventid = :eventid 
+    ORDER BY 
+      r.email, r.lastname, r.firstname';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
+public function read_ByEventIdCornHole($eventid) {
+     
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      r.eventid = :eventid 
+    ORDER BY 
+      r.cornhole DESC, r.lastname, r.firstname';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
+public function read_ByEventIdSoftBall($eventid) {
+     
+    $query = 'SELECT c.eventname as eventname, c.eventdate as eventdate,
+    c.eventtype as eventtype, c.orgemail as orgemail,
+    r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
+    r.registeredby,  r.cornhole, r.softball, r.paidonline,
+    r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
+    r.mealchoice, r.dietaryrestriction, m.mealname as mealname
+    FROM ' . $this->table . ' r
+    LEFT JOIN
+      events c ON r.eventid = c.id
+    LEFT JOIN
+      dinnermealchoices m on r.mealchoice = m.id
+    WHERE
+      r.eventid = :eventid 
+    ORDER BY 
+      r.softball DESC, r.lastname, r.firstname';
+
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+
+    // Bind ID
+    $stmt->bindParam('eventid', $eventid);
+
+    // Execute query
+    $stmt->execute();
+
+    return $stmt;
+
+}
 public function read_ByEventIdRegBy($eventid, $registeredby) {
   
 
