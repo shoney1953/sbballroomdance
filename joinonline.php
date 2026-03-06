@@ -542,7 +542,12 @@ if ($err_switch == 1) {
     //  echo '<input type="hidden" name="couplepricediscid" value="'.$couplePriceDiscID.'">';
      ?>
     </div>
-    <button type="submit" name="submitMembership">Submit Membership Information</button><br>
+    <div class="form-item">
+    <h4 class="form-item-title">By Checking this box, I certify that I(we) own property in SaddleBrooke HOA 1 or HOA 2</h4>
+
+    <input onclick="showSubmit()" type="checkbox" id="residentchk" name="residentchk" title="check to certify you are a Saddlebrooke HOA 1 or HOA 2 resident">
+    </div>
+    <button type="submit" id="submitMembership" class="hidden" name="submitMembership">Submit Membership Information</button><br>
         </form>
 
    
@@ -560,3 +565,15 @@ if ($err_switch == 1) {
 </footer>
 </body>
 </html>
+<script>
+  function showSubmit() {
+  subButton = document.getElementById("submitMembership");
+   if (document.getElementById('residentchk').checked) {
+      subButton.classList.remove('hidden');
+     }
+      else {
+          subButton.classList.add('hidden');
+      }
+
+  }
+</script>
