@@ -104,7 +104,7 @@ if (count($customer) == 0) {
   $paymentcustomer->create();
 
 }
-$metadata_array = ['type=>' => 'membership', 'email' => $tempmember1->email];
+$metadata_array = ['transtype' => 'membership', 'type' => 'new', 'email' => $tempmember1->email];
 
 $paymentIntentDesc = 'SaddleBrooke Ballroom Dance Club Membership';
 $paymentIntentDesc .= ' ';

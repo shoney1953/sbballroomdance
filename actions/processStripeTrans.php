@@ -28,6 +28,7 @@ $searchCustomers = $_SESSION['searchCustomers'];
 $charges = '';
 $searchEmail = '';
 $i = 0;  
+
 if (isset($_POST['submitGetTrans']))  {
 
 foreach ($searchCustomers as $customer) {
@@ -81,20 +82,14 @@ foreach ($searchCustomers as $customer) {
 
 }
 
- if (isset($_POST['submitGetTransDate']))  {
-    $startDate = strtotime($_POST['startdate']);
-     $endDate = strtotime($_POST['enddate']);
-     $charges = $stripe->charges->search([
-  'query' => 'amount>999 AND metadata[\'order_id\']:\'6735\'',
-]);
-   $qstring = 'created >= '.$startDate;
-   $qstring .= ' AND created <= '.$endDate;
+ if (isset($_POST['submitGetTransTypeMembership']))  {
 
-    $charges = $stripe->charges->search([
-     'query' => $qstring,
-   ]);
+   $charges = $stripe->charges->search([
+   ['query' => 'metadata[\'transtype\']:\'membership\''],
+  'limit' => 100
+  ]);
 
-        foreach($charges['data'] as $transaction) {
+       foreach($charges['data'] as $transaction) {
                    $balanceTransaction = $stripe->balanceTransactions->retrieve(
                    $transaction['balance_transaction'],
                  []
@@ -124,6 +119,92 @@ foreach ($searchCustomers as $customer) {
            
                 
                
+            }
+         } while ($charges['has_more']);
+}
+ } // membership
+
+ if (isset($_POST['submitGetTransEvents']))  {
+
+   $charges = $stripe->charges->search([
+   ['query' => 'metadata[\'transtype\']:\'event\''],
+  'limit' => 100
+  ]);
+
+       foreach($charges['data'] as $transaction) {
+                   $balanceTransaction = $stripe->balanceTransactions->retrieve(
+                   $transaction['balance_transaction'],
+                 []
+                 );
+          
+                 $transaction['stripefee'] = $balanceTransaction['fee'];
+            array_push($totalCharges, $transaction); 
+
+        }
+      if ($charges['has_more']) {
+
+      do {
+             $charges = $stripe->charges->search([
+                'query' => $qstring,
+                'page' => $charges['next_page']
+              ]);
+            foreach($charges['data'] as $transaction) {
+                  $balanceTransaction = $stripe->balanceTransactions->retrieve(
+                   $transaction['balance_transaction'],
+                 []
+                 );
+          
+                 $transaction['stripefee'] = $balanceTransaction['fee'];
+
+               array_push($totalCharges, $transaction); 
+           
+           
+                
+               
+            }
+         } while ($charges['has_more']);
+}
+ } // events
+ if (isset($_POST['submitGetTransDate']))  {
+    $startDate = strtotime($_POST['startdate']);
+     $endDate = strtotime($_POST['enddate']);
+
+   $qstring = 'created >= '.$startDate;
+   $qstring .= ' AND created <= '.$endDate;
+
+    $charges = $stripe->charges->search([
+     'query' => $qstring,
+   ]);
+
+        foreach($charges['data'] as $transaction) {
+                   $balanceTransaction = $stripe->balanceTransactions->retrieve(
+                   $transaction['balance_transaction'],
+                 []
+                 );
+          
+                 $transaction['stripefee'] = $balanceTransaction['fee'];
+         
+            
+            array_push($totalCharges, $transaction); 
+
+        }
+      if ($charges['has_more']) {
+
+      do {
+             $charges = $stripe->charges->search([
+                'query' => $qstring,
+                'page' => $charges['next_page']
+              ]);
+            foreach($charges['data'] as $transaction) {
+                  $balanceTransaction = $stripe->balanceTransactions->retrieve(
+                   $transaction['balance_transaction'],
+                 []
+                 );
+          
+                 $transaction['stripefee'] = $balanceTransaction['fee'];
+
+               array_push($totalCharges, $transaction); 
+
             }
          } while ($charges['has_more']);
 }
@@ -183,6 +264,7 @@ foreach ($searchCustomers as $customer) {
                     echo '<th>Amount Paid</th> '; 
                      echo '<th>Stripe Fee</th> '; 
                     echo '<th>Billing Email</th> '; 
+                     echo '<th>Type</th> '; 
                     echo '<th>Description</th> '; 
                     echo '<th>Receipt URL</th> '; 
 
@@ -192,11 +274,11 @@ foreach ($searchCustomers as $customer) {
             $num = 0;
             if (count($totalCharges) === 0) {
                 echo '<tr>';
-                echo '<td colspan="5">NO Transactions found with this billing email: '.$searchEmail.'</td>';
+                echo '<td colspan="5">NO Transactions found</td>';
                 echo '</tr>';
             }
             foreach ($totalCharges as $transaction) {
-            //  var_dump($transaction['metadata']['eventid']);
+       
               
                 $num++;
               echo '<tr>';
@@ -205,6 +287,7 @@ foreach ($searchCustomers as $customer) {
                 echo "<td>$".number_format($transaction['amount']/100, 2)."</td>";
                 echo "<td>$".number_format($transaction['stripefee']/100, 2)."</td>";
                 echo "<td>".$transaction['billing_details']['email']."</td>";
+                echo "<td>".$transaction['metadata']['transtype']."</td>";
                 echo "<td>".$transaction['description']."</td>";
                 echo "<td><a target='_blank' href='".$transaction['receipt_url']."'>Click to see Receipt</a></td>";
               echo '</tr>';

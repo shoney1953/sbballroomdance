@@ -238,7 +238,24 @@ unset($_POST['searchemail']);
             </form>
     </div>
  
+<div class="form-grid-div">
+       <form method="POST" action="actions/processStripeTrans.php">
 
+            <div class="form-item">
+   
+                    <button type="submit" name="submitGetTransTypeMembership">Retrieve Transactions by New Membership </button>   
+                </div>
+            </form>
+    </div>
+ <div class="form-grid-div">
+       <form method="POST" action="actions/processStripeTrans.php">
+
+            <div class="form-item">
+   
+                    <button type="submit" name="submitGetTransEvents">Retrieve Transactions by events </button>   
+                </div>
+            </form>
+    </div>
 
      
    

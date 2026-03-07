@@ -89,7 +89,7 @@ $tempOnlineRenewal->renewboth = $_SESSION['renewboth'];
 
 $tempOnlineRenewal->create();
 $renewID = $db->lastInsertId();
-$metadata_array = ['type=>' => 'membership renewal', 'email' => $_SESSION['useremail']];
+$metadata_array = ['transtype' => 'membership', 'type' => 'renewal', 'email' => $_SESSION['useremail']];
 
 $paymentIntentDesc = 'SaddleBrooke Ballroom Dance Club Membership Renewal';
 $paymentIntentDesc .= ' ';
