@@ -270,7 +270,7 @@ if ($tempReg->guest2priceid != NULL) {
   $line_item_array[] =  array('price' => $tempReg->guest2priceid, 'quantity' => '1');
 }
 
-$metadata_array = ['type=>' => $event->eventtype, 'eventid' => $event->id, 'eventname' => $event->eventname];
+$metadata_array = ['type=>' => $event->eventtype, 'eventid' => $event->id, 'eventname' => $event->eventname, 'email' => $tempReg->registrationemail];
 
 $paymentIntentDesc = $event->eventname;
 $paymentIntentDesc .= ' ';

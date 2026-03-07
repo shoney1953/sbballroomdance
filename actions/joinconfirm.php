@@ -104,7 +104,11 @@ if (count($customer) == 0) {
   $paymentcustomer->create();
 
 }
+$metadata_array = ['type=>' => 'membership', 'email' => $tempmember1->email];
 
+$paymentIntentDesc = 'SaddleBrooke Ballroom Dance Club Membership';
+$paymentIntentDesc .= ' ';
+$paymentIntentDesc .= $tempmember1->email;
 
 $checkout_session = \Stripe\Checkout\Session::create([
    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
@@ -113,6 +117,9 @@ $checkout_session = \Stripe\Checkout\Session::create([
     'quantity' => 1,
   ]],
   'customer' => $customer->id,
+  'metadata' => $metadata_array,
+  'payment_intent_data[metadata]' => $metadata_array,
+  'payment_intent_data[description]' => $paymentIntentDesc,
   'mode' => 'payment',
   'success_url' => $YOUR_DOMAIN . '/joinsuccess.php?id1='.$member1ID.'&id2='.$member2ID.'&py='.$partialYear,
   'cancel_url' => $YOUR_DOMAIN . '/joincancel.php',
