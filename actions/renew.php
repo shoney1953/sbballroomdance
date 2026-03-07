@@ -89,7 +89,11 @@ $tempOnlineRenewal->renewboth = $_SESSION['renewboth'];
 
 $tempOnlineRenewal->create();
 $renewID = $db->lastInsertId();
+$metadata_array = ['type=>' => 'membership renewal', 'email' => $_SESSION['useremail']];
 
+$paymentIntentDesc = 'SaddleBrooke Ballroom Dance Club Membership Renewal';
+$paymentIntentDesc .= ' ';
+$paymentIntentDesc .= $_SESSION['useremail'];
 $checkout_session = \Stripe\Checkout\Session::create([
    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
   'line_items' => [[
@@ -97,6 +101,9 @@ $checkout_session = \Stripe\Checkout\Session::create([
     'quantity' => 1,
   ]],
   'customer' => $customer->id,
+   'metadata' => $metadata_array,
+  'payment_intent_data[metadata]' => $metadata_array,
+  'payment_intent_data[description]' => $paymentIntentDesc,
   'mode' => 'payment',
   'success_url' => $YOUR_DOMAIN . '/renewsuccess.php?renewalid='.$renewID,
   'cancel_url' => $YOUR_DOMAIN . '/renewcancel.php',
