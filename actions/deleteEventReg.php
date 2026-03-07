@@ -80,7 +80,7 @@ $result = 0;
   
            $eventReg->delete();
      
-           $event->decrementCount($eventid);
+           $event->decrementCount($eventid,$eventid);
        }
     }
 

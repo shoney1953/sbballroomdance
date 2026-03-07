@@ -4,6 +4,7 @@ date_default_timezone_set("America/Phoenix");
 require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
 require_once '../models/PaymentProduct.php';
+require_once '../models/Event.php';
 require_once '../models/TempOnlineEventReg.php';
 require_once '../models/PaymentCustomer.php';
 
@@ -50,10 +51,12 @@ $database = new Database();
 $db = $database->connect();
 $paymentcustomer = new PaymentCustomer($db);
 $tempReg = new TempOnlineEventReg($db);
-
+$event = new Event($db);
 
 if (isset($_POST['submitRegConfirm'])) {
 /*  create temp reg in database */
+    $event->id = $potentialReg1['eventid'];
+    $event->read_single();
     $tempReg->ddattenddinner1 = 0;
     $tempReg->ddattenddinner2 = 0;
     $tempReg->visitor = 0;
@@ -97,6 +100,8 @@ if (isset($_POST['submitRegConfirm'])) {
         }
     } 
     if (isset($potentialReg2['firstname'])) {
+      $event->id = $potentialReg2['eventid'];
+       $event->read_single();
      $tempReg->registrationemail = $potentialReg2['registrationemail'];
       $tempReg->eventid = $potentialReg2['eventid'];
       $tempReg->eventname = $potentialReg2['eventname'];
@@ -135,6 +140,8 @@ if (isset($_POST['submitRegConfirm'])) {
     } // potential reg2
 
       if ((isset($potentialRegG1['firstname'])) && ($potentialRegG1['firstname'] !== '')) {
+      $event->id = $potentialRegG1['eventid'];
+      $event->read_single();
       $tempReg->registrationemail = $potentialRegG1['registrationemail'];
       $tempReg->eventid = $potentialRegG1['eventid'];
       $tempReg->eventname = $potentialRegG1['eventname'];
@@ -169,6 +176,8 @@ if (isset($_POST['submitRegConfirm'])) {
     } // guest 2
 
     if ((isset($potentialRegG2['firstname']))  && ($potentialRegG2['firstname'] !== '')) {
+      $event->id = $potentialRegG2['eventid'];
+      $event->read_single();
       $tempReg->registrationemail = $potentialRegG2['registrationemail'];
       $tempReg->eventid = $potentialRegG2['eventid'];
       $tempReg->eventname = $potentialRegG2['eventname'];
@@ -207,9 +216,13 @@ $tempReg->totalcost = $totalCost;
 $tempReg->create();
 $tempRegID = $db->lastInsertId();
 /* */
-
+ if ($_SESSION['role'] === 'visitor') {
+    $fullname = $_SESSION['visitorfirstname']||' '||$_SESSION['visitorlastname'];
+  } else {
+    $fullname = $_SESSION['userfirstname']||' '||$_SESSION['userlastname'];
+  }
   $searchemail = $tempReg->registrationemail;
-  
+
 
 $qstring = 'email: "'.$searchemail.'"';
 
@@ -222,7 +235,7 @@ $cnt = count($customer);
 
 if (count($customer) == 0) {
   if (isset($potentialReg1['firstname'])) {
-    $fullname = $potentialReg1['firstname']||' '||$potentialReg1['lastname'];
+    
     $customer = $stripe->customers->create([
       'name' => $fullname,
       'email' => $potentialReg1['email'],
@@ -231,7 +244,7 @@ if (count($customer) == 0) {
   } else {
 
     if (isset($potentialReg2['firstname'])) {
-      $fullname = $potentialReg2['firstname']||' '||$potentialReg2['lastname'];
+      
       $customer = $stripe->customers->create([
         'name' => $fullname,
         'email' => $potentialReg2['email'],
@@ -257,16 +270,24 @@ if ($tempReg->guest2priceid != NULL) {
   $line_item_array[] =  array('price' => $tempReg->guest2priceid, 'quantity' => '1');
 }
 
+$metadata_array = ['type=>' => $event->eventtype, 'eventid' => $event->id, 'eventname' => $event->eventname];
+
+$paymentIntentDesc = $event->eventname;
+$paymentIntentDesc .= ' ';
+$paymentIntentDesc .= $event->eventdate;
+
 
 $checkout_session = \Stripe\Checkout\Session::create([
     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
     'line_items' => $line_item_array,
     'customer' => $customer->id,
     'mode' => 'payment',
+    'metadata' => $metadata_array,
+    'payment_intent_data[metadata]' => $metadata_array,
+    'payment_intent_data[description]' => $paymentIntentDesc,
     'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
     'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
   ]); 
-
 
 
     header("HTTP/1.1 303 See Other");

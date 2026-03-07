@@ -4,6 +4,7 @@ date_default_timezone_set("America/Phoenix");
 require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
 require_once '../models/PaymentProduct.php';
+require_once '../models/Events.php';
 require_once '../models/TempOnlineEventReg.php';
 require_once '../models/PaymentCustomer.php';
 
@@ -36,10 +37,14 @@ $database = new Database();
 $db = $database->connect();
 $paymentcustomer = new PaymentCustomer($db);
 $tempReg = new TempOnlineEventReg($db);
+$event = new Event($db);
+
 
 
 if (isset($_POST['submitRegConfirm'])) {
 /*  create temp reg in database */
+$event->id = $potentialReg1['eventid'];
+$event->read_single();
 $tempReg->registrationemail = $potentialReg1['registrationemail'];
 $tempReg->eventid = $potentialReg1['eventid'];
 $tempReg->eventname = $potentialReg1['eventname'];
@@ -154,7 +159,13 @@ $cnt = count($customer);
 // if stripe customer not found, create one
 
 if (count($customer) == 0) {
-  $fullname = $potentialReg1['firstname']||' '||$potentialReg1['lastname'];
+  // $fullname = $potentialReg1['firstname']||' '||$potentialReg1['lastname'];
+  if ($_SESSION['role'] === 'visitor') {
+    $fullname = $_SESSION['visitorfirstname']||' '||$_SESSION['visitorlastname'];
+  } else {
+    $fullname = $_SESSION['userfirstname']||' '||$_SESSION['userlastname'];
+  }
+
   $customer = $stripe->customers->create([
     'name' => $fullname,
     'email' => $potentialReg1['email'],
@@ -176,43 +187,18 @@ if ($tempReg->guest2priceid != NULL) {
   $line_item_array .=    ",['price' => $tempReg->guest2priceid, 'quantity' => '1']";
 }
 $line_item_array .= "]";
-
+$metadata =  "['eventid' => '".$event->id."' ]";
 $checkout_session = \Stripe\Checkout\Session::create([
     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
     'line_items' => $line_item_array,
     'customer' => $customer->id,
     'mode' => 'payment',
+    'description' => $event->eventname,
+    'metadata' => $metadata,
     'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
     'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
   ]); 
-// if ($tempReg->priceid2 !== NULL) {
-//   $checkout_session = \Stripe\Checkout\Session::create([
-//    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-//   'line_items' => [
-//     ['price' => $tempReg->priceid1, 'quantity' => '1'],
-//     ['price' => $tempReg->priceid2, 'quantity' => '1']
-//   ],
-//   'customer' => $customer->id,
-//   'mode' => 'payment',
-//   'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
-//   'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
-//   ]); 
-// } else {
-//   $checkout_session = \Stripe\Checkout\Session::create([
-//     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-//     'line_items' => [
-//       ['price' => $tempReg->priceid1, 'quantity' => '1']
-//     ],
-//     'customer' => $customer->id,
-//     'mode' => 'payment',
-//     'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
-//     'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
-//   ]); 
 
-// }
-
-// header("HTTP/1.1 303 See Other");
-// header("Location: " . $checkout_session->url);
 
   } // end of submitted if
 

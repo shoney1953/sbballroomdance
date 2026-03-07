@@ -45,6 +45,12 @@ foreach ($searchCustomers as $customer) {
         foreach($charges['data'] as $transaction) {
           if (($transaction['billing_details']['email'] === $searchEmail) || 
                ($transaction['receipt_email'] === $searchEmail)) {
+                  $balanceTransaction = $stripe->balanceTransactions->retrieve(
+                   $transaction['balance_transaction'],
+                 []
+                 );
+          
+                 $transaction['stripefee'] = $balanceTransaction['fee'];
             array_push($totalCharges, $transaction); 
           }
 
@@ -59,6 +65,12 @@ foreach ($searchCustomers as $customer) {
             foreach($charges['data'] as $transaction) {
               if (($transaction['billing_details']['email'] === $searchEmail) || 
                ($transaction['receipt_email'] === $searchEmail)) {
+                  $balanceTransaction = $stripe->balanceTransactions->retrieve(
+                   $transaction['balance_transaction'],
+                 []
+                 );
+          
+                 $transaction['stripefee'] = $balanceTransaction['fee'];
                array_push($totalCharges, $transaction); 
              }
                
@@ -83,6 +95,12 @@ foreach ($searchCustomers as $customer) {
    ]);
 
         foreach($charges['data'] as $transaction) {
+                   $balanceTransaction = $stripe->balanceTransactions->retrieve(
+                   $transaction['balance_transaction'],
+                 []
+                 );
+          
+                 $transaction['stripefee'] = $balanceTransaction['fee'];
             array_push($totalCharges, $transaction); 
 
         }
@@ -94,7 +112,17 @@ foreach ($searchCustomers as $customer) {
                 'page' => $charges['next_page']
               ]);
             foreach($charges['data'] as $transaction) {
+                  $balanceTransaction = $stripe->balanceTransactions->retrieve(
+                   $transaction['balance_transaction'],
+                 []
+                 );
+          
+                 $transaction['stripefee'] = $balanceTransaction['fee'];
+
                array_push($totalCharges, $transaction); 
+           
+           
+                
                
             }
          } while ($charges['has_more']);
@@ -122,7 +150,7 @@ foreach ($searchCustomers as $customer) {
      
      <ul>
         <?php
-           echo "<li><a href='index.php'>Back to Home</a></li> ";
+           echo "<li><a href='../index.php'>Back to Home</a></li> ";
       
             if ($_SESSION['role'] === 'SUPERADMIN') {  
                 echo "<li><a href='../paymentHist.php'>Back to Payment History</a></li> ";
@@ -152,9 +180,10 @@ foreach ($searchCustomers as $customer) {
                 echo '<tr>';
                     echo '<th>#</th> '; 
                     echo '<th>Date</th> '; 
-                    echo '<th>Amount</th> '; 
+                    echo '<th>Amount Paid</th> '; 
+                     echo '<th>Stripe Fee</th> '; 
                     echo '<th>Billing Email</th> '; 
-    
+                    echo '<th>Description</th> '; 
                     echo '<th>Receipt URL</th> '; 
 
                 echo '</tr>';
@@ -167,13 +196,16 @@ foreach ($searchCustomers as $customer) {
                 echo '</tr>';
             }
             foreach ($totalCharges as $transaction) {
+            //  var_dump($transaction['metadata']['eventid']);
+              
                 $num++;
               echo '<tr>';
                 echo "<td>".$num."</td>";
                 echo "<td>".date('m/d/Y', $transaction['created'])."</td>";
                 echo "<td>$".number_format($transaction['amount']/100, 2)."</td>";
-                echo "<td>$".$transaction['billing_details']['email']."</td>";
-   
+                echo "<td>$".number_format($transaction['stripefee']/100, 2)."</td>";
+                echo "<td>".$transaction['billing_details']['email']."</td>";
+                echo "<td>".$transaction['description']."</td>";
                 echo "<td><a target='_blank' href='".$transaction['receipt_url']."'>Click to see Receipt</a></td>";
               echo '</tr>';
             }
