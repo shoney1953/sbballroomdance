@@ -243,7 +243,7 @@ unset($_POST['searchemail']);
 
             <div class="form-item">
    
-                    <button type="submit" name="submitGetTransTypeMembership">Retrieve Transactions by New Membership </button>   
+                    <button type="submit" name="submitGetTransTypeMembership">Retrieve Transactions by Membership </button>   
                 </div>
             </form>
     </div>
