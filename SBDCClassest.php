@@ -161,7 +161,11 @@ $classyear = '';
                 //  echo "<legend title='Click for complete class description'><a href='".$cd."'>  ".$class['classlevel'].":     ".$class['classname']."      on ".$class['date']."</a></legend>";
                  echo "<legend title='Click for complete class description'><a href='".$cd."'> $classLiteral</a></legend>";
                  $classLiteral = '';
- 
+                 $hr = 'classMem.php?id=';
+                $hr .= $class["id"];
+              
+                echo "<h4 class='form-title' title='click to see registrants'>
+                       Number Registered: <a href='".$hr."'>".$class['numregistered']."</a></h4>";
                   if  (isset($_SESSION['username']) ) {
                     echo "<h5 class='form-title-left' title='click for pdf report'><form  target='_blank' name='reportClassForm'   method='POST' action='actions/reportClass.php'> ";
                     echo "<input type='hidden' name='classId' value='".$class['id']."'>"; 

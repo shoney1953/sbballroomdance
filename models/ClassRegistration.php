@@ -334,6 +334,37 @@ public function read_ByClassid($classid) {
 
 
 }
+public function read_ByClassidRegDate($classid) {
+
+
+  $query = 'SELECT c.classname as classname, c.date as classdate, c.time as classtime,
+  c.date2 as classdate2, c.date3 as classdate3, c.date4 as classdate4,
+  c.date5 as classdate5, c.date6 as classdate6, c.date7 as classdate7, 
+  c.date8 as classdate8, c.date9 as classdate9, 
+  r.id, r.classid, r.firstname, r.lastname, r.email, r.dateregistered, r.registeredby,
+  r.userid
+  FROM ' . $this->table . ' r
+  LEFT JOIN
+    danceclasses c ON r.classid = c.id
+  WHERE
+    r.classid = :classid 
+  ORDER BY 
+    r.dateregistered DESC, r.lastname, r.firstname';
+  
+
+  // Prepare statement
+  $stmt = $this->conn->prepare($query);
+
+  // Bind ID
+  $stmt->bindParam('classid', $classid);
+
+  // Execute query
+  $stmt->execute();
+
+  return $stmt;
+
+
+}
 
 public function readLike($classid, $search) {
 

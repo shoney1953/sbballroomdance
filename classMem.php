@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'models/DanceClass.php';
 require_once 'models/ClassRegistration.php';
 require_once 'config/Database.php';
 $allClasses = $_SESSION['upcoming_classes'];
@@ -7,6 +8,8 @@ $classRegistrations = [];
 
 
 $_SESSION['returnurl'] = $_SERVER['REQUEST_URI'];
+$_SESSION['classmemnurl'] = $_SERVER['REQUEST_URI'];
+
 if (!isset($_SESSION['username'])) {
 
            if (isset($_SESSION['homeurl'])) {
@@ -25,9 +28,12 @@ if (!isset($_SESSION['username'])) {
 }
 $database = new Database();
 $db = $database->connect();
+$class= new DanceClass($db);
+$class->id = $_GET['id'];
+$class->read_single();
 $classReg = new ClassRegistration($db);
-$result = $classReg->read();
-
+// $result = $classReg->read();
+$result = $classReg->read_ByClassid($_GET['id']);
 $rowCount = $result->rowCount();
 $num_registrations = $rowCount;
 $_SESSION['ClassRegistrations'] = [];
@@ -84,8 +90,39 @@ if ($rowCount > 0) {
 </nav>
 
 <?php
-if (isset($_GET['id'])) {
-echo '<div class="container-section ">';
+
+if (isset($_GET['sort'])) {
+
+    if (isset($_GET['id'])) {
+    $classid = $_GET['id'];
+    }
+   $sortVal = $_GET['sort'];
+
+   $questionpos = stripos($_SERVER['REQUEST_URI'], '?');
+
+if ($questionpos !== 0) {
+    $_SESSION['classmemnurl']  = substr($_SERVER['REQUEST_URI'],0,$questionpos);
+   
+}
+if ($sortVal === 'RegDate') {
+     $classRegistrations = $_SESSION['classRegByRegDate'];
+}
+}
+if ((isset($_GET['id'])) && (!isset($_GET['sort']))) {
+    $classid = $_GET['id'];
+
+    
+    unset($_GET['id']);
+   $questionpos = stripos($_SERVER['REQUEST_URI'], '?');
+
+if ($questionpos !== 0) {
+    $_SESSION['classmemnurl'] = substr($_SERVER['REQUEST_URI'],0,$questionpos);
+
+}
+}
+
+if (isset($_GET['id'])) 
+    echo '<div class="container-section ">';
     echo '<section id="classes" class="content">';
     echo '<br><br><h1>Selected Classes</h1>';
 
@@ -105,44 +142,42 @@ echo '<div class="container-section ">';
            
             echo '</tr>';
      
-            $classNumber = 0;
-            foreach($allClasses as $class) {
-                 if ($class["id"] === $_GET['id']) {
                   echo "<tr>";              
-                  echo "<td>".$class['id']."</td>";
-                  echo "<td>".$class['date']."</td>";
-                  echo "<td>".$class['time']."</td>";
-                  echo "<td>".$class['room']."</td>";
-                  echo "<td>".$class['classname']."</td>";
-                  echo "<td>".$class['classlevel']."</td>";
-                  echo "<td>".$class['registrationemail']."</td>";
-                  echo "<td>".$class['classnotes']."</td>";
-                  echo "<td>".$class['instructors']."</td>";
-                  echo "<td>".$class['classlimit']."</td>";
-                  echo "<td>".$class['numregistered']."</td>";
+                  echo "<td>".$class->id."</td>";
+                  echo "<td>".$class->date."</td>";
+                  echo "<td>".$class->time."</td>";
+                  echo "<td>".$class->room."</td>";
+                  echo "<td>".$class->classname."</td>";
+                  echo "<td>".$class->classlevel."</td>";
+                  echo "<td>".$class->registrationemail."</td>";
+                  echo "<td>".$class->classnotes."</td>";
+                  echo "<td>".$class->instructors."</td>";
+                  echo "<td>".$class->classlimit."</td>";
+                  echo "<td>".$class->numregistered."</td>";
                   echo "</tr>";
-              }
-         
-        
-            }
+
             echo '</table>';
             echo '<br>';
-
-               
+ 
                 echo '<table>';
+   
+                    echo '<form id="sortform" method="POST" action="actions/sortclassreg.php">';
+                    echo "<input type='hidden' name='classid' value='".$class->id."'>";
                     echo '<tr>';
                         echo '<th>ID</th>';
                         echo '<th>First Name</th>';
                         echo '<th>Last Name    </th>';
                         echo '<th>Email</th>';
-                        echo '<th>Reg Date</th>';
+                        echo '<input type="hidden" id="regdate" name="regdate" value="0">';
+                         echo '<th  onclick="submitRD()" > Reg Date</th>';
+        ;
                         echo '<th>Reg By</th>';
                     echo '</tr>';
-                    
+                    echo '</form>';
             
                     foreach($classRegistrations as $classRegistration) {
                   
-                         if ($classRegistration['classid'] === $_GET['id']) {
+              
                           echo "<tr>";
                           $hr = 'member.php?id=';
                           $hr .= $classRegistration["userid"];
@@ -155,16 +190,25 @@ echo '<div class="container-section ">';
                             echo "<td>".$classRegistration['registeredby']."</td>"; 
                           echo "</tr>";
                       }
-                    }
+                    
                     
                 echo '</table>';
                 echo '<br><br>';
-            }
+            
             echo '</section>'; 
             require 'footer.php';
             echo '</div>'; 
+      
  ?> 
 
 
 </body>
+ <script>
+        function submitRD() {
+            let form = document.getElementById("sortform");
+            document.getElementById("regdate").value = "1";
+            form.submit();
+       
+        }
+</script>
 </html>
