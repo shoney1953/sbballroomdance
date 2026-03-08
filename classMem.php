@@ -169,7 +169,7 @@ if (isset($_GET['id']))
                         echo '<th>Last Name    </th>';
                         echo '<th>Email</th>';
                         echo '<input type="hidden" id="regdate" name="regdate" value="0">';
-                         echo '<th  onclick="submitRD()" > Reg Date</th>';
+                         echo '<th  title="click to sort descending" onclick="submitRD()" > Reg Date</th>';
         ;
                         echo '<th>Reg By</th>';
                     echo '</tr>';

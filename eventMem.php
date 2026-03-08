@@ -205,54 +205,54 @@ echo '<div class="container-section ">';
                     echo '<tr>';
                         echo '<th>ID</th>';
                             echo '<input type="hidden" id="firstname" name="firstname" value="0">';
-                        echo '<th onclick="submitFN()">First Name</th>';
+                        echo '<th title="click to sort" onclick="submitFN()">First Name</th>';
                             echo '<input type="hidden" id="lastname" name="lastname" value="0">';
-                        echo '<th onclick="submitLN()">Last Name    </th>';
+                        echo '<th title="click to sort" onclick="submitLN()">Last Name    </th>';
                               echo '<input type="hidden" id="email" name="email" value="0">';
-                        echo '<th onclick="submitEM()">Email</th>';
+                        echo '<th title="click to sort" onclick="submitEM()">Email</th>';
                        
 
                         if ($event['eventtype'] === 'Dance Party') {
                               echo '<input type="hidden" id="attenddinner" name="attenddinner" value="0">';
-                            echo '<th onclick="submitAD()">Attend<br>Dinner?</th>';
+                            echo '<th title="click to sort desc" onclick="submitAD()">Attend<br>Dinner?</th>';
                             echo '<th>Attend<br>Dance?</th>';
                             if ($event['eventcost'] > 0) {
                                 echo '<input type="hidden" id="paid" name="paid" value="0">';
-                                echo '<th onclick="submitPD()">Paid?</th>';
+                                echo '<th title="click to sort desc" onclick="submitPD()">Paid?</th>';
                        
                                 echo '<th>Online?</th>';
                                    echo '<input type="hidden" id="meal" name="meal" value="0">';
-                                echo  '<th onclick="submitMS()">Meal Selected</th>';
+                                echo  '<th title="click to sort" onclick="submitMS()">Meal Selected</th>';
                             }
                         }
                         
                         if ($event['eventtype'] === 'BBQ Picnic') {
                              echo '<input type="hidden" id="attenddinner" name="attenddinner" value="0">';
-                            echo '<th onclick="submitAD()">Attend<br>Lunch?</th>';
+                            echo '<th title="click to sort" onclick="submitAD()">Attend<br>Lunch?</th>';
                               echo '<input type="hidden" id="cornhole" name="cornhole" value="0">';
-                            echo '<th onclick="submitCH()">Play<br>Cornhole?</th>';
+                            echo '<th title="click to sort" onclick="submitCH()">Play<br>Cornhole?</th>';
                               echo '<input type="hidden" id="softball" name="softball" value="0">';
-                            echo '<th onclick="submitSB()">Play<br>Softball?</th>';
+                            echo '<th title="click to sort" onclick="submitSB()">Play<br>Softball?</th>';
 
                         }
                         if ($event['eventtype'] === 'Dinner Dance') {
 
                             if ($event['eventcost'] > 0) {
                                   echo '<input type="hidden" id="paid" name="paid" value="0">';
-                                echo '<th onclick="submitPD()">Paid?</th>';
+                                echo '<th title="click to sort desc" onclick="submitPD()">Paid?</th>';
                                 echo '<th>Online?</th>';
                                 echo '<input type="hidden" id="meal" name="meal" value="0">';
-                                echo  '<th onclick="submitMS()">Meal Selected</th>';
+                                echo  '<th title="click to sort" onclick="submitMS()">Meal Selected</th>';
                              
                             }
                         }
 
                         echo '<input type="hidden" id="regdate" name="regdate" value="0">';
-                         echo '<th  onclick="submitRD()" > Reg Date</th>';
+                         echo '<th  title="click to sort desc" onclick="submitRD()" > Reg Date</th>';
                         echo '<th>Reg By</th>';
                         echo '<th>Message</th>';
                         echo '<input type="hidden" id="moddate" name="moddate" value="0">';
-                         echo '<th  onclick="submitMD()" > Mod Date</th>';
+                         echo '<th  title="click to sort desc" onclick="submitMD()" > Mod Date</th>';
           
                         echo '<th>Mod By</th>';
                     echo '</tr>';
