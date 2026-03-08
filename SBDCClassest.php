@@ -133,6 +133,7 @@ $classyear = '';
                
                   $prevClassMonth = $classMonth ;
                   echo '</div>';
+                  echo '</fieldset>';
          
                     echo '<div>';
                    echo '<h4> ------------------   '.$classYear.'  MONTH: '.$classMonth.' ------------------</h4><br>';
@@ -278,13 +279,14 @@ $classyear = '';
                         }
                     
                        echo '</form>';
+                            echo '</fieldset>';
                       }
                                
                    
                 
          
               // echo "</div>"; // end of form container
-              echo '</fieldset>';
+              // echo '</fieldset>';
            
             // } // end of foreach
          echo '</div>'
