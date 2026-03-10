@@ -18,7 +18,9 @@ if ($_SERVER['SERVER_NAME'] === 'localhost') {
   $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';  
   $stripeSecretKey = $_SESSION['testkey'] ;
 }
+ 
 \Stripe\Stripe::setApiKey($stripeSecretKey);
+
 // header('Content-Type: application/json');
 
 $stripe = new \Stripe\StripeClient($stripeSecretKey);
@@ -44,6 +46,8 @@ foreach ($searchCustomers as $customer) {
     $charges = $stripe->charges->all([ 'limit' => 100]);
 
         foreach($charges['data'] as $transaction) {
+          if ($transaction['status'] === 'succeeded') {
+
           if (($transaction['billing_details']['email'] === $searchEmail) || 
                ($transaction['receipt_email'] === $searchEmail)) {
                   $balanceTransaction = $stripe->balanceTransactions->retrieve(
@@ -64,6 +68,7 @@ foreach ($searchCustomers as $customer) {
 
         $charges = $stripe->charges->all(['starting_after' => $chrgID ]);
             foreach($charges['data'] as $transaction) {
+               if ($transaction['status'] === 'succeeded') {
               if (($transaction['billing_details']['email'] === $searchEmail) || 
                ($transaction['receipt_email'] === $searchEmail)) {
                   $balanceTransaction = $stripe->balanceTransactions->retrieve(
@@ -74,18 +79,18 @@ foreach ($searchCustomers as $customer) {
                  $transaction['stripefee'] = $balanceTransaction['fee'];
                array_push($totalCharges, $transaction); 
              }
-               
+               }
             }
          } while ($charges['has_more']);
+      } // has more
 
-}
-
-}
+        } // status
+}  // email
 
  if (isset($_POST['submitGetTransTypeMembership']))  {
 
    $charges = $stripe->charges->search([
-   ['query' => 'metadata[\'transtype\']:\'membership\''],
+   ['query' => 'status: \'succeeded\' AND metadata[\'transtype\']:\'membership\''],
   'limit' => 100
   ]);
 
@@ -127,16 +132,18 @@ foreach ($searchCustomers as $customer) {
  if (isset($_POST['submitGetTransEvents']))  {
 
    $charges = $stripe->charges->search([
-   ['query' => 'metadata[\'transtype\']:\'event\''],
+   ['query' => 'status: \'succeeded\' AND metadata[\'transtype\']:\'event\''],
   'limit' => 100
   ]);
 
        foreach($charges['data'] as $transaction) {
+       
+
                    $balanceTransaction = $stripe->balanceTransactions->retrieve(
                    $transaction['balance_transaction'],
                  []
                  );
-          
+      
                  $transaction['stripefee'] = $balanceTransaction['fee'];
             array_push($totalCharges, $transaction); 
 
@@ -171,12 +178,13 @@ foreach ($searchCustomers as $customer) {
 
    $qstring = 'created >= '.$startDate;
    $qstring .= ' AND created <= '.$endDate;
-
+   
     $charges = $stripe->charges->search([
      'query' => $qstring,
    ]);
 
         foreach($charges['data'] as $transaction) {
+          if ($transaction['status'] === 'succeeded') {
                    $balanceTransaction = $stripe->balanceTransactions->retrieve(
                    $transaction['balance_transaction'],
                  []
@@ -188,6 +196,7 @@ foreach ($searchCustomers as $customer) {
             array_push($totalCharges, $transaction); 
 
         }
+        }
       if ($charges['has_more']) {
 
       do {
@@ -196,6 +205,7 @@ foreach ($searchCustomers as $customer) {
                 'page' => $charges['next_page']
               ]);
             foreach($charges['data'] as $transaction) {
+                 if ($transaction['status'] === 'succeeded') {
                   $balanceTransaction = $stripe->balanceTransactions->retrieve(
                    $transaction['balance_transaction'],
                  []
@@ -205,11 +215,13 @@ foreach ($searchCustomers as $customer) {
 
                array_push($totalCharges, $transaction); 
 
-            }
+            }  // trans succeeded
+            } // for each
          } while ($charges['has_more']);
-}
+      } // end do
+      } // date
 
-       }   
+
 
 
 
