@@ -108,7 +108,7 @@ $_SESSION['upcoming_events'] = $upcomingEvents;
         if (isset($_SESSION['username'])) {
               echo '<h4>If you do not see the action you need perform on the event, please contact the event coordinator.</h4>';
           }
-          var_dump($_SESSION['username']);
+    
         if (!(isset($_SESSION['username']))) {
           echo '<h4><a style="color: red;font-weight: bold;font-size: medium" href="login.php">Click Here Login as a Member or Visitor to Register or Manage Event Registrations</a></h4>';
         }
@@ -407,6 +407,7 @@ $_SESSION['upcoming_events'] = $upcomingEvents;
                               'modifieddate' => $modifieddate,
                               'dwop' => $dwop,
                               'guest' => $guest,
+                              'stripecheckout' => $stripecheckout,
                               'numhotdogs' => $numhotdogs,
                               'numhdbuns' => $numhdbuns,
                               'numhamburgers' => $numhamburgers,

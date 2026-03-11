@@ -51,7 +51,7 @@ if (!isset($_SESSION['username']))
             exit;
        }
 }
-// var_dump($_POST);
+
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);

@@ -116,6 +116,7 @@ if ($rowCount > 0) {
             'dietaryrestriction' => $dietaryrestriction,
             'dwop' => $dwop,
             'guest' => $guest,
+            'stripecheckout' => $stripecheckout,
             'numhotdogs' => $numhotdogs,
             'numhdbuns' => $numhdbuns,
             'numhamburgers' => $numhamburgers,

@@ -115,6 +115,7 @@ if (isset($_POST['submitArchive'])) {
                 'paid' => $paid,
                 'dwop' => $dwop,
                 'guest' => $guest,
+                'stripecheckout' => $stripecheckout,
                 'ddattenddinner' => $ddattenddinner,
                 'cornhole' => $cornhole,
                 'softball' => $softball,
@@ -164,6 +165,7 @@ if (isset($_POST['submitArchive'])) {
             $eventRegArch->paidonline = $reg_item['paidonline'];
             $eventRegArch->dietaryrestriction = $reg_item['dietaryrestriction'];
             $eventRegArch->guest = $reg_item['guest'];
+           $eventRegArch->stripecheckout = $reg_item['stripecheckout'];
             $eventRegArch->create();
       
         }

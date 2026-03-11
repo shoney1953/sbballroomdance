@@ -54,6 +54,7 @@ class TempOnlineEventReg  {
     public $guest2priceid;
     public $guest2productid;
     public $registrationemail;
+    public $stripecheckout;
   public $guest2dr;
     // Constructor with DB
     public function __construct($db) {
@@ -74,7 +75,7 @@ class TempOnlineEventReg  {
       productid2, priceid2, guest1mealdesc, guest2mealdesc, 
       guest1priceid, guest1productid, guest2priceid, guest2productid,
         visitor, totalcost, registrationemail,
-      registeredby,  mealchoice,
+      registeredby,  mealchoice, stripecheckout, 
        message, ddattenddinner1, ddattenddinner2, ddattenddance,
        eventtype
       FROM ' . $this->table . ' 
@@ -102,7 +103,7 @@ class TempOnlineEventReg  {
           guest2firstname, guest2lastname, guest2email,  guest2attenddinner, guest2mealchoice, guest2dr,
           guest1mealdesc, guest2mealdesc, registrationemail,
                guest1priceid, guest1productid, guest2priceid, guest2productid,
-           productid2, priceid2, orgemail, dateregistered, 
+           productid2, priceid2, orgemail, dateregistered, stripecheckout,
           message, ddattenddinner1,ddattenddinner2, ddattenddance
           FROM ' . $this->table . ' 
 
@@ -184,7 +185,7 @@ class TempOnlineEventReg  {
           $this->guest2priceid = $row['guest2priceid'];
            $this->guest2productid = $row['guest2productid'];
             $this->registrationemail = $row['registrationemail'];
-   
+         $this->stripecheckout = $row['stripecheckout'];
           return true;
           }
           return false;
@@ -324,6 +325,27 @@ class TempOnlineEventReg  {
           printf("Error: %s.\n", $stmt->error);
 
           return false;
+    }
+        public function updateCheckOut() {
+          // Create query
+       
+          $query = 'UPDATE ' . $this->table . 
+          ' SET  stripecheckout = :stripecheckout WHERE id = :id';
+
+
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+
+          // Bind data
+
+          $stmt->bindParam(':stripecheckout', $this->stripecheckout);
+          $stmt->bindParam(':id', $this->id);
+          // Execute query
+          if($stmt->execute()) {
+            return true;
+      }
+
+      return false;
     }
     
 }

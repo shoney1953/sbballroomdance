@@ -138,6 +138,7 @@ if ($rowCount > 0) {
             'modifieddate' => $modifieddate,
             'dwop' => $dwop,
             'guest' => $guest,
+            'stripecheckout' => $stripecheckout,
             'numhotdogs' => $numhotdogs,
             'numhdbuns' => $numhdbuns,
             'numhamburgers' => $numhamburgers,

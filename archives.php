@@ -129,6 +129,7 @@ if ($rowCount > 0) {
             'paidonline' => $paidonline,
             'dwop' => $dwop,
             'guest' => $guest,
+            'stripecheckout' => $stripecheckout,
             'numhotdogs' => $numhotdogs,
             'numhdbuns' => $numhdbuns,
             'numhamburgers' => $numhamburgers,

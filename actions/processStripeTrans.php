@@ -30,7 +30,65 @@ $searchCustomers = $_SESSION['searchCustomers'];
 $charges = '';
 $searchEmail = '';
 $i = 0;  
+if (isset($_POST['submitGetTransEvent']))  {
 
+  $i = 0;
+  $searchID = 0;
+  $searchEvents = $_SESSION['searchEvents'];
+  foreach($searchEvents as $event) {
+        $eventCHK = "EVCHK".$i;
+
+        if (isset($eventCHK)) {
+          $searchID = $event['id'];
+          break;
+
+        }
+
+                  $i++;
+  }
+
+
+    $qstring = "status: 'succeeded' AND metadata['eventid']: '".$searchID."'";
+
+   $charges = $stripe->charges->search([
+   ['query' => $qstring],
+  'limit' => 100
+  ]);
+
+       foreach($charges['data'] as $transaction) {
+                   $balanceTransaction = $stripe->balanceTransactions->retrieve(
+                   $transaction['balance_transaction'],
+                 []
+                 );
+          
+                 $transaction['stripefee'] = $balanceTransaction['fee'];
+            array_push($totalCharges, $transaction); 
+
+        }
+      if ($charges['has_more']) {
+
+      do {
+             $charges = $stripe->charges->search([
+                'query' => $qstring,
+                'page' => $charges['next_page']
+              ]);
+            foreach($charges['data'] as $transaction) {
+                  $balanceTransaction = $stripe->balanceTransactions->retrieve(
+                   $transaction['balance_transaction'],
+                 []
+                 );
+          
+                 $transaction['stripefee'] = $balanceTransaction['fee'];
+
+               array_push($totalCharges, $transaction); 
+           
+           
+                
+               
+            }
+         } while ($charges['has_more']);
+}
+} // end get trans Event
 if (isset($_POST['submitGetTrans']))  {
 
 foreach ($searchCustomers as $customer) {
@@ -38,11 +96,9 @@ foreach ($searchCustomers as $customer) {
    $custEmail = "CEMAIL".$i;
     if (isset($_POST["$custCHK"])) {
         $searchEmail =  $_POST["$custEmail"];
-     
     }
     $i++;
 }
-
     $charges = $stripe->charges->all([ 'limit' => 100]);
 
         foreach($charges['data'] as $transaction) {
@@ -138,7 +194,7 @@ foreach ($searchCustomers as $customer) {
 
        foreach($charges['data'] as $transaction) {
        
-
+             
                    $balanceTransaction = $stripe->balanceTransactions->retrieve(
                    $transaction['balance_transaction'],
                  []
@@ -268,6 +324,8 @@ foreach ($searchCustomers as $customer) {
     <div class="form-grid-div">
         <h2>Online Payments</h2>
         <?php
+        $totalCharged = 0;
+        $totalStripeFees = 0;
            echo '<table>';
             echo '<thead>';
                 echo '<tr>';
@@ -290,8 +348,8 @@ foreach ($searchCustomers as $customer) {
                 echo '</tr>';
             }
             foreach ($totalCharges as $transaction) {
-       
-              
+              $totalCharged = $totalCharged + $transaction['amount'];
+                 $totalStripeFees = $totalStripeFees + $transaction['stripefee'];
                 $num++;
               echo '<tr>';
                 echo "<td>".$num."</td>";
@@ -304,6 +362,19 @@ foreach ($searchCustomers as $customer) {
                 echo "<td><a target='_blank' href='".$transaction['receipt_url']."'>Click to see Receipt</a></td>";
               echo '</tr>';
             }
+               echo '<tr>';
+               echo '<td colspan="8">TOTALS</td>';
+
+                   echo '</tr>';
+                echo "<td>".$num."</td>";
+                echo "<td></td>";
+                echo "<td>$".number_format($totalCharged/100, 2)."</td>";
+                echo "<td>$".number_format($totalStripeFees/100, 2)."</td>";
+                echo "<td></td>";
+                echo "<td></td>";
+                echo "<td></td>";
+                echo "<td></td>";
+              echo '</tr>';
              echo '</tbody>';
             echo '</table>';   
             echo '<br>';

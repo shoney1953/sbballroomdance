@@ -37,8 +37,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
       <h4>Once Registered, You may modify or delete your registrations from your profile under the Event Registration tab.</h4>
         <div class="form-grid2">
         <?php
-        var_dump($_SESSION['role']);
-        var_dump($_SESSION['visitorfirstname']);
+
          if ((isset($_SESSION['username'])) | (isset($_SESSION["visitorfirstname"]))) {
             if (isset($_SESSION['role'])) {
         if ((isset($_SESSION['testmode'])) && ($_SESSION['testmode'] === 'YES')) {

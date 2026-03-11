@@ -141,11 +141,13 @@ if ($rowCount > 0) {
             'modifieddate' => $modifieddate,
             'dwop' => $dwop,
             'guest' => $guest,
+            'stripecheckout' => $stripecheckout,
             'numhotdogs' => $numhotdogs,
             'numhdbuns' => $numhdbuns,
             'numhamburgers' => $numhamburgers,
             'numhbbuns' => $numhbbuns,
             'vegetarian' => $vegetarian,
+            'stripecheckout' => $stripecheckout,
             'dateregistered' => date('m d Y h:i:s A', strtotime($dateregistered))
         );
         array_push($eventRegistrations, $reg_item);
@@ -183,6 +185,8 @@ if ($rowCount > 0) {
 
         echo '<li><a title="Add, Update and Archive Events" href="SBDCAEvents.php">Maintain Events</a></li>';
         echo '<li><a title="Class Related Functions" href="SBDCAClasses.php">Maintain Classes</a></li>';
+         echo '<li><a title="DJ Information" href="SBDCDJInfo.php">DJ Information</a></li>';
+    
         if ($_SESSION['role'] === 'SUPERADMIN') {
             
             echo '<li><a title="Add, Update, Report on Members" href="SBDCAMembers.php">Maintain Members</a></li>';
@@ -196,8 +200,8 @@ if ($rowCount > 0) {
         echo '<ul>';
  
         echo '<li><a title="List Visitors" href="SBDCAVisitors.php">Visitors</a></li>';
-        echo '<li><a title="List Booking Reports" href="https://drive.google.com/drive/folders/1PQSs3_gNDuSfQ2L24Gw0Fnsoe9_vQlQ-?usp=sharing">
-             Booking Reports</a></li>';
+        // echo '<li><a title="List Booking Reports" href="https://drive.google.com/drive/folders/1PQSs3_gNDuSfQ2L24Gw0Fnsoe9_vQlQ-?usp=sharing">
+        //      Booking Reports</a></li>';
 
      }
       if ($_SESSION['role'] === 'DJ') {

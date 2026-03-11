@@ -82,7 +82,7 @@ $toCC5 = '';
 $mailAttachment = ''; 
 $mailAttachment2 = ''; 
 $replyTopic = "SBDC Event Registration";
-// var_dump($_POST);
+
 
 if (isset($_POST['submitAddReg'])) {        
     if (isset($_POST['eventid'])) {

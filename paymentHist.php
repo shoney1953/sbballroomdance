@@ -95,17 +95,13 @@ $current_year = date('Y');
 $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
 $compareDateTS = strtotime($compareDate);
+$upcomingEvents = $_SESSION['upcoming_events'];
 $searchCustomers = [];
 $_SESSION['searchCustomers'] = [];
 
 if (isset($_POST['searchemail']))  {
-
   $search = trim($_POST['searchemail']);
-
-
-
  $qstring = 'email~ "'.$search.'"';
-
        $customers = $stripe->customers->search([
        'query' => $qstring,
       ]);
@@ -130,6 +126,23 @@ if (isset($_POST['searchemail']))  {
       $_SESSION['searchCustomers'] = $searchCustomers;
 
 unset($_POST['searchemail']);
+      } // end searchemail
+
+      $searchEvents = [];
+$_SESSION['searchEvents'] = [];
+
+if (isset($_POST['submitSearchEvent']))  {
+  $search = trim($_POST['searchevent']);
+
+     foreach ($upcomingEvents as $event) {
+       if (stripos($event['eventname'],$search, 0)) {
+         array_push($searchEvents, $event);
+       }
+     }
+
+      $_SESSION['searchEvents'] = $searchEvents;
+
+     unset($_POST['submitSearchEvent']);
       }
    
 ?>
@@ -168,24 +181,64 @@ unset($_POST['searchemail']);
    <section class="content">
     <h1>Stripe Payment History</h1>
     <h4><em>Please Note Retrieving Data from Stripe can be quite slow.. please be patient!</em></h4>
-      <div class="form-grid2">
+    <div class="form-grid4">
+      <div class="form-grid-div">
+                <form method="POST" action="#">
+              <div class='form-grid'>
+                <div class="form-item">
+                      <h4 class='form-item-title'>Search By Indiviual Event?</h4>
+                    <input type='search'  placeholder="full or partial event name"
+                          title='Enter Partial or Full Event Nameto Search Transactions' name='searchevent'>   
+                          <button type="submit" name="submitSearchEvent">Search </button>       
+                </div>
+              </div>
+            </form>
+                    <form method="POST" action="actions/processStripeTrans.php">
+           <table>
+            <thead>
+              <tr>
+                <th>Select?</th>
+                <th>Event</th>
+                <th>Event Name </th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $i = 0;
+              foreach ($searchEvents as $event) {
+                $eventCHK = "EVCHK".$i;
+                $eventID = "EVID".$i;
+                  $eventName = "ENAME".$i;
+                echo '<tr>';
+                echo '<td><input type="checkbox" name="'.$eventCHK.'"</td>';
+                echo '<td>'.$event['eventname'].'</td>';
+                echo '<td>'.$event['id'].'</td>';
+                echo '<td><input type="hidden" name="'.$eventID.'" value="'.$event['id'].'"><td>';
+                echo '<input type="hidden"  name="'.$eventName.'" value="'.$event['eventname'].'">';
+                echo '</tr>';
+                $i++;
+              }
 
+              ?>
+              <tr > 
+                  <td colspan="5"><button type="submit" name="submitGetTransEvent">Retrieve Transactions by Event</button>
+            </tr>
+            </tbody>
+           </table>
+            </form>
+  </div>
        <div class="form-grid-div">
             <form method="POST" action="#">
               <div class='form-grid'>
                 <div class="form-item">
                       <h4 class='form-item-title'>Search By Email?</h4>
-                    <input type='text'  placeholder="full or partial email"
-                          title='Enter Partial or Full Email to Search Transactions' name='searchemail'>     
-                 
+                    <input type='search'  placeholder="full or partial email"
+                          title='Enter Partial or Full Email to Search Transactions' name='searchemail'>   
+                          <button type="submit" name="submitSearchTrans">Search </button>       
                 </div>
-            
-                    <button type="submit" name="submitSearchTrans">Search </button>   
-                  
               </div>
             </form>
                     <form method="POST" action="actions/processStripeTrans.php">
-       
            <table>
             <thead>
               <tr>
@@ -256,12 +309,16 @@ unset($_POST['searchemail']);
                 </div>
             </form>
     </div>
+<!-- <div class="form-grid-div">
+       <form method="POST" action="actions/processStripeCheckOuts.php">
 
+            <div class="form-item">
+   
+                    <button type="submit" name="submitGetCHKOOUTs">Retrieve Charge Sessions </button>   
+                </div>
+            </form>
+    </div> -->
      
-   
-   
-    
-    
    
    </section>
     

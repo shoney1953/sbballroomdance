@@ -36,7 +36,7 @@ class EventRegistration {
     public $numhbbuns;
     public $vegetarian;
     public $guest;
-
+    public $stripecheckout;
 
     // Constructor with DB
     public function __construct($db) {
@@ -51,7 +51,7 @@ class EventRegistration {
       r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
       r.registeredby, r.cornhole, r.softball, r.mealchoice,
       r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-      r.modifiedby, r.modifieddate, r.dwop, r.guest,
+      r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
       r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
       r.paidonline, m.mealname as mealname,
       r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
@@ -81,7 +81,7 @@ class EventRegistration {
           r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
           r.registeredby, r.cornhole, r.softball, r.mealchoice,
           r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-           r.modifiedby, r.modifieddate, r.dwop, r.guest,
+           r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
              r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
           r.paidonline,  m.mealname as mealname, m.mealdescription as mealdescription,
           r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
@@ -136,7 +136,8 @@ class EventRegistration {
           $this->numhamburgers = $row['numhamburgers'];
           $this->numhbbuns = $row['numhbbuns'];
           $this->vegetarian = $row['vegetarian'];
-            $this->guest = $row['guest'];
+          $this->guest = $row['guest'];
+          $this->stripecheckout = $row['stripecheckout'];
           return true;
           }
           return false;
@@ -152,7 +153,7 @@ public function read_ByUserid($userid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby, r.cornhole, r.softball, 
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.paidonline,  m.mealname as mealname,
     r.mealchoice, r.dietaryrestriction, c.eventtype as eventtype
@@ -188,7 +189,7 @@ public function read_ByEmail($email) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, 
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.paidonline, 
     r.mealchoice, r.dietaryrestriction
@@ -226,7 +227,7 @@ public function read_ByEmail($email) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -261,7 +262,7 @@ public function read_ByEventIdRegDate($eventid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -296,7 +297,7 @@ public function read_ByEventIdPaid($eventid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -331,7 +332,7 @@ public function read_ByEventIdMeal($eventid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -366,7 +367,7 @@ public function read_ByEventIdModDate($eventid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -400,7 +401,7 @@ public function read_ByEventIdAttendDinner($eventid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -432,7 +433,7 @@ public function read_ByEventIdFirstName($eventid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -464,7 +465,7 @@ public function read_ByEventIdLastName($eventid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -496,7 +497,7 @@ public function read_ByEventIdEmail($eventid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -528,7 +529,7 @@ public function read_ByEventIdCornHole($eventid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -560,7 +561,7 @@ public function read_ByEventIdSoftBall($eventid) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -593,7 +594,7 @@ public function read_ByEventIdRegBy($eventid, $registeredby) {
     r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
     r.registeredby,  r.cornhole, r.softball, r.paidonline,
     r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-    r.modifiedby, r.modifieddate, r.dwop, r.guest,
+    r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
     r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
     r.mealchoice, r.dietaryrestriction, m.mealname as mealname
     FROM ' . $this->table . ' r
@@ -628,7 +629,7 @@ public function read_ByEventIdRegBy($eventid, $registeredby) {
      r.id, r.eventid, r.userid, r.mealchoice, r.dietaryrestriction,
      r.dateregistered, r.registeredby, r.paid, r.paidonline, r.ddattenddinner,
      r.modifiedby, r.modifieddate,
-     r.cornhole, r.softball, r.dwop, r.guest,
+     r.cornhole, r.softball, r.dwop, r.guest, r.stripecheckout,
      r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
      m.mealname as mealname, m.mealdescription as mealdescription
     FROM ' . $this->table . ' r
@@ -682,6 +683,7 @@ public function read_ByEventIdRegBy($eventid, $registeredby) {
           $this->numhbbuns = $row['numhbbuns'];
           $this->vegetarian = $row['vegetarian'];
           $this->guest = $row['guest'];
+           $this->stripecheckout = $row['stripecheckout'];
           return true;
           }
           return false;
@@ -693,7 +695,7 @@ public function read_ByEventIdRegBy($eventid, $registeredby) {
     c.eventtype as eventtype, c.orgemail as orgemail,
      r.id, r.eventid, r.userid, r.mealchoice, r.dietaryrestriction,
      r.dateregistered, r.registeredby, r.paid, r.paidonline, r.ddattenddinner,
-     r.cornhole, r.softball, r.dwop, r.guest,
+     r.cornhole, r.softball, r.dwop, r.guest, r.stripecheckout,
      r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
      r.modifiedby, r.modifieddate,
      m.mealname as mealname, m.mealdescription as mealdescription
@@ -747,6 +749,7 @@ public function read_ByEventIdRegBy($eventid, $registeredby) {
           $this->numhbbuns = $row['numhbbuns'];
           $this->vegetarian = $row['vegetarian'];
           $this->guest = $row['guest'];
+            $this->stripecheckout = $row['stripecheckout'];
           return true;
           }
           return false;
@@ -760,7 +763,7 @@ public function read_ByEventIdDinner($eventid) {
   r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
   r.registeredby,  r.cornhole, r.softball, r.paidonline,
   r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
-  r.modifiedby, r.modifieddate, r.dwop, r.guest,
+  r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
      r.numhotdogs, r.numhdbuns, r.numhamburgers, r.numhbbuns, r.vegetarian,
   r.mealchoice, r.dietaryrestriction, m.mealname as mealname
   FROM ' . $this->table . ' r
@@ -792,7 +795,7 @@ public function read_ByMealID($mealid) {
   c.eventtype as eventtype, c.orgemail as orgemail,
   r.id, r.eventid, r.firstname, r.lastname, r.email, r.dateregistered,
   r.registeredby,  r.cornhole, r.softball, r.paidonline,
-  r.modifiedby, r.modifieddate, r.dwop, r.guest,
+  r.modifiedby, r.modifieddate, r.dwop, r.guest, r.stripecheckout,
   r.userid, r.paid, r.message, r.ddattenddinner, r.ddattenddance,
   r.mealchoice, r.dietaryrestriction, m.mealname as mealname
   FROM ' . $this->table . ' r
@@ -852,7 +855,7 @@ public function readLike($eventid, $search) {
   $query = 'SELECT 
   id, eventid, firstname, lastname, email, dateregistered, registeredby,
   userid, paid, message, ddattenddinner, ddattenddance,
-  modifieddate, modifiedby, dwop, guest,
+  modifieddate, modifiedby, dwop, guest, stripecheckout,
   numhotdogs, numhdbuns, numhamburgers, numhbbuns, vegetarian,
   mealchoice, dietaryrestriction,
   cornhole, softball, paidonline
@@ -905,6 +908,7 @@ public function readLike($eventid, $search) {
           dietaryrestriction = :dietaryrestriction,
           dwop = :dwop,
           guest = :guest,
+          stripecheckout = :stripecheckout,
           eventid = :eventid';
 
           // Prepare statement
@@ -945,6 +949,7 @@ public function readLike($eventid, $search) {
           $stmt->bindParam(':numhbbuns', $this->numhbbuns);
             $stmt->bindParam(':vegetarian', $this->vegetarian);
                   $stmt->bindParam(':guest', $this->guest);
+                             $stmt->bindParam(':stripecheckout', $this->stripecheckout);
           // Execute query
           if($stmt->execute()) {
             return true;

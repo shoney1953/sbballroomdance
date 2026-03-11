@@ -292,7 +292,10 @@ $checkout_session = \Stripe\Checkout\Session::create([
     'success_url' => $YOUR_DOMAIN . '/regsuccess.php?regid='.$tempRegID,
     'cancel_url' => $YOUR_DOMAIN . '/regcancel.php',
   ]); 
-
+// add the checkout session id to the registration
+$tempReg->id = $tempRegID; // what just got created
+$tempReg->stripecheckout = $checkout_session->id; // what we got from creating the checkout session
+$tempReg->updateCheckOut();
 
     header("HTTP/1.1 303 See Other");
     header("Location: " . $checkout_session->url);

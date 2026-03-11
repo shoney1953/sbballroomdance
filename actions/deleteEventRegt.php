@@ -7,7 +7,7 @@ require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
 
 // $regs = $_SESSION['eventregistrations'];
-var_dump('in deleteeventregt');
+
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
@@ -61,7 +61,7 @@ if (isset($_POST['submitRemoveRegs'])) {
     if ($_SESSION['role'] === 'visitor') {
         $_SESSION['userid'] = '0';
         $regName = $_SESSION['visitorfirstname'].' '.$_SESSION['visitorlastname'];
-        var_dump($_POST['eventid'],$_SESSION['visitoremail']);
+
         if ($eventReg->read_ByEventIdVisitor($_POST['eventid'],$_SESSION['visitoremail'])) {
           $gotEventRec = 1;
            $remID1 = "rem".$eventReg->id;

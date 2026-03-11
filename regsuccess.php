@@ -95,8 +95,9 @@ if ($tempReg->ddattenddinner1 === '1') {
 } else {
     $emailBody .= "You have chosen not to attend dinner.<br>";
 }
-
+$eventReg->stripecheckout = $tempReg->stripecheckout;
 $eventReg->create();
+
 $event->addCount($eventReg->eventid);
 } // end member 1
 
@@ -135,6 +136,7 @@ if ($tempReg->visitor !== '1') {
 } else {
      $eventReg->userid = 0;
 }
+$eventReg->stripecheckout = $tempReg->stripecheckout;
 $eventReg->create();
 $event->addCount($eventReg->eventid);
 
@@ -153,7 +155,7 @@ $event->addCount($eventReg->eventid);
 }
 
 } // end partner
-    // var_dump($tempReg);
+  
 if ($tempReg->guest1firstname != '') {
     $eventReg->eventid = $tempReg->eventid;
 $eventReg->eventname = $tempReg->eventname;
@@ -181,7 +183,7 @@ if ($tempReg->eventtype !== 'BBQ Picnic') {
      $eventReg->dwop = 2;
      $eventReg->userid = 0;
 
-
+$eventReg->stripecheckout = $tempReg->stripecheckout;
 $eventReg->create();
 $event->addCount($eventReg->eventid);
     if ($tempReg->guest1attenddinner === '1') {
@@ -228,7 +230,7 @@ if ($tempReg->eventtype !== 'BBQ Picnic') {
      $eventReg->dwop = 2;
      $eventReg->userid = 0;
 
-
+$eventReg->stripecheckout = $tempReg->stripecheckout;
 $eventReg->create();
 $event->addCount($eventReg->eventid);
 

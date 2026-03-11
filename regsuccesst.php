@@ -22,7 +22,7 @@ $tempRegID = $_GET['regid'];
 unset($_GET['regid']);
 $tempReg->id = $tempRegID;
 $tempReg->read_single();
-
+ 
 $fromCC = $webmaster;
 $replyEmail = $webmaster;
 $fromEmailName = 'SBDC Ballroom Dance Club';
@@ -96,7 +96,7 @@ if ($tempReg->ddattenddinner1 === '1') {
 } else {
     $emailBody .= "You have chosen not to attend dinner.<br>";
 }
-
+$eventReg->stripecheckout = $tempReg->stripecheckout;
 $eventReg->create();
 $event->addCount($eventReg->eventid);
 }
@@ -143,7 +143,7 @@ if ($tempReg->firstname1 === '') {
    $toCC2 = $partnerEventReg->email;
 }
 
-
+$eventReg->stripecheckout = $tempReg->stripecheckout;
 $partnerEventReg->create();
 $event->addCount($partnerEventReg->eventid);
     if ($tempReg->ddattenddinner2 === '1') {
