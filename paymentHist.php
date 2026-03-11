@@ -286,7 +286,7 @@ if (isset($_POST['submitSearchEvent']))  {
                     <label for="enddate">Ending Date Range</label>
                     <input type='date'  placeholder="end date"
                           title='ending date for transactions' name='enddate'>     
-                    <button type="submit" name="submitGetTransDate">Retrieve Transactions by Date </button>   
+                    <button type="submit" name="submitGetTransDate">Retrieve Transactions by Date Range</button>   
                 </div>
             </form>
     </div>
@@ -296,7 +296,7 @@ if (isset($_POST['submitSearchEvent']))  {
 
             <div class="form-item">
    
-                    <button type="submit" name="submitGetTransTypeMembership">Retrieve Transactions by Membership </button>   
+                    <button type="submit" name="submitGetTransTypeMembership">Retrieve All Transactions by Membership </button>   
                 </div>
             </form>
     </div>
@@ -305,7 +305,7 @@ if (isset($_POST['submitSearchEvent']))  {
 
             <div class="form-item">
    
-                    <button type="submit" name="submitGetTransEvents">Retrieve Transactions by events </button>   
+                    <button type="submit" name="submitGetTransEvents">Retrieve All Transactions by Events </button>   
                 </div>
             </form>
     </div>
