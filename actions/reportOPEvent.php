@@ -123,10 +123,10 @@ class PDF extends FPDF
     $pdf->Cell(40,10,"STRIPE FEE",1,0,"L");
     $pdf->Cell(40,10,"NET",1,1,"L");
 
-
+    $num = 0;
     $pdf->SetFont('Arial', '', 10);
     foreach($totalCharges as $payment) {
-
+    $num++;
     $pdf->Cell(50,10,$payment['metadata']['email'],1,0,"L");
     $pdf->Cell(40,10,date('Y-m-d', $payment['created']),1,0,"L");
     $pdf->Cell(40,10,number_format($payment['amount']/100, 2),1,0,"L");
@@ -137,7 +137,7 @@ class PDF extends FPDF
     $totalStripeFees = $totalStripeFees + $payment['stripefee'];
 
     }
-   $pdf->Cell(50,10,"TOTALS",1,0,"L");
+   $pdf->Cell(50,10,"TOTALS FOR ".$num." PAYMENTS",1,0,"L");
     $pdf->Cell(40,10," ",1,0,"L");
     $pdf->Cell(40,10,number_format($totalAmount/100, 2),1,0,"L");
     $pdf->Cell(40,10,number_format($totalStripeFees/100, 2),1,0,"L");
