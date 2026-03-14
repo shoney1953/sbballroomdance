@@ -185,6 +185,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
 
    foreach($allEvents as $event) {
     $rpChk = "rp".$event['id'];
+    $rpOPChk = "rpOP".$event['id'];
     $upChk = "up".$event['id'];
     $dlChk = "dl".$event['id'];
     $emChk = "em".$event['id'];
@@ -233,6 +234,14 @@ echo '<form method="POST" action="actions/processEvents.php">';
     echo '<h4 class="form-item-title">Create CSV?</h4>';
     echo "<input type='checkbox' title='Only select 1 event for Create CSV' name='".$cvChk."'>";
     echo '</div>';
+   if (($event['eventtype'] === 'Dance Party') || ($event['eventtype'] === 'Dinner Dance')) {
+
+    echo '<div class="form-item">';
+    echo '<h4 class="form-item-title">Report Online Pay?</h4>';
+    echo "<input type='checkbox' title='Only select 1 event for Report' name='".$rpOPChk."'>";
+    echo '</div>';
+   }
+
 
    echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Email Attendees?</h4>';

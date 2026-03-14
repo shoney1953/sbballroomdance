@@ -18,6 +18,23 @@ if ($reportEvent) {
      
   }
 }
+if ($reportOPEvent) {
+
+  foreach ($allEvents as $event) {
+    $rpOPChk = 'rpOP'.$event['id'];
+
+    if (isset($_POST["$rpOPChk"])) {
+      // unset($_POST["$rpChk"]);
+      echo "<h4>Generated Online Payment Report for  ".$event['eventname']."  ".$event['eventdate']."</h4>";
+      echo "<form  name='reportEventForm'   method='POST' action='reportOPEvent.php'> ";
+      echo "<input type='hidden' name='eventId' value='".$event['id']."'>"; 
+      echo '<script language="JavaScript">document.reportEventForm.submit();</script></form>';
+      unset($_POST["$rpOPChk"]);
+      break;
+    }
+     
+  }
+}
 if ($csvEvent) {
 
   foreach ($allEvents as $event) {

@@ -97,6 +97,7 @@ $urChk = false;
 $drChk = false;
 $arChk = false;
 $rpChk = false;
+$rpOPChk = false;
 $upChk = false;
 $dlChk = false;
 $emChk = false;
@@ -122,6 +123,7 @@ if (isset($_POST['submitEventProcess'])) {
         $processReg = false;
         $processEvent = false;
         $reportEvent = false;
+        $reportOPEvent = false;
         $updateEvent = false;
         $deleteEvent = false;
         $emailEvent = false;
@@ -133,6 +135,7 @@ if (isset($_POST['submitEventProcess'])) {
         $updateMeals = false;
         $uploadForm = false;
         $rpChk = "rp".$event['id'];
+        $rpOPChk = "rpOP".$event['id'];
         $upChk = "up".$event['id'];
         $dlChk = "dl".$event['id'];
         $emChk = "em".$event['id'];
@@ -151,6 +154,13 @@ if (isset($_POST['submitEventProcess'])) {
 
     if (isset($_POST["$rpChk"])) {
         $reportEvent = true;
+        $processEvent = true;
+    
+        break;
+       
+    }
+     if (isset($_POST["$rpOPChk"])) {
+        $reportOPEvent = true;
         $processEvent = true;
     
         break;
@@ -272,6 +282,7 @@ if (isset($_POST['submitEventProcess'])) {
               'numhbbuns' => $numhbbuns,
               'vegetarian' => $vegetarian,
               'dietaryrestriction' => $dietaryrestriction,
+              'stripecheckout' => $stripecheckout,
               'userid' => $userid
            
           );
@@ -311,6 +322,7 @@ if (isset($_POST['submitEventProcess'])) {
                 'numhamburgers' => $numhamburgers,
                 'numhbbuns' => $numhbbuns,
                 'vegetarian' => $vegetarian,
+                'stripecheckout' => $stripecheckout,
                   'userid' => $userid
 
                   
