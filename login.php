@@ -29,7 +29,14 @@ date_default_timezone_set("America/Phoenix");
    <br><br><br><h4>If you are a member, please use the SBDC member log in. If not, please log in as a visitor.</h4>
    <h4>If you are a member and having trouble logging on     
          <a href="faq.php">Click to See Our Frequently Asked Questions</a>, or 
-       <a href="mailto:".$webmaster."?subject=SBDC Login Info"> Click to contact Webmaster</a></h4>
+         <?php
+
+          echo '<a href="mailto:'.$webmaster.'?subject=SBDC LOGIN INFORMATION">Click to Contact Webmaster</a>';
+          ?>
+     </h4>
+       
+
+
        <br><br>
         <?php
 
