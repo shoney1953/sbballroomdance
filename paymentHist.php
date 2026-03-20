@@ -135,7 +135,10 @@ if (isset($_POST['submitSearchEvent']))  {
   $search = trim($_POST['searchevent']);
 
      foreach ($upcomingEvents as $event) {
-       if (stripos($event['eventname'],$search, 0)) {
+
+      $x = stripos($event['eventname'], $search, 0);
+ ;
+       if (is_int($x)) {
          array_push($searchEvents, $event);
        }
      }
