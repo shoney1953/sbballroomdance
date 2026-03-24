@@ -5,15 +5,18 @@ require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
-
+var_dump($_POST);
 $regs = $_SESSION['eventregistrations'];
 
 $database = new Database();
 $db = $database->connect();
 $eventReg = new EventRegistration($db);
 $event = new Event($db);
+$event->id = $_POST['eventid'];
+$event->read_single();
+$num_registered = $event->eventnumregistered;
 $regSelected = [];
-$eventid = 0;
+$eventid = $_POST['eventid'];
 $regAll = '';
 $emailBody = "Your Event Registration has been removed:<br>";
 $emailSubject = 'SBDC Event Registration Removed';
@@ -79,8 +82,8 @@ $result = 0;
 
   
            $eventReg->delete();
-     
-           $event->decrementCount($eventid,$eventid);
+           $num_registered--;
+           $event->decrementCount($eventid,$num_registered);
        }
     }
 
