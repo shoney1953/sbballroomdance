@@ -225,16 +225,16 @@ if ($rowCount > 0) {
 $_SESSION['classes'] = $classes;
 $_SESSION['upcoming_classes'] = $upcomingClasses;
 $_SESSION['allClasses'] = $upcomingClasses;
-
-if (isset($_SESSION['username'])) {
-    if (isset($_SESSION['role'])) {
-        if ($_SESSION['role'] != 'visitor') {
     $user = new User($db);
     $result = $user->read();
     
     $rowCount = $result->rowCount();
     $num_users = $rowCount;
     $_SESSION['num_members'] = $num_users;
+if (isset($_SESSION['username'])) {
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] != 'visitor') {
+
     $_SESSION['directory'] = [];
     if($rowCount > 0) {
     
