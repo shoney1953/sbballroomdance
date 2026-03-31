@@ -218,7 +218,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '<div class="form-item">';
    $hr = 'eventMem.php?id=';
    $hr .= $event["id"];
-  
+   
    echo "<h4 class='form-title'>Number Registered: 
  
         <a href='".$hr."'>".$event['eventnumregistered']."</a></h4>";
