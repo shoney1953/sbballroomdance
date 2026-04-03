@@ -35,7 +35,7 @@
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/cruiseplanner.png" alt="Cruise Planner">
       </div>
-       <div class="sponsorCard">
+      <div class="sponsorCard">
        <img  class="sponsorImage" src="img/statefarm.png" alt="Debra Miller Insurance">
       </div>
     </div>
