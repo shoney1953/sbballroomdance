@@ -36,7 +36,7 @@
        <img  class="sponsorImage" src="img/cruiseplanner.png" alt="Cruise Planner">
       </div>
        <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/Miller2026.png" alt="Dana Miller Insurance">
+       <img  class="sponsorImage" src="img/statefarm.png" alt="Debra Miller Insurance">
       </div>
     </div>
     <div id="danceparty"class="sponsorLogo-Div">
