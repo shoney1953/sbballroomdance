@@ -313,7 +313,7 @@ class Event {
 
     public function decrementCount($id, $numregistered) {
 
-         var_dump($id, $numregistered);
+      
           $this->id = $id;
           // do the update
        

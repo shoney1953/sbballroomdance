@@ -102,6 +102,7 @@ $replyTopic = "SBDC Event Registration Update ";
         $dwopID = "dwop".$reg['id'];
         $guestID = "guest".$reg['id'];
         $dddinID = "dddin".$reg['id'];
+
         $chID = "ch".$reg['id'];
         $sbID = "sb".$reg['id'];
         $drID = "dr".$reg['id'];
@@ -125,9 +126,9 @@ $replyTopic = "SBDC Event Registration Update ";
             $eventReg->modifiedby = $_SESSION['username'];
             if (isset($_POST["$paidID"])) {
 
-                $eventReg->paid = $_POST["$paidID"];
+                $eventReg->paid = 1;
             } else {
-                $eventReg->paid = $reg['paid'];
+                $eventReg->paid = 0;
             }
             if (isset($_POST["$dwopID"])) {
       
@@ -138,10 +139,11 @@ $replyTopic = "SBDC Event Registration Update ";
             $eventReg->message = $_POST["$messID"];
           
             if (isset($_POST["$dddinID"])) {
-     
-               $eventReg->ddattenddinner = $_POST["$dddinID"];
+          
+               $eventReg->ddattenddinner = 1;
             } else {
-                $eventReg->ddattenddinner = $reg['ddattenddinner'];
+                   
+                $eventReg->ddattenddinner = 0;
             }
             
             if (isset($_POST["$chID"])) {
@@ -231,7 +233,10 @@ $replyTopic = "SBDC Event Registration Update ";
                      }
 
                      }
-               
+
+               if ($eventReg->ddattenddinner === '0') {
+                $eventReg->mealchoice = 0;
+               }
             $eventReg->update();
     } 
  

@@ -29,23 +29,23 @@ $charges = '';
 $searchEmail = '';
 $i = 0;  
 $checkOutSessions = [];
-var_dump($_POST);
+
 if (isset($_POST['submitGetCHKOOUTs']))  {
 
 
     $checkOutSessions = $stripe->checkout->sessions->all(['limit' => 3]);
     foreach ($checkOutSessions['data'] as $checkoutObj) {
-        var_dump($checkoutObj['payment_intent']);
+   
         $paymentIntent = $stripe->paymentIntents->retrieve(
   $checkoutObj['payment_intent'],
   []
 );
-var_dump($paymentIntent['latest_charge']);
+
     $charge = $stripe->charges->retrieve(
   $paymentIntent['latest_charge'],
   []
 );
-var_dump($charge);
+
 
         // $charges = $stripe->charges->search([
         // 'query' => 'payment_intent : "pi_3T8PjjL8mOGPmzyG07nZy4Vs"',

@@ -5,7 +5,7 @@ require_once '../includes/siteemails.php';
 require_once '../config/Database.php';
 require_once '../models/EventRegistration.php';
 require_once '../models/Event.php';
-var_dump($_POST);
+
 $regs = $_SESSION['eventregistrations'];
 
 $database = new Database();

@@ -133,7 +133,7 @@
         }
 
         function displayMeals2U(regid) {
-       
+        
         var attenddinner = 'dddin'+regid;
         var formcontainer =  "fcu"+regid;
 
@@ -148,11 +148,26 @@
             element1.classList.add('hidden');
             }
         }
+       function displayMeals2X(regid) {
+        
+        var attenddinner = 'dddin'+regid;
+        var formcontainer =  "fcu2"+regid;
 
+        // Select the element
+        if (document.getElementById(attenddinner).checked) {
+        var element1 = document.getElementById(formcontainer);
+        element1.classList.remove('hidden');
+        }
+        else {
+          
+            var element1 = document.getElementById(formcontainer);
+            element1.classList.add('hidden');
+            }
+        }
         function displayMeals3U(regid) {
  
         var update =  "upd"+regid; 
-        var formcontainer =  "fcu2"+regid;
+         var formcontainer =  "fcu2"+regid;
 
         // Select the element
         if (document.getElementById(update).checked) {

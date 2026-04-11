@@ -101,7 +101,7 @@
             } else if ($event['eventtype'] === 'BBQ Picnic') {
                 echo "<input title='Select to Update Registration' type='checkbox' id=".$updID." name='".$updID."' onclick='displayMeals3U(".$reg['id'].")'>"; 
             } else if ($event['eventtype'] === 'Dance Party') {
-               echo "<input title='Select to Update Registration' type='checkbox' id=".$updID." name='".$updID."' onclick='displayMeals3U(".$reg['id'].")'>"; 
+               echo "<input title='Select to Update Registration' type='checkbox' id=".$updID." name='".$updID."' >"; 
             } else {
                   echo "<input title='Select to Update Registration' type='checkbox' name='".$updID."'>"; 
             }
@@ -135,7 +135,12 @@
 
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Attend Meal?</h4>';
-                echo "<input type='number'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+                // echo "<input type='number'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+                if ($reg['ddattenddinner']) {
+                echo "<input type='checkbox' id='".$dddinID."' checked>";
+                  } else {
+                        echo "<input type='checkbox' id='".$dddinID."' name='".$dddinID."' >";
+                  }
        
                 echo '</div>'; // end of form item
                 $ch = 0;
@@ -214,7 +219,12 @@
           
                 echo '<div class="form-item">';
                 echo '<h4 class="form-item-title">Attend Dinner?</h4>';
-                 echo "<input type='number'  title='Enter 1 for Attend dinner' id='".$dddinID."' name='".$dddinID."' min='0' max='1' value='".$ad."'>";
+          
+                  if ($reg['ddattenddinner']) {
+                echo "<input type='checkbox' id='".$dddinID."' checked onclick='displayMeals2X(".$reg['id'].")' >";
+                  } else {
+                        echo "<input type='checkbox' id='".$dddinID."' name='".$dddinID."'onclick='displayMeals2X(".$reg['id'].")' >";
+                  }
        
                 
                 echo '</div>'; 
@@ -313,14 +323,41 @@
             } // end if dinner dance
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Paid?</h4>';
-            echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
+            // echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
+            
+            if ($reg['paid'] === '1') {
+            echo "<input type='checkbox'  name='".$paidID."'.  value='".$reg['paid']."' checked>";
+        } else {
+             echo "<input type='checkbox'  name='".$paidID."'.  value='".$reg['paid']."'>";
+        }
             echo '</div>'; // end of form item
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">DWOP?</h4>';
             if ($reg['dwop'] === NULL)  {
                 $reg['dwop'] = 2;
             }
-            echo "<input type='number' title='Enter 1 to DWOP, 2 for UNKNOWN, 0 for Couple' name='".$dwopID."'. min='0' max='2' value='".$reg['dwop']."'>";
+            // echo "<input type='number' title='Enter 1 to DWOP, 2 for UNKNOWN, 0 for Couple' name='".$dwopID."'. min='0' max='2' value='".$reg['dwop']."'>";
+            echo " <select name='".$dwopID."'>";
+            if ($reg['dwop'] === '0') {
+             echo '<option value = "0" selected>Part of a Couple</option>';
+             echo '<option value = "1">Single Attendee</option>';
+              echo '<option value = "2">Status Unknown</option>';
+            }
+             if ($reg['dwop'] === '1') {
+                
+             echo '<option value = "1" selected>Single Attendee</option>';
+             echo '<option value = "0" >Part of a Couple</option>';
+              echo '<option value = "2">Status Unknown</option>';
+                
+            }
+             if ($reg['dwop'] === '2') {
+                    echo '<option value = "2" selected>Status Unknown</option>';
+                   echo '<option value = "1" >Single Attendee</option>';
+             echo '<option value = "0" >Part of a Couple</option>';
+          
+                
+            }
+            echo "</select>";
             echo '</div>'; // end of form item
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Message</h4>';
