@@ -32,6 +32,8 @@ $danceCost = 0;
 $regSelected = [];
 $mem1Partnerid = '';
 $mem2Partnerid = '';
+$guestprice1 = 0;
+
 $fprice1 = 0;
 $fprice2 = 0;
 $fprice3 = 0;
@@ -389,6 +391,8 @@ if (isset($_POST['addguests'])) {
                                   $mealid1 = $choice['id'];
                                   $meal1 = $choice['mealname'];
                                   $mealprice1 = $choice['memberprice'];
+                                  $guestprice1 = $choice['guestprice'];
+                            
                                   $mealpriceid1 = $choice['priceid'];
                                   $potentialReg1['mealchoice'] =  $choice['id'];
                                   $potentialReg1['mealdesc'] = $choice['mealname'];
@@ -397,7 +401,7 @@ if (isset($_POST['addguests'])) {
                                   $potentialReg1['guestprice'] =  $choice['guestprice'];
                                   $potentialReg1['guestpriceid'] =  $choice['guestpriceid'];
                                   $potentialReg1['priceid'] =  $choice['priceid'];
-
+ 
                                } //smeal1
                    
                             
@@ -542,6 +546,7 @@ if (isset($_POST['addguests'])) {
                 switch ($eventInst->eventtype) {
                
                   case "Dance Party":
+              
                          if (isset($_POST['mem1Chk'])) {
                          if (isset($_POST['ddattdin1'])) {
                                 $emailBody .= "You have chosen to attend dinner.<br>";
@@ -551,8 +556,16 @@ if (isset($_POST['addguests'])) {
                                             exit;
                                   }
                                     if ($meal1 !== '') {
-                                        $emailBody .= "You selected ".$meal1." at the cost of $".number_format($mealprice1/100,2)."";   
-                                        $danceCost = $danceCost + $mealprice1;    
+                                       if ($_SESSION['role'] === 'visitor') {
+                        
+                                        $emailBody .= "You selected ".$meal1." at the cost of $".number_format($guestprice1/100,2)."";   
+                                        $danceCost = $danceCost + $guestprice1;  
+                                       } else {
+                                         $emailBody .= "You selected ".$meal1." at the cost of $".number_format($mealprice1/100,2)."";   
+                                        $danceCost = $danceCost + $mealprice1;  
+                                       }
+
+                  
                                         if ($dietaryRestriction1 != '') {
                                           $emailBody .= " with a dietary restrictions of ".$dietaryRestriction1.".<br>";
                                        } else {
@@ -957,9 +970,14 @@ if (isset($_POST['addguests'])) {
             }
 
 
-        
+          if ($_SESSION['role'] === 'visitor') {
+        $regName1 = $_SESSION['visitorfirstname'].' '.$_SESSION['visitorlastname'];
+        $regEmail1 = $_SESSION['visitoremail'];
+        } else {
         $regName1 = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
         $regEmail1 = $_SESSION['useremail'];
+        }
+
         if (isset($_POST['mem2Chk'])) {
             $toCC2 = $regEmail2;
         }
