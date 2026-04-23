@@ -84,7 +84,7 @@ if (!isset($_POST['submitAddRegs'])) {
           }
 
 
-    $emailSubject = "You have registered SBDC dance class: ".$danceClass->classname;
+    $emailSubject = $regFirstName1." ".$regLastName1." has registered SBDC dance class: ".$danceClass->classname;
       
                 $classId = $danceClass->id;
                 $emailBody .= '**************************************';
@@ -169,6 +169,7 @@ if (!isset($_POST['submitAddRegs'])) {
               $toCC4,
               $toCC5
           );
+              $emailSubject = $regFirstName1." ".$regLastName1." has Signed up for your upcoming Class";
     } 
   } elseif (isset($_POST['mem2Chk'])) {
    
@@ -192,6 +193,7 @@ if (!isset($_POST['submitAddRegs'])) {
             $toCC4,
             $toCC5
         );
+            $emailSubject = $regFirstName2." ".$regLastName2." has Signed up for your upcoming Class";
     } 
   }
   
@@ -199,7 +201,7 @@ if (!isset($_POST['submitAddRegs'])) {
 
    $toCC2 = $danceClass->registrationemail;
 
-    $emailSubject = "People have Signed up for your upcoming Class";
+    // $emailSubject = $regFirstName1." ".$regLastName1." has Signed up for your upcoming Class";
 
 
             $emailBody = "The following individuals have signed up for the class you are going to teach: ".$danceClass->classname."<br>";

@@ -55,8 +55,9 @@ if (isset($_POST['submitRegClass'])) {
         if ($user->getUserName($regEmail2)) {    
     
             $regId2 = $user->id;
+             $toCC3 = $regEmail2;
        }  
-    
+      
         if (isset($_POST['message2ins'])) {
             $message2Ins = $_POST['message2ins'];
           }
@@ -83,7 +84,7 @@ if (isset($_POST['submitRegClass'])) {
             exit; 
     }
      
-    $emailSubject = "You have registered for selected Classes";
+    $emailSubject = $regFirstName1." ".$regLastName1." has registered for selected Classes";
       
      foreach($regSelected as $key => $reg) {
       
@@ -119,7 +120,7 @@ if (isset($_POST['submitRegClass'])) {
                 }
                 $result = $classReg->checkDuplicate($regEmail1, $classId);
                  if ($result) {
-                        $redirect = "Location: ".$_SESSION['regclassurl'].'?error=Duplicate Registration Email1 Please check your profile.';
+                        $redirect = "Location: ".$_SESSION['regclassurl'].'?error=Duplicate Registration Email1 Please check upcoming classes.';
                         header($redirect);
                         exit; 
                 }
@@ -148,7 +149,7 @@ if (isset($_POST['submitRegClass'])) {
                         $danceClass->addCount($classId);
                     }
                     if ($result) {
-                        $redirect = "Location: ".$_SESSION['regclassurl'].'?error=Duplicate Registration Email 2 Please check your profile.';
+                        $redirect = "Location: ".$_SESSION['regclassurl'].'?error=Duplicate Registration Email 2 Please check upcoming classes.';
                         header($redirect);
                         exit; 
                 }
@@ -186,31 +187,31 @@ if (isset($_POST['submitRegClass'])) {
     }
  
   
-    if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
+    // if (filter_var($regEmail2, FILTER_VALIDATE_EMAIL)) {
       
-        $regName2 = $regFirstName2.' '.$regLastName2;
+    //     $regName2 = $regFirstName2.' '.$regLastName2;
   
-        sendEmail(
-            $regEmail2, 
-            $regName2, 
-            $fromCC,
-            $fromEmailName,
-            $emailBody,
-            $emailSubject,
-            $replyEmail,
-            $replyTopic,
-            $mailAttachment,
-            $mailAttachment2,
-            $toCC2,
-            $toCC3,
-            $toCC4,
-            $toCC5
+    //     sendEmail(
+    //         $regEmail2, 
+    //         $regName2, 
+    //         $fromCC,
+    //         $fromEmailName,
+    //         $emailBody,
+    //         $emailSubject,
+    //         $replyEmail,
+    //         $replyTopic,
+    //         $mailAttachment,
+    //         $mailAttachment2,
+    //         $toCC2,
+    //         $toCC3,
+    //         $toCC4,
+    //         $toCC5
 
-        );
-    } 
+    //     );
+    // } 
 
 
-    $emailSubject = "People have Signed up for your upcoming Class";
+    $emailSubject = $regFirstName1." ".$regLastName1." has Signed up for your upcoming Class";
 
 
     foreach ($regSelected as $key => $reg) {
@@ -224,6 +225,9 @@ if (isset($_POST['submitRegClass'])) {
                     $emailBody .= "<br>Their Message to the instructor(s) is: ".$message2Ins."<br><br>";
                 }
                 $emailBody .= "NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
+                if (isset($regFirstName2)) {
+                       $emailBody .= "NAME: ".$regFirstName2." ".$regLastName2."<br>    EMAIL:  ".$regEmail2."<br>";
+                }
              
            
                 $classString = '';
