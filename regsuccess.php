@@ -29,7 +29,8 @@ $mailAttachment = "";
 $mailAttachment2 = "";
 $replyTopic = "SBDC Event Registration";
 $emailBody = "Thanks for registering for the ".$tempReg->eventname." on ".$tempReg->eventdate.".<br>";
-$emailSubject = "You have registered for ".$tempReg->eventname." and paid online.";
+$emailSubject = $tempReg->firstname1." ".$tempReg->lastname1." has registered for ".$tempReg->eventname." and paid online.";
+
 $toCC2 = '';
 $toCC3 = '';
 $toCC4 = '';
@@ -46,6 +47,7 @@ $eventReg->paid = 1;
 $eventReg->guest = 0;
 $eventReg->message = $tempReg->message;
 $eventReg->firstname = $tempReg->firstname1;
+
 if ($tempReg->eventtype !== 'BBQ Picnic') {
     $eventReg->numhamburgers = 0;
     $eventReg->numhbbuns = 0;
