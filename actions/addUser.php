@@ -57,9 +57,10 @@ $toCC3 = $webmaster;
 // 
 
 $toCC4 = ''; 
+$toCC5 = ''; 
 
 // $toCC4 = 'richardschroeder50@gmail.com';
-$toCC5 = $vicePresident;
+// $toCC5 = $vicePresident;
 $fromCC = $ggWebmaster;
 
 if (isset($_POST['submitAddUser'])) {

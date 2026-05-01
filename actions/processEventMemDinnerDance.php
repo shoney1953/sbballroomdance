@@ -490,7 +490,7 @@
             echo "<h1 class='form-title'>Update Reservations for ".$event['eventname']." on ".$event['eventdate']."</h1>";
             echo '<form method="POST" name="MemberUpdateEventMeals" action="updateMealEventRegt.php">';  
             echo '<input type="hidden" name="regID1" value='.$reg->id.'>';
-                         echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
+            echo '<input type="hidden" name="eventid" value='.$event['id'].'>';
             if ($gotEventReg) {
                echo '<input type="hidden" name="ddattdin1" value="1">';
                  echo '<div class="form-grid-div">';

@@ -1,6 +1,6 @@
 <?php
 $president = 'annzabinski@gmail.com';
-$vicePresident = 'LynnePendlebury@aol.com';
+$vicePresident = 'dale.pizz13@gmail.com';
 $secretary = 'patknepler@gmail.com';
 $treasurer = 'shamburglinda64@gmail.com';
 $danceDirector = 'annzabinski@gmail.com';

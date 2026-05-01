@@ -38,7 +38,7 @@ require_once 'includes/siteemails.php';
                        Ann Pizzitola</a>, President</li>';
             echo '<li class="li-none li-large li-left">  
                 <a href="mailto:'.$vicePresident.'?subject=SBDC Info">
-                Lynne Pendlebury</a>, Vice President, Questions about Events</li>';
+                Dale Pizzitola</a>, Vice President, Questions about Events</li>';
             echo '<li class="li-none li-large li-left">
                 <a href="mailto:'.$treasurer.'?subject=SBDC Contact Info">
                   Linda Shamburg</a>, Treasurer, Questions about costs of events or membership </li>';
