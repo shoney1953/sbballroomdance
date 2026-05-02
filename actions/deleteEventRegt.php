@@ -18,7 +18,7 @@ $regSelected = [];
 $eventid = 0;
 $regAll = '';
 $emailBody = "Your Event Registration has been removed:<br>";
-$emailSubject = 'SBDC Event Registration Removed';
+$emailSubject = 'SBDC Event Registration Removed for ';
 $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
@@ -64,7 +64,7 @@ if (isset($_POST['submitRemoveRegs'])) {
     if ($_SESSION['role'] === 'visitor') {
         $_SESSION['userid'] = '0';
         $regName = $_SESSION['visitorfirstname'].' '.$_SESSION['visitorlastname'];
-
+       
         if ($eventReg->read_ByEventIdVisitor($_POST['eventid'],$_SESSION['visitoremail'])) {
           $gotEventRec = 1;
            $remID1 = "rem".$eventReg->id;
@@ -93,6 +93,8 @@ if (isset($_POST['submitRemoveRegs'])) {
        if (isset($_POST["$remID1"])) {
         $emailBody .= "<br>MEMBER NAME: ".$_SESSION['userfirstname']." ".$_SESSION['userlastname']."<br>    EMAIL:  ".$_SESSION['useremail']."<br>";
         $regName = $_SESSION['userfirstname'].' '.$_SESSION['userlastname'];
+     
+   
         $regEmail = $_SESSION['useremail'];
  
          if ($gotEventRec) {
@@ -159,7 +161,7 @@ if (isset($_POST['submitRemoveRegs'])) {
       }
 
         if (filter_var($regEmail, FILTER_VALIDATE_EMAIL)) {
-       
+        $emailSubject .= $regName.'.';
             sendEmail(
                 $regEmail, 
                 $regName, 

@@ -6,7 +6,7 @@
        $emailBody .= "Dale Pizzitola, Vice President<br>"; 
        $emailBody .= "Linda Shamburg, Treasurer<br>";
        $emailBody .= "Pat Knepler, Secretary<br>";
-       $emailBody .= "Dale Pizzitola, Director of Dance Instruction<br>";
-       $emailBody .= "Valerie Green, Volunteer Coordinator<br>";
+       $emailBody .= "Eileen Zelmanow, Member At Large";
+    
 
     ?>

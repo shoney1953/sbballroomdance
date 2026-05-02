@@ -41,8 +41,8 @@ require_once 'includes/siteemails.php';
              <li class="li-none">Encouraging your friends and neighbors to join the club. </li>
          </ul><br>
          <?php
-        echo '<p>If you think <strong>any </strong> of these opportunities sound interesting, please contact our Director of Volunteers, 
-        <a href="mailto:'.$volunteerDirector.'?subject=SBDC Volunteer Info">Valerie Green</a>';
+        echo '<p>If you think <strong>any </strong> of these opportunities sound interesting, please contact our President, 
+        <a href="mailto:'.$president.'?subject=SBDC Volunteering">Ann Pizzitola</a>';
         ?>
        </p><br><br>
 

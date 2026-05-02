@@ -43,12 +43,10 @@ require_once 'includes/siteemails.php';
                   &rarr; <a title="click to email" href="mailto:'.$secretary.'?subject=SBDC Info">
                   Email Pat</a></li>';
         
-            echo '<li class="li-none li-large">Dale Pizzitola, Director of Dance Instruction    
-                &rarr; <a title="click to email" href="mailto:'.$danceDirector.'?subject=SBDC Info">
-                Email Dale</a></li>';
-           echo '<li class="li-none li-large">Valerie Green, Volunteer Coordinator  
-                &rarr; <a title="click to email" href="mailto:'.$volunteerDirector.'?subject=SBDC Info">
-                Email Valerie</a></li>';
+            echo '<li class="li-none li-large">Eileen Zelmanow, Member At Large    
+                &rarr; <a title="click to email" href="mailto:'.$memberAtLarge.'?subject=SBDC Info">
+                Email Eileen</a></li>';
+      
             echo '<li class="li-none li-large">Rick Baumgartner, DJ Coordinator   
                 &rarr; <a title="click to email" href="mailto:'.$djDirector.'?subject=SBDC Info">
                 Email Rick</a></li>';

@@ -36,26 +36,27 @@ require_once 'includes/siteemails.php';
             echo '<li class="li-none li-large li-left">
                     <a href="mailto:'.$president.'?subject=SBDC Contact Info">
                        Ann Pizzitola</a>, President</li>';
-            echo '<li class="li-none li-large li-left">  
-                <a href="mailto:'.$vicePresident.'?subject=SBDC Info">
-                Dale Pizzitola</a>, Vice President, Questions about Events</li>';
+         
             echo '<li class="li-none li-large li-left">
-                <a href="mailto:'.$treasurer.'?subject=SBDC Contact Info">
+                <a href="mailto:'.$treasurer.'?subject=SBDC Membership Info">
                   Linda Shamburg</a>, Treasurer, Questions about costs of events or membership </li>';
             echo '<li class="li-none li-large li-left">   
-                <a href="mailto:'.$secretary.'?subject=SBDC Contact Info">
+                <a href="mailto:'.$secretary.'?subject=SBDC General Info">
                 Pat Knepler</a>, Secretary, General Questions </li>';
+             echo '<li class="li-none li-large li-left">  
+                <a href="mailto:'.$memberAtLarge.'?subject=SBDC Events">
+                Eileen Zelmanow</a>, Member At Large, Questions about Events</li>';
             echo '<li class="li-none li-large li-left"> 
-                <a href="mailto:'.$danceDirector.'?subject=SBDC Contact Info">
+                <a href="mailto:'.$danceDirector.'?subject=SBDC Class Info">
                 Dale Pizzitola</a>, Dance Director, Questions about Class</li>';
             echo '<li class="li-none li-large li-left">
-                <a href="mailto:'.$volunteerDirector.'?subject=SBDC Contact Info">
-                Valerie Green</a>, Questions about Volunteering   </a></li>';
+                <a href="mailto:'.$president.'?subject=SBDC Volunteer Info">
+                Ann Pizzitola</a>, Questions about Volunteering   </a></li>';
            echo '<li class="li-none li-large li-left">
-                <a href="mailto:'.$djDirector.'?subject=SBDC Contact Info">
+                <a href="mailto:'.$djDirector.'?subject=SBDC DJ Info">
                 Rick Baumgartner</a>, DJ Director, Questions about Music or DJing </li>';
             echo '<li class="li-none li-large li-left">  
-               <a href="mailto:'.$webmaster.'?subject=SBDC Contact Info">
+               <a href="mailto:'.$webmaster.'?subject=SBDC Website Info">
                 Sheila Honey</a>, Webmaster, Questions about the Website </li>';
             echo '<li class="li-none li-large li-left"> 
                 <a href="mailto:countmein@sbballroomdance.com?subject=SBDC Contact Info">

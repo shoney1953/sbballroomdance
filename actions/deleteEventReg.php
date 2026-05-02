@@ -19,7 +19,7 @@ $regSelected = [];
 $eventid = $_POST['eventid'];
 $regAll = '';
 $emailBody = "Your Event Registration has been removed:<br>";
-$emailSubject = 'SBDC Event Registration Removed';
+$emailSubject = 'SBDC Event Registration Removed for ';
 $numRegClasses = 0;
 $message2Ins = '';
 $id_int = 0;
@@ -51,6 +51,7 @@ $result = 0;
         // }
     $regFirstName1 = $reg['firstname'];
     $regLastName1 = $reg['lastname'];
+    $emailSubject .= $regFirstName1." ".$regLastName1.".";
     $regEmail1 = $reg['email'];;
     $emailBody .= "<br>NAME: ".$regFirstName1." ".$regLastName1."<br>    EMAIL:  ".$regEmail1."<br>";
     $emailBody .= 
