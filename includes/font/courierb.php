@@ -3,6 +3,7 @@ $type = 'Core';
 $name = 'Courier-Bold';
 $up = -100;
 $ut = 50;
+$x = 0;
 for($i=0;$i<=255;$i++)
 	$cw[chr($i)] = 600;
 $enc = 'cp1252';
