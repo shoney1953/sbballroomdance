@@ -35,7 +35,7 @@ require_once 'includes/siteemails.php';
                        Email Ann</a></li>';
             echo '<li class="li-none li-large">Dale Pizzitola, Vice-President 
                 &rarr;  <a title="click to email" href="mailto:'.$vicePresident.'?subject=SBDC Info">
-                Email Lynne</a></li>';
+                Email Dale</a></li>';
             echo '<li class="li-none li-large">Linda Shamburg, Treasurer 
                   &rarr; <a title="click to email" href="mailto:'.$treasurer.'?subject=SBDC Info">
                   Email Linda</a></li>';
