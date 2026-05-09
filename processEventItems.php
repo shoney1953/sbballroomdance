@@ -105,6 +105,29 @@ if ($uploadForm) {
      
   }
 }
+if ($uploadMusic) {
+
+  foreach ($allEvents as $event) {
+    $udlChk = 'udl'.$event['id'];
+   
+  
+    if (isset($_POST["$udlChk"])) {
+         echo "<h4>Upload Music List for  ".$event['eventname']."  ".$event['eventdate']."</h4>";
+      echo '<form method="POST" action="uploadMusic.php"  enctype="multipart/form-data">';
+      echo '<div class="form-grid-div">';
+      echo "<input type='hidden' name='eventid' value='".$event['id']."'>"; 
+
+      echo 'Select file to upload Only PDFs supported:<br>';
+      echo '<input type="file" name="fileToUpload" id="fileToUpload"><br>';
+      echo '<button type="submit" name="submitUpload">UPLOAD</button>';
+      echo '</div> ';  
+      echo '</form>';
+      unset($_POST["$udlChk"]);
+      break;
+    }
+     
+  }
+}
   if ($emailEvent) {
 
     foreach ($allEvents as $event) {
@@ -190,6 +213,7 @@ if ($uploadForm) {
        $evmrendID = "evmrend".$event['id'];
        $evropenID = "evropen".$event['id'];
        $evformID = "evform".$event['id'];
+       $evmlID = "evml".$event['id'];
        $evidID = "evid".$event['id'];
        $evoeID = "evoe".$event['id'];
        $evprodID = "evprod".$event['id'];
@@ -327,6 +351,11 @@ if ($uploadForm) {
       echo "<h4 class='form-item-title'>Event Form</h4>";
       echo "<input type='text' class='text-large' name='".$evformID."' value='".$event['eventform']."' 
       title='Enter a link to the Event Form or Flyer'>";
+      echo '</div>';
+     echo "<div class='form-item'>";
+      echo "<h4 class='form-item-title'>Event Music List</h4>";
+      echo "<input type='text' class='text-large' name='".$evmlID."' value='".$event['eventmusiclist']."' 
+      title='Enter a link to the Event Music List'>";
       echo '</div>';
 
       echo "<div class='form-item'>";

@@ -122,6 +122,7 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                     echo '<th>Reg<br>Opens</th>';
                     echo '<th>Dance Only Reg<br>Closes</th>';
                     echo '<th>Form</th>';
+                    echo '<th>Music List</th>';
                     echo '<th>Name    </th>';
                     echo '<th>Type    </th>';
 
@@ -164,6 +165,16 @@ $upcomingEvents = $_SESSION['upcoming_events'];
                              echo '<td><a href="'.$event['eventform'].'">PRINT</a></td>';
                         } else {
                               echo '<td><a href="uploads/forms/'.$event['eventform'].'">PRINT</a></td>';
+                        }
+                      
+                    } else {
+                            echo "<td> </td>"; 
+                    }
+                     if ($event['eventmusiclist']) {
+                        if (substr($event['eventmusiclist'],0,4) === 'http') {
+                             echo '<td><a href="'.$event['eventmusiclist'].'">PRINT</a></td>';
+                        } else {
+                              echo '<td><a href="uploads/musiclists/'.$event['eventmusiclist'].'">PRINT</a></td>';
                         }
                       
                     } else {

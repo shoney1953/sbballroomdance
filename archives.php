@@ -80,6 +80,7 @@ if ($rowCount > 0) {
             'eventdate' => $eventdate,
             'eventcost' => $eventcost,
             'eventform' => $eventform,
+            'eventmusiclist' => $eventmusiclist,
             'orgemail' => $orgemail,
             'eventdj' => $eventdj,
             "eventdesc" => html_entity_decode($eventdesc),

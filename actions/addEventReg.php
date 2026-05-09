@@ -312,6 +312,7 @@ if (isset($_POST['submitAddReg'])) {
 
      
                     }
+
                   
                  }
                 //  if ($event->orgemail != null) {

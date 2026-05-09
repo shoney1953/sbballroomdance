@@ -57,6 +57,7 @@ echo '<div class="container-section ">';
     echo '<br><br><h1>Selected Events</h1>';
 
         echo '<table>';
+           echo '<thead>';
             echo '<tr>';
                 echo '<th>ID</th>';
                 echo '<th>Date</th>';
@@ -69,10 +70,12 @@ echo '<div class="container-section ">';
                 echo '<th>Cost</th>';
                 echo '<th># Attending</th>';
             echo '</tr>';
-     
+           echo '</thead>';
+           echo '<tbody>';
             $eventNumber = 0;
             foreach($allEvents as $event) {
                  if ($event["id"] === $_GET['id']) {
+                 
                   echo "<tr>";
                
                     echo '<td>'.$event["id"].'</td>';
@@ -86,6 +89,37 @@ echo '<div class="container-section ">';
                     echo "<td>".$event['eventcost']."</td>";
                     echo "<td>".$event['eventnumregistered']."</td>";
                   echo "</tr>";
+                  echo '</tbody>';
+            echo '<thead>';
+            echo '<tr>';
+                echo '<th>Event Form</th>';
+                echo '<th>Event Music List</th>';
+
+            echo '</tr>';
+           echo '</thead>';
+           echo '<tbody>';
+              echo '<tr>';
+                if ($event['eventform']) {          
+                    if (substr($event['eventform'],0,4) === 'http') {
+                          echo "<td class='form-title-left'> <a href='".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></a></td>";
+                    } else {
+                      echo "<td class='form-title-left'> <a href='uploads/forms/".$event['eventform']."'><em>Click to PRINT FORM</em></a></td>";
+                    }
+                      
+                    } 
+  
+             if ($event['eventmusiclist']) {          
+                    if (substr($event['eventmusiclist'],0,4) === 'http') {
+                          echo "<td class='form-title-left'> <a href='".$event['eventmusiclist']."'><em>Click to PRINT EVENT MUSIC LIST</em></a></td>";
+                    } else {
+                      echo "<td class='form-title-left'> <a href='uploads/musiclists/".$event['eventmusiclist']."'><em>Click to PRINT EVENT MUSIC LIST</em></a></td>";
+                    }
+                      
+                    } 
+            // echo "<td>".$event['eventmusiclist']."</td>";
+              echo '</tr>';
+              echo '</tbody>';
+
                   echo '</table>';
                   echo '<br>';
 

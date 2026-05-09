@@ -40,6 +40,7 @@ if ($rowCount > 0) {
             'eventdate' => $eventdate,
             'eventcost' => $eventcost,
             'eventform' => $eventform,
+            'eventmusiclist' => $eventmusiclist,
             'orgemail' => $orgemail,
             'eventdj' => $eventdj,
             'eventdesc' => $eventdesc,
@@ -141,6 +142,14 @@ $_SESSION['upcoming_events'] = $upcomingEvents;
                           echo "<h4 class='form-title-left'> <a href='".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></a></h4>";
                     } else {
                       echo "<h4 class='form-title-left'> <a href='uploads/forms/".$event['eventform']."'><em>Click to PRINT EVENT FORM</em></a></h4>";
+                    }
+                      
+                    } 
+                       if ($event['eventmusiclist']) {          
+                    if (substr($event['eventmusiclist'],0,4) === 'http') {
+                          echo "<h4 class='form-title-left'> <a href='".$event['eventmusiclist']."'><em>Click to PRINT EVENT MUSIC LIST</em></a></h4>";
+                    } else {
+                      echo "<h4 class='form-title-left'> <a href='uploads/musiclists/".$event['eventmusiclist']."'><em>Click to PRINT EVENT MUSIC LIST</em></a></h4>";
                     }
                       
                     } 

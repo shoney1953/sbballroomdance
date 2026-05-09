@@ -118,6 +118,7 @@ $product = new PaymentProduct($db);
     $event->eventdesc = $_POST['eventdesc'];
     $event->eventdj = $_POST['eventdj'];
     $event->eventform = '';
+     $event->eventmusiclist= '';
     $event->eventroom = $_POST['eventroom'];
     $event->eventdate = $_POST['eventdate'];
     $event->eventregopen = $_POST['eventregopen'];

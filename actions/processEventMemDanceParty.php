@@ -74,7 +74,11 @@
                 echo "<h4 class='form-item-title'>Form: <a href='".$event['eventform']."'>VIEW or PRINT FORM</a></h4>";
                 echo '</div>'; // end of form item   
                    }
-              
+                  if ($event['eventmusiclist']) {
+                echo '<div class="form-item" id="eventmusiclist">';
+                echo "<h4 class='form-item-title'>Form: <a href='".$event['eventmusiclist']."'>VIEW or PRINT MUSIC LIST</a></h4>";
+                echo '</div>'; // end of form item   
+                   }
                   echo "<div class='form-item'>";
                   echo '<h4 class="form-item-title">Message to Event Organizer</h4>';
                   echo "<textarea  title='Enter any message to event organizer' name='message' rows='1' cols='20'></textarea>";

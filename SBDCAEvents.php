@@ -79,6 +79,7 @@ if ($rowCount > 0) {
             'eventregopen' => $eventregopen,
             'eventcost' => $eventcost,
             'eventform' => $eventform,
+            'eventmusiclist' => $eventmusiclist,
             'orgemail' => $orgemail,
             'eventdj' => $eventdj,
             "eventdesc" => html_entity_decode($eventdesc),
@@ -163,9 +164,9 @@ if ($rowCount > 0) {
         <li><a title="Return to Home Page" href="index.php">Back to Home</a></li>    
         <li><a title="Return to Administration Page" href="administration.php">Back to Administration</a></li>
         <?php
-          if ($_SESSION['role'] != 'DJ') {
+    
            echo '<li><a title="List Historical Data" href="SBDCAAEvents.php">Archived Events</a></li>';
-          }
+          
         ?>
        
       </ul>
@@ -199,6 +200,7 @@ echo '<form method="POST" action="actions/processEvents.php">';
     $amChk = 'am'.$event['id'];
     $umChk = 'um'.$event['id'];
     $ufChk = 'uf'.$event['id'];
+    $udlChk = 'udl'.$event['id'];
     $mbSrch = "srch".$event['id'];
     $class_month = substr($event['eventdate'], 5, 2);
     $class_year = substr($event['eventdate'], 0, 4);
@@ -287,13 +289,20 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '<h4 class="form-item-title">Upload Flyer</h4>';
    echo "<input type='checkbox' title='Select to Upload Flyer' name='".$ufChk."'>";
    echo '</div>';
+
+   
+}
+    }
+      if ($_SESSION['role'] === 'DJ') {
+         echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Upload Dance Music</h4>';
+   echo "<input type='checkbox' title='Select to Upload Dance Music' name='".$udlChk."'>";
+   echo '</div>';
     echo '<div class="form-item">';
     echo '<button type="submit" name="submitEventProcess">Process This Event</button>'; 
 
     echo '</div>';
-   
-}
-    }
+      }
    if ($_SESSION['role'] === 'SUPERADMIN') {
        echo '<div class="form-item">';
    echo '<h4 class="form-item-title">Duplicate?</h4>';
@@ -322,6 +331,11 @@ echo '<form method="POST" action="actions/processEvents.php">';
    echo '<h4 class="form-item-title">Upload Flyer</h4>';
    echo "<input type='checkbox' title='Select to Upload Flyer' name='".$ufChk."'>";
    echo '</div>';
+   echo '<div class="form-item">';
+   echo '<h4 class="form-item-title">Upload Dance Music</h4>';
+   echo "<input type='checkbox' title='Select to Upload Dance Music' name='".$udlChk."'>";
+   echo '</div>';
+   
    
 }
    if ($event['eventnumregistered'] <= 0) {

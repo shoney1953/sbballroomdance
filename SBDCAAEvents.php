@@ -28,7 +28,7 @@ $eventRegistrations = [];
 $num_registrations = 0;
 $num_events = 0;
 $num_classes = 0;
-if ($_SESSION['role'] === 'SUPERADMIN') {
+if (($_SESSION['role'] === 'SUPERADMIN') || ($_SESSION['role'] === 'DJ')) {
     $user = new Userarchive($db);
     $result = $user->read();
     
@@ -78,6 +78,7 @@ if ($rowCount > 0) {
             'eventdate' => $eventdate,
             'eventcost' => $eventcost,
             'eventform' => $eventform,
+            'eventmusiclist' => $eventmusiclist,
             'orgemail' => $orgemail,
             'eventdj' => $eventdj,
             "eventdesc" => html_entity_decode($eventdesc),
@@ -221,7 +222,6 @@ if (($_SESSION['role'] === 'SUPERADMIN') ||  ($_SESSION['role'] === 'INSTRUCTOR'
             extract($row);
             $reg_item = array(
                 'id' => $id,
-                'archclassid' => $archclassid,
                 'archclassid' => $archclassid,
                 'firstname' => $firstname,
                 'lastname' => $lastname,

@@ -14,6 +14,7 @@ class EventArch {
     public $eventdate;
     public $eventcost;
     public $eventform;
+    public $eventmusiclist;
     public $eventnumregistered;
     public $eventregopen;
     public $eventregend;
@@ -134,6 +135,7 @@ class EventArch {
           $this->eventdate = $row['eventdate'];
           $this->eventdesc = $row['eventdesc'];
           $this->eventform = $row['eventform'];
+             $this->eventmusiclist = $row['eventmusiclist'];
           $this->eventregend = $row['eventregend'];
           $this->eventregopen = $row['eventregopen'];
           $this->orgemail = $row['orgemail'];
@@ -156,7 +158,7 @@ class EventArch {
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           previd = :previd, eventregend = :eventregend,   eventregopen = :eventregopen,
           orgemail= :orgemail, eventdwopcount = :eventdwopcount,
-          eventproductid = :eventproductid,
+          eventproductid = :eventproductid, eventmusiclist = :eventmusiclist,
           eventmempriceid = :eventmempriceid,
           eventguestpriceid = :eventguestpriceid,
           eventguestcost = :eventguestcost,
@@ -174,6 +176,7 @@ class EventArch {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+          $this->eventmusiclist = htmlspecialchars(strip_tags($this->eventmusiclist));
           $this->orgemail = htmlspecialchars(strip_tags($this->orgemail));
           $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
           
@@ -193,6 +196,7 @@ class EventArch {
 
           $stmt->bindParam(':eventregopen', $this->eventregopen);
           $stmt->bindParam(':eventform', $this->eventform);
+          $stmt->bindParam(':eventmusiclist', $this->eventmusiclist);
           $stmt->bindParam(':eventdj', $this->eventdj);
           $stmt->bindParam(':previd', $this->previd);
           $stmt->bindParam(':eventnumregistered', $this->eventnumregistered);
@@ -222,7 +226,7 @@ class EventArch {
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           previd = :previd, eventregend = :eventregend, eventregopen = :eventregopen,
-          eventdinnerregend = :eventdinnerregend,
+          eventdinnerregend = :eventdinnerregend, eventmusiclist = :eventmusiclist,
           orgemail = :orgemail, eventdwopcount = :eventdwopcount,
           eventproductid = :eventproductid,
           eventmempriceid = :eventmempriceid,
@@ -243,6 +247,7 @@ class EventArch {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+          $this->eventmusiclist = htmlspecialchars(strip_tags($this->eventmusiclist));
           $this->orgemail = htmlspecialchars(strip_tags($this->orgemail));
           $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
           $this->eventregopen = htmlspecialchars(strip_tags($this->eventregopen));
@@ -258,6 +263,7 @@ class EventArch {
           $stmt->bindParam(':eventcost', $this->eventcost);
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
+          $stmt->bindParam(':eventmusiclist', $this->eventmusiclist);
           $stmt->bindParam(':orgemail', $this->orgemail);
           $stmt->bindParam(':eventregend', $this->eventregend);
    

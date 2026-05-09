@@ -112,6 +112,16 @@ if (isset($_GET['id'])) {
       
       echo "</div>";
     }
+     if ($event['eventmusiclist']) {
+      echo "<div class='form-item'>";
+      if (substr($event['eventmusiclist'],0,4) === 'http') {
+        echo "<h4 class='form-item-title'> <a href='".$event['eventmusiclist']."'>PRINT EVENT MUSIC LIST</a></h4>";
+      } else {
+             echo "<h4 class='form-item-title'> <a href='uploads/musiclists/".$event['eventmusiclist']."'>PRINT EVENT MUSIC LIST</a></h4>";
+      }
+      
+      echo "</div>";
+    }
     if ($event['eventtype'] === 'Dance Party') {
     echo "<div class='form-item'>";
     echo "<h4 class='form-item-title'> Last Day to Register for Dinner: <br>".date("Y-m-d",$eventCutOff)."</h4>"; 

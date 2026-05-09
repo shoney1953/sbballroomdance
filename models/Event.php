@@ -13,6 +13,7 @@ class Event {
     public $eventdate;
     public $eventcost;
     public $eventform;
+    public $eventmusiclist;
     public $eventnumregistered;
     public $eventregend;
     public $orgemail;
@@ -86,6 +87,7 @@ class Event {
           $this->eventdate = $row['eventdate'];
           $this->eventdesc = $row['eventdesc'];
           $this->eventform = $row['eventform'];
+           $this->eventmusiclist = $row['eventmusiclist'];
           $this->eventregopen = $row['eventregopen'];
           $this->eventregend = $row['eventregend'];
           $this->eventregopen = $row['eventregopen'];
@@ -114,7 +116,7 @@ class Event {
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           eventregend = :eventregend, orgemail= :orgemail,
-          eventregopen = :eventregopen,
+          eventregopen = :eventregopen, eventmusiclist = :eventmusiclist,
           eventproductid = :eventproductid,
           eventmempriceid = :eventmempriceid,
           eventguestpriceid = :eventguestpriceid,
@@ -133,6 +135,7 @@ class Event {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+           $this->eventmusiclist = htmlspecialchars(strip_tags($this->eventmusiclist));
           $this->eventregopen = htmlspecialchars(strip_tags($this->eventregopen));
           $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
           $this->eventdj = htmlspecialchars(strip_tags($this->eventdj));
@@ -147,6 +150,7 @@ class Event {
           $stmt->bindParam(':eventcost', $this->eventcost);
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
+            $stmt->bindParam(':eventmusiclist', $this->eventmusiclist);
           $stmt->bindParam(':eventregend', $this->eventregend);
 
           $stmt->bindParam(':eventregopen', $this->eventregopen);
@@ -177,7 +181,7 @@ class Event {
           eventdesc = :eventdesc, eventcost = :eventcost, eventform = :eventform,
           eventroom = :eventroom, eventdate = :eventdate, eventdj = :eventdj,
           eventregend = :eventregend, orgemail = :orgemail,
-          eventregopen = :eventregopen,
+          eventregopen = :eventregopen, eventmusiclist = :eventmusiclist,
           eventproductid = :eventproductid,
           eventmempriceid = :eventmempriceid,
           eventguestpriceid = :eventguestpriceid,
@@ -199,6 +203,7 @@ class Event {
           $this->eventdesc = htmlspecialchars(strip_tags($this->eventdesc));
           $this->eventcost = htmlspecialchars(strip_tags($this->eventcost));
           $this->eventform = htmlspecialchars(strip_tags($this->eventform));
+            $this->eventmusiclist = htmlspecialchars(strip_tags($this->eventmusiclist));
           $this->orgemail = htmlspecialchars(strip_tags($this->orgemail));
           $this->eventregend = htmlspecialchars(strip_tags($this->eventregend));
           $this->eventregopen = htmlspecialchars(strip_tags($this->eventregopen));
@@ -214,6 +219,7 @@ class Event {
           $stmt->bindParam(':eventcost', $this->eventcost);
           $stmt->bindParam(':eventdate', $this->eventdate);
           $stmt->bindParam(':eventform', $this->eventform);
+          $stmt->bindParam(':eventmusiclist', $this->eventmusiclist);
           $stmt->bindParam(':eventregend', $this->eventregend);
    
           $stmt->bindParam(':eventdwopcount', $this->eventdwopcount);
@@ -253,6 +259,37 @@ class Event {
           // Bind data
 
           $stmt->bindParam(':eventform', $this->eventform);
+ 
+          $stmt->bindParam(':id', $this->id);
+  
+
+          // Execute query
+          if($stmt->execute()) {
+            return true;
+          }
+
+          // Print error if something goes wrong
+          printf("Error: %s.\n", $stmt->error);
+
+          return false;
+    }
+         public function update_musiclist() {
+          // Create query
+
+          $query = 'UPDATE ' . $this->table . 
+          ' SET  eventmusiclist = :eventmusiclist
+            WHERE id = :id ';
+
+
+          // Prepare statement
+          $stmt = $this->conn->prepare($query);
+
+          // Clean data
+
+
+          // Bind data
+
+          $stmt->bindParam(':eventmusiclist', $this->eventmusiclist);
  
           $stmt->bindParam(':id', $this->id);
   
