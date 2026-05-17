@@ -112,7 +112,7 @@ if ($_SESSION['role'] != 'INSTRUCTOR') {
          foreach($visitors as $visitor) {
       
                echo "<tr>";
-                 echo "<td>".$visitor['logindate']."</td>";
+                 echo "<td>".substr($visitor['logindate'],0,10)."</td>";
                  echo "<td>".$visitor['numlogins']."</td>";
                  echo "<td>".$visitor['firstname']."</td>";               
                  echo "<td>".$visitor['lastname']."</td>";
