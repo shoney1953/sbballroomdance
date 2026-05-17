@@ -8,6 +8,7 @@ require_once '../models/Event.php';
 require_once '../models/Keys.php';
 require_once '../models/TempOnlineEventReg.php';
 require_once '../models/PaymentCustomer.php';
+  $current_year = date('Y');
 $database = new Database();
 $db = $database->connect();
 $allKeys = [];

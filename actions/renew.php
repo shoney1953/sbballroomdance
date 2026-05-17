@@ -8,6 +8,7 @@ require_once '../models/TempOnlineRenewal.php';
 require_once '../models/PaymentProduct.php';
 require_once '../models/PaymentCustomer.php';
 require_once '../models/Keys.php';
+  $current_year = date('Y');
 $database = new Database();
 $db = $database->connect();
 
