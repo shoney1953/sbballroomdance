@@ -5,9 +5,44 @@ require_once '../vendor/autoload.php';
 require_once '../config/Database.php';
 require_once '../models/PaymentProduct.php';
 require_once '../models/Event.php';
+require_once '../models/Keys.php';
 require_once '../models/TempOnlineEventReg.php';
 require_once '../models/PaymentCustomer.php';
+$database = new Database();
+$db = $database->connect();
+$allKeys = [];
+$keys = new Keys($db);
+$result = $keys->read();
 
+$rowCount = $result->rowCount();
+
+$num_options = $rowCount;
+
+$_SESSION['allKeys'] = [];
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+ 
+        $key_item = array(
+            'id' => $id,
+            'year' => $year,
+            'testkey' => $testkey,
+            'prodkey' => $prodkey   
+        );
+        array_push($allKeys, $key_item);
+
+    }
+    $_SESSION['allKeys'] = $allKeys;
+} 
+foreach($allKeys as $key) {
+    if ($current_year === $key['year']) {
+        $_SESSION['testkey'] = $key['testkey'];
+        $_SESSION['prodkey'] = $key['prodkey'];
+
+        break;
+    }
+}
 // $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
 if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
   $YOUR_DOMAIN = 'https://www.sbballroomdance.com';   
@@ -47,8 +82,7 @@ $line_item2 = [];
 $priceObj1 = [];
 $priceObj2 = [];
 $totalCost = 0;
-$database = new Database();
-$db = $database->connect();
+
 $paymentcustomer = new PaymentCustomer($db);
 $tempReg = new TempOnlineEventReg($db);
 $event = new Event($db);

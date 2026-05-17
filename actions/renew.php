@@ -7,9 +7,44 @@ require_once '../config/Database.php';
 require_once '../models/TempOnlineRenewal.php';
 require_once '../models/PaymentProduct.php';
 require_once '../models/PaymentCustomer.php';
+require_once '../models/Keys.php';
+$database = new Database();
+$db = $database->connect();
 
+$allKeys = [];
+$keys = new Keys($db);
+$result = $keys->read();
+
+$rowCount = $result->rowCount();
+
+$num_options = $rowCount;
+
+$_SESSION['allKeys'] = [];
+if ($rowCount > 0) {
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        extract($row);
+ 
+        $key_item = array(
+            'id' => $id,
+            'year' => $year,
+            'testkey' => $testkey,
+            'prodkey' => $prodkey   
+        );
+        array_push($allKeys, $key_item);
+
+    }
+    $_SESSION['allKeys'] = $allKeys;
+} 
+foreach($allKeys as $key) {
+    if ($current_year === $key['year']) {
+        $_SESSION['testkey'] = $key['testkey'];
+        $_SESSION['prodkey'] = $key['prodkey'];
+
+        break;
+    }
+}
 header('Content-Type: application/json');
-
 $YOUR_DOMAIN = 'http://localhost/sbdcballroomdance';
 
 if ($_SERVER['SERVER_NAME'] !== 'localhost') {    
@@ -27,8 +62,7 @@ $stripe = new \Stripe\StripeClient($stripeSecretKey);
 $memberProducts = $_SESSION['memberproducts'];
 
 
-$database = new Database();
-$db = $database->connect();
+
 $tempOnlineRenewal = new TempOnlineRenewal($db);
 $paymentcustomer = new PaymentCustomer($db);
 
