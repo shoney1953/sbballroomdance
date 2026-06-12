@@ -69,7 +69,7 @@ if($rowCount > 0) {
 if ($_SESSION['role'] != 'INSTRUCTOR') {
  
 
- echo '<div class="container-section ">';
+//  echo '<div class="container-section ">';
  echo '<section id="visitors" class="content">';
      echo '<h3 class="section-header">Visitors</h3> '; 
      echo '<div class="form-grid3">';
@@ -125,7 +125,7 @@ if ($_SESSION['role'] != 'INSTRUCTOR') {
      echo '<br>';
    
  echo '</section>';
- echo '</div>';
+//  echo '</div>';
 }
 ?>
 <footer>
