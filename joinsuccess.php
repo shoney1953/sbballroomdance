@@ -127,7 +127,7 @@ $toCC5 = '';
           $formerUser = "yes";
           $userArchive->deleteUser($user->username, $user->email);
        }
-       
+    
  
 
        $fromEmailName = 'SBDC Ballroom Dance Club';

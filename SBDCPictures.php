@@ -48,6 +48,8 @@ $sess = session_start();
         <li class="li-none"><a href="https://sheilahoney.smugmug.com/Gallery-4826-939-AM">BBQ Picnic 3 28 2026</a></li>
         <li class="li-none"><a href="https://sheilahoney.smugmug.com/SBDC-May-Flowers-Dance-5-8-2026">May Flowers 5 8 2026</a></li>
         <li class="li-none"><a href=" https://sheilahoney.smugmug.com/SBDC-Keeping-it-cool-06-11-2026">Keeping it Cool 6 11 2026</a></li>
+         <li class="li-none"><a href="https://sheilahoney.smugmug.com/2026-07-17-Red-White-and-Blue">Red White and Blue 7 17 2026</a></li>
+        
        
             
          
