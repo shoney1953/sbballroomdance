@@ -318,7 +318,7 @@ if (isset($_POST['submitAddReg'])) {
                 //  if ($event->orgemail != null) {
                 //     $toCC2 = $event->orgemail;
                 // }
-                $emailBody .= '<br>Note: You can also see these events from your profile on the website.';
+                $emailBody .= '<br>Note: You can also see your choices from Upcoming Events in the website.';
                 if (($eventReg->email !== NULL) && ($eventReg->email !== ' ')) {
                           $eventReg->create();
                           $event->addCount($eventReg->eventid);
