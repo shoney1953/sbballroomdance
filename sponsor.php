@@ -53,7 +53,7 @@
      
       <div class="sponsorCard">
        <!-- <img  class="sponsorImage" src="img/xfinity.png" alt="Xfinity info"> -->
-         <img  class="sponsorImage" src="img/xfinity 2027.png" alt="Xfinity info">
+         <img  class="sponsorImage" src="img/Xfinity-2027.png" alt="Xfinity info">
       </div>
         <div class="sponsorCard">
        <img  class="sponsorImage" src="img/Harn2026.png" alt="Wendy Harn info">
