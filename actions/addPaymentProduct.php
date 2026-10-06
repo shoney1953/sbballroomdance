@@ -18,9 +18,9 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost') {
 if ($_SERVER['SERVER_NAME'] === 'localhost') {
   $stripeSecretKey = $_SESSION['testkey'] ;
 }
-
+var_dump($stripeSecretKey);
 \Stripe\Stripe::setApiKey($stripeSecretKey);
-header('Content-Type: application/json');
+// header('Content-Type: application/json');
 
 $stripe = new \Stripe\StripeClient($stripeSecretKey);
 if (!isset($_SESSION['username']))
@@ -101,6 +101,7 @@ if (isset($_POST['submitAddProduct'])) {
    $product->productid = $newProduct->id;
    $product->priceid = $price->id;
    $product->eventid = $_POST['eventid'];
+   $product->type = $_POST['type'];
    $product->create();
   }
 

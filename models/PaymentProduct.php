@@ -131,6 +131,7 @@ public function read_ByType($type) {
           // Execute query
           if($stmt->execute()) {
             return true;
+         
       }
 
       // Print error if something goes wrong

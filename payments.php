@@ -80,6 +80,7 @@ if ($rowCount > 0) {
             'eventid' => $eventid
 
         );
+
         if ($product_item['type'] === 'membership') {
             array_push($membershipProducts, $product_item);
         }
@@ -90,7 +91,7 @@ if ($rowCount > 0) {
             array_push($mealProducts, $product_item);
         }
         array_push($allProducts, $product_item);
-    
+
     }
   
     $_SESSION['allProducts'] = $allProducts;
@@ -173,6 +174,8 @@ if ($rowCount > 0) {
                   echo '<td colspan="6"> ';
            echo '<form method="POST" action="actions/addPaymentProduct.php">';
            echo "<h4 class='form-title'>Add a Membership Payment Product</h4>";
+           echo '<input type="hidden" name="eventid" value="0">';
+               echo '<input type="hidden" name="type" value="membership">';
            echo '<div class="form-grid">';
            echo '<div class="form-item">';
             echo "<h4 class='form-item-title'>Name</h4>";
