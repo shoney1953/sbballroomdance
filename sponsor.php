@@ -48,23 +48,25 @@
     <div class="sponsorCard">
        <img  class="sponsorImage" src="img/NID.png" alt="Nest In the Desert info">
       </div>
-      <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/GolfCars.png" alt="Golf Carts info">
-      </div>
-      <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/Danswear.png" alt="Dance West info">
-      </div>
+
+
+     
       <div class="sponsorCard">
        <!-- <img  class="sponsorImage" src="img/xfinity.png" alt="Xfinity info"> -->
-         <img  class="sponsorImage" src="img/xfinity-2026.png" alt="Xfinity info">
+         <img  class="sponsorImage" src="img/xfinity 2027.png" alt="Xfinity info">
       </div>
         <div class="sponsorCard">
        <img  class="sponsorImage" src="img/Harn2026.png" alt="Wendy Harn info">
       </div>
+       <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Danswear.png" alt="Dance West info">
+      </div>
       <div class="sponsorCard">
        <img  class="sponsorImage" src="img/Vantagewest.png" alt="VantageWest info">
       </div>
-
+       <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Connections 2027.png" alt="Jean Agnew info">
+      </div>
 
       <!-- <div class="sponsorCard">
        <img  class="sponsorImage" src="img/closettrends.png" alt="Closet Trends info">
@@ -75,9 +77,7 @@
       <h1>Novice Sponsors</h1>
       </div>
       <div class="form-grid5"> 
-      <div class="sponsorCard">
-       <img  class="sponsorImage" src="img/Agnew2026.png" alt="Jean Agnew info">
-      </div>
+     
       <div class="sponsorCard">
        
        <img  class="sponsorImage" src="img/leahkari.png" alt="Leah Kari info">
@@ -112,6 +112,16 @@
        <div class="sponsorCard">
        <img  class="sponsorImage" src="img/LaCroix2026.png" alt="Daniel Lacroix info">
       </div>
+        <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Twin Lake Air.png" alt="Twin Lake Air">
+      </div>
+        <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Sonoran Audiology.png" alt="Sonoran Audiology">
+      </div>
+   <div class="sponsorCard">
+       <img  class="sponsorImage" src="img/Longley Tax & Financial.png" alt="Longley Tax and Financial">
+      </div>
+
       </div>
       
                <br><br><br> 
