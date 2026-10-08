@@ -11,13 +11,16 @@ $thisYear = date("Y");
 $nextYear = date('Y', strtotime('+1 year')); 
 $result = 0;
 $curpaid =  $_SESSION['memPaidCurrent'];
+$x = 0;
 foreach($curpaid as $c) {
-    if ($c['userid'] == 10) {
-
-   
-    }
+   var_dump($c);
+if ($c['userid'] === '358') {
+   $x = $memPaid->read_byUseridYear($c['userid'], $nextYear);
+   var_dump($x);
+}
 
    if (!$memPaid->read_byUseridYear($c['userid'], $nextYear)) {
+
 
       $memPaidNew->userid = $c['userid'];
 
@@ -26,13 +29,13 @@ foreach($curpaid as $c) {
       $memPaidNew->paid = 0;
       $memPaidNew->paidonline = 0;
  
-      $memPaidNew->create();
+      // $memPaidNew->create();
    }
 
 }
 
 }
-$redirect = "Location: ".$_SESSION['returnurl'];
-header($redirect);
-exit;
+// $redirect = "Location: ".$_SESSION['returnurl'];
+// header($redirect);
+// exit;
 ?>

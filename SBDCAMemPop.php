@@ -16,6 +16,7 @@ $db = $database->connect();
 $memPaid = new MemberPaid($db);
 $thisYear = date("Y");
 $nextYear = date('Y', strtotime('+1 year')); 
+
 $memberCurr = [];
 $result = $memPaid->read_byYear($thisYear);
   
