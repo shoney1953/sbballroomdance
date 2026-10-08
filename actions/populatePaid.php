@@ -13,8 +13,8 @@ $result = 0;
 $curpaid =  $_SESSION['memPaidCurrent'];
 $x = 0;
 foreach($curpaid as $c) {
-   var_dump($c);
-if ($c['userid'] === '358') {
+
+if ($c['userid'] === '580') {
    $x = $memPaid->read_byUseridYear($c['userid'], $nextYear);
    var_dump($x);
 }
