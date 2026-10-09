@@ -14,10 +14,7 @@ $curpaid =  $_SESSION['memPaidCurrent'];
 $x = 0;
 foreach($curpaid as $c) {
 
-if ($c['userid'] === '580') {
-   $x = $memPaid->read_byUseridYear($c['userid'], $nextYear);
-   var_dump($x);
-}
+// 
 
    if (!$memPaid->read_byUseridYear($c['userid'], $nextYear)) {
 
@@ -28,14 +25,15 @@ if ($c['userid'] === '580') {
 
       $memPaidNew->paid = 0;
       $memPaidNew->paidonline = 0;
+
  
-      // $memPaidNew->create();
+      $memPaidNew->create();
    }
 
 }
 
 }
-// $redirect = "Location: ".$_SESSION['returnurl'];
-// header($redirect);
-// exit;
+$redirect = "Location: ".$_SESSION['returnurl'];
+header($redirect);
+exit;
 ?>

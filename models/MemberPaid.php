@@ -113,10 +113,10 @@ class MemberPaid {
       }
     public function read_byUseridYear($userid, $year) {
             // Create query
-
+     
           $query = 'SELECT * FROM ' . $this->table . ' 
-            WHERE userid = :userid AND year = :year LIMIT 0,1'
-
+            WHERE year = :year and userid = :userid 
+            LIMIT 0,1'
            ; 
 
 
@@ -128,7 +128,7 @@ class MemberPaid {
             $stmt->bindParam(':year', $year);
   
  
-
+            $stmt->execute();
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
           // Set properties
@@ -141,11 +141,10 @@ class MemberPaid {
           $this->paidonline = $row['paidonline'];
           $this->id = $row['id'];
 
-    
           return true;
       }
 
-
+   
       return false;
       }
     // Create record
