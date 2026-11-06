@@ -103,24 +103,25 @@ if (isset($_POST['submitUpdateMeal'])) {
               header($redirect);
               exit;  
             }
-           
+  
             $paymentProduct->read_byProductId($choice['productid']);
-            
-            $event->id = $choice['eventid'];
+        
+       
             $event->read_single();
-              $product->description = $_POST["$mdID"];
+
+              $paymentProduct->description = $_POST["$mdID"];
               $productName = $event->eventname;
               $productName .= ' ';
               $productName .= $_POST["$mcID"];
-              $product->name = $productName;
-            
+              $paymentProduct->name = $productName;
+   
              $mealChoices->id = $choice['id'];
              $mealChoices->memberprice  = $_POST["$mpID"];
              $mealChoices->guestprice   = $_POST["$gpID"];
              $mealChoices->mealname   = $_POST["$mcID"];
             $mealChoices->mealdescription   = $_POST["$mdID"];
-             $paymentProduct->name =  $product->name;
-             $paymentProduct->description =  $product->description;
+            //  $paymentProduct->name =  $productName;
+            //  $paymentProduct->description =  $product->description;
         
             $product = $stripe->products->update(
               $choice['productid'],
