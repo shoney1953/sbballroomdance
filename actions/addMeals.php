@@ -185,7 +185,7 @@ $event->read_single();
             // if ($event->eventtype === 'BBQ Picnic') {
             //      echo "<input type='text' name='memberprice2' title='Enter member price for Meal Choice 2 in pennies' value ='0000' >";
             // } else {
-                echo "<input type='text' name='memberprice2' title='Enter member price for Meal Choice 2 in pennies' >";
+                echo "<input type='text' name='memberprice2' title='Enter member price for Meal Choice 2 in pennies'  >";
             // }
          
               echo '</div>';
