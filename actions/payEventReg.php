@@ -55,7 +55,7 @@ if (isset($_POST['submitPayReg'])) {
           $reg['ddattenddinner'] = '1';
         }
         $cost1 = $event->eventcost * 100;
-        if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+        if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {
           $partnerEventReg->read_ByEventIdUser((int)($reg['eventid']), (int)($_SESSION['partnerid']));
 
           $payReg['regid2'] = $partnerEventReg->id;
@@ -71,7 +71,7 @@ if (isset($_POST['submitPayReg'])) {
           $priceID1 = $mealChoice1->priceid;
           $cost1 = $mealChoice1->memberprice;
             } // mealchoice
-        if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+        if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {
              if ($partnerEventReg->mealchoice !== '0') {
           $mealChoice2->id = $partnerEventReg->mealchoice;
           $mealChoice2->read_single();
@@ -82,7 +82,7 @@ if (isset($_POST['submitPayReg'])) {
              } // partner meal choice set
         } 
         } else {
-          if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+          if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {
                $cost2 = $event->eventcost * 100;
           }
         }// ddattend dinner
@@ -99,7 +99,7 @@ if (isset($_POST['submitPayReg'])) {
             $payReg['firstname1'] = $_SESSION['userfirstname'];
             $payReg['lastname1'] = $_SESSION['userlastname'];
             $payReg['email1'] = $_SESSION['useremail'];
-            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {
                $payReg['partnerid'] = $_SESSION['partnerid'];
                 $payReg['firstname2'] = $_SESSION['partnerfirstname'];
                 $payReg['lastname2'] = $_SESSION['partnerlastname'];
@@ -115,7 +115,7 @@ if (isset($_POST['submitPayReg'])) {
                $payReg['mealchoice1'] = $mealChoice1->id;
                $payReg['mealdesc1'] = $mealChoice1->mealdescription;
                $productID1 = $mealChoice1->productid;
-              if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+              if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {
                $payReg['mealchoice2'] = $mealChoice2->id;
                $payReg['mealdesc2'] = $mealChoice2->mealdescription;
                $productID2 = $mealChoice2->productid;
@@ -174,7 +174,7 @@ if (isset($_POST['submitPayReg'])) {
     echo "<h4> You have chosen to pay for registration(s) to ".$event->eventname." ".$event->eventtype." on ".$event->eventdate."   </h4>";
     if ($attendDinner === 0) {
        
-       if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+       if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {
           echo "<h4> You and your partner have elected not to attend dinner   </h4>";
        } else {
         echo "<h4> You have elected not to attend dinner   </h4>";
@@ -182,7 +182,7 @@ if (isset($_POST['submitPayReg'])) {
     } else {
       echo "<h4> You have elected to attend dinner   </h4>";
       echo "<h4> Your meal selection is ".$mealChoice1->mealdescription." at a cost of $".number_format($cost1/100,2).".</h4>";
-        if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+        if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {
             echo "<h4> Your partners meal selection is ".$mealChoice2->mealdescription." at a cost of $".number_format($cost2/100,2).".</h4>";
         }
     }

@@ -81,7 +81,7 @@ if (isset($_POST['submitRemoveRegs'])) {
 
 
  
-    if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+    if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {
         if ($partnerEventReg->read_ByEventIdUser( $_POST['eventid'],$_SESSION['partnerid'])) {
             $gotPartnerEventRec = 1;
             $remID2 = "rem".$partnerEventReg->id;                 

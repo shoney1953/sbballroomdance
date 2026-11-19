@@ -45,7 +45,7 @@ if (isset($_POST['submitRemoveRegs'])) {
   if ($reg->read_ByClassIdUser($_POST['classid'],$_SESSION['userid'])) {
       $gotClassReg = 1;    
     }             
-    if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+    if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== 0)) {
       if ($partnerReg->read_ByClassIdUser($_POST['classid'],$_SESSION['partnerid'])) {
           $gotPartnerClassReg = 1;
       }

@@ -141,10 +141,11 @@ $replyTopic = "SBDC Event Registration Update ";
             if (isset($_POST["$dddinID"])) {
           
                $eventReg->ddattenddinner = 1;
-            } else {
-                   
-                $eventReg->ddattenddinner = 0;
             }
+            // } else {
+                   
+            //     $eventReg->ddattenddinner = 0;
+            // }
             
             if (isset($_POST["$chID"])) {
                 $eventReg->cornhole = $_POST["$chID"];

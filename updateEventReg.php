@@ -324,8 +324,8 @@
             echo '<div class="form-item">';
             echo '<h4 class="form-item-title">Paid?</h4>';
             // echo "<input type='number' title='Enter 1 to indicate Paid' name='".$paidID."'. min='0' max='1' value='".$reg['paid']."'>";
-            
-            if ($reg['paid'] === '1') {
+    
+            if ($reg['paid'] === 1) {
             echo "<input type='checkbox'  name='".$paidID."'.  value='".$reg['paid']."' checked>";
         } else {
              echo "<input type='checkbox'  name='".$paidID."'.  value='".$reg['paid']."'>";

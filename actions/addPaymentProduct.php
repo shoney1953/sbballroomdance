@@ -18,7 +18,7 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost') {
 if ($_SERVER['SERVER_NAME'] === 'localhost') {
   $stripeSecretKey = $_SESSION['testkey'] ;
 }
-var_dump($stripeSecretKey);
+
 \Stripe\Stripe::setApiKey($stripeSecretKey);
 // header('Content-Type: application/json');
 

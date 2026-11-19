@@ -22,6 +22,7 @@ $gotEventReg = 0;
 $gotPartnerEventReg = 0;
 $currentDate = new DateTime();
 $compareDate = $currentDate->format('Y-m-d');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,9 +47,10 @@ $compareDate = $currentDate->format('Y-m-d');
 <div class="section-back">
 
 <?php
-       
+
           
 foreach ($upcomingEvents as $event) {
+
     $upChk = "up".$event['id'];
     $rpChk = "rp".$event['id'];
     $delChk = "del".$event['id'];
@@ -56,8 +58,8 @@ foreach ($upcomingEvents as $event) {
     $payChk = "pay".$event['id'];
     $addGuestsChk = "addguests".$event['id'];
 
-    if ($event['id'] === $_POST['eventId']) {
-
+    if ($event['id'] === (int)$_POST['eventId']) {
+   
         if (isset($_POST["$rpChk"])) {
             // unset($_POST["$rpChk"]);
             echo "<h4>Generated Report for  ".$event['eventname']."  ".$event['eventdate']."</h4>";
@@ -183,6 +185,7 @@ foreach ($upcomingEvents as $event) {
                 echo '</div>'; // form grid
                 echo '</div>'; // form grid div
               }
+      
                  if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
                 if (!$gotPartnerEventReg) {
                     echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';

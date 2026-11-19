@@ -127,7 +127,9 @@ $_SESSION['upcoming_events'] = $upcomingEvents;
                  $ed .= $event["id"];
                  $numActions = 0;
           
-                $eventCutOff = strtotime($event['eventdinnerregend']);
+                // $eventCutOff = strtotime($event['eventdinnerregend']);
+               $eventCutOff = strtotime($event['eventdinnerregend'] ?? '');
+          
 
                 $comparedateTS = strtotime($compareDate);
                 $eventRegEnd = strtotime($event['eventregend']);
@@ -297,10 +299,11 @@ $_SESSION['upcoming_events'] = $upcomingEvents;
                   } // bbq picnic
                   }  // end got eventreg
                     // only partner registered
+                    $dr = substr((string) $eventReg->dateregistered,0,10);
                     if ($gotPartnerEventReg) {
    
                       echo '<div class="form-item">';
-                      echo "<h4 class='form-item-title'>Your partner registered on: <br> ".substr($eventReg->dateregistered,0,10)."</h4>";
+                      echo "<h4 class='form-item-title'>Your partner registered on: <br> ".$dr."</h4>";
                       echo '</div>'; // end of form item
                       if ($event['eventtype'] === 'Dance Party') {
                     
@@ -471,9 +474,10 @@ $_SESSION['upcoming_events'] = $upcomingEvents;
                     
  
                      if (($gotEventReg) || ($gotPartnerEventReg)) {  
-                          $eventCutOff = strtotime($event['eventdinnerregend']);
+                          $eventCutOff = strtotime($event['eventdinnerregend'] ?? '');
+                          // $timestamp = strtotime($eventDate ?? '');
                           $comparedateTS = strtotime($compareDate);
-                          $eventRegEnd = strtotime($event['eventregend']);
+                          $eventRegEnd = strtotime($event['eventregend'] ?? '');
                            
                           if ($comparedateTS <= $eventCutOff) { 
                      
@@ -545,7 +549,7 @@ $_SESSION['upcoming_events'] = $upcomingEvents;
                               }  // got partner
                             } // end of else goteventreg
                           // }
-                            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0') && (!($gotPartnerEventReg))) {
+                            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== 0) && (!($gotPartnerEventReg))) {
                               $comparedateTS = strtotime($compareDate);
                               $eventRegOpen = strtotime($event['eventregopen']);
                                  if (($comparedateTS >= $eventRegOpen) && ($comparedateTS <=  $eventRegEnds)) {
@@ -556,7 +560,7 @@ $_SESSION['upcoming_events'] = $upcomingEvents;
                                     $numActions++;
                             }
                            }
-                            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0') && ($gotPartnerEventReg)) {
+                            if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== 0) && ($gotPartnerEventReg)) {
                               if (!($gotEventReg)) {
                               $comparedateTS = strtotime($compareDate);
                               $eventRegOpen = strtotime($event['eventregopen']);

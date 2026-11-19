@@ -10,14 +10,15 @@
                        $gotEventReg = 1;
                      }
                 }
-              
-               if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+      
+               if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== 0)) {
                  if ($partnerReg->read_ByEventIdUser($event['id'],$_SESSION['partnerid'])) {
                       $gotPartnerEventReg = 1;
                  }
                }
                 $comparedateTS = strtotime($compareDate); // current date in timestamp
-                $eventDinnRegEnd = strtotime($event['eventdinnerregend']); // last day to register for meals
+                $eventDinnRegEnd = strtotime($event['eventdinnerregend'] ?? ''); // last day to register for meals
+                // $timestamp = strtotime($eventDate ?? '');
                 $mealChoices = [];
               $result = $mChoices->read_ByEventId($event['id']);
                 $rowCount = $result->rowCount();
@@ -218,7 +219,7 @@
                 echo '<input type="hidden" name="email1" value='.$_SESSION['useremail'].'>';
                 }
 
-                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== 0)) {
                    echo '<input type="hidden" name="firstname2" value='.$_SESSION['partnerfirstname'].'>';
                    echo '<input type="hidden" name="lastname2" value='.$_SESSION['partnerlastname'].'>';
                    echo '<input type="hidden" name="email2" value='.$_SESSION['partneremail'].'>';
@@ -283,8 +284,8 @@
                   echo "</div>";
                 echo '</div>'; // form grid div
                  }
-                
-                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) { 
+            
+                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== 0)) { 
                   if (!$gotPartnerEventReg) {
 
                 echo '<div class="form-grid-div" id="partMealChoice">';
