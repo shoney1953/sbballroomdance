@@ -62,7 +62,7 @@ foreach ($upcomingEvents as $event) {
     $postv = gettype($_POST['eventId']);
 
     if ($eventv === 'string') {
-        $testEvent = int($event['id']);
+        $testEvent = (int)($event['id']);
     } else {
          $testEvent = $event['id'];
     }
