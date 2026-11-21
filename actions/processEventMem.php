@@ -57,6 +57,8 @@ foreach ($upcomingEvents as $event) {
     $regChk = "reg".$event['id'];
     $payChk = "pay".$event['id'];
     $addGuestsChk = "addguests".$event['id'];
+    var_dump($event['id']);
+    var_dump($_POST['eventId']);
  
     if ($event['id'] === (int)$_POST['eventId']) {
        
