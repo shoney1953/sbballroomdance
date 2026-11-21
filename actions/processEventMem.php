@@ -66,6 +66,8 @@ foreach ($upcomingEvents as $event) {
     } else {
          $testEvent = $event['id'];
     }
+    var_dump($testEvent);
+    var_dump($_POST['eventId']);
     if ($testEvent === (int)$_POST['eventId']) {
        
         if (isset($_POST["$rpChk"])) {
