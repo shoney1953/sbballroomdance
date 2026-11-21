@@ -57,9 +57,9 @@ foreach ($upcomingEvents as $event) {
     $regChk = "reg".$event['id'];
     $payChk = "pay".$event['id'];
     $addGuestsChk = "addguests".$event['id'];
-
+ 
     if ($event['id'] === (int)$_POST['eventId']) {
-   
+       
         if (isset($_POST["$rpChk"])) {
             // unset($_POST["$rpChk"]);
             echo "<h4>Generated Report for  ".$event['eventname']."  ".$event['eventdate']."</h4>";
@@ -131,7 +131,7 @@ foreach ($upcomingEvents as $event) {
                 echo '</div>';
                 } // got eventreg
 
-                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] !== '0')) {
+                if ((isset($_SESSION['partnerid'])) && ($_SESSION['partnerid'] > 0)) {
               
                  if ($gotPartnerEventReg) {
                     $remID2 = "rem".$partnerReg->id;
