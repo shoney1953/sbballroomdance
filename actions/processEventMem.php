@@ -57,10 +57,16 @@ foreach ($upcomingEvents as $event) {
     $regChk = "reg".$event['id'];
     $payChk = "pay".$event['id'];
     $addGuestsChk = "addguests".$event['id'];
-    var_dump($event['id']);
-    var_dump($_POST['eventId']);
- 
-    if ($event['id'] === (int)$_POST['eventId']) {
+
+    $eventv = gettype($event['id']);
+    $postv = gettype($_POST['eventId']);
+
+    if ($eventv === 'string') {
+        $testEvent = int($event['id']);
+    } else {
+         $testEvent = $event['id'];
+    }
+    if ($testEvent === (int)$_POST['eventId']) {
        
         if (isset($_POST["$rpChk"])) {
             // unset($_POST["$rpChk"]);
